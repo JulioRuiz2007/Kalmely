@@ -555,7 +555,112 @@ strong { font-weight: 600; color: var(--ink); }
   color: var(--accent);
   font-weight: 600;
   letter-spacing: 0.01em;
+  margin-bottom: 18px;
+}
+
+/* Launch Kit value breakdown — sits between price and bullets */
+.buy-kit {
+  border: 1px solid var(--brand-soft);
+  background: var(--brand-soft);
+  border-radius: 10px;
+  padding: 16px 18px 14px;
   margin-bottom: 22px;
+}
+.buy-kit-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(31, 61, 47, 0.18);
+}
+.buy-kit-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-deep);
+}
+.buy-kit-tag {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--brand);
+  padding: 4px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.buy-kit-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.buy-kit-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 0;
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.buy-kit-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+.buy-kit-item svg { flex-shrink: 0; color: var(--brand); }
+.buy-kit-val {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.buy-kit-val--free {
+  color: var(--brand-deep);
+}
+.buy-kit-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 61, 47, 0.18);
+  gap: 12px;
+}
+.buy-kit-foot-label {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.buy-kit-foot-strike {
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+.buy-kit-foot-price {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.buy-kit-foot-price strong {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--brand-deep);
+  margin-left: 4px;
+}
+@media (max-width: 480px) {
+  .buy-kit { padding: 14px 14px 12px; }
+  .buy-kit-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .buy-kit-list li { font-size: 13px; gap: 10px; }
+  .buy-kit-foot { flex-direction: column; align-items: flex-start; gap: 4px; }
 }
 .buy-bullets {
   list-style: none;
@@ -1866,10 +1971,43 @@ strong { font-weight: 600; color: var(--ink); }
 
         <div class="buy-price">
           <span class="now">£149</span>
-          <span class="was">£249</span>
-          <span class="save">Save £100</span>
+          <span class="was">£223</span>
+          <span class="save">Save £74</span>
         </div>
-        <div class="buy-urgency">Launch price — limited time</div>
+        <div class="buy-urgency">Launch Week — full Kit at the device-only price</div>
+
+        <div class="buy-kit">
+          <div class="buy-kit-head">
+            <span class="buy-kit-eyebrow">Launch Kit · this week only</span>
+            <span class="buy-kit-tag">£74 of extras — free</span>
+          </div>
+          <ul class="buy-kit-list">
+            <li>
+              <span class="buy-kit-item"><svg width="14" height="14" aria-hidden="true"><use href="#iconCheck"/></svg> Kalmely Wireless Head Massager</span>
+              <span class="buy-kit-val">£149</span>
+            </li>
+            <li>
+              <span class="buy-kit-item"><svg width="14" height="14" aria-hidden="true"><use href="#iconCheck"/></svg> Premium printed user manual</span>
+              <span class="buy-kit-val buy-kit-val--free">£19 · free</span>
+            </li>
+            <li>
+              <span class="buy-kit-item"><svg width="14" height="14" aria-hidden="true"><use href="#iconCheck"/></svg> USB-C charging cable</span>
+              <span class="buy-kit-val buy-kit-val--free">£12 · free</span>
+            </li>
+            <li>
+              <span class="buy-kit-item"><svg width="14" height="14" aria-hidden="true"><use href="#iconCheck"/></svg> Soft storage pouch</span>
+              <span class="buy-kit-val buy-kit-val--free">£14 · free</span>
+            </li>
+            <li>
+              <span class="buy-kit-item"><svg width="14" height="14" aria-hidden="true"><use href="#iconCheck"/></svg> 30-Day Migraine Tracker ebook (PDF)</span>
+              <span class="buy-kit-val buy-kit-val--free">£29 · free</span>
+            </li>
+          </ul>
+          <div class="buy-kit-foot">
+            <span class="buy-kit-foot-label">Full Kit value <span class="buy-kit-foot-strike">£223</span></span>
+            <span class="buy-kit-foot-price">You pay <strong>£149</strong></span>
+          </div>
+        </div>
 
         <ul class="buy-bullets">
           <li>
@@ -2224,7 +2362,7 @@ strong { font-weight: 600; color: var(--ink); }
         <div class="final-card-name">Kalmely Wireless Head Massager</div>
         <div class="final-card-price">
           <span class="now">£149</span>
-          <span class="was">£249</span>
+          <span class="was">£223</span>
         </div>
         <ul>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Six-zone air compression + optional heat</li>
