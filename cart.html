@@ -351,42 +351,30 @@ const WORKER_URL = 'https://kalmely-api.julioruizbayarri.workers.dev';   // <-- 
 const SITE_ORIGIN = window.location.origin;
 const IS_CONFIGURED = !WORKER_URL.includes('REPLACE');
 
-// SKU → bundle + Stripe price ID
+// Single SKU: KAL-BUNDLE (full kit). Legacy URLs map here automatically.
 const params = new URLSearchParams(window.location.search);
-// Legacy alias: KAL-1 maps to KAL-BUNDLE for backwards compatibility
-let sku = params.get('sku') || 'KAL-BUNDLE';
-if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
-// `price` is the cart-UI display price (post LAUNCH for bundle, pre RELIEF15).
-// The Worker uses Stripe Price IDs configured server-side, not the UI numbers.
+let sku = 'KAL-BUNDLE'; // Always the full kit — no device-only option
 const bundles = {
-  'KAL-SOLO': {
-    name: 'Kalmely Head Massager',
-    price: 149,
-    sub: 'Device only · No bonus kit · Free shipping',
-    img: 'assets/product-placeholder.svg'
-  },
   'KAL-BUNDLE': {
-    name: 'Kalmely + Launch Bonus Kit',
+    name: 'Kalmely Wireless Head Massager — Launch Kit',
     price: 149,
-    sub: 'Device + manual + USB-C + pouch + digital guide · Free shipping',
-    img: 'assets/product-placeholder.svg'
+    sub: 'Device + handheld remote + USB-C cable + soft pouch + 30-Day Migraine Tracker ebook · Free UK shipping',
+    img: 'assets/product-hero.jpg'
   }
 };
-const bundle = bundles[sku] || bundles['KAL-BUNDLE'];
+const bundle = bundles[sku];
 document.getElementById('item-name').textContent = bundle.name;
 document.querySelector('.cart-item-sub').textContent = bundle.sub;
 document.getElementById('item-img').src = bundle.img;
 document.getElementById('item-img').alt = bundle.name;
 
-// Show "what's in the box" + ebook delivery note based on SKU
-if (sku === 'KAL-BUNDLE') {
-  document.getElementById('includedBlock').hidden = false;
-  document.getElementById('summaryEbookNote').hidden = false;
-}
+// Always show "what's in the box" + ebook delivery note — single SKU is the kit
+document.getElementById('includedBlock').hidden = false;
+document.getElementById('summaryEbookNote').hidden = false;
 
 // ===== Coupon (RELIEF15 = £15 off, applies to both KAL-* devices) =====
 const VALID_COUPONS = {
-  'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-SOLO', 'KAL-BUNDLE'] }
+  'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-BUNDLE'] }
 };
 let activeCoupon = null;
 const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();

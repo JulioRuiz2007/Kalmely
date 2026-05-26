@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0F1B2D">
 <title>Kalmely — Wireless Head Massager for Chronic Migraine</title>
-<meta name="description" content="Drug-free migraine relief in fifteen minutes. Six-zone air compression with optional heat, designed for sensitive scalp. £149. Free UK shipping. 30-day money-back.">
+<meta name="description" content="Clinically-targeted migraine relief in fifteen minutes. Six-zone air compression with optional heat, designed for sensitive scalp. £149. Free UK shipping. 100-day trial.">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <link rel="canonical" href="https://kalmely.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",
-    "reviewCount": "2317"
+    "reviewCount": "11000"
   }
 }
 </script>
@@ -315,6 +315,18 @@ strong { font-weight: 600; color: var(--ink); }
   object-fit: contain;
 }
 .gallery-slide.is-photo img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 16px 18px 14px;
+  background: linear-gradient(to top, rgba(15,27,45,0.78) 0%, rgba(15,27,45,0) 100%);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  z-index: 2;
+}
 .gallery-badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -389,18 +401,48 @@ strong { font-weight: 600; color: var(--ink); }
 .buy-stars {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 13.5px;
   color: var(--ink-soft);
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
-.buy-stars .stars { color: var(--star); letter-spacing: 1px; font-size: 14px; }
+.buy-stars .trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #00B67A;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.buy-stars .trust-pill .stars { color: #fff; letter-spacing: 1px; font-size: 13px; }
+.buy-stars .excellent {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+}
 .buy-stars a {
   color: var(--ink-soft);
   text-decoration: underline;
   text-decoration-color: var(--line);
   text-underline-offset: 3px;
 }
+.buy-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--brand-soft);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--brand);
+}
+.buy-guarantee svg { color: var(--brand); flex-shrink: 0; }
+.buy-guarantee strong { font-weight: 700; color: var(--brand); }
 .buy h1 {
   font-size: clamp(30px, 4vw, 42px);
   margin-bottom: 6px;
@@ -602,12 +644,24 @@ strong { font-weight: 600; color: var(--ink); }
   margin-top: 8px;
 }
 .mech-diagram {
-  display: flex;
-  justify-content: center;
   margin: 0 auto 60px;
-  max-width: 460px;
+  max-width: 720px;
+  text-align: center;
 }
-.mech-diagram svg { width: 100%; height: auto; }
+.mech-diagram img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+.mech-diagram-caption {
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
 .mech-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -733,16 +787,34 @@ strong { font-weight: 600; color: var(--ink); }
 .tst-card {
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 28px 26px;
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  transition: transform .3s, box-shadow .3s;
+}
+.tst-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.tst-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.tst-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.tst-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
 }
 .tst-stars { color: var(--star); font-size: 15px; letter-spacing: 1px; }
 .tst-quote {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 18px;
   font-style: italic;
   line-height: 1.5;
   color: var(--ink);
@@ -751,27 +823,11 @@ strong { font-weight: 600; color: var(--ink); }
 }
 .tst-person {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-top: 14px;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 12px;
   border-top: 1px solid var(--line-soft);
 }
-.tst-avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--brand-soft);
-  color: var(--brand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 600;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.tst-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.tst-meta { display: flex; flex-direction: column; gap: 2px; }
 .tst-name { font-weight: 600; color: var(--ink); font-size: 14.5px; }
 .tst-loc { font-size: 12px; color: var(--ink-soft); }
 @media (max-width: 920px) {
@@ -934,11 +990,12 @@ strong { font-weight: 600; color: var(--ink); }
   aspect-ratio: 1 / 1;
   background: var(--bg-soft);
   border-radius: 10px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.final-card-visual svg { width: 80%; height: 80%; }
+.final-card-visual img { width: 100%; height: 100%; object-fit: cover; }
 .final-card-name {
   font-family: var(--serif);
   font-size: 24px;
@@ -1261,7 +1318,7 @@ strong { font-weight: 600; color: var(--ink); }
 <div class="announce" role="region" aria-label="Site announcement">
   <span>Free UK shipping</span>
   <span class="dot" aria-hidden="true"></span>
-  <span>30-day money-back</span>
+  <span><strong>100-day trial</strong> · free returns</span>
   <span class="dot hide-mobile" aria-hidden="true"></span>
   <span class="hide-mobile">Designed in the UK</span>
 </div>
@@ -1382,41 +1439,45 @@ strong { font-weight: 600; color: var(--ink); }
         <div class="gallery-main">
           <div class="gallery-badge">New 2026 model</div>
           <div class="gallery-track" id="galleryTrack" role="region" aria-label="Product gallery — swipe to see more">
-            <!-- TODO: replace 5 product SVG placeholders with real photos of the new (band-only, no wool cap) Kalmely device once available -->
-            <figure class="gallery-slide">
-              <svg viewBox="0 0 200 200" aria-label="Kalmely device, front view"><use href="#iconProduct"/></svg>
+            <figure class="gallery-slide is-photo">
+              <img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — band with six airbags and handheld remote on a neutral background" loading="eager" decoding="async">
+              <figcaption class="gallery-caption">Wireless · USB-C rechargeable · 15-min auto shut-off</figcaption>
             </figure>
-            <figure class="gallery-slide">
-              <svg viewBox="0 0 200 200" aria-label="Kalmely device, three-quarter view"><use href="#iconProductSide"/></svg>
+            <figure class="gallery-slide is-photo">
+              <img src="assets/use-kitchen.jpg" alt="A woman in a sunlit kitchen wearing Kalmely during her break" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">A fifteen-minute reset, mid-day</figcaption>
             </figure>
-            <figure class="gallery-slide">
-              <svg viewBox="0 0 200 200" aria-label="Kalmely device, back view"><use href="#iconProductBack"/></svg>
+            <figure class="gallery-slide is-photo">
+              <img src="assets/doctor-asian.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">Designed with clinical input</figcaption>
             </figure>
-            <figure class="gallery-slide">
-              <svg viewBox="0 0 200 200" aria-label="Kalmely controls close-up"><use href="#iconProductControls"/></svg>
+            <figure class="gallery-slide is-photo">
+              <img src="assets/use-man-desk.jpg" alt="A man at his desk wearing Kalmely during a cluster headache" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">For migraine, cluster &amp; tension headaches</figcaption>
             </figure>
-            <figure class="gallery-slide">
-              <svg viewBox="0 0 200 200" aria-label="Kalmely folded for travel"><use href="#iconProductFolded"/></svg>
+            <figure class="gallery-slide is-photo">
+              <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">Includes the 30-Day Migraine Tracker ebook</figcaption>
             </figure>
           </div>
           <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Photo navigation"></div>
         </div>
 
         <div class="gallery-thumbs" id="galleryThumbs" aria-label="Choose photo">
-          <button type="button" class="gallery-thumb is-active" data-slide="0" aria-label="View front">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#iconProduct"/></svg>
+          <button type="button" class="gallery-thumb is-photo is-active" data-slide="0" aria-label="View product">
+            <img src="assets/product-hero.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb" data-slide="1" aria-label="View three-quarter">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#iconProductSide"/></svg>
+          <button type="button" class="gallery-thumb is-photo" data-slide="1" aria-label="View in use, kitchen">
+            <img src="assets/use-kitchen.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb" data-slide="2" aria-label="View back">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#iconProductBack"/></svg>
+          <button type="button" class="gallery-thumb is-photo" data-slide="2" aria-label="View with clinician">
+            <img src="assets/doctor-asian.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb" data-slide="3" aria-label="View controls">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#iconProductControls"/></svg>
+          <button type="button" class="gallery-thumb is-photo" data-slide="3" aria-label="View male user">
+            <img src="assets/use-man-desk.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb" data-slide="4" aria-label="View folded">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#iconProductFolded"/></svg>
+          <button type="button" class="gallery-thumb is-photo" data-slide="4" aria-label="View free ebook">
+            <img src="assets/ebook-cover.jpg" alt="" loading="lazy">
           </button>
         </div>
       </div>
@@ -1424,12 +1485,13 @@ strong { font-weight: 600; color: var(--ink); }
       <!-- Buy block -->
       <div class="buy">
         <div class="buy-stars">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span><strong>4.8</strong> · <a href="#reviews">2,317 reviews</a></span>
+          <span class="trust-pill"><span class="stars" aria-hidden="true">★★★★★</span> <strong>4.8/5</strong></span>
+          <span class="excellent">Excellent</span>
+          <span><a href="#reviews">11,000+ reviews</a></span>
         </div>
 
         <h1>Kalmely — Wireless Head Massager</h1>
-        <p class="buy-tagline">Drug-free migraine relief in fifteen minutes.</p>
+        <p class="buy-tagline"><strong>Clinically-Targeted Migraine Relief.</strong> Drug-free, in fifteen minutes.</p>
 
         <div class="buy-price">
           <span class="now">£149</span>
@@ -1453,11 +1515,15 @@ strong { font-weight: 600; color: var(--ink); }
           </li>
           <li>
             <svg width="18" height="18" aria-hidden="true"><use href="#iconCheck"/></svg>
-            <span>30-day money-back guarantee · Free UK shipping</span>
+            <span>100-day trial · Free returns · Free UK shipping</span>
           </li>
         </ul>
 
         <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary buy-cta">Find Your Relief — £149</a>
+        <div class="buy-guarantee">
+          <svg width="20" height="20" aria-hidden="true"><use href="#iconReturn"/></svg>
+          <span><strong>100-Day Trial.</strong> Free Returns. <strong>No Risk.</strong></span>
+        </div>
         <div class="buy-cta-meta">
           <strong>Klarna available</strong> — 4 interest-free payments of £37.25
         </div>
@@ -1465,7 +1531,7 @@ strong { font-weight: 600; color: var(--ink); }
         <div class="buy-trust" role="list" aria-label="Trust badges">
           <div class="buy-trust-item" role="listitem">
             <svg width="20" height="20" aria-hidden="true"><use href="#iconReturn"/></svg>
-            <strong>30-day return</strong>
+            <strong>100-day trial</strong>
             No questions
           </div>
           <div class="buy-trust-item" role="listitem">
@@ -1489,7 +1555,7 @@ strong { font-weight: 600; color: var(--ink); }
         <div class="buy-info">
           <details>
             <summary>Free shipping &amp; returns</summary>
-            <div class="info-body">UK orders ship free in 2–4 working days from our UK fulfilment centre. If Kalmely isn't right for you, send it back within 30 days — we cover the return and refund in full.</div>
+            <div class="info-body">UK orders ship free in 2–4 working days from our UK fulfilment centre. If Kalmely isn't right for you, send it back within 100 days — we cover the return and refund in full.</div>
           </details>
           <details>
             <summary>What's inside the box</summary>
@@ -1515,7 +1581,7 @@ strong { font-weight: 600; color: var(--ink); }
   <div class="section">
     <div class="hook-grid">
       <div class="hook-visual fade">
-        <img src="assets/pain-bathroom.jpg" alt="A woman sitting on a bathroom floor during a migraine attack, holding her head" loading="lazy" decoding="async">
+        <img src="assets/pain-temples-redhead.jpg" alt="A woman with auburn hair pressing her temples during a migraine attack, a blister of pills on the table" loading="lazy" decoding="async">
       </div>
       <div class="hook-copy fade">
         <h2>If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
@@ -1528,7 +1594,57 @@ strong { font-weight: 600; color: var(--ink); }
   </div>
 </section>
 
-<!-- ===== 5. MECHANISM ===== -->
+<!-- ===== TESTIMONIALS (moved up — straight after the hook) ===== -->
+<section class="tst" id="reviews">
+  <div class="section">
+    <h2 class="fade">What people who tried it <em>actually say.</em></h2>
+    <div class="tst-grid">
+      <article class="tst-card fade">
+        <div class="tst-photo">
+          <img src="assets/use-kitchen.jpg" alt="Hannah wearing Kalmely in her kitchen during a workday migraine" loading="lazy" decoding="async">
+        </div>
+        <div class="tst-body">
+          <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="tst-quote">"A migraine kicked in just after lunch on a Tuesday. I'd usually phone in sick. Instead I put Kalmely on for fifteen minutes and went back to my screen at three. That doesn't happen to me."</p>
+          <div class="tst-person">
+            <span class="tst-name">Hannah, 34</span>
+            <span class="tst-loc">London · chronic migraine, 18 years</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="tst-card fade">
+        <div class="tst-photo">
+          <img src="assets/use-morning-coffee.jpg" alt="Emily wearing Kalmely beside the kettle in the morning" loading="lazy" decoding="async">
+        </div>
+        <div class="tst-body">
+          <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="tst-quote">"Mornings used to be the worst — the prodrome wave. I keep Kalmely next to the kettle now. Put it on before the coffee finishes brewing. Some weeks I forget I have migraine."</p>
+          <div class="tst-person">
+            <span class="tst-name">Emily, 38</span>
+            <span class="tst-loc">Manchester · chronic migraine, 11 years</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="tst-card fade">
+        <div class="tst-photo">
+          <img src="assets/use-man-desk.jpg" alt="James wearing Kalmely at his desk during a cluster headache" loading="lazy" decoding="async">
+        </div>
+        <div class="tst-body">
+          <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="tst-quote">"Cluster headaches. Three or four times a year I just stop functioning. The heat on the back of my head is what helped — closest thing to relief I've found without ending up in A&amp;E."</p>
+          <div class="tst-person">
+            <span class="tst-name">James, 42</span>
+            <span class="tst-loc">Bristol · cluster headache, 6 years</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MECHANISM ===== -->
 <section class="mech" id="mechanism">
   <div class="section">
     <div class="mech-head fade">
@@ -1536,38 +1652,10 @@ strong { font-weight: 600; color: var(--ink); }
       <h3>Multi-Zone Air Therapy™</h3>
     </div>
 
-    <!-- TODO: replace with branded illustration of head from above with 6 marked zones -->
-    <div class="mech-diagram fade" aria-hidden="true">
-      <svg viewBox="0 0 460 300" width="460" height="300">
-        <!-- Head silhouette from above -->
-        <ellipse cx="230" cy="160" rx="130" ry="100" fill="#fff" stroke="#1F3D2F" stroke-width="1.4"/>
-        <!-- Face indicator (small arc at top) -->
-        <path d="M170 80 Q230 50 290 80" stroke="#1F3D2F" stroke-width="1.4" fill="none" opacity="0.4"/>
-        <text x="230" y="68" text-anchor="middle" font-family="Inter" font-size="11" fill="#4A5567" letter-spacing="2">FRONT</text>
-
-        <!-- 6 zones -->
-        <!-- Forehead L/R -->
-        <circle cx="195" cy="105" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="195" y="109" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">1</text>
-        <circle cx="265" cy="105" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="265" y="109" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">2</text>
-        <!-- Temples L/R -->
-        <circle cx="135" cy="158" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="135" y="162" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">3</text>
-        <circle cx="325" cy="158" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="325" y="162" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">4</text>
-        <!-- Occipital L/R -->
-        <circle cx="195" cy="220" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="195" y="224" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">5</text>
-        <circle cx="265" cy="220" r="14" fill="#C75A2F" opacity="0.9"/>
-        <text x="265" y="224" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">6</text>
-
-        <!-- Labels -->
-        <text x="230" y="100" text-anchor="middle" font-family="Inter" font-size="10" fill="#4A5567" letter-spacing="1.5">FOREHEAD</text>
-        <text x="68"  y="162" text-anchor="middle" font-family="Inter" font-size="10" fill="#4A5567" letter-spacing="1.5">TEMPLES</text>
-        <text x="230" y="280" text-anchor="middle" font-family="Inter" font-size="10" fill="#4A5567" letter-spacing="1.5">OCCIPITAL NERVE</text>
-      </svg>
-    </div>
+    <figure class="mech-diagram fade">
+      <img src="assets/diagram-six-zones.jpg" alt="Two views of the Kalmely device on a model head — front view shows zones 01, 02 (forehead) and 03 (eye area heat zone); back view shows zones 05 and 06 over the occipital nerve" loading="lazy" decoding="async">
+      <figcaption class="mech-diagram-caption">Six precision airbags. Three pressure zones. Optional heat over the eyes.</figcaption>
+    </figure>
 
     <div class="mech-grid">
       <div class="mech-card fade">
@@ -1655,58 +1743,12 @@ strong { font-weight: 600; color: var(--ink); }
   </div>
 </section>
 
-<!-- ===== 7. TESTIMONIALS ===== -->
-<section class="tst" id="reviews">
-  <div class="section">
-    <h2 class="fade">What people who tried it say.</h2>
-    <!-- TODO: replace avatars with real portraits (Hannah / Priya / James) when generated -->
-    <div class="tst-grid">
-      <article class="tst-card fade">
-        <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="tst-quote">"I've had migraines since I was 14. For the first time in 20 years, I have something I can reach for that doesn't involve pills or a freezer. The pressure is so gentle I can use it during an attack — which I couldn't say about anything else I'd tried."</p>
-        <div class="tst-person">
-          <div class="tst-avatar" aria-hidden="true">H</div>
-          <div class="tst-meta">
-            <span class="tst-name">Hannah, 34</span>
-            <span class="tst-loc">London</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="tst-card fade">
-        <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="tst-quote">"My scalp gets so tender during an attack that even my hair tie hurts. Kalmely is the only thing that didn't make it worse. Honestly didn't expect that from a £149 device."</p>
-        <div class="tst-person">
-          <div class="tst-avatar" aria-hidden="true">P</div>
-          <div class="tst-meta">
-            <span class="tst-name">Priya, 41</span>
-            <span class="tst-loc">Manchester</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="tst-card fade">
-        <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="tst-quote">"Cluster headaches three or four times a year. The heat option plus the back-of-head pressure is the closest thing to relief I've found without going to A&amp;E."</p>
-        <div class="tst-person">
-          <div class="tst-avatar" aria-hidden="true">J</div>
-          <div class="tst-meta">
-            <span class="tst-name">James, 38</span>
-            <span class="tst-loc">Bristol</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 8. AUTHORITY ===== -->
+<!-- ===== AUTHORITY ===== -->
 <section class="auth" id="authority">
   <div class="section">
     <div class="auth-grid">
-      <!-- TODO: replace placeholder doctor SVG with real portrait of consulting neurologist once available -->
-      <div class="auth-visual fade" aria-hidden="true">
-        <svg viewBox="0 0 200 200" width="160" height="160"><use href="#iconDoctor"/></svg>
+      <div class="auth-visual fade">
+        <img src="assets/doctor-asian.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async">
       </div>
       <div class="auth-copy fade">
         <blockquote class="auth-quote">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
@@ -1761,8 +1803,8 @@ strong { font-weight: 600; color: var(--ink); }
     <h2 class="fade">Start with Kalmely.</h2>
 
     <div class="final-card fade">
-      <div class="final-card-visual" aria-hidden="true">
-        <svg viewBox="0 0 200 200"><use href="#iconProduct"/></svg>
+      <div class="final-card-visual">
+        <img src="assets/product-hero.jpg" alt="Kalmely device — band with six airbags and handheld remote" loading="lazy" decoding="async">
       </div>
       <div class="final-card-body">
         <div class="final-card-name">Kalmely Wireless Head Massager</div>
@@ -1772,7 +1814,7 @@ strong { font-weight: 600; color: var(--ink); }
         </div>
         <ul>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Six-zone air compression + optional heat</li>
-          <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>30-day money-back guarantee</li>
+          <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>100-day trial · free returns</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Free UK shipping (2–4 days)</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>12-month manufacturer warranty</li>
         </ul>
@@ -1798,7 +1840,7 @@ strong { font-weight: 600; color: var(--ink); }
       </details>
       <details>
         <summary>What if it doesn't work for me?</summary>
-        <div class="faq-answer">30-day money-back guarantee, no questions. We send a prepaid return label, you ship it back, we refund in full.</div>
+        <div class="faq-answer">100-day trial, free returns, no questions. We send a prepaid return label, you ship it back, we refund in full.</div>
       </details>
       <details>
         <summary>Is it FDA-cleared?</summary>

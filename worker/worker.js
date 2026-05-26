@@ -11,7 +11,7 @@
  *   STRIPE_PRICE_KAL_SOLO      price_…  (£149)
  *   STRIPE_PRICE_KAL_BUNDLE    price_…  (£223 list — bundle includes free digital guide)
  *   STRIPE_COUPON_LAUNCH           coupon_…  (-£74, bundle only, automatic)
- *   STRIPE_COUPON_RELIEF15         coupon_…  (-£15, applies to KAL-SOLO)
+ *   STRIPE_COUPON_RELIEF15         coupon_…  (-£15, customer-entered code on KAL-BUNDLE)
  *   STRIPE_COUPON_LAUNCH_RELIEF15  coupon_…  (-£89, bundle + RELIEF15 combined,
  *                                  required because Stripe Checkout accepts only 1 discount)
  *   KLAVIYO_KEY                pk_… (private key)
@@ -33,8 +33,9 @@ const json = (obj, status = 200, extraHeaders = {}) =>
   });
 
 const SKU_MAP = (env) => ({
-  'KAL-SOLO':   { price: env.STRIPE_PRICE_KAL_SOLO,   applyLaunch: false, applyRelief: true, shippable: true, includesEbook: false },
-  'KAL-BUNDLE': { price: env.STRIPE_PRICE_KAL_BUNDLE, applyLaunch: true,  applyRelief: true, shippable: true, includesEbook: true  }
+  // Single SKU after 2026-05-26: the full Launch Kit (device + ebook bundled).
+  // KAL-SOLO removed — device-only option no longer sold.
+  'KAL-BUNDLE': { price: env.STRIPE_PRICE_KAL_BUNDLE, applyLaunch: true, applyRelief: true, shippable: true, includesEbook: true }
 });
 
 async function stripe(env, path, params, method = 'POST') {
