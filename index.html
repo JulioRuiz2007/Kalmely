@@ -2743,19 +2743,24 @@ strong { font-weight: 600; color: var(--ink); }
 
   // Decide whether the popup should show on this visit
   const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
+  const WELCOME_SCHEMA = 'v2';
   function shouldShowWelcome() {
     try {
       // Force-show via ?welcome=force (handy for testing in any visit state)
       const qs = new URLSearchParams(window.location.search);
       if (qs.get('welcome') === 'force') return true;
+
+      // First load under this schema: previous builds wrote bogus dismissed
+      // timestamps during legacy migration, which silently blocked the popup
+      // for everyone. Clear them once. "accepted" is a real choice and stays.
+      if (localStorage.getItem('kalmely_welcome_schema') !== WELCOME_SCHEMA) {
+        localStorage.removeItem('kalmely_welcome_seen');
+        localStorage.removeItem('kalmely_welcome_dismissed_at');
+        localStorage.setItem('kalmely_welcome_schema', WELCOME_SCHEMA);
+      }
+
       // Already accepted → never re-show
       if (localStorage.getItem('kalmely_welcome_accepted')) return false;
-      // Legacy migration: drop the old "kalmely_welcome_seen" key but DO NOT
-      // start a cooldown — give existing visitors one fresh chance to see
-      // the offer on the new build
-      if (localStorage.getItem('kalmely_welcome_seen') === '1') {
-        localStorage.removeItem('kalmely_welcome_seen');
-      }
       // Soft-dismissed → only re-show after cooldown
       const dismissed = parseInt(localStorage.getItem('kalmely_welcome_dismissed_at') || '0', 10);
       if (dismissed && (Date.now() - dismissed) < COOLDOWN_MS) return false;
