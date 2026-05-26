@@ -665,27 +665,110 @@ h1 em, h2 em, h3 em {
 
 .hero-visual {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hero-gallery {
+  position: relative;
   aspect-ratio: 4/5;
   border-radius: 12px;
   overflow: hidden;
   background: #3D332C;
   box-shadow: var(--shadow-soft);
+  isolation: isolate;
 }
-.hero-visual img {
-  position: absolute;
-  inset: 0;
+.hero-gallery-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.hero-gallery-track::-webkit-scrollbar { display: none; }
+.hero-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  margin: 0;
+  position: relative;
+  height: 100%;
+}
+.hero-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 55%;
+  display: block;
   filter: contrast(1.03) saturate(1.02);
 }
-.hero-visual::after {
+.hero-gallery::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(165deg, transparent 60%, rgba(20, 27, 42, 0.18) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+.hero-gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+  padding: 7px 12px;
+  background: rgba(20,27,42,0.42);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+.hero-gallery-dots button {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background .25s, transform .25s, width .25s;
+}
+.hero-gallery-dots button.is-active {
+  background: var(--bg);
+  width: 20px;
+  border-radius: 4px;
+}
+.hero-gallery-thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 2px;
+}
+.hero-thumb {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  background: var(--bg);
+  transition: border-color .2s, opacity .2s, transform .2s;
+  opacity: 0.58;
+}
+.hero-thumb:hover { opacity: 0.85; transform: translateY(-1px); }
+.hero-thumb.is-active {
+  border-color: var(--sage);
+  opacity: 1;
+}
+.hero-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  display: block;
 }
 .hero-badge {
   position: absolute;
@@ -702,6 +785,7 @@ h1 em, h2 em, h3 em {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  z-index: 2;
 }
 .hero-badge .pulse {
   width: 7px; height: 7px;
@@ -728,13 +812,26 @@ h1 em, h2 em, h3 em {
      then the headline + body, so the first impression matches the page identity. */
   .hero-visual {
     order: 1;
-    aspect-ratio: 4 / 2.7;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+    gap: 8px;
+  }
+  .hero-gallery {
+    aspect-ratio: 1 / 1;
     border-radius: 16px;
   }
-  .hero-visual img { border-radius: inherit; }
+  .hero-slide img { border-radius: inherit; }
+  /* Mobile uses dots; thumbnails reserved for desktop */
+  .hero-gallery-thumbs { display: none; }
+  .hero-gallery-dots { bottom: 14px; }
+  .hero-badge {
+    bottom: auto;
+    top: 14px;
+    left: 14px;
+    padding: 8px 12px;
+    font-size: 10.5px;
+  }
   .hero-copy { order: 2; max-width: 100%; }
   .hero h1 {
     font-size: clamp(34px, 8.6vw, 52px);
@@ -779,6 +876,11 @@ h1 em, h2 em, h3 em {
   .cta-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .cta-row .btn-primary,
   .cta-row .btn-ghost { width: 100%; text-align: center; justify-content: center; }
+}
+
+/* Desktop only — hide dots, show thumbnail strip beneath gallery */
+@media (min-width: 921px) {
+  .hero-gallery-dots { display: none; }
 }
 
 /* Marquee strip */
@@ -2620,10 +2722,46 @@ h1 em, h2 em, h3 em {
       </div>
     </div>
     <div class="hero-visual fade-soft">
-      <img src="assets/hero-kit.jpg" alt="The Kalmely kit — wireless head massager cap and handheld remote, on a soft white background" loading="eager" decoding="async">
-      <div class="hero-badge">
-        <span class="pulse"></span>
-        Multi-Zone Air Therapy™
+      <div class="hero-gallery" id="heroGallery">
+        <div class="hero-gallery-track" id="heroGalleryTrack" role="region" aria-label="Product gallery — swipe to see more">
+          <figure class="hero-slide">
+            <img src="assets/hero-kit.jpg" alt="The Kalmely kit — wireless head massager cap and handheld remote on a soft white background" loading="eager" decoding="async">
+          </figure>
+          <figure class="hero-slide">
+            <img src="assets/use-kitchen.jpg" alt="A woman in a sunlit kitchen wearing Kalmely during her lunch break" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hero-slide">
+            <img src="assets/use-evening.jpg" alt="A woman resting on a sofa at dusk with Kalmely on" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hero-slide">
+            <img src="assets/use-bedroom.jpg" alt="A woman wearing Kalmely while resting in bed, a faint smile on her face" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hero-slide">
+            <img src="assets/product-isometric.jpg" alt="Kalmely cap and handheld remote in isometric view — everything in the kit" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="hero-gallery-dots" id="heroGalleryDots" role="tablist" aria-label="Choose photo"></div>
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          Multi-Zone Air Therapy™
+        </div>
+      </div>
+      <div class="hero-gallery-thumbs" id="heroGalleryThumbs" aria-label="Choose photo">
+        <button type="button" class="hero-thumb is-active" data-slide="0" aria-label="View product kit">
+          <img src="assets/hero-kit.jpg" alt="" loading="lazy">
+        </button>
+        <button type="button" class="hero-thumb" data-slide="1" aria-label="View daytime use">
+          <img src="assets/use-kitchen.jpg" alt="" loading="lazy">
+        </button>
+        <button type="button" class="hero-thumb" data-slide="2" aria-label="View evening use">
+          <img src="assets/use-evening.jpg" alt="" loading="lazy">
+        </button>
+        <button type="button" class="hero-thumb" data-slide="3" aria-label="View bedtime use">
+          <img src="assets/use-bedroom.jpg" alt="" loading="lazy">
+        </button>
+        <button type="button" class="hero-thumb" data-slide="4" aria-label="View kit contents">
+          <img src="assets/product-isometric.jpg" alt="" loading="lazy">
+        </button>
       </div>
     </div>
   </div>
@@ -3414,6 +3552,62 @@ h1 em, h2 em, h3 em {
       } catch (_) { /* clipboard blocked — silently ignore */ }
     });
   });
+
+  // ===== Hero gallery: swipe-able carousel synced with thumbs and dots =====
+  (function initHeroGallery() {
+    const track = document.getElementById('heroGalleryTrack');
+    const thumbs = Array.from(document.querySelectorAll('#heroGalleryThumbs .hero-thumb'));
+    const dotsContainer = document.getElementById('heroGalleryDots');
+    if (!track || !dotsContainer) return;
+    const slides = Array.from(track.querySelectorAll('.hero-slide'));
+    if (!slides.length) return;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Photo ${i + 1} of ${slides.length}`);
+      if (i === 0) dot.classList.add('is-active');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = Array.from(dotsContainer.querySelectorAll('button'));
+
+    function goTo(index) {
+      const slide = slides[index];
+      if (!slide) return;
+      track.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
+      setActive(index);
+    }
+
+    function setActive(index) {
+      thumbs.forEach((t, i) => t.classList.toggle('is-active', i === index));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+    }
+
+    thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
+
+    // Update active on scroll (touch swipe also lands here)
+    let raf = null;
+    track.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const w = track.clientWidth || 1;
+        const idx = Math.round(track.scrollLeft / w);
+        setActive(Math.max(0, Math.min(slides.length - 1, idx)));
+        raf = null;
+      });
+    }, { passive: true });
+
+    // Keyboard navigation on thumbnails (left/right arrows)
+    thumbs.forEach((t, i) => {
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(slides.length - 1, i + 1)); thumbs[Math.min(thumbs.length - 1, i + 1)]?.focus(); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(Math.max(0, i - 1)); thumbs[Math.max(0, i - 1)]?.focus(); }
+      });
+    });
+  })();
 
   // ===== Analytics / pixel events placeholders =====
   function initPixel(enabled) {
