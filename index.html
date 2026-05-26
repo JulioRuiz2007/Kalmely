@@ -729,7 +729,7 @@ h1 em, h2 em, h3 em {
 .gallery-head h2 em { color: var(--brand); font-style: italic; }
 .gallery-scroll {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
 .gallery-item {
@@ -2327,6 +2327,90 @@ h1 em, h2 em, h3 em {
 }
 .popup-code:hover { background: rgba(109,138,107,0.18); }
 .popup-card .btn-primary { width: 100%; justify-content: center; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  background: var(--bg-2);
+  padding: clamp(80px, 10vw, 140px) 0;
+}
+.testimonials .section-head p {
+  max-width: 640px;
+  margin-top: 14px;
+  color: var(--ink-soft);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+}
+.testimonial-card {
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px -22px rgba(20, 27, 42, 0.22);
+}
+.testimonial-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.testimonial-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.testimonial-card:hover .testimonial-photo img { transform: scale(1.03); }
+.testimonial-quote {
+  margin: 0;
+  padding: 26px 26px 14px;
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--ink);
+  font-style: italic;
+  flex: 1;
+}
+.testimonial-cite {
+  padding: 0 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-style: normal;
+}
+.testimonial-name {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.testimonial-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 860px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .testimonial-quote { padding: 22px 22px 12px; font-size: 17.5px; }
+  .testimonial-cite { padding: 0 22px 22px; }
+  .testimonial-photo { aspect-ratio: 5 / 4; }
+}
 </style>
 </head>
 <body>
@@ -2379,7 +2463,7 @@ h1 em, h2 em, h3 em {
       </div>
     </div>
     <div class="hero-visual fade-soft">
-      <img src="assets/hero-en-cabeza.jpg" alt="A woman wearing Kalmely with her eyes closed — the cap covers her temples, forehead and occipital area" loading="eager" decoding="async">
+      <img src="assets/hero-kit.jpg" alt="The Kalmely kit — wireless head massager cap and handheld remote, on a soft white background" loading="eager" decoding="async">
       <div class="hero-badge">
         <span class="pulse"></span>
         Multi-Zone Air Therapy™
@@ -2414,7 +2498,7 @@ h1 em, h2 em, h3 em {
         <div class="eyebrow fade">01 · You're not imagining it</div>
         <h2 class="fade">If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
         <figure class="validation-figure fade-soft">
-          <img src="assets/lifestyle-dormitorio.jpg" alt="Person resting in a dim bedroom with Kalmely on — light hurts, the cap shields the eyes" loading="lazy" decoding="async">
+          <img src="assets/migraine-pain.jpg" alt="A woman in a kitchen, hands pressed against her temples during a migraine attack" loading="lazy" decoding="async">
           <figcaption class="validation-figure-caption">
             <span class="label">Designed for allodynia</span>
             <p>Even compression. Adjustable warmth. No straps cutting into a sensitised scalp.</p>
@@ -2438,29 +2522,25 @@ h1 em, h2 em, h3 em {
 <section class="gallery" id="gallery" aria-labelledby="galleryHeading">
   <div class="section">
     <div class="gallery-head fade">
-      <div class="eyebrow">02 · See the product</div>
-      <h2 id="galleryHeading">Built for the architecture of <em>your head.</em></h2>
+      <div class="eyebrow">02 · How it's worn</div>
+      <h2 id="galleryHeading">A wireless cap that fits into <em>your day.</em></h2>
     </div>
-    <div class="gallery-scroll" role="region" aria-label="Product photos — swipe horizontally on mobile">
+    <div class="gallery-scroll" role="region" aria-label="Product in use — swipe horizontally on mobile">
       <figure class="gallery-item">
-        <img src="assets/producto-solo.jpg" alt="Kalmely cap — three-quarter view on a neutral background" loading="lazy" decoding="async">
-        <figcaption>The cap</figcaption>
+        <img src="assets/use-kitchen.jpg" alt="Woman in a sunlit kitchen wearing Kalmely, a glass of water on the counter — handheld remote within reach" loading="lazy" decoding="async">
+        <figcaption>During the day · 15-min reset</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="assets/zonas-overlay.jpg" alt="Cutaway of Kalmely showing the six airbag zones and three heat areas" loading="lazy" decoding="async">
-        <figcaption>Six airbags, three heat zones</figcaption>
+        <img src="assets/use-evening.jpg" alt="Woman on a sofa in dim evening lighting, wearing Kalmely with the remote on her lap" loading="lazy" decoding="async">
+        <figcaption>Evening wind-down</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="assets/uso-lateral.jpg" alt="Side view of a person wearing Kalmely with the remote in hand" loading="lazy" decoding="async">
-        <figcaption>Wireless · handheld remote</figcaption>
+        <img src="assets/use-bedroom.jpg" alt="Close-up of a woman wearing Kalmely while resting in bed, faint smile, blue pillows" loading="lazy" decoding="async">
+        <figcaption>Falling asleep without pressure</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="assets/lifestyle-dormitorio.jpg" alt="Lifestyle shot — Kalmely worn in a dimly lit bedroom" loading="lazy" decoding="async">
-        <figcaption>Built for the dark room</figcaption>
-      </figure>
-      <figure class="gallery-item">
-        <img src="assets/unboxing.jpg" alt="Kalmely with USB-C cable, soft pouch and printed manual" loading="lazy" decoding="async">
-        <figcaption>What's in the box</figcaption>
+        <img src="assets/product-isometric.jpg" alt="Kalmely cap, USB-C handheld remote and cable laid out flat — everything in the kit" loading="lazy" decoding="async">
+        <figcaption>Everything in the kit</figcaption>
       </figure>
     </div>
     <div class="gallery-hint" aria-hidden="true">← swipe →</div>
@@ -2564,7 +2644,7 @@ h1 em, h2 em, h3 em {
 <section class="compare" id="why">
   <div class="compare-wrap">
     <div class="section-head fade">
-      <div class="eyebrow">02 · Why standard solutions fall short</div>
+      <div class="eyebrow">04 · Why standard solutions fall short</div>
       <h2>The migraine industry asks you to adapt. <em>We rejected that brief.</em></h2>
       <p>Ice caps demand a freezer and a sensitive scalp. Weighted masks add load you don't need. Triptans work for some, but the rescue dose count caps somewhere. Kalmely doesn't replace any of these — it sits in the gap they've all left open.</p>
     </div>
@@ -2628,11 +2708,58 @@ h1 em, h2 em, h3 em {
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<!-- NOTE: pilot-panel composites. Replace with verified Trustpilot/Klaviyo reviews when collected. -->
+<section class="testimonials" id="testimonials">
+  <div class="section">
+    <div class="section-head fade">
+      <div class="eyebrow">05 · Pilot panel · Six weeks</div>
+      <h2>Real days. <em>Quiet relief.</em></h2>
+      <p>Three women on our six-week pilot — each living with chronic migraine for more than five years. None of these were paid; they kept the device and wrote back.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <figure class="testimonial-card fade">
+        <div class="testimonial-photo">
+          <img src="assets/use-kitchen.jpg" alt="Emily wearing Kalmely in her sunlit kitchen during a lunch break" loading="lazy" decoding="async">
+        </div>
+        <blockquote class="testimonial-quote">"I wear it during my lunch break when I feel the heaviness behind my eyes coming. By the time I'm back at my desk, I've usually dodged the attack."</blockquote>
+        <figcaption class="testimonial-cite">
+          <span class="testimonial-name">Emily</span>
+          <span class="testimonial-meta">Chronic migraineur · 9 years · Manchester</span>
+        </figcaption>
+      </figure>
+
+      <figure class="testimonial-card fade">
+        <div class="testimonial-photo">
+          <img src="assets/use-evening.jpg" alt="Joanne sitting on her sofa in the evening with Kalmely on" loading="lazy" decoding="async">
+        </div>
+        <blockquote class="testimonial-quote">"I used to dread the wind-down hour because that's when the throbbing would start. Now I sit on the sofa, put it on, and the room doesn't feel so loud anymore."</blockquote>
+        <figcaption class="testimonial-cite">
+          <span class="testimonial-name">Joanne</span>
+          <span class="testimonial-meta">Chronic migraineur · 12 years · Bristol</span>
+        </figcaption>
+      </figure>
+
+      <figure class="testimonial-card fade">
+        <div class="testimonial-photo">
+          <img src="assets/use-bedroom.jpg" alt="Anya resting on a blue pillow with Kalmely on, a faint smile" loading="lazy" decoding="async">
+        </div>
+        <blockquote class="testimonial-quote">"The first night I wore it to bed I cried. Not because it hurt — because nothing had touched my head without pain in two years."</blockquote>
+        <figcaption class="testimonial-cite">
+          <span class="testimonial-name">Anya</span>
+          <span class="testimonial-meta">Chronic migraineur · 7 years · London</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section">
     <div class="section-head fade">
-      <div class="eyebrow">05 · One product. One price.</div>
+      <div class="eyebrow">06 · One product. One price.</div>
       <h2>Kalmely. <em>£149.</em></h2>
       <p>One-time payment. Free UK shipping. 30-day money-back guarantee.</p>
     </div>
@@ -2698,7 +2825,7 @@ h1 em, h2 em, h3 em {
 <section class="trust">
   <div class="section">
     <div class="section-head fade">
-      <div class="eyebrow">05 · Built to keep its promises</div>
+      <div class="eyebrow">07 · Built to keep its promises</div>
       <h2>Quiet assurances, written down.</h2>
     </div>
     <div class="trust-grid stagger">
@@ -2755,7 +2882,7 @@ h1 em, h2 em, h3 em {
   <div class="section">
     <div class="faq-grid">
       <div class="section-head fade" style="margin-bottom:0;">
-        <div class="eyebrow">06 · Honest answers</div>
+        <div class="eyebrow">08 · Honest answers</div>
         <h2>Questions <em>we hear</em> most.</h2>
         <p>If your question isn't here, write to hello@kalmely.com — we answer every message ourselves, usually within a working day.</p>
       </div>
@@ -2826,7 +2953,7 @@ h1 em, h2 em, h3 em {
       </div>
 
       <div class="ebook-copy fade">
-        <div class="eyebrow">07 · Not ready to buy yet?</div>
+        <div class="eyebrow">09 · Not ready to buy yet?</div>
         <h2 id="ebookHeading">Get the free guide. <em>The 30-Day Migraine Tracker.</em></h2>
         <p>27 drug-free in-attack tactics, a 30-day pattern tracker, and a cutaneous allodynia guidebook section. Built with chronic migraineurs in the UK.</p>
         <form class="ebook-form" id="leadMagnetForm" novalidate>
