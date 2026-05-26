@@ -27,8 +27,8 @@ In Stripe Dashboard → Products, create:
 
 | Product | Price ID env var | Amount | Mode |
 |---|---|---|---|
-| **Kalmely Head Massager** | `STRIPE_PRICE_KAL1` | $149.00 USD | one_time |
-| **30-Day Migraine Tracker (digital)** | `STRIPE_PRICE_EBOOK` | $29.00 USD | one_time |
+| **Kalmely Head Massager** | `STRIPE_PRICE_KAL1` | £149.00 GBP | one_time |
+| **30-Day Migraine Tracker (digital)** | `STRIPE_PRICE_EBOOK` | £29.00 GBP | one_time |
 
 Klarna is enabled at Dashboard → Settings → Payment methods. No code change required.
 

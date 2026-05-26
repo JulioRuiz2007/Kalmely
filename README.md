@@ -59,7 +59,7 @@ En `cart.html`, función `checkout` (línea ~190):
 const stripe = Stripe('pk_live_TU_CLAVE_PUBLICA');
 
 document.getElementById('checkout').addEventListener('click', async () => {
-  if (window.fbq) fbq('track', 'InitiateCheckout', { value: bundle.price * qty, currency: 'USD' });
+  if (window.fbq) fbq('track', 'InitiateCheckout', { value: bundle.price * qty, currency: 'GBP' });
   const skuToPrice = {
     'KAL-1': 'price_REEMPLAZAR_ID_1',
     'KAL-2': 'price_REEMPLAZAR_ID_2',

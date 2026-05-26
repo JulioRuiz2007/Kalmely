@@ -11,7 +11,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/legal.css">
-<script src="https://js.stripe.com/v3/"></script>
 <style>
 .cart-grid {
   display: grid;
@@ -255,21 +254,21 @@
             <button onclick="updateQty(1)" aria-label="Increase quantity">+</button>
           </div>
         </div>
-        <div class="cart-item-price" id="item-price">$269</div>
+        <div class="cart-item-price" id="item-price">£269</div>
       </div>
 
       <div class="included-block" id="includedBlock" hidden>
         <h3 class="included-title">What's in the box</h3>
         <ul class="included-list">
           <li><span class="check">✓</span> Kalmely Head Massager — wireless cap with handheld remote</li>
-          <li class="bonus"><span class="check">✓</span> Premium printed user manual <span class="val-tag">$19 value · free</span></li>
-          <li class="bonus"><span class="check">✓</span> USB-C charging cable <span class="val-tag">$12 value · free</span></li>
-          <li class="bonus"><span class="check">✓</span> Soft storage pouch <span class="val-tag">$14 value · free</span></li>
+          <li class="bonus"><span class="check">✓</span> Premium printed user manual <span class="val-tag">£19 value · free</span></li>
+          <li class="bonus"><span class="check">✓</span> USB-C charging cable <span class="val-tag">£12 value · free</span></li>
+          <li class="bonus"><span class="check">✓</span> Soft storage pouch <span class="val-tag">£14 value · free</span></li>
           <li class="bonus digital">
             <span class="check">✓</span>
             <span class="digital-body">
               <strong>Digital guide</strong> — <em>"The 30-Day Migraine Tracker"</em> PDF
-              <span class="val-tag">$29 value · free</span>
+              <span class="val-tag">£29 value · free</span>
               <span class="digital-note">→ Delivered to the email you enter at checkout, within minutes of payment.</span>
             </span>
           </li>
@@ -283,7 +282,7 @@
       <h2 style="margin:0 0 12px;font-size:20px;">Order summary</h2>
       <div class="summary-row">
         <span>Subtotal</span>
-        <span class="val" id="sub">$269</span>
+        <span class="val" id="sub">£269</span>
       </div>
       <div class="summary-row">
         <span>Shipping</span>
@@ -291,7 +290,7 @@
       </div>
       <div class="summary-row" id="couponRow" hidden>
         <span>Coupon <strong id="couponCode" style="color:var(--sage-deep);font-weight:600;">RELIEF15</strong> <button type="button" id="couponRemove" aria-label="Remove coupon" style="background:transparent;border:none;color:var(--ink-soft);cursor:pointer;font-size:13px;margin-left:4px;text-decoration:underline;padding:0;">remove</button></span>
-        <span class="val" id="couponAmount" style="color:var(--sage-deep);font-weight:500;">−$15</span>
+        <span class="val" id="couponAmount" style="color:var(--sage-deep);font-weight:500;">−£15</span>
       </div>
       <div class="summary-row">
         <span>Tax</span>
@@ -299,13 +298,13 @@
       </div>
       <div class="summary-row total">
         <span>Total</span>
-        <span class="val" id="total">$269</span>
+        <span class="val" id="total">£269</span>
       </div>
       <div id="couponEntry" style="margin-top:14px;display:flex;gap:8px;align-items:center;">
         <input type="text" id="couponInput" placeholder="Promo code" autocomplete="off" style="flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-family:var(--sans);font-size:13.5px;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase;">
         <button type="button" id="couponApply" style="padding:11px 18px;border:1px solid var(--sage);background:transparent;color:var(--sage-deep);border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;letter-spacing:0.02em;">Apply</button>
       </div>
-      <div id="couponError" style="margin-top:8px;font-size:12.5px;color:var(--terra);display:none;">Invalid code. Try RELIEF15 if you received the $15-off offer.</div>
+      <div id="couponError" style="margin-top:8px;font-size:12.5px;color:var(--terra);display:none;">Invalid code. Try RELIEF15 if you received the £15-off offer.</div>
       <button class="checkout-btn" id="checkout">Checkout securely →</button>
       <div class="summary-note" id="summaryEbookNote" hidden>
         <strong>Digital guide delivery.</strong> Enter your email at the next step — the 30-Day Migraine Tracker PDF is sent there automatically right after payment.
@@ -337,56 +336,40 @@
 
 <script>
 // ============================================================
-//  STRIPE CONFIG — replace before going live
+//  CHECKOUT CONFIG — points at the Cloudflare Worker
 // ============================================================
-//  1. Get publishable key from Stripe Dashboard → Developers → API keys
-//  2. Create the 3 products in Stripe Dashboard → Products and copy price_xxx IDs:
-//     - Kalmely Head Massager · device only · $149 USD · one-time
-//     - Kalmely + Launch Bonus Kit · $149 USD · one-time
-//     - 30-Day Migraine Tracker · $29 USD · one-time
-//  3. Enable Klarna at Dashboard → Settings → Payment methods
-//  4. Replace STRIPE_PK, PRICE_KAL_SOLO, PRICE_KAL_BUNDLE and PRICE_EBOOK below
-//  5. After webhook is live, also update STRIPE-WEBHOOK.md TODO
+//  Worker handles:
+//    1. Creating Stripe Checkout Sessions server-side with automatic
+//       LAUNCH (-£74, bundle only) + RELIEF15 (-£15, user-applied) discounts
+//    2. Listening to `checkout.session.completed` webhook
+//    3. Sending Klaviyo order event + PDF link
+//
+//  Deploy steps in worker/README.md. Until the Worker is live this falls
+//  back to a friendly dev alert.
 // ============================================================
-const STRIPE_PK         = 'pk_live_REPLACE_ME';        // <-- pk_live_xxx
-const PRICE_KAL_SOLO    = 'price_REPLACE_KAL_SOLO';    // <-- price_xxx ($149 · device only)
-const PRICE_KAL_BUNDLE  = 'price_REPLACE_KAL_BUNDLE';  // <-- price_xxx ($149 · with bonus)
-const PRICE_EBOOK       = 'price_REPLACE_EBOOK';       // <-- price_xxx ($29)
+const WORKER_URL = 'https://kalmely-api.julioruizbayarri.workers.dev';   // <-- replace with https://webhook.kalmely.com once custom domain is attached
 const SITE_ORIGIN = window.location.origin;
-const IS_CONFIGURED = !STRIPE_PK.includes('REPLACE') && !PRICE_KAL_BUNDLE.includes('REPLACE');
+const IS_CONFIGURED = !WORKER_URL.includes('REPLACE');
 
 // SKU → bundle + Stripe price ID
 const params = new URLSearchParams(window.location.search);
 // Legacy alias: KAL-1 maps to KAL-BUNDLE for backwards compatibility
 let sku = params.get('sku') || 'KAL-BUNDLE';
 if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
+// `price` is the cart-UI display price (post LAUNCH for bundle, pre RELIEF15).
+// The Worker uses Stripe Price IDs configured server-side, not the UI numbers.
 const bundles = {
   'KAL-SOLO': {
     name: 'Kalmely Head Massager',
     price: 149,
     sub: 'Device only · No bonus kit · Free shipping',
-    img: 'assets/product-pricing.jpg',
-    priceId: PRICE_KAL_SOLO,
-    successUrl: SITE_ORIGIN + '/thank-you.html?sku=KAL-SOLO',
-    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=KAL-SOLO'
+    img: 'assets/product-pricing.jpg'
   },
   'KAL-BUNDLE': {
     name: 'Kalmely + Launch Bonus Kit',
     price: 149,
     sub: 'Device + manual + USB-C + pouch + digital guide · Free shipping',
-    img: 'assets/product-pricing.jpg',
-    priceId: PRICE_KAL_BUNDLE,
-    successUrl: SITE_ORIGIN + '/thank-you.html?sku=KAL-BUNDLE',
-    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=KAL-BUNDLE'
-  },
-  'EBOOK': {
-    name: 'The 30-Day Migraine Tracker',
-    price: 29,
-    sub: 'Digital PDF · Instant email delivery',
-    img: 'assets/product-square.jpg',
-    priceId: PRICE_EBOOK,
-    successUrl: SITE_ORIGIN + '/thank-you.html?sku=EBOOK&type=ebook',
-    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=EBOOK'
+    img: 'assets/product-pricing.jpg'
   }
 };
 const bundle = bundles[sku] || bundles['KAL-BUNDLE'];
@@ -396,16 +379,12 @@ document.getElementById('item-img').src = bundle.img;
 document.getElementById('item-img').alt = bundle.name;
 
 // Show "what's in the box" + ebook delivery note based on SKU
-const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK');
-const includesPhysical = (sku === 'KAL-BUNDLE' || sku === 'KAL-SOLO');
 if (sku === 'KAL-BUNDLE') {
   document.getElementById('includedBlock').hidden = false;
-}
-if (includesEbook) {
   document.getElementById('summaryEbookNote').hidden = false;
 }
 
-// ===== Coupon (RELIEF15 = $15 off, applies only to KAL-* not EBOOK) =====
+// ===== Coupon (RELIEF15 = £15 off, applies to both KAL-* devices) =====
 const VALID_COUPONS = {
   'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-SOLO', 'KAL-BUNDLE'] }
 };
@@ -420,7 +399,7 @@ function renderCoupon() {
   if (activeCoupon) {
     row.hidden = false;
     document.getElementById('couponCode').textContent = activeCoupon.label;
-    document.getElementById('couponAmount').textContent = `−$${activeCoupon.amount}`;
+    document.getElementById('couponAmount').textContent = `−£${activeCoupon.amount}`;
     entry.style.display = 'none';
   } else {
     row.hidden = true;
@@ -435,9 +414,9 @@ const updateTotals = () => {
   const discount = activeCoupon ? activeCoupon.amount : 0;
   const total = Math.max(0, sub - discount);
   document.getElementById('qty').textContent = qty;
-  document.getElementById('item-price').textContent = `$${sub}`;
-  document.getElementById('sub').textContent = `$${sub}`;
-  document.getElementById('total').textContent = `$${total}`;
+  document.getElementById('item-price').textContent = `£${sub}`;
+  document.getElementById('sub').textContent = `£${sub}`;
+  document.getElementById('total').textContent = `£${total}`;
   renderCoupon();
 };
 function updateQty(d) {
@@ -460,7 +439,7 @@ document.getElementById('couponApply').addEventListener('click', () => {
     errEl.textContent = 'This code only applies to Kalmely device orders, not the digital guide.';
     errEl.style.display = 'block';
   } else {
-    errEl.textContent = 'Invalid code. Try RELIEF15 if you received the $15-off offer.';
+    errEl.textContent = 'Invalid code. Try RELIEF15 if you received the £15-off offer.';
     errEl.style.display = 'block';
   }
 });
@@ -477,7 +456,7 @@ document.getElementById('couponRemove').addEventListener('click', () => {
 
 // Track AddToCart on load (user landed on cart with an item)
 if (window.fbq) fbq('track', 'AddToCart', {
-  value: bundle.price, currency: 'USD',
+  value: bundle.price, currency: 'GBP',
   content_ids: [sku], content_name: bundle.name
 });
 
@@ -487,55 +466,43 @@ checkoutBtn.addEventListener('click', async () => {
   // 1. Track checkout intent
   if (window.fbq) fbq('track', 'InitiateCheckout', {
     value: bundle.price * qty,
-    currency: 'USD',
+    currency: 'GBP',
     num_items: qty,
     content_ids: [sku],
     content_name: bundle.name
   });
 
-  // 2. If Stripe not configured, surface a clear dev message and bail
+  // 2. If Worker not configured, surface a clear dev message and bail
   if (!IS_CONFIGURED) {
     alert(
-      'Stripe Checkout is not yet configured.\n\n' +
+      'Checkout Worker is not yet configured.\n\n' +
       'To go live:\n' +
-      '  1. Open cart.html and ebook-only.html\n' +
-      '  2. Replace STRIPE_PK with your pk_live_… key\n' +
-      '  3. Replace PRICE_KAL_SOLO, PRICE_KAL_BUNDLE and PRICE_EBOOK with the price_… IDs ' +
-      'from Stripe Dashboard → Products\n' +
-      '  4. Deploy the webhook (see STRIPE-WEBHOOK.md)'
+      '  1. Deploy the Cloudflare Worker in /worker (see worker/README.md)\n' +
+      '  2. Set WORKER_URL in cart.html and ebook-only.html to https://webhook.kalmely.com\n' +
+      '  3. Create the 3 Stripe products + 2 coupons (LAUNCH £74, RELIEF15 £15)'
     );
     return;
   }
 
-  // 3. Redirect to Stripe Checkout
+  // 3. Ask Worker to create a Checkout Session and redirect to Stripe
   checkoutBtn.disabled = true;
   checkoutBtn.textContent = 'Redirecting to secure checkout…';
   try {
-    const stripe = Stripe(STRIPE_PK);
-    // NOTE on coupons: stripe.redirectToCheckout (client-only) does NOT accept `discounts`.
-    // For RELIEF15 to apply at Stripe, create a Promotion Code in Stripe Dashboard → Coupons,
-    // then either enable `allow_promotion_codes: true` server-side, or move to a Checkout Session
-    // created from a Cloudflare Worker that accepts `discounts: [{ coupon: 'coupon_xxx' }]`.
-    // Until then, the $15 discount is only reflected in the cart UI; the user must paste the
-    // promo code on the Stripe Checkout page itself (we surface this via successUrl param).
-    const successUrlWithCoupon = bundle.successUrl + '&session_id={CHECKOUT_SESSION_ID}' + (activeCoupon ? '&coupon=' + activeCoupon.label : '');
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: [{ price: bundle.priceId, quantity: qty }],
-      mode: 'payment',
-      successUrl: successUrlWithCoupon,
-      cancelUrl:  bundle.cancelUrl,
-      billingAddressCollection: 'required',
-      shippingAddressCollection: { allowedCountries: ['GB','IE','ES','FR','DE','IT','PT','NL','BE'] }
+    const res = await fetch(WORKER_URL + '/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sku,
+        qty,
+        coupon: activeCoupon ? activeCoupon.label : null
+      })
     });
-    if (error) {
-      console.error('[Stripe]', error);
-      alert('Could not start checkout: ' + error.message);
-      checkoutBtn.disabled = false;
-      checkoutBtn.textContent = 'Checkout securely →';
-    }
+    const data = await res.json();
+    if (!res.ok || !data.url) throw new Error(data.error || 'Worker returned no URL');
+    window.location.href = data.url;
   } catch (err) {
-    console.error(err);
-    alert('Unexpected error — please try again or email hello@kalmely.com');
+    console.error('[Checkout]', err);
+    alert('Could not start checkout: ' + err.message + '\n\nPlease try again or email hello@kalmely.com');
     checkoutBtn.disabled = false;
     checkoutBtn.textContent = 'Checkout securely →';
   }

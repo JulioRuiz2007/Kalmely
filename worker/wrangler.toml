@@ -1,0 +1,14 @@
+name = "kalmely-api"
+main = "worker.js"
+compatibility_date = "2024-10-01"
+
+# After first `wrangler deploy`, attach the custom route:
+#   wrangler route add "webhook.kalmely.com/*" kalmely-api
+# Or in the Cloudflare dashboard: Workers & Pages → kalmely-api → Settings → Triggers → Custom Domains → add `webhook.kalmely.com`.
+
+[vars]
+SITE_ORIGIN = "https://kalmely.com"
+# EBOOK_PDF_URL is set via secret (may point to an R2 signed URL or public CDN)
+
+# All sensitive values (STRIPE_SECRET, STRIPE_WEBHOOK_SECRET, KLAVIYO_KEY, price/coupon IDs)
+# are set via `wrangler secret put NAME` — never committed.
