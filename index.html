@@ -462,6 +462,139 @@ h1 em, h2 em, h3 em {
 }
 .hero-buy-cta { margin-left: auto; }
 
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.price-was {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(20,27,42,0.45);
+}
+.price-save {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--terra);
+  color: var(--bg);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.hero-coupon {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(109,138,107,0.10);
+  border: 1px dashed var(--sage);
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  flex-wrap: wrap;
+  line-height: 1.4;
+}
+.hero-coupon-label {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.hero-coupon-code {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--sage-deep);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--sage);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  user-select: all;
+  transition: background .2s;
+}
+.hero-coupon-code:hover { background: rgba(109,138,107,0.16); }
+.hero-coupon-extra { color: var(--ink-soft); }
+.hero-coupon-extra strong { color: var(--ink); font-weight: 500; }
+
+.pricing-single-pricerow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.pricing-single-was {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(20,27,42,0.45);
+}
+.pricing-single-save {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--terra);
+  color: var(--bg);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.pricing-single-coupon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 6px;
+  padding: 14px 16px;
+  background: rgba(109,138,107,0.10);
+  border: 1px dashed var(--sage);
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink);
+  flex-wrap: wrap;
+  line-height: 1.4;
+}
+.coupon-pill {
+  font-size: 12px;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.coupon-pill strong {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--sage-deep);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--sage);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  user-select: all;
+  transition: background .2s;
+}
+.coupon-pill strong:hover { background: rgba(109,138,107,0.16); }
+.coupon-after { color: var(--ink-soft); flex: 1; }
+.coupon-after strong { color: var(--ink); font-weight: 500; }
+
 .cta-row {
   display: flex;
   align-items: center;
@@ -622,9 +755,26 @@ h1 em, h2 em, h3 em {
     padding: 14px 16px;
     margin-bottom: 14px;
   }
-  .hero-buy-now { font-size: 26px; }
-  .hero-buy-meta { font-size: 11px; }
+  .hero-buy-now { font-size: 30px; }
+  .price-was { font-size: 16px; }
+  .price-save { font-size: 9.5px; padding: 3px 8px; }
+  .hero-buy-meta { font-size: 10.5px; }
   .hero-buy-cta { margin-left: 0; width: 100%; text-align: center; justify-content: center; padding: 15px 22px; }
+  .hero-coupon {
+    margin-top: 4px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    gap: 6px;
+  }
+  .hero-coupon-label { font-size: 9.5px; }
+  .hero-coupon-code { font-size: 15px; padding: 3px 9px; }
+  .pricing-single-pricerow { gap: 9px; }
+  .pricing-single-was { font-size: 19px; }
+  .pricing-single-save { font-size: 10px; padding: 4px 9px; }
+  .pricing-single-coupon { padding: 12px 14px; font-size: 12.5px; gap: 8px; flex-direction: column; align-items: flex-start; }
+  .coupon-pill { font-size: 11.5px; }
+  .coupon-pill strong { font-size: 16px; }
+  .coupon-after { font-size: 12.5px; }
   .micro-trust { font-size: 12.5px; }
   .cta-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .cta-row .btn-primary,
@@ -2442,18 +2592,25 @@ h1 em, h2 em, h3 em {
   <div class="hero-grid">
     <div class="hero-copy">
       <div class="eyebrow fade">For chronic migraine · designed in the UK</div>
-      <h1 class="hero-hook fade" aria-label="Your hair hurts. Your scalp throbs. Your light is the enemy.">
-        Your hair hurts.<br>
-        Your scalp throbs.<br>
-        <em>Your light is the enemy.</em>
+      <h1 class="hero-hook fade" aria-label="End your migraines.">
+        End your <em>migraines.</em>
       </h1>
-      <p class="hero-sub fade">Kalmely is a wireless cap that wraps the architecture of your migraine — gentle airbag compression on temples, forehead and occipital nerve, with graphene heat over the eyes. Fifteen minutes. No pills. No freezer.</p>
+      <p class="hero-sub fade">A wireless cap that wraps the architecture of your migraine — gentle airbag compression on temples, forehead and occipital nerve, with graphene heat over the eyes. Fifteen minutes. No pills. No freezer.</p>
       <div class="hero-buy fade">
         <div class="hero-buy-price">
-          <span class="hero-buy-now">£149</span>
-          <span class="hero-buy-meta">One-time · Free UK shipping · 30-day money-back</span>
+          <div class="price-row">
+            <span class="price-was">£223</span>
+            <span class="hero-buy-now">£149</span>
+            <span class="price-save">Save £74</span>
+          </div>
+          <span class="hero-buy-meta">Launch price · Free UK shipping · 30-day money-back</span>
         </div>
-        <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary hero-buy-cta" data-event="cta_hero">Buy Kalmely <span class="arrow">→</span></a>
+        <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary hero-buy-cta" data-event="cta_hero">Buy the kit <span class="arrow">→</span></a>
+        <div class="hero-coupon" role="note">
+          <span class="hero-coupon-label">Use code</span>
+          <span class="hero-coupon-code" data-copy="RELIEF15" title="Click to copy">RELIEF15</span>
+          <span class="hero-coupon-extra">for an extra <strong>£15 off</strong> at checkout</span>
+        </div>
       </div>
       <div class="micro-trust fade">
         <span class="stars">★★★★★</span>
@@ -2790,15 +2947,24 @@ h1 em, h2 em, h3 em {
 
     <div class="pricing-single fade">
       <div class="pricing-single-image">
-        <img src="assets/producto-solo.jpg" alt="Kalmely head massager — product shot on a neutral background" loading="lazy">
+        <img src="assets/product-isometric.jpg" alt="The Kalmely kit — wireless cap and handheld remote, isometric view" loading="lazy">
       </div>
       <div class="pricing-single-body">
-        <div class="pricing-single-name">Kalmely Head Massager</div>
+        <div class="pricing-single-name">Kalmely Head Massager — Launch Kit</div>
         <div class="pricing-single-tagline">Wireless cap. Multi-Zone Air Therapy™. Graphene heat. Built for chronic migraine.</div>
 
         <div class="pricing-single-price">
-          <span class="pricing-single-amount">£149</span>
-          <span class="pricing-single-meta">One-time · Free UK shipping</span>
+          <div class="pricing-single-pricerow">
+            <span class="pricing-single-was">£223</span>
+            <span class="pricing-single-amount">£149</span>
+            <span class="pricing-single-save">Save £74</span>
+          </div>
+          <span class="pricing-single-meta">Launch price · Free UK shipping</span>
+        </div>
+
+        <div class="pricing-single-coupon" role="note">
+          <span class="coupon-pill">Use code <strong data-copy="RELIEF15" title="Click to copy">RELIEF15</strong></span>
+          <span class="coupon-after">extra <strong>£15 off</strong> at checkout — total <strong>£134</strong></span>
         </div>
 
         <ul class="pricing-single-includes">
@@ -3231,6 +3397,22 @@ h1 em, h2 em, h3 em {
       el.textContent = 'Copied ✓';
       setTimeout(() => { el.textContent = original; }, 1400);
     } catch (_) { /* clipboard blocked — silently ignore */ }
+  });
+
+  // Click any [data-copy] element → copy its value, persist coupon, visual confirmation
+  document.querySelectorAll('[data-copy]').forEach(el => {
+    el.addEventListener('click', async (e) => {
+      const code = e.currentTarget.getAttribute('data-copy');
+      if (!code) return;
+      localStorage.setItem('kalmely_coupon', code);
+      try {
+        await navigator.clipboard.writeText(code);
+        const target = e.currentTarget;
+        const original = target.textContent;
+        target.textContent = 'Copied ✓';
+        setTimeout(() => { target.textContent = original; }, 1400);
+      } catch (_) { /* clipboard blocked — silently ignore */ }
+    });
   });
 
   // ===== Analytics / pixel events placeholders =====
