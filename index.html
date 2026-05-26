@@ -315,18 +315,6 @@ strong { font-weight: 600; color: var(--ink); }
   object-fit: contain;
 }
 .gallery-slide.is-photo img { width: 100%; height: 100%; object-fit: cover; }
-.gallery-caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: 16px 18px 14px;
-  background: linear-gradient(to top, rgba(15,27,45,0.78) 0%, rgba(15,27,45,0) 100%);
-  color: #fff;
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  z-index: 2;
-}
 .gallery-badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -1727,23 +1715,18 @@ strong { font-weight: 600; color: var(--ink); }
           <div class="gallery-track" id="galleryTrack" role="region" aria-label="Product gallery — swipe to see more">
             <figure class="gallery-slide is-photo">
               <img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — band with six airbags and handheld remote on a neutral background" loading="eager" decoding="async">
-              <figcaption class="gallery-caption">Wireless · USB-C rechargeable · 15-min auto shut-off</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <img src="assets/use-sofa-night.jpg" alt="A woman wearing Kalmely on her sofa at night, eyes closed during a migraine" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">Drug-free relief, evening recovery</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">Developed with clinical input</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <img src="assets/diagram-six-zones.jpg" alt="Diagram showing six pressure points on the head: zones 01 and 02 on the forehead, zone 03 over the eyes with a graphene heat element glowing orange, and zones 05 and 06 over the occipital nerve at the back of the head" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">Six precision airbags · One graphene heat zone (the orange element warms the eye area to 40 °C)</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">Includes the 30-Day Migraine Tracker ebook</figcaption>
             </figure>
           </div>
           <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Photo navigation"></div>
@@ -1798,10 +1781,6 @@ strong { font-weight: 600; color: var(--ink); }
           <li>
             <svg width="18" height="18" aria-hidden="true"><use href="#iconCheck"/></svg>
             <span>Wireless · USB-C rechargeable · 15-minute auto shut-off</span>
-          </li>
-          <li>
-            <svg width="18" height="18" aria-hidden="true"><use href="#iconCheck"/></svg>
-            <span>100-day trial · Free returns · Free UK shipping</span>
           </li>
         </ul>
 
