@@ -2527,7 +2527,7 @@ strong { font-weight: 600; color: var(--ink); }
     const sEl = document.getElementById('atSecs');
     if (!dEl) return;
     const STORAGE_KEY = 'kalmely_launch_end';
-    const WINDOW_MS = 72 * 60 * 60 * 1000;     // 72-hour rolling window
+    const WINDOW_MS = 24 * 60 * 60 * 1000;     // 24-hour rolling window
     const RESET_THRESHOLD_MS = 60 * 1000;       // when under 60s left, silently roll +24h
 
     function readEnd() {

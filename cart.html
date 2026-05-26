@@ -307,6 +307,9 @@
         <span>Total</span>
         <span class="val" id="total">£269</span>
       </div>
+      <div id="couponHint" hidden style="margin-top:14px;padding:10px 14px;background:rgba(75,114,93,0.10);border-left:3px solid var(--sage);border-radius:6px;font-size:12.5px;color:var(--ink);line-height:1.5;">
+        <strong style="color:var(--sage-deep);font-weight:600;">Welcome code ready.</strong> Click <strong>Apply</strong> below to take £15 off.
+      </div>
       <div id="couponEntry" style="margin-top:14px;display:flex;gap:8px;align-items:center;">
         <input type="text" id="couponInput" placeholder="Promo code" autocomplete="off" style="flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-family:var(--sans);font-size:13.5px;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase;">
         <button type="button" id="couponApply" style="padding:11px 18px;border:1px solid var(--sage);background:transparent;color:var(--sage-deep);border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;letter-spacing:0.02em;">Apply</button>
@@ -389,27 +392,36 @@ const VALID_COUPONS = {
   'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-BUNDLE'] }
 };
 let activeCoupon = null;
-// Read coupon from URL (?coupon=RELIEF15) OR localStorage (popup-applied).
-// URL wins so we can also share affiliate links like cart.html?coupon=RELIEF15
+// Seed coupon comes from URL (?coupon=RELIEF15) or localStorage (popup acceptance).
+// IMPORTANT: we never auto-apply the seed — we only PREFILL the input so the customer
+// still has to click "Apply" themselves and feel the £15 land. This avoids the bug
+// where the discount looked applied but the apply UI was also still showing.
 const urlCoupon = (params.get('coupon') || '').toUpperCase();
 const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();
-const seedCoupon = urlCoupon || storedCoupon;
-if (VALID_COUPONS[seedCoupon] && VALID_COUPONS[seedCoupon].appliesTo.includes(sku)) {
-  activeCoupon = VALID_COUPONS[seedCoupon];
-  localStorage.setItem('kalmely_coupon', seedCoupon);
-}
+const seedCoupon = (urlCoupon || storedCoupon).trim();
+const hasValidSeed = !!(VALID_COUPONS[seedCoupon] && VALID_COUPONS[seedCoupon].appliesTo.includes(sku));
 function renderCoupon() {
   const row = document.getElementById('couponRow');
   const entry = document.getElementById('couponEntry');
+  const hint = document.getElementById('couponHint');
   if (activeCoupon) {
     row.hidden = false;
     document.getElementById('couponCode').textContent = activeCoupon.label;
     document.getElementById('couponAmount').textContent = `−£${activeCoupon.amount}`;
     entry.style.display = 'none';
+    hint.hidden = true;
   } else {
     row.hidden = true;
     entry.style.display = 'flex';
+    // Hint visible only when the customer arrived with a seed code (welcome flow)
+    hint.hidden = !hasValidSeed;
   }
+}
+
+// Prefill the input when the seed code is present, so the customer just hits Apply
+if (hasValidSeed) {
+  const input = document.getElementById('couponInput');
+  if (input) input.value = seedCoupon;
 }
 
 // Quantity
