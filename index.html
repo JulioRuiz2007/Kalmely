@@ -35,26 +35,15 @@
     "@type": "Brand",
     "name": "Kalmely"
   },
-  "offers": [
-    {
-      "@type": "Offer",
-      "url": "https://kalmely.com/cart?sku=KAL-SOLO",
-      "priceCurrency": "GBP",
-      "price": "149.00",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "name": "Kalmely Head Massager — Device only"
-    },
-    {
-      "@type": "Offer",
-      "url": "https://kalmely.com/cart?sku=KAL-BUNDLE",
-      "priceCurrency": "GBP",
-      "price": "149.00",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "name": "Kalmely + Launch Bonus Kit"
-    }
-  ],
+  "offers": {
+    "@type": "Offer",
+    "url": "https://kalmely.com/cart?sku=KAL-BUNDLE",
+    "priceCurrency": "GBP",
+    "price": "149.00",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "name": "Kalmely Head Massager"
+  },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",
@@ -426,33 +415,52 @@ h1 em, h2 em, h3 em {
   min-height: calc(100vh - 180px);
 }
 .hero-copy { max-width: 620px; }
-.hero h1 {
-  font-size: clamp(40px, 6.2vw, 84px);
-  margin: 24px 0 28px;
+.hero h1.hero-hook {
+  font-size: clamp(42px, 5.6vw, 74px);
+  margin: 22px 0 24px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.hero h1.hero-hook em {
+  color: var(--brand);
+  font-style: italic;
   font-weight: 400;
 }
-.hero h1 .line { display: block; overflow: hidden; }
-.hero h1 .word {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 1.1s cubic-bezier(.2,.85,.2,1);
-}
-.hero h1.in .word { transform: translateY(0); }
-.hero h1.in .word:nth-child(1) { transition-delay: .05s; }
-.hero h1.in .word:nth-child(2) { transition-delay: .12s; }
-.hero h1.in .word:nth-child(3) { transition-delay: .19s; }
-.hero h1.in .word:nth-child(4) { transition-delay: .26s; }
-.hero h1.in .word:nth-child(5) { transition-delay: .33s; }
-.hero h1.in .word:nth-child(6) { transition-delay: .40s; }
-.hero h1.in .word:nth-child(7) { transition-delay: .47s; }
-.hero h1.in .word:nth-child(8) { transition-delay: .54s; }
 .hero-sub {
   font-size: clamp(16px, 1.4vw, 19px);
   color: var(--ink-soft);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   max-width: 560px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
+.hero-buy {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-2);
+}
+.hero-buy-price { display: flex; flex-direction: column; gap: 4px; }
+.hero-buy-now {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+.hero-buy-meta {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hero-buy-cta { margin-left: auto; }
 
 .cta-row {
   display: flex;
@@ -576,10 +584,10 @@ h1 em, h2 em, h3 em {
 }
 
 @media (max-width: 920px) {
-  .hero { padding: 92px var(--pad) 48px; }
+  .hero { padding: 78px var(--pad) 36px; }
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 20px;
     min-height: auto;
     text-align: left;
   }
@@ -587,25 +595,37 @@ h1 em, h2 em, h3 em {
      then the headline + body, so the first impression matches the page identity. */
   .hero-visual {
     order: 1;
-    aspect-ratio: 4 / 3.4;
+    aspect-ratio: 4 / 2.7;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    border-radius: 18px;
+    border-radius: 16px;
   }
   .hero-visual img { border-radius: inherit; }
   .hero-copy { order: 2; max-width: 100%; }
   .hero h1 {
     font-size: clamp(34px, 8.6vw, 52px);
-    margin: 14px 0 18px;
+    margin: 10px 0 14px;
     line-height: 1.04;
   }
   .hero-sub {
-    font-size: 15.5px;
-    line-height: 1.58;
-    margin-bottom: 26px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 18px;
   }
-  .hero .eyebrow { font-size: 11.5px; }
+  .hero .eyebrow { font-size: 11px; }
+  .hero h1.hero-hook { font-size: clamp(32px, 8.4vw, 46px); margin: 10px 0 14px; }
+  .hero-buy {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .hero-buy-now { font-size: 26px; }
+  .hero-buy-meta { font-size: 11px; }
+  .hero-buy-cta { margin-left: 0; width: 100%; text-align: center; justify-content: center; padding: 15px 22px; }
+  .micro-trust { font-size: 12.5px; }
   .cta-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .cta-row .btn-primary,
   .cta-row .btn-ghost { width: 100%; text-align: center; justify-content: center; }
@@ -670,6 +690,106 @@ h1 em, h2 em, h3 em {
 .validation {
   background: var(--bg);
   border-top: 1px solid var(--line);
+}
+.validation-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 22px;
+  background: var(--bg-2);
+  border-left: 3px solid var(--brand);
+  border-radius: 8px;
+  margin-bottom: 18px !important;
+}
+.validation-stat strong {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 500;
+  color: var(--brand);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.validation-stat span {
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+/* Section 3 — Gallery (horizontal swipe on mobile, grid on desktop) */
+.gallery { background: var(--bg-2); border-top: 1px solid var(--line); }
+.gallery-head { margin-bottom: 36px; max-width: 720px; }
+.gallery-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 12px 0 0;
+}
+.gallery-head h2 em { color: var(--brand); font-style: italic; }
+.gallery-scroll {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.gallery-item {
+  position: relative;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg);
+  aspect-ratio: 4 / 5;
+}
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.gallery-item:hover img { transform: scale(1.03); }
+.gallery-item figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: linear-gradient(to top, rgba(20,27,42,0.88) 0%, rgba(20,27,42,0) 100%);
+}
+.gallery-hint { display: none; }
+@media (max-width: 860px) {
+  .gallery-scroll {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 4px 0 12px;
+    margin: 0 calc(var(--pad) * -1);
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+    scrollbar-width: none;
+  }
+  .gallery-scroll::-webkit-scrollbar { display: none; }
+  .gallery-item {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+    aspect-ratio: 4 / 5;
+  }
+  .gallery-hint {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
 }
 .validation-grid {
   display: grid;
@@ -1200,9 +1320,130 @@ h1 em, h2 em, h3 em {
   .howto-mini { grid-template-columns: 1fr; gap: 18px; padding: 22px; }
 }
 
-/* Section 5 — Pricing (two options) */
+/* Section 5 — Pricing (single offering · no decision friction) */
 .pricing { background: var(--bg); }
 .pricing .section-head { text-align: left; }
+
+.pricing-single {
+  display: grid;
+  grid-template-columns: 1.05fr 1.1fr;
+  gap: clamp(28px, 4vw, 60px);
+  align-items: center;
+  max-width: 1100px;
+  margin: 48px auto 0;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--bg-2);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+}
+.pricing-single-image {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ink);
+}
+.pricing-single-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.pricing-single-name {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.pricing-single-tagline {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  max-width: 460px;
+}
+.pricing-single-price {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+}
+.pricing-single-amount {
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 60px);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+.pricing-single-meta {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.pricing-single-includes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.pricing-single-includes li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 9px 0;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.45;
+  border-bottom: 1px solid rgba(20, 27, 42, 0.06);
+}
+.pricing-single-includes li:last-child { border-bottom: none; }
+.pricing-single-includes li em { font-style: italic; color: var(--brand); }
+.pricing-single-includes .check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  background: var(--sage);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.pricing-single-cta {
+  width: 100%;
+  justify-content: center;
+  padding: 18px 28px;
+  font-size: 16px;
+}
+.pricing-single-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.pricing-single-foot .ico {
+  color: var(--sage);
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .pricing-single {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 22px;
+  }
+  .pricing-single-image { aspect-ratio: 4 / 3; }
+}
 
 .price-grid {
   display: grid;
@@ -1786,10 +2027,51 @@ h1 em, h2 em, h3 em {
   line-height: 1.55;
 }
 .ebook-meta strong { color: var(--ink); font-weight: 500; }
+.ebook-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.ebook-form input[type="email"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 16px 18px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.ebook-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(109, 138, 107, 0.15);
+}
+.ebook-form .btn-primary {
+  flex-shrink: 0;
+  padding: 16px 26px;
+}
+.ebook-form-meta {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+.ebook-form-meta a { color: var(--ink-soft); text-decoration: underline; }
+.ebook-form-meta.success {
+  color: var(--sage-deep);
+  font-weight: 500;
+  font-size: 13.5px;
+}
 @media (max-width: 860px) {
   .ebook-grid { grid-template-columns: 1fr; gap: 40px; }
   .ebook-visual { order: -1; }
   .ebook-cover { width: 260px; height: 390px; }
+  .ebook-form { flex-direction: column; }
+  .ebook-form .btn-primary { width: 100%; justify-content: center; }
 }
 
 /* Section 8 — Final CTA */
@@ -2075,27 +2357,29 @@ h1 em, h2 em, h3 em {
 <header class="hero" id="hero">
   <div class="hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow fade">Drug-free migraine relief · UK design</div>
-      <h1 aria-label="Designed for the moments when everything hurts.">
-        <span class="line"><span class="word">Designed</span> <span class="word">for</span> <span class="word">the</span> <span class="word">moments</span></span>
-        <span class="line"><span class="word">when</span> <span class="word"><em>everything</em></span> <span class="word">hurts.</span></span>
+      <div class="eyebrow fade">For chronic migraine · designed in the UK</div>
+      <h1 class="hero-hook fade" aria-label="Your hair hurts. Your scalp throbs. Your light is the enemy.">
+        Your hair hurts.<br>
+        Your scalp throbs.<br>
+        <em>Your light is the enemy.</em>
       </h1>
-      <p class="hero-sub fade">Kalmely is the first wireless head massager that combines gentle airbag rhythm with adjustable graphene heat — easing migraine pressure across temples, forehead and occipital nerve in fifteen minutes.</p>
-      <div class="cta-row fade">
-        <a href="#pricing" class="btn-primary" data-event="cta_hero">Find Your Relief <span class="arrow">→</span></a>
-        <a href="#how" class="btn-ghost">How it works</a>
+      <p class="hero-sub fade">Kalmely is a wireless cap that wraps the architecture of your migraine — gentle airbag compression on temples, forehead and occipital nerve, with graphene heat over the eyes. Fifteen minutes. No pills. No freezer.</p>
+      <div class="hero-buy fade">
+        <div class="hero-buy-price">
+          <span class="hero-buy-now">£149</span>
+          <span class="hero-buy-meta">One-time · Free UK shipping · 30-day money-back</span>
+        </div>
+        <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary hero-buy-cta" data-event="cta_hero">Buy Kalmely <span class="arrow">→</span></a>
       </div>
       <div class="micro-trust fade">
         <span class="stars">★★★★★</span>
-        <span>4.8 average</span>
-        <span class="sep"></span>
-        <span>30-day money-back</span>
+        <span>4.8 · 184 reviews</span>
         <span class="sep"></span>
         <span>Ships in 5–7 days</span>
       </div>
     </div>
     <div class="hero-visual fade-soft">
-      <img src="assets/hero-product.jpg" alt="Kalmely head massager — wireless cap with remote control" loading="eager" decoding="async">
+      <img src="assets/hero-en-cabeza.jpg" alt="A woman wearing Kalmely with her eyes closed — the cap covers her temples, forehead and occipital area" loading="eager" decoding="async">
       <div class="hero-badge">
         <span class="pulse"></span>
         Multi-Zone Air Therapy™
@@ -2122,11 +2406,72 @@ h1 em, h2 em, h3 em {
   </div>
 </div>
 
+<!-- VALIDATION (pain validation FIRST — before any mechanism) -->
+<section class="validation" id="allodynia">
+  <div class="section">
+    <div class="validation-grid">
+      <div>
+        <div class="eyebrow fade">01 · You're not imagining it</div>
+        <h2 class="fade">If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
+        <figure class="validation-figure fade-soft">
+          <img src="assets/lifestyle-dormitorio.jpg" alt="Person resting in a dim bedroom with Kalmely on — light hurts, the cap shields the eyes" loading="lazy" decoding="async">
+          <figcaption class="validation-figure-caption">
+            <span class="label">Designed for allodynia</span>
+            <p>Even compression. Adjustable warmth. No straps cutting into a sensitised scalp.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="validation-body stagger">
+        <p class="validation-stat"><strong>80%</strong><span>of chronic migraineurs experience cutaneous allodynia — pain from stimuli that shouldn't hurt.</span></p>
+        <p>It has a name. <strong>Cutaneous allodynia</strong> — a ponytail. A pillow. Your own fringe brushing against your forehead. It's the result of central sensitisation in the trigeminal pathway, and it's the reason most "rescue" products quietly make things worse.</p>
+        <p>Rigid ice caps. Weighted masks. Anything that adds pressure to a scalp that's already in revolt. Kalmely was designed in conversation with this — even compression, adjustable warmth, no spikes, no cold-shock.</p>
+        <div class="validation-quote">
+          <blockquote>"I had to start sleeping with my hair down because even a ponytail triggered worse pain. I'd given up on anything that touched my head."</blockquote>
+          <cite>— Sarah, chronic migraineur · 14 years</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY (5 product shots, swipeable on mobile) -->
+<section class="gallery" id="gallery" aria-labelledby="galleryHeading">
+  <div class="section">
+    <div class="gallery-head fade">
+      <div class="eyebrow">02 · See the product</div>
+      <h2 id="galleryHeading">Built for the architecture of <em>your head.</em></h2>
+    </div>
+    <div class="gallery-scroll" role="region" aria-label="Product photos — swipe horizontally on mobile">
+      <figure class="gallery-item">
+        <img src="assets/producto-solo.jpg" alt="Kalmely cap — three-quarter view on a neutral background" loading="lazy" decoding="async">
+        <figcaption>The cap</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="assets/zonas-overlay.jpg" alt="Cutaway of Kalmely showing the six airbag zones and three heat areas" loading="lazy" decoding="async">
+        <figcaption>Six airbags, three heat zones</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="assets/uso-lateral.jpg" alt="Side view of a person wearing Kalmely with the remote in hand" loading="lazy" decoding="async">
+        <figcaption>Wireless · handheld remote</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="assets/lifestyle-dormitorio.jpg" alt="Lifestyle shot — Kalmely worn in a dimly lit bedroom" loading="lazy" decoding="async">
+        <figcaption>Built for the dark room</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="assets/unboxing.jpg" alt="Kalmely with USB-C cable, soft pouch and printed manual" loading="lazy" decoding="async">
+        <figcaption>What's in the box</figcaption>
+      </figure>
+    </div>
+    <div class="gallery-hint" aria-hidden="true">← swipe →</div>
+  </div>
+</section>
+
 <!-- FEATURE STRIP -->
 <section class="feature-strip" id="how">
   <div class="section">
     <div class="feature-strip-head fade">
-      <div class="eyebrow">How Kalmely works</div>
+      <div class="eyebrow">03 · How Kalmely works</div>
       <h2>Multi-Zone Air Therapy™ — <em>designed for the architecture of migraine pain</em>, not the architecture of a marketing demo.</h2>
     </div>
 
@@ -2215,34 +2560,6 @@ h1 em, h2 em, h3 em {
   </div>
 </section>
 
-<!-- VALIDATION -->
-<section class="validation" id="allodynia">
-  <div class="section">
-    <div class="validation-grid">
-      <div>
-        <div class="eyebrow fade">01 · You're not imagining it</div>
-        <h2 class="fade">If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
-        <figure class="validation-figure fade-soft">
-          <img src="assets/lifestyle-allodynia.jpg" alt="Person wearing Kalmely with handheld controller — eyes gently covered, calm expression" loading="lazy" decoding="async">
-          <figcaption class="validation-figure-caption">
-            <span class="label">Designed for allodynia</span>
-            <p>Even compression. Adjustable warmth. No straps cutting into a sensitised scalp.</p>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="validation-body stagger">
-        <p>It has a name. <strong>Cutaneous allodynia</strong> — pain caused by stimuli that shouldn't hurt. A ponytail. A pillow. Your own fringe brushing against your forehead.</p>
-        <p>Up to <strong>80% of people with chronic migraine</strong> experience it during attacks. It's the result of central sensitisation in the trigeminal pathway, and it's the reason most "rescue" products quietly make things worse — rigid ice caps, weighted masks, anything that adds pressure to a scalp that's already in revolt.</p>
-        <p>Kalmely was designed in conversation with this. Even compression. Adjustable warmth. No spikes. No cold-shock. No straps cutting into a sensitised scalp.</p>
-        <div class="validation-quote">
-          <blockquote>"I had to start sleeping with my hair down because even a ponytail triggered worse pain. I'd given up on anything that touched my head."</blockquote>
-          <cite>— Sarah, chronic migraineur · 14 years</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- COMPARISON -->
 <section class="compare" id="why">
   <div class="compare-wrap">
@@ -2315,9 +2632,9 @@ h1 em, h2 em, h3 em {
 <section class="pricing" id="pricing">
   <div class="section">
     <div class="section-head fade">
-      <div class="eyebrow">04 · Today's flash promotion</div>
-      <h2>Two ways to start. <em>One</em> is on sale today.</h2>
-      <p>The standalone device is £149 year-round. Today only — bundled with the printed manual, USB-C cable, soft pouch, and the digital migraine tracker for the same price. Flash promotion resets at midnight UK.</p>
+      <div class="eyebrow">05 · One product. One price.</div>
+      <h2>Kalmely. <em>£149.</em></h2>
+      <p>One-time payment. Free UK shipping. 30-day money-back guarantee.</p>
     </div>
 
     <div class="howto-mini fade">
@@ -2344,108 +2661,35 @@ h1 em, h2 em, h3 em {
       </div>
     </div>
 
-    <div class="price-grid">
+    <div class="pricing-single fade">
+      <div class="pricing-single-image">
+        <img src="assets/producto-solo.jpg" alt="Kalmely head massager — product shot on a neutral background" loading="lazy">
+      </div>
+      <div class="pricing-single-body">
+        <div class="pricing-single-name">Kalmely Head Massager</div>
+        <div class="pricing-single-tagline">Wireless cap. Multi-Zone Air Therapy™. Graphene heat. Built for chronic migraine.</div>
 
-      <!-- Option A — Solo -->
-      <article class="price-card price-card--solo fade">
-        <div class="price-card-thumb">
-          <span class="visual-badge">Device only</span>
-          <img src="assets/product-pricing.jpg" alt="Kalmely head massager — device only" loading="lazy">
+        <div class="pricing-single-price">
+          <span class="pricing-single-amount">£149</span>
+          <span class="pricing-single-meta">One-time · Free UK shipping</span>
         </div>
 
-        <div class="price-card-eyebrow">Option A · Standard</div>
-        <div class="price-card-name">Kalmely Head Massager</div>
-        <div class="price-card-tagline">Just the device. No printed manual, no pouch, no digital guide.</div>
-
-        <div class="price-solo-block">
-          <span class="price-solo-amount">£149</span>
-          <span class="price-solo-meta">One-time payment<br>Free UK shipping</span>
-        </div>
-
-        <ul class="value-list">
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">Kalmely Head Massager</span>
-            <span class="item-value">£149</span>
-          </li>
+        <ul class="pricing-single-includes">
+          <li><span class="check">✓</span> Kalmely Head Massager (wireless cap + handheld remote)</li>
+          <li><span class="check">✓</span> USB-C charging cable</li>
+          <li><span class="check">✓</span> Soft storage pouch</li>
+          <li><span class="check">✓</span> Printed quick-start manual</li>
+          <li><span class="check">✓</span> <em>"The 30-Day Migraine Tracker"</em> PDF — emailed after purchase</li>
         </ul>
 
-        <a href="cart.html?sku=KAL-SOLO" class="price-cta price-cta--ghost" data-event="add_to_cart_solo">Add device only <span class="arrow">→</span></a>
+        <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary pricing-single-cta" data-event="add_to_cart">Buy Kalmely · £149 <span class="arrow">→</span></a>
 
-        <div class="price-foot">
-          <span><span class="ico">✓</span> Free shipping</span>
-          <span><span class="ico">✓</span> Ships in 24h</span>
+        <div class="pricing-single-foot">
+          <span><span class="ico">✓</span> Free UK shipping</span>
+          <span><span class="ico">✓</span> Ships in 5–7 days</span>
+          <span><span class="ico">✓</span> 30-day money-back</span>
         </div>
-      </article>
-
-      <!-- Option B — Bundle (featured / on sale) -->
-      <article class="price-card price-card--bundle fade">
-        <span class="price-card-flag">Flash deal · today only</span>
-
-        <div class="price-card-thumb">
-          <span class="visual-badge">Complete kit</span>
-          <img src="assets/product-pricing.jpg" alt="Kalmely head massager with full launch bonus kit" loading="lazy">
-          <div class="ebook-mock" aria-hidden="true">
-            <img class="ebook-mock-img" src="assets/ebook-cover.jpg" alt="" loading="lazy">
-            <span class="ebook-mock-tag">Included free · £29 value</span>
-          </div>
-        </div>
-
-        <div class="price-card-eyebrow">Option B · Best value</div>
-        <div class="price-card-name">Kalmely + Launch Bonus Kit</div>
-        <div class="price-card-tagline">The device plus four extras worth £74 — included free until midnight UK.</div>
-
-        <div class="price-bundle-block">
-          <div class="price-bundle-was">
-            <span class="price-bundle-was-label">Total value</span>
-            <span class="price-bundle-was-amount">£223</span>
-          </div>
-          <div class="price-bundle-now">
-            <span class="price-bundle-now-amount">£149</span>
-            <span class="price-bundle-save">Save £74 today</span>
-          </div>
-        </div>
-
-        <ul class="value-list">
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">Kalmely Head Massager</span>
-            <span class="item-value">£149</span>
-          </li>
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">Premium printed user manual</span>
-            <span class="item-value free">Free · £19</span>
-          </li>
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">USB-C charging cable</span>
-            <span class="item-value free">Free · £12</span>
-          </li>
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">Soft storage pouch</span>
-            <span class="item-value free">Free · £14</span>
-          </li>
-          <li>
-            <span class="check">✓</span>
-            <span class="item-name">
-              <strong>Digital Guide:</strong> <em>"The 30-Day Migraine Tracker"</em>
-              <span class="item-sub">PDF delivered to your email after purchase</span>
-            </span>
-            <span class="item-value free">Free · £29</span>
-          </li>
-        </ul>
-
-        <a href="cart.html?sku=KAL-BUNDLE" class="price-cta" data-event="add_to_cart_bundle">Add complete kit <span class="arrow">→</span></a>
-
-        <div class="price-foot">
-          <span><span class="ico">✓</span> Free shipping</span>
-          <span><span class="ico">✓</span> Ships in 24h</span>
-          <span><span class="ico">✓</span> Includes digital guide</span>
-        </div>
-      </article>
-
+      </div>
     </div>
   </div>
 </section>
@@ -2570,25 +2814,27 @@ h1 em, h2 em, h3 em {
   </div>
 </section>
 
-<!-- EBOOK BONUS -->
+<!-- LEAD MAGNET (ebook for emails, Klaviyo) -->
 <section class="ebook" id="ebook-bonus" aria-labelledby="ebookHeading">
   <div class="section">
     <div class="ebook-grid">
       <div class="ebook-visual fade-soft">
         <div class="ebook-cover">
-          <span class="ebook-badge">PDF · Instant Email Delivery</span>
+          <span class="ebook-badge">Free PDF · Sent by email</span>
           <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — companion guide cover" loading="lazy" decoding="async">
         </div>
       </div>
 
       <div class="ebook-copy fade">
-        <h3>Your Free Companion Guide</h3>
-        <h2 id="ebookHeading">The <em>30-Day Migraine Tracker.</em></h2>
-        <p>Used by hundreds of chronic migraine sufferers in the UK and US. Track triggers, intensity, and duration across 30 days to identify your personal pattern.</p>
-        <p>Includes 27 drug-free tactics for in-attack relief and a complete cutaneous allodynia guidebook section.</p>
-        <div class="ebook-meta">
-          <strong>Digital download (PDF format).</strong> Delivered to your inbox immediately after purchase. Bundled free with every Kalmely — read more at <a href="ebook-only.html">/ebook-only</a>.
-        </div>
+        <div class="eyebrow">07 · Not ready to buy yet?</div>
+        <h2 id="ebookHeading">Get the free guide. <em>The 30-Day Migraine Tracker.</em></h2>
+        <p>27 drug-free in-attack tactics, a 30-day pattern tracker, and a cutaneous allodynia guidebook section. Built with chronic migraineurs in the UK.</p>
+        <form class="ebook-form" id="leadMagnetForm" novalidate>
+          <label for="leadEmail" class="sr-only">Your email</label>
+          <input type="email" id="leadEmail" name="email" placeholder="your@email.com" required autocomplete="email">
+          <button type="submit" class="btn-primary" data-event="lead_ebook">Send me the guide <span class="arrow">→</span></button>
+        </form>
+        <p class="ebook-form-meta" id="leadStatus">One email. No spam. Unsubscribe in any message. <a href="privacy.html">Privacy policy</a>.</p>
       </div>
     </div>
   </div>
@@ -2597,10 +2843,10 @@ h1 em, h2 em, h3 em {
 <!-- FINAL CTA -->
 <section class="final-cta" id="order">
   <div class="final-cta-inner">
-    <div class="eyebrow fade">07 · Stop the cycle</div>
+    <div class="eyebrow fade">08 · Stop the cycle</div>
     <h2 class="fade">Start with <em>Kalmely.</em></h2>
     <p class="fade">Drug-free. Designed for sensitised scalps. Money back if it doesn't help — keep the device either way.</p>
-    <a href="#pricing" class="btn-primary fade" data-event="cta_final">Choose your bundle <span class="arrow">→</span></a>
+    <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary fade" data-event="cta_final">Buy Kalmely · £149 <span class="arrow">→</span></a>
     <div class="scarcity fade">Limited launch inventory — currently shipping to the UK only</div>
   </div>
 </section>
@@ -2668,7 +2914,7 @@ h1 em, h2 em, h3 em {
     <h3 id="popupTitle">£15 off your first Kalmely.</h3>
     <p>One-time code, valid for 24 hours. We won't email you again unless you ask.</p>
     <div class="popup-code" title="Click to copy">RELIEF15</div>
-    <a href="#pricing" class="btn-primary" id="popupCta">Apply code &amp; shop <span class="arrow">→</span></a>
+    <a href="cart.html?sku=KAL-BUNDLE" class="btn-primary" id="popupCta">Apply code &amp; shop <span class="arrow">→</span></a>
   </div>
 </div>
 
@@ -2900,6 +3146,49 @@ h1 em, h2 em, h3 em {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  });
+
+  // ===== Lead magnet form (sends email to Klaviyo via Worker) =====
+  const leadForm = document.getElementById('leadMagnetForm');
+  const leadStatus = document.getElementById('leadStatus');
+  const WORKER_URL_LEAD = 'https://kalmely-api.julioruizbayarri.workers.dev';
+  leadForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = document.getElementById('leadEmail');
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      leadStatus.textContent = 'Please enter a valid email address.';
+      leadStatus.className = 'ebook-form-meta';
+      leadStatus.style.color = 'var(--terra)';
+      return;
+    }
+    const submitBtn = leadForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    try {
+      const res = await fetch(WORKER_URL_LEAD + '/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'lead_magnet_ebook' })
+      });
+      // We accept both 200 and 202 — Klaviyo may queue it
+      if (res.ok || res.status === 202) {
+        leadStatus.textContent = 'Done — check your inbox. The PDF should arrive in a few minutes.';
+        leadStatus.className = 'ebook-form-meta success';
+        leadForm.style.display = 'none';
+        if (window.fbq) fbq('track', 'Lead', { content_name: '30-Day Migraine Tracker' });
+      } else {
+        throw new Error('Worker returned ' + res.status);
+      }
+    } catch (err) {
+      // Graceful fallback: surface a polite message + email link
+      console.warn('[lead magnet]', err);
+      leadStatus.innerHTML = 'Something went wrong. Email <a href="mailto:hello@kalmely.com?subject=Send%20me%20the%20migraine%20tracker%20PDF">hello@kalmely.com</a> and we will send the PDF manually.';
+      leadStatus.className = 'ebook-form-meta';
+      leadStatus.style.color = 'var(--terra)';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send me the guide <span class="arrow">→</span>';
+    }
   });
 })();
 </script>

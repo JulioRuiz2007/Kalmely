@@ -120,7 +120,7 @@ async function verifyStripeSignature(payload, sigHeader, secret) {
   if (Math.abs(Date.now() / 1000 - +ts) > 300) throw new Error('Timestamp too old');
 }
 
-async function sendKlaviyoEvent(env, email, props) {
+async function sendKlaviyoEvent(env, email, props, metricName = 'Order placed') {
   if (!env.KLAVIYO_KEY) return { skipped: true };
   const res = await fetch('https://a.klaviyo.com/api/events/', {
     method: 'POST',
@@ -134,7 +134,7 @@ async function sendKlaviyoEvent(env, email, props) {
         type: 'event',
         attributes: {
           properties: props,
-          metric:  { data: { type: 'metric',  attributes: { name: 'Order placed' } } },
+          metric:  { data: { type: 'metric',  attributes: { name: metricName } } },
           profile: { data: { type: 'profile', attributes: { email } } }
         }
       }
@@ -195,6 +195,28 @@ export default {
       return handleWebhook(request, env, ctx);
     }
 
+    if (url.pathname === '/api/lead-magnet' && request.method === 'POST') {
+      try { return await handleLeadMagnet(request, env, ctx, origin); }
+      catch (e) { return json({ error: e.message }, 500, CORS(origin)); }
+    }
+
     return new Response('Not found', { status: 404 });
   }
 };
+
+// ---------- LEAD MAGNET ----------
+
+async function handleLeadMagnet(request, env, ctx, origin) {
+  const { email, source } = await request.json();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ error: 'invalid email' }, 400, CORS(origin));
+  }
+  // Fire a Klaviyo event so the "Lead magnet requested" flow can deliver the PDF.
+  // The flow itself lives in Klaviyo; here we only need to push the event.
+  ctx.waitUntil(sendKlaviyoEvent(env, email, {
+    source: source || 'lead_magnet_ebook',
+    pdf_url: env.EBOOK_PDF_URL || null,
+    requested_at: new Date().toISOString()
+  }, 'Lead magnet requested'));
+  return json({ ok: true }, 202, CORS(origin));
+}

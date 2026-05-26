@@ -1,0 +1,5 @@
+worker/
+.git/
+.gitignore
+README.md
+STRIPE-WEBHOOK.md
