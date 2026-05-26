@@ -325,14 +325,12 @@ strong { font-weight: 600; color: var(--ink); }
 }
 .gallery-main {
   position: relative;
-  aspect-ratio: 3 / 4;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-soft);
 }
 .gallery-track {
   display: flex;
-  height: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -347,17 +345,46 @@ strong { font-weight: 600; color: var(--ink); }
   margin: 0;
   position: relative;
   display: flex;
+  flex-direction: column;
+  background: var(--bg-soft);
+}
+.gallery-slide-img {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-soft);
+  overflow: hidden;
 }
-.gallery-slide img,
-.gallery-slide svg {
+.gallery-slide-img img,
+.gallery-slide-img svg {
   width: 80%;
   height: 80%;
   object-fit: contain;
 }
-.gallery-slide.is-photo img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-slide.is-photo .gallery-slide-img img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-caption {
+  min-height: 56px;
+  padding: 14px 20px;
+  background: var(--bg);
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--line-soft);
+}
+.gallery-caption:empty::before {
+  content: "\00a0"; /* preserve height when no caption (slide 1) */
+  visibility: hidden;
+}
 .gallery-badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -373,7 +400,9 @@ strong { font-weight: 600; color: var(--ink); }
 }
 .gallery-dots {
   position: absolute;
-  left: 50%; bottom: 14px;
+  left: 50%;
+  /* anchored just above the caption strip (caption min-height 56px + 14px gap) */
+  bottom: 70px;
   transform: translateX(-50%);
   display: flex;
   gap: 7px;
@@ -382,6 +411,9 @@ strong { font-weight: 600; color: var(--ink); }
   backdrop-filter: blur(8px);
   border-radius: 999px;
   z-index: 3;
+}
+@media (max-width: 640px) {
+  .gallery-dots { bottom: 76px; }
 }
 .gallery-dots button {
   width: 7px; height: 7px;
@@ -1769,19 +1801,34 @@ strong { font-weight: 600; color: var(--ink); }
           <div class="gallery-badge">New 2026 model</div>
           <div class="gallery-track" id="galleryTrack" role="region" aria-label="Product gallery — swipe to see more">
             <figure class="gallery-slide is-photo">
-              <img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — band with six airbags and handheld remote on a neutral background" loading="eager" decoding="async">
+              <div class="gallery-slide-img">
+                <img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — band with six airbags and handheld remote on a neutral background" loading="eager" decoding="async">
+              </div>
+              <figcaption class="gallery-caption"></figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/use-sofa-night.jpg" alt="A woman wearing Kalmely on her sofa at night, eyes closed during a migraine" loading="lazy" decoding="async">
+              <div class="gallery-slide-img">
+                <img src="assets/use-sofa-night.jpg" alt="A woman wearing Kalmely on her sofa at night, eyes closed during a migraine" loading="lazy" decoding="async">
+              </div>
+              <figcaption class="gallery-caption">Wireless · USB-C rechargeable · 15-minute auto shut-off</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
+              <div class="gallery-slide-img">
+                <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
+              </div>
+              <figcaption class="gallery-caption">Designed for sensitive scalp — works with cutaneous allodynia</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/diagram-six-zones.jpg" alt="Diagram showing six pressure points on the head: zones 01 and 02 on the forehead, zone 03 over the eyes with a graphene heat element glowing orange, and zones 05 and 06 over the occipital nerve at the back of the head" loading="lazy" decoding="async">
+              <div class="gallery-slide-img">
+                <img src="assets/diagram-six-zones.jpg" alt="Diagram showing six pressure points on the head: zones 01 and 02 on the forehead, zone 03 over the eyes with a graphene heat element glowing orange, and zones 05 and 06 over the occipital nerve at the back of the head" loading="lazy" decoding="async">
+              </div>
+              <figcaption class="gallery-caption">Six-zone air compression with optional heat</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
+              <div class="gallery-slide-img">
+                <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
+              </div>
+              <figcaption class="gallery-caption">Free 30-Day Migraine Tracker ebook included</figcaption>
             </figure>
           </div>
           <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Photo navigation"></div>
@@ -2181,7 +2228,6 @@ strong { font-weight: 600; color: var(--ink); }
         </div>
         <ul>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Six-zone air compression + optional heat</li>
-          <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>100-day trial · free returns</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Free UK shipping (2–4 days)</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>12-month manufacturer warranty</li>
         </ul>
