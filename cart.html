@@ -217,6 +217,9 @@
   line-height: 1.55;
 }
 .summary-note strong { color: var(--ink); font-weight: 500; }
+/* `hidden` attribute must beat the flex/grid displays we set on rows */
+[hidden] { display: none !important; }
+
 /* Welcome coupon card — shown when customer arrives with a claimed code */
 .coupon-claim {
   background: linear-gradient(135deg, rgba(75,114,93,0.10) 0%, rgba(75,114,93,0.04) 100%);

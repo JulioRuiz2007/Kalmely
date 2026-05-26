@@ -2750,16 +2750,15 @@ strong { font-weight: 600; color: var(--ink); }
       if (qs.get('welcome') === 'force') return true;
       // Already accepted → never re-show
       if (localStorage.getItem('kalmely_welcome_accepted')) return false;
+      // Legacy migration: drop the old "kalmely_welcome_seen" key but DO NOT
+      // start a cooldown — give existing visitors one fresh chance to see
+      // the offer on the new build
+      if (localStorage.getItem('kalmely_welcome_seen') === '1') {
+        localStorage.removeItem('kalmely_welcome_seen');
+      }
       // Soft-dismissed → only re-show after cooldown
       const dismissed = parseInt(localStorage.getItem('kalmely_welcome_dismissed_at') || '0', 10);
       if (dismissed && (Date.now() - dismissed) < COOLDOWN_MS) return false;
-      // Legacy key from previous build — treat as dismiss within cooldown
-      if (localStorage.getItem('kalmely_welcome_seen') === '1') {
-        // migrate legacy: stamp it as just-dismissed so the cooldown applies
-        localStorage.setItem('kalmely_welcome_dismissed_at', String(Date.now()));
-        localStorage.removeItem('kalmely_welcome_seen');
-        return false;
-      }
       return true;
     } catch (_) { return false; }
   }
