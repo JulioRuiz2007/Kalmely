@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FAF7F2">
+<meta name="robots" content="noindex, nofollow">
+<title>Cart — Kalmely</title>
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/legal.css">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+.cart-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 50px;
+  margin-top: 20px;
+}
+.cart-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cart-item-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  background: #3D332C;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.cart-item-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cart-item-info { flex: 1; }
+.cart-item-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.cart-item-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.cart-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cart-qty button {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  color: var(--ink);
+}
+.cart-qty button:hover { background: var(--bg-2); }
+.cart-qty .val {
+  padding: 0 14px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.cart-item-price {
+  font-family: var(--serif);
+  font-size: 24px;
+  align-self: flex-start;
+}
+.summary {
+  background: var(--bg-2);
+  padding: 32px 28px;
+  border-radius: 12px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.summary-row.total {
+  border-top: 1px solid var(--line);
+  margin-top: 14px;
+  padding-top: 18px;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+}
+.summary-row.total .val { font-weight: 500; }
+.checkout-btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 17px 30px;
+  background: var(--sage);
+  color: white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 22px 0 18px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .25s, transform .25s;
+}
+.checkout-btn:hover { background: var(--sage-deep); transform: translateY(-2px); }
+.checkout-info {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.6;
+}
+.checkout-info strong { color: var(--ink); display: block; margin-bottom: 4px; font-weight: 500; }
+.pay-icons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.pay-icons span {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--bg);
+  padding: 5px 9px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+.included-block {
+  margin-top: 36px;
+  padding: 24px 24px 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-2);
+}
+.included-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+.included-list { list-style: none; margin: 0; padding: 0; }
+.included-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.included-list li:last-child { border-bottom: none; }
+.included-list .check {
+  flex-shrink: 0;
+  width: 17px; height: 17px;
+  background: var(--sage);
+  color: white;
+  font-size: 9px; font-weight: 700;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.included-list .val-tag {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--terra);
+}
+.included-list .digital-body { flex: 1; }
+.included-list .digital-body strong { font-weight: 500; }
+.included-list .digital-body em { font-style: italic; }
+.included-list .digital-note {
+  display: block;
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-left: 2px solid var(--sage);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.summary-note {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.summary-note strong { color: var(--ink); font-weight: 500; }
+@media (max-width: 760px) {
+  .cart-grid { grid-template-columns: 1fr; gap: 30px; }
+  .summary { position: static; }
+  .cart-item { flex-wrap: wrap; }
+  .cart-item-img { width: 88px; height: 88px; }
+  .cart-item-name { font-size: 19px; }
+  .cart-item-price { font-size: 22px; }
+  .included-block { padding: 20px 18px 6px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
+    <a href="index.html" class="nav-cta">← Continue shopping</a>
+  </div>
+</nav>
+
+<main style="max-width: 1100px;">
+  <div class="page-eyebrow">Your cart</div>
+  <h1>One step from <em>relief.</em></h1>
+
+  <div class="cart-grid">
+    <div>
+      <div class="cart-item" id="ci-1">
+        <div class="cart-item-img"><img src="assets/product-pricing.jpg" alt="Kalmely head massager" id="item-img"></div>
+        <div class="cart-item-info">
+          <div class="cart-item-name" id="item-name">Kalmely — 2 pack</div>
+          <div class="cart-item-sub">Wireless head massager · Multi-Zone Air Therapy™ · Graphene heat</div>
+          <div class="cart-qty">
+            <button onclick="updateQty(-1)" aria-label="Decrease quantity">−</button>
+            <span class="val" id="qty">1</span>
+            <button onclick="updateQty(1)" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <div class="cart-item-price" id="item-price">$269</div>
+      </div>
+
+      <div class="included-block" id="includedBlock" hidden>
+        <h3 class="included-title">What's in the box</h3>
+        <ul class="included-list">
+          <li><span class="check">✓</span> Kalmely Head Massager — wireless cap with handheld remote</li>
+          <li class="bonus"><span class="check">✓</span> Premium printed user manual <span class="val-tag">$19 value · free</span></li>
+          <li class="bonus"><span class="check">✓</span> USB-C charging cable <span class="val-tag">$12 value · free</span></li>
+          <li class="bonus"><span class="check">✓</span> Soft storage pouch <span class="val-tag">$14 value · free</span></li>
+          <li class="bonus digital">
+            <span class="check">✓</span>
+            <span class="digital-body">
+              <strong>Digital guide</strong> — <em>"The 30-Day Migraine Tracker"</em> PDF
+              <span class="val-tag">$29 value · free</span>
+              <span class="digital-note">→ Delivered to the email you enter at checkout, within minutes of payment.</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <p style="margin-top:30px;font-size:14px;color:var(--ink-soft);">Need a different bundle? <a href="index.html#pricing">Change selection ←</a></p>
+    </div>
+
+    <aside class="summary">
+      <h2 style="margin:0 0 12px;font-size:20px;">Order summary</h2>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span class="val" id="sub">$269</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span class="val">Free · 5–7 days UK</span>
+      </div>
+      <div class="summary-row" id="couponRow" hidden>
+        <span>Coupon <strong id="couponCode" style="color:var(--sage-deep);font-weight:600;">RELIEF15</strong> <button type="button" id="couponRemove" aria-label="Remove coupon" style="background:transparent;border:none;color:var(--ink-soft);cursor:pointer;font-size:13px;margin-left:4px;text-decoration:underline;padding:0;">remove</button></span>
+        <span class="val" id="couponAmount" style="color:var(--sage-deep);font-weight:500;">−$15</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax</span>
+        <span class="val">Calculated at checkout</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span class="val" id="total">$269</span>
+      </div>
+      <div id="couponEntry" style="margin-top:14px;display:flex;gap:8px;align-items:center;">
+        <input type="text" id="couponInput" placeholder="Promo code" autocomplete="off" style="flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-family:var(--sans);font-size:13.5px;color:var(--ink);letter-spacing:0.04em;text-transform:uppercase;">
+        <button type="button" id="couponApply" style="padding:11px 18px;border:1px solid var(--sage);background:transparent;color:var(--sage-deep);border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;letter-spacing:0.02em;">Apply</button>
+      </div>
+      <div id="couponError" style="margin-top:8px;font-size:12.5px;color:var(--terra);display:none;">Invalid code. Try RELIEF15 if you received the $15-off offer.</div>
+      <button class="checkout-btn" id="checkout">Checkout securely →</button>
+      <div class="summary-note" id="summaryEbookNote" hidden>
+        <strong>Digital guide delivery.</strong> Enter your email at the next step — the 30-Day Migraine Tracker PDF is sent there automatically right after payment.
+      </div>
+      <div class="checkout-info">
+        <strong>Powered by Stripe.</strong>
+        Your payment data is encrypted end-to-end. Kalmely never sees your card details.
+      </div>
+      <div class="pay-icons">
+        <span>VISA</span><span>MC</span><span>AMEX</span><span>APPLE</span><span>GPAY</span><span>KLARNA</span>
+      </div>
+      <div class="callout" style="margin-top:24px;">
+        <p style="font-size:13.5px;"><strong>30-day money-back.</strong> If Kalmely doesn't help, keep it and we'll refund you in full. <a href="refund-policy.html">Refund policy →</a></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="refund-policy.html">Refund policy</a>
+    <a href="shipping-policy.html">Shipping</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div>© 2026 Kalmely Ltd. Designed in the UK.</div>
+</footer>
+
+<script>
+// ============================================================
+//  STRIPE CONFIG — replace before going live
+// ============================================================
+//  1. Get publishable key from Stripe Dashboard → Developers → API keys
+//  2. Create the 3 products in Stripe Dashboard → Products and copy price_xxx IDs:
+//     - Kalmely Head Massager · device only · $149 USD · one-time
+//     - Kalmely + Launch Bonus Kit · $149 USD · one-time
+//     - 30-Day Migraine Tracker · $29 USD · one-time
+//  3. Enable Klarna at Dashboard → Settings → Payment methods
+//  4. Replace STRIPE_PK, PRICE_KAL_SOLO, PRICE_KAL_BUNDLE and PRICE_EBOOK below
+//  5. After webhook is live, also update STRIPE-WEBHOOK.md TODO
+// ============================================================
+const STRIPE_PK         = 'pk_live_REPLACE_ME';        // <-- pk_live_xxx
+const PRICE_KAL_SOLO    = 'price_REPLACE_KAL_SOLO';    // <-- price_xxx ($149 · device only)
+const PRICE_KAL_BUNDLE  = 'price_REPLACE_KAL_BUNDLE';  // <-- price_xxx ($149 · with bonus)
+const PRICE_EBOOK       = 'price_REPLACE_EBOOK';       // <-- price_xxx ($29)
+const SITE_ORIGIN = window.location.origin;
+const IS_CONFIGURED = !STRIPE_PK.includes('REPLACE') && !PRICE_KAL_BUNDLE.includes('REPLACE');
+
+// SKU → bundle + Stripe price ID
+const params = new URLSearchParams(window.location.search);
+// Legacy alias: KAL-1 maps to KAL-BUNDLE for backwards compatibility
+let sku = params.get('sku') || 'KAL-BUNDLE';
+if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
+const bundles = {
+  'KAL-SOLO': {
+    name: 'Kalmely Head Massager',
+    price: 149,
+    sub: 'Device only · No bonus kit · Free shipping',
+    img: 'assets/product-pricing.jpg',
+    priceId: PRICE_KAL_SOLO,
+    successUrl: SITE_ORIGIN + '/thank-you.html?sku=KAL-SOLO',
+    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=KAL-SOLO'
+  },
+  'KAL-BUNDLE': {
+    name: 'Kalmely + Launch Bonus Kit',
+    price: 149,
+    sub: 'Device + manual + USB-C + pouch + digital guide · Free shipping',
+    img: 'assets/product-pricing.jpg',
+    priceId: PRICE_KAL_BUNDLE,
+    successUrl: SITE_ORIGIN + '/thank-you.html?sku=KAL-BUNDLE',
+    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=KAL-BUNDLE'
+  },
+  'EBOOK': {
+    name: 'The 30-Day Migraine Tracker',
+    price: 29,
+    sub: 'Digital PDF · Instant email delivery',
+    img: 'assets/product-square.jpg',
+    priceId: PRICE_EBOOK,
+    successUrl: SITE_ORIGIN + '/thank-you.html?sku=EBOOK&type=ebook',
+    cancelUrl:  SITE_ORIGIN + '/cart.html?sku=EBOOK'
+  }
+};
+const bundle = bundles[sku] || bundles['KAL-BUNDLE'];
+document.getElementById('item-name').textContent = bundle.name;
+document.querySelector('.cart-item-sub').textContent = bundle.sub;
+document.getElementById('item-img').src = bundle.img;
+document.getElementById('item-img').alt = bundle.name;
+
+// Show "what's in the box" + ebook delivery note based on SKU
+const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK');
+const includesPhysical = (sku === 'KAL-BUNDLE' || sku === 'KAL-SOLO');
+if (sku === 'KAL-BUNDLE') {
+  document.getElementById('includedBlock').hidden = false;
+}
+if (includesEbook) {
+  document.getElementById('summaryEbookNote').hidden = false;
+}
+
+// ===== Coupon (RELIEF15 = $15 off, applies only to KAL-* not EBOOK) =====
+const VALID_COUPONS = {
+  'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-SOLO', 'KAL-BUNDLE'] }
+};
+let activeCoupon = null;
+const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();
+if (VALID_COUPONS[storedCoupon] && VALID_COUPONS[storedCoupon].appliesTo.includes(sku)) {
+  activeCoupon = VALID_COUPONS[storedCoupon];
+}
+function renderCoupon() {
+  const row = document.getElementById('couponRow');
+  const entry = document.getElementById('couponEntry');
+  if (activeCoupon) {
+    row.hidden = false;
+    document.getElementById('couponCode').textContent = activeCoupon.label;
+    document.getElementById('couponAmount').textContent = `−$${activeCoupon.amount}`;
+    entry.style.display = 'none';
+  } else {
+    row.hidden = true;
+    entry.style.display = 'flex';
+  }
+}
+
+// Quantity
+let qty = 1;
+const updateTotals = () => {
+  const sub = bundle.price * qty;
+  const discount = activeCoupon ? activeCoupon.amount : 0;
+  const total = Math.max(0, sub - discount);
+  document.getElementById('qty').textContent = qty;
+  document.getElementById('item-price').textContent = `$${sub}`;
+  document.getElementById('sub').textContent = `$${sub}`;
+  document.getElementById('total').textContent = `$${total}`;
+  renderCoupon();
+};
+function updateQty(d) {
+  qty = Math.max(1, Math.min(10, qty + d));
+  updateTotals();
+}
+updateTotals(); // sync on load
+
+// Coupon UI handlers
+document.getElementById('couponApply').addEventListener('click', () => {
+  const code = document.getElementById('couponInput').value.trim().toUpperCase();
+  const errEl = document.getElementById('couponError');
+  const def = VALID_COUPONS[code];
+  if (def && def.appliesTo.includes(sku)) {
+    activeCoupon = def;
+    localStorage.setItem('kalmely_coupon', code);
+    errEl.style.display = 'none';
+    updateTotals();
+  } else if (def && !def.appliesTo.includes(sku)) {
+    errEl.textContent = 'This code only applies to Kalmely device orders, not the digital guide.';
+    errEl.style.display = 'block';
+  } else {
+    errEl.textContent = 'Invalid code. Try RELIEF15 if you received the $15-off offer.';
+    errEl.style.display = 'block';
+  }
+});
+document.getElementById('couponInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('couponApply').click(); }
+});
+document.getElementById('couponRemove').addEventListener('click', () => {
+  activeCoupon = null;
+  localStorage.removeItem('kalmely_coupon');
+  document.getElementById('couponInput').value = '';
+  document.getElementById('couponError').style.display = 'none';
+  updateTotals();
+});
+
+// Track AddToCart on load (user landed on cart with an item)
+if (window.fbq) fbq('track', 'AddToCart', {
+  value: bundle.price, currency: 'USD',
+  content_ids: [sku], content_name: bundle.name
+});
+
+// Stripe Checkout
+const checkoutBtn = document.getElementById('checkout');
+checkoutBtn.addEventListener('click', async () => {
+  // 1. Track checkout intent
+  if (window.fbq) fbq('track', 'InitiateCheckout', {
+    value: bundle.price * qty,
+    currency: 'USD',
+    num_items: qty,
+    content_ids: [sku],
+    content_name: bundle.name
+  });
+
+  // 2. If Stripe not configured, surface a clear dev message and bail
+  if (!IS_CONFIGURED) {
+    alert(
+      'Stripe Checkout is not yet configured.\n\n' +
+      'To go live:\n' +
+      '  1. Open cart.html and ebook-only.html\n' +
+      '  2. Replace STRIPE_PK with your pk_live_… key\n' +
+      '  3. Replace PRICE_KAL_SOLO, PRICE_KAL_BUNDLE and PRICE_EBOOK with the price_… IDs ' +
+      'from Stripe Dashboard → Products\n' +
+      '  4. Deploy the webhook (see STRIPE-WEBHOOK.md)'
+    );
+    return;
+  }
+
+  // 3. Redirect to Stripe Checkout
+  checkoutBtn.disabled = true;
+  checkoutBtn.textContent = 'Redirecting to secure checkout…';
+  try {
+    const stripe = Stripe(STRIPE_PK);
+    // NOTE on coupons: stripe.redirectToCheckout (client-only) does NOT accept `discounts`.
+    // For RELIEF15 to apply at Stripe, create a Promotion Code in Stripe Dashboard → Coupons,
+    // then either enable `allow_promotion_codes: true` server-side, or move to a Checkout Session
+    // created from a Cloudflare Worker that accepts `discounts: [{ coupon: 'coupon_xxx' }]`.
+    // Until then, the $15 discount is only reflected in the cart UI; the user must paste the
+    // promo code on the Stripe Checkout page itself (we surface this via successUrl param).
+    const successUrlWithCoupon = bundle.successUrl + '&session_id={CHECKOUT_SESSION_ID}' + (activeCoupon ? '&coupon=' + activeCoupon.label : '');
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [{ price: bundle.priceId, quantity: qty }],
+      mode: 'payment',
+      successUrl: successUrlWithCoupon,
+      cancelUrl:  bundle.cancelUrl,
+      billingAddressCollection: 'required',
+      shippingAddressCollection: { allowedCountries: ['GB','IE','ES','FR','DE','IT','PT','NL','BE'] }
+    });
+    if (error) {
+      console.error('[Stripe]', error);
+      alert('Could not start checkout: ' + error.message);
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = 'Checkout securely →';
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Unexpected error — please try again or email hello@kalmely.com');
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = 'Checkout securely →';
+  }
+});
+</script>
+
+</body>
+</html>

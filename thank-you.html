@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FAF7F2">
+<meta name="robots" content="noindex, nofollow">
+<title>Thank you — Kalmely</title>
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/legal.css">
+<style>
+main { max-width: 880px; }
+.ty-hero {
+  text-align: center;
+  padding: clamp(40px, 7vw, 80px) 0 24px;
+}
+.ty-icon {
+  width: 64px; height: 64px;
+  background: var(--sage-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: var(--sage-deep);
+}
+.ty-hero h1 {
+  font-size: clamp(34px, 6vw, 56px);
+  margin-bottom: 16px;
+}
+.ty-hero p.intro {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* Digital guide block — appears first when applicable */
+.ty-digital {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(26px, 4vw, 40px);
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: center;
+}
+.ty-digital-cover {
+  aspect-ratio: 2 / 3;
+  border-radius: 4px 6px 6px 4px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 27, 42, 0.12);
+  box-shadow: 0 14px 26px -14px rgba(20, 27, 42, 0.35);
+}
+.ty-digital-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.ty-digital-eyebrow {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ty-digital-eyebrow::before {
+  content: "✓";
+  width: 18px; height: 18px;
+  background: var(--terra);
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+.ty-digital h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+.ty-digital h2 em { font-style: italic; color: var(--sage-deep); }
+.ty-digital p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+  max-width: none;
+  line-height: 1.55;
+}
+.ty-digital p strong { color: var(--ink); font-weight: 500; }
+.ty-digital-email {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink);
+}
+.ty-digital-email .ph { color: var(--ink-faint); font-style: italic; }
+
+/* Product preview (physical only) */
+.ty-product {
+  margin: 30px auto 0;
+  max-width: 320px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(165deg, #3D3128, #4A3B2F);
+  position: relative;
+}
+.ty-product img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Order details card */
+.ty-card {
+  background: var(--bg-2);
+  padding: 32px 28px;
+  border-radius: 12px;
+  margin: 36px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+.ty-card-block h3 {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.ty-card-block p {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Next steps */
+.ty-next {
+  border-top: 1px solid var(--line);
+  padding-top: 36px;
+  margin-top: 24px;
+}
+.ty-next h2 { font-size: clamp(24px, 3vw, 32px); margin: 0 0 28px; }
+.ty-step {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+[hidden] { display: none !important; }
+.ty-step-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--sage);
+  flex-shrink: 0;
+  width: 44px;
+  line-height: 1;
+}
+.ty-step-content h4 {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.ty-step-content p {
+  font-size: 14.5px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .ty-digital { grid-template-columns: 84px 1fr; gap: 18px; padding: 22px; }
+  .ty-card { grid-template-columns: 1fr; gap: 18px; padding: 24px 22px; }
+  .ty-step-num { width: 36px; font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
+  </div>
+</nav>
+
+<main>
+  <div class="ty-hero">
+    <div class="ty-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+    <div class="page-eyebrow" style="justify-content:center;">Order confirmed</div>
+    <h1 id="tyHeading">Your Kalmely is <em>on its way.</em></h1>
+    <p class="intro" id="tyIntro">A confirmation email is in your inbox. If you don't see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
+  </div>
+
+  <!-- DIGITAL GUIDE — shown if order includes ebook -->
+  <section class="ty-digital" id="tyDigital" hidden aria-label="Digital guide delivery">
+    <div class="ty-digital-cover">
+      <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker">
+    </div>
+    <div>
+      <div class="ty-digital-eyebrow">Digital guide on the way</div>
+      <h2>Your <em>30-Day Migraine Tracker</em> PDF.</h2>
+      <p>Sent to the email you entered at checkout, normally within five minutes of payment. Search for "Kalmely" in your inbox — or your <strong>Promotions</strong> tab in Gmail.</p>
+      <div class="ty-digital-email" id="tyEmailBox"><span class="ph">Delivered to your checkout email</span></div>
+      <p style="margin-top:12px;">Not arrived after 30 minutes? Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> and we'll resend manually.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT PREVIEW — physical orders only -->
+  <div class="ty-product" id="tyProductImg">
+    <img src="assets/product-square.jpg" alt="Your Kalmely">
+  </div>
+
+  <!-- ORDER DETAILS -->
+  <div class="ty-card">
+    <div class="ty-card-block">
+      <h3>Order number</h3>
+      <p id="order-num">KAL-2026-—</p>
+    </div>
+    <div class="ty-card-block" id="arrivalBlock">
+      <h3>Estimated arrival</h3>
+      <p id="arrival">5–7 business days</p>
+    </div>
+    <div class="ty-card-block" id="shipsBlock">
+      <h3>Ships from</h3>
+      <p>EU warehouse (Netherlands)</p>
+    </div>
+    <div class="ty-card-block" id="trackingBlock">
+      <h3>Tracking</h3>
+      <p>Emailed within 24 hours</p>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="ty-next" id="tyNext">
+    <h2>What happens next.</h2>
+
+    <div class="ty-step" id="step01">
+      <div class="ty-step-num">01.</div>
+      <div class="ty-step-content">
+        <h4>Today</h4>
+        <p>You'll receive an order confirmation email and a duplicate receipt for your records. Klarna users will receive their first payment reminder in line with the schedule selected at checkout.</p>
+      </div>
+    </div>
+
+    <div class="ty-step" id="step02">
+      <div class="ty-step-num">02.</div>
+      <div class="ty-step-content">
+        <h4>Within 24 hours</h4>
+        <p>Our EU warehouse will dispatch your Kalmely and send a tracking link by email. UK customers can expect delivery within five to seven business days.</p>
+      </div>
+    </div>
+
+    <div class="ty-step" id="step03">
+      <div class="ty-step-num">03.</div>
+      <div class="ty-step-content">
+        <h4>When it arrives</h4>
+        <p>Charge the device fully via the included USB-C cable. Find a quiet space, settle the cap over your head, and start with the gentlest intensity and lowest heat. Sessions are fifteen minutes — auto-shut-off built in.</p>
+      </div>
+    </div>
+
+    <div class="ty-step" id="step04">
+      <div class="ty-step-num">04.</div>
+      <div class="ty-step-content">
+        <h4>If it doesn't help</h4>
+        <p>You have 30 days. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number and we'll process a full refund — no return required. Keep the device.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:50px;text-align:center;">
+    <p style="font-family:var(--serif);font-style:italic;font-size:clamp(15px, 1.4vw, 18px);color:var(--ink);">"Be patient with the first session. Sensitised scalps relax in their own time."</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="refund-policy.html">Refund policy</a>
+    <a href="shipping-policy.html">Shipping policy</a>
+  </div>
+  <div>© 2026 Kalmely Ltd. Designed in the UK.</div>
+</footer>
+
+<script>
+(function() {
+  // Read sku + session_id from URL
+  const params = new URLSearchParams(window.location.search);
+  let sku = (params.get('sku') || 'KAL-BUNDLE').toUpperCase();
+  if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
+  const sessionId = params.get('session_id');
+  const isEbookOnly = sku === 'EBOOK';
+  const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK');
+  const includesPhysical = (sku === 'KAL-BUNDLE' || sku === 'KAL-SOLO');
+
+  // Order number — derived from session_id when available, otherwise random
+  let suffix;
+  if (sessionId) {
+    suffix = sessionId.replace(/[^A-Z0-9]/gi, '').slice(-5).toUpperCase();
+  } else {
+    suffix = Math.random().toString(36).substring(2, 7).toUpperCase();
+  }
+  const prefix = isEbookOnly ? 'KAL-EB-2026-' : 'KAL-2026-';
+  document.getElementById('order-num').textContent = prefix + suffix;
+
+  // Show ebook block if applicable
+  if (includesEbook) {
+    document.getElementById('tyDigital').hidden = false;
+  }
+
+  // Customise heading and intro per SKU
+  const heading = document.getElementById('tyHeading');
+  const intro = document.getElementById('tyIntro');
+  if (isEbookOnly) {
+    heading.innerHTML = 'Your guide is <em>in your inbox.</em>';
+    intro.innerHTML = 'The 30-Day Migraine Tracker PDF has been sent to the email you entered. Check your spam folder if it hasn\'t arrived in five minutes, or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+  } else if (sku === 'KAL-SOLO') {
+    heading.innerHTML = 'Your Kalmely is <em>on its way.</em>';
+    intro.innerHTML = 'A confirmation email is in your inbox with tracking details. If you don\'t see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+  }
+
+  // Hide physical-product blocks for ebook-only orders
+  if (isEbookOnly) {
+    document.getElementById('tyProductImg').hidden = true;
+    document.getElementById('arrivalBlock').hidden = true;
+    document.getElementById('shipsBlock').hidden = true;
+    document.getElementById('trackingBlock').hidden = true;
+    document.getElementById('step02').hidden = true;
+    document.getElementById('step03').hidden = true;
+    // Update step 01 + step 04 wording for digital order
+    document.querySelector('#step01 p').textContent = 'Your receipt and download link are now in your inbox. Save the PDF locally — the link is permanent but printing helps the daily-tracking habit stick.';
+    document.querySelector('#step04 p').innerHTML = 'You have 30 days. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the PDF remains yours.';
+  } else {
+    // Physical: set estimated arrival to today + 7 weekdays
+    const date = new Date();
+    let added = 0;
+    while (added < 7) {
+      date.setDate(date.getDate() + 1);
+      if (date.getDay() !== 0 && date.getDay() !== 6) added++;
+    }
+    const dateStr = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.getElementById('arrival').textContent = `By ${dateStr}`;
+  }
+
+  // Pixel: Purchase event (Meta Pixel + GA)
+  const value = isEbookOnly ? 29 : 149;
+  if (window.fbq) {
+    fbq('track', 'Purchase', {
+      value: value,
+      currency: 'USD',
+      content_ids: [sku],
+      content_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager'
+    });
+  }
+  if (window.gtag) {
+    gtag('event', 'purchase', {
+      value: value,
+      currency: 'USD',
+      transaction_id: prefix + suffix,
+      items: [{ item_id: sku, item_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager', price: value, quantity: 1 }]
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

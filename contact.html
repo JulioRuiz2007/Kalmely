@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FAF7F2">
+<title>Contact — Kalmely</title>
+<meta name="description" content="Every message lands in an inbox one of us reads in person — usually within a working day. Email hello@kalmely.com or write through the form.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF7F2;
+  --bg-2: #F2EDE4;
+  --ink: #141B2A;
+  --ink-soft: rgba(20, 27, 42, 0.66);
+  --ink-faint: rgba(20, 27, 42, 0.40);
+  --line: rgba(20, 27, 42, 0.14);
+  --sage: #6D8A6B;
+  --sage-deep: #4E6A4D;
+  --sage-soft: rgba(109, 138, 107, 0.10);
+  --terra: #B8775A;
+  --pad: clamp(20px, 4vw, 56px);
+  --serif: "Newsreader", "Times New Roman", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+*::selection { background: var(--ink); color: var(--bg); }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--sage-deep); text-decoration: none; }
+a:hover { color: var(--ink); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+  z-index: 80;
+  padding: 16px var(--pad);
+}
+.nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.brand-logo .dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: var(--sage);
+  border-radius: 50%;
+  margin-left: 2px;
+  vertical-align: middle;
+  transform: translateY(-7px);
+}
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 18px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 999px;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--sage-deep); color: var(--bg); }
+
+/* Hero */
+.hero {
+  padding: clamp(60px, 9vw, 120px) var(--pad) clamp(50px, 7vw, 90px);
+  border-bottom: 1px solid var(--line);
+}
+.hero-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: end;
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--ink-soft);
+}
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 6.4vw, 88px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+h1 em { font-style: italic; color: var(--sage-deep); }
+.hero-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 520px;
+  padding-left: 20px;
+  border-left: 2px solid var(--sage);
+}
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+.hero-stat {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
+.hero-stat-value {
+  font-family: var(--serif);
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 400;
+  color: var(--sage-deep);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-stat-value em { font-style: italic; }
+.hero-stat-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.hero-stat-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* Main grid: contact info + form */
+.main {
+  padding: clamp(70px, 10vw, 130px) var(--pad) clamp(70px, 10vw, 130px);
+}
+.main-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--ink-soft);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  margin-bottom: 14px;
+}
+.section-title em { font-style: italic; color: var(--sage-deep); }
+.section-lead {
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: var(--ink-soft);
+  max-width: 60ch;
+  line-height: 1.65;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: start;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+/* Left column — info cards */
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.info-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px 28px;
+  background: var(--bg);
+  transition: border-color .3s, transform .3s;
+}
+.info-card:hover { border-color: var(--sage); transform: translateY(-2px); }
+.info-card-eyebrow {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.info-card-value {
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.info-card-value a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: border-color .2s, color .2s;
+}
+.info-card-value a:hover { color: var(--sage-deep); border-color: var(--sage); }
+.info-card p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.info-card--feature {
+  background: var(--bg-2);
+}
+
+/* Right column — form */
+.contact-form {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(30px, 4vw, 48px);
+  box-shadow: 0 24px 60px -32px rgba(20, 27, 42, 0.18);
+}
+.form-head {
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.form-head h3 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.form-head p {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.field { margin-bottom: 22px; }
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.field-row > .field { margin-bottom: 0; }
+.field label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-2);
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  transition: border-color .2s, background .2s;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--sage);
+  background: var(--bg);
+}
+.field textarea { min-height: 150px; resize: vertical; line-height: 1.55; font-family: inherit; }
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23141B2A' stroke-opacity='0.5' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+.consent input { width: 16px; height: 16px; margin-top: 3px; flex-shrink: 0; accent-color: var(--sage); }
+.consent a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+button.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 17px 28px;
+  background: var(--sage);
+  color: white;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background .25s, transform .25s, box-shadow .25s;
+  box-shadow: 0 14px 32px -14px rgba(109, 138, 107, 0.55);
+}
+button.submit:hover {
+  background: var(--sage-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px -16px rgba(78, 106, 77, 0.65);
+}
+button.submit .arrow { font-family: var(--serif); font-size: 18px; transition: transform .3s; }
+button.submit:hover .arrow { transform: translateX(4px); }
+button.submit[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
+.form-status {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none;
+}
+.form-status.show { display: block; }
+.form-status.success {
+  background: var(--sage-soft);
+  border-left: 2px solid var(--sage);
+  color: var(--sage-deep);
+}
+.form-status.error {
+  background: rgba(184, 119, 90, 0.1);
+  border-left: 2px solid var(--terra);
+  color: var(--terra);
+}
+
+/* Reasons strip */
+.reasons {
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: clamp(70px, 9vw, 110px) var(--pad);
+}
+.reasons-inner { max-width: 1320px; margin: 0 auto; }
+.reasons-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: end;
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(18px, 2vw, 28px);
+}
+.reason-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 26px;
+  transition: border-color .3s, transform .3s;
+}
+.reason-card:hover { border-color: var(--sage); transform: translateY(-3px); }
+.reason-card-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--sage-deep);
+  margin-bottom: 16px;
+}
+.reason-card h4 {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.reason-card p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* Closing CTA */
+.closing {
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--bg);
+  padding: clamp(70px, 9vw, 120px) var(--pad);
+  text-align: center;
+}
+.closing-inner { max-width: 720px; margin: 0 auto; }
+.closing .eyebrow { color: rgba(250, 247, 242, 0.6); }
+.closing .eyebrow::before { background: rgba(250, 247, 242, 0.45); }
+.closing h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  color: var(--bg);
+}
+.closing h2 em { font-style: italic; color: var(--sage); }
+.closing p {
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: rgba(250, 247, 242, 0.7);
+  margin-bottom: 32px;
+  line-height: 1.65;
+}
+.closing-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--bg);
+  border-bottom: 1px solid rgba(250, 247, 242, 0.3);
+  padding-bottom: 6px;
+  transition: color .2s, border-color .2s;
+}
+.closing-mail:hover { color: var(--sage); border-color: var(--sage); }
+
+/* Footer */
+.footer {
+  background: var(--bg);
+  padding: 56px var(--pad) 36px;
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-links a {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+.footer-links a:hover { color: var(--ink); }
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 920px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .reasons-head { grid-template-columns: 1fr; }
+  .reasons-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .field-row { grid-template-columns: 1fr; }
+  .reasons-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
+    <a href="index.html" class="nav-cta">← Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h1>Talk to a <em>human</em>, not a chatbot.</h1>
+      <div class="hero-lead">We're a small team designing for chronic migraine. Every message lands in an inbox one of us reads — and we write back ourselves.</div>
+    </div>
+    <aside class="hero-side">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Response time</div>
+        <div class="hero-stat-value">&lt; 1 <em>working day</em></div>
+        <div class="hero-stat-desc">Faster on weekdays. Monday mornings clear weekend queues.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Who replies</div>
+        <div class="hero-stat-value"><em>Always</em> a person</div>
+        <div class="hero-stat-desc">No tier-1 outsourced support. Either Maya or Theo writes back.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Based in</div>
+        <div class="hero-stat-value">United Kingdom</div>
+        <div class="hero-stat-desc">Designed in London. Registered in England &amp; Wales.</div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- MAIN GRID -->
+<main class="main">
+  <div class="main-inner">
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="section-title">One inbox. <em>One reply.</em></h2>
+    <p class="section-lead">Order issues, refunds, product questions, press, partnerships — all of it lands at the same address. Whatever you write about, we'll route it ourselves.</p>
+
+    <div class="contact-grid">
+
+      <!-- Left column — info cards -->
+      <div class="contact-cards">
+        <article class="info-card info-card--feature">
+          <div class="info-card-eyebrow">Email · Preferred</div>
+          <div class="info-card-value"><a href="mailto:hello@kalmely.com">hello@kalmely.com</a></div>
+          <p>Order issues, refunds, returns, product questions, press &amp; partnerships, privacy — one address, routed by us.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card-eyebrow">Hours</div>
+          <div class="info-card-value">Mon&ndash;Fri · 9am&ndash;6pm GMT</div>
+          <p>Weekend emails answered first thing Monday. Refund requests prioritised regardless of the day.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card-eyebrow">Registered office</div>
+          <div class="info-card-value">Kalmely Ltd.</div>
+          <p>71&ndash;75 Shelton Street, Covent Garden<br>London, WC2H 9JQ<br>Companies House: 15893021</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card-eyebrow">Press &amp; partnerships</div>
+          <div class="info-card-value"><a href="mailto:hello@kalmely.com?subject=Press%20enquiry">hello@kalmely.com</a></div>
+          <p>Subject line starting with "Press" or "Partnership" goes straight to Maya.</p>
+        </article>
+      </div>
+
+      <!-- Right column — form -->
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-head">
+          <h3>Write us a note.</h3>
+          <p>You'll receive a confirmation in your inbox immediately. A real reply usually within one working day.</p>
+        </div>
+
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" value="New contact form message — Kalmely">
+        <input type="hidden" name="from_name" value="Kalmely · Contact form">
+        <input type="hidden" name="redirect" value="false">
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reason">What's this about?</label>
+          <select id="reason" name="reason">
+            <option>Order or refund</option>
+            <option>Product question (pre-purchase)</option>
+            <option>Warranty or replacement</option>
+            <option>Press, partnership or wholesale</option>
+            <option>Privacy or data request</option>
+            <option>Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Order number if applicable. As much or as little detail as you'd like — we read all of it."></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" required>
+          <span>I'm fine with Kalmely emailing me back about this message. Read our <a href="privacy.html">privacy policy</a>.</span>
+        </label>
+
+        <button type="submit" class="submit" id="submitBtn">Send message <span class="arrow">→</span></button>
+
+        <div class="form-status success" id="formSuccess" role="status">
+          Thanks — your message is on its way. We'll reply from <strong>hello@kalmely.com</strong>, usually within one working day.
+        </div>
+        <div class="form-status error" id="formError" role="alert">
+          Something went wrong sending the form. Please email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> directly and we'll pick it up there.
+        </div>
+      </form>
+
+    </div>
+  </div>
+</main>
+
+<!-- REASONS -->
+<section class="reasons">
+  <div class="reasons-inner">
+    <div class="reasons-head">
+      <div>
+        <div class="section-eyebrow">Most common reasons people write</div>
+        <h2 class="section-title">Before you message — <em>some quick answers.</em></h2>
+      </div>
+      <p class="section-lead">If your question is here, you can skip the form. Otherwise write to us — these are the four reasons that fill our inbox.</p>
+    </div>
+
+    <div class="reasons-grid">
+      <article class="reason-card">
+        <div class="reason-card-num">i.</div>
+        <h4>"Where's my order?"</h4>
+        <p>Orders ship in 24h on weekdays. You'll get a tracking link by email. If 5 working days pass without one, write us — we'll resend or refund.</p>
+      </article>
+
+      <article class="reason-card">
+        <div class="reason-card-num">ii.</div>
+        <h4>"I want to refund."</h4>
+        <p>30-day money-back, no return required. Email us with your order number; refund processed within 5 working days. Full terms in our <a href="refund-policy.html">refund policy</a>.</p>
+      </article>
+
+      <article class="reason-card">
+        <div class="reason-card-num">iii.</div>
+        <h4>"It's not working."</h4>
+        <p>Warranty covers manufacturing faults for 12 months. Email a short description and a photo or video — we either replace or refund.</p>
+      </article>
+
+      <article class="reason-card">
+        <div class="reason-card-num">iv.</div>
+        <h4>"Can my clinic stock Kalmely?"</h4>
+        <p>We work with a handful of UK headache clinics. Email with subject line starting "Wholesale" — Maya will reply with the trade terms.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="eyebrow">If it's urgent</div>
+    <h2>Skip the form. <em>Email us directly.</em></h2>
+    <p>For active refund requests, warranty issues, or anything in-attack — emailing is faster than the form. You'll reach the same two people either way.</p>
+    <a href="mailto:hello@kalmely.com" class="closing-mail">hello@kalmely.com →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund policy</a>
+      <a href="shipping-policy.html">Shipping policy</a>
+    </div>
+    <div class="footer-bottom">© 2026 Kalmely Ltd. Designed in the UK · Registered in England &amp; Wales.</div>
+  </div>
+</footer>
+
+<!-- WEB3FORMS WIRING -->
+<script>
+(function() {
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successBox = document.getElementById('formSuccess');
+  const errorBox = document.getElementById('formError');
+
+  // Detect if the Web3Forms key has been replaced
+  const hiddenKey = form.querySelector('input[name="access_key"]').value;
+  const IS_WIRED = hiddenKey && !hiddenKey.includes('REPLACE');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    successBox.classList.remove('show');
+    errorBox.classList.remove('show');
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending… <span class="arrow">→</span>';
+
+    // DEV mode — show success without hitting the API
+    if (!IS_WIRED) {
+      console.warn('[Kalmely contact] Web3Forms key not configured yet. Replace `access_key` value in contact.html with a real key from https://web3forms.com');
+      setTimeout(() => {
+        successBox.classList.add('show');
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send message <span class="arrow">→</span>';
+      }, 600);
+      return;
+    }
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        successBox.classList.add('show');
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Submit failed');
+      }
+    } catch (err) {
+      console.error('[Kalmely contact]', err);
+      errorBox.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send message <span class="arrow">→</span>';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

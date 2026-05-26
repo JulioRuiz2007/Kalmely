@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FAF7F2">
+<meta name="description" content="The 30-Day Migraine Tracker — drug-free digital guide for chronic migraine sufferers. Delivered to your inbox after purchase. $29.">
+<meta name="robots" content="index, follow">
+
+<title>The 30-Day Migraine Tracker — Digital Guide · Kalmely</title>
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="canonical" href="https://kalmely.com/ebook-only">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/legal.css">
+<script src="https://js.stripe.com/v3/"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "The 30-Day Migraine Tracker — Digital Guide",
+  "description": "Drug-free digital guide with 27 in-attack tactics, 30-day tracking framework, and cutaneous allodynia section. PDF delivered to email.",
+  "brand": { "@type": "Brand", "name": "Kalmely" },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://kalmely.com/ebook-only",
+    "priceCurrency": "USD",
+    "price": "29.00",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+<style>
+.ebook-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  margin-bottom: 80px;
+}
+.ebook-cover-wrap {
+  display: flex;
+  justify-content: center;
+  perspective: 1500px;
+}
+.ebook-cover {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  transform: rotateY(-14deg) rotateX(3deg);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 30px 60px -20px rgba(20, 27, 42, 0.35),
+    -8px 0 0 -2px rgba(20, 27, 42, 0.08),
+    -14px 0 30px -10px rgba(20, 27, 42, 0.15);
+  border-radius: 4px 8px 8px 4px;
+  background: linear-gradient(135deg, #2A2F3D 0%, #141B2A 100%);
+  overflow: hidden;
+}
+.ebook-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(109,138,107,.25), transparent 55%),
+    radial-gradient(circle at 30% 80%, rgba(184,119,90,.18), transparent 60%);
+}
+.ebook-cover-inner {
+  position: relative;
+  padding: 40px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--bg);
+}
+.ebook-cover-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(250, 247, 242, 0.55);
+}
+.ebook-cover-title {
+  font-family: "Newsreader", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.05;
+  margin-top: 70px;
+}
+.ebook-cover-title em { color: var(--sage); font-style: italic; }
+.ebook-cover-rule {
+  width: 28px;
+  height: 1px;
+  background: var(--sage);
+  margin: 14px 0;
+}
+.ebook-cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 11px;
+  color: rgba(250, 247, 242, 0.55);
+  letter-spacing: 0.06em;
+}
+.ebook-badge {
+  position: absolute;
+  top: 16px;
+  right: -14px;
+  background: var(--terra);
+  color: var(--bg);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 4;
+  box-shadow: 0 8px 20px -8px rgba(184, 119, 90, 0.5);
+}
+.ebook-buy {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 50px 0;
+}
+.ebook-price {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.ebook-price .now {
+  font-family: "Newsreader", serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--sage-deep);
+  line-height: 1;
+}
+.ebook-price .label {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.ebook-buy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--sage);
+  color: white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .25s, transform .25s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.ebook-buy-btn:hover { background: var(--sage-deep); transform: translateY(-2px); color: white; }
+.ebook-buy-btn .arrow { font-family: "Newsreader", serif; font-size: 18px; }
+.ebook-buy-meta {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ebook-buy-meta span::before {
+  content: "✓ ";
+  color: var(--sage);
+  font-weight: 600;
+}
+.upsell {
+  background: var(--bg);
+  border: 1px dashed var(--sage);
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin: 30px 0;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.upsell-text { flex: 1; font-size: 14.5px; color: var(--ink); line-height: 1.55; }
+.upsell-text strong { font-weight: 500; color: var(--ink); }
+.upsell a {
+  font-weight: 500;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .ebook-hero { grid-template-columns: 1fr; }
+  .ebook-cover-wrap { order: -1; }
+  .upsell { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
+    <a href="index.html" class="nav-cta">← Back to Kalmely</a>
+  </div>
+</nav>
+
+<main style="max-width: 1100px;">
+  <div class="ebook-hero">
+    <div class="ebook-cover-wrap">
+      <div class="ebook-cover" aria-hidden="true">
+        <span class="ebook-badge">PDF · Instant Email Delivery</span>
+        <div class="ebook-cover-inner">
+          <div>
+            <div class="ebook-cover-eyebrow">Kalmely · Companion Guide</div>
+            <div class="ebook-cover-rule"></div>
+            <div class="ebook-cover-title">The <em>30-Day</em><br>Migraine<br>Tracker</div>
+          </div>
+          <div class="ebook-cover-footer">
+            <span>Drug-free tactics</span>
+            <span>· 2026 ·</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="page-eyebrow">Digital Guide</div>
+      <h1>The 30-Day Migraine <em>Tracker.</em></h1>
+      <p class="lead">A drug-free companion for the days the threshold shifts.</p>
+    </div>
+  </div>
+
+  <div class="upsell">
+    <div class="upsell-text">
+      <strong>Already buying Kalmely?</strong> This guide is included free with every device — total bundle value $208 for $149.
+    </div>
+    <a href="index.html#pricing">See the full bundle →</a>
+  </div>
+
+  <h2>What's inside.</h2>
+  <p>The guide is structured for chronic migraine — written with the lexicon of cutaneous allodynia, central sensitisation, and prodrome, not the toxic positivity of mainstream wellness content.</p>
+
+  <p><strong>1 · Thirty-day tracking framework.</strong> A daily template for logging triggers (sleep, weather, foods, hormones, screen time), intensity, duration, and prodrome markers. Designed in collaboration with a UK chronic migraineur who used it to identify a previously-missed weekly trigger pattern.</p>
+
+  <p><strong>2 · Twenty-seven drug-free in-attack tactics.</strong> Heat application protocols, scalp-safe pressure techniques, dark-room hygiene, occipital nerve gentle traction, breathing patterns for nausea, hydration timing. None of these replace your clinician's plan — they sit alongside it.</p>
+
+  <p><strong>3 · Cutaneous allodynia guidebook.</strong> A standalone section explaining why your hair hurts, what central sensitisation is in plain English, and which everyday surfaces and fabrics to swap out during a flare. Written for people who've been told it's "in their head".</p>
+
+  <div class="ebook-buy">
+    <div class="ebook-price">
+      <span class="now">$29</span>
+      <span class="label">Digital guide · standalone purchase</span>
+    </div>
+    <button class="ebook-buy-btn" id="buyEbook" data-event="cta_ebook_only">Buy Digital Guide <span class="arrow">→</span></button>
+    <div class="ebook-buy-meta">
+      <span>Instant PDF email delivery</span>
+      <span>30-day money-back</span>
+      <span>Stripe Checkout</span>
+    </div>
+  </div>
+
+  <h2>How delivery works.</h2>
+  <ol>
+    <li>Complete Stripe Checkout — you'll be back on Kalmely in under 60 seconds.</li>
+    <li>An email lands in your inbox within 5 minutes with a direct link to the PDF.</li>
+    <li>The PDF works on any device — phone, tablet, computer. No app, no login.</li>
+  </ol>
+  <p>If the email hasn't arrived within 30 minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — we'll resend manually.</p>
+
+  <h2>Refunds.</h2>
+  <p>30-day money-back guarantee. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number within 30 days of purchase and we will refund the $29 in full. The PDF remains yours — there is nothing to return.</p>
+
+  <div class="callout">
+    <p style="margin:0;"><strong>Health disclaimer.</strong> The 30-Day Migraine Tracker is an educational digital guide. It is not medical advice, not a substitute for consultation with a clinician, and is not intended to diagnose, treat, cure, or prevent any disease. Always follow the headache plan agreed with your GP or neurologist.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="refund-policy.html">Refund policy</a>
+    <a href="shipping-policy.html">Shipping policy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div>© 2026 Kalmely Ltd. Designed in the UK.</div>
+</footer>
+
+<script>
+// ============================================================
+//  STRIPE CONFIG — replace before going live
+//  Keep in sync with cart.html (same STRIPE_PK + PRICE_EBOOK)
+// ============================================================
+const STRIPE_PK   = 'pk_live_REPLACE_ME';
+const PRICE_EBOOK = 'price_REPLACE_EBOOK';
+const SITE_ORIGIN = window.location.origin;
+const IS_CONFIGURED = !STRIPE_PK.includes('REPLACE') && !PRICE_EBOOK.includes('REPLACE');
+
+const buyBtn = document.getElementById('buyEbook');
+buyBtn.addEventListener('click', async () => {
+  if (window.fbq) fbq('track', 'InitiateCheckout', {
+    value: 29, currency: 'USD',
+    content_type: 'product', content_ids: ['ebook-tracker'],
+    content_name: 'The 30-Day Migraine Tracker'
+  });
+
+  if (!IS_CONFIGURED) {
+    alert(
+      'Stripe Checkout is not yet configured.\n\n' +
+      'Replace STRIPE_PK and PRICE_EBOOK at the top of ebook-only.html ' +
+      '(same values as in cart.html). See STRIPE-WEBHOOK.md for the full deployment guide.'
+    );
+    return;
+  }
+
+  buyBtn.disabled = true;
+  const originalLabel = buyBtn.innerHTML;
+  buyBtn.textContent = 'Redirecting to secure checkout…';
+  try {
+    const stripe = Stripe(STRIPE_PK);
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [{ price: PRICE_EBOOK, quantity: 1 }],
+      mode: 'payment',
+      successUrl: SITE_ORIGIN + '/thank-you.html?sku=EBOOK&type=ebook&session_id={CHECKOUT_SESSION_ID}',
+      cancelUrl:  SITE_ORIGIN + '/ebook-only.html',
+      billingAddressCollection: 'auto'
+    });
+    if (error) {
+      console.error('[Stripe]', error);
+      alert('Could not start checkout: ' + error.message);
+      buyBtn.disabled = false;
+      buyBtn.innerHTML = originalLabel;
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Unexpected error — please try again or email hello@kalmely.com');
+    buyBtn.disabled = false;
+    buyBtn.innerHTML = originalLabel;
+  }
+});
+</script>
+
+</body>
+</html>
