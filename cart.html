@@ -254,7 +254,10 @@
             <button onclick="updateQty(1)" aria-label="Increase quantity">+</button>
           </div>
         </div>
-        <div class="cart-item-price" id="item-price">£269</div>
+        <div class="cart-item-price" id="item-price">
+          <span class="price-was" id="priceWas" style="display:block;font-size:14px;color:var(--ink-soft);text-decoration:line-through;font-family:var(--sans);line-height:1;margin-bottom:4px;">£223</span>
+          <span class="price-now" id="priceNow">£149</span>
+        </div>
       </div>
 
       <div class="included-block" id="includedBlock" hidden>
@@ -282,7 +285,11 @@
       <h2 style="margin:0 0 12px;font-size:20px;">Order summary</h2>
       <div class="summary-row">
         <span>Subtotal</span>
-        <span class="val" id="sub">£269</span>
+        <span class="val" id="sub">£223</span>
+      </div>
+      <div class="summary-row" id="launchRow">
+        <span>Coupon <strong style="color:var(--sage-deep);font-weight:600;">LAUNCH</strong> <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-left:4px;">auto</span></span>
+        <span class="val" id="launchAmount" style="color:var(--sage-deep);font-weight:500;">−£74</span>
       </div>
       <div class="summary-row">
         <span>Shipping</span>
@@ -354,10 +361,15 @@ const IS_CONFIGURED = !WORKER_URL.includes('REPLACE');
 // Single SKU: KAL-BUNDLE (full kit). Legacy URLs map here automatically.
 const params = new URLSearchParams(window.location.search);
 let sku = 'KAL-BUNDLE'; // Always the full kit — no device-only option
+// listPrice = retail subtotal (what Stripe charges before any coupon).
+// LAUNCH coupon (-£74) is auto-applied for the bundle — always visible in the breakdown.
+// RELIEF15 (-£15) is the welcome code from the homepage popup — auto-applied if the visitor
+// accepted it, removable by the user.
+const LAUNCH_DISCOUNT = 74;
 const bundles = {
   'KAL-BUNDLE': {
     name: 'Kalmely Wireless Head Massager — Launch Kit',
-    price: 149,
+    listPrice: 223,
     sub: 'Device + handheld remote + USB-C cable + soft pouch + 30-Day Migraine Tracker ebook · Free UK shipping',
     img: 'assets/product-hero.jpg'
   }
@@ -377,9 +389,14 @@ const VALID_COUPONS = {
   'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-BUNDLE'] }
 };
 let activeCoupon = null;
+// Read coupon from URL (?coupon=RELIEF15) OR localStorage (popup-applied).
+// URL wins so we can also share affiliate links like cart.html?coupon=RELIEF15
+const urlCoupon = (params.get('coupon') || '').toUpperCase();
 const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();
-if (VALID_COUPONS[storedCoupon] && VALID_COUPONS[storedCoupon].appliesTo.includes(sku)) {
-  activeCoupon = VALID_COUPONS[storedCoupon];
+const seedCoupon = urlCoupon || storedCoupon;
+if (VALID_COUPONS[seedCoupon] && VALID_COUPONS[seedCoupon].appliesTo.includes(sku)) {
+  activeCoupon = VALID_COUPONS[seedCoupon];
+  localStorage.setItem('kalmely_coupon', seedCoupon);
 }
 function renderCoupon() {
   const row = document.getElementById('couponRow');
@@ -398,12 +415,15 @@ function renderCoupon() {
 // Quantity
 let qty = 1;
 const updateTotals = () => {
-  const sub = bundle.price * qty;
-  const discount = activeCoupon ? activeCoupon.amount : 0;
-  const total = Math.max(0, sub - discount);
+  const sub = bundle.listPrice * qty;             // £223 × qty
+  const launch = LAUNCH_DISCOUNT * qty;            // −£74 × qty (always)
+  const relief = activeCoupon ? activeCoupon.amount * qty : 0;
+  const total = Math.max(0, sub - launch - relief);
   document.getElementById('qty').textContent = qty;
-  document.getElementById('item-price').textContent = `£${sub}`;
+  document.getElementById('priceWas').textContent = `£${sub}`;
+  document.getElementById('priceNow').textContent = `£${sub - launch}`;
   document.getElementById('sub').textContent = `£${sub}`;
+  document.getElementById('launchAmount').textContent = `−£${launch}`;
   document.getElementById('total').textContent = `£${total}`;
   renderCoupon();
 };
@@ -442,9 +462,12 @@ document.getElementById('couponRemove').addEventListener('click', () => {
   updateTotals();
 });
 
+// Effective price the customer will actually pay (post-LAUNCH, no RELIEF15).
+const effectivePrice = bundle.listPrice - LAUNCH_DISCOUNT;
+
 // Track AddToCart on load (user landed on cart with an item)
 if (window.fbq) fbq('track', 'AddToCart', {
-  value: bundle.price, currency: 'GBP',
+  value: effectivePrice, currency: 'GBP',
   content_ids: [sku], content_name: bundle.name
 });
 
@@ -453,7 +476,7 @@ const checkoutBtn = document.getElementById('checkout');
 checkoutBtn.addEventListener('click', async () => {
   // 1. Track checkout intent
   if (window.fbq) fbq('track', 'InitiateCheckout', {
-    value: bundle.price * qty,
+    value: effectivePrice * qty,
     currency: 'GBP',
     num_items: qty,
     content_ids: [sku],

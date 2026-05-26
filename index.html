@@ -282,7 +282,7 @@ strong { font-weight: 600; color: var(--ink); }
 }
 .gallery-main {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-soft);
@@ -372,7 +372,7 @@ strong { font-weight: 600; color: var(--ink); }
   margin-top: 10px;
 }
 .gallery-thumb {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   border: 2px solid transparent;
   border-radius: 6px;
   overflow: hidden;
@@ -846,6 +846,119 @@ strong { font-weight: 600; color: var(--ink); }
 }
 
 /* ========================= */
+/*  5b. STORY (HANNAH'S DAY)  */
+/* ========================= */
+.story {
+  padding: clamp(80px, 10vw, 140px) 0;
+  background: var(--bg);
+}
+.story-head {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 56px;
+}
+.story-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+.story-head h2 { margin-bottom: 16px; }
+.story-head p {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.story-step {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.story-img {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.story-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.story-step:hover .story-img img { transform: scale(1.03); }
+.story-num {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 32px; height: 32px;
+  background: rgba(15, 27, 45, 0.85);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 2;
+}
+.story-time {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.story-step h4 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.25;
+}
+.story-step p {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.story-foot {
+  text-align: center;
+  margin-top: 56px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.story-foot p {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.story-foot p em { color: var(--brand); font-style: italic; }
+@media (max-width: 920px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .story-img { aspect-ratio: 4 / 5; max-width: 480px; margin: 0 auto; width: 100%; }
+}
+
+/* ========================= */
 /*  6. AUTHORITY              */
 /* ========================= */
 .auth {
@@ -1293,6 +1406,179 @@ strong { font-weight: 600; color: var(--ink); }
 .cookie .accept { background: #fff; color: var(--ink); }
 .cookie .deny { background: transparent; color: #C9D0DA; border: 1px solid rgba(255,255,255,0.25); }
 
+/* ========================= */
+/*  WELCOME COUPON MODAL      */
+/* ========================= */
+.welcome-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 45, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.welcome-backdrop.is-open { display: flex; opacity: 1; }
+.welcome {
+  background: var(--bg);
+  border-radius: 14px;
+  max-width: 460px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.45);
+  transform: translateY(16px) scale(0.98);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.welcome-backdrop.is-open .welcome { transform: translateY(0) scale(1); }
+.welcome-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(15, 27, 45, 0.08);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 2;
+  transition: background .2s;
+}
+.welcome-close:hover { background: rgba(15, 27, 45, 0.18); }
+.welcome-img {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--brand-soft);
+  overflow: hidden;
+}
+.welcome-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+.welcome-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,27,45,0) 50%, rgba(15,27,45,0.35) 100%);
+}
+.welcome-body {
+  padding: 30px 32px 32px;
+  text-align: center;
+}
+.welcome-eyebrow {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+.welcome-body h3 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.welcome-body h3 em { color: var(--brand); font-style: italic; }
+.welcome-body > p {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+}
+.welcome-code {
+  background: var(--bg-soft);
+  border: 1px dashed var(--brand);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.welcome-code-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.welcome-code-value {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--brand);
+  letter-spacing: 0.05em;
+}
+.welcome-code-saves {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand);
+  text-align: right;
+}
+.welcome-code-saves strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.welcome-cta {
+  display: inline-block;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background .25s, transform .25s;
+}
+.welcome-cta:hover { background: var(--brand-deep); transform: translateY(-1px); }
+.welcome-decline {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-top: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 0;
+}
+.welcome-decline:hover { color: var(--ink); }
+@media (max-width: 540px) {
+  .welcome-body { padding: 24px 22px 26px; }
+  .welcome-body h3 { font-size: 26px; }
+  .welcome-code { flex-direction: column; gap: 8px; text-align: center; }
+  .welcome-code-saves { text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .welcome-backdrop, .welcome { transition: none; }
+  .welcome { transform: none; }
+}
+
 /* Fade reveals */
 .fade { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
 .fade.in { opacity: 1; transform: none; }
@@ -1444,16 +1730,16 @@ strong { font-weight: 600; color: var(--ink); }
               <figcaption class="gallery-caption">Wireless · USB-C rechargeable · 15-min auto shut-off</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/use-kitchen.jpg" alt="A woman in a sunlit kitchen wearing Kalmely during her break" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">A fifteen-minute reset, mid-day</figcaption>
+              <img src="assets/use-sofa-night.jpg" alt="A woman wearing Kalmely on her sofa at night, eyes closed during a migraine" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">Drug-free relief, evening recovery</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/doctor-asian.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">Designed with clinical input</figcaption>
+              <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at a clinic desk with Kalmely on the table beside her" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">Developed with clinical input</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
-              <img src="assets/use-man-desk.jpg" alt="A man at his desk wearing Kalmely during a cluster headache" loading="lazy" decoding="async">
-              <figcaption class="gallery-caption">For migraine, cluster &amp; tension headaches</figcaption>
+              <img src="assets/diagram-six-zones.jpg" alt="Diagram showing six pressure points on the head: zones 01 and 02 on the forehead, zone 03 over the eyes with a graphene heat element glowing orange, and zones 05 and 06 over the occipital nerve at the back of the head" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption">Six precision airbags · One graphene heat zone (the orange element warms the eye area to 40 °C)</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
@@ -1467,14 +1753,14 @@ strong { font-weight: 600; color: var(--ink); }
           <button type="button" class="gallery-thumb is-photo is-active" data-slide="0" aria-label="View product">
             <img src="assets/product-hero.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb is-photo" data-slide="1" aria-label="View in use, kitchen">
-            <img src="assets/use-kitchen.jpg" alt="" loading="lazy">
+          <button type="button" class="gallery-thumb is-photo" data-slide="1" aria-label="View in use, evening">
+            <img src="assets/use-sofa-night.jpg" alt="" loading="lazy">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="2" aria-label="View with clinician">
-            <img src="assets/doctor-asian.jpg" alt="" loading="lazy">
+            <img src="assets/doctor-portrait.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb is-photo" data-slide="3" aria-label="View male user">
-            <img src="assets/use-man-desk.jpg" alt="" loading="lazy">
+          <button type="button" class="gallery-thumb is-photo" data-slide="3" aria-label="View pressure point diagram">
+            <img src="assets/diagram-six-zones.jpg" alt="" loading="lazy">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="4" aria-label="View free ebook">
             <img src="assets/ebook-cover.jpg" alt="" loading="lazy">
@@ -1601,11 +1887,11 @@ strong { font-weight: 600; color: var(--ink); }
     <div class="tst-grid">
       <article class="tst-card fade">
         <div class="tst-photo">
-          <img src="assets/use-kitchen.jpg" alt="Hannah wearing Kalmely in her kitchen during a workday migraine" loading="lazy" decoding="async">
+          <img src="assets/testimonial-hannah.jpg" alt="Hannah resting at night with Kalmely on, eyes closed" loading="lazy" decoding="async">
         </div>
         <div class="tst-body">
           <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="tst-quote">"A migraine kicked in just after lunch on a Tuesday. I'd usually phone in sick. Instead I put Kalmely on for fifteen minutes and went back to my screen at three. That doesn't happen to me."</p>
+          <p class="tst-quote">"Night-time migraines used to keep me up until three or four. Now I put Kalmely on at the first warning sign and most evenings I fall asleep before the timer ends. That alone changed my life."</p>
           <div class="tst-person">
             <span class="tst-name">Hannah, 34</span>
             <span class="tst-loc">London · chronic migraine, 18 years</span>
@@ -1615,13 +1901,13 @@ strong { font-weight: 600; color: var(--ink); }
 
       <article class="tst-card fade">
         <div class="tst-photo">
-          <img src="assets/use-morning-coffee.jpg" alt="Emily wearing Kalmely beside the kettle in the morning" loading="lazy" decoding="async">
+          <img src="assets/use-morning-coffee.jpg" alt="Sophie wearing Kalmely beside the kettle in the morning" loading="lazy" decoding="async">
         </div>
         <div class="tst-body">
           <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
           <p class="tst-quote">"Mornings used to be the worst — the prodrome wave. I keep Kalmely next to the kettle now. Put it on before the coffee finishes brewing. Some weeks I forget I have migraine."</p>
           <div class="tst-person">
-            <span class="tst-name">Emily, 38</span>
+            <span class="tst-name">Sophie, 38</span>
             <span class="tst-loc">Manchester · chronic migraine, 11 years</span>
           </div>
         </div>
@@ -1629,17 +1915,64 @@ strong { font-weight: 600; color: var(--ink); }
 
       <article class="tst-card fade">
         <div class="tst-photo">
-          <img src="assets/use-man-desk.jpg" alt="James wearing Kalmely at his desk during a cluster headache" loading="lazy" decoding="async">
+          <img src="assets/use-sofa-night.jpg" alt="Margaret wearing Kalmely on the sofa during an evening migraine" loading="lazy" decoding="async">
         </div>
         <div class="tst-body">
           <div class="tst-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="tst-quote">"Cluster headaches. Three or four times a year I just stop functioning. The heat on the back of my head is what helped — closest thing to relief I've found without ending up in A&amp;E."</p>
+          <p class="tst-quote">"The evenings after work were the ones that wrecked me. Heat on the back of my head, eyes closed for fifteen minutes — closest thing to relief I've ever found without medication."</p>
           <div class="tst-person">
-            <span class="tst-name">James, 42</span>
-            <span class="tst-loc">Bristol · cluster headache, 6 years</span>
+            <span class="tst-name">Margaret, 51</span>
+            <span class="tst-loc">Bristol · chronic migraine, 22 years</span>
           </div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STORY — HANNAH'S DAY ===== -->
+<section class="story" id="story">
+  <div class="section">
+    <div class="story-head fade">
+      <div class="story-eyebrow">Hannah's story</div>
+      <h2>A tool, <em>not a crutch.</em></h2>
+      <p>Hannah doesn't wear Kalmely all day. She doesn't have to. Fifteen minutes when the warning signs start, and her day keeps going.</p>
+    </div>
+
+    <div class="story-grid">
+      <div class="story-step fade">
+        <div class="story-img">
+          <span class="story-num">1</span>
+          <img src="assets/hannah-pain.jpg" alt="Hannah in her kitchen, eyes closed, pressing her temples as a migraine begins" loading="lazy" decoding="async">
+        </div>
+        <span class="story-time">Tuesday · 2:14 PM</span>
+        <h4>The first warning sign.</h4>
+        <p>The pressure behind the eyes. The light starting to feel sharp. Before, this meant the rest of the day was over.</p>
+      </div>
+
+      <div class="story-step fade">
+        <div class="story-img">
+          <span class="story-num">2</span>
+          <img src="assets/hannah-using.jpg" alt="Hannah sitting at her kitchen counter wearing Kalmely, calm and present" loading="lazy" decoding="async">
+        </div>
+        <span class="story-time">2:18 PM · Fifteen minutes</span>
+        <h4>One session. That's it.</h4>
+        <p>Kalmely on at level 4, heat low. A glass of water within reach. The remote is on the counter. She breathes. The headache curve doesn't climb.</p>
+      </div>
+
+      <div class="story-step fade">
+        <div class="story-img">
+          <span class="story-num">3</span>
+          <img src="assets/hannah-after.jpg" alt="Hannah pouring a fresh coffee in her kitchen, Kalmely device resting on the counter beside her" loading="lazy" decoding="async">
+        </div>
+        <span class="story-time">2:36 PM · Back to the day</span>
+        <h4>Coffee. Replies. Her life.</h4>
+        <p>Device back on the counter. She pours another coffee, answers the messages she'd ignored, picks up where she left off. The migraine doesn't get to write the script.</p>
+      </div>
+    </div>
+
+    <div class="story-foot fade">
+      <p>"It's not something I depend on. It's something I <em>reach for</em> — like an umbrella when it rains."</p>
     </div>
   </div>
 </section>
@@ -1748,7 +2081,7 @@ strong { font-weight: 600; color: var(--ink); }
   <div class="section">
     <div class="auth-grid">
       <div class="auth-visual fade">
-        <img src="assets/doctor-asian.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async">
+        <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async">
       </div>
       <div class="auth-copy fade">
         <blockquote class="auth-quote">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
@@ -1936,6 +2269,33 @@ strong { font-weight: 600; color: var(--ink); }
   </div>
 </footer>
 
+<!-- Welcome coupon popup -->
+<div class="welcome-backdrop" id="welcomeBackdrop" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" aria-hidden="true">
+  <div class="welcome">
+    <button type="button" class="welcome-close" id="welcomeClose" aria-label="Close welcome offer">×</button>
+    <div class="welcome-img">
+      <img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager">
+    </div>
+    <div class="welcome-body">
+      <div class="welcome-eyebrow">Welcome to Kalmely</div>
+      <h3 id="welcomeTitle">£15 off your <em>first relief.</em></h3>
+      <p>Already saving £74 with our Launch Kit pricing. Add this welcome code and take £15 more off your first device — applied automatically at checkout.</p>
+      <div class="welcome-code">
+        <div>
+          <div class="welcome-code-label">Your code</div>
+          <div class="welcome-code-value">RELIEF15</div>
+        </div>
+        <div class="welcome-code-saves">
+          <strong>−£15</strong>
+          extra off
+        </div>
+      </div>
+      <a href="cart.html?sku=KAL-BUNDLE&amp;coupon=RELIEF15" class="welcome-cta" id="welcomeCta">Apply &amp; shop the Launch Kit →</a>
+      <button type="button" class="welcome-decline" id="welcomeDecline">No thanks, I'll browse first</button>
+    </div>
+  </div>
+</div>
+
 <!-- Cookie banner -->
 <div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
   <p>We use cookies to improve the site and measure ads. Read our <a href="privacy.html">privacy policy</a>.</p>
@@ -2077,6 +2437,51 @@ strong { font-weight: 600; color: var(--ink); }
   document.getElementById('cookieDeny')?.addEventListener('click', () => {
     try { localStorage.setItem('kalmely_consent', 'essential'); } catch (_) {}
     cookieBanner?.classList.remove('show');
+  });
+
+  // ===== Welcome RELIEF15 popup =====
+  const welcomeBackdrop = document.getElementById('welcomeBackdrop');
+  const welcomeCta = document.getElementById('welcomeCta');
+  const welcomeClose = document.getElementById('welcomeClose');
+  const welcomeDecline = document.getElementById('welcomeDecline');
+
+  function openWelcome() {
+    if (!welcomeBackdrop) return;
+    welcomeBackdrop.classList.add('is-open');
+    welcomeBackdrop.setAttribute('aria-hidden', 'false');
+    // Prevent body scroll while modal is open
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWelcome() {
+    if (!welcomeBackdrop) return;
+    welcomeBackdrop.classList.remove('is-open');
+    welcomeBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    try { localStorage.setItem('kalmely_welcome_seen', '1'); } catch (_) {}
+  }
+
+  // First-visit only: show after 1.8s so the hero has time to paint
+  try {
+    if (!localStorage.getItem('kalmely_welcome_seen')) {
+      setTimeout(openWelcome, 1800);
+    }
+  } catch (_) { /* localStorage unavailable — skip popup silently */ }
+
+  welcomeCta?.addEventListener('click', () => {
+    // Persist RELIEF15 for the cart to auto-pick up (cart also accepts ?coupon=)
+    try { localStorage.setItem('kalmely_coupon', 'RELIEF15'); } catch (_) {}
+    closeWelcome();
+    // Link href handles navigation — no preventDefault
+  });
+  welcomeClose?.addEventListener('click', closeWelcome);
+  welcomeDecline?.addEventListener('click', closeWelcome);
+  // Click on backdrop (outside the modal card) closes too
+  welcomeBackdrop?.addEventListener('click', (e) => {
+    if (e.target === welcomeBackdrop) closeWelcome();
+  });
+  // Escape closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && welcomeBackdrop?.classList.contains('is-open')) closeWelcome();
   });
 })();
 </script>
