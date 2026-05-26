@@ -2725,36 +2725,61 @@ strong { font-weight: 600; color: var(--ink); }
     // Prevent body scroll while modal is open
     document.body.style.overflow = 'hidden';
   }
-  function closeWelcome() {
+  function closeWelcome(reason) {
     if (!welcomeBackdrop) return;
     welcomeBackdrop.classList.remove('is-open');
     welcomeBackdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    try { localStorage.setItem('kalmely_welcome_seen', '1'); } catch (_) {}
+    try {
+      if (reason === 'accepted') {
+        // Permanent: user already claimed the coupon, don't re-show
+        localStorage.setItem('kalmely_welcome_accepted', String(Date.now()));
+      } else {
+        // Soft dismiss: re-show after a cooldown (3 days)
+        localStorage.setItem('kalmely_welcome_dismissed_at', String(Date.now()));
+      }
+    } catch (_) {}
   }
 
-  // First-visit only: show after 1.8s so the hero has time to paint
-  try {
-    if (!localStorage.getItem('kalmely_welcome_seen')) {
-      setTimeout(openWelcome, 1800);
-    }
-  } catch (_) { /* localStorage unavailable — skip popup silently */ }
+  // Decide whether the popup should show on this visit
+  const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
+  function shouldShowWelcome() {
+    try {
+      // Force-show via ?welcome=force (handy for testing in any visit state)
+      const qs = new URLSearchParams(window.location.search);
+      if (qs.get('welcome') === 'force') return true;
+      // Already accepted → never re-show
+      if (localStorage.getItem('kalmely_welcome_accepted')) return false;
+      // Soft-dismissed → only re-show after cooldown
+      const dismissed = parseInt(localStorage.getItem('kalmely_welcome_dismissed_at') || '0', 10);
+      if (dismissed && (Date.now() - dismissed) < COOLDOWN_MS) return false;
+      // Legacy key from previous build — treat as dismiss within cooldown
+      if (localStorage.getItem('kalmely_welcome_seen') === '1') {
+        // migrate legacy: stamp it as just-dismissed so the cooldown applies
+        localStorage.setItem('kalmely_welcome_dismissed_at', String(Date.now()));
+        localStorage.removeItem('kalmely_welcome_seen');
+        return false;
+      }
+      return true;
+    } catch (_) { return false; }
+  }
+  if (shouldShowWelcome()) setTimeout(openWelcome, 1800);
 
   welcomeCta?.addEventListener('click', () => {
     // Persist RELIEF15 for the cart to auto-pick up (cart also accepts ?coupon=)
     try { localStorage.setItem('kalmely_coupon', 'RELIEF15'); } catch (_) {}
-    closeWelcome();
+    closeWelcome('accepted');
     // Link href handles navigation — no preventDefault
   });
-  welcomeClose?.addEventListener('click', closeWelcome);
-  welcomeDecline?.addEventListener('click', closeWelcome);
+  welcomeClose?.addEventListener('click', () => closeWelcome('dismissed'));
+  welcomeDecline?.addEventListener('click', () => closeWelcome('dismissed'));
   // Click on backdrop (outside the modal card) closes too
   welcomeBackdrop?.addEventListener('click', (e) => {
-    if (e.target === welcomeBackdrop) closeWelcome();
+    if (e.target === welcomeBackdrop) closeWelcome('dismissed');
   });
   // Escape closes
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && welcomeBackdrop?.classList.contains('is-open')) closeWelcome();
+    if (e.key === 'Escape' && welcomeBackdrop?.classList.contains('is-open')) closeWelcome('dismissed');
   });
 })();
 </script>

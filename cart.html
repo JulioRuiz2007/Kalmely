@@ -217,6 +217,78 @@
   line-height: 1.55;
 }
 .summary-note strong { color: var(--ink); font-weight: 500; }
+/* Welcome coupon card — shown when customer arrives with a claimed code */
+.coupon-claim {
+  background: linear-gradient(135deg, rgba(75,114,93,0.10) 0%, rgba(75,114,93,0.04) 100%);
+  border: 1px solid rgba(75,114,93,0.35);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.coupon-claim-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-claim-icon svg { width: 20px; height: 20px; }
+.coupon-claim-body { flex: 1; min-width: 0; }
+.coupon-claim-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.coupon-claim-text {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+.coupon-claim-text strong { color: var(--sage-deep); font-weight: 600; letter-spacing: 0.03em; }
+.coupon-claim-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.coupon-claim-apply {
+  background: var(--sage);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.coupon-claim-apply:hover { background: var(--sage-deep); transform: translateY(-1px); }
+.coupon-claim-skip {
+  background: transparent;
+  color: var(--ink-soft);
+  border: none;
+  padding: 10px 8px;
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.coupon-claim-skip:hover { color: var(--ink); }
+
 @media (max-width: 760px) {
   .cart-grid { grid-template-columns: 1fr; gap: 30px; }
   .summary { position: static; }
@@ -225,6 +297,11 @@
   .cart-item-name { font-size: 19px; }
   .cart-item-price { font-size: 22px; }
   .included-block { padding: 20px 18px 6px; }
+  .coupon-claim { padding: 14px 16px; gap: 12px; }
+  .coupon-claim-icon { width: 32px; height: 32px; }
+  .coupon-claim-icon svg { width: 16px; height: 16px; }
+  .coupon-claim-title { font-size: 16px; }
+  .coupon-claim-actions { width: 100%; }
 }
 </style>
 </head>
@@ -282,6 +359,23 @@
     </div>
 
     <aside class="summary">
+      <div class="coupon-claim" id="couponClaim" hidden>
+        <div class="coupon-claim-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12V8H6a2 2 0 0 1-2-2V4h16v8z"/>
+            <path d="M4 8v12h16v-4"/>
+            <path d="M9 12h.01M15 12h.01M9 16h6"/>
+          </svg>
+        </div>
+        <div class="coupon-claim-body">
+          <div class="coupon-claim-title">Your welcome code is waiting</div>
+          <p class="coupon-claim-text">You claimed <strong>RELIEF15</strong> on the homepage. Apply it now to take <strong>£15 off</strong> your order.</p>
+          <div class="coupon-claim-actions">
+            <button type="button" class="coupon-claim-apply" id="couponClaimApply">Apply −£15</button>
+            <button type="button" class="coupon-claim-skip" id="couponClaimSkip">No thanks</button>
+          </div>
+        </div>
+      </div>
       <h2 style="margin:0 0 12px;font-size:20px;">Order summary</h2>
       <div class="summary-row">
         <span>Subtotal</span>
@@ -400,21 +494,28 @@ const urlCoupon = (params.get('coupon') || '').toUpperCase();
 const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();
 const seedCoupon = (urlCoupon || storedCoupon).trim();
 const hasValidSeed = !!(VALID_COUPONS[seedCoupon] && VALID_COUPONS[seedCoupon].appliesTo.includes(sku));
+// Track whether the prominent claim card has been dismissed in this session
+let claimSkipped = false;
 function renderCoupon() {
   const row = document.getElementById('couponRow');
   const entry = document.getElementById('couponEntry');
   const hint = document.getElementById('couponHint');
+  const claim = document.getElementById('couponClaim');
   if (activeCoupon) {
     row.hidden = false;
     document.getElementById('couponCode').textContent = activeCoupon.label;
     document.getElementById('couponAmount').textContent = `−£${activeCoupon.amount}`;
     entry.style.display = 'none';
     hint.hidden = true;
+    claim.hidden = true;
   } else {
     row.hidden = true;
     entry.style.display = 'flex';
-    // Hint visible only when the customer arrived with a seed code (welcome flow)
-    hint.hidden = !hasValidSeed;
+    // Prominent claim card: only when seeded AND not skipped this session
+    claim.hidden = !hasValidSeed || claimSkipped;
+    // Tiny green hint under the input shown only after the customer skipped the big card,
+    // so they can still find the code via the input if they change their mind.
+    hint.hidden = !(hasValidSeed && claimSkipped);
   }
 }
 
@@ -423,6 +524,20 @@ if (hasValidSeed) {
   const input = document.getElementById('couponInput');
   if (input) input.value = seedCoupon;
 }
+
+// Claim card actions
+document.getElementById('couponClaimApply')?.addEventListener('click', () => {
+  const def = VALID_COUPONS[seedCoupon];
+  if (def && def.appliesTo.includes(sku)) {
+    activeCoupon = def;
+    localStorage.setItem('kalmely_coupon', seedCoupon);
+    updateTotals();
+  }
+});
+document.getElementById('couponClaimSkip')?.addEventListener('click', () => {
+  claimSkipped = true;
+  renderCoupon();
+});
 
 // Quantity
 let qty = 1;
