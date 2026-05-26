@@ -145,25 +145,68 @@ strong { font-weight: 600; color: var(--ink); }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: #0F1B2D;
+  background: var(--accent);
   color: #ffffff;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-align: center;
   padding: 9px var(--pad);
   min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 14px;
+  flex-wrap: nowrap;
 }
-.announce span { display: inline-flex; align-items: center; gap: 6px; opacity: 0.92; }
-.announce .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.5); display: inline-block; }
+.announce-label { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11.5px; }
+.announce-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #fff;
+}
+.announce-icon svg { width: 100%; height: 100%; }
+.announce-timer {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.announce-timer-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  min-width: 28px;
+}
+.announce-timer-num {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.announce-timer-unit {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-top: 2px;
+}
+.announce-timer-sep {
+  font-size: 14px;
+  opacity: 0.55;
+  align-self: center;
+  transform: translateY(-3px);
+}
 @media (max-width: 640px) {
-  .announce { font-size: 11.5px; gap: 10px; padding: 8px 14px; }
-  .announce .hide-mobile { display: none; }
+  .announce { font-size: 12px; gap: 10px; padding: 8px 12px; }
+  .announce-label { font-size: 10.5px; }
+  .announce-timer-num { font-size: 15px; }
+  .announce-timer-block { min-width: 24px; }
 }
 
 /* Navbar */
@@ -1588,13 +1631,25 @@ strong { font-weight: 600; color: var(--ink); }
 </head>
 <body>
 
-<!-- ===== 1. ANNOUNCEMENT BAR ===== -->
-<div class="announce" role="region" aria-label="Site announcement">
-  <span>Free UK shipping</span>
-  <span class="dot" aria-hidden="true"></span>
-  <span><strong>100-day trial</strong> · free returns</span>
-  <span class="dot hide-mobile" aria-hidden="true"></span>
-  <span class="hide-mobile">Designed in the UK</span>
+<!-- ===== 1. ANNOUNCEMENT BAR — launch countdown ===== -->
+<div class="announce" role="region" aria-label="Launch price countdown">
+  <span class="announce-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="13" r="8"/>
+      <path d="M12 9v4l2.5 1.5"/>
+      <path d="M9 2h6"/>
+    </svg>
+  </span>
+  <span class="announce-label">Launch price ends in</span>
+  <span class="announce-timer" id="announceTimer" aria-live="off">
+    <span class="announce-timer-block"><span class="announce-timer-num" id="atDays">02</span><span class="announce-timer-unit">days</span></span>
+    <span class="announce-timer-sep">:</span>
+    <span class="announce-timer-block"><span class="announce-timer-num" id="atHours">14</span><span class="announce-timer-unit">hrs</span></span>
+    <span class="announce-timer-sep">:</span>
+    <span class="announce-timer-block"><span class="announce-timer-num" id="atMins">32</span><span class="announce-timer-unit">min</span></span>
+    <span class="announce-timer-sep">:</span>
+    <span class="announce-timer-block"><span class="announce-timer-num" id="atSecs">08</span><span class="announce-timer-unit">sec</span></span>
+  </span>
 </div>
 
 <!-- ===== 2. NAVBAR ===== -->
@@ -2417,6 +2472,55 @@ strong { font-weight: 600; color: var(--ink); }
     try { localStorage.setItem('kalmely_consent', 'essential'); } catch (_) {}
     cookieBanner?.classList.remove('show');
   });
+
+  // ===== Launch-price countdown (loops, never visibly ends) =====
+  (function initCountdown() {
+    const dEl = document.getElementById('atDays');
+    const hEl = document.getElementById('atHours');
+    const mEl = document.getElementById('atMins');
+    const sEl = document.getElementById('atSecs');
+    if (!dEl) return;
+    const STORAGE_KEY = 'kalmely_launch_end';
+    const WINDOW_MS = 72 * 60 * 60 * 1000;     // 72-hour rolling window
+    const RESET_THRESHOLD_MS = 60 * 1000;       // when under 60s left, silently roll +24h
+
+    function readEnd() {
+      try {
+        const v = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+        return Number.isFinite(v) ? v : 0;
+      } catch (_) { return 0; }
+    }
+    function writeEnd(ts) {
+      try { localStorage.setItem(STORAGE_KEY, String(ts)); } catch (_) {}
+    }
+    let endAt = readEnd();
+    const now = Date.now();
+    if (!endAt || endAt - now > WINDOW_MS + 60 * 1000) {
+      // First visit or someone manipulated the clock — seed a fresh window
+      endAt = now + WINDOW_MS;
+      writeEnd(endAt);
+    }
+    const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+    function tick() {
+      let diff = endAt - Date.now();
+      if (diff < RESET_THRESHOLD_MS) {
+        // Roll the window forward by 24h so the timer never visibly hits zero
+        endAt += 24 * 60 * 60 * 1000;
+        writeEnd(endAt);
+        diff = endAt - Date.now();
+      }
+      const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+      const hours = Math.floor((diff / (60 * 60 * 1000)) % 24);
+      const mins = Math.floor((diff / (60 * 1000)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      dEl.textContent = pad(days);
+      hEl.textContent = pad(hours);
+      mEl.textContent = pad(mins);
+      sEl.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 
   // ===== Welcome RELIEF15 popup =====
   const welcomeBackdrop = document.getElementById('welcomeBackdrop');
