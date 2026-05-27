@@ -1905,6 +1905,117 @@ strong { font-weight: 600; color: var(--ink); }
   .word-reveal .word { transition-duration: .55s; }
 }
 
+/* Smooth anchor scrolling */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Hover lifts — soft, slow, satisfying */
+.tst-card, .mech-card, .how-step, .story-step, .compare-table-wrap, .final-card {
+  transition: transform .7s cubic-bezier(.16,.84,.32,1), box-shadow .7s ease, border-color .7s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tst-card:hover, .mech-card:hover, .how-step:hover, .story-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -18px rgba(31,61,47,.22);
+  }
+  .final-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 28px 48px -24px rgba(31,61,47,.18);
+  }
+}
+
+/* FAQ details accordion — smoother open/close */
+.faq-list details {
+  transition: background .35s ease, border-color .35s ease;
+}
+.faq-list details > summary {
+  transition: color .35s ease;
+  cursor: pointer;
+}
+.faq-list details[open] > summary {
+  color: var(--brand, var(--ink));
+}
+.faq-list details .faq-answer {
+  animation: kalm-faq-slide .55s cubic-bezier(.16,.84,.32,1);
+}
+@keyframes kalm-faq-slide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Nav links — sliding underline */
+.nav-links a {
+  position: relative;
+  transition: color .4s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  height: 1.5px; width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform .5s cubic-bezier(.16,.84,.32,1);
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Buy-kit list items reveal one by one when block enters */
+.buy-kit-list li {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity .9s cubic-bezier(.16,.84,.32,1), transform .9s cubic-bezier(.16,.84,.32,1);
+}
+.buy-kit-list.in li {
+  opacity: 1;
+  transform: translateX(0);
+}
+.buy-kit-list.in li:nth-child(1) { transition-delay: 0ms; }
+.buy-kit-list.in li:nth-child(2) { transition-delay: 120ms; }
+.buy-kit-list.in li:nth-child(3) { transition-delay: 240ms; }
+.buy-kit-list.in li:nth-child(4) { transition-delay: 360ms; }
+.buy-kit-list.in li:nth-child(5) { transition-delay: 480ms; }
+.buy-kit-list.in li:nth-child(6) { transition-delay: 600ms; }
+
+/* Announce bar — soft pulse on the icon */
+.announce-icon {
+  animation: kalm-tick 4.2s ease-in-out infinite;
+}
+@keyframes kalm-tick {
+  0%, 92%, 100% { transform: scale(1); }
+  95% { transform: scale(1.12); }
+}
+
+/* Gallery dots — smoother active state */
+.gallery-dot {
+  transition: width .5s cubic-bezier(.16,.84,.32,1), background .35s ease;
+}
+
+/* Sticky nav: soft shadow appears once you scroll */
+.nav {
+  transition: box-shadow .4s ease, background .4s ease, backdrop-filter .4s ease;
+}
+.nav.is-scrolled {
+  box-shadow: 0 6px 18px -12px rgba(31,61,47,.16);
+  backdrop-filter: saturate(1.2) blur(8px);
+}
+
+/* CTA buttons — slow inhale on hover */
+.btn-primary, .nav-cta {
+  transition: transform .5s cubic-bezier(.16,.84,.32,1), background .35s ease, box-shadow .5s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { box-shadow: 0 16px 28px -16px rgba(31,61,47,.28); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buy-kit-list li { opacity: 1 !important; transform: none !important; }
+  .announce-icon { animation: none !important; }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .word-reveal .word { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -3058,6 +3169,36 @@ strong { font-weight: 600; color: var(--ink); }
       });
       el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
+  })();
+
+  // Nav scrolled state — soft shadow appears past 50px
+  (function initNavShadow() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+    let raf = null;
+    function update() {
+      nav.classList.toggle('is-scrolled', window.scrollY > 50);
+      raf = null;
+    }
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    update();
+  })();
+
+  // Buy-kit list staggered entry
+  (function initKitList() {
+    const list = document.querySelector('.buy-kit-list');
+    if (!list) return;
+    const rect = list.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      setTimeout(() => list.classList.add('in'), 400);
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+    io.observe(list);
   })();
 
   // Kick off shared IO reveals
