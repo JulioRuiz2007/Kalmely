@@ -7,3 +7,8 @@ node_modules/
 .idea/
 worker/node_modules/
 worker/package-lock.json
+
+# Heavy media — keep out of Pages builds (25 MiB limit)
+assets/kalmely-1/
+*.mp4
+*.AAC
