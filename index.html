@@ -1789,21 +1789,46 @@ strong { font-weight: 600; color: var(--ink); }
   pointer-events: none;
 }
 
-/* Word-by-word reveal for hero title */
-.word-reveal {
+/* Word-by-word reveal for headlines */
+.word-reveal { display: block; }
+.word-reveal .word-wrap {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
+  line-height: 1.2;
 }
 .word-reveal .word {
   display: inline-block;
   opacity: 0;
   transform: translateY(110%);
-  transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+  transition: opacity 1.4s cubic-bezier(.16,.84,.32,1), transform 1.4s cubic-bezier(.16,.84,.32,1);
   transition-delay: var(--d, 0ms);
   will-change: opacity, transform;
 }
 .word-reveal.in .word { opacity: 1; transform: translateY(0); }
+
+/* Slow fade alternative (1.6s) for more dramatic reveals */
+.fade-slow {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.6s cubic-bezier(.16,.84,.32,1), transform 1.6s cubic-bezier(.16,.84,.32,1);
+  transition-delay: var(--stagger, 0ms);
+  will-change: opacity, transform;
+}
+.fade-slow.in { opacity: 1; transform: translateY(0); }
+
+/* Line reveal — for blockquotes / paragraphs */
+.line-reveal {
+  display: block;
+  overflow: hidden;
+}
+.line-reveal > .line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 1.5s cubic-bezier(.16,.84,.32,1), transform 1.5s cubic-bezier(.16,.84,.32,1);
+}
+.line-reveal.in > .line-inner { opacity: 1; transform: translateY(0); }
 
 /* Stagger: any .fade with --stagger CSS var respects it */
 .fade { transition-delay: var(--stagger, 0ms); }
@@ -1814,25 +1839,47 @@ strong { font-weight: 600; color: var(--ink); }
 /* Magnetic CTA (desktop only) */
 @media (hover: hover) and (pointer: fine) {
   .magnetic {
-    transition: transform .25s cubic-bezier(.2,.8,.2,1);
+    transition: transform .35s cubic-bezier(.16,.84,.32,1);
     will-change: transform;
   }
 }
 
-/* Image zoom-on-reveal: photos breathe in slightly when first seen */
+/* Image zoom-on-reveal: slow breathe-in */
 .kalm-reveal-zoom {
   overflow: hidden;
 }
 .kalm-reveal-zoom img,
 .kalm-reveal-zoom > picture > img {
-  transform: scale(1.06);
-  transition: transform 1.4s cubic-bezier(.2,.8,.2,1);
-  will-change: transform;
+  transform: scale(1.08);
+  transition: transform 2.2s cubic-bezier(.16,.84,.32,1), filter 2.2s cubic-bezier(.16,.84,.32,1);
+  filter: saturate(.85) brightness(.95);
+  will-change: transform, filter;
 }
 .kalm-reveal-zoom.in img,
 .kalm-reveal-zoom.in > picture > img {
   transform: scale(1);
+  filter: saturate(1) brightness(1);
 }
+
+/* Number counter — visible from the start, JS animates value */
+.counter { font-variant-numeric: tabular-nums; }
+
+/* Underline draw reveal — animates a thin line under headings */
+.line-draw {
+  position: relative;
+  display: inline-block;
+}
+.line-draw::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 100%; height: 2px;
+  background: var(--accent, #B25E3F);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.8s cubic-bezier(.16,.84,.32,1) .3s;
+}
+.line-draw.in::after { transform: scaleX(1); }
 
 /* Marquee band — pause on hover, infinite loop */
 .marquee {
@@ -2188,8 +2235,8 @@ strong { font-weight: 600; color: var(--ink); }
       <div class="hook-visual fade kalm-reveal-zoom">
         <img src="assets/pain-temples-redhead.jpg" alt="A woman with auburn hair pressing her temples during a migraine attack, a blister of pills on the table" loading="lazy" decoding="async" data-parallax="0.06">
       </div>
-      <div class="hook-copy fade">
-        <h2>If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
+      <div class="hook-copy fade-slow">
+        <h2 class="line-draw" data-word-reveal>If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
         <p>Up to <strong>80% of chronic migraine sufferers</strong> experience cutaneous allodynia — pain caused by stimuli that shouldn't hurt. A ponytail. A pillow. The light pressure of an ice cap on your temple.</p>
         <p>Your nervous system isn't broken. It's overactive. And it needs the opposite of what most migraine products offer — not more pressure, not more cold, but gentle adjustable relief that matches how sensitive your scalp actually is in that moment.</p>
         <p><strong>Kalmely was designed for exactly this.</strong></p>
@@ -2202,7 +2249,7 @@ strong { font-weight: 600; color: var(--ink); }
 <!-- ===== TESTIMONIALS (moved up — straight after the hook) ===== -->
 <section class="tst" id="reviews">
   <div class="section">
-    <h2 class="fade">What people who tried it <em>actually say.</em></h2>
+    <h2 class="fade-slow line-draw" data-word-reveal>What people who tried it <em>actually say.</em></h2>
     <div class="tst-grid">
       <article class="tst-card fade" style="--stagger:0ms;">
         <div class="tst-photo">
@@ -2252,10 +2299,10 @@ strong { font-weight: 600; color: var(--ink); }
 <!-- ===== STORY — HANNAH'S DAY ===== -->
 <section class="story" id="story">
   <div class="section">
-    <div class="story-head fade">
+    <div class="story-head fade-slow">
       <div class="story-eyebrow">Hannah's story</div>
-      <h2>A tool, <em>not a crutch.</em></h2>
-      <p>Hannah doesn't wear Kalmely all day. She doesn't have to. Fifteen minutes when the warning signs start, and her day keeps going.</p>
+      <h2 class="line-draw" data-word-reveal>A tool, <em>not a crutch.</em></h2>
+      <p class="line-reveal">Hannah doesn't wear Kalmely all day. She doesn't have to. Fifteen minutes when the warning signs start, and her day keeps going.</p>
     </div>
 
     <div class="story-grid">
@@ -2300,27 +2347,27 @@ strong { font-weight: 600; color: var(--ink); }
 <section class="mech" id="mechanism">
   <div class="section">
     <div class="mech-head fade">
-      <h2>Six pressure points. One precise device.</h2>
+      <h2 class="line-draw" data-word-reveal>Six pressure points. One precise device.</h2>
       <h3>Multi-Zone Air Therapy™</h3>
     </div>
 
-    <figure class="mech-diagram fade">
+    <figure class="mech-diagram fade-slow kalm-reveal-zoom">
       <img src="assets/diagram-six-zones.jpg" alt="Two views of the Kalmely device on a model head — front view shows zones 01, 02 (forehead) and 03 (eye area heat zone); back view shows zones 05 and 06 over the occipital nerve" loading="lazy" decoding="async">
       <figcaption class="mech-diagram-caption">Six precision airbags. Three pressure zones. Optional heat over the eyes.</figcaption>
     </figure>
 
     <div class="mech-grid">
-      <div class="mech-card fade">
+      <div class="mech-card fade-slow" style="--stagger:0ms;">
         <div class="mech-card-num">01</div>
         <h4>Adjustable intensity</h4>
         <p>Three modes, ten intensity levels. Dial it down to the lightest touch when your scalp is hypersensitive, or up for tension headaches and neck strain.</p>
       </div>
-      <div class="mech-card fade">
+      <div class="mech-card fade-slow" style="--stagger:200ms;">
         <div class="mech-card-num">02</div>
         <h4>Optional heat</h4>
         <p>Low-temperature warmth (42°C / 107°F) helps relax tense muscles around the forehead and occiput. Toggle on or off with one button.</p>
       </div>
-      <div class="mech-card fade">
+      <div class="mech-card fade-slow" style="--stagger:400ms;">
         <div class="mech-card-num">03</div>
         <h4>15-minute auto shut-off</h4>
         <p>One full session, then it switches itself off. Fall asleep wearing it — Kalmely won't drain its battery or yours.</p>
@@ -2332,7 +2379,7 @@ strong { font-weight: 600; color: var(--ink); }
 <!-- ===== 6. COMPARISON ===== -->
 <section class="compare">
   <div class="section">
-    <h2 class="fade">We rejected the ice cap. <em>Here's why.</em></h2>
+    <h2 class="fade-slow line-draw" data-word-reveal>We rejected the ice cap. <em>Here's why.</em></h2>
 
     <div class="compare-table-wrap fade">
       <table class="compare-table" aria-label="Kalmely compared to ice caps, pills and nothing">
@@ -2402,8 +2449,8 @@ strong { font-weight: 600; color: var(--ink); }
       <div class="auth-visual fade kalm-reveal-zoom">
         <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async" data-parallax="0.06">
       </div>
-      <div class="auth-copy fade">
-        <blockquote class="auth-quote">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
+      <div class="auth-copy fade-slow">
+        <blockquote class="auth-quote line-reveal">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
         <div class="auth-cite">
           Dr [Name TBD]<br>
           <span>Consultant Neurologist · UK</span>
@@ -2427,20 +2474,20 @@ strong { font-weight: 600; color: var(--ink); }
 <section class="how">
   <div class="section">
     <div class="how-head fade">
-      <h2>Three steps. <em>Fifteen minutes.</em></h2>
+      <h2 class="line-draw" data-word-reveal>Three steps. <em>Fifteen minutes.</em></h2>
     </div>
     <div class="how-grid">
-      <div class="how-step fade">
+      <div class="how-step fade-slow" style="--stagger:0ms;">
         <div class="how-step-num">01</div>
         <h4>Wear it</h4>
         <p>Slide the band over your head so the airbags cover your forehead and temples. Adjust for snugness — not pressure.</p>
       </div>
-      <div class="how-step fade">
+      <div class="how-step fade-slow" style="--stagger:250ms;">
         <div class="how-step-num">02</div>
         <h4>Press start</h4>
         <p>Choose mode, intensity and heat if you want it. Sit back, lie down, do nothing.</p>
       </div>
-      <div class="how-step fade">
+      <div class="how-step fade-slow" style="--stagger:500ms;">
         <div class="how-step-num">03</div>
         <h4>Fifteen minutes later</h4>
         <p>The device shuts itself off at the end of the session. Most users feel meaningful relief in the first ten.</p>
@@ -2452,11 +2499,11 @@ strong { font-weight: 600; color: var(--ink); }
 <!-- ===== 10. FINAL CTA ===== -->
 <section class="final">
   <div class="section">
-    <h2 class="fade">Start with Kalmely.</h2>
+    <h2 class="fade-slow line-draw" data-word-reveal>Start with Kalmely.</h2>
 
-    <div class="final-card fade">
-      <div class="final-card-visual">
-        <img src="assets/product-hero.jpg" alt="Kalmely device — band with six airbags and handheld remote" loading="lazy" decoding="async">
+    <div class="final-card fade-slow">
+      <div class="final-card-visual kalm-reveal-zoom">
+        <img src="assets/product-hero.jpg" alt="Kalmely device — band with six airbags and handheld remote" loading="lazy" decoding="async" data-parallax="0.04">
       </div>
       <div class="final-card-body">
         <div class="final-card-name">Kalmely Wireless Head Massager</div>
@@ -2479,7 +2526,7 @@ strong { font-weight: 600; color: var(--ink); }
 <!-- ===== 11. FAQ ===== -->
 <section class="faq" id="faq">
   <div class="section">
-    <h2 class="fade">Questions we hear <em>most.</em></h2>
+    <h2 class="fade-slow line-draw" data-word-reveal>Questions we hear <em>most.</em></h2>
     <div class="faq-list">
       <details>
         <summary>How long until I feel relief?</summary>
@@ -2825,6 +2872,28 @@ strong { font-weight: 600; color: var(--ink); }
   // ===== ANIMATIONS =====
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  // Shared IntersectionObserver that adds .in to anything marked for it
+  const revealClasses = ['fade-slow', 'line-reveal', 'line-draw', 'kalm-reveal-zoom'];
+  const sharedIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        sharedIO.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+
+  function observeReveals() {
+    revealClasses.forEach((cls) => {
+      document.querySelectorAll('.' + cls + ':not(.in)').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
+        else sharedIO.observe(el);
+      });
+    });
+  }
 
   // Scroll progress bar
   (function initScrollProgress() {
@@ -2844,30 +2913,80 @@ strong { font-weight: 600; color: var(--ink); }
     update();
   })();
 
-  // Word-by-word reveal for headlines marked [data-word-reveal]
+  // Word-by-word reveal — splits text once, observes for in-view
   (function initWordReveal() {
-    document.querySelectorAll('[data-word-reveal]').forEach((el) => {
+    const targets = document.querySelectorAll('[data-word-reveal]');
+    if (!targets.length) return;
+
+    const STEP = isMobile ? 60 : 90;
+    let visIdx = 0;
+    function wrapWord(word) {
+      const wrap = document.createElement('span');
+      wrap.className = 'word-wrap';
+      const inner = document.createElement('span');
+      inner.className = 'word';
+      inner.style.setProperty('--d', (visIdx * STEP) + 'ms');
+      // If word is an HTMLElement (e.g. <em>), preserve and place inside
+      if (word instanceof HTMLElement) {
+        inner.appendChild(word);
+      } else {
+        inner.textContent = word;
+      }
+      wrap.appendChild(inner);
+      visIdx += 1;
+      return wrap;
+    }
+
+    targets.forEach((el) => {
       if (el.dataset.split === 'done') return;
-      const text = el.textContent;
-      el.textContent = '';
-      const words = text.split(/(\s+)/);
-      words.forEach((w, i) => {
-        if (/^\s+$/.test(w)) { el.appendChild(document.createTextNode(w)); return; }
-        const span = document.createElement('span');
-        span.className = 'word';
-        span.style.setProperty('--d', (i * 60) + 'ms');
-        span.textContent = w;
-        el.appendChild(span);
+      visIdx = 0;
+      const children = Array.from(el.childNodes);
+      el.innerHTML = '';
+      children.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const parts = node.textContent.split(/(\s+)/);
+          parts.forEach((p) => {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
+            el.appendChild(wrapWord(p));
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          // Whole element gets wrapped as a single visual "word" (preserves <em> styling)
+          el.appendChild(wrapWord(node));
+        }
       });
       el.dataset.split = 'done';
     });
-    // Trigger reveal on load (hero is above the fold so we just unleash it)
-    requestAnimationFrame(() => {
-      document.querySelectorAll('[data-word-reveal]').forEach((el) => el.classList.add('in'));
+
+    // Hero (above fold): trigger as soon as page paints
+    const heroReveals = document.querySelectorAll('.hero [data-word-reveal], .buy [data-word-reveal]');
+    requestAnimationFrame(() => heroReveals.forEach((el) => el.classList.add('in')));
+
+    // Below fold: trigger on viewport entry
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+    targets.forEach((el) => {
+      if (el.classList.contains('in')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('in');
+      else io.observe(el);
     });
   })();
 
-  // Parallax for images marked [data-parallax="0.06"]
+  // Line reveal — wraps inner content in .line-inner once
+  (function initLineReveal() {
+    document.querySelectorAll('.line-reveal').forEach((el) => {
+      if (el.dataset.lineWrapped === 'done') return;
+      const html = el.innerHTML;
+      el.innerHTML = '<span class="line-inner">' + html + '</span>';
+      el.dataset.lineWrapped = 'done';
+    });
+  })();
+
+  // Parallax for images marked [data-parallax]
   (function initParallax() {
     if (prefersReduced || isCoarse) return;
     const items = Array.from(document.querySelectorAll('[data-parallax]')).map((el) => ({
@@ -2894,25 +3013,37 @@ strong { font-weight: 600; color: var(--ink); }
     update();
   })();
 
-  // Image zoom-on-reveal (uses IntersectionObserver to add .in)
-  (function initRevealZoom() {
-    const els = document.querySelectorAll('.kalm-reveal-zoom');
-    if (!els.length) return;
+  // Number counter — animates [data-count="11000"] from 0 over 1.8s on view
+  (function initCounter() {
+    if (prefersReduced) {
+      document.querySelectorAll('[data-count]').forEach((el) => { el.textContent = el.dataset.count; });
+      return;
+    }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseFloat(el.dataset.count) || 0;
+        const dur = parseInt(el.dataset.countDuration || '1800', 10);
+        const prefix = el.dataset.countPrefix || '';
+        const suffix = el.dataset.countSuffix || '';
+        const decimals = parseInt(el.dataset.countDecimals || '0', 10);
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = target * eased;
+          el.textContent = prefix + val.toLocaleString('en-GB', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals,
+          }) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-    els.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) el.classList.add('in');
-      else io.observe(el);
-    });
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.querySelectorAll('.kalm-reveal-zoom:not(.in)').forEach(el => el.classList.add('in'));
-      }, 2500);
-    });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.2 });
+    document.querySelectorAll('[data-count]').forEach((el) => io.observe(el));
   })();
 
   // Magnetic CTAs (desktop only)
@@ -2928,6 +3059,18 @@ strong { font-weight: 600; color: var(--ink); }
       el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
   })();
+
+  // Kick off shared IO reveals
+  observeReveals();
+  // Safety net: 3s after load, force anything left invisible to show
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      revealClasses.forEach((cls) => {
+        document.querySelectorAll('.' + cls + ':not(.in)').forEach(el => el.classList.add('in'));
+      });
+      document.querySelectorAll('[data-word-reveal]:not(.in)').forEach(el => el.classList.add('in'));
+    }, 3000);
+  });
 })();
 </script>
 
