@@ -306,9 +306,78 @@
   .coupon-claim-title { font-size: 16px; }
   .coupon-claim-actions { width: 100%; }
 }
+
+/* ===== ANIMATIONS — smooth, slow, satisfying ===== */
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--sage,#4B725D), var(--ink,#1F3D2F));
+  z-index: 9999; transition: width .12s ease-out; pointer-events: none;
+}
+.fade-slow {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 1.5s cubic-bezier(.16,.84,.32,1), transform 1.5s cubic-bezier(.16,.84,.32,1);
+  transition-delay: var(--stagger,0ms);
+  will-change: opacity, transform;
+}
+.fade-slow.in { opacity: 1; transform: translateY(0); }
+
+.word-reveal { display: block; }
+.word-reveal .word-wrap {
+  display: inline-block; overflow: hidden; vertical-align: bottom; line-height: 1.2;
+}
+.word-reveal .word {
+  display: inline-block; opacity: 0; transform: translateY(110%);
+  transition: opacity 1.4s cubic-bezier(.16,.84,.32,1), transform 1.4s cubic-bezier(.16,.84,.32,1);
+  transition-delay: var(--d,0ms);
+}
+.word-reveal.in .word { opacity: 1; transform: translateY(0); }
+
+.kalm-reveal-zoom { overflow: hidden; }
+.kalm-reveal-zoom img {
+  transform: scale(1.08);
+  transition: transform 2.2s cubic-bezier(.16,.84,.32,1), filter 2.2s cubic-bezier(.16,.84,.32,1);
+  filter: saturate(.85) brightness(.95);
+}
+.kalm-reveal-zoom.in img { transform: scale(1); filter: saturate(1) brightness(1); }
+
+/* Animate summary value changes — number flips when total updates */
+.sum-row strong, #grandTotal, #priceNow {
+  transition: opacity .35s ease, transform .35s cubic-bezier(.16,.84,.32,1);
+}
+.value-flip {
+  animation: kalm-flip .55s cubic-bezier(.16,.84,.32,1);
+}
+@keyframes kalm-flip {
+  0% { transform: translateY(-6px); opacity: .35; }
+  60% { transform: translateY(2px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Smooth coupon row reveal */
+.sum-row {
+  transition: opacity .5s ease, transform .5s cubic-bezier(.16,.84,.32,1), max-height .5s ease;
+}
+
+/* Hover lift on the checkout button */
+.checkout-btn {
+  transition: transform .35s cubic-bezier(.16,.84,.32,1), box-shadow .35s ease;
+}
+.checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(31,61,47,.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-slow, .word-reveal .word { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .kalm-reveal-zoom img { transform: none !important; filter: none !important; }
+  .scroll-progress { display: none; }
+}
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <nav class="nav">
   <div class="nav-inner">
@@ -318,13 +387,13 @@
 </nav>
 
 <main style="max-width: 1100px;">
-  <div class="page-eyebrow">Your cart</div>
-  <h1>One step from <em>relief.</em></h1>
+  <div class="page-eyebrow fade-slow">Your cart</div>
+  <h1 data-word-reveal>One step from <em>relief.</em></h1>
 
   <div class="cart-grid">
     <div>
-      <div class="cart-item" id="ci-1">
-        <div class="cart-item-img"><img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — Launch Kit" id="item-img"></div>
+      <div class="cart-item fade-slow" id="ci-1" style="--stagger:200ms;">
+        <div class="cart-item-img kalm-reveal-zoom"><img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — Launch Kit" id="item-img"></div>
         <div class="cart-item-info">
           <div class="cart-item-name" id="item-name">Kalmely — 2 pack</div>
           <div class="cart-item-sub">Wireless head massager · Multi-Zone Air Therapy™ · Graphene heat</div>
@@ -340,7 +409,7 @@
         </div>
       </div>
 
-      <div class="included-block" id="includedBlock" hidden>
+      <div class="included-block fade-slow" id="includedBlock" hidden style="--stagger:400ms;">
         <h3 class="included-title">What's in the box</h3>
         <ul class="included-list">
           <li><span class="check">✓</span> Kalmely Head Massager — wireless cap with handheld remote</li>
@@ -361,7 +430,7 @@
       <p style="margin-top:30px;font-size:14px;color:var(--ink-soft);">Need a different bundle? <a href="index.html#pricing">Change selection ←</a></p>
     </div>
 
-    <aside class="summary">
+    <aside class="summary fade-slow" style="--stagger:300ms;">
       <div class="coupon-claim" id="couponClaim" hidden>
         <div class="coupon-claim-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -648,6 +717,109 @@ checkoutBtn.addEventListener('click', async () => {
     checkoutBtn.textContent = 'Checkout securely →';
   }
 });
+
+// ===== ANIMATIONS — cart page =====
+(function() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  // Scroll progress
+  (function initScrollProgress() {
+    if (prefersReduced) return;
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    let ticking = false;
+    function update() {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // Word reveal — same algorithm as index
+  (function initWordReveal() {
+    const targets = document.querySelectorAll('[data-word-reveal]');
+    if (!targets.length) return;
+    const STEP = isMobile ? 60 : 90;
+    let visIdx = 0;
+    function wrapWord(word) {
+      const wrap = document.createElement('span');
+      wrap.className = 'word-wrap';
+      const inner = document.createElement('span');
+      inner.className = 'word';
+      inner.style.setProperty('--d', (visIdx * STEP) + 'ms');
+      if (word instanceof HTMLElement) inner.appendChild(word);
+      else inner.textContent = word;
+      wrap.appendChild(inner);
+      visIdx += 1;
+      return wrap;
+    }
+    targets.forEach((el) => {
+      if (el.dataset.split === 'done') return;
+      visIdx = 0;
+      const children = Array.from(el.childNodes);
+      el.innerHTML = '';
+      children.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split(/(\s+)/).forEach((p) => {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
+            el.appendChild(wrapWord(p));
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          el.appendChild(wrapWord(node));
+        }
+      });
+      el.dataset.split = 'done';
+    });
+    requestAnimationFrame(() => targets.forEach((el) => el.classList.add('in')));
+  })();
+
+  // Slow fade + zoom reveal via IntersectionObserver
+  (function initReveals() {
+    const sel = '.fade-slow, .kalm-reveal-zoom';
+    const els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
+      else io.observe(el);
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.fade-slow:not(.in), .kalm-reveal-zoom:not(.in)').forEach(el => el.classList.add('in'));
+      }, 3000);
+    });
+  })();
+
+  // Animate totals when they change — observe text mutations on grandTotal & priceNow
+  (function initValueFlips() {
+    if (prefersReduced) return;
+    const watchIds = ['grandTotal', 'priceNow', 'subtotalLine', 'launchLine', 'reliefLine'];
+    watchIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let last = el.textContent;
+      new MutationObserver(() => {
+        if (el.textContent === last) return;
+        last = el.textContent;
+        el.classList.remove('value-flip');
+        void el.offsetWidth;
+        el.classList.add('value-flip');
+      }).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+  })();
+})();
 </script>
 
 </body>

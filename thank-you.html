@@ -197,9 +197,62 @@ main { max-width: 880px; }
   .ty-card { grid-template-columns: 1fr; gap: 18px; padding: 24px 22px; }
   .ty-step-num { width: 36px; font-size: 24px; }
 }
+
+/* ===== ANIMATIONS — slow, satisfying ===== */
+.ty-icon-anim {
+  transform: scale(0); opacity: 0;
+  transition: transform 1.1s cubic-bezier(.34,1.56,.64,1) .15s, opacity .9s ease .15s;
+}
+.ty-icon-anim.in { transform: scale(1); opacity: 1; }
+.ty-icon-anim svg path { stroke-dasharray: 20; stroke-dashoffset: 20; transition: stroke-dashoffset 1s ease 1s; }
+.ty-icon-anim.in svg path { stroke-dashoffset: 0; }
+
+.fade-slow {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 1.6s cubic-bezier(.16,.84,.32,1), transform 1.6s cubic-bezier(.16,.84,.32,1);
+  transition-delay: var(--stagger,0ms);
+  will-change: opacity, transform;
+}
+.fade-slow.in { opacity: 1; transform: translateY(0); }
+
+.word-reveal { display: block; }
+.word-reveal .word-wrap {
+  display: inline-block; overflow: hidden; vertical-align: bottom; line-height: 1.2;
+}
+.word-reveal .word {
+  display: inline-block; opacity: 0; transform: translateY(110%);
+  transition: opacity 1.4s cubic-bezier(.16,.84,.32,1), transform 1.4s cubic-bezier(.16,.84,.32,1);
+  transition-delay: var(--d,0ms);
+}
+.word-reveal.in .word { opacity: 1; transform: translateY(0); }
+
+.kalm-reveal-zoom { overflow: hidden; }
+.kalm-reveal-zoom img {
+  transform: scale(1.08);
+  transition: transform 2.4s cubic-bezier(.16,.84,.32,1), filter 2.4s cubic-bezier(.16,.84,.32,1);
+  filter: saturate(.85) brightness(.95);
+}
+.kalm-reveal-zoom.in img { transform: scale(1); filter: saturate(1) brightness(1); }
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--sage,#4B725D), var(--ink,#1F3D2F));
+  z-index: 9999; transition: width .12s ease-out; pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-slow, .word-reveal .word, .ty-icon-anim {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .kalm-reveal-zoom img { transform: none !important; filter: none !important; }
+  .scroll-progress { display: none; }
+}
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <nav class="nav">
   <div class="nav-inner">
@@ -209,20 +262,20 @@ main { max-width: 880px; }
 
 <main>
   <div class="ty-hero">
-    <div class="ty-icon">
+    <div class="ty-icon ty-icon-anim" id="tyIconAnim">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="12" r="10"/>
         <path d="M9 12l2 2 4-4"/>
       </svg>
     </div>
-    <div class="page-eyebrow" style="justify-content:center;">Order confirmed</div>
-    <h1 id="tyHeading">Your Kalmely is <em>on its way.</em></h1>
-    <p class="intro" id="tyIntro">A confirmation email is in your inbox. If you don't see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
+    <div class="page-eyebrow fade-slow" style="justify-content:center;--stagger:200ms;">Order confirmed</div>
+    <h1 id="tyHeading" data-word-reveal>Your Kalmely is <em>on its way.</em></h1>
+    <p class="intro fade-slow" id="tyIntro" style="--stagger:600ms;">A confirmation email is in your inbox. If you don't see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
   </div>
 
   <!-- DIGITAL GUIDE — shown if order includes ebook -->
-  <section class="ty-digital" id="tyDigital" hidden aria-label="Digital guide delivery">
-    <div class="ty-digital-cover">
+  <section class="ty-digital fade-slow" id="tyDigital" hidden aria-label="Digital guide delivery" style="--stagger:200ms;">
+    <div class="ty-digital-cover kalm-reveal-zoom">
       <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker">
     </div>
     <div>
@@ -235,12 +288,12 @@ main { max-width: 880px; }
   </section>
 
   <!-- PRODUCT PREVIEW — physical orders only -->
-  <div class="ty-product" id="tyProductImg">
+  <div class="ty-product fade-slow kalm-reveal-zoom" id="tyProductImg" style="--stagger:300ms;">
     <img src="assets/product-hero.jpg" alt="Your Kalmely Wireless Head Massager">
   </div>
 
   <!-- ORDER DETAILS -->
-  <div class="ty-card">
+  <div class="ty-card fade-slow" style="--stagger:400ms;">
     <div class="ty-card-block">
       <h3>Order number</h3>
       <p id="order-num">KAL-2026-—</p>
@@ -261,9 +314,9 @@ main { max-width: 880px; }
 
   <!-- NEXT STEPS -->
   <div class="ty-next" id="tyNext">
-    <h2>What happens next.</h2>
+    <h2 class="fade-slow" data-word-reveal>What happens next.</h2>
 
-    <div class="ty-step" id="step01">
+    <div class="ty-step fade-slow" id="step01" style="--stagger:0ms;">
       <div class="ty-step-num">01.</div>
       <div class="ty-step-content">
         <h4>Today</h4>
@@ -271,7 +324,7 @@ main { max-width: 880px; }
       </div>
     </div>
 
-    <div class="ty-step" id="step02">
+    <div class="ty-step fade-slow" id="step02" style="--stagger:200ms;">
       <div class="ty-step-num">02.</div>
       <div class="ty-step-content">
         <h4>Within 24 hours</h4>
@@ -279,7 +332,7 @@ main { max-width: 880px; }
       </div>
     </div>
 
-    <div class="ty-step" id="step03">
+    <div class="ty-step fade-slow" id="step03" style="--stagger:400ms;">
       <div class="ty-step-num">03.</div>
       <div class="ty-step-content">
         <h4>When it arrives</h4>
@@ -287,7 +340,7 @@ main { max-width: 880px; }
       </div>
     </div>
 
-    <div class="ty-step" id="step04">
+    <div class="ty-step fade-slow" id="step04" style="--stagger:600ms;">
       <div class="ty-step-num">04.</div>
       <div class="ty-step-content">
         <h4>If it doesn't help</h4>
@@ -389,6 +442,109 @@ main { max-width: 880px; }
       items: [{ item_id: sku, item_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager', price: value, quantity: 1 }]
     });
   }
+})();
+
+// ===== ANIMATIONS — thank-you page =====
+(function() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  // Scroll progress
+  (function initScrollProgress() {
+    if (prefersReduced) return;
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    let ticking = false;
+    function update() {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // Word reveal — preserves <em>
+  (function initWordReveal() {
+    const targets = document.querySelectorAll('[data-word-reveal]');
+    if (!targets.length) return;
+    const STEP = isMobile ? 60 : 90;
+    let visIdx = 0;
+    function wrapWord(word) {
+      const wrap = document.createElement('span');
+      wrap.className = 'word-wrap';
+      const inner = document.createElement('span');
+      inner.className = 'word';
+      inner.style.setProperty('--d', (visIdx * STEP) + 'ms');
+      if (word instanceof HTMLElement) inner.appendChild(word);
+      else inner.textContent = word;
+      wrap.appendChild(inner);
+      visIdx += 1;
+      return wrap;
+    }
+    targets.forEach((el) => {
+      if (el.dataset.split === 'done') return;
+      visIdx = 0;
+      const children = Array.from(el.childNodes);
+      el.innerHTML = '';
+      children.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split(/(\s+)/).forEach((p) => {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
+            el.appendChild(wrapWord(p));
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          el.appendChild(wrapWord(node));
+        }
+      });
+      el.dataset.split = 'done';
+    });
+    // Hero (above fold)
+    const above = document.querySelectorAll('.ty-hero [data-word-reveal]');
+    requestAnimationFrame(() => above.forEach((el) => el.classList.add('in')));
+    // Below fold
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+    targets.forEach((el) => {
+      if (el.classList.contains('in')) return;
+      io.observe(el);
+    });
+  })();
+
+  // Trigger order-confirmed checkmark scale-in immediately
+  requestAnimationFrame(() => {
+    const icon = document.getElementById('tyIconAnim');
+    if (icon) icon.classList.add('in');
+  });
+
+  // Slow fade + zoom reveal
+  (function initReveals() {
+    const sel = '.fade-slow, .kalm-reveal-zoom';
+    const els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
+      else io.observe(el);
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.fade-slow:not(.in), .kalm-reveal-zoom:not(.in)').forEach(el => el.classList.add('in'));
+      }, 3000);
+    });
+  })();
 })();
 </script>
 
