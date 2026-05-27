@@ -1055,12 +1055,56 @@ strong { font-weight: 600; color: var(--ink); }
 .story-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 40px;
+  position: relative;
+}
+/* Connector line between the 3 steps (desktop only) */
+.story-grid::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 16.6%;
+  right: 16.6%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--brand) 20%, var(--brand) 80%, transparent 100%);
+  opacity: 0.35;
+  z-index: 0;
 }
 .story-step {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+.story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding: 6px 14px 6px 6px;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px -4px rgba(178, 94, 63, .45);
+}
+.story-badge-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  background: rgba(255,255,255,0.96);
+  color: var(--brand);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 .story-img {
   position: relative;
@@ -1078,17 +1122,18 @@ strong { font-weight: 600; color: var(--ink); }
 .story-num {
   position: absolute;
   top: 14px; left: 14px;
-  width: 32px; height: 32px;
-  background: rgba(15, 27, 45, 0.85);
+  width: 36px; height: 36px;
+  background: var(--brand);
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   z-index: 2;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,.35);
 }
 .story-time {
   font-family: var(--sans);
@@ -1131,8 +1176,9 @@ strong { font-weight: 600; color: var(--ink); }
 @media (max-width: 920px) {
   .story-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 48px;
   }
+  .story-grid::before { display: none; }
   .story-img { aspect-ratio: 4 / 5; max-width: 480px; margin: 0 auto; width: 100%; }
 }
 
@@ -2035,14 +2081,14 @@ html { scroll-behavior: smooth; }
 /* Slower variant */
 .kalm-stagger-slow > * { transition-duration: 1.5s; }
 
-/* Big number "pop" — for mech-card-num, story-num, how-step-num */
+/* Big number "pop" — preserves original display (flex on circles, block on cards) */
 .kalm-pop {
-  display: inline-block;
   opacity: 0;
-  transform: scale(.6) translateY(8px);
+  transform: scale(.6);
   transition: opacity 1s cubic-bezier(.34,1.56,.64,1), transform 1s cubic-bezier(.34,1.56,.64,1);
+  transform-origin: center center;
 }
-.in .kalm-pop, .kalm-pop.in { opacity: 1; transform: scale(1) translateY(0); }
+.in .kalm-pop, .kalm-pop.in { opacity: 1; transform: scale(1); }
 
 /* Cookie banner & welcome popup: slide-up entrance */
 .cookie-banner.show {
@@ -2423,7 +2469,7 @@ html { scroll-behavior: smooth; }
   <div class="section">
     <h2 class="fade-slow line-draw" data-word-reveal>What people who tried it <em>actually say.</em></h2>
     <div class="tst-grid">
-      <article class="tst-card fade" style="--stagger:0ms;">
+      <article class="tst-card fade-slow" style="--stagger:0ms;">
         <div class="tst-photo">
           <img src="assets/testimonial-hannah.jpg" alt="Hannah resting at night with Kalmely on, eyes closed" loading="lazy" decoding="async">
         </div>
@@ -2437,7 +2483,7 @@ html { scroll-behavior: smooth; }
         </div>
       </article>
 
-      <article class="tst-card fade" style="--stagger:150ms;">
+      <article class="tst-card fade-slow" style="--stagger:250ms;">
         <div class="tst-photo">
           <img src="assets/use-morning-coffee.jpg" alt="Sophie wearing Kalmely beside the kettle in the morning" loading="lazy" decoding="async">
         </div>
@@ -2451,7 +2497,7 @@ html { scroll-behavior: smooth; }
         </div>
       </article>
 
-      <article class="tst-card fade" style="--stagger:300ms;">
+      <article class="tst-card fade-slow" style="--stagger:500ms;">
         <div class="tst-photo">
           <img src="assets/use-sofa-night.jpg" alt="Margaret wearing Kalmely on the sofa during an evening migraine" loading="lazy" decoding="async">
         </div>
@@ -2478,9 +2524,9 @@ html { scroll-behavior: smooth; }
     </div>
 
     <div class="story-grid">
-      <div class="story-step fade" style="--stagger:0ms;">
+      <div class="story-step fade-slow" style="--stagger:0ms;">
+        <span class="story-badge"><span class="story-badge-num kalm-pop">1</span>Step 01</span>
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num kalm-pop">1</span>
           <img src="assets/hannah-pain.jpg" alt="Hannah in her kitchen, eyes closed, pressing her temples as a migraine begins" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">Tuesday · 2:14 PM</span>
@@ -2488,9 +2534,9 @@ html { scroll-behavior: smooth; }
         <p>The pressure behind the eyes. The light starting to feel sharp. Before, this meant the rest of the day was over.</p>
       </div>
 
-      <div class="story-step fade" style="--stagger:150ms;">
+      <div class="story-step fade-slow" style="--stagger:250ms;">
+        <span class="story-badge"><span class="story-badge-num kalm-pop">2</span>Step 02</span>
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num kalm-pop">2</span>
           <img src="assets/hannah-using.jpg" alt="Hannah sitting at her kitchen counter wearing Kalmely, calm and present" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:18 PM · Fifteen minutes</span>
@@ -2498,9 +2544,9 @@ html { scroll-behavior: smooth; }
         <p>Kalmely on at level 4, heat low. A glass of water within reach. The remote is on the counter. She breathes. The headache curve doesn't climb.</p>
       </div>
 
-      <div class="story-step fade" style="--stagger:300ms;">
+      <div class="story-step fade-slow" style="--stagger:500ms;">
+        <span class="story-badge"><span class="story-badge-num kalm-pop">3</span>Step 03</span>
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num kalm-pop">3</span>
           <img src="assets/hannah-after.jpg" alt="Hannah pouring a fresh coffee in her kitchen, Kalmely device resting on the counter beside her" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:36 PM · Back to the day</span>
