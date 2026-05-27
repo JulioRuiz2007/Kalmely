@@ -443,7 +443,15 @@ main { max-width: 880px; }
   }
 
   // Pixel: Purchase event (Meta Pixel + GA)
-  const value = isEbookOnly ? 29 : 149;
+  // Prefer the real charged value stored at checkout time (accounts for RELIEF15 -£15).
+  // Fallback: 149 (bundle without coupon) or 29 (ebook-only).
+  let value = isEbookOnly ? 29 : 149;
+  try {
+    const stored = JSON.parse(localStorage.getItem('kalmely_last_purchase') || '{}');
+    if (stored && stored.value && (Date.now() - (stored.ts || 0)) < 30 * 60 * 1000) {
+      value = stored.value;
+    }
+  } catch (_) {}
   if (window.fbq) {
     fbq('track', 'Purchase', {
       value: value,
@@ -452,6 +460,8 @@ main { max-width: 880px; }
       content_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager'
     });
   }
+  // Clear so a refresh doesn't double-fire with stale value
+  try { localStorage.removeItem('kalmely_last_purchase'); } catch (_) {}
   if (window.gtag) {
     gtag('event', 'purchase', {
       value: value,

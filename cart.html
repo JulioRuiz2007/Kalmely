@@ -692,13 +692,24 @@ if (window.fbq) fbq('track', 'AddToCart', {
 const checkoutBtn = document.getElementById('checkout');
 checkoutBtn.addEventListener('click', async () => {
   // 1. Track checkout intent
+  const checkoutValue = effectivePrice * qty;
   if (window.fbq) fbq('track', 'InitiateCheckout', {
-    value: effectivePrice * qty,
+    value: checkoutValue,
     currency: 'GBP',
     num_items: qty,
     content_ids: [sku],
     content_name: bundle.name
   });
+  // Persist the real charged amount so thank-you.html can fire Purchase with the accurate value
+  try {
+    localStorage.setItem('kalmely_last_purchase', JSON.stringify({
+      value: checkoutValue,
+      currency: 'GBP',
+      sku: sku,
+      qty: qty,
+      ts: Date.now()
+    }));
+  } catch (_) {}
 
   // 2. If Worker not configured, surface a clear dev message and bail
   if (!IS_CONFIGURED) {
