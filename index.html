@@ -2016,6 +2016,67 @@ html { scroll-behavior: smooth; }
   .announce-icon { animation: none !important; }
 }
 
+/* Auto-stagger children: any container with .kalm-stagger > * gets staggered fade-in */
+.kalm-stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1.1s cubic-bezier(.16,.84,.32,1), transform 1.1s cubic-bezier(.16,.84,.32,1);
+}
+.kalm-stagger.in > * { opacity: 1; transform: translateY(0); }
+.kalm-stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+.kalm-stagger.in > *:nth-child(2) { transition-delay: 100ms; }
+.kalm-stagger.in > *:nth-child(3) { transition-delay: 200ms; }
+.kalm-stagger.in > *:nth-child(4) { transition-delay: 300ms; }
+.kalm-stagger.in > *:nth-child(5) { transition-delay: 400ms; }
+.kalm-stagger.in > *:nth-child(6) { transition-delay: 500ms; }
+.kalm-stagger.in > *:nth-child(7) { transition-delay: 600ms; }
+.kalm-stagger.in > *:nth-child(8) { transition-delay: 700ms; }
+
+/* Slower variant */
+.kalm-stagger-slow > * { transition-duration: 1.5s; }
+
+/* Big number "pop" — for mech-card-num, story-num, how-step-num */
+.kalm-pop {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(.6) translateY(8px);
+  transition: opacity 1s cubic-bezier(.34,1.56,.64,1), transform 1s cubic-bezier(.34,1.56,.64,1);
+}
+.in .kalm-pop, .kalm-pop.in { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Cookie banner & welcome popup: slide-up entrance */
+.cookie-banner.show {
+  animation: kalm-slide-up .9s cubic-bezier(.16,.84,.32,1) both;
+}
+@keyframes kalm-slide-up {
+  from { transform: translateY(110%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Welcome popup backdrop fade + card pop */
+.welcome-backdrop.is-open {
+  animation: kalm-fade-in .5s ease both;
+}
+.welcome-backdrop.is-open .welcome-card {
+  animation: kalm-pop-in 1s cubic-bezier(.16,.84,.32,1) both;
+}
+@keyframes kalm-fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes kalm-pop-in {
+  from { opacity: 0; transform: translateY(28px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kalm-stagger > *, .kalm-pop {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .cookie-banner.show, .welcome-backdrop.is-open, .welcome-backdrop.is-open .welcome-card {
+    animation: none !important;
+  }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .word-reveal .word { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -2201,7 +2262,7 @@ html { scroll-behavior: smooth; }
           <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Photo navigation"></div>
         </div>
 
-        <div class="gallery-thumbs" id="galleryThumbs" aria-label="Choose photo">
+        <div class="gallery-thumbs kalm-stagger" id="galleryThumbs" aria-label="Choose photo">
           <button type="button" class="gallery-thumb is-photo is-active" data-slide="0" aria-label="View product">
             <img src="assets/product-hero.jpg" alt="" loading="lazy">
           </button>
@@ -2278,7 +2339,7 @@ html { scroll-behavior: smooth; }
           One fifteen-minute session is enough to interrupt the pain curve before it peaks. <strong>Drug-free, ten intensity levels</strong>, gentle enough for sensitive scalps — use it at the first warning sign and keep going with your day.
         </p>
 
-        <ul class="buy-bullets">
+        <ul class="buy-bullets kalm-stagger">
           <li>
             <svg width="18" height="18" aria-hidden="true"><use href="#iconCheck"/></svg>
             <span>Six-zone air compression with optional heat</span>
@@ -2291,7 +2352,7 @@ html { scroll-behavior: smooth; }
 
         <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary buy-cta magnetic">Find Your Relief — £149</a>
 
-        <div class="buy-trust" role="list" aria-label="Trust badges">
+        <div class="buy-trust kalm-stagger" role="list" aria-label="Trust badges">
           <div class="buy-trust-item" role="listitem">
             <svg width="20" height="20" aria-hidden="true"><use href="#iconReturn"/></svg>
             <strong>100-day trial</strong>
@@ -2419,7 +2480,7 @@ html { scroll-behavior: smooth; }
     <div class="story-grid">
       <div class="story-step fade" style="--stagger:0ms;">
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num">1</span>
+          <span class="story-num kalm-pop">1</span>
           <img src="assets/hannah-pain.jpg" alt="Hannah in her kitchen, eyes closed, pressing her temples as a migraine begins" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">Tuesday · 2:14 PM</span>
@@ -2429,7 +2490,7 @@ html { scroll-behavior: smooth; }
 
       <div class="story-step fade" style="--stagger:150ms;">
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num">2</span>
+          <span class="story-num kalm-pop">2</span>
           <img src="assets/hannah-using.jpg" alt="Hannah sitting at her kitchen counter wearing Kalmely, calm and present" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:18 PM · Fifteen minutes</span>
@@ -2439,7 +2500,7 @@ html { scroll-behavior: smooth; }
 
       <div class="story-step fade" style="--stagger:300ms;">
         <div class="story-img kalm-reveal-zoom">
-          <span class="story-num">3</span>
+          <span class="story-num kalm-pop">3</span>
           <img src="assets/hannah-after.jpg" alt="Hannah pouring a fresh coffee in her kitchen, Kalmely device resting on the counter beside her" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:36 PM · Back to the day</span>
@@ -2469,17 +2530,17 @@ html { scroll-behavior: smooth; }
 
     <div class="mech-grid">
       <div class="mech-card fade-slow" style="--stagger:0ms;">
-        <div class="mech-card-num">01</div>
+        <div class="mech-card-num kalm-pop">01</div>
         <h4>Adjustable intensity</h4>
         <p>Three modes, ten intensity levels. Dial it down to the lightest touch when your scalp is hypersensitive, or up for tension headaches and neck strain.</p>
       </div>
       <div class="mech-card fade-slow" style="--stagger:200ms;">
-        <div class="mech-card-num">02</div>
+        <div class="mech-card-num kalm-pop">02</div>
         <h4>Optional heat</h4>
         <p>Low-temperature warmth (42°C / 107°F) helps relax tense muscles around the forehead and occiput. Toggle on or off with one button.</p>
       </div>
       <div class="mech-card fade-slow" style="--stagger:400ms;">
-        <div class="mech-card-num">03</div>
+        <div class="mech-card-num kalm-pop">03</div>
         <h4>15-minute auto shut-off</h4>
         <p>One full session, then it switches itself off. Fall asleep wearing it — Kalmely won't drain its battery or yours.</p>
       </div>
@@ -2570,7 +2631,7 @@ html { scroll-behavior: smooth; }
 
         <div class="auth-refs">
           <div class="auth-refs-title">Selected references</div>
-          <ul class="auth-refs-list">
+          <ul class="auth-refs-list kalm-stagger">
             <li>Burstein R, et al. Cutaneous allodynia in migraine: prevalence and clinical significance. <em>Annals of Neurology</em>, 2004.</li>
             <li>American Migraine Foundation. Non-pharmacological treatments for migraine. 2023.</li>
             <li>Bernstein C, Burstein R. Sensitization of the trigeminovascular pathway. <em>Cephalalgia</em>, 2019.</li>
@@ -2589,17 +2650,17 @@ html { scroll-behavior: smooth; }
     </div>
     <div class="how-grid">
       <div class="how-step fade-slow" style="--stagger:0ms;">
-        <div class="how-step-num">01</div>
+        <div class="how-step-num kalm-pop">01</div>
         <h4>Wear it</h4>
         <p>Slide the band over your head so the airbags cover your forehead and temples. Adjust for snugness — not pressure.</p>
       </div>
       <div class="how-step fade-slow" style="--stagger:250ms;">
-        <div class="how-step-num">02</div>
+        <div class="how-step-num kalm-pop">02</div>
         <h4>Press start</h4>
         <p>Choose mode, intensity and heat if you want it. Sit back, lie down, do nothing.</p>
       </div>
       <div class="how-step fade-slow" style="--stagger:500ms;">
-        <div class="how-step-num">03</div>
+        <div class="how-step-num kalm-pop">03</div>
         <h4>Fifteen minutes later</h4>
         <p>The device shuts itself off at the end of the session. Most users feel meaningful relief in the first ten.</p>
       </div>
@@ -2638,7 +2699,7 @@ html { scroll-behavior: smooth; }
 <section class="faq" id="faq">
   <div class="section">
     <h2 class="fade-slow line-draw" data-word-reveal>Questions we hear <em>most.</em></h2>
-    <div class="faq-list">
+    <div class="faq-list kalm-stagger">
       <details>
         <summary>How long until I feel relief?</summary>
         <div class="faq-answer">Most users describe meaningful relief within the first ten minutes of a fifteen-minute session. For some, the warmth helps faster than the compression; for others, the reverse. Use it within the first 30 minutes of an attack for best results.</div>
@@ -2688,7 +2749,7 @@ html { scroll-behavior: smooth; }
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="section">
-    <div class="footer-grid">
+    <div class="footer-grid kalm-stagger">
       <div class="footer-col">
         <a href="/" class="footer-brand">Kalmely<span style="color:#1F3D2F">.</span></a>
         <div class="footer-tag">Calmly through every migraine.</div>
@@ -3182,6 +3243,27 @@ html { scroll-behavior: smooth; }
     }
     window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
     update();
+  })();
+
+  // Auto-stagger containers
+  (function initAutoStagger() {
+    const items = document.querySelectorAll('.kalm-stagger');
+    if (!items.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    items.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
+      else io.observe(el);
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.kalm-stagger:not(.in)').forEach(el => el.classList.add('in'));
+      }, 3000);
+    });
   })();
 
   // Buy-kit list staggered entry
