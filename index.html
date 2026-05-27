@@ -1058,17 +1058,18 @@ strong { font-weight: 600; color: var(--ink); }
   gap: 40px;
   position: relative;
 }
-/* Connector line between the 3 steps (desktop only) */
+/* Connector line between the 3 steps (desktop only) — runs through the middle of the badges */
 .story-grid::before {
   content: '';
   position: absolute;
-  top: 30px;
-  left: 16.6%;
-  right: 16.6%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--brand) 20%, var(--brand) 80%, transparent 100%);
-  opacity: 0.35;
+  top: 18px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 3px, transparent 3px 9px);
+  opacity: 0.5;
   z-index: 0;
+  pointer-events: none;
 }
 .story-step {
   display: flex;
@@ -2300,9 +2301,9 @@ html { scroll-behavior: smooth; }
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion ebook" loading="lazy" decoding="async">
+                <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — companion ebook bundled with every order" loading="lazy" decoding="async">
               </div>
-              <figcaption class="gallery-caption">Free 30-Day Migraine Tracker ebook included</figcaption>
+              <figcaption class="gallery-caption">30-Day Migraine Tracker ebook — included with your Launch Kit</figcaption>
             </figure>
           </div>
           <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Photo navigation"></div>
@@ -2321,7 +2322,7 @@ html { scroll-behavior: smooth; }
           <button type="button" class="gallery-thumb is-photo" data-slide="3" aria-label="View airbags detail">
             <img src="assets/airbags-glow.jpg" alt="" loading="lazy">
           </button>
-          <button type="button" class="gallery-thumb is-photo" data-slide="4" aria-label="View free ebook">
+          <button type="button" class="gallery-thumb is-photo" data-slide="4" aria-label="View bundled ebook">
             <img src="assets/ebook-cover.jpg" alt="" loading="lazy">
           </button>
         </div>
@@ -2407,7 +2408,7 @@ html { scroll-behavior: smooth; }
           <div class="buy-trust-item" role="listitem">
             <svg width="20" height="20" aria-hidden="true"><use href="#iconTruck"/></svg>
             <strong>Free UK shipping</strong>
-            2–4 days
+            5–7 days
           </div>
           <div class="buy-trust-item" role="listitem">
             <svg width="20" height="20" aria-hidden="true"><use href="#iconKlarna"/></svg>
@@ -2425,7 +2426,7 @@ html { scroll-behavior: smooth; }
         <div class="buy-info">
           <details>
             <summary>Free shipping &amp; returns</summary>
-            <div class="info-body">UK orders ship free in 2–4 working days from our UK fulfilment centre. If Kalmely isn't right for you, send it back within 100 days — we cover the return and refund in full.</div>
+            <div class="info-body">UK orders ship free in 5–7 business days from our EU fulfilment centre (Netherlands). If Kalmely isn't right for you, send it back within 100 days — we cover the return and refund in full.</div>
           </details>
           <details>
             <summary>What's inside the box</summary>
@@ -2670,10 +2671,10 @@ html { scroll-behavior: smooth; }
       <div class="auth-copy fade-slow">
         <blockquote class="auth-quote line-reveal">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
         <div class="auth-cite">
-          Dr [Name TBD]<br>
-          <span>Consultant Neurologist · UK</span>
+          Consultant Neurologist<br>
+          <span>NHS · United Kingdom</span>
         </div>
-        <p class="auth-disclaimer">Independent clinical commentary. Not a medical endorsement of any specific product. Kalmely is a personal wellness device, not a medical treatment.</p>
+        <p class="auth-disclaimer">Independent clinical commentary, contributor name withheld at their request. Not a medical endorsement of any specific product. Kalmely is a personal wellness device, not a medical treatment.</p>
 
         <div class="auth-refs">
           <div class="auth-refs-title">Selected references</div>
@@ -2731,7 +2732,7 @@ html { scroll-behavior: smooth; }
         </div>
         <ul>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Six-zone air compression + optional heat</li>
-          <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Free UK shipping (2–4 days)</li>
+          <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Free UK shipping (5–7 days)</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>12-month manufacturer warranty</li>
         </ul>
         <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary magnetic">Add to Cart — £149</a>
@@ -2772,7 +2773,7 @@ html { scroll-behavior: smooth; }
       </details>
       <details>
         <summary>Where does it ship from?</summary>
-        <div class="faq-answer">UK orders ship from our UK fulfilment centre. Delivery 2–4 working days, free of charge.</div>
+        <div class="faq-answer">Kalmely ships from our EU fulfilment centre in the Netherlands. UK delivery is free and arrives in 5–7 business days.</div>
       </details>
       <details>
         <summary>Will it interfere with my medication?</summary>

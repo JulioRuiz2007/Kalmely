@@ -344,7 +344,7 @@ main { max-width: 880px; }
       <div class="ty-step-num">04.</div>
       <div class="ty-step-content">
         <h4>If it doesn't help</h4>
-        <p>You have 30 days. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number and we'll process a full refund — no return required. Keep the device.</p>
+        <p>You have a 100-day trial. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number, we'll send a prepaid return label, and refund you in full once the device is back with us.</p>
       </div>
     </div>
   </div>
@@ -411,7 +411,7 @@ main { max-width: 880px; }
     document.getElementById('step03').hidden = true;
     // Update step 01 + step 04 wording for digital order
     document.querySelector('#step01 p').textContent = 'Your receipt and download link are now in your inbox. Save the PDF locally — the link is permanent but printing helps the daily-tracking habit stick.';
-    document.querySelector('#step04 p').innerHTML = 'You have 30 days. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the PDF remains yours.';
+    document.querySelector('#step04 p').innerHTML = 'You have a 100-day trial. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the PDF remains yours.';
   } else {
     // Physical: set estimated arrival to today + 7 weekdays
     const date = new Date();
