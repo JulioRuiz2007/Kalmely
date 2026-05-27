@@ -2503,7 +2503,7 @@ strong { font-weight: 600; color: var(--ink); }
     <div class="welcome-body">
       <div class="welcome-eyebrow">Welcome to Kalmely</div>
       <h3 id="welcomeTitle">£15 off your <em>first relief.</em></h3>
-      <p>Already saving £74 with our Launch Kit pricing. Add this welcome code and take £15 more off your first device — applied automatically at checkout.</p>
+      <p>Already saving £74 with our Launch Kit pricing. Claim this welcome code and you'll be able to take <strong>£15 more off</strong> when you're ready to check out — your code will be waiting for you in the cart.</p>
       <div class="welcome-code">
         <div>
           <div class="welcome-code-label">Your code</div>
@@ -2514,8 +2514,8 @@ strong { font-weight: 600; color: var(--ink); }
           extra off
         </div>
       </div>
-      <a href="cart.html?sku=KAL-BUNDLE&amp;coupon=RELIEF15" class="welcome-cta" id="welcomeCta">Apply &amp; shop the Launch Kit →</a>
-      <button type="button" class="welcome-decline" id="welcomeDecline">No thanks, I'll browse first</button>
+      <button type="button" class="welcome-cta" id="welcomeCta">Claim my £15 code &amp; keep browsing</button>
+      <button type="button" class="welcome-decline" id="welcomeDecline">No thanks</button>
     </div>
   </div>
 </div>
@@ -2770,10 +2770,10 @@ strong { font-weight: 600; color: var(--ink); }
   if (shouldShowWelcome()) setTimeout(openWelcome, 1800);
 
   welcomeCta?.addEventListener('click', () => {
-    // Persist RELIEF15 for the cart to auto-pick up (cart also accepts ?coupon=)
+    // Persist RELIEF15 so the cart can offer it when the customer is ready
     try { localStorage.setItem('kalmely_coupon', 'RELIEF15'); } catch (_) {}
     closeWelcome('accepted');
-    // Link href handles navigation — no preventDefault
+    // No navigation — let the visitor keep exploring the homepage
   });
   welcomeClose?.addEventListener('click', () => closeWelcome('dismissed'));
   welcomeDecline?.addEventListener('click', () => closeWelcome('dismissed'));
