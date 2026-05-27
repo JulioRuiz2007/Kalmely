@@ -2,21 +2,22 @@
  * Kalmely Stripe + Email Worker
  *
  *  POST /api/checkout         → create Stripe Checkout Session with auto-applied coupons
- *  POST /api/webhook          → handle checkout.session.completed (email + ebook delivery)
+ *  POST /api/webhook          → handle checkout.session.completed (order email + ebook delivery via Resend)
+ *  POST /api/lead-magnet      → email the 30-Day Migraine Tracker PDF via Resend
  *  GET  /api/health           → health probe
  *
  * Env vars (set via wrangler secret put):
- *   STRIPE_SECRET              sk_live_… or sk_test_…
- *   STRIPE_WEBHOOK_SECRET      whsec_…
- *   STRIPE_PRICE_KAL_SOLO      price_…  (£149)
- *   STRIPE_PRICE_KAL_BUNDLE    price_…  (£223 list — bundle includes free digital guide)
+ *   STRIPE_SECRET                  sk_live_… or sk_test_…
+ *   STRIPE_WEBHOOK_SECRET          whsec_…
+ *   STRIPE_PRICE_KAL_BUNDLE        price_…  (£223 list — bundle includes free digital guide)
  *   STRIPE_COUPON_LAUNCH           coupon_…  (-£74, bundle only, automatic)
  *   STRIPE_COUPON_RELIEF15         coupon_…  (-£15, customer-entered code on KAL-BUNDLE)
  *   STRIPE_COUPON_LAUNCH_RELIEF15  coupon_…  (-£89, bundle + RELIEF15 combined,
  *                                  required because Stripe Checkout accepts only 1 discount)
- *   KLAVIYO_KEY                pk_… (private key)
- *   EBOOK_PDF_URL              https://cdn.kalmely.com/migraine-tracker.pdf  (or R2 signed url generator)
- *   SITE_ORIGIN                https://kalmely.com
+ *   RESEND_API_KEY                 re_…   (Resend API key, used for all transactional email)
+ *   RESEND_FROM                    "Kalmely <orders@kalmely.com>"  (verified sender)
+ *   EBOOK_PDF_URL                  https://cdn.kalmely.com/migraine-tracker.pdf
+ *   SITE_ORIGIN                    https://kalmely.com
  */
 
 const CORS = (origin) => ({
@@ -121,27 +122,117 @@ async function verifyStripeSignature(payload, sigHeader, secret) {
   if (Math.abs(Date.now() / 1000 - +ts) > 300) throw new Error('Timestamp too old');
 }
 
-async function sendKlaviyoEvent(env, email, props, metricName = 'Order placed') {
-  if (!env.KLAVIYO_KEY) return { skipped: true };
-  const res = await fetch('https://a.klaviyo.com/api/events/', {
+// ---------- EMAIL (Resend) ----------
+
+async function sendResendEmail(env, { to, subject, html }) {
+  if (!env.RESEND_API_KEY) {
+    console.log('RESEND_API_KEY missing — skipping email to', to);
+    return { skipped: true };
+  }
+  const from = env.RESEND_FROM || 'Kalmely <orders@kalmely.com>';
+  const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Klaviyo-API-Key ${env.KLAVIYO_KEY}`,
-      'Content-Type': 'application/json',
-      'revision': '2024-10-15'
+      'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      data: {
-        type: 'event',
-        attributes: {
-          properties: props,
-          metric:  { data: { type: 'metric',  attributes: { name: metricName } } },
-          profile: { data: { type: 'profile', attributes: { email } } }
-        }
-      }
-    })
+    body: JSON.stringify({ from, to, subject, html })
   });
-  return { status: res.status, ok: res.ok };
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) console.log('Resend error', res.status, data);
+  return { status: res.status, ok: res.ok, data };
+}
+
+function emailShell(innerHtml, preheader = '') {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalmely</title>
+</head>
+<body style="margin:0;padding:0;background:#FBF7F0;font-family:Georgia,'Times New Roman',serif;color:#2C3A2F;">
+<div style="display:none;font-size:1px;color:#FBF7F0;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${preheader}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBF7F0;padding:40px 16px;">
+  <tr><td align="center">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#ffffff;border-radius:12px;padding:40px 36px;">
+      <tr><td style="text-align:center;padding-bottom:24px;">
+        <span style="font-family:Georgia,serif;font-size:22px;color:#1F3D2F;letter-spacing:.5px;">Kalmely<span style="color:#B25E3F;">·</span></span>
+      </td></tr>
+      ${innerHtml}
+      <tr><td style="padding-top:32px;border-top:1px solid #EFEAE0;text-align:center;font-family:Arial,sans-serif;font-size:12px;color:#8A8378;line-height:1.6;">
+        Kalmely Ltd · Designed in the UK · <a href="https://kalmely.com" style="color:#8A8378;text-decoration:underline;">kalmely.com</a><br>
+        Questions? Reply to this email — we answer within 24h.
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>`;
+}
+
+function buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta }) {
+  const ebookBlock = includesEbook && ebookUrl ? `
+      <tr><td style="padding-top:32px;">
+        <div style="background:#F4EFE5;border-radius:10px;padding:24px;">
+          <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.4px;color:#B25E3F;text-transform:uppercase;margin-bottom:8px;">Digital guide included</div>
+          <h2 style="font-family:Georgia,serif;font-size:22px;color:#1F3D2F;margin:0 0 12px;">Your 30-Day Migraine Tracker.</h2>
+          <p style="font-family:Georgia,serif;font-size:15px;line-height:1.65;color:#2C3A2F;margin:0 0 18px;">Start tonight. Bring it to your next neurologist visit — most patients shave 30 minutes off the diagnosis conversation.</p>
+          <a href="${ebookUrl}" style="display:inline-block;background:#1F3D2F;color:#FBF7F0;font-family:Arial,sans-serif;font-size:14px;text-decoration:none;padding:14px 28px;border-radius:6px;font-weight:600;letter-spacing:.4px;">Download your PDF</a>
+          <p style="font-family:Arial,sans-serif;font-size:12px;color:#8A8378;margin:14px 0 0;">If the button doesn't work, copy this link: <span style="color:#1F3D2F;">${ebookUrl}</span></p>
+        </div>
+      </td></tr>` : '';
+
+  const inner = `
+      <tr><td>
+        <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.4px;color:#B25E3F;text-transform:uppercase;margin-bottom:10px;">Order confirmed</div>
+        <h1 style="font-family:Georgia,serif;font-size:28px;line-height:1.25;color:#1F3D2F;margin:0 0 18px;">Your Kalmely is <em style="color:#B25E3F;">on its way.</em></h1>
+        <p style="font-family:Georgia,serif;font-size:16px;line-height:1.65;color:#2C3A2F;margin:0 0 18px;">Thank you for ordering. Your payment has been received and a tracking link will reach this inbox within 24 hours.</p>
+      </td></tr>
+      ${ebookBlock}
+      <tr><td style="padding-top:28px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8F4EC;border-radius:10px;padding:20px 22px;">
+          <tr>
+            <td style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.2px;color:#8A8378;text-transform:uppercase;padding-bottom:6px;">Order number</td>
+            <td style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.2px;color:#8A8378;text-transform:uppercase;padding-bottom:6px;">Estimated delivery</td>
+          </tr>
+          <tr>
+            <td style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${orderId}</td>
+            <td style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${eta}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.2px;color:#8A8378;text-transform:uppercase;padding:14px 0 6px;">Total paid</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${amountLabel}</td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding-top:28px;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#2C3A2F;">
+        <strong style="color:#1F3D2F;">What happens next.</strong><br>
+        Your Kalmely ships from our EU warehouse within 24 hours. UK delivery is 5–7 business days. You'll receive a tracking link by email as soon as it leaves the warehouse.
+      </td></tr>`;
+
+  return emailShell(inner, includesEbook
+    ? 'Your Kalmely is on its way — and here is your 30-Day Migraine Tracker.'
+    : 'Your Kalmely is on its way — tracking arrives within 24h.');
+}
+
+function buildLeadMagnetHtml({ ebookUrl }) {
+  const inner = `
+      <tr><td>
+        <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.4px;color:#B25E3F;text-transform:uppercase;margin-bottom:10px;">Your digital guide</div>
+        <h1 style="font-family:Georgia,serif;font-size:28px;line-height:1.25;color:#1F3D2F;margin:0 0 18px;">Your 30-Day Migraine <em style="color:#B25E3F;">Tracker.</em></h1>
+        <p style="font-family:Georgia,serif;font-size:16px;line-height:1.7;color:#2C3A2F;margin:0 0 22px;">Start tonight. Bring it to your next neurologist visit — most patients shave 30 minutes off the diagnosis conversation.</p>
+        <a href="${ebookUrl}" style="display:inline-block;background:#1F3D2F;color:#FBF7F0;font-family:Arial,sans-serif;font-size:14px;text-decoration:none;padding:14px 28px;border-radius:6px;font-weight:600;letter-spacing:.4px;">Download your PDF</a>
+        <p style="font-family:Arial,sans-serif;font-size:12px;color:#8A8378;margin:14px 0 0;">If the button doesn't work, copy this link: <span style="color:#1F3D2F;">${ebookUrl}</span></p>
+      </td></tr>
+      <tr><td style="padding-top:32px;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#2C3A2F;">
+        Over the next few days we'll send you three short notes: the science behind multi-zone air pressure for migraine, a 4-step nightly routine, and a £15 welcome code if you'd like to try Kalmely yourself.<br><br>
+        Not interested in the follow-ups? Ignore the next email and we won't write again.
+      </td></tr>`;
+
+  return emailShell(inner, 'Your 30-Day Migraine Tracker — download inside.');
 }
 
 async function handleWebhook(request, env, ctx) {
@@ -160,20 +251,40 @@ async function handleWebhook(request, env, ctx) {
   const email = session.customer_details?.email;
   const sku = session.metadata?.sku;
   const amountTotal = (session.amount_total || 0) / 100;
+  const currency = (session.currency || 'gbp').toUpperCase();
   const includesEbook = sku === 'KAL-BUNDLE';
 
-  // Fire-and-forget Klaviyo notification
-  ctx.waitUntil(sendKlaviyoEvent(env, email, {
-    order_id: session.id,
-    sku,
-    amount: amountTotal,
-    currency: (session.currency || 'gbp').toUpperCase(),
-    pdf_url: includesEbook ? env.EBOOK_PDF_URL : null,
-    includes_ebook: includesEbook,
-    delivery_eta: '5-7 business days'
-  }));
+  if (email) {
+    const ebookUrl = env.EBOOK_PDF_URL || '';
+    const orderId = `KAL-${new Date().getFullYear()}-${session.id.slice(-5).toUpperCase()}`;
+    const eta = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    const amountLabel = `£${amountTotal.toFixed(2)} ${currency}`;
+    const html = buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta });
+    const subject = includesEbook
+      ? 'Your Kalmely is on its way — and here is your 30-Day Migraine Tracker'
+      : 'Your Kalmely is on its way';
+    ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
+  }
 
   return new Response('ok', { status: 200 });
+}
+
+// ---------- LEAD MAGNET ----------
+
+async function handleLeadMagnet(request, env, ctx, origin) {
+  const { email } = await request.json();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ error: 'invalid email' }, 400, CORS(origin));
+  }
+  const ebookUrl = env.EBOOK_PDF_URL || '';
+  const html = buildLeadMagnetHtml({ ebookUrl });
+  ctx.waitUntil(sendResendEmail(env, {
+    to: email,
+    subject: 'Your 30-Day Migraine Tracker — download inside',
+    html
+  }));
+  return json({ ok: true }, 202, CORS(origin));
 }
 
 // ---------- ROUTER ----------
@@ -204,20 +315,3 @@ export default {
     return new Response('Not found', { status: 404 });
   }
 };
-
-// ---------- LEAD MAGNET ----------
-
-async function handleLeadMagnet(request, env, ctx, origin) {
-  const { email, source } = await request.json();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ error: 'invalid email' }, 400, CORS(origin));
-  }
-  // Fire a Klaviyo event so the "Lead magnet requested" flow can deliver the PDF.
-  // The flow itself lives in Klaviyo; here we only need to push the event.
-  ctx.waitUntil(sendKlaviyoEvent(env, email, {
-    source: source || 'lead_magnet_ebook',
-    pdf_url: env.EBOOK_PDF_URL || null,
-    requested_at: new Date().toISOString()
-  }, 'Lead magnet requested'));
-  return json({ ok: true }, 202, CORS(origin));
-}

@@ -1774,9 +1774,104 @@ strong { font-weight: 600; color: var(--ink); }
   margin: -1px; padding: 0; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ===== ANIMATIONS ===== */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent, #B25E3F), var(--ink, #1F3D2F));
+  z-index: 9999;
+  transition: width .12s ease-out;
+  pointer-events: none;
+}
+
+/* Word-by-word reveal for hero title */
+.word-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.word-reveal .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%);
+  transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+.word-reveal.in .word { opacity: 1; transform: translateY(0); }
+
+/* Stagger: any .fade with --stagger CSS var respects it */
+.fade { transition-delay: var(--stagger, 0ms); }
+
+/* Parallax wrapper — JS-driven */
+.parallax { will-change: transform; transition: none; }
+
+/* Magnetic CTA (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  .magnetic {
+    transition: transform .25s cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
+  }
+}
+
+/* Image zoom-on-reveal: photos breathe in slightly when first seen */
+.kalm-reveal-zoom {
+  overflow: hidden;
+}
+.kalm-reveal-zoom img,
+.kalm-reveal-zoom > picture > img {
+  transform: scale(1.06);
+  transition: transform 1.4s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.kalm-reveal-zoom.in img,
+.kalm-reveal-zoom.in > picture > img {
+  transform: scale(1);
+}
+
+/* Marquee band — pause on hover, infinite loop */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 48px;
+  animation: marquee-scroll 38s linear infinite;
+  padding-left: 48px;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Soft mobile-only reduce of motion-heavy animations */
+@media (max-width: 768px) {
+  .parallax { transform: none !important; }
+  .word-reveal .word { transition-duration: .55s; }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .word-reveal .word { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .parallax { transform: none !important; }
+  .marquee-track { animation: none !important; }
+  .kalm-reveal-zoom img { transform: none !important; }
+  .scroll-progress { display: none; }
+}
 </style>
 </head>
 <body>
+
+<!-- Scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- ===== 1. ANNOUNCEMENT BAR — launch countdown ===== -->
 <div class="announce" role="region" aria-label="Launch price countdown">
@@ -1808,7 +1903,6 @@ strong { font-weight: 600; color: var(--ink); }
       <a href="#authority">The science</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
-      <a href="#lead">Free guide</a>
     </div>
     <div class="nav-right">
       <button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -1976,7 +2070,7 @@ strong { font-weight: 600; color: var(--ink); }
           <span><a href="#reviews">11,000+ reviews</a></span>
         </div>
 
-        <h1>Kalmely — Wireless Head Massager</h1>
+        <h1 class="word-reveal" data-word-reveal>Kalmely — Wireless Head Massager</h1>
         <p class="buy-tagline"><strong>Clinically-Targeted Migraine Relief.</strong> Drug-free, in fifteen minutes.</p>
 
         <div class="buy-price">
@@ -2037,7 +2131,7 @@ strong { font-weight: 600; color: var(--ink); }
           </li>
         </ul>
 
-        <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary buy-cta">Find Your Relief — £149</a>
+        <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary buy-cta magnetic">Find Your Relief — £149</a>
 
         <div class="buy-trust" role="list" aria-label="Trust badges">
           <div class="buy-trust-item" role="listitem">
@@ -2091,8 +2185,8 @@ strong { font-weight: 600; color: var(--ink); }
 <section class="hook">
   <div class="section">
     <div class="hook-grid">
-      <div class="hook-visual fade">
-        <img src="assets/pain-temples-redhead.jpg" alt="A woman with auburn hair pressing her temples during a migraine attack, a blister of pills on the table" loading="lazy" decoding="async">
+      <div class="hook-visual fade kalm-reveal-zoom">
+        <img src="assets/pain-temples-redhead.jpg" alt="A woman with auburn hair pressing her temples during a migraine attack, a blister of pills on the table" loading="lazy" decoding="async" data-parallax="0.06">
       </div>
       <div class="hook-copy fade">
         <h2>If your hair hurts during a migraine, <em>you're not crazy.</em></h2>
@@ -2110,7 +2204,7 @@ strong { font-weight: 600; color: var(--ink); }
   <div class="section">
     <h2 class="fade">What people who tried it <em>actually say.</em></h2>
     <div class="tst-grid">
-      <article class="tst-card fade">
+      <article class="tst-card fade" style="--stagger:0ms;">
         <div class="tst-photo">
           <img src="assets/testimonial-hannah.jpg" alt="Hannah resting at night with Kalmely on, eyes closed" loading="lazy" decoding="async">
         </div>
@@ -2124,7 +2218,7 @@ strong { font-weight: 600; color: var(--ink); }
         </div>
       </article>
 
-      <article class="tst-card fade">
+      <article class="tst-card fade" style="--stagger:150ms;">
         <div class="tst-photo">
           <img src="assets/use-morning-coffee.jpg" alt="Sophie wearing Kalmely beside the kettle in the morning" loading="lazy" decoding="async">
         </div>
@@ -2138,7 +2232,7 @@ strong { font-weight: 600; color: var(--ink); }
         </div>
       </article>
 
-      <article class="tst-card fade">
+      <article class="tst-card fade" style="--stagger:300ms;">
         <div class="tst-photo">
           <img src="assets/use-sofa-night.jpg" alt="Margaret wearing Kalmely on the sofa during an evening migraine" loading="lazy" decoding="async">
         </div>
@@ -2165,30 +2259,30 @@ strong { font-weight: 600; color: var(--ink); }
     </div>
 
     <div class="story-grid">
-      <div class="story-step fade">
-        <div class="story-img">
+      <div class="story-step fade" style="--stagger:0ms;">
+        <div class="story-img kalm-reveal-zoom">
           <span class="story-num">1</span>
-          <img src="assets/hannah-pain.jpg" alt="Hannah in her kitchen, eyes closed, pressing her temples as a migraine begins" loading="lazy" decoding="async">
+          <img src="assets/hannah-pain.jpg" alt="Hannah in her kitchen, eyes closed, pressing her temples as a migraine begins" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">Tuesday · 2:14 PM</span>
         <h4>The first warning sign.</h4>
         <p>The pressure behind the eyes. The light starting to feel sharp. Before, this meant the rest of the day was over.</p>
       </div>
 
-      <div class="story-step fade">
-        <div class="story-img">
+      <div class="story-step fade" style="--stagger:150ms;">
+        <div class="story-img kalm-reveal-zoom">
           <span class="story-num">2</span>
-          <img src="assets/hannah-using.jpg" alt="Hannah sitting at her kitchen counter wearing Kalmely, calm and present" loading="lazy" decoding="async">
+          <img src="assets/hannah-using.jpg" alt="Hannah sitting at her kitchen counter wearing Kalmely, calm and present" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:18 PM · Fifteen minutes</span>
         <h4>One session. That's it.</h4>
         <p>Kalmely on at level 4, heat low. A glass of water within reach. The remote is on the counter. She breathes. The headache curve doesn't climb.</p>
       </div>
 
-      <div class="story-step fade">
-        <div class="story-img">
+      <div class="story-step fade" style="--stagger:300ms;">
+        <div class="story-img kalm-reveal-zoom">
           <span class="story-num">3</span>
-          <img src="assets/hannah-after.jpg" alt="Hannah pouring a fresh coffee in her kitchen, Kalmely device resting on the counter beside her" loading="lazy" decoding="async">
+          <img src="assets/hannah-after.jpg" alt="Hannah pouring a fresh coffee in her kitchen, Kalmely device resting on the counter beside her" loading="lazy" decoding="async" data-parallax="0.04">
         </div>
         <span class="story-time">2:36 PM · Back to the day</span>
         <h4>Coffee. Replies. Her life.</h4>
@@ -2305,8 +2399,8 @@ strong { font-weight: 600; color: var(--ink); }
 <section class="auth" id="authority">
   <div class="section">
     <div class="auth-grid">
-      <div class="auth-visual fade">
-        <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async">
+      <div class="auth-visual fade kalm-reveal-zoom">
+        <img src="assets/doctor-portrait.jpg" alt="A consultant neurologist seated at her desk with Kalmely placed beside her" loading="lazy" decoding="async" data-parallax="0.06">
       </div>
       <div class="auth-copy fade">
         <blockquote class="auth-quote">"Gentle, adjustable compression and warmth are well-established non-pharmacological tools for migraine management. The benefit of a device like this is patient autonomy — the ability to act in the first 30 minutes of an attack, when timing matters most."</blockquote>
@@ -2375,7 +2469,7 @@ strong { font-weight: 600; color: var(--ink); }
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>Free UK shipping (2–4 days)</li>
           <li><svg width="16" height="16" aria-hidden="true"><use href="#iconCheck"/></svg>12-month manufacturer warranty</li>
         </ul>
-        <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary">Add to Cart — £149</a>
+        <a href="cart.html?sku=KAL-BUNDLE" class="btn btn-primary magnetic">Add to Cart — £149</a>
         <div class="klarna">Klarna available · 4 payments of £37.25</div>
       </div>
     </div>
@@ -2431,28 +2525,6 @@ strong { font-weight: 600; color: var(--ink); }
   </div>
 </section>
 
-<!-- ===== 12. LEAD MAGNET ===== -->
-<section class="lead" id="lead">
-  <div class="section">
-    <div class="lead-grid">
-      <div class="lead-visual fade">
-        <img src="assets/ebook-cover.jpg" alt="The 30-Day Migraine Tracker — free companion guide cover" loading="lazy" decoding="async">
-      </div>
-      <div class="lead-copy fade">
-        <h2>The 30-Day Migraine <em>Tracker.</em></h2>
-        <p>A free 24-page companion guide. Cutaneous allodynia explained in plain English, a complete migraine tracker template, and 27 drug-free tactics for managing attacks and identifying your triggers. Used by 1,200+ chronic migraine sufferers across the UK and US.</p>
-        <form class="lead-form" id="leadForm" novalidate>
-          <label for="leadEmail" class="sr-only">Your email</label>
-          <input type="email" id="leadEmail" name="email" placeholder="your@email.com" required autocomplete="email">
-          <button type="submit">Send me the guide</button>
-        </form>
-        <div class="lead-status" id="leadStatus" role="status" aria-live="polite"></div>
-        <p class="lead-microcopy">We email you the PDF instantly. Unsubscribe anytime. No spam, no third-party sharing. <a href="privacy.html">Privacy policy</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -2468,7 +2540,6 @@ strong { font-weight: 600; color: var(--ink); }
         <h5>Shop</h5>
         <ul>
           <li><a href="cart.html?sku=KAL-BUNDLE">Buy Kalmely</a></li>
-          <li><a href="#lead">Free guide</a></li>
           <li><a href="shipping-policy.html">Shipping policy</a></li>
           <li><a href="refund-policy.html">Returns &amp; refunds</a></li>
         </ul>
@@ -2608,41 +2679,6 @@ strong { font-weight: 600; color: var(--ink); }
       });
     }, { passive: true });
   })();
-
-  // ===== Lead magnet form =====
-  const WORKER = 'https://kalmely-api.julioruizbayarri.workers.dev';
-  const leadForm = document.getElementById('leadForm');
-  const leadStatus = document.getElementById('leadStatus');
-  leadForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const input = document.getElementById('leadEmail');
-    const email = (input.value || '').trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      leadStatus.textContent = 'Please enter a valid email address.';
-      leadStatus.className = 'lead-status err';
-      return;
-    }
-    leadStatus.textContent = 'Sending…';
-    leadStatus.className = 'lead-status';
-    try {
-      const res = await fetch(`${WORKER}/api/lead-magnet`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'lead_magnet_home' })
-      });
-      if (res.ok) {
-        leadStatus.textContent = 'Sent. Check your inbox in the next few minutes.';
-        leadStatus.className = 'lead-status ok';
-        input.value = '';
-      } else {
-        throw new Error('worker');
-      }
-    } catch (_) {
-      // Graceful fallback to mailto
-      leadStatus.innerHTML = 'Something went wrong. <a href="mailto:hello@kalmely.com?subject=Send%20me%20the%20Tracker">Email us</a> and we will send it manually.';
-      leadStatus.className = 'lead-status err';
-    }
-  });
 
   // ===== Cookie banner =====
   const cookieBanner = document.getElementById('cookieBanner');
@@ -2785,6 +2821,113 @@ strong { font-weight: 600; color: var(--ink); }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && welcomeBackdrop?.classList.contains('is-open')) closeWelcome('dismissed');
   });
+
+  // ===== ANIMATIONS =====
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+  // Scroll progress bar
+  (function initScrollProgress() {
+    if (prefersReduced) return;
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    let ticking = false;
+    function update() {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // Word-by-word reveal for headlines marked [data-word-reveal]
+  (function initWordReveal() {
+    document.querySelectorAll('[data-word-reveal]').forEach((el) => {
+      if (el.dataset.split === 'done') return;
+      const text = el.textContent;
+      el.textContent = '';
+      const words = text.split(/(\s+)/);
+      words.forEach((w, i) => {
+        if (/^\s+$/.test(w)) { el.appendChild(document.createTextNode(w)); return; }
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.style.setProperty('--d', (i * 60) + 'ms');
+        span.textContent = w;
+        el.appendChild(span);
+      });
+      el.dataset.split = 'done';
+    });
+    // Trigger reveal on load (hero is above the fold so we just unleash it)
+    requestAnimationFrame(() => {
+      document.querySelectorAll('[data-word-reveal]').forEach((el) => el.classList.add('in'));
+    });
+  })();
+
+  // Parallax for images marked [data-parallax="0.06"]
+  (function initParallax() {
+    if (prefersReduced || isCoarse) return;
+    const items = Array.from(document.querySelectorAll('[data-parallax]')).map((el) => ({
+      el,
+      ratio: parseFloat(el.dataset.parallax) || 0.05,
+    }));
+    if (!items.length) return;
+    let ticking = false;
+    function update() {
+      const vh = window.innerHeight;
+      const mid = window.scrollY + vh / 2;
+      items.forEach(({ el, ratio }) => {
+        const rect = el.getBoundingClientRect();
+        const elMid = rect.top + window.scrollY + rect.height / 2;
+        const delta = (mid - elMid) * ratio;
+        el.style.transform = 'translate3d(0,' + delta.toFixed(2) + 'px,0)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  })();
+
+  // Image zoom-on-reveal (uses IntersectionObserver to add .in)
+  (function initRevealZoom() {
+    const els = document.querySelectorAll('.kalm-reveal-zoom');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('in');
+      else io.observe(el);
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.kalm-reveal-zoom:not(.in)').forEach(el => el.classList.add('in'));
+      }, 2500);
+    });
+  })();
+
+  // Magnetic CTAs (desktop only)
+  (function initMagnetic() {
+    if (prefersReduced || isCoarse) return;
+    document.querySelectorAll('.magnetic').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+        el.style.transform = `translate(${x * 0.15}px, ${y * 0.2}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  })();
 })();
 </script>
 
