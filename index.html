@@ -86,7 +86,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--sans);
@@ -96,6 +96,7 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
@@ -916,15 +917,21 @@ strong { font-weight: 600; color: var(--ink); }
 .compare h2 em { color: var(--brand); font-style: italic; font-weight: 500; }
 .compare-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--line);
   border-radius: 12px;
   margin-bottom: 28px;
+  max-width: 100%;
 }
 .compare-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14.5px;
-  min-width: 560px;
+  min-width: 460px;
+}
+@media (max-width: 520px) {
+  .compare-table { font-size: 13px; min-width: 380px; }
+  .compare-table thead th, .compare-table tbody td { padding: 12px 8px; }
 }
 .compare-table thead th {
   padding: 18px 16px;
@@ -2151,6 +2158,97 @@ html { scroll-behavior: smooth; }
   .cookie-banner.show, .welcome-backdrop.is-open, .welcome-backdrop.is-open .welcome-card {
     animation: none !important;
   }
+}
+
+/* ============================================
+   MOBILE SAFETY LAYER — last to apply, wins ties
+   ============================================ */
+@media (max-width: 600px) {
+  /* Nothing inside body should ever spill over viewport */
+  body, html { max-width: 100vw; overflow-x: clip; }
+  main, section, header, footer { max-width: 100%; }
+
+  /* Section padding tighter on small screens */
+  :root { --pad: 18px; }
+  .section { padding-left: 18px; padding-right: 18px; }
+
+  /* Product hero h1 — fit on phone screens */
+  .buy h1 {
+    font-size: clamp(24px, 7.2vw, 30px);
+    line-height: 1.15;
+    word-break: break-word;
+  }
+
+  /* Word-reveal safety: allow line breaks between wraps + don't clip if a single word is wider */
+  .word-reveal { word-spacing: 0; }
+  .word-reveal .word-wrap { max-width: 100%; }
+  .word-reveal .word { max-width: 100%; white-space: normal; }
+
+  /* Buy stars line should wrap properly */
+  .buy-stars { gap: 8px; font-size: 12.5px; }
+  .buy-stars a { white-space: nowrap; }
+
+  /* Big serif numbers don't shrink the price line */
+  .buy-price { gap: 10px; }
+  .buy-price .now { font-size: 36px; }
+  .buy-price .was { font-size: 20px; }
+
+  /* CTAs full width + text wrap allowed */
+  .btn-primary, .magnetic, .nav-cta {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    font-size: 15px;
+    padding: 14px 18px;
+  }
+  .nav-cta { width: auto; padding: 9px 18px; }
+
+  /* Buy-trust 4 badges on a 2x2 grid instead of 1 row */
+  .buy-trust {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .buy-trust-item {
+    font-size: 12px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* H2 fits screen with break-word */
+  h2 { word-break: break-word; hyphens: auto; }
+
+  /* Welcome popup: full width on phone */
+  .welcome-backdrop { padding: 14px; }
+  .welcome { max-width: 100%; }
+  .welcome-body { padding: 22px 18px 24px; }
+  .welcome-body h3 { font-size: 22px; }
+  .welcome-body > p { font-size: 14px; }
+  .welcome-code { flex-direction: column; gap: 8px; text-align: center; padding: 14px; }
+  .welcome-code-saves { text-align: center; }
+  .welcome-cta { font-size: 14px; padding: 14px 18px; }
+
+  /* Announce bar countdown fits */
+  .announce { font-size: 11px; padding: 8px 14px; }
+  .announce-label { font-size: 11px; letter-spacing: .08em; }
+
+  /* Trust pill in stars */
+  .buy-stars .trust-pill { padding: 4px 8px; font-size: 12px; }
+
+  /* Buy kit list values keep on one line */
+  .buy-kit-list li { gap: 8px; flex-wrap: wrap; }
+  .buy-kit-item { font-size: 13.5px; flex: 1 1 100%; }
+  .buy-kit-val { font-size: 12px; }
+}
+
+/* Tiny screens (≤380px) extra squeeze */
+@media (max-width: 380px) {
+  .buy h1 { font-size: 23px; }
+  .buy-price .now { font-size: 32px; }
+  :root { --pad: 14px; }
+  .section { padding-left: 14px; padding-right: 14px; }
 }
 
 /* Respect prefers-reduced-motion */
