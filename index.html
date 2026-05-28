@@ -338,23 +338,26 @@ strong { font-weight: 600; color: var(--ink); }
 }
 .pdp-grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
 }
 @media (max-width: 920px) {
-  .pdp-grid { grid-template-columns: 1fr; gap: 24px; }
+  .pdp-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 
 /* PDP Gallery */
 .gallery {
   position: relative;
+  min-width: 0;
+  max-width: 100%;
 }
 .gallery-main {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-soft);
+  width: 100%;
 }
 .gallery-track {
   display: flex;
@@ -363,10 +366,13 @@ strong { font-weight: 600; color: var(--ink); }
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  width: 100%;
 }
 .gallery-track::-webkit-scrollbar { display: none; }
 .gallery-slide {
   flex: 0 0 100%;
+  min-width: 0;
+  width: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   margin: 0;
