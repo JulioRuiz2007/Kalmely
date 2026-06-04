@@ -148,7 +148,8 @@ async function sendResendEmail(env, { to, subject, html }) {
     body: JSON.stringify({ from, to, subject, html })
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) console.log('Resend error', res.status, data);
+  if (!res.ok) console.log('[resend] ERROR', res.status, JSON.stringify(data));
+  else console.log('[resend] sent to', to, '· id', data.id || '(none)');
   return { status: res.status, ok: res.ok, data };
 }
 
@@ -307,6 +308,7 @@ async function handleWebhook(request, env, ctx) {
 
     const html = buildOrderHtml({ orderId, amountLabel, eta, productLine, colorsLine, digital, preheader });
     const subject = 'Your Kalmely is on its way';
+    console.log('[order]', JSON.stringify({ email, sku, productLine, colorsLine, guide: !!digital }));
     ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
   }
 
