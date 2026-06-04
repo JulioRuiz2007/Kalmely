@@ -427,15 +427,15 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 
 <main style="max-width: 1100px;">
   <div class="page-eyebrow fade-slow">Your cart</div>
-  <h1 data-word-reveal>One step from <em>relief.</em></h1>
+  <h1 data-word-reveal>One step from <em>real rest.</em></h1>
 
   <div class="cart-grid">
     <div>
       <div class="cart-item fade-slow" id="ci-1" style="--stagger:200ms;">
-        <div class="cart-item-img kalm-reveal-zoom"><img src="assets/product-hero.jpg" alt="Kalmely Wireless Head Massager — Launch Kit" id="item-img"></div>
+        <div class="cart-item-img kalm-reveal-zoom"><!-- REVISAR: foto real del antifaz --><img src="assets/product-placeholder.svg" alt="Kalmely Sleep Mask" id="item-img"></div>
         <div class="cart-item-info">
-          <div class="cart-item-name" id="item-name">Kalmely — 2 pack</div>
-          <div class="cart-item-sub">Wireless head massager · Multi-Zone Air Therapy™ · Graphene heat</div>
+          <div class="cart-item-name" id="item-name">Kalmely Sleep Mask</div>
+          <div class="cart-item-sub">3D sleep mask with built-in Bluetooth speakers · Free UK shipping</div>
           <div class="cart-qty">
             <button onclick="updateQty(-1)" aria-label="Decrease quantity">−</button>
             <span class="val" id="qty">1</span>
@@ -444,7 +444,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
         </div>
         <div class="cart-item-price" id="item-price">
           <span class="price-was" id="priceWas" style="display:block;font-size:14px;color:var(--ink-soft);text-decoration:line-through;font-family:var(--sans);line-height:1;margin-bottom:4px;">£223</span>
-          <span class="price-now" id="priceNow">£149</span>
+          <span class="price-now" id="priceNow">£39</span>
         </div>
       </div>
 
@@ -490,7 +490,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       <h2 style="margin:0 0 12px;font-size:20px;">Order summary</h2>
       <div class="summary-row">
         <span>Subtotal</span>
-        <span class="val" id="sub">£223</span>
+        <span class="val" id="sub">£39</span>
       </div>
       <div class="summary-row" id="launchRow">
         <span>Coupon <strong style="color:var(--sage-deep);font-weight:600;">LAUNCH</strong> <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-left:4px;">auto</span></span>
@@ -510,7 +510,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       </div>
       <div class="summary-row total">
         <span>Total</span>
-        <span class="val" id="total">£269</span>
+        <span class="val" id="total">£39</span>
       </div>
       <div id="couponHint" hidden style="margin-top:14px;padding:10px 14px;background:rgba(75,114,93,0.10);border-left:3px solid var(--sage);border-radius:6px;font-size:12.5px;color:var(--ink);line-height:1.5;">
         <strong style="color:var(--sage-deep);font-weight:600;">Welcome code ready.</strong> Click <strong>Apply</strong> below to take £15 off.
@@ -566,168 +566,67 @@ const WORKER_URL = 'https://kalmely-api.julioruizbayarri.workers.dev';   // <-- 
 const SITE_ORIGIN = window.location.origin;
 const IS_CONFIGURED = !WORKER_URL.includes('REPLACE');
 
-// Single SKU: KAL-BUNDLE (full kit). Legacy URLs map here automatically.
+// ===== Pack model (1 / 2 / 3 sleep masks) — fixed price per pack =====
 const params = new URLSearchParams(window.location.search);
-let sku = 'KAL-BUNDLE'; // Always the full kit — no device-only option
-// listPrice = retail subtotal (what Stripe charges before any coupon).
-// LAUNCH coupon (-£74) is auto-applied for the bundle — always visible in the breakdown.
-// RELIEF15 (-£15) is the welcome code from the homepage popup — auto-applied if the visitor
-// accepted it, removable by the user.
-const LAUNCH_DISCOUNT = 74;
-const bundles = {
-  'KAL-BUNDLE': {
-    name: 'Kalmely Wireless Head Massager — Launch Kit',
-    listPrice: 223,
-    sub: 'Device + handheld remote + USB-C cable + soft pouch + 30-Day Migraine Tracker ebook · Free UK shipping',
-    img: 'assets/product-hero.jpg'
-  }
+const PACKS = {
+  'MASK-1': { name: 'Kalmely Sleep Mask — single', price: 39, qty: 1, sub: '3D sleep mask with built-in Bluetooth speakers · Black or pink · Free UK shipping' },
+  'MASK-2': { name: 'Kalmely Sleep Mask — 2 pack', price: 59, qty: 2, sub: 'Two 3D Bluetooth sleep masks · Mix black & pink · Free UK shipping' },
+  'MASK-3': { name: 'Kalmely Sleep Mask — 3 pack', price: 79, qty: 3, sub: 'Three 3D Bluetooth sleep masks · Mix black & pink · Free UK shipping' }
 };
-const bundle = bundles[sku];
-document.getElementById('item-name').textContent = bundle.name;
-document.querySelector('.cart-item-sub').textContent = bundle.sub;
-document.getElementById('item-img').src = bundle.img;
-document.getElementById('item-img').alt = bundle.name;
+// Persistence (mejora B): take the pack from ?sku=, else the last choice saved on the
+// landing/cart in localStorage — so the cart survives a refresh or a bounce back from Stripe.
+let sku = (params.get('sku') || '').toUpperCase();
+if (sku === 'KAL-BUNDLE') sku = 'MASK-1';              // legacy URL safety net
+if (!PACKS[sku]) { try { sku = (localStorage.getItem('kalmely_pack') || '').toUpperCase(); } catch (_) {} }
+if (!PACKS[sku]) sku = 'MASK-1';
+try { localStorage.setItem('kalmely_pack', sku); } catch (_) {}
+const pack = PACKS[sku];
 
-// Always show "what's in the box" + ebook delivery note — single SKU is the kit
-document.getElementById('includedBlock').hidden = false;
-document.getElementById('summaryEbookNote').hidden = false;
+document.getElementById('item-name').textContent = pack.name;
+document.querySelector('.cart-item-sub').textContent = pack.sub;
+document.getElementById('item-img').src = 'assets/product-placeholder.svg'; // REVISAR: foto real del antifaz
+document.getElementById('item-img').alt = pack.name;
 
-// ===== Coupon (RELIEF15 = £15 off, applies to both KAL-* devices) =====
-const VALID_COUPONS = {
-  'RELIEF15': { amount: 15, label: 'RELIEF15', appliesTo: ['KAL-BUNDLE'] }
-};
-let activeCoupon = null;
-// Seed coupon comes from URL (?coupon=RELIEF15) or localStorage (popup acceptance).
-// IMPORTANT: we never auto-apply the seed — we only PREFILL the input so the customer
-// still has to click "Apply" themselves and feel the £15 land. This avoids the bug
-// where the discount looked applied but the apply UI was also still showing.
-const urlCoupon = (params.get('coupon') || '').toUpperCase();
-const storedCoupon = (localStorage.getItem('kalmely_coupon') || '').toUpperCase();
-const seedCoupon = (urlCoupon || storedCoupon).trim();
-const hasValidSeed = !!(VALID_COUPONS[seedCoupon] && VALID_COUPONS[seedCoupon].appliesTo.includes(sku));
-// Track whether the prominent claim card has been dismissed in this session
-let claimSkipped = false;
-function renderCoupon() {
-  const row = document.getElementById('couponRow');
-  const entry = document.getElementById('couponEntry');
-  const hint = document.getElementById('couponHint');
-  const claim = document.getElementById('couponClaim');
-  if (activeCoupon) {
-    row.hidden = false;
-    document.getElementById('couponCode').textContent = activeCoupon.label;
-    document.getElementById('couponAmount').textContent = `−£${activeCoupon.amount}`;
-    entry.style.display = 'none';
-    hint.hidden = true;
-    claim.hidden = true;
-  } else {
-    row.hidden = true;
-    entry.style.display = 'flex';
-    // Prominent claim card: only when seeded AND not skipped this session
-    claim.hidden = !hasValidSeed || claimSkipped;
-    // Tiny green hint under the input shown only after the customer skipped the big card,
-    // so they can still find the code via the input if they change their mind.
-    hint.hidden = !(hasValidSeed && claimSkipped);
-  }
+// Fixed-price packs: no editable quantity, no auto-coupons — hide the legacy UI.
+['couponClaim','launchRow','couponRow','couponHint','couponEntry','couponError','summaryEbookNote','includedBlock']
+  .forEach(id => { const el = document.getElementById(id); if (el) el.hidden = true; });
+const qtyWrap = document.querySelector('.cart-qty'); if (qtyWrap) qtyWrap.style.display = 'none';
+const priceWasEl = document.getElementById('priceWas'); if (priceWasEl) priceWasEl.style.display = 'none';
+
+function updateTotals() {
+  document.getElementById('priceNow').textContent = `£${pack.price}`;
+  document.getElementById('sub').textContent = `£${pack.price}`;
+  document.getElementById('total').textContent = `£${pack.price}`;
 }
-
-// Prefill the input when the seed code is present, so the customer just hits Apply
-if (hasValidSeed) {
-  const input = document.getElementById('couponInput');
-  if (input) input.value = seedCoupon;
-}
-
-// Claim card actions
-document.getElementById('couponClaimApply')?.addEventListener('click', () => {
-  const def = VALID_COUPONS[seedCoupon];
-  if (def && def.appliesTo.includes(sku)) {
-    activeCoupon = def;
-    localStorage.setItem('kalmely_coupon', seedCoupon);
-    updateTotals();
-  }
-});
-document.getElementById('couponClaimSkip')?.addEventListener('click', () => {
-  claimSkipped = true;
-  renderCoupon();
-});
-
-// Quantity
-let qty = 1;
-const updateTotals = () => {
-  const sub = bundle.listPrice * qty;             // £223 × qty
-  const launch = LAUNCH_DISCOUNT * qty;            // −£74 × qty (always)
-  const relief = activeCoupon ? activeCoupon.amount * qty : 0;
-  const total = Math.max(0, sub - launch - relief);
-  document.getElementById('qty').textContent = qty;
-  document.getElementById('priceWas').textContent = `£${sub}`;
-  document.getElementById('priceNow').textContent = `£${sub - launch}`;
-  document.getElementById('sub').textContent = `£${sub}`;
-  document.getElementById('launchAmount').textContent = `−£${launch}`;
-  document.getElementById('total').textContent = `£${total}`;
-  renderCoupon();
-};
-function updateQty(d) {
-  qty = Math.max(1, Math.min(10, qty + d));
-  updateTotals();
-}
+function updateQty() { /* fixed-price packs: quantity is the pack itself */ }
 updateTotals(); // sync on load
 
-// Coupon UI handlers
-document.getElementById('couponApply').addEventListener('click', () => {
-  const code = document.getElementById('couponInput').value.trim().toUpperCase();
-  const errEl = document.getElementById('couponError');
-  const def = VALID_COUPONS[code];
-  if (def && def.appliesTo.includes(sku)) {
-    activeCoupon = def;
-    localStorage.setItem('kalmely_coupon', code);
-    errEl.style.display = 'none';
-    updateTotals();
-  } else if (def && !def.appliesTo.includes(sku)) {
-    errEl.textContent = 'This code only applies to Kalmely device orders, not the digital guide.';
-    errEl.style.display = 'block';
-  } else {
-    errEl.textContent = 'Invalid code. Try RELIEF15 if you received the £15-off offer.';
-    errEl.style.display = 'block';
-  }
-});
-document.getElementById('couponInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('couponApply').click(); }
-});
-document.getElementById('couponRemove').addEventListener('click', () => {
-  activeCoupon = null;
-  localStorage.removeItem('kalmely_coupon');
-  document.getElementById('couponInput').value = '';
-  document.getElementById('couponError').style.display = 'none';
-  updateTotals();
-});
+// Coupon UI removed — sleep-mask packs are fixed-price.
 
-// Effective price the customer will actually pay (post-LAUNCH, no RELIEF15).
-const effectivePrice = bundle.listPrice - LAUNCH_DISCOUNT;
-
-// Track AddToCart on load (user landed on cart with an item)
+// Track AddToCart on load (visitor landed on the cart with a pack selected)
 if (window.fbq) fbq('track', 'AddToCart', {
-  value: effectivePrice, currency: 'GBP',
-  content_ids: [sku], content_name: bundle.name
+  value: pack.price, currency: 'GBP',
+  content_ids: [sku], content_name: pack.name
 });
 
 // Stripe Checkout
 const checkoutBtn = document.getElementById('checkout');
 checkoutBtn.addEventListener('click', async () => {
   // 1. Track checkout intent
-  const checkoutValue = effectivePrice * qty;
   if (window.fbq) fbq('track', 'InitiateCheckout', {
-    value: checkoutValue,
+    value: pack.price,
     currency: 'GBP',
-    num_items: qty,
+    num_items: pack.qty,
     content_ids: [sku],
-    content_name: bundle.name
+    content_name: pack.name
   });
   // Persist the real charged amount so thank-you.html can fire Purchase with the accurate value
   try {
     localStorage.setItem('kalmely_last_purchase', JSON.stringify({
-      value: checkoutValue,
+      value: pack.price,
       currency: 'GBP',
       sku: sku,
-      qty: qty,
+      qty: pack.qty,
       ts: Date.now()
     }));
   } catch (_) {}
@@ -753,8 +652,8 @@ checkoutBtn.addEventListener('click', async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         sku,
-        qty,
-        coupon: activeCoupon ? activeCoupon.label : null
+        qty: 1,
+        coupon: null
       })
     });
     const data = await res.json();

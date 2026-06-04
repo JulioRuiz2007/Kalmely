@@ -9,7 +9,10 @@
  * Env vars (set via wrangler secret put):
  *   STRIPE_SECRET                  sk_live_… or sk_test_…
  *   STRIPE_WEBHOOK_SECRET          whsec_…
- *   STRIPE_PRICE_KAL_BUNDLE        price_…  (£223 list — bundle includes free digital guide)
+ *   STRIPE_PRICE_KAL_BUNDLE        price_…  (£223 list — legacy massager kit)
+ *   STRIPE_PRICE_MASK_1            price_…  (£39 — Kalmely Sleep Mask, single)   ← create in Stripe
+ *   STRIPE_PRICE_MASK_2            price_…  (£59 — Sleep Mask 2-pack)            ← create in Stripe
+ *   STRIPE_PRICE_MASK_3            price_…  (£79 — Sleep Mask 3-pack)            ← create in Stripe
  *   STRIPE_COUPON_LAUNCH           coupon_…  (-£74, bundle only, automatic)
  *   STRIPE_COUPON_RELIEF15         coupon_…  (-£15, customer-entered code on KAL-BUNDLE)
  *   STRIPE_COUPON_LAUNCH_RELIEF15  coupon_…  (-£89, bundle + RELIEF15 combined,
@@ -34,9 +37,14 @@ const json = (obj, status = 200, extraHeaders = {}) =>
   });
 
 const SKU_MAP = (env) => ({
-  // Single SKU after 2026-05-26: the full Launch Kit (device + ebook bundled).
-  // KAL-SOLO removed — device-only option no longer sold.
-  'KAL-BUNDLE': { price: env.STRIPE_PRICE_KAL_BUNDLE, applyLaunch: true, applyRelief: true, shippable: true, includesEbook: true }
+  // Legacy massager kit — kept so old links/orders still resolve. No longer promoted.
+  'KAL-BUNDLE': { price: env.STRIPE_PRICE_KAL_BUNDLE, applyLaunch: true, applyRelief: true, shippable: true, includesEbook: true },
+  // Sleep Mask packs (2026 pivot). Fixed price per pack, NO auto-coupons.
+  // Each maps to its own Stripe Price (create the 3 products in Stripe and set the
+  // STRIPE_PRICE_MASK_* secrets below). qty is always 1 — the pack IS the quantity.
+  'MASK-1': { price: env.STRIPE_PRICE_MASK_1, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false },
+  'MASK-2': { price: env.STRIPE_PRICE_MASK_2, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false },
+  'MASK-3': { price: env.STRIPE_PRICE_MASK_3, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false }
 });
 
 async function stripe(env, path, params, method = 'POST') {
