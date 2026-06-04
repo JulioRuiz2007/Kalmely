@@ -77,7 +77,7 @@ async function stripe(env, path, params, method = 'POST') {
 
 async function createCheckout(request, env) {
   const origin = request.headers.get('Origin') || env.SITE_ORIGIN;
-  const { sku, qty = 1, coupon } = await request.json();
+  const { sku, qty = 1, coupon, colors } = await request.json();
   const map = SKU_MAP(env);
   const bundle = map[sku];
   if (!bundle) return json({ error: `Unknown sku ${sku}` }, 400, CORS(origin));
@@ -106,7 +106,7 @@ async function createCheckout(request, env) {
     billing_address_collection: 'required',
     ...(bundle.shippable ? { shipping_address_collection: { allowed_countries: ['GB'] } } : {}),
     ...(discounts ? { discounts } : { allow_promotion_codes: true }),
-    metadata: { sku, qty: String(qty), applied_coupon: coupon || '' }
+    metadata: { sku, qty: String(qty), applied_coupon: coupon || '', colors: colors || '' }
   });
 
   return json({ url: session.url, id: session.id }, 200, CORS(origin));

@@ -581,9 +581,17 @@ if (!PACKS[sku]) { try { sku = (localStorage.getItem('kalmely_pack') || '').toUp
 if (!PACKS[sku]) sku = 'MASK-1';
 try { localStorage.setItem('kalmely_pack', sku); } catch (_) {}
 const pack = PACKS[sku];
+// Colours chosen on the landing (?colors= or localStorage), padded to pack size
+let colors = (params.get('colors') || '').split(',').map(c=>c.trim()).filter(Boolean);
+if (!colors.length) { try { colors = JSON.parse(localStorage.getItem('kalmely_colors')) || []; } catch (_) { colors = []; } }
+colors = colors.filter(c => c === 'black' || c === 'pink');
+while (colors.length < pack.qty) colors.push('black');
+colors = colors.slice(0, pack.qty);
+try { localStorage.setItem('kalmely_colors', JSON.stringify(colors)); } catch (_) {}
+const coloursLabel = colors.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(' + ');
 
 document.getElementById('item-name').textContent = pack.name;
-document.querySelector('.cart-item-sub').textContent = pack.sub;
+document.querySelector('.cart-item-sub').textContent = pack.sub + ' · Colour: ' + coloursLabel;
 document.getElementById('item-img').src = 'assets/mask-black.webp'; // REVISAR: foto real del antifaz
 document.getElementById('item-img').alt = pack.name;
 
@@ -653,7 +661,8 @@ checkoutBtn.addEventListener('click', async () => {
       body: JSON.stringify({
         sku,
         qty: 1,
-        coupon: null
+        coupon: null,
+        colors: colors.join(',')
       })
     });
     const data = await res.json();
