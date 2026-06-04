@@ -488,6 +488,12 @@ main { max-width: 880px; }
     }
     // Clear so a refresh doesn't double-fire with stale value
     try { localStorage.removeItem('kalmely_last_purchase'); } catch (_) {}
+    // Empty the persistent bag after a real purchase so the landing no longer shows "Resume your order"
+    try {
+      localStorage.removeItem('kalmely_bag');
+      localStorage.removeItem('kalmely_pack');
+      localStorage.removeItem('kalmely_colors');
+    } catch (_) {}
     if (window.gtag) {
       gtag('event', 'purchase', {
         value: value,

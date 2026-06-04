@@ -944,6 +944,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       renderPicker(qtyOf(sku));
       updateCtas();
       if (persist) { try { localStorage.setItem('kalmely_pack', sku); } catch (_) {} }
+      refreshCtaLabels();
     }
     if (picker) picker.addEventListener('click', e => {
       const sw = e.target.closest('.swatch'); if (!sw) return;
@@ -956,6 +957,64 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
     try { colours = JSON.parse(localStorage.getItem('kalmely_colors')) || []; } catch (_) { colours = []; }
     let saved = DEFAULT;
     try { saved = localStorage.getItem('kalmely_pack') || DEFAULT; } catch (_) {}
+
+    // ===== Persistent bag + direct checkout (selector → Stripe, no cart page) =====
+    const WORKER_URL = 'https://kalmely-api.julioruizbayarri.workers.dev';
+    const BAG_KEY = 'kalmely_bag';
+    const packName = s => { const q = qtyOf(s); return q === 1 ? 'Kalmely Sleep Mask — single' : 'Kalmely Sleep Mask — ' + q + ' pack'; };
+    const readBag = () => { try { return JSON.parse(localStorage.getItem(BAG_KEY) || 'null'); } catch (_) { return null; } };
+    const writeBag = b => { try { localStorage.setItem(BAG_KEY, JSON.stringify(b)); } catch (_) {} };
+
+    // Subtle indicator: when the bag already holds the pack on screen, the CTA invites resuming.
+    function refreshCtaLabels() {
+      const bag = readBag();
+      const match = !!(bag && bag.sku === curSku && bag.qty);
+      ctas.forEach(a => {
+        if (a.hasAttribute('data-keep-label')) return;
+        if (!a.dataset.idleLabel) a.dataset.idleLabel = a.textContent.trim();
+        a.textContent = match ? ('Resume your order · ' + bag.qty + (bag.qty > 1 ? ' masks' : ' mask')) : a.dataset.idleLabel;
+      });
+    }
+
+    let checkingOut = false;
+    async function goToCheckout(ev) {
+      if (ev) ev.preventDefault();
+      if (checkingOut) return;
+      const sku = curSku, price = parseInt(curPrice, 10) || 0, qty = qtyOf(sku);
+      const prevBag = readBag();
+      const isNewAdd = !prevBag || prevBag.sku !== sku;
+      // 1. Save the selection to the bag; AddToCart fires the moment it is added.
+      writeBag({ sku, colors: colours.slice(), qty, price, ts: Date.now() });
+      if (isNewAdd && window.fbq) fbq('track', 'AddToCart', { value: price, currency: 'GBP', content_ids: [sku], content_name: packName(sku), num_items: qty });
+      // 2. Heading to checkout → InitiateCheckout + store the real value for thank-you's Purchase.
+      if (window.fbq) fbq('track', 'InitiateCheckout', { value: price, currency: 'GBP', num_items: qty, content_ids: [sku], content_name: packName(sku) });
+      try { localStorage.setItem('kalmely_last_purchase', JSON.stringify({ value: price, currency: 'GBP', sku, qty, ts: Date.now() })); } catch (_) {}
+      // 3. Create the Stripe session and go straight there — no cart page in between.
+      checkingOut = true;
+      const trigger = ev && ev.currentTarget;
+      if (trigger) trigger.textContent = 'Redirecting to secure checkout…';
+      ctas.forEach(a => { a.style.pointerEvents = 'none'; a.style.opacity = '0.7'; });
+      try {
+        const res = await fetch(WORKER_URL + '/api/checkout', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sku, qty: 1, coupon: null, colors: colours.join(',') })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.url) throw new Error(data.error || 'Checkout unavailable');
+        window.location.href = data.url;
+      } catch (err) {
+        console.error('[Checkout]', err);
+        checkingOut = false;
+        ctas.forEach(a => { a.style.pointerEvents = ''; a.style.opacity = ''; });
+        refreshCtaLabels(); // bag stays saved → CTA now reads "Resume your order"
+        alert('We could not start secure checkout just now. Your selection is saved — please try again in a moment, or email hello@kalmely.com.');
+      }
+    }
+
+    ctas.forEach(a => a.addEventListener('click', goToCheckout));
+    // Any other link pointing at the old cart page also goes straight to checkout.
+    document.querySelectorAll('a[href^="cart.html"]:not(.buy-cta)').forEach(a => a.addEventListener('click', goToCheckout));
+
     select(saved, false);
   })();
 
