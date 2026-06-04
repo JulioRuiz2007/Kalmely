@@ -133,7 +133,7 @@ async function verifyStripeSignature(payload, sigHeader, secret) {
 
 // ---------- EMAIL (Resend) ----------
 
-async function sendResendEmail(env, { to, subject, html }) {
+async function sendResendEmail(env, { to, subject, html, attachments }) {
   if (!env.RESEND_API_KEY) {
     console.log('RESEND_API_KEY missing — skipping email to', to);
     return { skipped: true };
@@ -145,7 +145,7 @@ async function sendResendEmail(env, { to, subject, html }) {
       'Authorization': `Bearer ${env.RESEND_API_KEY}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ from, to, subject, html })
+    body: JSON.stringify({ from, to, subject, html, ...(attachments && attachments.length ? { attachments } : {}) })
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) console.log('[resend] ERROR', res.status, JSON.stringify(data));
@@ -291,7 +291,8 @@ async function handleWebhook(request, env, ctx) {
         eyebrow: 'Your free travel guide',
         title: 'How to sleep on any flight.',
         blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
-        url: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
+        url: `${env.SITE_ORIGIN || 'https://kalmely.com'}/guide`,
+        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
         btn: 'Download the guide'
       };
       preheader = 'Your Kalmely is on its way, and your free flight-sleep guide is inside.';
@@ -308,8 +309,10 @@ async function handleWebhook(request, env, ctx) {
 
     const html = buildOrderHtml({ orderId, amountLabel, eta, productLine, colorsLine, digital, preheader });
     const subject = 'Your Kalmely is on its way';
+    // Attach the guide PDF directly so the customer never depends on a (trackable) link.
+    const attachments = digital ? [{ filename: digital.title.replace(/\.$/, '') + '.pdf', path: digital.pdfUrl || digital.url }] : undefined;
     console.log('[order]', JSON.stringify({ email, sku, productLine, colorsLine, guide: !!digital }));
-    ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
+    ctx.waitUntil(sendResendEmail(env, { to: email, subject, html, attachments }));
   }
 
   return new Response('ok', { status: 200 });
@@ -355,6 +358,34 @@ export default {
     if (url.pathname === '/api/lead-magnet' && request.method === 'POST') {
       try { return await handleLeadMagnet(request, env, ctx, origin); }
       catch (e) { return json({ error: e.message }, 500, CORS(origin)); }
+    }
+
+    // Temporary: send a REAL preview of the order email (no purchase needed). Key-protected.
+    // Uses the same buildOrderHtml + Resend path as the live webhook.
+    if (url.pathname === '/api/_preview-order' && request.method === 'GET') {
+      if (url.searchParams.get('key') !== 'kalmely_preview_2026') return new Response('forbidden', { status: 403 });
+      const to = url.searchParams.get('to');
+      if (!to) return json({ error: 'missing ?to=' }, 400);
+      const sku = (url.searchParams.get('sku') || 'MASK-2').toUpperCase();
+      const entry = SKU_MAP(env)[sku] || {};
+      const AMT = { 'MASK-1': '£39.00 GBP', 'MASK-2': '£54.00 GBP', 'MASK-3': '£69.00 GBP' };
+      const colorsLine = (url.searchParams.get('colors') || 'black,pink').split(',').map(c => c.trim()).filter(Boolean)
+        .map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(' + ');
+      const digital = entry.includesGuide ? {
+        eyebrow: 'Your free travel guide', title: 'How to sleep on any flight.',
+        blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
+        url: `${env.SITE_ORIGIN || 'https://kalmely.com'}/guide`,
+        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
+        btn: 'Download the guide'
+      } : null;
+      if (url.searchParams.get('inspect') === '1') return json({ guideUrl: digital && digital.url, siteOrigin: env.SITE_ORIGIN, hasGuideEnv: !!env.GUIDE_PDF_URL });
+      const html = buildOrderHtml({ orderId: 'KAL-2026-PREVIEW', amountLabel: AMT[sku] || '£54.00 GBP',
+        eta: 'within 5–7 days', productLine: entry.name || 'Kalmely', colorsLine, digital,
+        preheader: 'Preview of the Kalmely order email.' });
+      const attachments = digital ? [{ filename: digital.title.replace(/\.$/, '') + '.pdf', path: digital.pdfUrl || digital.url }] : undefined;
+      const subj = url.searchParams.get('subj') || '[Preview] Your Kalmely is on its way';
+      const r = await sendResendEmail(env, { to, subject: subj, html, attachments });
+      return json({ sent: !!r.ok, status: r.status, to, sku, guide: !!digital });
     }
 
     return new Response('Not found', { status: 404 });

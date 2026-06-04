@@ -1,0 +1,5 @@
+# Short, email-safe link to the free guide. Long asset URLs get wrapped/broken by
+# email clients (and a broken path falls through to the homepage), so the order
+# email's button + link point here and we 302 to the real PDF.
+/guide    /assets/how-to-sleep-on-any-flight.pdf    302
+/guia     /assets/how-to-sleep-on-any-flight.pdf    302
