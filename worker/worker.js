@@ -291,8 +291,8 @@ async function handleWebhook(request, env, ctx) {
         eyebrow: 'Your free travel guide',
         title: 'How to sleep on any flight.',
         blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
-        url: `${env.SITE_ORIGIN || 'https://kalmely.com'}/guide`,
-        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
+        url: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
+        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
         btn: 'Download the guide'
       };
       preheader = 'Your Kalmely is on its way, and your free flight-sleep guide is inside.';
@@ -310,9 +310,8 @@ async function handleWebhook(request, env, ctx) {
     const html = buildOrderHtml({ orderId, amountLabel, eta, productLine, colorsLine, digital, preheader });
     const subject = 'Your Kalmely is on its way';
     // Attach the guide PDF directly so the customer never depends on a (trackable) link.
-    const attachments = digital ? [{ filename: digital.title.replace(/\.$/, '') + '.pdf', path: digital.pdfUrl || digital.url }] : undefined;
     console.log('[order]', JSON.stringify({ email, sku, productLine, colorsLine, guide: !!digital }));
-    ctx.waitUntil(sendResendEmail(env, { to: email, subject, html, attachments }));
+    ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
   }
 
   return new Response('ok', { status: 200 });
@@ -374,18 +373,37 @@ export default {
       const digital = entry.includesGuide ? {
         eyebrow: 'Your free travel guide', title: 'How to sleep on any flight.',
         blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
-        url: `${env.SITE_ORIGIN || 'https://kalmely.com'}/guide`,
-        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
+        url: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
+        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
         btn: 'Download the guide'
       } : null;
       if (url.searchParams.get('inspect') === '1') return json({ guideUrl: digital && digital.url, siteOrigin: env.SITE_ORIGIN, hasGuideEnv: !!env.GUIDE_PDF_URL });
       const html = buildOrderHtml({ orderId: 'KAL-2026-PREVIEW', amountLabel: AMT[sku] || '£54.00 GBP',
         eta: 'within 5–7 days', productLine: entry.name || 'Kalmely', colorsLine, digital,
         preheader: 'Preview of the Kalmely order email.' });
-      const attachments = digital ? [{ filename: digital.title.replace(/\.$/, '') + '.pdf', path: digital.pdfUrl || digital.url }] : undefined;
       const subj = url.searchParams.get('subj') || '[Preview] Your Kalmely is on its way';
-      const r = await sendResendEmail(env, { to, subject: subj, html, attachments });
+      const r = await sendResendEmail(env, { to, subject: subj, html });
       return json({ sent: !!r.ok, status: r.status, to, sku, guide: !!digital });
+    }
+
+    // Temporary: inspect/disable Resend click-tracking (it rewrites the email links so
+    // they fall through to the homepage). Key-protected. ?apply=1 turns it off.
+    if (url.pathname === '/api/_resend-fix' && request.method === 'GET') {
+      if (url.searchParams.get('key') !== 'kalmely_preview_2026') return new Response('forbidden', { status: 403 });
+      const h = { 'Authorization': `Bearer ${env.RESEND_API_KEY}` };
+      const list = await (await fetch('https://api.resend.com/domains', { headers: h })).json();
+      const dom = (list.data || []).find(d => /kalmely/i.test(d.name || ''));
+      if (!dom) return json({ error: 'domain not found', raw: list });
+      const detail = await (await fetch('https://api.resend.com/domains/' + dom.id, { headers: h })).json();
+      let patched = null;
+      if (url.searchParams.get('apply') === '1') {
+        const pr = await fetch('https://api.resend.com/domains/' + dom.id, {
+          method: 'PATCH', headers: { ...h, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ click_tracking: false })
+        });
+        patched = { status: pr.status, body: await pr.json().catch(() => ({})) };
+      }
+      return json({ id: dom.id, name: dom.name, status: dom.status, click_tracking: detail.click_tracking, open_tracking: detail.open_tracking, patched });
     }
 
     return new Response('Not found', { status: 404 });
