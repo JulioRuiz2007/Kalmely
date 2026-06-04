@@ -97,7 +97,7 @@ async function createCheckout(request, env) {
   const discounts = discountCoupon ? [{ coupon: discountCoupon }] : null;
 
   const successUrl = `${env.SITE_ORIGIN}/thank-you.html?sku=${sku}&session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl  = `${env.SITE_ORIGIN}/cart.html?sku=${sku}`;
+  const cancelUrl  = `${env.SITE_ORIGIN}/`;   // back/cancel from Stripe → home (bag persists, CTA shows "Resume your order")
 
   const session = await stripe(env, '/checkout/sessions', {
     mode: 'payment',
