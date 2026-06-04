@@ -2,7 +2,7 @@
  * Kalmely Stripe + Email Worker
  *
  *  POST /api/checkout         → create Stripe Checkout Session with auto-applied coupons
- *  POST /api/webhook          → handle checkout.session.completed (order email + ebook delivery via Resend)
+ *  POST /api/webhook          → handle checkout.session.completed (order email + travel-guide delivery via Resend)
  *  POST /api/lead-magnet      → email the 30-Day Migraine Tracker PDF via Resend
  *  GET  /api/health           → health probe
  *
@@ -11,15 +11,16 @@
  *   STRIPE_WEBHOOK_SECRET          whsec_…
  *   STRIPE_PRICE_KAL_BUNDLE        price_…  (£223 list — legacy massager kit)
  *   STRIPE_PRICE_MASK_1            price_…  (£39 — Kalmely Sleep Mask, single)   ← create in Stripe
- *   STRIPE_PRICE_MASK_2            price_…  (£59 — Sleep Mask 2-pack)            ← create in Stripe
- *   STRIPE_PRICE_MASK_3            price_…  (£79 — Sleep Mask 3-pack)            ← create in Stripe
+ *   STRIPE_PRICE_MASK_2            price_…  (£54 — Sleep Mask 2-pack)            ← create in Stripe
+ *   STRIPE_PRICE_MASK_3            price_…  (£69 — Sleep Mask 3-pack)            ← create in Stripe
  *   STRIPE_COUPON_LAUNCH           coupon_…  (-£74, bundle only, automatic)
  *   STRIPE_COUPON_RELIEF15         coupon_…  (-£15, customer-entered code on KAL-BUNDLE)
  *   STRIPE_COUPON_LAUNCH_RELIEF15  coupon_…  (-£89, bundle + RELIEF15 combined,
  *                                  required because Stripe Checkout accepts only 1 discount)
  *   RESEND_API_KEY                 re_…   (Resend API key, used for all transactional email)
  *   RESEND_FROM                    "Kalmely <orders@kalmely.com>"  (verified sender)
- *   EBOOK_PDF_URL                  https://cdn.kalmely.com/migraine-tracker.pdf
+ *   EBOOK_PDF_URL                  https://cdn.kalmely.com/migraine-tracker.pdf  (legacy KAL-BUNDLE only)
+ *   GUIDE_PDF_URL                  /assets/how-to-sleep-on-any-flight.pdf  (sleep-mask orders; optional, defaults to SITE_ORIGIN)
  *   SITE_ORIGIN                    https://kalmely.com
  */
 
@@ -42,9 +43,9 @@ const SKU_MAP = (env) => ({
   // Sleep Mask packs (2026 pivot). Fixed price per pack, NO auto-coupons.
   // Each maps to its own Stripe Price (create the 3 products in Stripe and set the
   // STRIPE_PRICE_MASK_* secrets below). qty is always 1 — the pack IS the quantity.
-  'MASK-1': { price: env.STRIPE_PRICE_MASK_1, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false },
-  'MASK-2': { price: env.STRIPE_PRICE_MASK_2, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false },
-  'MASK-3': { price: env.STRIPE_PRICE_MASK_3, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false }
+  'MASK-1': { price: env.STRIPE_PRICE_MASK_1, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false, includesGuide: true, qty: 1, name: 'Kalmely Sleep Mask' },
+  'MASK-2': { price: env.STRIPE_PRICE_MASK_2, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false, includesGuide: true, qty: 2, name: 'Kalmely Sleep Mask (2-pack)' },
+  'MASK-3': { price: env.STRIPE_PRICE_MASK_3, applyLaunch: false, applyRelief: false, shippable: true, includesEbook: false, includesGuide: true, qty: 3, name: 'Kalmely Sleep Mask (3-pack)' }
 });
 
 async function stripe(env, path, params, method = 'POST') {
@@ -179,17 +180,25 @@ function emailShell(innerHtml, preheader = '') {
 </html>`;
 }
 
-function buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta }) {
-  const ebookBlock = includesEbook && ebookUrl ? `
+function buildOrderHtml({ orderId, amountLabel, eta, productLine, colorsLine, digital, preheader }) {
+  const digitalBlock = digital ? `
       <tr><td style="padding-top:32px;">
         <div style="background:#F4EFE5;border-radius:10px;padding:24px;">
-          <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.4px;color:#B25E3F;text-transform:uppercase;margin-bottom:8px;">Digital guide included</div>
-          <h2 style="font-family:Georgia,serif;font-size:22px;color:#1F3D2F;margin:0 0 12px;">Your 30-Day Migraine Tracker.</h2>
-          <p style="font-family:Georgia,serif;font-size:15px;line-height:1.65;color:#2C3A2F;margin:0 0 18px;">Start tonight. Bring it to your next neurologist visit — most patients shave 30 minutes off the diagnosis conversation.</p>
-          <a href="${ebookUrl}" style="display:inline-block;background:#1F3D2F;color:#FBF7F0;font-family:Arial,sans-serif;font-size:14px;text-decoration:none;padding:14px 28px;border-radius:6px;font-weight:600;letter-spacing:.4px;">Download your PDF</a>
-          <p style="font-family:Arial,sans-serif;font-size:12px;color:#8A8378;margin:14px 0 0;">If the button doesn't work, copy this link: <span style="color:#1F3D2F;">${ebookUrl}</span></p>
+          <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.4px;color:#B25E3F;text-transform:uppercase;margin-bottom:8px;">${digital.eyebrow}</div>
+          <h2 style="font-family:Georgia,serif;font-size:22px;color:#1F3D2F;margin:0 0 12px;">${digital.title}</h2>
+          <p style="font-family:Georgia,serif;font-size:15px;line-height:1.65;color:#2C3A2F;margin:0 0 18px;">${digital.blurb}</p>
+          <a href="${digital.url}" style="display:inline-block;background:#1F3D2F;color:#FBF7F0;font-family:Arial,sans-serif;font-size:14px;text-decoration:none;padding:14px 28px;border-radius:6px;font-weight:600;letter-spacing:.4px;">${digital.btn}</a>
+          <p style="font-family:Arial,sans-serif;font-size:12px;color:#8A8378;margin:14px 0 0;">If the button doesn't work, copy this link: <span style="color:#1F3D2F;">${digital.url}</span></p>
         </div>
       </td></tr>` : '';
+
+  const itemRow = productLine ? `
+          <tr>
+            <td colspan="2" style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.2px;color:#8A8378;text-transform:uppercase;padding:14px 0 6px;">Your order</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${productLine}${colorsLine ? ` &middot; ${colorsLine}` : ''}</td>
+          </tr>` : '';
 
   const inner = `
       <tr><td>
@@ -197,7 +206,7 @@ function buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta }) 
         <h1 style="font-family:Georgia,serif;font-size:28px;line-height:1.25;color:#1F3D2F;margin:0 0 18px;">Your Kalmely is <em style="color:#B25E3F;">on its way.</em></h1>
         <p style="font-family:Georgia,serif;font-size:16px;line-height:1.65;color:#2C3A2F;margin:0 0 18px;">Thank you for ordering. Your payment has been received and a tracking link will reach this inbox within 24 hours.</p>
       </td></tr>
-      ${ebookBlock}
+      ${digitalBlock}
       <tr><td style="padding-top:28px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8F4EC;border-radius:10px;padding:20px 22px;">
           <tr>
@@ -207,7 +216,7 @@ function buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta }) 
           <tr>
             <td style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${orderId}</td>
             <td style="font-family:Georgia,serif;font-size:15px;color:#1F3D2F;">${eta}</td>
-          </tr>
+          </tr>${itemRow}
           <tr>
             <td colspan="2" style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.2px;color:#8A8378;text-transform:uppercase;padding:14px 0 6px;">Total paid</td>
           </tr>
@@ -221,9 +230,7 @@ function buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta }) 
         Your Kalmely ships from our EU warehouse within 24 hours. UK delivery is 5–7 business days. You'll receive a tracking link by email as soon as it leaves the warehouse.
       </td></tr>`;
 
-  return emailShell(inner, includesEbook
-    ? 'Your Kalmely is on its way — and here is your 30-Day Migraine Tracker.'
-    : 'Your Kalmely is on its way — tracking arrives within 24h.');
+  return emailShell(inner, preheader || 'Your Kalmely is on its way — tracking arrives within 24h.');
 }
 
 function buildLeadMagnetHtml({ ebookUrl }) {
@@ -258,20 +265,48 @@ async function handleWebhook(request, env, ctx) {
   const session = event.data.object;
   const email = session.customer_details?.email;
   const sku = session.metadata?.sku;
+  const colorsRaw = session.metadata?.colors || '';
   const amountTotal = (session.amount_total || 0) / 100;
   const currency = (session.currency || 'gbp').toUpperCase();
-  const includesEbook = sku === 'KAL-BUNDLE';
+  const entry = SKU_MAP(env)[sku] || {};
 
   if (email) {
-    const ebookUrl = env.EBOOK_PDF_URL || '';
     const orderId = `KAL-${new Date().getFullYear()}-${session.id.slice(-5).toUpperCase()}`;
     const eta = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
       .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
     const amountLabel = `£${amountTotal.toFixed(2)} ${currency}`;
-    const html = buildOrderHtml({ orderId, amountLabel, ebookUrl, includesEbook, eta });
-    const subject = includesEbook
-      ? 'Your Kalmely is on its way — and here is your 30-Day Migraine Tracker'
-      : 'Your Kalmely is on its way';
+    const productLine = entry.name || 'Kalmely';
+    const colorsLine = colorsRaw
+      ? colorsRaw.split(',').map(c => c.trim()).filter(Boolean)
+          .map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(' + ')
+      : '';
+
+    // Digital extra: a free travel guide ships with every sleep mask; the legacy
+    // massager bundle still gets the migraine tracker. No ebook on mask orders.
+    let digital = null;
+    let preheader = 'Your Kalmely is on its way — tracking arrives within 24h.';
+    if (entry.includesGuide) {
+      digital = {
+        eyebrow: 'Your free travel guide',
+        title: 'How to sleep on any flight.',
+        blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
+        url: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/how-to-sleep-on-any-flight.pdf`,
+        btn: 'Download the guide'
+      };
+      preheader = 'Your Kalmely is on its way, and your free flight-sleep guide is inside.';
+    } else if (sku === 'KAL-BUNDLE' && env.EBOOK_PDF_URL) {
+      digital = {
+        eyebrow: 'Digital guide included',
+        title: 'Your 30-Day Migraine Tracker.',
+        blurb: 'Start tonight. Bring it to your next neurologist visit, most patients shave 30 minutes off the diagnosis conversation.',
+        url: env.EBOOK_PDF_URL,
+        btn: 'Download your PDF'
+      };
+      preheader = 'Your Kalmely is on its way — and here is your 30-Day Migraine Tracker.';
+    }
+
+    const html = buildOrderHtml({ orderId, amountLabel, eta, productLine, colorsLine, digital, preheader });
+    const subject = 'Your Kalmely is on its way';
     ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
   }
 
