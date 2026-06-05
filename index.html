@@ -14,11 +14,15 @@
 <meta property="og:title" content="Kalmely Sleep Mask, 3D Sleep Mask with Bluetooth Speakers">
 <meta property="og:url" content="https://kalmely.com/">
 <meta name="application-name" content="Kalmely">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<style>
+/* Self-hosted fonts (latin) — served from our own domain, cached 1 year. Avoids the
+   render-blocking round-trips to Google and the layout shift from late-loading fonts. */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
+</style>
 <link rel="preload" as="image" href="assets/mask-black.webp" imagesrcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" imagesizes="(max-width:600px) 92vw, 560px" type="image/webp" fetchpriority="high">
 
 <!-- Admin Mode Guard -->
