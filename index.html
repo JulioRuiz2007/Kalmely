@@ -1048,10 +1048,12 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
 
   function observeReveals() {
-    // Just observe — the IntersectionObserver reveals above-fold items on its first callback
-    // and the rest on scroll. (Reading getBoundingClientRect here forced a sync reflow per element.)
     revealClasses.forEach((cls) => {
-      document.querySelectorAll('.' + cls + ':not(.in)').forEach((el) => sharedIO.observe(el));
+      document.querySelectorAll('.' + cls + ':not(.in)').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
+        else sharedIO.observe(el);
+      });
     });
   }
 
