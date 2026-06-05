@@ -256,31 +256,31 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img alt="Kalmely Sleep Mask in pink" loading="lazy" decoding="async" width="1045" height="1400" src="assets/mask-pink.webp">
+                <img alt="Kalmely Sleep Mask in pink" loading="lazy" decoding="async" width="1045" height="1400" data-lazy-src="assets/mask-pink.webp">
               </div>
               <figcaption class="gallery-caption">Also in pink · machine-washable</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img alt="A traveller asleep on a plane wearing the Kalmely Sleep Mask" loading="lazy" decoding="async" width="1400" height="1400" src="assets/mask-flight.webp">
+                <img alt="A traveller asleep on a plane wearing the Kalmely Sleep Mask" loading="lazy" decoding="async" width="1400" height="1400" data-lazy-src="assets/mask-flight.webp">
               </div>
               <figcaption class="gallery-caption">Sleep through the whole flight</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img alt="Kalmely Sleep Mask adjustable Bluetooth speakers, position them right over each ear" loading="lazy" decoding="async" width="1024" height="1024" src="assets/mask-audio.webp">
+                <img alt="Kalmely Sleep Mask adjustable Bluetooth speakers, position them right over each ear" loading="lazy" decoding="async" width="1024" height="1024" data-lazy-src="assets/mask-audio.webp">
               </div>
               <figcaption class="gallery-caption">Adjustable Bluetooth speakers, music, rain or white noise</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img alt="Woman wearing the Kalmely Sleep Mask, 3D contoured cups, no pressure on the eyes, 100% light blocking" loading="lazy" decoding="async" width="1024" height="1024" src="assets/mask-3d.webp">
+                <img alt="Woman wearing the Kalmely Sleep Mask, 3D contoured cups, no pressure on the eyes, 100% light blocking" loading="lazy" decoding="async" width="1024" height="1024" data-lazy-src="assets/mask-3d.webp">
               </div>
               <figcaption class="gallery-caption">3D contoured cups · no pressure · 100% light blocking</figcaption>
             </figure>
             <figure class="gallery-slide is-photo">
               <div class="gallery-slide-img">
-                <img alt="Free with every Kalmely order, the How to sleep on any flight travel guide" loading="lazy" decoding="async" width="1200" height="1200" src="assets/guide-cover.webp">
+                <img alt="Free with every Kalmely order, the How to sleep on any flight travel guide" loading="lazy" decoding="async" width="1200" height="1200" data-lazy-src="assets/guide-cover.webp">
               </div>
               <figcaption class="gallery-caption">Free with every order · How to sleep on any flight</figcaption>
             </figure>
@@ -293,19 +293,19 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
             <img alt="" loading="lazy" width="1200" height="1200" src="assets/mask-black.webp">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="1" aria-label="View mask in pink">
-            <img alt="" loading="lazy" width="1045" height="1400" src="assets/mask-pink.webp">
+            <img alt="" loading="lazy" width="1045" height="1400" data-lazy-src="assets/mask-pink.webp">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="2" aria-label="View on a flight">
-            <img alt="" loading="lazy" width="1400" height="1400" src="assets/mask-flight.webp">
+            <img alt="" loading="lazy" width="1400" height="1400" data-lazy-src="assets/mask-flight.webp">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="3" aria-label="View adjustable speakers">
-            <img alt="" loading="lazy" width="1024" height="1024" src="assets/mask-audio.webp">
+            <img alt="" loading="lazy" width="1024" height="1024" data-lazy-src="assets/mask-audio.webp">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="4" aria-label="View 3D cups and specs">
-            <img alt="" loading="lazy" width="1024" height="1024" src="assets/mask-3d.webp">
+            <img alt="" loading="lazy" width="1024" height="1024" data-lazy-src="assets/mask-3d.webp">
           </button>
           <button type="button" class="gallery-thumb is-photo" data-slide="5" aria-label="View the free flight-sleep guide">
-            <img alt="" loading="lazy" width="1200" height="1200" src="assets/guide-cover.webp">
+            <img alt="" loading="lazy" width="1200" height="1200" data-lazy-src="assets/guide-cover.webp">
           </button>
         </div>
       </div>
@@ -414,7 +414,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   <div class="section">
     <div class="hook-grid">
       <div class="hook-visual fade kalm-reveal-zoom">
-        <img alt="An exhausted traveller still awake on a night flight, unable to switch off" loading="lazy" decoding="async" data-parallax="0.06" width="787" height="1400" src="assets/mask-flight.webp">
+        <img alt="An exhausted traveller still awake on a night flight, unable to switch off" loading="lazy" decoding="async" data-parallax="0.06" width="787" height="1400" data-lazy-src="assets/mask-flight.webp">
       </div>
       <div class="hook-copy fade-slow">
         <h2 class="line-draw" data-word-reveal>You land, but you're <em>completely wrecked.</em></h2>
@@ -1287,5 +1287,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 })();
 </script>
 
+<script>
+(function(){function L(){document.querySelectorAll('[data-lazy-src]').forEach(function(i){i.src=i.getAttribute('data-lazy-src');i.removeAttribute('data-lazy-src');});}
+if(document.readyState==='complete'){setTimeout(L,200);}else{addEventListener('load',function(){setTimeout(L,200);});}
+['pointerdown','touchstart','keydown','scroll'].forEach(function(e){addEventListener(e,L,{once:true,passive:true});});})();
+</script>
 </body>
 </html>
