@@ -1048,12 +1048,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
 
   function observeReveals() {
+    // Just observe — the IntersectionObserver reveals above-fold items on its first callback
+    // and the rest on scroll. (Reading getBoundingClientRect here forced a sync reflow per element.)
     revealClasses.forEach((cls) => {
-      document.querySelectorAll('.' + cls + ':not(.in)').forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.95) el.classList.add('in');
-        else sharedIO.observe(el);
-      });
+      document.querySelectorAll('.' + cls + ':not(.in)').forEach((el) => sharedIO.observe(el));
     });
   }
 
@@ -1075,67 +1073,49 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
     update();
   })();
 
-  // Word-by-word reveal, splits text once, observes for in-view
+  // Word-by-word reveal — split the hero NOW, defer every other heading to viewport entry.
+  // Splitting all 8 headings up front (innerHTML rewrites + sync getBoundingClientRect) blocked
+  // the main thread and delayed the LCP paint. Hero looks identical; the rest split lazily.
   (function initWordReveal() {
     const targets = document.querySelectorAll('[data-word-reveal]');
     if (!targets.length) return;
-
     const STEP = isMobile ? 60 : 90;
-    let visIdx = 0;
-    function wrapWord(word) {
-      const wrap = document.createElement('span');
-      wrap.className = 'word-wrap';
-      const inner = document.createElement('span');
-      inner.className = 'word';
-      inner.style.setProperty('--d', (visIdx * STEP) + 'ms');
-      // If word is an HTMLElement (e.g. <em>), preserve and place inside
-      if (word instanceof HTMLElement) {
-        inner.appendChild(word);
-      } else {
-        inner.textContent = word;
-      }
-      wrap.appendChild(inner);
-      visIdx += 1;
-      return wrap;
-    }
-
-    targets.forEach((el) => {
+    function splitEl(el) {
       if (el.dataset.split === 'done') return;
-      visIdx = 0;
+      let visIdx = 0;
+      const wrapWord = (word) => {
+        const wrap = document.createElement('span'); wrap.className = 'word-wrap';
+        const inner = document.createElement('span'); inner.className = 'word';
+        inner.style.setProperty('--d', (visIdx * STEP) + 'ms');
+        if (word instanceof HTMLElement) inner.appendChild(word); else inner.textContent = word;
+        wrap.appendChild(inner); visIdx += 1; return wrap;
+      };
       const children = Array.from(el.childNodes);
       el.innerHTML = '';
       children.forEach((node) => {
         if (node.nodeType === Node.TEXT_NODE) {
-          const parts = node.textContent.split(/(\s+)/);
-          parts.forEach((p) => {
+          node.textContent.split(/(\s+)/).forEach((p) => {
             if (!p) return;
             if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
             el.appendChild(wrapWord(p));
           });
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          // Whole element gets wrapped as a single visual "word" (preserves <em> styling)
           el.appendChild(wrapWord(node));
         }
       });
       el.dataset.split = 'done';
-    });
-
-    // Hero (above fold): trigger as soon as page paints
+    }
+    // Hero (above fold): split + reveal as soon as the page paints.
     const heroReveals = document.querySelectorAll('.hero [data-word-reveal], .buy [data-word-reveal]');
+    heroReveals.forEach(splitEl);
     requestAnimationFrame(() => heroReveals.forEach((el) => el.classList.add('in')));
-
-    // Below fold: trigger on viewport entry
+    // Below fold: split + reveal lazily on viewport entry (no work/reflow at load).
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting) { splitEl(e.target); requestAnimationFrame(() => e.target.classList.add('in')); io.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
-    targets.forEach((el) => {
-      if (el.classList.contains('in')) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) el.classList.add('in');
-      else io.observe(el);
-    });
+    targets.forEach((el) => { if (el.dataset.split !== 'done') io.observe(el); });
   })();
 
   // Line reveal, wraps inner content in .line-inner once
