@@ -1004,6 +1004,21 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       });
     }
 
+    // Read the Meta cookies the Pixel drops so the server (CAPI) can match the same person.
+    // _fbp = browser id; _fbc = click id (Meta sets it from ?fbclid=, else we build it here).
+    function fbCookie(name) {
+      const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
+    function getFbc() {
+      let fbc = fbCookie('_fbc');
+      if (!fbc) {
+        const cid = new URLSearchParams(location.search).get('fbclid');
+        if (cid) fbc = 'fb.1.' + Date.now() + '.' + cid;
+      }
+      return fbc;
+    }
+
     let checkingOut = false;
     async function goToCheckout(ev) {
       if (ev) ev.preventDefault();
@@ -1014,8 +1029,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       // 1. Save the selection to the bag; AddToCart fires the moment it is added.
       writeBag({ sku, colors: colours.slice(), qty, price, ts: Date.now() });
       if (isNewAdd && window.fbq) fbq('track', 'AddToCart', { value: price, currency: 'GBP', content_ids: [sku], content_name: packName(sku), num_items: qty });
-      // 2. Heading to checkout → InitiateCheckout + store the real value for thank-you's Purchase.
-      if (window.fbq) fbq('track', 'InitiateCheckout', { value: price, currency: 'GBP', num_items: qty, content_ids: [sku], content_name: packName(sku) });
+      // 2. Heading to checkout → InitiateCheckout. The shared event_id lets the server (CAPI)
+      //    dedupe its twin IC against this one. Also store the real value for thank-you's Purchase.
+      const icEventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('ic-' + Date.now() + '-' + Math.random().toString(36).slice(2));
+      if (window.fbq) fbq('track', 'InitiateCheckout', { value: price, currency: 'GBP', num_items: qty, content_ids: [sku], content_name: packName(sku) }, { eventID: icEventId });
       try { localStorage.setItem('kalmely_last_purchase', JSON.stringify({ value: price, currency: 'GBP', sku, qty, ts: Date.now() })); } catch (_) {}
       // 3. Create the Stripe session and go straight there — no cart page in between.
       checkingOut = true;
@@ -1025,7 +1042,8 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
       try {
         const res = await fetch(WORKER_URL + '/api/checkout', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sku, qty: 1, coupon: null, colors: colours.join(',') })
+          body: JSON.stringify({ sku, qty: 1, coupon: null, colors: colours.join(','),
+            fbp: fbCookie('_fbp'), fbc: getFbc(), icEventId, value: price })
         });
         const data = await res.json();
         if (!res.ok || !data.url) throw new Error(data.error || 'Checkout unavailable');

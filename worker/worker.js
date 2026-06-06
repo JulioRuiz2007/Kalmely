@@ -22,6 +22,10 @@
  *   EBOOK_PDF_URL                  https://cdn.kalmely.com/migraine-tracker.pdf  (legacy KAL-BUNDLE only)
  *   GUIDE_PDF_URL                  /assets/how-to-sleep-on-any-flight.pdf  (sleep-mask orders; optional, defaults to SITE_ORIGIN)
  *   SITE_ORIGIN                    https://kalmely.com
+ *   META_CAPI_TOKEN                EAA...  (Meta Conversions API access token — Events Manager →
+ *                                  Settings → Conversions API → Generate access token)
+ *   META_TEST_EVENT_CODE           TEST... (optional; set only while verifying in Test Events,
+ *                                  then `wrangler secret delete META_TEST_EVENT_CODE`)
  */
 
 const CORS = (origin) => ({
@@ -76,12 +80,18 @@ async function stripe(env, path, params, method = 'POST') {
   return data;
 }
 
-async function createCheckout(request, env) {
+async function createCheckout(request, env, ctx) {
   const origin = request.headers.get('Origin') || env.SITE_ORIGIN;
-  const { sku, qty = 1, coupon, colors } = await request.json();
+  const { sku, qty = 1, coupon, colors, fbp, fbc, icEventId, value } = await request.json();
   const map = SKU_MAP(env);
   const bundle = map[sku];
   if (!bundle) return json({ error: `Unknown sku ${sku}` }, 400, CORS(origin));
+
+  // Capture the BUYER's IP + User-Agent here (this request comes from their browser).
+  // The webhook later comes from Stripe's servers, so it can't see these — we stash them in
+  // the session metadata below so the CAPI Purchase can use them for identity matching.
+  const buyerIp = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || '';
+  const buyerUa = request.headers.get('User-Agent') || '';
 
   // Stripe Checkout accepts only ONE discount per session, so we pick the
   // pre-combined coupon when both LAUNCH (auto-bundle) and RELIEF15 (user) apply.
@@ -107,8 +117,31 @@ async function createCheckout(request, env) {
     billing_address_collection: 'required',
     ...(bundle.shippable ? { shipping_address_collection: { allowed_countries: ['GB'] } } : {}),
     ...(discounts ? { discounts } : { allow_promotion_codes: true }),
-    metadata: { sku, qty: String(qty), applied_coupon: coupon || '', colors: colors || '' }
+    // fb*/cip/cua are carried through so the webhook's CAPI Purchase can match identity.
+    // (Stripe metadata: ≤50 keys, ≤500 chars each — fbp/fbc/ip/ua all fit comfortably.)
+    metadata: {
+      sku, qty: String(qty), applied_coupon: coupon || '', colors: colors || '',
+      fbp: fbp || '', fbc: fbc || '', cip: buyerIp, cua: (buyerUa || '').slice(0, 480),
+      ic_event_id: icEventId || ''
+    }
   });
+
+  // CAPI InitiateCheckout — mirrors the browser IC from goToCheckout(). Shared event_id
+  // (minted client-side, passed as icEventId) → Meta dedupes browser + server into one IC.
+  if (icEventId && ctx) {
+    ctx.waitUntil(sendCapiEvent(env, {
+      eventName: 'InitiateCheckout',
+      eventId: icEventId,
+      eventSourceUrl: (origin || env.SITE_ORIGIN || 'https://kalmely.com') + '/',
+      userData: { ip: buyerIp, ua: buyerUa, fbp, fbc },
+      customData: {
+        currency: 'GBP',
+        ...(typeof value === 'number' ? { value } : {}),
+        content_ids: [sku], content_type: 'product',
+        num_items: bundle.qty || Math.max(1, +qty || 1)
+      }
+    }));
+  }
 
   return json({ url: session.url, id: session.id }, 200, CORS(origin));
 }
@@ -129,6 +162,65 @@ async function verifyStripeSignature(payload, sigHeader, secret) {
   const computed = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
   if (computed !== v1) throw new Error('Signature mismatch');
   if (Math.abs(Date.now() / 1000 - +ts) > 300) throw new Error('Timestamp too old');
+}
+
+// ---------- META CONVERSIONS API (server-side — robust to adblockers / Safari ITP) ----------
+//
+// The browser Pixel only captures ~half of real events (adblockers strip fbevents.js,
+// Safari/iOS ITP drops cookies, bouncers leave before the deferred load). CAPI fires the
+// same events from the Worker, where nothing can block them. DEDUPE: every server event
+// carries the SAME event_id as its browser twin, so Meta merges them and never double-counts:
+//   · Purchase          event_id = Stripe session.id   (= the Pixel eventID on thank-you.html)
+//   · InitiateCheckout  event_id = id minted in the browser, passed through /api/checkout
+//
+const META_PIXEL_ID = '2038496957090347';
+
+async function sha256Hex(value) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Normalise (trim + lowercase) and SHA-256-hash a PII field per Meta's spec.
+// Returns an array (Meta accepts multiple values) or undefined when empty.
+async function hashedField(value) {
+  if (!value) return undefined;
+  const norm = String(value).trim().toLowerCase();
+  if (!norm) return undefined;
+  return [await sha256Hex(norm)];
+}
+
+// Fire one event to the Meta Conversions API. NEVER throws — it logs and resolves so it can
+// run inside ctx.waitUntil() without ever affecting the checkout or webhook response.
+async function sendCapiEvent(env, { eventName, eventId, eventSourceUrl, userData = {}, customData, actionSource = 'website' }) {
+  if (!env.META_CAPI_TOKEN) { console.log('[capi] no META_CAPI_TOKEN — skipping', eventName); return { skipped: true }; }
+  const user_data = {};
+  if (userData.emailHash) user_data.em = userData.emailHash;       // already [sha256]
+  if (userData.ip)  user_data.client_ip_address = userData.ip;
+  if (userData.ua)  user_data.client_user_agent = userData.ua;
+  if (userData.fbp) user_data.fbp = userData.fbp;
+  if (userData.fbc) user_data.fbc = userData.fbc;
+  const event = {
+    event_name: eventName,
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: eventId,
+    action_source: actionSource,
+    ...(eventSourceUrl ? { event_source_url: eventSourceUrl } : {}),
+    user_data,
+    ...(customData ? { custom_data: customData } : {})
+  };
+  const payload = { data: [event], ...(env.META_TEST_EVENT_CODE ? { test_event_code: env.META_TEST_EVENT_CODE } : {}) };
+  try {
+    const res = await fetch(`https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${env.META_CAPI_TOKEN}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.error) console.log('[capi] ERROR', eventName, res.status, JSON.stringify(data.error || data));
+    else console.log('[capi] sent', eventName, '· received', data.events_received, '· id', eventId);
+    return { ok: res.ok, data };
+  } catch (e) {
+    console.log('[capi] fetch failed', eventName, e.message);
+    return { ok: false, error: e.message };
+  }
 }
 
 // ---------- EMAIL (Resend) ----------
@@ -270,6 +362,11 @@ async function handleWebhook(request, env, ctx) {
   const amountTotal = (session.amount_total || 0) / 100;
   const currency = (session.currency || 'gbp').toUpperCase();
   const entry = SKU_MAP(env)[sku] || {};
+  // Identity signals stashed at checkout time (the buyer's browser), for the CAPI Purchase.
+  const fbp = session.metadata?.fbp || '';
+  const fbc = session.metadata?.fbc || '';
+  const cip = session.metadata?.cip || '';
+  const cua = session.metadata?.cua || '';
 
   if (email) {
     const orderId = `KAL-${new Date().getFullYear()}-${session.id.slice(-5).toUpperCase()}`;
@@ -314,6 +411,24 @@ async function handleWebhook(request, env, ctx) {
     ctx.waitUntil(sendResendEmail(env, { to: email, subject, html }));
   }
 
+  // CAPI Purchase — the reliable one. Fires server-side for 100% of paid orders, even when
+  // the browser Pixel was blocked. event_id = session.id matches the Pixel's eventID on
+  // thank-you.html, so Meta dedupes browser + server into a single Purchase.
+  const emailHash = await hashedField(email);
+  ctx.waitUntil(sendCapiEvent(env, {
+    eventName: 'Purchase',
+    eventId: session.id,
+    eventSourceUrl: `${env.SITE_ORIGIN || 'https://kalmely.com'}/thank-you.html`,
+    userData: { emailHash, ip: cip, ua: cua, fbp, fbc },
+    customData: {
+      currency,
+      value: amountTotal,
+      content_ids: [sku],
+      content_type: 'product',
+      num_items: entry.qty || Math.max(1, +(session.metadata?.qty) || 1)
+    }
+  }));
+
   return new Response('ok', { status: 200 });
 }
 
@@ -346,7 +461,7 @@ export default {
     if (url.pathname === '/api/health') return json({ ok: true, time: new Date().toISOString() });
 
     if (url.pathname === '/api/checkout' && request.method === 'POST') {
-      try { return await createCheckout(request, env); }
+      try { return await createCheckout(request, env, ctx); }
       catch (e) { return json({ error: e.message }, 500, CORS(origin)); }
     }
 
@@ -359,51 +474,23 @@ export default {
       catch (e) { return json({ error: e.message }, 500, CORS(origin)); }
     }
 
-    // Temporary: send a REAL preview of the order email (no purchase needed). Key-protected.
-    // Uses the same buildOrderHtml + Resend path as the live webhook.
-    if (url.pathname === '/api/_preview-order' && request.method === 'GET') {
+    // Temporary: verify the Conversions API end-to-end without a real purchase. Key-protected.
+    // ?type=Purchase|InitiateCheckout (default Purchase) · ?test_code=TESTxxxx routes it to
+    // Events Manager → Test Events instead of production. Returns Meta's raw response.
+    if (url.pathname === '/api/_capi-test' && request.method === 'GET') {
       if (url.searchParams.get('key') !== 'kalmely_preview_2026') return new Response('forbidden', { status: 403 });
-      const to = url.searchParams.get('to');
-      if (!to) return json({ error: 'missing ?to=' }, 400);
-      const sku = (url.searchParams.get('sku') || 'MASK-2').toUpperCase();
-      const entry = SKU_MAP(env)[sku] || {};
-      const AMT = { 'MASK-1': '£39.00 GBP', 'MASK-2': '£54.00 GBP', 'MASK-3': '£69.00 GBP' };
-      const colorsLine = (url.searchParams.get('colors') || 'black,pink').split(',').map(c => c.trim()).filter(Boolean)
-        .map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(' + ');
-      const digital = entry.includesGuide ? {
-        eyebrow: 'Your free travel guide', title: 'How to sleep on any flight.',
-        blurb: 'The habits frequent flyers use to land rested, gathered into one short guide. Yours to keep.',
-        url: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
-        pdfUrl: env.GUIDE_PDF_URL || `${env.SITE_ORIGIN || 'https://kalmely.com'}/assets/guide.pdf`,
-        btn: 'Download the guide'
-      } : null;
-      if (url.searchParams.get('inspect') === '1') return json({ guideUrl: digital && digital.url, siteOrigin: env.SITE_ORIGIN, hasGuideEnv: !!env.GUIDE_PDF_URL });
-      const html = buildOrderHtml({ orderId: 'KAL-2026-PREVIEW', amountLabel: AMT[sku] || '£54.00 GBP',
-        eta: 'within 5–7 days', productLine: entry.name || 'Kalmely', colorsLine, digital,
-        preheader: 'Preview of the Kalmely order email.' });
-      const subj = url.searchParams.get('subj') || '[Preview] Your Kalmely is on its way';
-      const r = await sendResendEmail(env, { to, subject: subj, html });
-      return json({ sent: !!r.ok, status: r.status, to, sku, guide: !!digital });
-    }
-
-    // Temporary: inspect/disable Resend click-tracking (it rewrites the email links so
-    // they fall through to the homepage). Key-protected. ?apply=1 turns it off.
-    if (url.pathname === '/api/_resend-fix' && request.method === 'GET') {
-      if (url.searchParams.get('key') !== 'kalmely_preview_2026') return new Response('forbidden', { status: 403 });
-      const h = { 'Authorization': `Bearer ${env.RESEND_API_KEY}` };
-      const list = await (await fetch('https://api.resend.com/domains', { headers: h })).json();
-      const dom = (list.data || []).find(d => /kalmely/i.test(d.name || ''));
-      if (!dom) return json({ error: 'domain not found', raw: list });
-      const detail = await (await fetch('https://api.resend.com/domains/' + dom.id, { headers: h })).json();
-      let patched = null;
-      if (url.searchParams.get('apply') === '1') {
-        const pr = await fetch('https://api.resend.com/domains/' + dom.id, {
-          method: 'PATCH', headers: { ...h, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ click_tracking: false })
-        });
-        patched = { status: pr.status, body: await pr.json().catch(() => ({})) };
-      }
-      return json({ id: dom.id, name: dom.name, status: dom.status, click_tracking: detail.click_tracking, open_tracking: detail.open_tracking, patched });
+      const type = url.searchParams.get('type') || 'Purchase';
+      const testCode = url.searchParams.get('test_code') || '';
+      const envForTest = testCode ? { ...env, META_TEST_EVENT_CODE: testCode } : env;
+      const emailHash = await hashedField('capi-test@kalmely.com');
+      const r = await sendCapiEvent(envForTest, {
+        eventName: type,
+        eventId: 'capi-selftest-' + (url.searchParams.get('id') || 'manual'),
+        eventSourceUrl: (env.SITE_ORIGIN || 'https://kalmely.com') + '/thank-you.html',
+        userData: { emailHash, ip: request.headers.get('CF-Connecting-IP') || '', ua: request.headers.get('User-Agent') || '' },
+        customData: { currency: 'GBP', value: 54, content_ids: ['MASK-2'], content_type: 'product', num_items: 2 }
+      });
+      return json({ tokenPresent: !!env.META_CAPI_TOKEN, type, testCode: testCode || null, meta: r });
     }
 
     return new Response('Not found', { status: 404 });
