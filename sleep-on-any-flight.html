@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<!-- Advertorial pre-landing: keep it out of brand SEO -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
+<title>I Finally Slept on a Flight — Here's the £39 Thing That Fixed It</title>
+<meta name="description" content="A frequent traveller's account of the one thing that finally let her sleep on night flights — a 3D sleep mask with built-in speakers that handles the light and the noise at once.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<meta property="og:site_name" content="Kalmely">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I Hadn't Slept on a Single Flight in Years — Here's the £39 Thing That Finally Fixed It">
+<meta property="og:description" content="For a decade I landed everywhere a wreck. Then a colleague who flies every week showed me what she uses.">
+<meta property="og:image" content="https://kalmely.com/assets/mask-flight.webp">
+
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
+</style>
+<link rel="preload" as="image" href="assets/mask-flight.webp" type="image/webp" fetchpriority="high">
+
+<!-- Admin Mode Guard (identical to the rest of the site) -->
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin_mode') === 'kalmely_julio_2026') {
+    document.cookie = 'kalmely_admin=true; max-age=2592000; path=/; SameSite=Lax';
+    console.log('Admin mode activated. Pixel events disabled for 30 days.');
+  }
+  if (document.cookie.includes('kalmely_admin=true')) {
+    window.fbq = function() { console.log('[admin] fbq call blocked:', arguments); };
+    window.gtag = function() { console.log('[admin] gtag call blocked:', arguments); };
+    window._kalmelyAdmin = true;
+  }
+})();
+</script>
+
+<!-- Capture the Meta click-id from the ad URL the instant we land, and persist it as the _fbc
+     cookie for the whole domain. This is the first touch from the ad, so it's where ?fbclid=
+     arrives. Doing it here (not waiting for the deferred Pixel) means the click-id survives to
+     the product page → checkout → and the Worker's server-side CAPI Purchase, which reads fbc
+     from the Stripe session metadata. Without it, a fast click would lose the match. -->
+<script>
+(function(){
+  try{
+    var cid = new URLSearchParams(location.search).get('fbclid');
+    if (cid && !/(?:^|; )_fbc=/.test(document.cookie)) {
+      document.cookie = '_fbc=fb.1.' + Date.now() + '.' + cid + '; max-age=7776000; path=/; SameSite=Lax';
+    }
+  } catch(e){}
+})();
+</script>
+
+<!-- Meta Pixel Code (deferred load, identical pattern to the site) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[]}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2038496957090347');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Kalmely Sleep Mask',
+  content_ids: ['MASK-1'],
+  content_type: 'product',
+  value: 39.00,
+  currency: 'GBP'
+});
+// Funnel measurement: ViewAdvertorial (here) ÷ AdvertorialClick (on the CTAs) = cross-rate.
+// Both client-side and admin-safe, so the ratio isn't skewed by mixing measurement methods.
+fbq('trackCustom', 'ViewAdvertorial', { content_ids: ['MASK-1'], slug: 'sleep-on-any-flight' });
+(function(){
+  if (window._kalmelyAdmin) return;
+  var loaded = false;
+  function loadPixel(){
+    if (loaded) return; loaded = true;
+    var t = document.createElement('script'); t.async = !0;
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s);
+  }
+  ['scroll','pointerdown','keydown','touchstart','mousemove'].forEach(function(ev){
+    window.addEventListener(ev, loadPixel, { once:true, passive:true });
+  });
+  setTimeout(loadPixel, 2000);   // shorter than the home (3s): this page exists to measure, so capture ViewAdvertorial sooner
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+:root{--ink:#0F1B2D;--ink-soft:#414C5E;--ink-muted:#6B7280;--bg:#ffffff;--bg-soft:#F7F6F2;--line:#E5E7EB;--line-soft:#EFEDE7;--brand:#1F3D2F;--brand-deep:#163025;--brand-soft:#E8EDE9;--accent:#A04A26;--star:#F59E0B;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:18px;line-height:1.75;color:var(--ink-soft);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent)}
+
+.adv-nav{border-bottom:1px solid var(--line-soft);padding:16px 20px;text-align:center;position:sticky;top:0;background:rgba(255,255,255,0.94);backdrop-filter:saturate(180%) blur(10px);z-index:20}
+.adv-brand{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
+.adv-brand span{color:var(--brand)}
+
+.adv{max-width:680px;margin:0 auto;padding:0 22px 50px}
+.adv-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin:40px 0 16px}
+.adv h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,6.4vw,46px);line-height:1.1;letter-spacing:-0.015em;color:var(--ink);margin:0 0 20px}
+.adv-subhead{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3.4vw,23px);line-height:1.5;color:var(--ink-soft);margin:0 0 12px}
+.adv-byline{font-family:var(--sans);font-size:13px;color:var(--ink-muted);margin:0 0 28px;padding-bottom:24px;border-bottom:1px solid var(--line-soft)}
+.adv h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,4.6vw,31px);line-height:1.18;color:var(--ink);margin:46px 0 18px;letter-spacing:-0.01em}
+.adv p{margin:0 0 22px}
+.adv p em{font-style:italic}
+.adv p strong,.adv li strong{color:var(--ink);font-weight:600}
+.adv ul{margin:0 0 24px;padding:0;list-style:none}
+.adv li{position:relative;padding-left:26px;margin-bottom:15px}
+.adv li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+
+.adv figure{margin:34px -4px}
+.adv figure img{width:100%;border-radius:14px;background:var(--bg-soft)}
+.adv figcaption{font-family:var(--sans);font-size:12.5px;color:var(--ink-muted);text-align:center;margin-top:11px;font-style:italic}
+
+.adv-offer{background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:14px;padding:26px 24px;margin:34px 0}
+.adv-offer p{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;color:var(--ink);margin:0 0 6px;text-align:center}
+.adv-btn{display:block;width:100%;max-width:440px;margin:18px auto 0;text-align:center;background:var(--brand);color:#fff;font-family:var(--sans);font-size:17px;font-weight:600;text-decoration:none;padding:18px 26px;border-radius:9px;letter-spacing:0.01em;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 16px 34px -18px rgba(31,61,47,0.55)}
+.adv-btn:hover{background:var(--brand-deep);transform:translateY(-1px)}
+.adv-btn-note{display:block;text-align:center;font-family:var(--sans);font-size:12.5px;color:var(--ink-muted);margin-top:11px}
+
+.adv-quotes{margin:24px 0 18px;border-left:2px solid var(--brand-soft);padding-left:24px}
+.adv-quote{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.5;color:var(--ink);margin:0 0 18px}
+.adv-quote:last-child{margin-bottom:0}
+.adv-quote cite{display:block;font-family:var(--sans);font-size:12.5px;font-style:normal;font-weight:600;color:var(--ink-soft);letter-spacing:0.02em;margin-top:7px}
+.adv-rating{font-size:15.5px;color:var(--ink-soft);margin:0 0 22px}
+.adv-rating .stars{color:var(--star);letter-spacing:1px;font-size:15px}
+.adv-rating small{display:block;font-size:12.5px;color:var(--ink-muted);font-style:italic;margin-top:4px}
+
+.adv-disclaimer{font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--ink-muted);font-style:italic;border-top:1px solid var(--line);padding-top:24px;margin-top:42px}
+
+.adv-footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:36px 22px;text-align:center}
+.adv-footer-links{font-family:var(--sans);font-size:13px;line-height:2.1;margin-bottom:14px}
+.adv-footer-links a{color:var(--ink-soft);text-decoration:none;margin:0 9px;white-space:nowrap}
+.adv-footer-links a:hover{color:var(--ink)}
+.adv-footer-fine{font-family:var(--sans);font-size:12px;color:var(--ink-muted);line-height:1.6;max-width:540px;margin:0 auto}
+
+.cookie{position:fixed;bottom:16px;left:16px;right:16px;max-width:520px;margin:0 auto;background:var(--ink);color:#fff;padding:16px 20px;border-radius:10px;font-family:var(--sans);font-size:13px;display:none;align-items:center;gap:16px;flex-wrap:wrap;z-index:100;box-shadow:0 20px 50px -20px rgba(0,0,0,0.5)}
+.cookie.show{display:flex}
+.cookie p{margin:0;flex:1 1 220px;line-height:1.5;color:#C9D0DA}
+.cookie a{color:#fff}
+.cookie-actions{display:flex;gap:10px}
+.cookie button{border:none;padding:9px 15px;border-radius:6px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.cookie .accept{background:#fff;color:var(--ink)}
+.cookie .deny{background:transparent;color:#C9D0DA;border:1px solid rgba(255,255,255,0.25)}
+
+@media(max-width:600px){
+  body{font-size:17px;line-height:1.7}
+  .adv{padding:0 18px 44px}
+  .adv figure{margin:28px -2px}
+  .adv-offer{padding:22px 18px}
+  .adv-offer p{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){.adv-btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="adv-nav">
+  <a href="index.html" class="adv-brand">Kalmely<span>.</span></a>
+</nav>
+
+<article class="adv">
+
+  <p class="adv-eyebrow">A traveller's story</p>
+  <h1>I Hadn't Slept on a Single Flight in Years — Here's the £39 Thing That Finally Fixed It</h1>
+  <p class="adv-subhead">For a decade I landed everywhere a wreck. Then a colleague who flies every week showed me what she uses — and my first night flight since has been my best.</p>
+  <p class="adv-byline">Independent customer account · 4 min read</p>
+
+  <figure>
+    <img src="assets/mask-flight.webp" alt="A traveller resting against an aeroplane window during a night flight" width="1024" height="1024" fetchpriority="high" decoding="async">
+  </figure>
+
+  <p>I used to dread the night flights most.</p>
+
+  <p>Not the flying itself — the <em>not sleeping</em>. The cabin lights that never fully go off. The engine drone that sits behind your eyes for eight hours. The stranger in 24B whose elbow has opinions about your armrest. I'd board exhausted, close my eyes, and just… lie there. Awake. Doing maths on how few hours of "sleep" I might steal before the trolley came round again.</p>
+
+  <p>And then I'd land and lose the first day of the trip. Every time. The holiday I'd saved a year for, or the meeting I'd flown six hours for — gone, behind a fog of jet lag, because I simply could not switch off on a plane.</p>
+
+  <p>I told myself it was just me. That some people can sleep anywhere and some people can't, and I was the second kind.</p>
+
+  <h2>It turns out it wasn't me. It was my kit.</h2>
+
+  <p>I'd tried everything, and looking back, each thing solved exactly half the problem:</p>
+
+  <ul>
+    <li><strong>Eye masks</strong> blocked some of the light, but they pressed on my eyes, slid off the second I turned, and did nothing about the noise.</li>
+    <li><strong>Earplugs</strong> muffled the engine, but they ached after an hour on my side and left the cabin lights blazing through my eyelids.</li>
+    <li><strong>Sleeping pills</strong> knocked me out, sure — and left me groggy and stupid for the entire first day, which was the day I'd flown there for.</li>
+  </ul>
+
+  <p>Nothing covered <strong>the light <em>and</em> the noise at the same time, comfortably, the whole flight.</strong> And that, it turns out, is the only thing that actually works.</p>
+
+  <h2>The colleague who flies every week</h2>
+
+  <p>I found out from Sophie, who's cabin-side somewhere most weeks for work and is annoyingly fresh every time she lands. I finally asked her how.</p>
+
+  <p>She pulled a soft mask out of her bag. It didn't look like much — until she turned it over. Instead of flat fabric, it had two <strong>raised, contoured cups</strong> over the eyes. And tucked flat inside, right where your ears are, two <strong>slim Bluetooth speakers.</strong></p>
+
+  <p>"Blackout and sound," she said. "In one thing. I put on rain noise, and the next thing I hear is the captain."</p>
+
+  <p>I ordered one that week. It's called Kalmely.</p>
+
+  <h2>Why the design actually matters</h2>
+
+  <figure>
+    <img src="assets/mask-3d.webp" alt="The Kalmely mask's 3D contoured eye cups and the no-pressure, total-blackout design" width="1024" height="1024" loading="lazy" decoding="async">
+    <figcaption>The raised 3D cups block the light without touching your eyes.</figcaption>
+  </figure>
+
+  <p>I'm not a gadget person, so I had it explained to me simply, and it stuck:</p>
+
+  <p><strong>The 3D cups.</strong> Because they're raised, they block 100% of the light <em>without touching your eyes.</em> You can blink. You can wear it over lashes or lash extensions. There's no pressure, so it doesn't give you that dull ache a normal mask does after a couple of hours. Total darkness, zero contact.</p>
+
+  <p><strong>The flat built-in speakers.</strong> They sit over your ears inside the mask — no earbuds to fall out, nothing jammed into your ear canal that hurts when you lie on your side. You pair your phone and play whatever switches your brain off: rain, white noise, a podcast, your own playlist. It doesn't <em>cancel</em> the engine so much as <strong>bury</strong> it under something your brain would rather listen to.</p>
+
+  <p>Light handled. Noise handled. Comfortable on your side. That's the whole problem, solved by one soft thing you put on your face.</p>
+
+  <div class="adv-offer">
+    <p>Curious what it costs?</p>
+    <a href="index.html" class="adv-btn" data-cta="mid">Check availability &amp; today's offer →</a>
+    <span class="adv-btn-note">Free UK shipping · 100-night money-back guarantee</span>
+  </div>
+
+  <h2>My first night flight with it</h2>
+
+  <p>Long-haul. The kind I'd normally write off.</p>
+
+  <p>I slipped it on somewhere over France, put on the rain track, and — I genuinely don't remember the drinks service. Or the announcements. Or the man in 24B.</p>
+
+  <p>I woke up because the cabin lights came up for landing. I'd slept. <em>On a plane.</em> I walked off feeling like a person instead of something the trip had chewed up, and I had my whole first day back.</p>
+
+  <figure>
+    <img src="assets/mask-black.webp" alt="The Kalmely Sleep Mask, soft black 3D sleep mask with built-in Bluetooth speakers" width="1200" height="1200" loading="lazy" decoding="async">
+  </figure>
+
+  <p>I've since worn it on a 2-hour hop and a 13-hour stretch. Same result both times. It's also, slightly embarrassingly, become my best mask at home for blackout and switching my brain off at night — about 16 hours of battery means I almost never think about charging it, and the electronics pop out so the mask itself just goes in the wash.</p>
+
+  <h2>I'm not the only one</h2>
+
+  <p>When I started recommending it, I realised half the frequent flyers I know had quietly found it already.</p>
+
+  <div class="adv-quotes">
+    <p class="adv-quote">"First long-haul where I actually slept. Landed in Singapore feeling human."<cite>— Hannah, London</cite></p>
+    <p class="adv-quote">"I put on my rain sounds and the next thing I heard was the captain. Game changer."<cite>— Sophie, Manchester</cite></p>
+    <p class="adv-quote">"Bought one for me and one for my husband. We both sleep the whole flight now."<cite>— Margaret, Bristol</cite></p>
+  </div>
+
+  <p class="adv-rating"><span class="stars">★★★★★</span> It's sitting at 4.8 out of 5 across 480-odd reviews from travellers, which, if you've ever read sleep-product reviews, is unusually high.<small>Independent customer reviews — individual experiences vary.</small></p>
+
+  <div class="adv-offer">
+    <p>See the mask, the colours, and today's offer.</p>
+    <a href="index.html" class="adv-btn" data-cta="mid2">See the offer →</a>
+    <span class="adv-btn-note">Free UK shipping · 100-night money-back guarantee</span>
+  </div>
+
+  <h2>If you're the "I just can't sleep on planes" person</h2>
+
+  <p>I was that person for ten years, and it wasn't true. I had the wrong tools. The light and the noise were beatable the whole time — I just needed one thing that handled both without hurting.</p>
+
+  <p>The makers are UK-based and so sure of it that they give you a <strong>100-night money-back guarantee</strong>: sleep with it for 100 nights, and if you're not sleeping better, they refund you in full — and you keep the mask. Most sleep brands give you 15 days. They give you 100. <strong>Free UK shipping</strong>, and there's a small launch discount on the bundles right now (handy if, like Margaret, you want one for whoever you travel with).</p>
+
+  <p>I can't promise it'll work for you the way it worked for me. But if you've ever lost the first day of a trip to a flight you couldn't sleep through, it's the first thing I'd try — and with 100 nights to send it back, there's not much to lose but the red-eyes.</p>
+
+  <div class="adv-offer">
+    <p>See the Kalmely Sleep Mask, the colours, and today's offer.</p>
+    <a href="index.html" class="adv-btn" data-cta="final">Check availability here →</a>
+    <span class="adv-btn-note">Free UK shipping · 100-night money-back guarantee</span>
+  </div>
+
+  <p class="adv-disclaimer">This is an independent account of one customer's experience. Individual results vary. Not medical advice.</p>
+
+</article>
+
+<footer class="adv-footer">
+  <div class="adv-footer-links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="shipping-policy.html">Shipping</a>
+    <a href="refund-policy.html">Refunds</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+  <div class="adv-footer-fine">© 2026 Kalmely Ltd · Designed in the UK · Independent customer account; individual results vary. Not medical advice.</div>
+</footer>
+
+<!-- Cookie banner (same behaviour as the rest of the site) -->
+<div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to improve the site and measure ads. Read our <a href="privacy.html">privacy policy</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" class="accept" id="cookieAccept">Accept</button>
+    <button type="button" class="deny" id="cookieDeny">Essential only</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  // CTA → fire a custom event so we can measure advertorial → product hand-off (admin-safe).
+  document.querySelectorAll('.adv-btn').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (window.fbq) fbq('trackCustom', 'AdvertorialClick', { placement: a.getAttribute('data-cta') || 'cta', content_ids: ['MASK-1'] });
+    });
+  });
+  // Cookie banner (mirrors the home).
+  var banner = document.getElementById('cookieBanner');
+  setTimeout(function(){ try{ if(!localStorage.getItem('kalmely_consent')) banner && banner.classList.add('show'); }catch(e){} }, 800);
+  var accept = document.getElementById('cookieAccept'), deny = document.getElementById('cookieDeny');
+  accept && accept.addEventListener('click', function(){ try{localStorage.setItem('kalmely_consent','all');}catch(e){} banner.classList.remove('show'); });
+  deny && deny.addEventListener('click', function(){ try{localStorage.setItem('kalmely_consent','essential');}catch(e){} banner.classList.remove('show'); });
+})();
+</script>
+
+</body>
+</html>
