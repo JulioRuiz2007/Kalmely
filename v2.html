@@ -188,6 +188,11 @@ em{font-style:italic}
 .hero-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
 .hb{display:flex;align-items:center;gap:9px;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:11px;font-size:12.5px;font-weight:600;line-height:1.2}
 .hb svg{flex:none;color:var(--brand-2)}
+.hero-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.hero-thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;padding:0;background:var(--bg-2);cursor:pointer;transition:border-color .15s,opacity .15s;opacity:.62}
+.hero-thumb:hover{opacity:1}
+.hero-thumb.is-active{border-color:var(--navy);opacity:1}
+.hero-thumb img{width:100%;height:100%;object-fit:cover}
 .eyebrow{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-2);margin-bottom:12px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand-2);box-shadow:0 0 0 4px rgba(44,99,184,.16)}
 .hero h1{font-size:clamp(31px,7.6vw,48px)}
@@ -460,7 +465,14 @@ section{padding:clamp(46px,8vw,84px) 0}
     <div class="hero-media">
       <div class="hero-imgwrap">
         <span class="hero-tag">New 2026 model</span>
-        <img src="assets/mask-black.webp" srcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" sizes="(max-width:920px) 92vw, 500px" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" fetchpriority="high" decoding="async">
+        <img id="heroMain" src="assets/mask-black.webp" srcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" sizes="(max-width:920px) 92vw, 500px" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero-thumbs" id="heroThumbs">
+        <button type="button" class="hero-thumb is-active" data-src="assets/mask-black.webp" aria-label="Product"><img src="assets/mask-black-640.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/mask-3d.webp" aria-label="3D contoured cups"><img data-lazy-src="assets/mask-3d.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/mask-audio.webp" aria-label="Built-in speakers"><img data-lazy-src="assets/mask-audio.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/mask-flight.webp" aria-label="On a flight"><img data-lazy-src="assets/mask-flight.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/mask-both.webp" aria-label="Black and pink"><img data-lazy-src="assets/mask-both.webp" alt="" width="120" height="120"></button>
       </div>
       <div class="hero-badges">
         <div class="hb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg> 100% blackout</div>
@@ -855,6 +867,10 @@ section{padding:clamp(46px,8vw,84px) 0}
   function L(){document.querySelectorAll('[data-lazy-src]').forEach(function(i){i.src=i.getAttribute('data-lazy-src');i.removeAttribute('data-lazy-src');});}
   if(document.readyState==='complete')setTimeout(L,200);else addEventListener('load',function(){setTimeout(L,200);});
   ['pointerdown','touchstart','keydown','scroll'].forEach(function(e){addEventListener(e,L,{once:true,passive:true});});
+
+  // ---------- Hero gallery thumbnails ----------
+  var hThumbs=document.querySelectorAll('.hero-thumb'),hMain=document.getElementById('heroMain');
+  if(hThumbs.length&&hMain){hThumbs.forEach(function(t){t.addEventListener('click',function(){var src=t.getAttribute('data-src');if(!src)return;hMain.removeAttribute('srcset');hMain.removeAttribute('sizes');hMain.src=src;hThumbs.forEach(function(x){x.classList.toggle('is-active',x===t);});});});}
 })();
 </script>
 
