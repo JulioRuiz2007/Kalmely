@@ -17,6 +17,7 @@
 <meta name="application-name" content="Kalmely">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora.woff2" crossorigin>
 <style>
 /* Self-hosted fonts (latin) — served from our own domain, cached 1 year. Avoids the
    render-blocking round-trips to Google and the layout shift from late-loading fonts. */
@@ -149,7 +150,8 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer}
 [hidden]{display:none!important}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 18px}
-h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.08;font-weight:800;color:var(--ink)}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora.woff2) format('woff2')}
+h1,h2,h3{margin:0;font-family:'Sora',var(--sans);letter-spacing:-.03em;line-height:1.05;font-weight:800;color:var(--ink)}
 em{font-style:italic}
 .serif{font-family:var(--serif);font-weight:600}
 
@@ -347,8 +349,9 @@ section{padding:clamp(46px,8vw,84px) 0}
 .cart-close{background:none;border:none;color:var(--muted);font-size:24px;line-height:1;padding:4px}
 .cart-body{flex:1;overflow-y:auto;padding:18px 20px}
 .cart-item{display:flex;gap:13px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.cart-item-img{width:74px;height:74px;border-radius:11px;overflow:hidden;background:var(--bg-2);flex:none;border:1px solid var(--line)}
+.cart-item-img{position:relative;width:78px;height:78px;border-radius:11px;overflow:hidden;background:var(--bg-2);flex:none;border:1px solid var(--line)}
 .cart-item-img img{width:100%;height:100%;object-fit:cover}
+.ci-qty{position:absolute;top:4px;left:4px;background:var(--navy);color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:99px;line-height:1.35;z-index:2;box-shadow:0 2px 8px -2px rgba(16,35,71,.6)}
 .cart-item-info{flex:1;min-width:0}
 .cart-item-name{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
 .cart-item-meta{font-size:12.5px;color:var(--ink-2);margin-bottom:6px}
@@ -631,7 +634,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   </div>
   <div class="cart-body">
     <div class="cart-item">
-      <div class="cart-item-img"><img id="cartImg" src="assets/mask-black.webp" alt="Kalmely Sleep Mask" width="148" height="148"></div>
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×2</span><img id="cartImg" src="assets/mask-black.webp" alt="Kalmely Sleep Mask" width="148" height="148"></div>
       <div class="cart-item-info">
         <div class="cart-item-name" id="cartName">Kalmely Sleep Mask · 2-pack</div>
         <div class="cart-item-meta" id="cartMeta">Black · Black</div>
@@ -661,13 +664,13 @@ section{padding:clamp(46px,8vw,84px) 0}
   <div class="scratch-modal">
     <button type="button" class="scratch-close" id="scratchClose" aria-label="Close">×</button>
     <div class="scratch-left">
-      <div class="scratch-eyebrow">First-order welcome gift</div>
+      <div class="scratch-eyebrow">Launch Week · first order</div>
       <h3>Try your luck</h3>
-      <p>Scratch the panel to reveal your discount</p>
+      <p>Scratch to unlock an extra discount on your Launch Week pack</p>
       <div class="scratch-wrap">
         <div class="scratch-prize">
           <span class="sp-amt">10% OFF</span>
-          <span class="sp-lbl">your first order</span>
+          <span class="sp-lbl">your Launch Week pack</span>
           <span class="sp-code">CODE: SLEEP10</span>
         </div>
         <canvas class="scratch-canvas" id="scratchCanvas" width="230" height="150"></canvas>
@@ -779,7 +782,8 @@ section{padding:clamp(46px,8vw,84px) 0}
     var qty=qtyOf(curSku),price=parseInt(curPrice,10)||0,was=WAS[curSku],save=SAVE[curSku];
     document.getElementById('cartName').textContent=packName(curSku);
     document.getElementById('cartMeta').textContent=colours.map(function(c){return c.charAt(0).toUpperCase()+c.slice(1);}).join(' · ')||'Black';
-    document.getElementById('cartImg').src=(colours[0]==='pink'?'assets/mask-pink.webp':'assets/mask-black.webp');
+    document.getElementById('cartQty').textContent='×'+qty;
+    document.getElementById('cartImg').src=(qty>1?'assets/mask-both.webp':(colours[0]==='pink'?'assets/mask-pink.webp':'assets/mask-black.webp'));
     document.getElementById('cartPrice').textContent='£'+price;
     var wasEl=document.getElementById('cartWas');if(was){wasEl.textContent='£'+was;wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money(was||price);
