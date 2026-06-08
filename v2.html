@@ -744,7 +744,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   var force=false;try{force=new URLSearchParams(location.search).get('scratch')==='1';}catch(e){}
   var shown=false;function show(){if(shown)return;if(!force){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');}
   if(force){show();}  // ?scratch=1 → always show it (for previewing)
-  else{try{if(localStorage.getItem('kalmely_scratch')!=='done'){setTimeout(show,6000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.35)show();},{passive:true});}}catch(e){setTimeout(show,6000);}}
+  else{try{if(localStorage.getItem('kalmely_scratch')!=='done'){setTimeout(show,3000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.2)show();},{passive:true});}}catch(e){setTimeout(show,3000);}}
 })();
 </script>
 
