@@ -437,7 +437,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 
 <div class="offer-bar" role="region" aria-label="Launch week offer">
   <span>🌙 LAUNCH WEEK · <b>Save up to 41%</b> on multi-packs · Free UK shipping</span>
-  <span class="offer-timer" aria-hidden="true">Ends in <span class="t" id="atDays">00</span><span class="c">:</span><span class="t" id="atHours">00</span><span class="c">:</span><span class="t" id="atMins">00</span><span class="c">:</span><span class="t" id="atSecs">00</span></span>
+  <span class="offer-timer" aria-hidden="true">Price ends in <span class="t" id="atHours">01</span><span class="c">:</span><span class="t" id="atMins">59</span><span class="c">:</span><span class="t" id="atSecs">59</span></span>
 </div>
 
 <nav class="nav">
@@ -726,13 +726,13 @@ section{padding:clamp(46px,8vw,84px) 0}
   'use strict';
   // ---------- Countdown (rolling 24h, never hits zero) ----------
   (function(){
-    var d=document.getElementById('atDays'),h=document.getElementById('atHours'),m=document.getElementById('atMins'),s=document.getElementById('atSecs');
-    if(!d)return;var KEY='kalmely_launch_end',WIN=864e5,now=Date.now(),end;
+    var h=document.getElementById('atHours'),m=document.getElementById('atMins'),s=document.getElementById('atSecs');
+    if(!h)return;var KEY='kalmely_offer_2h',WIN=72e5,now=Date.now(),end; // 2-hour window, rolls over for urgency
     try{end=parseInt(localStorage.getItem(KEY)||'0',10)}catch(e){end=0}
     if(!end||end-now>WIN+6e4){end=now+WIN;try{localStorage.setItem(KEY,String(end))}catch(e){}}
     var pad=function(n){return String(Math.max(0,n)).padStart(2,'0')};
-    function tick(){var diff=end-Date.now();if(diff<6e4){end+=864e5;try{localStorage.setItem(KEY,String(end))}catch(e){}diff=end-Date.now();}
-      d.textContent=pad(Math.floor(diff/864e5));h.textContent=pad(Math.floor(diff/36e5%24));m.textContent=pad(Math.floor(diff/6e4%60));s.textContent=pad(Math.floor(diff/1e3%60));}
+    function tick(){var diff=end-Date.now();if(diff<1e3){end+=WIN;try{localStorage.setItem(KEY,String(end))}catch(e){}diff=end-Date.now();}
+      h.textContent=pad(Math.floor(diff/36e5));m.textContent=pad(Math.floor(diff/6e4%60));s.textContent=pad(Math.floor(diff/1e3%60));}
     tick();setInterval(tick,1000);
   })();
 
