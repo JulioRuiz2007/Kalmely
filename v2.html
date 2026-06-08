@@ -429,6 +429,14 @@ section{padding:clamp(46px,8vw,84px) 0}
 .fade-slow.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.fade-slow{opacity:1!important;transform:none!important;transition:none!important}.scroll-progress{display:none}}
 
+@media(max-width:560px){
+  .compare{font-size:12px;table-layout:fixed}
+  .compare th,.compare td{padding:9px 3px;word-break:break-word}
+  .compare thead th{font-size:9px;letter-spacing:0}
+  .compare td:first-child,.compare th:first-child{font-size:12px;width:31%}
+  .compare .yes,.compare .no{font-size:15px}
+  .hero-thumbs{gap:6px}
+}
 @media(min-width:920px){
   .hero-grid{grid-template-columns:1.05fr .95fr;gap:46px;align-items:start}
   .hero-media{position:sticky;top:90px}
@@ -813,7 +821,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   function openCart(){
     var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
     try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
-    if(window.fbq)fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_name:packName(curSku),num_items:qty});
+    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty},{eventID:atcId});}
     populateCart();
     overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';
   }
@@ -832,7 +840,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     if(checkingOut)return;
     var sku=curSku,price=parseInt(curPrice,10)||0,qty=qtyOf(sku);
     var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
-    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'GBP',num_items:qty,content_ids:[sku],content_name:packName(sku)},{eventID:icEventId});
+    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'GBP',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku)},{eventID:icEventId});
     try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'GBP',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
