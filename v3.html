@@ -208,6 +208,7 @@ em{font-style:italic}
 .ticks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
 .ticks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;color:var(--ink)}
 .ticks li strong{color:var(--ink)}
+.ticks li>span{flex:1;min-width:0}
 .ticks svg{flex:none;margin-top:2px;color:var(--ok)}
 
 /* BUY BOX */
@@ -267,7 +268,8 @@ em{font-style:italic}
 .gift-img::before{content:attr(data-e);font-size:30px;position:absolute;z-index:0;opacity:.85}
 .gift-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
 .gift-name{font-size:11.5px;font-weight:800;font-family:'Sora',var(--sans);letter-spacing:-.01em;color:var(--ink);line-height:1.2}
-.gift-free{position:absolute;top:6px;right:6px;font-size:8px;font-weight:800;background:var(--accent);color:#fff;padding:2px 6px;border-radius:999px;letter-spacing:.04em;z-index:2}
+.gift-free{position:absolute;top:6px;right:6px;font-size:8px;font-weight:800;background:var(--accent);color:#fff;padding:2px 6px;border-radius:999px;letter-spacing:.04em;z-index:3}
+.gift-type{position:absolute;top:6px;left:6px;font-size:7.5px;font-weight:800;background:var(--navy);color:#fff;padding:2px 6px;border-radius:5px;letter-spacing:.07em;z-index:3}
 .gift-sw{display:flex;gap:6px;justify-content:center;margin-top:7px}
 .gsw{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);padding:0;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .gsw-black{background:#1c1c1c}.gsw-pink{background:#e3aebb}
@@ -583,10 +585,10 @@ section{padding:clamp(46px,8vw,84px) 0}
       <p class="hero-sub">Total blackout. Your own sound over both ears. <strong>Actually fall asleep on the plane</strong> — and land feeling human, not wrecked.</p>
       <div class="rating-row"><span class="stars">★★★★★</span><span class="rr-num">4.8/5</span><span class="rr-cnt">· 480+ reviews from travellers</span></div>
       <ul class="ticks">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>100%&nbsp;blackout</strong> — and zero pressure on your eyes.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Drown the engine</strong> in your own sound and drift off.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Sleep on your side</strong> — nothing jammed in your ears.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>16h battery</strong>, fully washable, yours for years.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>100% blackout</strong> — and zero pressure on your eyes.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Drown the engine</strong> in your own sound and drift off.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Sleep on your side</strong> — nothing jammed in your ears.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>16h battery</strong>, fully washable, yours for years.</span></li>
       </ul>
       <div class="buybox">
         <div class="buybox-head"><span class="bh-t">Choose your offer</span><span class="bh-deal">Buy more, save more</span></div>
@@ -896,7 +898,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     saveColours();
   }
   function renderIncludes(sku){var inc=document.getElementById('includes');if(!inc)return;var q=qtyOf(sku);var li=function(t,g){return '<li'+(g?'':' class="inc-main"')+'>'+(g?'<span class="inc-gift">\uD83C\uDF81</span>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>')+'<span class="inc-t">'+t+'</span>'+(g?'<span class="inc-tag">FREE</span>':'')+'</li>';};var r=[li(q+'\u00d7 Kalmely Sleep Mask',false),li('\u201cHow to Sleep on Any Flight\u201d e-book',true)];if(q>=2)r.push(li('Travel neck pillow',true));if(q>=3)r.push(li('Lavender sleep mist',true));inc.innerHTML='<div class="inc-h">Your order includes</div><ul>'+r.join('')+'</ul>';}
-  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;var q=qtyOf(sku);var card=function(name,emoji,img,sw){var c='<div class="gift-card"><span class="gift-free">FREE</span><div class="gift-img" data-e="'+emoji+'"><img src="assets/'+img+'.webp" alt="'+name+'" loading="lazy" onerror="this.remove()"></div><span class="gift-name">'+name+'</span>';if(sw)c+='<div class="gift-sw"><button type="button" class="gsw gsw-black'+(pillowColor==='black'?' on':'')+'" data-pc="black" aria-label="Black"></button><button type="button" class="gsw gsw-pink'+(pillowColor==='pink'?' on':'')+'" data-pc="pink" aria-label="Pink"></button></div>';return c+'</div>';};var cards=[card('Sleep e-book','\uD83D\uDCD8','gift-ebook',false)];if(q>=2)cards.push(card('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true));if(q>=3)cards.push(card('Lavender mist','\uD83C\uDF3F','gift-mist',false));el.innerHTML='<div class="pg-h">\uD83C\uDF81 Free with this pack</div><div class="pg-row">'+cards.join('')+'</div>';}
+  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;var q=qtyOf(sku);var card=function(name,emoji,img,sw,tag){var c='<div class="gift-card"><span class="gift-free">FREE</span>'+(tag?'<span class="gift-type">'+tag+'</span>':'')+'<div class="gift-img" data-e="'+emoji+'"><img src="assets/'+img+'.webp" alt="'+name+'" loading="lazy" onerror="this.remove()"></div><span class="gift-name">'+name+'</span>';if(sw)c+='<div class="gift-sw"><button type="button" class="gsw gsw-black'+(pillowColor==='black'?' on':'')+'" data-pc="black" aria-label="Black"></button><button type="button" class="gsw gsw-pink'+(pillowColor==='pink'?' on':'')+'" data-pc="pink" aria-label="Pink"></button></div>';return c+'</div>';};var cards=[card('Sleep e-book','\uD83D\uDCD8','gift-ebook',false,'E-BOOK')];if(q>=2)cards.push(card('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true));if(q>=3)cards.push(card('Lavender mist','\uD83C\uDF3F','gift-mist',false));el.innerHTML='<div class="pg-h">\uD83C\uDF81 Free with this pack</div><div class="pg-row">'+cards.join('')+'</div>';}
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
