@@ -195,7 +195,7 @@ em{font-style:italic}
 .eyebrow{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-2);margin-bottom:12px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand-2);box-shadow:0 0 0 4px rgba(44,99,184,.16)}
 .hero h1{font-size:clamp(31px,7.6vw,48px)}
-.hero h1 .hl{color:var(--brand-2);font-style:normal}
+.hero h1 .hl{color:var(--brand-2);font-style:italic}
 .hero-sub{font-size:16.5px;color:var(--ink-2);margin:14px 0 0;line-height:1.5}
 .hero-sub strong{color:var(--ink)}
 .rating-row{display:flex;align-items:center;gap:10px;margin:16px 0 4px;flex-wrap:wrap}
@@ -274,7 +274,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 .sec-head{text-align:center;max-width:640px;margin:0 auto 34px}
 .sec-eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-2);margin-bottom:11px}
 .sec-head h2{font-size:clamp(26px,5vw,38px)}
-.sec-head h2 em{color:var(--brand-2);font-style:normal}
+.sec-head h2 em{color:var(--brand-2);font-style:italic}
 .sec-head p{font-size:16px;color:var(--ink-2);margin:13px 0 0}
 .band{background:var(--bg-2)}
 
@@ -294,7 +294,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 .mech-img{border-radius:16px;overflow:hidden;background:var(--bg-2);aspect-ratio:1/1;border:1px solid var(--line)}
 .mech-img img{width:100%;height:100%;object-fit:cover}
 .mech-txt h3{font-size:22px;margin-bottom:9px}
-.mech-txt h3 em{color:var(--brand-2);font-style:normal}
+.mech-txt h3 em{color:var(--brand-2);font-style:italic}
 .mech-txt p{font-size:15.5px;color:var(--ink-2);margin:0}
 .mech-no{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-2);margin-bottom:7px}
 
@@ -332,7 +332,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 .guar-seal{width:96px;height:96px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);line-height:1}
 .guar-seal b{font-size:34px;font-weight:700}.guar-seal span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-top:2px}
 .guarantee h2{font-size:clamp(26px,5vw,38px);color:#fff}
-.guarantee h2 em{color:#9DC0F5;font-style:normal}
+.guarantee h2 em{color:#9DC0F5;font-style:italic}
 .guarantee p{font-size:16px;color:#B7C5E0;max-width:520px;margin:0}
 
 .faq-list{max-width:720px;margin:0 auto}
@@ -347,7 +347,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 .final-card{max-width:620px;margin:0 auto;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,38px);text-align:center;box-shadow:0 40px 80px -50px rgba(16,35,71,.5)}
 .final-card .rating-row{justify-content:center}
 .final-card h2{font-size:clamp(24px,5vw,34px);margin:6px 0 16px}
-.final-card h2 em{color:var(--brand-2);font-style:normal}
+.final-card h2 em{color:var(--brand-2);font-style:italic}
 
 /* STICKY MOBILE CTA */
 .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px 14px;display:none;align-items:center;gap:12px;box-shadow:0 -10px 30px -20px rgba(16,35,71,.4)}
@@ -768,7 +768,8 @@ section{padding:clamp(46px,8vw,84px) 0}
 (function(){
   var ov=document.getElementById('scratchOverlay'); if(!ov) return;
   var _qp=new URLSearchParams(location.search);
-  if(_qp.get('admin_mode')==='kalmely_julio_2026' && _qp.get('scratch')!=='1') return; // don't bug admin (but allow ?scratch=1 preview)
+  var _local=(location.hostname==='localhost'||location.hostname==='127.0.0.1'||location.protocol==='file:');
+  if(_qp.get('admin_mode')==='kalmely_julio_2026' && _qp.get('scratch')!=='1' && !_local) return; // don't bug admin (allow ?scratch=1 + local preview)
   var cv=document.getElementById('scratchCanvas'),claim=document.getElementById('scratchClaim'),hint=document.getElementById('scratchHint');
   var ctx=cv.getContext('2d'),W=cv.width,H=cv.height,revealed=false,drawing=false;
   function paint(){
@@ -794,9 +795,11 @@ section{padding:clamp(46px,8vw,84px) 0}
   document.getElementById('scratchDecline').addEventListener('click',close);
   claim.addEventListener('click',function(){try{localStorage.setItem('kalmely_promo','SLEEP10')}catch(e){}done();try{if(navigator.clipboard)navigator.clipboard.writeText('SLEEP10')}catch(e){}claim.textContent='SLEEP10 copied — use it at checkout ✓';setTimeout(close,1100);});
   var force=false;try{force=new URLSearchParams(location.search).get('scratch')==='1';}catch(e){}
-  var shown=false;function show(){if(shown)return;if(!force){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');}
-  if(force){show();}  // ?scratch=1 → always show it (for previewing)
-  else{try{if(localStorage.getItem('kalmely_scratch')!=='done'){setTimeout(show,3000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.2)show();},{passive:true});}}catch(e){setTimeout(show,3000);}}
+  var bypass=force||_local;  // local → always show (for recording); prod respects once-per-browser
+  var shown=false;function show(){if(shown)return;if(!bypass){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');}
+  if(force){show();}  // ?scratch=1 → instant
+  else{var _seen=false;try{_seen=localStorage.getItem('kalmely_scratch')==='done'}catch(e){}
+    if(bypass||!_seen){setTimeout(show,3000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.2)show();},{passive:true});}}
 })();
 </script>
 
@@ -885,7 +888,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   function openCart(){
     var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
     try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
-    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty},{eventID:atcId});}
+    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
     populateCart();
     overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';
   }
