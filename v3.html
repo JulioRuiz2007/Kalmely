@@ -207,7 +207,7 @@ em{font-style:italic}
 .rating-row .rr-cnt{color:var(--muted);font-size:13.5px}
 .ticks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
 .ticks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;color:var(--ink)}
-.ticks li strong{color:var(--ink);white-space:nowrap}
+.ticks li strong{color:var(--ink)}
 .ticks svg{flex:none;margin-top:2px;color:var(--ok)}
 
 /* BUY BOX */
@@ -232,6 +232,7 @@ em{font-style:italic}
 .pack-pricewrap{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;flex:none}
 .pack-tag{font-size:8.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--accent);color:#fff;padding:2px 7px;border-radius:999px}
 .pack-each .sv{color:var(--accent);font-weight:800}
+.pack-gift-note{display:block;font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.01em;margin-top:2px}
 .pack-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
 .pack.is-selected .pack-badge{background:var(--navy)}
 @media(max-width:560px){.pack{padding:13px 13px;gap:11px}.pack-price{font-size:20px}.pack-qty{font-size:14px}.pack-deadline{font-size:11px;padding:8px 9px;line-height:1.32}.pg-h{font-size:10px}.gift-name{font-size:10px}.gift-card{padding:6px 5px 8px}}
@@ -582,19 +583,19 @@ section{padding:clamp(46px,8vw,84px) 0}
       <p class="hero-sub">Total blackout. Your own sound over both ears. <strong>Actually fall asleep on the plane</strong> — and land feeling human, not wrecked.</p>
       <div class="rating-row"><span class="stars">★★★★★</span><span class="rr-num">4.8/5</span><span class="rr-cnt">· 480+ reviews from travellers</span></div>
       <ul class="ticks">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>100% blackout</strong> — and zero pressure on your eyes.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Drown the engine in your own sound and <strong>switch off</strong>.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sleep on your side — nothing jammed in your ears.</li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 16h battery. Fully washable. Yours for years.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>100%&nbsp;blackout</strong> — and zero pressure on your eyes.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Drown the engine</strong> in your own sound and drift off.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Sleep on your side</strong> — nothing jammed in your ears.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>16h battery</strong>, fully washable, yours for years.</li>
       </ul>
       <div class="buybox">
         <div class="buybox-head"><span class="bh-t">Choose your offer</span><span class="bh-deal">Buy more, save more</span></div>
         <div class="pack-deadline">⏰ These Launch Week prices end in <b id="packTimer">01:59:58</b> — then they go back up</div>
         <div class="pack-gifts" id="packGifts"></div>
         <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
-          <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">1 Mask</span><span class="pack-each">Standard price</span></span><span class="pack-pricewrap"><span class="pack-price">£39</span></span></button>
-          <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">2 Masks <b class="pack-tag">Most popular</b></span><span class="pack-each">£27 each · <b class="sv">Save £24</b></span></span><span class="pack-pricewrap"><s class="pack-was">£78</s><span class="pack-price">£54</span></span></button>
-          <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
+          <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">1 Mask</span><span class="pack-each">Standard price</span><span class="pack-gift-note">🎁 1 free gift</span></span><span class="pack-pricewrap"><span class="pack-price">£39</span></span></button>
+          <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">2 Masks <b class="pack-tag">Most popular</b></span><span class="pack-each">£27 each · <b class="sv">Save £24</b></span><span class="pack-gift-note">🎁 2 free gifts</span></span><span class="pack-pricewrap"><s class="pack-was">£78</s><span class="pack-price">£54</span></span></button>
+          <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span><span class="pack-gift-note">🎁 3 free gifts</span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
         </div>
         <div class="colour-picker" id="colourPicker"></div>
         <button type="button" class="buy-cta add-to-cart">Add to cart — <span class="cta-price">£54</span></button>
@@ -726,9 +727,9 @@ section{padding:clamp(46px,8vw,84px) 0}
       <div class="rating-row"><span class="stars">★★★★★</span><span class="rr-num">4.8/5</span><span class="rr-cnt">· 480+ reviews</span></div>
       <h2>Your next flight is the first you <em>sleep right through</em></h2>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
-        <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">1 Mask</span><span class="pack-each">Standard price</span></span><span class="pack-pricewrap"><span class="pack-price">£39</span></span></button>
-        <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">2 Masks <b class="pack-tag">Most popular</b></span><span class="pack-each">£27 each · <b class="sv">Save £24</b></span></span><span class="pack-pricewrap"><s class="pack-was">£78</s><span class="pack-price">£54</span></span></button>
-        <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
+        <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">1 Mask</span><span class="pack-each">Standard price</span><span class="pack-gift-note">🎁 1 free gift</span></span><span class="pack-pricewrap"><span class="pack-price">£39</span></span></button>
+        <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">2 Masks <b class="pack-tag">Most popular</b></span><span class="pack-each">£27 each · <b class="sv">Save £24</b></span><span class="pack-gift-note">🎁 2 free gifts</span></span><span class="pack-pricewrap"><s class="pack-was">£78</s><span class="pack-price">£54</span></span></button>
+        <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span><span class="pack-gift-note">🎁 3 free gifts</span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
       </div>
       <button type="button" class="buy-cta add-to-cart">Add to cart — <span class="cta-price">£54</span></button>
       <div class="cta-sub"><span>✓ Free UK shipping</span><span>✓ 100-night trial</span><span>✓ Secure checkout</span></div>
