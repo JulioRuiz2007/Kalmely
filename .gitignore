@@ -8,6 +8,7 @@ node_modules/
 # Worker code — deployed via wrangler, NOT served by Cloudflare Pages.
 # Keeping the backend out of the repo means it never gets exposed at kalmely.com/worker/*.
 worker/
+.wrangler/
 
 # Heavy media — keep out of Pages builds (25 MiB limit)
 assets/kalmely-1/

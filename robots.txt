@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Staging / functional pages — keep out of the index
+Disallow: /v2.html
+Disallow: /v3.html
+Disallow: /cart.html
+Disallow: /thank-you.html
+
+Sitemap: https://kalmely.com/sitemap.xml
