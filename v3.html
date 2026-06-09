@@ -182,7 +182,10 @@ em{font-style:italic}
 .hero{padding:24px 0 8px}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:18px}
 .hero-imgwrap{position:relative;border-radius:20px;overflow:hidden;background:var(--bg-2);aspect-ratio:1/1;border:1px solid #D7E0EE;box-shadow:0 20px 46px -14px rgba(16,35,71,.20),0 6px 16px -8px rgba(16,35,71,.11)}
-.hero-imgwrap>img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
+.hero-track{display:flex;height:100%;transition:transform .4s cubic-bezier(.22,.61,.36,1);will-change:transform;touch-action:pan-y}
+.hero-track.dragging{transition:none}
+.hero-slide{flex:0 0 100%;height:100%}
+.hero-slide img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-tag{position:absolute;top:12px;left:12px;background:var(--navy);color:#fff;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
 .hero-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
 .hb{display:flex;align-items:center;gap:9px;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:11px;font-size:12.5px;font-weight:600;line-height:1.2}
@@ -204,7 +207,7 @@ em{font-style:italic}
 .rating-row .rr-cnt{color:var(--muted);font-size:13.5px}
 .ticks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
 .ticks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;color:var(--ink)}
-.ticks li strong{color:var(--ink)}
+.ticks li strong{color:var(--ink);white-space:nowrap}
 .ticks svg{flex:none;margin-top:2px;color:var(--ok)}
 
 /* BUY BOX */
@@ -480,15 +483,13 @@ section{padding:clamp(46px,8vw,84px) 0}
   .hero-copy{display:flex;flex-direction:column}
   .hero-copy>.eyebrow{order:1;margin-bottom:7px}
   .hero-copy>h1{order:2}
-  .hero-copy>.rating-row{order:3;margin:10px 0 0}
-  .hero-copy>.buybox{order:4;margin-top:16px}
-  .hero-copy>.hero-sub{order:5;margin-top:16px}
-  .hero-copy>.ticks{order:6;margin-top:12px}
-  .hero-imgwrap{max-width:320px;margin:0 auto}
-  .hero-thumbs{max-width:320px;margin-left:auto;margin-right:auto}
-  .hero-badges{max-width:320px;margin-left:auto;margin-right:auto}
-  .hero h1{font-size:clamp(25px,6.6vw,33px);margin-top:6px}
-  .hero-sub{font-size:14.5px}
+  .hero-copy>.rating-row{order:3;margin:11px 0 0}
+  .hero-copy>.buybox{order:4;margin-top:18px}
+  .hero-copy>.hero-sub{order:5;margin:22px 0 0}
+  .hero-copy>.ticks{order:6;margin-top:14px}
+  .hero h1{font-size:clamp(27px,7vw,36px);margin-top:6px}
+  .hero-sub{font-size:15px;line-height:1.55}
+  .ticks li{font-size:14px;line-height:1.4}
 }
 @media(min-width:920px){
   .hero-grid{grid-template-columns:1.05fr .95fr;gap:46px;align-items:start}
@@ -553,7 +554,13 @@ section{padding:clamp(46px,8vw,84px) 0}
     <div class="hero-media">
       <div class="hero-imgwrap">
         <span class="hero-tag">New 2026 model</span>
-        <img id="heroMain" src="assets/mask-black.webp" srcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" sizes="(max-width:920px) 92vw, 500px" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" fetchpriority="high" decoding="async">
+        <div class="hero-track" id="heroTrack">
+          <div class="hero-slide"><img src="assets/mask-black.webp" srcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" sizes="(max-width:920px) 92vw, 500px" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
+          <div class="hero-slide"><img src="assets/mask-3d.webp" alt="3D contoured eye cups" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/mask-audio.webp" alt="Built-in Bluetooth speakers" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/mask-flight.webp" alt="Asleep on a flight" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/mask-both.webp" alt="Black and pink" width="1024" height="1024" loading="lazy"></div>
+        </div>
       </div>
       <div class="hero-thumbs" id="heroThumbs">
         <button type="button" class="hero-thumb is-active" data-src="assets/mask-black.webp" aria-label="Product"><img src="assets/mask-black-640.webp" alt="" width="120" height="120"></button>
@@ -986,15 +993,16 @@ section{padding:clamp(46px,8vw,84px) 0}
   if(document.readyState==='complete')setTimeout(L,200);else addEventListener('load',function(){setTimeout(L,200);});
   ['pointerdown','touchstart','keydown','scroll'].forEach(function(e){addEventListener(e,L,{once:true,passive:true});});
 
-  // ---------- Hero gallery: thumbnails + swipe ----------
-  var hThumbs=document.querySelectorAll('.hero-thumb'),hMain=document.getElementById('heroMain'),hWrap=document.querySelector('.hero-imgwrap');
-  if(hThumbs.length&&hMain){
-    var hi=0;
-    function showImg(n){n=(n+hThumbs.length)%hThumbs.length;hi=n;var t=hThumbs[n],src=t.getAttribute('data-src');if(!src)return;hMain.removeAttribute('srcset');hMain.removeAttribute('sizes');hMain.style.opacity='0';hMain.src=src;hMain.onload=function(){hMain.style.opacity='1';};hThumbs.forEach(function(x,i){x.classList.toggle('is-active',i===n);});}
-    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){showImg(i);});});
-    if(hWrap){var sx=0,sy=0,sw=false;
-      hWrap.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;sw=true;},{passive:true});
-      hWrap.addEventListener('touchend',function(e){if(!sw)return;sw=false;var t=e.changedTouches[0];if(!t)return;var dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))showImg(hi+(dx<0?1:-1));},{passive:true});}
+  // ---------- Hero carousel (smooth swipe + thumbnails) ----------
+  var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack');
+  if(hThumbs.length&&hTrack){
+    var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
+    function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
+    hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
+    hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
+    hGo(0);
   }
 })();
 </script>
