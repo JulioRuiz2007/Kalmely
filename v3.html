@@ -246,6 +246,18 @@ em{font-style:italic}
 .free-gift svg{flex:0 0 auto;margin-top:1px}
 .free-gift b{font-weight:800}
 .free-gift em{font-style:italic;font-weight:600}
+.includes{margin:13px 0 2px;padding:13px 15px;background:var(--navy-soft);border:1px solid rgba(23,115,176,.22);border-radius:12px}
+.inc-h{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-2);margin-bottom:9px}
+.includes ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.includes li{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink);line-height:1.3}
+.includes li svg{flex:none;color:var(--ok)}
+.inc-gift{flex:none;font-size:15px}
+.inc-t{flex:1}
+.inc-tag{font-size:9px;font-weight:800;letter-spacing:.05em;background:var(--accent);color:#fff;padding:2px 7px;border-radius:999px;flex:none}
+.inc-main{font-weight:700}
+.cart-gift{flex-wrap:wrap;gap:6px}
+.cg-item{display:flex;align-items:center;gap:7px;font-size:12.5px;width:100%;color:var(--navy-2)}
+.cg-item b{color:var(--accent);font-weight:800;margin-left:auto}
 .cart-gift{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 13px;background:var(--navy-soft);border:1px dashed var(--navy);border-radius:11px;font-size:12.5px;line-height:1.35;color:var(--navy)}
 .cart-gift svg{flex:0 0 auto}
 .cart-gift b{font-weight:800}
@@ -549,7 +561,7 @@ section{padding:clamp(46px,8vw,84px) 0}
           <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
         </div>
         <div class="colour-picker" id="colourPicker"></div>
-        <div class="free-gift"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M2 8h20"/><path d="M12 8S10 2 6.5 4 9 8 12 8zm0 0s2-6 5.5-4S15 8 12 8z"/></svg> <span><b>Free e-book with every order</b> — <em>"How to Sleep on Any Flight"</em>, our cabin-sleep playbook, emailed the moment you order.</span></div>
+        <div class="includes" id="includes"></div>
         <button type="button" class="buy-cta add-to-cart">Add to cart — <span class="cta-price">£54</span></button>
         <div class="cta-sub"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg> Free UK shipping</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100-night trial</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure</span></div>
         <div class="pay-row"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>KLARNA</span></div>
@@ -729,7 +741,7 @@ section{padding:clamp(46px,8vw,84px) 0}
         <button type="button" class="cart-upsell-btn" id="upsellBtn">Add</button>
       </div>
     </div>
-    <div class="cart-gift"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M2 8h20"/><path d="M12 8S10 2 6.5 4 9 8 12 8zm0 0s2-6 5.5-4S15 8 12 8z"/></svg> <span><b>Free e-book included</b> — "How to Sleep on Any Flight"</span></div>
+    <div class="cart-gift" id="cartGifts"></div>
   </div>
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">£54.00</span></div>
@@ -847,11 +859,12 @@ section{padding:clamp(46px,8vw,84px) 0}
     picker.innerHTML=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
     saveColours();
   }
+  function renderIncludes(sku){var inc=document.getElementById('includes');if(!inc)return;var q=qtyOf(sku);var li=function(t,g){return '<li'+(g?'':' class="inc-main"')+'>'+(g?'<span class="inc-gift">\uD83C\uDF81</span>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>')+'<span class="inc-t">'+t+'</span>'+(g?'<span class="inc-tag">FREE</span>':'')+'</li>';};var r=[li(q+'\u00d7 Kalmely Sleep Mask',false),li('\u201cHow to Sleep on Any Flight\u201d e-book',true)];if(q>=2)r.push(li('Travel neck pillow',true));if(q>=3)r.push(li('Lavender sleep mist',true));inc.innerHTML='<div class="inc-h">Your order includes</div><ul>'+r.join('')+'</ul>';}
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
-    renderPicker(qtyOf(sku));updateCtas();
+    renderPicker(qtyOf(sku));updateCtas();renderIncludes(sku);
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
   if(picker)picker.addEventListener('click',function(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;picker.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s===sw);});saveColours();if(cartOpen)populateCart();});
@@ -883,7 +896,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     var up=document.getElementById('cartUpsell');
     if(curSku!=='MASK-3'){up.style.display='';document.getElementById('upsellTitle').textContent='Make it 3 masks';document.getElementById('upsellSave').textContent='Just £23 each · Save £48 total';}
     else{up.style.display='none';}
-    document.getElementById('cartCount').textContent=String(qty);
+    document.getElementById('cartCount').textContent=String(qty);var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['\u201cHow to Sleep on Any Flight\u201d e-book'];if(qty>=2)_gl.push('Travel neck pillow');if(qty>=3)_gl.push('Lavender sleep mist');_cg.innerHTML=_gl.map(function(t){return '<span class="cg-item">\uD83C\uDF81 '+t+' <b>FREE</b></span>';}).join('');}
   }
   function openCart(){
     var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
