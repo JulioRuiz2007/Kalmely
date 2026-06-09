@@ -967,6 +967,9 @@ section{padding:clamp(46px,8vw,84px) 0}
 
   // ---------- Checkout (from drawer) → InitiateCheckout + Stripe ----------
   var checkingOut=false;
+  // Reset the checkout button when the page is shown (incl. restored from bfcache, e.g. back from Stripe),
+  // otherwise checkingOut stays true and the button is stuck on 'Redirecting…'.
+  window.addEventListener('pageshow',function(){checkingOut=false;var _b=document.getElementById('cartCheckout');if(_b){_b.textContent='Secure checkout →';_b.style.opacity='';}});
   document.getElementById('cartCheckout').addEventListener('click',async function(){
     if(checkingOut)return;
     var sku=curSku,price=parseInt(curPrice,10)||0,qty=qtyOf(sku);
