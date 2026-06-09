@@ -281,6 +281,8 @@ em{font-style:italic}
 .cart-gift{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 13px;background:var(--navy-soft);border:1px dashed var(--navy);border-radius:11px;font-size:12.5px;line-height:1.35;color:var(--navy)}
 .cart-gift svg{flex:0 0 auto}
 .cart-gift b{font-weight:800}
+.cg-h{width:100%;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-2);margin-bottom:1px}
+.uu-gift{display:inline-block;margin-top:5px;color:var(--accent);font-weight:800}
 .cta-sub span{display:inline-flex;align-items:center;gap:5px}
 .cta-sub svg{color:var(--brand-2)}
 .urgency{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:9px;background:rgba(229,72,77,.07);border:1px solid rgba(229,72,77,.22);border-radius:10px;font-size:12.5px;font-weight:700;color:var(--alert)}
@@ -772,6 +774,7 @@ section{padding:clamp(46px,8vw,84px) 0}
         <div class="cart-item-price"><span id="cartPrice">£54</span><span class="ci-was" id="cartWas">£78</span></div>
       </div>
     </div>
+    <div class="cart-gift" id="cartGifts"></div>
     <div class="cart-upsell" id="cartUpsell">
       <div class="cart-upsell-h">⚡ One-time offer</div>
       <div class="cart-upsell-row">
@@ -780,11 +783,11 @@ section{padding:clamp(46px,8vw,84px) 0}
         <button type="button" class="cart-upsell-btn" id="upsellBtn">Add</button>
       </div>
     </div>
-    <div class="cart-gift" id="cartGifts"></div>
   </div>
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">£54.00</span></div>
     <div class="cart-totals"><span>Launch saving</span><span class="ct-save" id="cartSaving">−£24.00</span></div>
+    <div class="cart-totals" id="cartCouponRow" style="display:none"><span>Coupon SLEEP10 (-10%)</span><span class="ct-save" id="cartCoupon"></span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">£54.00</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
     <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 100-night returns</span><span>🚚 Free UK shipping</span></div>
@@ -935,12 +938,16 @@ section{padding:clamp(46px,8vw,84px) 0}
     document.getElementById('cartSubtotal').textContent=money(was||price);
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
-    document.getElementById('cartTotal').textContent=money(price);
+    var _promo='';try{_promo=(localStorage.getItem('kalmely_promo')||'').toUpperCase();}catch(e){}
+    var _crow=document.getElementById('cartCouponRow'),_tot=price;
+    if(_promo==='SLEEP10'){var _d=price*0.1;_tot=price-_d;var _cc=document.getElementById('cartCoupon');if(_cc)_cc.textContent='\u2212'+money(_d);if(_crow)_crow.style.display='';}
+    else if(_crow){_crow.style.display='none';}
+    document.getElementById('cartTotal').textContent=money(_tot);
     // upsell: offer the 3-pack unless already on it
     var up=document.getElementById('cartUpsell');
-    if(curSku!=='MASK-3'){up.style.display='';document.getElementById('upsellTitle').textContent='Make it 3 masks';document.getElementById('upsellSave').textContent='Just £23 each · Save £48 total';}
+    if(curSku!=='MASK-3'){up.style.display='';document.getElementById('upsellTitle').textContent='Make it 3 masks';var _ex=(qty<=1)?'neck pillow + lavender mist':'lavender mist';document.getElementById('upsellSave').innerHTML='Just £23 each · Save £48 total<br><b class="uu-gift">\uD83C\uDF81 + free '+_ex+'</b>';}
     else{up.style.display='none';}
-    document.getElementById('cartCount').textContent=String(qty);var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['\u201cHow to Sleep on Any Flight\u201d e-book'];if(qty>=2)_gl.push('Travel neck pillow');if(qty>=3)_gl.push('Lavender sleep mist');_cg.innerHTML=_gl.map(function(t){return '<span class="cg-item">\uD83C\uDF81 '+t+' <b>FREE</b></span>';}).join('');}
+    document.getElementById('cartCount').textContent=String(qty);var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['\u201cHow to Sleep on Any Flight\u201d e-book'];if(qty>=2)_gl.push('Travel neck pillow');if(qty>=3)_gl.push('Lavender sleep mist');_cg.innerHTML='<span class="cg-h">Included free with your order</span>'+_gl.map(function(t){return '<span class="cg-item">\uD83C\uDF81 '+t+' <b>FREE</b></span>';}).join('');}
   }
   function openCart(){
     var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
