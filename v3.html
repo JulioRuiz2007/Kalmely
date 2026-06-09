@@ -213,7 +213,7 @@ em{font-style:italic}
 /* BUY BOX */
 .buybox{margin-top:20px;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 30px 60px -42px rgba(16,35,71,.4)}
 .buybox-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
-.buybox-head .bh-t{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.buybox-head .bh-t{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
 .buybox-head .bh-deal{font-size:11.5px;font-weight:800;color:var(--navy);background:var(--navy-soft);padding:4px 9px;border-radius:999px}
 .pack-deadline{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:rgba(229,72,77,.08);border:1px solid rgba(229,72,77,.25);color:var(--alert);font-size:12.5px;font-weight:700;padding:9px 10px;border-radius:10px;margin-bottom:12px;line-height:1.3}
 .pack-deadline b{font-variant-numeric:tabular-nums;font-weight:800;background:var(--alert);color:#fff;padding:2px 7px;border-radius:5px;letter-spacing:.02em}
@@ -221,8 +221,8 @@ em{font-style:italic}
 .pack{position:relative;display:flex;align-items:center;gap:13px;padding:14px 15px;border:2px solid var(--line);border-radius:13px;background:var(--bg);text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;color:var(--ink)}
 .pack:hover{border-color:var(--brand-2)}
 .pack.is-selected{border-color:var(--cta);background:var(--navy-soft);box-shadow:0 0 0 3px var(--brand-glow)}
-.pack-qty{font-size:15.5px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pack-price{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.pack-qty{font-size:16px;font-weight:800;font-family:'Sora',var(--sans);letter-spacing:-.01em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pack-price{font-size:23px;font-weight:800;font-family:'Sora',var(--sans);line-height:1;letter-spacing:-.03em;color:var(--ink)}
 .pack-was{font-size:12.5px;font-weight:500;color:var(--muted);text-decoration:line-through}
 .pack-each{font-size:12px;color:var(--ink-2);font-weight:600}
 .pack-radio{width:21px;height:21px;border-radius:50%;border:2px solid var(--line);flex:none;position:relative}
@@ -243,7 +243,7 @@ em{font-style:italic}
 .swatch.is-selected{border-color:var(--navy);transform:scale(1.1);box-shadow:0 0 0 3px rgba(21,51,107,.2)}
 .buy-cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--cta);color:#fff;border:none;border-radius:12px;padding:18px 22px;font-size:18px;font-weight:800;letter-spacing:.01em;box-shadow:0 16px 34px -14px var(--cta-glow);transition:background .2s,transform .15s,box-shadow .2s}
 .buy-cta:hover{background:var(--cta-deep);transform:translateY(-1px)}
-.buy-cta .cta-price{font-weight:800}
+.buy-cta .cta-price{font-weight:800;font-family:'Sora',var(--sans)}
 .cta-sub{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:11px;font-size:12px;color:var(--ink-2);font-weight:600}
 .free-gift{display:flex;align-items:flex-start;gap:9px;margin:13px 0 2px;padding:11px 14px;background:var(--navy-soft);border:1px dashed var(--navy);border-radius:12px;font-size:13.5px;line-height:1.4;color:var(--navy)}
 .free-gift svg{flex:0 0 auto;margin-top:1px}
@@ -265,7 +265,7 @@ em{font-style:italic}
 .gift-img{aspect-ratio:1/1;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:6px;overflow:hidden;border:1px solid var(--line-2);position:relative}
 .gift-img::before{content:attr(data-e);font-size:30px;position:absolute;z-index:0;opacity:.85}
 .gift-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
-.gift-name{font-size:11px;font-weight:700;color:var(--ink);line-height:1.2}
+.gift-name{font-size:11.5px;font-weight:800;font-family:'Sora',var(--sans);letter-spacing:-.01em;color:var(--ink);line-height:1.2}
 .gift-free{position:absolute;top:6px;right:6px;font-size:8px;font-weight:800;background:var(--accent);color:#fff;padding:2px 6px;border-radius:999px;letter-spacing:.04em;z-index:2}
 .gift-sw{display:flex;gap:6px;justify-content:center;margin-top:7px}
 .gsw{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);padding:0;cursor:pointer;transition:border-color .15s,box-shadow .15s}
