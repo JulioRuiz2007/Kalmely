@@ -851,7 +851,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     ctx.globalCompositeOperation='source-over';
     var g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#D9B25A');g.addColorStop(.5,'#F1D684');g.addColorStop(1,'#C2942F');
     ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='rgba(70,48,8,.5)';ctx.font='800 19px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.fillText(isTouch?'SCRATCH HERE':'SCRATCH TO REVEAL',W/2,H/2+6);
+    ctx.fillStyle='rgba(70,48,8,.5)';ctx.font='800 19px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.fillText('SCRATCH TO REVEAL',W/2,H/2+6);
   }
   if(ctx){try{paint();}catch(e){reveal('✨ Your 10% off is ready below');}}else{reveal('✨ Your 10% off is ready below');}
   if(hint&&!isTouch&&!revealed)hint.textContent='🖱️ Scratch with your mouse to reveal';
