@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+<!-- Persist Meta click-id: _fbc from ?fbclid + _fbp, so Pixel & CAPI always have them (even if the Pixel is blocked/deferred) -->
+<script type="text/javascript">
+  (function(){try{
+    function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?m[1]:'';}
+    function sc(n,v){document.cookie=n+'='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    var cid=new URLSearchParams(location.search).get('fbclid');
+    if(cid && !gc('_fbc')) sc('_fbc','fb.1.'+Date.now()+'.'+cid);
+    if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
+  }catch(e){}})();
+</script>
 <!-- Microsoft Clarity — skipped in admin mode (cookie kalmely_admin / ?admin_mode) so own visits don't pollute recordings -->
 <script type="text/javascript">
   (function(){
