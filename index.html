@@ -848,17 +848,27 @@ section{padding:clamp(46px,8vw,84px) 0}
   if(_qp.get('admin_mode')==='kalmely_julio_2026' && _qp.get('scratch')!=='1' && !_local) return; // don't bug admin (allow ?scratch=1 + local preview)
   var cv=document.getElementById('scratchCanvas'),claim=document.getElementById('scratchClaim'),hint=document.getElementById('scratchHint');
   var ctx=cv.getContext('2d'),W=cv.width,H=cv.height,revealed=false,drawing=false,scN=0;
+  var isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
+  function reveal(msg){
+    if(revealed)return;revealed=true;
+    try{if(ctx)ctx.clearRect(0,0,W,H);}catch(e){}
+    cv.style.pointerEvents='none';
+    if(claim)claim.disabled=false;
+    if(hint)hint.textContent=msg||'🎉 You won 10% off — it’s yours';
+  }
   function paint(){
     ctx.globalCompositeOperation='source-over';
     var g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#D9B25A');g.addColorStop(.5,'#F1D684');g.addColorStop(1,'#C2942F');
     ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='rgba(70,48,8,.5)';ctx.font='800 19px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.fillText('SCRATCH HERE',W/2,H/2+6);
+    ctx.fillStyle='rgba(70,48,8,.5)';ctx.font='800 19px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.fillText(isTouch?'SCRATCH HERE':'SCRATCH TO REVEAL',W/2,H/2+6);
   }
-  paint();
+  // If the canvas can't be set up, never trap the user — reveal the code directly.
+  if(ctx){try{paint();}catch(e){reveal('✨ Your 10% off is ready below');}}else{reveal('✨ Your 10% off is ready below');}
+  if(hint&&!isTouch&&!revealed)hint.textContent='🖱️ Scratch with your mouse to reveal';
   function pos(e){var r=cv.getBoundingClientRect(),t=e.touches&&e.touches[0]?e.touches[0]:e;return {x:(t.clientX-r.left)*(W/r.width),y:(t.clientY-r.top)*(H/r.height)};}
   function scratch(e){if(!drawing)return;e.preventDefault();var p=pos(e);ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(p.x,p.y,30,0,7);ctx.fill();if((++scN)%3===0)check();}
-  function pct(){var d=ctx.getImageData(0,0,W,H).data,clear=0,tot=0;for(var i=3;i<d.length;i+=64){tot++;if(d[i]===0)clear++;}return clear/tot;}
-  function check(){if(revealed)return;if(pct()>.35){revealed=true;ctx.clearRect(0,0,W,H);claim.disabled=false;hint.textContent='🎉 You won 10% off — it’s yours';}}
+  function pct(){try{var d=ctx.getImageData(0,0,W,H).data,clear=0,tot=0;for(var i=3;i<d.length;i+=64){tot++;if(d[i]===0)clear++;}return clear/tot;}catch(e){return 1;}}
+  function check(){if(revealed)return;if(pct()>.35){reveal('🎉 You won 10% off — it’s yours');}}
   cv.addEventListener('pointerdown',function(e){drawing=true;scratch(e);});
   cv.addEventListener('pointermove',scratch);
   window.addEventListener('pointerup',function(){if(drawing){drawing=false;check();}});
@@ -872,7 +882,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   claim.addEventListener('click',function(){try{localStorage.setItem('kalmely_promo','SLEEP10')}catch(e){}done();try{if(navigator.clipboard)navigator.clipboard.writeText('SLEEP10')}catch(e){}claim.textContent='SLEEP10 copied — use it at checkout ✓';setTimeout(close,1100);});
   var force=false;try{force=new URLSearchParams(location.search).get('scratch')==='1';}catch(e){}
   var bypass=force||_local;  // local → always show (for recording); prod respects once-per-browser
-  var shown=false;function show(){if(shown)return;if(!bypass){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');}
+  var shown=false;function show(){if(shown)return;if(!bypass){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');setTimeout(function(){reveal('✨ Your 10% off is unlocked — claim it below');},5000);}
   if(force){show();}  // ?scratch=1 → instant
   else{var _seen=false;try{_seen=localStorage.getItem('kalmely_scratch')==='done'}catch(e){}
     if(bypass||!_seen){setTimeout(show,3000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.2)show();},{passive:true});}}
