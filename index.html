@@ -191,10 +191,7 @@ em{font-style:italic}
 /* OFFER BAR + COUNTDOWN */
 .offer-bar{position:sticky;top:0;z-index:60;background:var(--navy);color:#fff;text-align:center;padding:8px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;letter-spacing:.01em}
 .offer-bar b{color:#FFD98B}
-.offer-timer{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}
-.offer-timer .t{background:rgba(255,255,255,.16);border-radius:5px;padding:2px 6px;font-weight:800;min-width:26px;text-align:center}
-.offer-timer .c{opacity:.6}
-@media(max-width:560px){.offer-bar{font-size:11.5px;gap:8px;padding:7px 10px}.offer-timer .t{min-width:22px;padding:2px 4px}}
+@media(max-width:560px){.offer-bar{font-size:11.5px;gap:8px;padding:7px 10px}}
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:55;background:rgba(255,255,255,.92);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
@@ -249,8 +246,8 @@ em{font-style:italic}
 .buybox-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
 .buybox-head .bh-t{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
 .buybox-head .bh-deal{font-size:11.5px;font-weight:800;color:var(--navy);background:var(--navy-soft);padding:4px 9px;border-radius:999px}
-.pack-deadline{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:rgba(229,72,77,.08);border:1px solid rgba(229,72,77,.25);color:var(--alert);font-size:12.5px;font-weight:700;padding:9px 10px;border-radius:10px;margin-bottom:12px;line-height:1.3}
-.pack-deadline b{font-variant-numeric:tabular-nums;font-weight:800;background:var(--alert);color:#fff;padding:2px 7px;border-radius:5px;letter-spacing:.02em}
+.pack-bonus{text-align:center;background:var(--navy-soft);border:1px dashed var(--navy);color:var(--navy);font-size:12.5px;font-weight:600;padding:9px 12px;border-radius:10px;margin-bottom:12px;line-height:1.35}
+.pack-bonus b{font-weight:800;color:var(--navy)}
 .packs{display:flex;flex-direction:column;gap:9px;margin:0 0 14px}
 .pack{position:relative;display:flex;align-items:center;gap:13px;padding:14px 15px;border:2px solid var(--line);border-radius:13px;background:var(--bg);text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;color:var(--ink)}
 .pack:hover{border-color:var(--brand-2)}
@@ -269,7 +266,7 @@ em{font-style:italic}
 .pack-gift-note{display:block;font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.01em;margin-top:2px}
 .pack-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
 .pack.is-selected .pack-badge{background:var(--navy)}
-@media(max-width:560px){.pack{padding:13px 13px;gap:11px}.pack-price{font-size:20px}.pack-qty{font-size:14px}.pack-deadline{font-size:11px;padding:8px 9px;line-height:1.32}.pg-h{font-size:10px}.gift-name{font-size:10px}.gift-card{padding:6px 5px 8px}}
+@media(max-width:560px){.pack{padding:13px 13px;gap:11px}.pack-price{font-size:20px}.pack-qty{font-size:14px}.pack-bonus{font-size:11px;padding:8px 10px;line-height:1.35}.pg-h{font-size:10px}.gift-name{font-size:10px}.gift-card{padding:6px 5px 8px}}
 .colour-picker{display:flex;flex-direction:column;gap:7px;margin:0 0 13px}
 .colour-row{display:flex;align-items:center;gap:9px}
 .colour-label{font-size:12px;font-weight:600;color:var(--ink-2);min-width:54px}
@@ -302,6 +299,9 @@ em{font-style:italic}
 .gift-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
 .gift-name{font-size:11.5px;font-weight:800;font-family:'Sora',var(--sans);letter-spacing:-.01em;color:var(--ink);line-height:1.2}
 .gift-free{position:absolute;top:6px;right:6px;font-size:8px;font-weight:800;background:var(--accent);color:#fff;padding:2px 6px;border-radius:999px;letter-spacing:.04em;z-index:3}
+.gift-card.locked{opacity:.62;filter:grayscale(.55)}
+.gift-card.locked .gift-free{background:var(--ink-2);letter-spacing:0}
+.gift-card.locked .gift-sw{opacity:.5;pointer-events:none}
 .gift-type{position:absolute;top:6px;left:6px;font-size:7.5px;font-weight:800;background:var(--navy);color:#fff;padding:2px 6px;border-radius:5px;letter-spacing:.07em;z-index:3}
 .gift-sw{display:flex;gap:6px;justify-content:center;margin-top:7px}
 .gsw{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);padding:0;cursor:pointer;transition:border-color .15s,box-shadow .15s}
@@ -569,9 +569,8 @@ section{padding:clamp(46px,8vw,84px) 0}
 <body>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<div class="offer-bar" role="region" aria-label="Launch week offer">
-  <span>🌙 LAUNCH WEEK · <b>Save up to 41%</b> on multi-packs · Free UK shipping</span>
-  <span class="offer-timer" aria-hidden="true">Price ends in <span class="t" id="atHours">01</span><span class="c">:</span><span class="t" id="atMins">59</span><span class="c">:</span><span class="t" id="atSecs">59</span></span>
+<div class="offer-bar" role="region" aria-label="Offer">
+  <span>🎁 <b>A free gift with every mask</b> · Save up to 41% on multi-packs · Free UK shipping</span>
 </div>
 
 <nav class="nav">
@@ -627,7 +626,7 @@ section{padding:clamp(46px,8vw,84px) 0}
       </ul>
       <div class="buybox">
         <div class="buybox-head"><span class="bh-t">Choose your offer</span><span class="bh-deal">Buy more, save more</span></div>
-        <div class="pack-deadline">⏰ These Launch Week prices end in <b id="packTimer">01:59:58</b> — then they go back up</div>
+        <div class="pack-bonus">🎁 <b>The bigger your pack, the more free gifts.</b> 1 mask → sleep e-book · 2 → + neck pillow · 3 → + lavender mist.</div>
         <div class="pack-gifts" id="packGifts"></div>
         <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
           <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">1 Mask</span><span class="pack-each">Standard price</span><span class="pack-gift-note">🎁 1 free gift</span></span><span class="pack-pricewrap"><span class="pack-price">£39</span></span></button>
@@ -831,13 +830,13 @@ section{padding:clamp(46px,8vw,84px) 0}
   <div class="scratch-modal">
     <button type="button" class="scratch-close" id="scratchClose" aria-label="Close">×</button>
     <div class="scratch-left">
-      <div class="scratch-eyebrow">Launch Week · first order</div>
+      <div class="scratch-eyebrow">First order</div>
       <h3>Try your luck</h3>
-      <p>Scratch to unlock an extra discount on your Launch Week pack</p>
+      <p>Scratch to unlock an extra discount on your first order</p>
       <div class="scratch-wrap">
         <div class="scratch-prize">
           <span class="sp-amt">10% OFF</span>
-          <span class="sp-lbl">your Launch Week pack</span>
+          <span class="sp-lbl">your first order</span>
           <span class="sp-code">CODE: SLEEP10</span>
         </div>
         <canvas class="scratch-canvas" id="scratchCanvas" width="230" height="150"></canvas>
@@ -907,20 +906,6 @@ section{padding:clamp(46px,8vw,84px) 0}
 <script>
 (function(){
   'use strict';
-  // ---------- Countdown (rolling 24h, never hits zero) ----------
-  (function(){
-    var h=document.getElementById('atHours'),m=document.getElementById('atMins'),s=document.getElementById('atSecs');
-    if(!h)return;var KEY='kalmely_offer_2h',WIN=72e5,now=Date.now(),end; // 2-hour window, rolls over for urgency
-    try{end=parseInt(localStorage.getItem(KEY)||'0',10)}catch(e){end=0}
-    if(!end||end-now>WIN+6e4){end=now+WIN;try{localStorage.setItem(KEY,String(end))}catch(e){}}
-    var pad=function(n){return String(Math.max(0,n)).padStart(2,'0')};
-    function tick(){var diff=end-Date.now();if(diff<1e3){end+=WIN;try{localStorage.setItem(KEY,String(end))}catch(e){}diff=end-Date.now();}
-      var H=pad(Math.floor(diff/36e5)),M=pad(Math.floor(diff/6e4%60)),S=pad(Math.floor(diff/1e3%60));
-      h.textContent=H;m.textContent=M;s.textContent=S;
-      var pt=document.getElementById('packTimer');if(pt)pt.textContent=H+':'+M+':'+S;}
-    tick();setInterval(tick,1000);
-  })();
-
   // ---------- Pack + colour selector ----------
   var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
   var DEFAULT='MASK-2';
@@ -946,8 +931,8 @@ section{padding:clamp(46px,8vw,84px) 0}
   function renderIncludes(sku){var inc=document.getElementById('includes');if(!inc)return;var q=qtyOf(sku);var li=function(t,g){return '<li'+(g?'':' class="inc-main"')+'>'+(g?'<span class="inc-gift">\uD83C\uDF81</span>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>')+'<span class="inc-t">'+t+'</span>'+(g?'<span class="inc-tag">FREE</span>':'')+'</li>';};var r=[li(q+'\u00d7 Kalmely Sleep Mask',false),li('\u201cHow to Sleep on Any Flight\u201d e-book',true)];if(q>=2)r.push(li('Travel neck pillow',true));if(q>=3)r.push(li('Lavender sleep mist',true));inc.innerHTML='<div class="inc-h">Your order includes</div><ul>'+r.join('')+'</ul>';}
   var giftsBuilt=false;
   function giftCard(name,emoji,img,sw,tag,min){var c='<div class="gift-card" data-min="'+min+'"><span class="gift-free">FREE</span>'+(tag?'<span class="gift-type">'+tag+'</span>':'')+'<div class="gift-img" data-e="'+emoji+'"><img src="assets/'+img+'.webp" alt="'+name+'" decoding="async" onerror="this.style.visibility=&#39;hidden&#39;"></div><span class="gift-name">'+name+'</span>';if(sw)c+='<div class="gift-sw"><button type="button" class="gsw gsw-black" data-pc="black" aria-label="Black"></button><button type="button" class="gsw gsw-pink" data-pc="pink" aria-label="Pink"></button></div>';return c+'</div>';}
-  function buildGifts(){var el=document.getElementById('packGifts');if(!el)return;el.innerHTML='<div class="pg-h">\uD83C\uDF81 Free with this pack</div><div class="pg-row">'+giftCard('Sleep e-book','\uD83D\uDCD8','gift-ebook-v2',false,'E-BOOK',1)+giftCard('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true,null,2)+giftCard('Lavender mist','\uD83C\uDF3F','gift-mist',false,null,3)+'</div>';giftsBuilt=true;}
-  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;if(!giftsBuilt)buildGifts();var q=qtyOf(sku);var cards=el.querySelectorAll('.gift-card');for(var i=0;i<cards.length;i++){cards[i].style.display=(parseInt(cards[i].getAttribute('data-min'),10)<=q)?'':'none';}var pimg=el.querySelector('.gift-card[data-min="2"] img');if(pimg){var want='assets/gift-pillow-'+pillowColor+'.webp';if((pimg.getAttribute('src')||'')!==want){pimg.style.visibility='';pimg.setAttribute('src',want);}}var sws=el.querySelectorAll('.gsw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',sws[k].getAttribute('data-pc')===pillowColor);}}
+  function buildGifts(){var el=document.getElementById('packGifts');if(!el)return;el.innerHTML='<div class="pg-h">\uD83C\uDF81 Your free gifts \u2014 unlock more with a bigger pack</div><div class="pg-row">'+giftCard('Sleep e-book','\uD83D\uDCD8','gift-ebook-v2',false,'E-BOOK',1)+giftCard('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true,null,2)+giftCard('Lavender mist','\uD83C\uDF3F','gift-mist',false,null,3)+'</div>';giftsBuilt=true;}
+  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;if(!giftsBuilt)buildGifts();var q=qtyOf(sku);var cards=el.querySelectorAll('.gift-card');for(var i=0;i<cards.length;i++){var min=parseInt(cards[i].getAttribute('data-min'),10);var unlocked=min<=q;cards[i].classList.toggle('locked',!unlocked);var fb=cards[i].querySelector('.gift-free');if(fb)fb.textContent=unlocked?'FREE':('🔒 '+min+'+');}var pimg=el.querySelector('.gift-card[data-min="2"] img');if(pimg){var want='assets/gift-pillow-'+pillowColor+'.webp';if((pimg.getAttribute('src')||'')!==want){pimg.style.visibility='';pimg.setAttribute('src',want);}}var sws=el.querySelectorAll('.gsw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',sws[k].getAttribute('data-pc')===pillowColor);}}
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
