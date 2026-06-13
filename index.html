@@ -219,7 +219,7 @@ em{font-style:italic}
 .hero-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
 .hb{display:flex;align-items:center;gap:9px;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:11px;font-size:12.5px;font-weight:600;line-height:1.2}
 .hb svg{flex:none;color:var(--brand-2)}
-.hero-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.hero-thumbs{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}
 .hero-thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;padding:0;background:var(--bg-2);cursor:pointer;transition:border-color .15s,opacity .15s;opacity:.62}
 .hero-thumb:hover{opacity:1}
 .hero-thumb.is-active{border-color:var(--navy);opacity:1}
@@ -235,6 +235,10 @@ em{font-style:italic}
 .rating-row .stars{color:var(--star);font-size:17px;letter-spacing:1.5px}
 .rating-row .rr-num{font-weight:800}
 .rating-row .rr-cnt{color:var(--muted);font-size:13.5px}
+.rating-row .rr-join{color:var(--navy-2);font-weight:700}
+.cta-guarantee{display:flex;align-items:flex-start;gap:7px;margin-top:11px;padding:10px 13px;background:var(--navy-soft);border:1px solid rgba(23,115,176,.22);border-radius:11px;font-size:12.8px;line-height:1.4;color:var(--navy);font-weight:600}
+.cta-guarantee b{font-weight:800}
+.cta-guarantee .cg-ic{flex:none;font-size:14px;line-height:1.2}
 .hero-social{display:flex;flex-direction:column;margin:13px 0 0}
 .hero-reviews{display:grid;grid-template-columns:1fr;gap:9px}
 .hr-card{display:flex;align-items:center;gap:11px;background:var(--bg-card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--ink);box-shadow:0 14px 30px -28px rgba(16,35,71,.5)}
@@ -601,7 +605,6 @@ section{padding:clamp(46px,8vw,84px) 0}
   <div class="nav-in">
     <a href="index.html" class="logo">Kalmely<span>.</span></a>
     <div class="nav-right">
-      <div class="nav-rating"><span class="stars">★★★★★</span><span class="nr-txt">4.8 · 480+</span></div>
       <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-count" id="cartCount"></span>
@@ -616,19 +619,23 @@ section{padding:clamp(46px,8vw,84px) 0}
       <div class="hero-imgwrap">
         <span class="hero-tag">New 2026 model</span>
         <div class="hero-track" id="heroTrack">
-          <div class="hero-slide"><img src="assets/mask-black.webp" srcset="assets/mask-black-640.webp 640w, assets/mask-black-900.webp 900w, assets/mask-black.webp 1200w" sizes="(max-width:920px) 92vw, 500px" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
-          <div class="hero-slide"><img src="assets/mask-3d.webp" alt="3D contoured eye cups" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/mask-audio.webp" alt="Built-in Bluetooth speakers" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/mask-flight.webp" alt="Asleep on a flight" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/mask-both.webp" alt="Black and pink" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/mask-both.webp" alt="Kalmely Sleep Mask in black and pink" width="1024" height="1024" fetchpriority="high" decoding="async"></div>
+          <div class="hero-slide"><img src="assets/mask-black.webp" alt="Kalmely Sleep Mask with built-in Bluetooth speakers" width="1200" height="1200" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/mask-flight.webp" alt="Asleep on a flight wearing the Kalmely mask" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/benefits.webp" alt="100% blackout, built-in Bluetooth speakers, zero eye pressure and 16h battery" width="1000" height="1000" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/social-proof.webp" alt="Rated 4.8 out of 5 from 480+ verified reviews" width="1000" height="1000" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/how-to-use.webp" alt="How to use: slip it on, pair via Bluetooth, press play" width="1000" height="1000" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/guarantee.webp" alt="100-night risk-free trial with full refund" width="1000" height="1000" loading="lazy"></div>
         </div>
       </div>
       <div class="hero-thumbs" id="heroThumbs">
-        <button type="button" class="hero-thumb is-active" data-src="assets/mask-black.webp" aria-label="Product"><img src="assets/mask-black-640.webp" alt="" width="120" height="120"></button>
-        <button type="button" class="hero-thumb" data-src="assets/mask-3d.webp" aria-label="3D contoured cups"><img data-lazy-src="assets/mask-3d.webp" alt="" width="120" height="120"></button>
-        <button type="button" class="hero-thumb" data-src="assets/mask-audio.webp" aria-label="Built-in speakers"><img data-lazy-src="assets/mask-audio.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb is-active" data-src="assets/mask-both.webp" aria-label="Black and pink"><img src="assets/mask-both.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/mask-black.webp" aria-label="Product"><img data-lazy-src="assets/mask-black-640.webp" alt="" width="120" height="120"></button>
         <button type="button" class="hero-thumb" data-src="assets/mask-flight.webp" aria-label="On a flight"><img data-lazy-src="assets/mask-flight.webp" alt="" width="120" height="120"></button>
-        <button type="button" class="hero-thumb" data-src="assets/mask-both.webp" aria-label="Black and pink"><img data-lazy-src="assets/mask-both.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/benefits.webp" aria-label="Key benefits"><img data-lazy-src="assets/benefits.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/social-proof.webp" aria-label="Reviews"><img data-lazy-src="assets/social-proof.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/how-to-use.webp" aria-label="How to use"><img data-lazy-src="assets/how-to-use.webp" alt="" width="120" height="120"></button>
+        <button type="button" class="hero-thumb" data-src="assets/guarantee.webp" aria-label="Guarantee"><img data-lazy-src="assets/guarantee.webp" alt="" width="120" height="120"></button>
       </div>
       <div class="hero-badges">
         <div class="hb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg> 100% blackout</div>
@@ -641,7 +648,7 @@ section{padding:clamp(46px,8vw,84px) 0}
       <span class="eyebrow">Frequent-flyer favourite</span>
       <h1>Finally sleep on <span class="hl">any flight</span><span class="h1-sub">Even if you're sure you can't.</span></h1>
       <p class="hero-sub">Total blackout. Your own sound over both ears. <strong>Actually fall asleep on the plane</strong> — and land feeling human, not wrecked.</p>
-      <div class="rating-row"><span class="stars">★★★★★</span><span class="rr-num">4.8/5</span><span class="rr-cnt">· 480+ reviews from travellers</span></div>
+      <div class="rating-row"><span class="stars">★★★★★</span><span class="rr-num">4.8/5</span><span class="rr-cnt">· 480+ reviews</span><span class="rr-cnt rr-join">· Join 12,000+ travellers</span></div>
       <div class="hero-social">
         <div class="hero-reviews">
           <a class="hr-card" href="#reviews"><img src="assets/tst-1.webp" alt="Diane, verified customer" width="42" height="42" loading="lazy"><span class="hr-t"><span class="hr-q">"I actually slept the whole flight — landed feeling human."</span><span class="hr-w"><span class="hr-stars">★★★★★</span><b>Diane</b> · Leeds<span class="hr-v">✓ Verified</span></span></span></a>
@@ -667,6 +674,7 @@ section{padding:clamp(46px,8vw,84px) 0}
         <div class="colour-picker" id="colourPicker"></div>
         <div class="low-stock"><div class="ls-top"><span class="ls-ic">🔥</span> Selling fast — <b>only 11 left in stock</b></div><div class="ls-bar"><span style="width:12%"></span></div></div>
         <button type="button" class="buy-cta add-to-cart">Add to cart — <span class="cta-price">£54</span></button>
+        <div class="cta-guarantee"><span class="cg-ic">🌙</span><span><b>100-night trial</b> — sleep on it for 100 nights. Not for you? Full refund, and you keep the mask.</span></div>
         <div class="cta-sub"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg> Free UK shipping</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100-night trial</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure</span></div>
         <div class="pay-row"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>KLARNA</span></div>
       </div>
