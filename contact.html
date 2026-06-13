@@ -800,9 +800,8 @@ button.submit[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
   const successBox = document.getElementById('formSuccess');
   const errorBox = document.getElementById('formError');
 
-  // Detect if the Web3Forms key has been replaced
-  const hiddenKey = form.querySelector('input[name="access_key"]').value;
-  const IS_WIRED = hiddenKey && !hiddenKey.includes('REPLACE');
+  // Sends through the Kalmely worker (Resend) — same backend as order emails.
+  const WORKER_URL = 'https://kalmely-api.julioruizbayarri.workers.dev';
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -817,30 +816,26 @@ button.submit[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'Sending… <span class="arrow">→</span>';
 
-    // DEV mode — show success without hitting the API
-    if (!IS_WIRED) {
-      console.warn('[Kalmely contact] Web3Forms key not configured yet. Replace `access_key` value in contact.html with a real key from https://web3forms.com');
-      setTimeout(() => {
-        successBox.classList.add('show');
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send message <span class="arrow">→</span>';
-      }, 600);
-      return;
-    }
-
     try {
-      const formData = new FormData(form);
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const fd = new FormData(form);
+      const payload = {
+        name: fd.get('name'),
+        email: fd.get('email'),
+        reason: fd.get('reason') || '',
+        message: fd.get('message'),
+        botcheck: fd.get('botcheck') ? true : false
+      };
+      const res = await fetch(WORKER_URL + '/api/contact', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
-      const data = await res.json();
-      if (data.success) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
         successBox.classList.add('show');
         form.reset();
       } else {
-        throw new Error(data.message || 'Submit failed');
+        throw new Error(data.error || 'Submit failed');
       }
     } catch (err) {
       console.error('[Kalmely contact]', err);
