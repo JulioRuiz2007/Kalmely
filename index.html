@@ -311,6 +311,17 @@ em{font-style:italic}
 .pack.anniv-offer .ao-save{font-size:12px;font-weight:800;color:#fff;background:var(--accent);padding:3px 9px;border-radius:999px;letter-spacing:.01em}
 .pack.anniv-offer .ao-gift{display:flex;align-items:center;gap:7px;margin-top:11px;font-size:12.5px;font-weight:700;color:var(--navy);background:#fff;border:1px dashed var(--navy);border-radius:9px;padding:8px 11px}
 .pack.anniv-offer .ao-gift b{font-weight:800}
+.pack.anniv-offer .ao-title .ao-free{color:var(--accent)}
+.pack.anniv-offer .ao-sub{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-top:3px}
+.pack.anniv-offer .ao-perks{display:flex;flex-direction:column;gap:7px;margin-top:13px}
+.pack.anniv-offer .ao-perk{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;line-height:1.3}
+.pack.anniv-offer .ao-perk b{font-weight:800}
+.pack.anniv-offer .ao-perk.ao-hot{background:linear-gradient(90deg,rgba(239,74,101,.13),rgba(239,74,101,.03));border-color:var(--accent);color:#c2334d}
+.pack.anniv-offer .ao-perk.ao-hot b{color:#c2334d}
+/* Variant B (BOGO) — amped so the free 2nd mask reads instantly */
+.pack.anniv-offer.anniv-bogo{border-color:var(--accent);box-shadow:0 26px 54px -28px rgba(239,74,101,.55)}
+.pack.anniv-offer.anniv-bogo .ao-badge{background:var(--accent)}
+.pack.anniv-offer.anniv-bogo .ao-title{font-size:26px}
 @media(max-width:560px){.pack{padding:13px 13px;gap:11px}.pack-price{font-size:20px}.pack-qty{font-size:14px}.pack-bonus{font-size:11px;padding:8px 10px;line-height:1.35}.pg-h{font-size:10px}.gift-name{font-size:10px}.gift-card{padding:6px 5px 8px}}
 .colour-picker{display:flex;flex-direction:column;gap:7px;margin:0 0 13px}
 .colour-row{display:flex;align-items:center;gap:9px}
@@ -915,19 +926,22 @@ section{padding:clamp(46px,8vw,84px) 0}
   var VARIANT=(window._abOffer==='B')?'B':'A';
   var OFFERS={
     A:{sku:'MASK-1',qty:1,price:39,was:59,save:20,unit:39,unitWas:59,unitSave:20,stepper:true,maxQty:10,
-       badge:'Save £20 (-34%) · Anniversary Week',title:'1× Kalmely Sleep Mask',
-       saveLabel:'Save £20 (-34%)',ctaPrice:'£39'},
+       badge:'🎉 Anniversary Week · Save £20',title:'1× Kalmely Sleep Mask',sub:'',
+       saveLabel:'Save £20 · 34% off',ctaPrice:'£39',
+       perks:'<span class="ao-perk">🎁 <b>Free £20 bonus bundle</b> — sleep e-book + neck pillow + lavender mist</span><span class="ao-perk">🚚 Free UK shipping · 100-night trial</span>'},
     B:{sku:'MASK-BOGO',qty:2,price:59,was:118,save:59,stepper:false,
-       badge:'🎉 Anniversary Week · Buy 1, Get 1 FREE',title:'2× Kalmely Sleep Mask',
-       saveLabel:'Save £59',ctaPrice:'£59 (2 masks)'}
+       badge:'🎉 Anniversary Week — this week only',title:'Buy 1, Get 1 <span class="ao-free">FREE</span>',sub:'2 Kalmely Sleep Masks — you only pay for one',
+       saveLabel:'Save £59 · 50% off',ctaPrice:'£59 (2 masks)',
+       perks:'<span class="ao-perk ao-hot">🎁 <b>Your 2nd mask is FREE</b> — worth £59, on us this week</span><span class="ao-perk">🎁 <b>Free £20 bonus bundle</b> — e-book + neck pillow + lavender mist</span><span class="ao-perk">🚚 Free UK shipping · 100-night trial</span>'}
   };
   var OFFER=OFFERS[VARIANT];
   function renderOffer(){
-    var card='<button type="button" class="pack anniv-offer is-selected" data-sku="'+OFFER.sku+'" data-price="'+OFFER.price+'" role="radio" aria-checked="true">'
+    var card='<button type="button" class="pack anniv-offer is-selected'+(VARIANT==='B'?' anniv-bogo':'')+'" data-sku="'+OFFER.sku+'" data-price="'+OFFER.price+'" role="radio" aria-checked="true">'
       +'<span class="ao-badge">'+OFFER.badge+'</span>'
       +'<span class="ao-title">'+OFFER.title+'</span>'
+      +(OFFER.sub?'<span class="ao-sub">'+OFFER.sub+'</span>':'')
       +'<span class="ao-pricerow"><span class="ao-now">£'+OFFER.price+'</span><s class="ao-was">£'+OFFER.was+'</s><span class="ao-save">'+OFFER.saveLabel+'</span></span>'
-      +'<span class="ao-gift">🎁 <span><b>FREE bonus bundle</b> (£20 value) — included</span></span>'
+      +'<span class="ao-perks">'+OFFER.perks+'</span>'
       +'</button>';
     ['packs','packsFinal'].forEach(function(id){var el=document.getElementById(id);if(el){el.className='packs anniv-single';el.innerHTML=card;}});
     var bt=document.querySelector('.buybox-head .bh-t');if(bt)bt.textContent='🎉 Anniversary Week';
