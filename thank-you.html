@@ -499,12 +499,15 @@ main { max-width: 880px; }
         value = stored.value;
       }
     } catch (_) {}
+    var _abm = document.cookie.match(/(?:^|; )kalmely_ab_offer=([AB])/);
+    var _ab = _abm ? _abm[1] : '';
     if (window.fbq) {
       fbq('track', 'Purchase', {
         value: value,
         currency: 'GBP',
         content_ids: [sku],
-        content_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager'
+        content_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager',
+        ...(_ab ? { offer_variant: _ab } : {})
       }, {
         eventID: sessionId
       });

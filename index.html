@@ -76,6 +76,20 @@
 })();
 </script>
 <!-- End Admin Mode Guard -->
+<!-- A/B Anniversary offer assignment (50/50, sticky per browser, same pixel/URL) -->
+<script>
+(function(){
+  var v=null;
+  try{
+    var q=new URLSearchParams(location.search).get('ab');           // ?ab=A|B → force + remember (QA)
+    if(q==='A'||q==='B'){v=q;document.cookie='kalmely_ab_offer='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    if(!v){var m=document.cookie.match(/(?:^|; )kalmely_ab_offer=([AB])/);if(m)v=m[1];}  // repeat visit → same variant
+    if(!v){v=(Math.random()<0.5?'A':'B');document.cookie='kalmely_ab_offer='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+  }catch(e){v=v||'A';}
+  window._abOffer=v;
+  try{if(window.clarity)clarity('set','offer_variant',v);}catch(e){}  // segment Clarity recordings too
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -88,10 +102,11 @@ fbq('init', '2038496957090347');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
   content_name: 'Kalmely Sleep Mask',
-  content_ids: ['MASK-1'],
+  content_ids: [window._abOffer==='B'?'MASK-BOGO':'MASK-1'],
   content_type: 'product',
-  value: 39.00,
-  currency: 'GBP'
+  value: window._abOffer==='B'?59.00:39.00,
+  currency: 'GBP',
+  offer_variant: window._abOffer
 });
 // Defer the Pixel network script until first interaction / 3s idle, so it doesn't compete
 // with the hero LCP. All fbq() calls above are queued and flush the instant it loads — no
@@ -284,6 +299,18 @@ em{font-style:italic}
 .pack-gift-note{display:block;font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.01em;margin-top:2px}
 .pack-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
 .pack.is-selected .pack-badge{background:var(--navy)}
+/* ===== Anniversary A/B single offer card ===== */
+.packs.anniv-single{display:block}
+.pack.anniv-offer{display:block;cursor:default;border-color:var(--navy);background:var(--navy-soft);padding:20px 16px 16px;box-shadow:0 24px 50px -34px rgba(16,35,71,.55)}
+.pack.anniv-offer .pack-radio{display:none}
+.pack.anniv-offer .ao-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(239,74,101,.7)}
+.pack.anniv-offer .ao-title{display:block;font-size:17px;font-weight:800;font-family:'Sora',var(--sans);color:var(--ink);letter-spacing:-.02em}
+.pack.anniv-offer .ao-pricerow{display:flex;align-items:baseline;gap:9px;margin-top:6px;flex-wrap:wrap}
+.pack.anniv-offer .ao-now{font-size:30px;font-weight:800;font-family:'Sora',var(--sans);line-height:1;letter-spacing:-.03em;color:var(--ink)}
+.pack.anniv-offer .ao-was{font-size:15px;font-weight:500;color:var(--muted);text-decoration:line-through}
+.pack.anniv-offer .ao-save{font-size:12px;font-weight:800;color:#fff;background:var(--accent);padding:3px 9px;border-radius:999px;letter-spacing:.01em}
+.pack.anniv-offer .ao-gift{display:flex;align-items:center;gap:7px;margin-top:11px;font-size:12.5px;font-weight:700;color:var(--navy);background:#fff;border:1px dashed var(--navy);border-radius:9px;padding:8px 11px}
+.pack.anniv-offer .ao-gift b{font-weight:800}
 @media(max-width:560px){.pack{padding:13px 13px;gap:11px}.pack-price{font-size:20px}.pack-qty{font-size:14px}.pack-bonus{font-size:11px;padding:8px 10px;line-height:1.35}.pg-h{font-size:10px}.gift-name{font-size:10px}.gift-card{padding:6px 5px 8px}}
 .colour-picker{display:flex;flex-direction:column;gap:7px;margin:0 0 13px}
 .colour-row{display:flex;align-items:center;gap:9px}
@@ -475,6 +502,15 @@ section{padding:clamp(46px,8vw,84px) 0}
 .cart-item-meta{font-size:12.5px;color:var(--ink-2);margin-bottom:6px}
 .cart-item-price{font-size:15px;font-weight:800;color:var(--ink)}
 .cart-item-price .ci-was{font-size:12.5px;color:var(--muted);text-decoration:line-through;font-weight:500;margin-left:6px}
+.cart-qtyrow{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.cart-qtyrow .cqr-label{font-size:13px;font-weight:700;color:var(--ink)}
+.qty-stepper{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.qty-stepper .qs-btn{width:38px;height:38px;border:none;background:var(--bg);color:var(--navy);font-size:20px;font-weight:800;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.qty-stepper .qs-btn:hover{background:var(--navy-soft)}
+.qty-stepper .qs-btn:disabled{opacity:.35;cursor:not-allowed}
+.qty-stepper .qs-n{min-width:40px;text-align:center;font-size:15px;font-weight:800;color:var(--ink)}
+.cart-colours{margin-top:14px}
+.cart-colours:empty{display:none}
 .cart-upsell{margin-top:18px;background:var(--navy-soft);border:1px dashed var(--brand-2);border-radius:13px;padding:15px}
 .cart-upsell-h{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:7px}
 .cart-upsell-row{display:flex;align-items:center;gap:11px}
@@ -579,7 +615,7 @@ section{padding:clamp(46px,8vw,84px) 0}
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <div class="offer-bar" role="region" aria-label="Offer">
-  <span>🎁 <b>A free gift with every mask</b> · Save up to 41% on multi-packs · Free UK shipping</span>
+  <span>🎉 <b>Anniversary Week</b> · Free £20 bonus bundle with every order · Free UK shipping</span>
 </div>
 
 <nav class="nav">
@@ -837,6 +873,15 @@ section{padding:clamp(46px,8vw,84px) 0}
         <div class="cart-item-price"><span id="cartPrice">£54</span><span class="ci-was" id="cartWas">£78</span></div>
       </div>
     </div>
+    <div class="cart-qtyrow" id="cartQtyRow" style="display:none">
+      <span class="cqr-label">Quantity</span>
+      <div class="qty-stepper">
+        <button type="button" class="qs-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+        <span class="qs-n" id="qtyN">1</span>
+        <button type="button" class="qs-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+    <div class="colour-picker cart-colours" id="cartColours"></div>
     <div class="cart-gift" id="cartGifts"></div>
     <div class="cart-upsell" id="cartUpsell">
       <div class="cart-upsell-h">⚡ One-time offer</div>
@@ -849,7 +894,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   </div>
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">£54.00</span></div>
-    <div class="cart-totals"><span>Launch saving</span><span class="ct-save" id="cartSaving">−£24.00</span></div>
+    <div class="cart-totals"><span>Anniversary saving</span><span class="ct-save" id="cartSaving">−£24.00</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">£54.00</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
     <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 100-night returns</span><span>🚚 Free UK shipping</span></div>
@@ -866,39 +911,72 @@ section{padding:clamp(46px,8vw,84px) 0}
   'use strict';
   // ---------- Pack + colour selector ----------
   var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
-  var DEFAULT='MASK-2';
-  var WAS={'MASK-2':78,'MASK-3':117}, SAVE={'MASK-2':24,'MASK-3':48};
+  // ===== Anniversary Week A/B (variant decided in <head>, window._abOffer) =====
+  var VARIANT=(window._abOffer==='B')?'B':'A';
+  var OFFERS={
+    A:{sku:'MASK-1',qty:1,price:39,was:59,save:20,unit:39,unitWas:59,unitSave:20,stepper:true,maxQty:10,
+       badge:'Save £20 (-34%) · Anniversary Week',title:'1× Kalmely Sleep Mask',
+       saveLabel:'Save £20 (-34%)',ctaPrice:'£39'},
+    B:{sku:'MASK-BOGO',qty:2,price:59,was:118,save:59,stepper:false,
+       badge:'🎉 Anniversary Week · Buy 1, Get 1 FREE',title:'2× Kalmely Sleep Mask',
+       saveLabel:'Save £59',ctaPrice:'£59 (2 masks)'}
+  };
+  var OFFER=OFFERS[VARIANT];
+  function renderOffer(){
+    var card='<button type="button" class="pack anniv-offer is-selected" data-sku="'+OFFER.sku+'" data-price="'+OFFER.price+'" role="radio" aria-checked="true">'
+      +'<span class="ao-badge">'+OFFER.badge+'</span>'
+      +'<span class="ao-title">'+OFFER.title+'</span>'
+      +'<span class="ao-pricerow"><span class="ao-now">£'+OFFER.price+'</span><s class="ao-was">£'+OFFER.was+'</s><span class="ao-save">'+OFFER.saveLabel+'</span></span>'
+      +'<span class="ao-gift">🎁 <span><b>FREE bonus bundle</b> (£20 value) — included</span></span>'
+      +'</button>';
+    ['packs','packsFinal'].forEach(function(id){var el=document.getElementById(id);if(el){el.className='packs anniv-single';el.innerHTML=card;}});
+    var bt=document.querySelector('.buybox-head .bh-t');if(bt)bt.textContent='🎉 Anniversary Week';
+    var bd=document.querySelector('.buybox-head .bh-deal');if(bd)bd.textContent=(VARIANT==='B'?'Buy 1, get 1 free':'Save £20 today');
+    var pb=document.querySelector('.pack-bonus');if(pb)pb.innerHTML='🎁 <b>Every order includes our free bonus bundle</b> — sleep e-book + neck pillow + lavender mist (£20 value).';
+  }
+  renderOffer();
+  var DEFAULT=OFFER.sku;
+  var QTY={};QTY[OFFER.sku]=OFFER.qty;
+  var WAS={},SAVE={};WAS[OFFER.sku]=OFFER.was;SAVE[OFFER.sku]=OFFER.save;
   var packs=document.querySelectorAll('.pack');
   var addBtns=document.querySelectorAll('.add-to-cart');
-  var picker=document.getElementById('colourPicker');
-  var colours=[]; var pillowColor='black';try{pillowColor=localStorage.getItem('kalmely_pillow')||'black'}catch(e){} var curSku=DEFAULT, curPrice='54';
-  var qtyOf=function(s){return parseInt((s.split('-')[1]||'1'),10)||1;};
+  var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
+  var colours=[]; var pillowColor='black';try{pillowColor=localStorage.getItem('kalmely_pillow')||'black'}catch(e){} var curSku=DEFAULT, curPrice=String(OFFER.price), curQty=OFFER.qty;
+  var qtyOf=function(s){return QTY[s]||parseInt((s.split('-')[1]||'1'),10)||1;};
   var packName=function(s){var q=qtyOf(s);return q===1?'Kalmely Sleep Mask':'Kalmely Sleep Mask · '+q+'-pack';};
   var saveColours=function(){try{localStorage.setItem('kalmely_colors',JSON.stringify(colours))}catch(e){}};
-  function ctaPriceTxt(){return '£'+curPrice;}
+  function ctaPriceTxt(){return OFFER.ctaPrice;}
+  // Variant A is per-unit (the cart stepper scales qty); variant B is a fixed 2-mask BOGO pack.
+  function lineMath(){
+    if(OFFER.stepper){return {qty:curQty,price:curQty*OFFER.unit,was:curQty*OFFER.unitWas,save:curQty*OFFER.unitSave,checkoutQty:curQty};}
+    return {qty:OFFER.qty,price:OFFER.price,was:OFFER.was,save:OFFER.save,checkoutQty:1};
+  }
   function updateCtas(){
+    var m=lineMath();
     addBtns.forEach(function(a){var p=a.querySelector('.cta-price');if(p)p.textContent=ctaPriceTxt();});
     var scP=document.getElementById('scPrice'),scL=document.getElementById('scLabel');
-    if(scP)scP.textContent='£'+curPrice; if(scL)scL.textContent=qtyOf(curSku)+'-mask pack';
+    if(scP)scP.textContent='£'+m.price; if(scL)scL.textContent=m.qty+(m.qty>1?' masks':' mask');
   }
   function renderPicker(qty){
-    if(!picker)return;var prev=colours.slice();colours=[];for(var i=0;i<qty;i++)colours.push(prev[i]||'black');
-    picker.innerHTML=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
+    var prev=colours.slice();colours=[];for(var i=0;i<qty;i++)colours.push(prev[i]||'black');
+    var html=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
+    pickerEls.forEach(function(el){el.innerHTML=html;});
     saveColours();
   }
   function renderIncludes(sku){var inc=document.getElementById('includes');if(!inc)return;var q=qtyOf(sku);var li=function(t,g){return '<li'+(g?'':' class="inc-main"')+'>'+(g?'<span class="inc-gift">\uD83C\uDF81</span>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>')+'<span class="inc-t">'+t+'</span>'+(g?'<span class="inc-tag">FREE</span>':'')+'</li>';};var r=[li(q+'\u00d7 Kalmely Sleep Mask',false),li('\u201cHow to Sleep on Any Flight\u201d e-book',true)];if(q>=2)r.push(li('Travel neck pillow',true));if(q>=3)r.push(li('Lavender sleep mist',true));inc.innerHTML='<div class="inc-h">Your order includes</div><ul>'+r.join('')+'</ul>';}
   var giftsBuilt=false;
   function giftCard(name,emoji,img,sw,tag,min){var c='<div class="gift-card" data-min="'+min+'"><span class="gift-free">FREE</span>'+(tag?'<span class="gift-type">'+tag+'</span>':'')+'<div class="gift-img" data-e="'+emoji+'"><img src="assets/'+img+'.webp" alt="'+name+'" decoding="async" onerror="this.style.visibility=&#39;hidden&#39;"></div><span class="gift-name">'+name+'</span>';if(sw)c+='<div class="gift-sw"><button type="button" class="gsw gsw-black" data-pc="black" aria-label="Black"></button><button type="button" class="gsw gsw-pink" data-pc="pink" aria-label="Pink"></button></div>';return c+'</div>';}
-  function buildGifts(){var el=document.getElementById('packGifts');if(!el)return;el.innerHTML='<div class="pg-h">\uD83C\uDF81 Your free gifts \u2014 unlock more with a bigger pack</div><div class="pg-row">'+giftCard('Sleep e-book','\uD83D\uDCD8','gift-ebook-v2',false,'E-BOOK',1)+giftCard('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true,null,2)+giftCard('Lavender mist','\uD83C\uDF3F','gift-mist',false,null,3)+'</div>';giftsBuilt=true;}
-  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;if(!giftsBuilt)buildGifts();var q=qtyOf(sku);var cards=el.querySelectorAll('.gift-card');for(var i=0;i<cards.length;i++){var min=parseInt(cards[i].getAttribute('data-min'),10);var unlocked=min<=q;cards[i].classList.toggle('locked',!unlocked);var fb=cards[i].querySelector('.gift-free');if(fb)fb.textContent=unlocked?'FREE':('🔒 '+min+'+');}var pimg=el.querySelector('.gift-card[data-min="2"] img');if(pimg){var want='assets/gift-pillow-'+pillowColor+'.webp';if((pimg.getAttribute('src')||'')!==want){pimg.style.visibility='';pimg.setAttribute('src',want);}}var sws=el.querySelectorAll('.gsw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',sws[k].getAttribute('data-pc')===pillowColor);}}
+  function buildGifts(){var el=document.getElementById('packGifts');if(!el)return;el.innerHTML='<div class="pg-h">\uD83C\uDF81 Your free bonus bundle \u2014 included with every order (\u00A320 value)</div><div class="pg-row">'+giftCard('Sleep e-book','\uD83D\uDCD8','gift-ebook-v2',false,'E-BOOK',1)+giftCard('Neck pillow','\uD83D\uDECC','gift-pillow-'+pillowColor,true,null,2)+giftCard('Lavender mist','\uD83C\uDF3F','gift-mist',false,null,3)+'</div>';giftsBuilt=true;}
+  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;if(!giftsBuilt)buildGifts();var cards=el.querySelectorAll('.gift-card');for(var i=0;i<cards.length;i++){cards[i].classList.remove('locked');var fb=cards[i].querySelector('.gift-free');if(fb)fb.textContent='FREE';}  /* A/B: all 3 gifts free in both variants */var pimg=el.querySelector('.gift-card[data-min="2"] img');if(pimg){var want='assets/gift-pillow-'+pillowColor+'.webp';if((pimg.getAttribute('src')||'')!==want){pimg.style.visibility='';pimg.setAttribute('src',want);}}var sws=el.querySelectorAll('.gsw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',sws[k].getAttribute('data-pc')===pillowColor);}}
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
-    renderPicker(qtyOf(sku));updateCtas();renderGifts(sku);
+    renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
-  if(picker)picker.addEventListener('click',function(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;picker.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s===sw);});saveColours();if(cartOpen)populateCart();});
+  function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
+  pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
   var _pg=document.getElementById('packGifts');if(_pg)_pg.addEventListener('click',function(e){var b=e.target.closest('.gsw');if(!b)return;pillowColor=b.dataset.pc;try{localStorage.setItem('kalmely_pillow',pillowColor)}catch(e){}renderGifts(curSku);});
   try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
@@ -913,7 +991,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   var cartOpen=false;
   function money(n){return '£'+Number(n).toFixed(2);}
   function populateCart(){
-    var qty=qtyOf(curSku),price=parseInt(curPrice,10)||0,was=WAS[curSku],save=SAVE[curSku];
+    var m=lineMath(),qty=m.qty,price=m.price,was=m.was,save=m.save;
     document.getElementById('cartName').textContent=packName(curSku);
     document.getElementById('cartMeta').textContent=colours.map(function(c){return c.charAt(0).toUpperCase()+c.slice(1);}).join(' · ')||'Black';
     document.getElementById('cartQty').textContent='×'+qty;
@@ -924,16 +1002,19 @@ section{padding:clamp(46px,8vw,84px) 0}
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
     document.getElementById('cartTotal').textContent=money(price);
-    // upsell: offer the 3-pack unless already on it
-    var up=document.getElementById('cartUpsell');
-    if(curSku!=='MASK-3'){up.style.display='';document.getElementById('upsellTitle').textContent='Make it 3 masks';var _ex=(qty<=1)?'neck pillow + lavender mist':'lavender mist';document.getElementById('upsellSave').innerHTML='Just £23 each · Save £48 total<br><b class="uu-gift">\uD83C\uDF81 + free '+_ex+'</b>';}
-    else{up.style.display='none';}
-    document.getElementById('cartCount').textContent=String(qty);var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['\u201cHow to Sleep on Any Flight\u201d e-book'];if(qty>=2)_gl.push('Travel neck pillow');if(qty>=3)_gl.push('Lavender sleep mist');_cg.innerHTML='<span class="cg-h">Included free with your order</span>'+_gl.map(function(t){return '<span class="cg-item">\uD83C\uDF81 '+t+' <b>FREE</b></span>';}).join('');}
+    // Quantity stepper — only variant A (per-unit £39 offer); variant B is a fixed BOGO pack.
+    var qr=document.getElementById('cartQtyRow');if(qr)qr.style.display=OFFER.stepper?'flex':'none';
+    var qn=document.getElementById('qtyN');if(qn)qn.textContent=String(curQty);
+    var qm=document.getElementById('qtyMinus');if(qm)qm.disabled=curQty<=1;
+    var qp=document.getElementById('qtyPlus');if(qp)qp.disabled=curQty>=(OFFER.maxQty||10);
+    // A/B: no pack upsell (single fixed offer per variant)
+    var up=document.getElementById('cartUpsell');if(up)up.style.display='none';
+    document.getElementById('cartCount').textContent=String(qty);var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['\u201cHow to Sleep on Any Flight\u201d e-book','Travel neck pillow','Lavender sleep mist'];_cg.innerHTML='<span class="cg-h">Free bonus bundle included (\u00a320 value)</span>'+_gl.map(function(t){return '<span class="cg-item">\uD83C\uDF81 '+t+' <b>FREE</b></span>';}).join('');}
   }
   function openCart(){
-    var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
+    var m=lineMath(),price=m.price,qty=m.qty;
     try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
-    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
+    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
     setEmpty(false);populateCart();openDrawer();
   }
   function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
@@ -955,7 +1036,15 @@ section{padding:clamp(46px,8vw,84px) 0}
   document.getElementById('cartClose').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cartOpen)closeCart();});
-  document.getElementById('upsellBtn').addEventListener('click',function(){select('MASK-3',true);populateCart();});
+  // ---------- Quantity stepper (variant A: buy 2+ of the £39 unit, each with the bonus bundle) ----------
+  function setQty(n){
+    curQty=Math.max(1,Math.min(OFFER.maxQty||10,n));
+    renderPicker(curQty);updateCtas();populateCart();
+    try{var b=JSON.parse(localStorage.getItem('kalmely_bag')||'null');if(b){var m=lineMath();b.qty=m.qty;b.price=m.price;b.colors=colours.slice();localStorage.setItem('kalmely_bag',JSON.stringify(b));}}catch(e){}
+  }
+  var _qm=document.getElementById('qtyMinus'),_qp=document.getElementById('qtyPlus');
+  if(_qm)_qm.addEventListener('click',function(){setQty(curQty-1);});
+  if(_qp)_qp.addEventListener('click',function(){setQty(curQty+1);});
   function readBagQty(){try{var b=JSON.parse(localStorage.getItem('kalmely_bag')||'null');return b&&b.qty?b.qty:0;}catch(e){return 0;}}
 
   // ---------- Checkout (from drawer) → InitiateCheckout + Stripe ----------
@@ -965,13 +1054,13 @@ section{padding:clamp(46px,8vw,84px) 0}
   window.addEventListener('pageshow',function(){checkingOut=false;var _b=document.getElementById('cartCheckout');if(_b){_b.textContent='Secure checkout →';_b.style.opacity='';}});
   document.getElementById('cartCheckout').addEventListener('click',async function(){
     if(checkingOut)return;
-    var sku=curSku,price=parseInt(curPrice,10)||0,qty=qtyOf(sku);
+    var sku=curSku,m=lineMath(),price=m.price,qty=m.qty;
     var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
-    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'GBP',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku)},{eventID:icEventId});
+    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'GBP',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
     try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'GBP',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
-      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:1,colors:(colours.join(',')+(qty>=2?' | pillow:'+pillowColor:'')),fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price})});
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,gifts:'Sleep e-book, Neck pillow, Lavender mist',colors:(colours.join(',')+' | pillow:'+pillowColor),fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price})});
       var data=await res.json();
       if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
       window.location.href=data.url;
