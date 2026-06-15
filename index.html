@@ -326,6 +326,7 @@ em{font-style:italic}
 .colour-picker{display:flex;flex-direction:column;gap:7px;margin:0 0 13px}
 .colour-row{display:flex;align-items:center;gap:9px}
 .colour-label{font-size:12px;font-weight:600;color:var(--ink-2);min-width:54px}
+.colour-label .colour-free{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--accent);border-radius:99px;padding:1px 6px;vertical-align:middle;margin-left:2px}
 .swatch{width:27px;height:27px;border-radius:50%;border:2px solid var(--line);padding:0;transition:transform .15s,box-shadow .15s,border-color .15s}
 .swatch-black{background:#1c1c1c}.swatch-pink{background:#e3aebb}
 .swatch.is-selected{border-color:var(--navy);transform:scale(1.1);box-shadow:0 0 0 3px rgba(21,51,107,.2)}
@@ -973,7 +974,7 @@ section{padding:clamp(46px,8vw,84px) 0}
   }
   function renderPicker(qty){
     var prev=colours.slice();colours=[];for(var i=0;i<qty;i++)colours.push(prev[i]||'black');
-    var html=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
+    var html=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+(VARIANT==='B'&&i>0?' <span class="colour-free">FREE</span>':'')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
     pickerEls.forEach(function(el){el.innerHTML=html;});
     saveColours();
   }
