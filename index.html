@@ -461,6 +461,11 @@ section{padding:clamp(46px,8vw,84px) 0}
 .cart-head .ch-free{font-size:11px;font-weight:700;color:var(--ok)}
 .cart-close{background:none;border:none;color:var(--muted);font-size:24px;line-height:1;padding:4px}
 .cart-body{flex:1;overflow-y:auto;padding:18px 20px}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 28px;gap:6px}
+.cart-empty .ce-ic{color:var(--navy);opacity:.55;margin-bottom:8px}
+.cart-empty .ce-title{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--ink);margin:0}
+.cart-empty .ce-sub{font-size:14px;color:var(--muted);margin:0 0 20px}
+.cart-empty .cart-checkout{max-width:280px}
 .cart-item{display:flex;gap:13px;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .cart-item-img{position:relative;width:78px;height:78px;border-radius:11px;overflow:hidden;background:var(--bg-2);flex:none;border:1px solid var(--line)}
 .cart-item-img img{width:100%;height:100%;object-fit:cover}
@@ -505,30 +510,6 @@ section{padding:clamp(46px,8vw,84px) 0}
 .cookie button{border:none;padding:9px 15px;border-radius:7px;font-size:12.5px;font-weight:700}
 .cookie .accept{background:#fff;color:var(--navy)}
 .cookie .deny{background:transparent;color:#C2CDE4;border:1px solid rgba(255,255,255,.3)}
-
-/* ===== SCRATCH-TO-WIN POPUP ===== */
-.scratch-overlay{position:fixed;inset:0;background:rgba(16,35,71,.62);backdrop-filter:blur(5px);z-index:300;display:none;align-items:center;justify-content:center;padding:18px}
-.scratch-overlay.open{display:flex}
-.scratch-modal{position:relative;width:100%;max-width:760px;background:var(--navy);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;box-shadow:0 40px 100px -30px rgba(0,0,0,.6)}
-.scratch-left{padding:36px 32px;color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center}
-.scratch-eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9DC0F5;margin-bottom:8px}
-.scratch-left h3{font-family:var(--serif);font-size:38px;font-weight:700;color:#fff;margin:0}
-.scratch-left p{font-size:14px;color:#B7C5E0;margin:6px 0 20px}
-.scratch-wrap{position:relative;width:230px;height:150px;border-radius:14px;overflow:hidden;box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
-.scratch-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;color:var(--navy)}
-.scratch-prize .sp-amt{font-family:var(--serif);font-size:40px;font-weight:700;line-height:1}
-.scratch-prize .sp-lbl{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);margin-top:2px}
-.scratch-prize .sp-code{margin-top:8px;font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--navy);background:var(--navy-soft);border:1px dashed var(--brand-2);border-radius:7px;padding:4px 12px}
-.scratch-canvas{position:absolute;inset:0;cursor:grab;touch-action:none}
-.scratch-hint{font-size:12px;color:#9DC0F5;margin-top:12px;font-weight:600}
-.scratch-cta{margin-top:18px;width:100%;max-width:260px;background:var(--cta);color:#fff;border:none;border-radius:11px;padding:15px;font-size:16px;font-weight:800;box-shadow:0 14px 30px -14px rgba(0,0,0,.5);transition:background .2s,transform .15s}
-.scratch-cta:hover{background:var(--cta-deep);transform:translateY(-1px)}
-.scratch-cta:disabled{opacity:.5;cursor:default;transform:none}
-.scratch-decline{background:none;border:none;color:#8FA0C4;font-size:12.5px;margin-top:12px;text-decoration:underline;cursor:pointer}
-.scratch-right{position:relative;background:linear-gradient(160deg,#1E4488,#0E2550)}
-.scratch-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
-.scratch-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);border:none;color:#fff;font-size:20px;line-height:1;z-index:5}
-@media(max-width:640px){.scratch-modal{grid-template-columns:1fr;max-width:420px}.scratch-right{display:none}.scratch-left{padding:30px 24px}.scratch-left h3{font-size:30px}}
 
 /* reveal */
 .fade-slow{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,.84,.32,1),transform .7s cubic-bezier(.16,.84,.32,1)}
@@ -670,7 +651,7 @@ section{padding:clamp(46px,8vw,84px) 0}
           <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false"><span class="pack-radio" aria-hidden="true"></span><span class="pack-info"><span class="pack-qty">3 Masks <b class="pack-tag">Best value</b></span><span class="pack-each">£23 each · <b class="sv">Save £48</b></span><span class="pack-gift-note">🎁 3 free gifts</span></span><span class="pack-pricewrap"><s class="pack-was">£117</s><span class="pack-price">£69</span></span></button>
         </div>
         <div class="colour-picker" id="colourPicker"></div>
-        <div class="low-stock"><div class="ls-top"><span class="ls-ic">🔥</span> Selling fast — <b>only 11 left in stock</b></div><div class="ls-bar"><span style="width:12%"></span></div></div>
+        <div class="low-stock"><div class="ls-top"><span class="ls-ic">🔥</span> Selling fast — <b>only 7 left in stock</b></div><div class="ls-bar"><span style="width:8%"></span></div></div>
         <button type="button" class="buy-cta add-to-cart">Add to cart — <span class="cta-price">£54</span></button>
         <div class="cta-guarantee"><span class="cg-ic">🌙</span><span><b>100-night trial</b> — sleep on it for 100 nights. Not for you? Full refund, and you keep the mask.</span></div>
         <div class="cta-sub"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg> Free UK shipping</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100-night trial</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure</span></div>
@@ -839,6 +820,14 @@ section{padding:clamp(46px,8vw,84px) 0}
     <span class="ch-free">✓ Free UK shipping unlocked</span>
     <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">×</button>
   </div>
+  <div class="cart-empty" id="cartEmpty" style="display:none">
+    <div class="ce-ic">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+    <p class="ce-title">Your cart is empty</p>
+    <p class="ce-sub">Add a Kalmely Sleep Mask to get started.</p>
+    <button type="button" class="cart-checkout" id="cartEmptyCta">Choose your pack →</button>
+  </div>
   <div class="cart-body">
     <div class="cart-item">
       <div class="cart-item-img"><span class="ci-qty" id="cartQty">×2</span><img id="cartImg" src="assets/mask-black.webp" alt="Kalmely Sleep Mask" width="148" height="148"></div>
@@ -861,85 +850,11 @@ section{padding:clamp(46px,8vw,84px) 0}
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">£54.00</span></div>
     <div class="cart-totals"><span>Launch saving</span><span class="ct-save" id="cartSaving">−£24.00</span></div>
-    <div class="cart-totals" id="cartCouponRow" style="display:none"><span>Coupon SLEEP10 (-10%)</span><span class="ct-save" id="cartCoupon"></span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">£54.00</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
     <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 100-night returns</span><span>🚚 Free UK shipping</span></div>
   </div>
 </aside>
-
-<!-- ===== SCRATCH-TO-WIN POPUP (first-order discount) ===== -->
-<div class="scratch-overlay" id="scratchOverlay" role="dialog" aria-label="Welcome discount">
-  <div class="scratch-modal">
-    <button type="button" class="scratch-close" id="scratchClose" aria-label="Close">×</button>
-    <div class="scratch-left">
-      <div class="scratch-eyebrow">First order</div>
-      <h3>Try your luck</h3>
-      <p>Scratch to unlock an extra discount on your first order</p>
-      <div class="scratch-wrap">
-        <div class="scratch-prize">
-          <span class="sp-amt">10% OFF</span>
-          <span class="sp-lbl">your first order</span>
-          <span class="sp-code">CODE: SLEEP10</span>
-        </div>
-        <canvas class="scratch-canvas" id="scratchCanvas" width="230" height="150"></canvas>
-      </div>
-      <div class="scratch-hint" id="scratchHint">👆 Scratch with your finger</div>
-      <button type="button" class="scratch-cta" id="scratchClaim" disabled>Claim my 10% off</button>
-      <button type="button" class="scratch-decline" id="scratchDecline">No thanks, I'll pay full price</button>
-    </div>
-    <div class="scratch-right"><img src="assets/mask-black.webp" alt="Kalmely Sleep Mask" width="380" height="500"></div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var ov=document.getElementById('scratchOverlay'); if(!ov) return;
-  var _qp=new URLSearchParams(location.search);
-  var _local=(location.hostname==='localhost'||location.hostname==='127.0.0.1'||location.protocol==='file:');
-  if(_qp.get('admin_mode')==='kalmely_julio_2026' && _qp.get('scratch')!=='1' && !_local) return; // don't bug admin (allow ?scratch=1 + local preview)
-  var cv=document.getElementById('scratchCanvas'),claim=document.getElementById('scratchClaim'),hint=document.getElementById('scratchHint');
-  var ctx=cv.getContext('2d'),W=cv.width,H=cv.height,revealed=false,drawing=false,scN=0;
-  var isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-  function reveal(msg){
-    if(revealed)return;revealed=true;
-    try{if(ctx)ctx.clearRect(0,0,W,H);}catch(e){}
-    cv.style.pointerEvents='none';
-    if(claim)claim.disabled=false;
-    if(hint)hint.textContent=msg||'🎉 You won 10% off — it’s yours';
-  }
-  function paint(){
-    ctx.globalCompositeOperation='source-over';
-    var g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#D9B25A');g.addColorStop(.5,'#F1D684');g.addColorStop(1,'#C2942F');
-    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='rgba(70,48,8,.5)';ctx.font='800 19px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.fillText('SCRATCH TO REVEAL',W/2,H/2+6);
-  }
-  // If the canvas can't be set up, never trap the user — reveal the code directly.
-  if(ctx){try{paint();}catch(e){reveal('✨ Your 10% off is ready below');}}else{reveal('✨ Your 10% off is ready below');}
-  if(hint&&!isTouch&&!revealed)hint.textContent='🖱️ Scratch with your mouse to reveal';
-  function pos(e){var r=cv.getBoundingClientRect(),t=e.touches&&e.touches[0]?e.touches[0]:e;return {x:(t.clientX-r.left)*(W/r.width),y:(t.clientY-r.top)*(H/r.height)};}
-  function scratch(e){if(!drawing)return;e.preventDefault();var p=pos(e);ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(p.x,p.y,30,0,7);ctx.fill();if((++scN)%3===0)check();}
-  function pct(){try{var d=ctx.getImageData(0,0,W,H).data,clear=0,tot=0;for(var i=3;i<d.length;i+=64){tot++;if(d[i]===0)clear++;}return clear/tot;}catch(e){return 1;}}
-  function check(){if(revealed)return;if(pct()>.35){reveal('🎉 You won 10% off — it’s yours');}}
-  cv.addEventListener('pointerdown',function(e){drawing=true;scratch(e);});
-  cv.addEventListener('pointermove',scratch);
-  window.addEventListener('pointerup',function(){if(drawing){drawing=false;check();}});
-  cv.addEventListener('touchstart',function(e){drawing=true;scratch(e);},{passive:false});
-  cv.addEventListener('touchmove',scratch,{passive:false});
-  window.addEventListener('touchend',function(){if(drawing){drawing=false;check();}});
-  function done(){try{localStorage.setItem('kalmely_scratch','done')}catch(e){}}
-  function close(){ov.classList.remove('open');done();}
-  document.getElementById('scratchClose').addEventListener('click',close);
-  document.getElementById('scratchDecline').addEventListener('click',close);
-  claim.addEventListener('click',function(){try{localStorage.setItem('kalmely_promo','SLEEP10')}catch(e){}done();try{if(navigator.clipboard)navigator.clipboard.writeText('SLEEP10')}catch(e){}claim.textContent='SLEEP10 copied — use it at checkout ✓';setTimeout(close,1100);});
-  var force=false;try{force=new URLSearchParams(location.search).get('scratch')==='1';}catch(e){}
-  var bypass=force||_local;  // local → always show (for recording); prod respects once-per-browser
-  var shown=false;function show(){if(shown)return;if(!bypass){try{if(localStorage.getItem('kalmely_scratch')==='done')return}catch(e){}}shown=true;ov.classList.add('open');setTimeout(function(){reveal('✨ Your 10% off is unlocked — claim it below');},5000);}
-  if(force){show();}  // ?scratch=1 → instant
-  else{var _seen=false;try{_seen=localStorage.getItem('kalmely_scratch')==='done'}catch(e){}
-    if(bypass||!_seen){setTimeout(show,3000);addEventListener('scroll',function(){if(document.body.scrollHeight>innerHeight&&(scrollY/(document.body.scrollHeight-innerHeight))>.2)show();},{passive:true});}}
-})();
-</script>
 
 <div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
   <p>We use cookies to improve the site and measure ads. Read our <a href="privacy.html">privacy policy</a>.</p>
@@ -1008,11 +923,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     document.getElementById('cartSubtotal').textContent=money(was||price);
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
-    var _promo='';try{_promo=(localStorage.getItem('kalmely_promo')||'').toUpperCase();}catch(e){}
-    var _crow=document.getElementById('cartCouponRow'),_tot=price;
-    if(_promo==='SLEEP10'){var _d=price*0.1;_tot=price-_d;var _cc=document.getElementById('cartCoupon');if(_cc)_cc.textContent='\u2212'+money(_d);if(_crow)_crow.style.display='';}
-    else if(_crow){_crow.style.display='none';}
-    document.getElementById('cartTotal').textContent=money(_tot);
+    document.getElementById('cartTotal').textContent=money(price);
     // upsell: offer the 3-pack unless already on it
     var up=document.getElementById('cartUpsell');
     if(curSku!=='MASK-3'){up.style.display='';document.getElementById('upsellTitle').textContent='Make it 3 masks';var _ex=(qty<=1)?'neck pillow + lavender mist':'lavender mist';document.getElementById('upsellSave').innerHTML='Just £23 each · Save £48 total<br><b class="uu-gift">\uD83C\uDF81 + free '+_ex+'</b>';}
@@ -1023,12 +934,24 @@ section{padding:clamp(46px,8vw,84px) 0}
     var price=parseInt(curPrice,10)||0,qty=qtyOf(curSku);
     try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
     if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
-    populateCart();
-    overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';
+    setEmpty(false);populateCart();openDrawer();
   }
+  function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
+  // Toggle between the empty state and the filled cart (item + gifts + upsell + checkout foot).
+  function setEmpty(isEmpty){
+    var empty=document.getElementById('cartEmpty'),body=drawer.querySelector('.cart-body'),foot=drawer.querySelector('.cart-foot'),free=drawer.querySelector('.ch-free');
+    if(empty)empty.style.display=isEmpty?'flex':'none';
+    if(body)body.style.display=isEmpty?'none':'';
+    if(foot)foot.style.display=isEmpty?'none':'';
+    if(free)free.style.display=isEmpty?'none':'';  // "Free shipping unlocked" makes no sense on an empty cart
+  }
+  // Clicking the header cart icon just VIEWS the cart — empty state if nothing added yet,
+  // otherwise the current bag (no AddToCart fired, no bag overwrite).
+  function viewCart(){if(readBagQty()){setEmpty(false);populateCart();}else{setEmpty(true);}openDrawer();}
   function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';}
   addBtns.forEach(function(b){b.addEventListener('click',openCart);});
-  document.getElementById('navCart').addEventListener('click',function(){if(readBagQty())openCart();});
+  document.getElementById('navCart').addEventListener('click',viewCart);
+  document.getElementById('cartEmptyCta').addEventListener('click',function(){closeCart();var box=document.querySelector('.buybox');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}});
   document.getElementById('cartClose').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cartOpen)closeCart();});
@@ -1048,8 +971,7 @@ section{padding:clamp(46px,8vw,84px) 0}
     try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'GBP',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
-      var promo=null;try{promo=localStorage.getItem('kalmely_promo')||null;}catch(e){}
-      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:1,coupon:promo,colors:(colours.join(',')+(qty>=2?' | pillow:'+pillowColor:'')),fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price})});
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:1,colors:(colours.join(',')+(qty>=2?' | pillow:'+pillowColor:'')),fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price})});
       var data=await res.json();
       if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
       window.location.href=data.url;
