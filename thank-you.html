@@ -72,8 +72,19 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<link rel="stylesheet" href="assets/legal.css">
+<link rel="stylesheet" href="assets/legal-2.css">
 <style>
+/* Cherry palette (self-contained; overrides the base sheet) */
+:root{
+  --serif:'Newsreader',Georgia,serif;
+  --bg:#FFFFFF; --bg-2:#FFF4F2;
+  --ink:#2A1A1C; --ink-soft:rgba(42,26,28,.66); --ink-faint:rgba(42,26,28,.45);
+  --line:rgba(42,26,28,.12);
+  --sage:#C8102E;        /* marca cherry — números de paso, barra de progreso */
+  --sage-deep:#0E7A3D;   /* verde de éxito — icono confirmado + acento guía gratis */
+  --sage-soft:#E9F6EE;   /* verde claro — fondo del icono confirmado */
+  --terra:#0E7A3D;       /* verde — eyebrow "guía gratis" ✓ */
+}
 main { max-width: 880px; }
 .ty-hero {
   text-align: center;
@@ -184,7 +195,7 @@ main { max-width: 880px; }
   aspect-ratio: 1;
   border-radius: 12px;
   overflow: hidden;
-  background: linear-gradient(165deg, #3D3128, #4A3B2F);
+  background: linear-gradient(165deg, #1F0A0E, #2A1014);
   position: relative;
 }
 .ty-product img {
@@ -299,7 +310,7 @@ main { max-width: 880px; }
 .scroll-progress {
   position: fixed; top: 0; left: 0;
   height: 2px; width: 0%;
-  background: linear-gradient(90deg, var(--sage,#4B725D), var(--ink,#1F3D2F));
+  background: linear-gradient(90deg, #C8102E, #A00C24);
   z-index: 9999; transition: width .12s ease-out; pointer-events: none;
 }
 
