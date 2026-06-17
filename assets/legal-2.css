@@ -6,15 +6,15 @@
 
 :root {
   --bg: #FFFFFF;
-  --bg-2: #EFF6FC;
-  --ink: #16334d;
+  --bg-2: #FFF4F2;
+  --ink: #2A1A1C;
   --ink-soft: rgba(22, 51, 77, 0.70);
   --ink-faint: rgba(22, 51, 77, 0.45);
   --line: rgba(22, 51, 77, 0.13);
-  --brand: #1773b0;
-  --brand-deep: #125a8c;
+  --brand: #C8102E;
+  --brand-deep: #A00C24;
   --brand-soft: rgba(23, 115, 176, 0.08);
-  --accent: #1773b0;
+  --accent: #C8102E;
   --pad: clamp(20px, 4vw, 56px);
   --serif: "Cormorant Garamond", Georgia, serif;
   --display: "Sora", "Inter", sans-serif;
