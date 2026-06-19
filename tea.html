@@ -475,6 +475,17 @@ section{padding:74px 0}
 .scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 .scratch.done .scratch-canvas,.scratch.done .scratch-hint{display:none}
 
+/* real images dropped into the sections */
+.hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pack-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mech-img{max-width:720px;margin:0 auto 36px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.mech-img img{width:100%;display:block}
+.life img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);display:block}
+.rev-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;margin-bottom:13px;display:block}
+.rev-by{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rev-by .nm{font:600 13px/1.3 var(--sans)}
+.inc-cover{width:26px;height:34px;border-radius:4px;object-fit:cover;flex:0 0 auto;box-shadow:0 2px 6px -2px rgba(0,0,0,.35)}
+
 /* ============ responsive ============ */
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:26px}
@@ -520,23 +531,25 @@ section{padding:74px 0}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <div class="hero-slide">
-              <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil with 4 free gifts" width="600" height="600" fetchpriority="high">
+              <img src="assets/tea-bottle.webp" alt="Kalmely Tea Tree Oil bottle with tea tree branches" width="600" height="600" fetchpriority="high">
+            </div>
+            <div class="hero-slide">
+              <img src="assets/tea-apply.webp" alt="Applying a drop of Kalmely Tea Tree Oil with the dropper" width="600" height="600" loading="lazy">
+            </div>
+            <div class="hero-slide">
+              <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil bundle with 4 free gifts" width="600" height="600" loading="lazy">
               <div class="free-tag t-app"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
               <div class="free-tag t-file"><div class="ft-val"><s>$7.95</s>FREE</div><div class="ft-name">Crystal file</div></div>
               <div class="free-tag t-patch"><div class="ft-val"><s>$14.95</s>FREE</div><div class="ft-name">Invisible patches</div></div>
               <div class="free-tag t-book"><div class="ft-val"><s>$22.95</s>FREE</div><div class="ft-name">Wart-Free eBook</div></div>
             </div>
-            <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 2</span></div></div>
-            <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 3</span></div></div>
-            <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 4</span></div></div>
           </div>
         </div>
         <div class="hero-cap">100% pure tea tree oil · gentle on skin</div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb is-active"><img src="assets/tea-bottle.webp" alt="Bottle"></button>
+          <button type="button" class="hero-thumb"><img src="assets/tea-apply.webp" alt="In use"></button>
+          <button type="button" class="hero-thumb"><img src="assets/tea-hero.webp" alt="Bundle"></button>
         </div>
       </div>
 
@@ -571,7 +584,7 @@ section{padding:74px 0}
             </button>
             <button type="button" class="pack" data-sku="TEA-60-GIFTS" data-price="52.95" role="radio" aria-checked="false">
               <span class="pack-badge">Most popular</span>
-              <span class="pack-thumb"><span class="ph" data-n="gift">100 ml +4</span></span>
+              <span class="pack-thumb"><img src="assets/tea-hero.webp" alt="100 ml + 4 free gifts"></span>
               <span class="pack-qty">100 ml + 4 gifts</span>
               <span class="pack-price">$52.95<s>$104.95</s></span>
               <span class="pack-banner">🎁 $56 in free gifts · just $0.53/ml</span>
@@ -630,6 +643,7 @@ section{padding:74px 0}
   <section class="band" id="how">
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>Here's how Kalmely works</h2><p>Tea tree oil (<em>Melaleuca alternifolia</em>) has been trusted on skin for generations. Ours is 100% pure and applied only where you need it — so it goes to work on the wart, and nowhere you don't.</p></div>
+      <div class="mech-img fade-slow"><img src="assets/tea-mechanism.webp" alt="Acid and freezing burn only the surface; Kalmely tea tree oil penetrates to target the wart's root"></div>
       <div class="values fade-slow">
         <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><path d="M12 6c-2 1-3 3-3 5"/></svg><h3>Pure tea tree</h3><p>100% pure <em>Melaleuca alternifolia</em> — the proven natural active, nothing diluted.</p></div>
         <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><h3>Targeted application</h3><p>The precision tip puts the oil directly and only on the wart — never the healthy skin around it.</p></div>
@@ -676,9 +690,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">For the whole family</div><h2>Gentle enough for the whole family</h2><p>The freezing kits and acids say "not for the face, not for children." Kalmely is different — a single drop at bedtime, a patch they can keep on. No tears, no doctor's chair. Safe for hands, feet, neck, and kids 4+ (always supervised).</p></div>
       <div class="life fade-slow">
-        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Family 1</span></div>
-        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Family 2</span></div>
-        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Family 3</span></div>
+        <img src="assets/tea-family.webp" alt="A mother gently applying Kalmely to her daughter at bedtime" loading="lazy">
+        <img src="assets/tea-active.webp" alt="Back to an active life, hands and feet clear" loading="lazy">
+        <img src="assets/tea-hands.webp" alt="Confident, open hands — nothing to hide" loading="lazy">
       </div>
     </div>
   </section>
@@ -688,9 +702,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Real customers, real reviews</div><h2>Loved by families everywhere</h2></div>
       <div class="rev-grid fade-slow">
-        <div class="review"><div class="rh"><span class="av">SM</span><div><div class="nm">Sarah M.</div><div class="vf">✓ Verified Buyer</div></div></div><div class="st">★★★★★</div><div class="rt">Gone in a month</div><p>After a month, fifteen warts on my daughter's hands were gone. No tears, no doctor visits.</p><div class="rec">👍 I recommend this product</div></div>
-        <div class="review"><div class="rh"><span class="av">DR</span><div><div class="nm">David R.</div><div class="vf">✓ Verified Buyer</div></div></div><div class="st">★★★★★</div><div class="rt">A plantar wart I'd had for years</div><p>No pain, no skin peeling, no foot-doctor visits. The plantar wart I'd had for years finally lifted off.</p><div class="rec">👍 I recommend this product</div></div>
-        <div class="review"><div class="rh"><span class="av">MT</span><div><div class="nm">Megan T.</div><div class="vf">✓ Verified Buyer</div></div></div><div class="st">★★★★★</div><div class="rt">No more pain walking</div><p>My son no longer felt pain when he walked. We just dabbed it on every night.</p><div class="rec">👍 I recommend this product</div></div>
+        <div class="review"><img class="rev-img" src="assets/tea-review1.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">Gone in a month</div><p>After a month, fifteen warts on my daughter's hands were gone. No tears, no doctor visits.</p><div class="rev-by"><span class="nm">Sarah M.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
+        <div class="review"><img class="rev-img" src="assets/tea-review2.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">A plantar wart I'd had for years</div><p>No pain, no skin peeling, no foot-doctor visits. The plantar wart I'd had for years finally lifted off.</p><div class="rev-by"><span class="nm">Diana R.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
+        <div class="review"><img class="rev-img" src="assets/tea-review3.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">No more pain walking</div><p>My son no longer felt pain when he walked. We just dabbed it on every night.</p><div class="rev-by"><span class="nm">Megan T.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
       </div>
     </div>
   </section>
@@ -723,7 +737,7 @@ section{padding:74px 0}
         </button>
         <button type="button" class="pack" data-sku="TEA-60-GIFTS" data-price="52.95" role="radio" aria-checked="false">
           <span class="pack-badge">Most popular</span>
-          <span class="pack-thumb"><span class="ph" data-n="gift">100 ml +4</span></span>
+          <span class="pack-thumb"><img src="assets/tea-hero.webp" alt="100 ml + 4 free gifts"></span>
           <span class="pack-qty">100 ml + 4 gifts</span><span class="pack-price">$52.95<s>$104.95</s></span>
           <span class="pack-banner">🎁 $56 in free gifts · just $0.53/ml</span>
           <span class="pack-sub">Subscribe &amp; Save · renews every 2 months · cancel anytime</span>
@@ -883,7 +897,7 @@ section{padding:74px 0}
       html+=row('Precision applicator','<s>$9.95</s><b class="inc-free">FREE</b>')
           +row('Crystal prep file','<s>$7.95</s><b class="inc-free">FREE</b>')
           +row('Invisible tea-tree patches','<s>$14.95</s><b class="inc-free">FREE</b>')
-          +row('“The Wart-Free Protocol” eBook','<s>$22.95</s><b class="inc-free">FREE</b>');
+          +'<li class="inc-row"><img class="inc-cover" src="assets/tea-ebook.webp" alt=""><span class="inc-name">“The Wart-Free Protocol” eBook</span><span class="inc-val"><s>$22.95</s><b class="inc-free">FREE</b></span></li>';
     }
     html+='</ul><div class="inc-foot">✓ Free shipping · 6-month money-back guarantee'+(t.gifts?' · $56 in free gifts':'')+'</div>';
     el.innerHTML=html;
