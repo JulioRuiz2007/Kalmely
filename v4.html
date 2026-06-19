@@ -317,8 +317,9 @@ section{padding:74px 0}
 .rev-score .cnt{font:500 13px/1 var(--sans);color:var(--ink-soft);margin-top:4px}
 .rev-dist{display:flex;flex-direction:column;gap:6px}
 .rev-bar{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--sans);color:var(--ink-soft)}
-.rev-bar .track{flex:1;height:6px;border-radius:3px;background:var(--paper-3);overflow:hidden}
-.rev-bar .fill{height:100%;background:var(--ink)}
+.rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
+.rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
+.rev-bar .pct{min-width:34px;text-align:right;color:var(--ink-2)}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .review .rh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -657,11 +658,11 @@ section{padding:74px 0}
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">480 verified reviews</div></div>
         <div class="rev-dist">
-          <div class="rev-bar">5★ <span class="track"><span class="fill" style="width:86%"></span></span> 86%</div>
-          <div class="rev-bar">4★ <span class="track"><span class="fill" style="width:9%"></span></span> 9%</div>
-          <div class="rev-bar">3★ <span class="track"><span class="fill" style="width:3%"></span></span> 3%</div>
-          <div class="rev-bar">2★ <span class="track"><span class="fill" style="width:1%"></span></span> 1%</div>
-          <div class="rev-bar">1★ <span class="track"><span class="fill" style="width:1%"></span></span> 1%</div>
+          <div class="rev-bar">5★ <span class="track"><span class="fill" style="width:86%"></span></span> <span class="pct">86%</span></div>
+          <div class="rev-bar">4★ <span class="track"><span class="fill" style="width:9%"></span></span> <span class="pct">9%</span></div>
+          <div class="rev-bar">3★ <span class="track"><span class="fill" style="width:3%"></span></span> <span class="pct">3%</span></div>
+          <div class="rev-bar">2★ <span class="track"><span class="fill" style="width:1%"></span></span> <span class="pct">1%</span></div>
+          <div class="rev-bar">1★ <span class="track"><span class="fill" style="width:1%"></span></span> <span class="pct">1%</span></div>
         </div>
       </div>
       <div class="rev-grid fade-slow">
