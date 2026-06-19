@@ -457,6 +457,15 @@ section{padding:74px 0}
 .eg-code{font:700 25px/1 var(--sans);letter-spacing:.16em;background:var(--card);border:2px dashed var(--ink);border-radius:10px;padding:15px;margin:4px 0 12px;text-align:center}
 .eg-copy{font:600 13px/1 var(--sans);color:var(--ink-soft);text-decoration:underline;margin-bottom:14px;display:inline-block}
 .eg-shop{width:100%;background:var(--ink);color:var(--paper);font:600 15px/1 var(--sans);padding:15px;border-radius:10px}
+/* scratch-to-reveal card */
+.scratch{position:relative;width:100%;height:130px;border-radius:12px;overflow:hidden;margin:6px 0 14px;border:2px dashed var(--line-2);user-select:none}
+.scratch-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--paper-2);text-align:center;padding:0 12px}
+.sp-pct{font:700 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ok)}
+.sp-code{font:700 30px/1 var(--sans);letter-spacing:.16em;color:var(--ink)}
+.scratch-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none}
+.scratch-canvas:active{cursor:grabbing}
+.scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.scratch.done .scratch-canvas,.scratch.done .scratch-hint{display:none}
 
 /* ============ responsive ============ */
 @media(max-width:980px){
@@ -795,27 +804,30 @@ section{padding:74px 0}
     <button type="button" class="eg-close" id="egClose" aria-label="Close">×</button>
     <div class="eg-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Popup image</span></div><div class="eg-ov">Clear<br>skin.</div></div>
     <div class="eg-body">
-      <form id="egForm">
-        <div class="eg-badge">Welcome offer</div>
-        <h3>Get 10% off your first order</h3>
-        <p>Join the Kalmely list for special offers, free giveaways and once-in-a-lifetime deals — and we'll send your code right now.</p>
+      <div class="eg-badge">Welcome offer</div>
+      <h3>Scratch &amp; save</h3>
+      <p>Scratch the card to reveal your secret discount — then claim it with your email.</p>
+      <div class="scratch" id="scratchWrap">
+        <div class="scratch-prize"><span class="sp-pct">10% off your first order</span><span class="sp-code">WELCOME10</span></div>
+        <canvas class="scratch-canvas" id="scCanvas"></canvas>
+        <div class="scratch-hint" id="scHint">👆 Scratch here</div>
+      </div>
+      <form id="egForm" style="display:none">
         <input type="email" id="egEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
         <div class="eg-err" id="egErr"></div>
-        <button type="submit" class="eg-sub" id="egSubmit">Reveal my 10% code</button>
+        <button type="submit" class="eg-sub" id="egSubmit">Claim my 10% code</button>
         <div class="eg-fine">
           <label><input type="checkbox" id="egConsent" required> I agree to receive emails from Kalmely. Unsubscribe anytime.</label>
           By subscribing you agree to our <a href="privacy.html">privacy policy</a>.
         </div>
-        <button type="button" class="eg-no" id="egNo">No thanks, I'll pay full price</button>
       </form>
       <div id="egSuccess" style="display:none">
         <div class="eg-check">✓</div>
-        <h3>You're in.</h3>
-        <p>Here's your <b>10% off</b> code — enter it at checkout:</p>
-        <div class="eg-code" id="egCode">WELCOME10</div>
-        <button type="button" class="eg-copy" id="egCopy">Copy code</button>
+        <h3>Code locked in.</h3>
+        <p>Use <b id="egCode">WELCOME10</b> at checkout for 10% off your first order.</p>
         <button type="button" class="eg-shop" id="egShop">Shop the sale →</button>
       </div>
+      <button type="button" class="eg-no" id="egNo">No thanks, I'll pay full price</button>
     </div>
   </div>
 </div>
@@ -987,24 +999,44 @@ section{padding:74px 0}
   function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'welcome-10off'})}).catch(function(){});}catch(e){}}
   (function(){
     var modal=document.getElementById('egModal');if(!modal)return;
-    var seen=false;try{seen=!!localStorage.getItem('kalmely_eg_seen')}catch(e){}
-    function open(){if(modal.classList.contains('open'))return;modal.classList.add('open');try{localStorage.setItem('kalmely_eg_seen','1')}catch(e){}}
+    var force=/[?&]eg=1/.test(location.search);                 // ?eg=1 → force-open for testing
+    var seen=false;try{seen=!!localStorage.getItem('kalmely_scratch_seen')}catch(e){}
+    function open(){if(modal.classList.contains('open'))return;modal.classList.add('open');try{localStorage.setItem('kalmely_scratch_seen','1')}catch(e){}setTimeout(initScratch,60);}
     function close(){modal.classList.remove('open');}
-    if(!seen){setTimeout(open,8000);document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)open();});}
+    if(force){setTimeout(open,300);} else if(!seen){setTimeout(open,7000);document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)open();});}
     var trg=document.getElementById('egOpen');if(trg)trg.addEventListener('click',open);
     document.getElementById('egClose').addEventListener('click',close);
     var no=document.getElementById('egNo');if(no)no.addEventListener('click',close);
     modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    // ----- scratch-to-reveal -----
+    var scratchInit=false;
+    function initScratch(){
+      if(scratchInit)return; var wrap=document.getElementById('scratchWrap'),cv=document.getElementById('scCanvas');if(!wrap||!cv)return;
+      var r=wrap.getBoundingClientRect(); var w=Math.round(r.width)||320,h=Math.round(r.height)||130;
+      cv.width=w;cv.height=h; var ctx=cv.getContext('2d');
+      var g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#bcc0b2');g.addColorStop(.5,'#a7ad9b');g.addColorStop(1,'#929885');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      scratchInit=true; var drawing=false,moves=0,done=false;
+      function pos(e){var b=cv.getBoundingClientRect();var t=(e.touches&&e.touches[0])||e;return {x:(t.clientX-b.left)*(cv.width/b.width),y:(t.clientY-b.top)*(cv.height/b.height)};}
+      function chk(){var d;try{d=ctx.getImageData(0,0,cv.width,cv.height).data;}catch(e){return;}var c=0;for(var i=3;i<d.length;i+=4){if(d[i]===0)c++;}if(c/(d.length/4)>0.42)reveal();}
+      function reveal(){if(done)return;done=true;wrap.classList.add('done');var f=document.getElementById('egForm');if(f){f.style.display='block';var em=document.getElementById('egEmail');if(em)try{em.focus();}catch(e){}}}
+      function scratch(e){if(!drawing||done)return;var p=pos(e);ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(p.x,p.y,22,0,7);ctx.fill();if((++moves)%6===0)chk();}
+      cv.addEventListener('mousedown',function(e){drawing=true;scratch(e);});
+      window.addEventListener('mouseup',function(){drawing=false;});
+      cv.addEventListener('mousemove',scratch);
+      cv.addEventListener('touchstart',function(e){drawing=true;scratch(e);},{passive:true});
+      cv.addEventListener('touchmove',scratch,{passive:true});
+      cv.addEventListener('touchend',function(){drawing=false;chk();});
+    }
+    // ----- claim form -----
     var form=document.getElementById('egForm');
     form.addEventListener('submit',function(e){
       e.preventDefault();
       var email=(document.getElementById('egEmail').value||'').trim();var err=document.getElementById('egErr');
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email.';return;}
       if(!document.getElementById('egConsent').checked){err.textContent='Please tick the box to continue.';return;}
-      err.textContent='';var btn=document.getElementById('egSubmit');btn.disabled=true;btn.textContent='Sending…';
+      err.textContent='';var btn=document.getElementById('egSubmit');btn.disabled=true;btn.textContent='Claiming…';
       subscribe(email);form.style.display='none';document.getElementById('egSuccess').style.display='block';
     });
-    var copy=document.getElementById('egCopy');if(copy)copy.addEventListener('click',function(){try{navigator.clipboard.writeText('WELCOME10');copy.textContent='Copied ✓';}catch(e){copy.textContent='WELCOME10';}});
     var shop=document.getElementById('egShop');if(shop)shop.addEventListener('click',function(){close();var box=document.querySelector('.buybox');if(box)box.scrollIntoView({behavior:'smooth',block:'center'});});
   })();
   (function(){
