@@ -179,6 +179,12 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .free-tag.t2{top:34%;left:3%}
 .free-tag.t3{top:9%;right:5%}
 .free-tag.t4{top:60%;right:4%}
+/* positioned over the real tea-hero photo (applicator · file · patches · book) */
+.free-tag.t-app{top:27%;left:0}
+.free-tag.t-file{top:63%;left:5%}
+.free-tag.t-patch{top:60%;right:21%}
+.free-tag.t-book{top:11%;right:0}
+.hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-cap{text-align:center;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
 .hero-thumbs{display:flex;gap:10px}
 .hero-thumb{flex:1;aspect-ratio:1/1;border-radius:9px;overflow:hidden;opacity:.55;border:1px solid var(--line);transition:opacity .2s,border-color .2s;padding:0}
@@ -512,11 +518,11 @@ section{padding:74px 0}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <div class="hero-slide">
-              <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 1</span></div>
-              <div class="free-tag t1"><div class="ft-val"><s>$19.95</s>FREE</div><div class="ft-name">Wart-Free eBook</div></div>
-              <div class="free-tag t2"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
-              <div class="free-tag t3"><div class="ft-val">$34.95</div><div class="ft-name">Kalmely Tea Tree Oil</div></div>
-              <div class="free-tag t4"><div class="ft-val"><s>$14.95</s>FREE</div><div class="ft-name">Invisible patches</div></div>
+              <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil with 4 free gifts" width="600" height="600" fetchpriority="high">
+              <div class="free-tag t-app"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
+              <div class="free-tag t-file"><div class="ft-val"><s>$7.95</s>FREE</div><div class="ft-name">Crystal file</div></div>
+              <div class="free-tag t-patch"><div class="ft-val"><s>$14.95</s>FREE</div><div class="ft-name">Invisible patches</div></div>
+              <div class="free-tag t-book"><div class="ft-val"><s>$19.95</s>FREE</div><div class="ft-name">Wart-Free eBook</div></div>
             </div>
             <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 2</span></div></div>
             <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 3</span></div></div>
