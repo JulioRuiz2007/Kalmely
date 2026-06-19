@@ -26,7 +26,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F9F8F6">
+<meta name="theme-color" content="#F6F6F0">
 <meta name="robots" content="noindex,nofollow">
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
 <title>Kalmely Sleep Mask, 3D Sleep Mask with Bluetooth Speakers</title>
@@ -118,10 +118,11 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
    ============================================================ */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --paper:#F9F8F6; --paper-2:#F1EEE8; --paper-3:#EAE6DD; --card:#FFFFFF;
-  --ink:#212121; --ink-2:#3A3A3C; --ink-soft:#6B6760; --faint:#A49E92;
-  --line:#E5E1D8; --line-2:#D6D0C4;
-  --ok:#0E7A3D; --gold:#9A7B3F;
+  /* Olive-green editorial: greenish cream + deep olive ink (replaces near-black), warm terracotta for FREE/savings so they pop */
+  --paper:#F6F6F0; --paper-2:#ECEDE2; --paper-3:#E2E4D3; --card:#FFFFFF;
+  --ink:#3F4A2B; --ink-2:#525C3F; --ink-soft:#696E59; --faint:#A6A88F;
+  --line:#E1E3D4; --line-2:#D1D4C0;
+  --ok:#B0552E; --gold:#9A7B3F;
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -353,7 +354,7 @@ section{padding:74px 0}
 .news-form input{flex:1;padding:14px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:var(--paper);font:500 14px/1 var(--sans)}
 .news-form input::placeholder{color:rgba(249,248,246,.5)}
 .news-form button{background:var(--paper);color:var(--ink);font:600 14px/1 var(--sans);padding:0 22px;border-radius:9px}
-.news-msg{font:500 13px/1 var(--sans);color:#8fe0ab;margin-top:12px;min-height:16px}
+.news-msg{font:500 13px/1 var(--sans);color:#E6C29C;margin-top:12px;min-height:16px}
 .news-word{font:600 clamp(80px,18vw,240px)/0.85 var(--serif);text-align:center;color:rgba(249,248,246,.1);margin-top:40px;letter-spacing:-.01em;overflow:hidden;user-select:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
 .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
@@ -377,7 +378,7 @@ section{padding:74px 0}
 .cart-drawer.open{transform:none}
 .cart-head{display:flex;align-items:center;gap:10px;padding:20px 22px;border-bottom:1px solid var(--line)}
 .cart-head h3{font:600 18px/1 var(--serif);display:flex;align-items:center;gap:8px;flex:1}
-.ch-free{font:600 11px/1 var(--sans);color:var(--ok);background:#EAF5EE;padding:6px 9px;border-radius:20px}
+.ch-free{font:600 11px/1 var(--sans);color:var(--ok);background:#F4EBE2;padding:6px 9px;border-radius:20px}
 .cart-close{font-size:26px;line-height:1;color:var(--ink-soft);width:30px}
 .cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:30px}
 .cart-empty .ce-ic{color:var(--faint)}
@@ -437,7 +438,7 @@ section{padding:74px 0}
 .eg-fine a{text-decoration:underline}
 .eg-fine label{display:flex;gap:7px;align-items:flex-start;text-align:left;margin-bottom:9px}
 .eg-no{display:block;margin-top:12px;font:500 12px/1 var(--sans);color:var(--ink-soft);text-decoration:underline}
-.eg-check{width:52px;height:52px;border-radius:50%;background:#EAF5EE;color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:14px}
+.eg-check{width:52px;height:52px;border-radius:50%;background:#F4EBE2;color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:14px}
 .eg-code{font:700 25px/1 var(--sans);letter-spacing:.16em;background:var(--card);border:2px dashed var(--ink);border-radius:10px;padding:15px;margin:4px 0 12px;text-align:center}
 .eg-copy{font:600 13px/1 var(--sans);color:var(--ink-soft);text-decoration:underline;margin-bottom:14px;display:inline-block}
 .eg-shop{width:100%;background:var(--ink);color:var(--paper);font:600 15px/1 var(--sans);padding:15px;border-radius:10px}
@@ -996,7 +997,7 @@ section{padding:74px 0}
   })();
   (function(){
     var f=document.getElementById('newsForm');if(!f)return;
-    f.addEventListener('submit',function(e){e.preventDefault();var email=(document.getElementById('newsEmail').value||'').trim();var msg=document.getElementById('newsMsg');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.color='#ff9b9b';msg.textContent='Please enter a valid email.';return;}subscribe(email);msg.style.color='#8fe0ab';msg.textContent='You’re in! Use code WELCOME10 for 10% off.';f.reset();});
+    f.addEventListener('submit',function(e){e.preventDefault();var email=(document.getElementById('newsEmail').value||'').trim();var msg=document.getElementById('newsMsg');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.color='#ff9b9b';msg.textContent='Please enter a valid email.';return;}subscribe(email);msg.style.color='#E6C29C';msg.textContent='You’re in! Use code WELCOME10 for 10% off.';f.reset();});
   })();
 
 })();
