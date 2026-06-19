@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<!-- Persist Meta click-id: _fbc from ?fbclid + _fbp, so Pixel & CAPI always have them (even if the Pixel is blocked/deferred) -->
+<script type="text/javascript">
+  (function(){try{
+    function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?m[1]:'';}
+    function sc(n,v){document.cookie=n+'='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    var cid=new URLSearchParams(location.search).get('fbclid');
+    if(cid && !gc('_fbc')) sc('_fbc','fb.1.'+Date.now()+'.'+cid);
+    if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
+  }catch(e){}})();
+</script>
+<!-- Microsoft Clarity — skipped in admin mode (cookie kalmely_admin / ?admin_mode) so own visits don't pollute recordings -->
+<script type="text/javascript">
+  (function(){
+    var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
+      || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
+    if (isAdmin) return;
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x4mat5v5ce");
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F9F8F6">
+<meta name="robots" content="noindex,nofollow">
+<meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
+<title>Kalmely Sleep Mask, 3D Sleep Mask with Bluetooth Speakers</title>
+<meta name="description" content="A 3D sleep mask with built-in wireless Bluetooth speakers, blocks 100% of the light and masks the noise so you finally sleep on flights, trains, anywhere. Free UK shipping. 100-day trial.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<meta property="og:site_name" content="Kalmely">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kalmely Sleep Mask, 3D Sleep Mask with Bluetooth Speakers">
+<meta property="og:url" content="https://kalmely.com/">
+<meta property="og:description" content="A 3D sleep mask with built-in Bluetooth speakers — blocks 100% of light and masks engine noise so you finally sleep on flights, trains, anywhere. Free UK shipping · 100-night trial.">
+<meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
+<meta name="application-name" content="Kalmely">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<style>
+/* Self-hosted fonts (latin) — served from our own domain, cached 1 year. */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora.woff2) format('woff2')}
+</style>
+
+<!-- Admin Mode Guard -->
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin_mode') === 'kalmely_julio_2026') {
+    document.cookie = 'kalmely_admin=true; max-age=2592000; path=/; SameSite=Lax';
+    console.log('Admin mode activated. Pixel events disabled for 30 days.');
+  }
+  if (document.cookie.includes('kalmely_admin=true')) {
+    window.fbq = function() { console.log('[admin] fbq call blocked:', arguments); };
+    window.gtag = function() { console.log('[admin] gtag call blocked:', arguments); };
+    window._kalmelyAdmin = true;
+  }
+})();
+</script>
+<!-- End Admin Mode Guard -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[]}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2038496957090347');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Kalmely Sleep Mask',
+  content_ids: ['MASK-1'],
+  content_type: 'product',
+  value: 39.00,
+  currency: 'GBP',
+  offer_variant: 'TIERS'
+});
+// Defer the Pixel network script until first interaction / 3s idle, so it doesn't compete with the hero LCP.
+(function(){
+  if (window._kalmelyAdmin) return;
+  var loaded = false;
+  function loadPixel(){
+    if (loaded) return; loaded = true;
+    var t = document.createElement('script'); t.async = !0;
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s);
+  }
+  ['scroll','pointerdown','keydown','touchstart','mousemove'].forEach(function(ev){
+    window.addEventListener(ev, loadPixel, { once:true, passive:true });
+  });
+  setTimeout(loadPixel, 3000);
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@type":"WebSite","name":"Kalmely","url":"https://kalmely.com/","inLanguage":"en-GB","publisher":{"@type":"Organization","name":"Kalmely"} }
+</script>
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@type":"Organization","name":"Kalmely","url":"https://kalmely.com/","logo":"https://kalmely.com/assets/favicon-kalmely.png","email":"hello@kalmely.com" }
+</script>
+<script type="application/ld+json">
+{ "@context":"https://schema.org/","@type":"Product","name":"Kalmely Sleep Mask","description":"3D sleep mask with built-in wireless Bluetooth speakers. Blocks 100% of light and masks noise for real rest on flights and travel.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/cart.html?sku=MASK-1","priceCurrency":"GBP","price":"39.00","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"480"} }
+</script>
+
+<style>
+/* ============================================================
+   KALMELY · editorial single-page (feelreformed-inspired)
+   Paper #F9F8F6 · ink #212121 · serif display + Inter UI
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F9F8F6; --paper-2:#F2F0EB; --card:#FFFFFF;
+  --ink:#212121; --ink-2:#3A3A3C; --ink-soft:#6B6760; --faint:#9C978D;
+  --line:#E5E1D8; --line-2:#D9D4C8;
+  --ok:#0E7A3D; --ok-soft:#EAF5EE;
+  --gold:#9A7B3F;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --max:1180px; --r:14px;
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004em;line-height:1.12;color:var(--ink)}
+.eyebrow{font:700 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.label{font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+s{color:var(--faint)}
+.fade-slow{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.fade-slow.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.fade-slow{transition:none;opacity:1;transform:none}}
+
+/* ---------- placeholders (drop your photos here) ---------- */
+.ph{position:relative;background:repeating-linear-gradient(45deg,#EEEAE1,#EEEAE1 12px,#EAE5DB 12px,#EAE5DB 24px);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--faint)}
+.ph svg{width:30px;height:30px;opacity:.55}
+.ph span{font:600 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+
+/* ---------- announce + nav ---------- */
+.announce{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font:600 12.5px/1 var(--sans);letter-spacing:.02em;padding:11px 16px}
+.announce b{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.nav{position:sticky;top:0;z-index:40;background:rgba(249,248,246,.86);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.is-scrolled{border-bottom-color:var(--line)}
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px}
+.nav-left{font:600 12px/1 var(--sans);letter-spacing:.08em;color:var(--ink-soft)}
+.logo{font:600 24px/1 var(--serif);letter-spacing:.01em;justify-self:center}
+.logo span{color:var(--gold)}
+.nav-cart{justify-self:end;display:flex;align-items:center;gap:7px;font:600 13px/1 var(--sans)}
+.nav-cart svg{width:20px;height:20px}
+.cart-count{min-width:19px;height:19px;border-radius:50%;background:var(--ink);color:var(--paper);font:700 11px/19px var(--sans);text-align:center;padding:0 5px}
+
+/* ---------- hero ---------- */
+.hero{padding:34px 0 18px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start}
+/* gallery */
+.gallery{position:sticky;top:80px}
+.hero-stage{overflow:hidden;border-radius:18px}
+.hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-track.dragging{transition:none}
+.hero-slide{flex:0 0 100%;aspect-ratio:1/1}
+.hero-thumbs{display:flex;gap:10px;margin-top:12px}
+.hero-thumb{flex:1;aspect-ratio:1/1;border-radius:10px;overflow:hidden;opacity:.6;border:1px solid var(--line);transition:opacity .2s,border-color .2s;padding:0}
+.hero-thumb.is-active{opacity:1;border-color:var(--ink)}
+.hero-thumb .ph{border:none;border-radius:0;width:100%;height:100%}
+.hero-thumb .ph svg{width:18px;height:18px}
+.hero-thumb .ph span{display:none}
+
+/* buy box */
+.rating{display:flex;align-items:center;gap:9px;font:500 13px/1 var(--sans);color:var(--ink-2)}
+.stars{color:var(--ink);letter-spacing:2px;font-size:14px}
+.rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
+.buybox{padding-top:2px}
+.bx-h1{font-size:clamp(34px,4.4vw,50px);margin:14px 0 6px}
+.bx-sub{font:400 17px/1.5 var(--sans);color:var(--ink-2);margin-bottom:20px}
+.bx-benefits{display:flex;flex-direction:column;gap:11px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-benefit{display:flex;align-items:center;gap:12px;font:500 15px/1.35 var(--sans);color:var(--ink-2)}
+.bx-benefit svg{width:21px;height:21px;color:var(--ink);flex:0 0 auto}
+
+/* pack tiers */
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 4px}
+.pack{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--line-2);border-radius:12px;padding:20px 8px 14px;transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:3px;align-items:center}
+.pack:hover{border-color:var(--ink-soft)}
+.pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
+.pack-badge.alt{background:var(--gold);color:#fff}
+.pack-qty{font:600 14px/1 var(--sans);letter-spacing:.01em}
+.pack-price{margin-top:5px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.pp-now{font:700 22px/1 var(--sans)}
+.pp-was{font:500 12px/1 var(--sans)}
+.pack-unit{font:600 11px/1.3 var(--sans);color:var(--ink-soft);margin-top:4px}
+.pack.is-selected .pack-unit{color:var(--ink-2)}
+
+/* colour picker (JS-rendered) */
+.colour-picker{display:flex;flex-direction:column;gap:9px;margin:18px 0 6px}
+.colour-row{display:flex;align-items:center;gap:11px}
+.colour-label{font:600 12px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);min-width:62px}
+.colour-free{background:var(--ok);color:#fff;font-size:9px;padding:2px 5px;border-radius:4px;letter-spacing:.04em}
+.swatch{width:30px;height:30px;border-radius:50%;border:2px solid var(--line-2);position:relative;transition:box-shadow .12s}
+.swatch-black{background:#1a1a1a}
+.swatch-pink{background:#e7a6b4}
+.swatch.is-selected{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink);border-color:transparent}
+
+/* gifts (JS-rendered) */
+.pack-gifts{margin:18px 0}
+.pg-h{font:600 12.5px/1.4 var(--sans);color:var(--ink-2);margin-bottom:10px}
+.pg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gift-card{position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:13px 8px 11px;text-align:center}
+.gift-free{position:absolute;top:7px;left:7px;background:var(--ok);color:#fff;font:700 8.5px/1 var(--sans);letter-spacing:.06em;padding:4px 6px;border-radius:5px}
+.gift-type{position:absolute;top:7px;right:7px;font:600 8.5px/1 var(--sans);letter-spacing:.06em;color:var(--faint)}
+.gift-img{height:66px;display:flex;align-items:center;justify-content:center;margin-bottom:7px}
+.gift-img img{max-height:66px;width:auto;object-fit:contain}
+.gift-name{font:600 12px/1.25 var(--sans)}
+.gift-sw{display:flex;gap:6px;justify-content:center;margin-top:7px}
+.gsw{width:17px;height:17px;border-radius:50%;border:1px solid var(--line-2)}
+.gsw-black{background:#1a1a1a}.gsw-pink{background:#e7a6b4}
+.gsw.on{box-shadow:0 0 0 2px var(--paper-2),0 0 0 3px var(--ink);border-color:transparent}
+
+/* add to cart */
+.add-to-cart{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);letter-spacing:.01em;padding:18px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s,background .15s;margin-top:6px}
+.add-to-cart:hover{background:#000;transform:translateY(-1px)}
+.add-to-cart .cta-price{font-weight:700}
+.bx-trust{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:14px;font:500 12.5px/1 var(--sans);color:var(--ink-soft)}
+.bx-trust span{display:flex;align-items:center;gap:5px}
+
+/* ---------- sections ---------- */
+section{padding:72px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);margin:10px 0 12px}
+.sec-head p{color:var(--ink-2);font-size:16.5px}
+.band{background:var(--paper-2)}
+
+/* trust strip */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+.strip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:26px 0;text-align:center}
+.strip-row .si b{display:block;font:600 15px/1.2 var(--sans)}
+.strip-row .si span{font:500 12.5px/1.3 var(--sans);color:var(--ink-soft)}
+@media(max-width:640px){.strip-row{grid-template-columns:repeat(2,1fr);gap:22px}}
+
+/* problem cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card .ic{font-size:22px;margin-bottom:12px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--ink-2)}
+
+/* how it works rows */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px}
+.row2:last-child{margin-bottom:0}
+.row2.rev .r2-media{order:2}
+.r2-media .ph{aspect-ratio:4/3}
+.row2 h3{font-size:28px;margin-bottom:12px}
+.row2 p{color:var(--ink-2);font-size:15.5px}
+.r2-list{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.r2-list li{display:flex;gap:10px;font:500 14.5px/1.4 var(--sans);color:var(--ink-2)}
+.r2-list svg{width:18px;height:18px;color:var(--ink);flex:0 0 auto;margin-top:1px}
+
+/* benefits grid */
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ben{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.ben svg{width:26px;height:26px;color:var(--ink);margin-bottom:12px}
+.ben h3{font-size:19px;margin-bottom:6px}
+.ben p{font-size:14px;color:var(--ink-2)}
+
+/* comparison */
+.cmp{max-width:760px;margin:0 auto;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.cmp table{width:100%;border-collapse:collapse}
+.cmp th,.cmp td{padding:14px 12px;text-align:center;font-size:14px;border-bottom:1px solid var(--line)}
+.cmp thead th{font:600 12px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);background:var(--paper-2)}
+.cmp tbody td:first-child,.cmp thead th:first-child{text-align:left;font-weight:600;color:var(--ink)}
+.cmp .own{background:#fbf6ee}
+.cmp .yes{color:var(--ok);font-weight:700}
+.cmp .no{color:var(--faint)}
+.cmp tr:last-child td{border-bottom:none}
+
+/* reviews */
+.rev-head{text-align:center;margin-bottom:34px}
+.rev-head .big{font:600 46px/1 var(--serif)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.review .st{color:var(--ink);letter-spacing:1px;font-size:13px;margin-bottom:10px}
+.review p{font-size:14.5px;color:var(--ink-2);margin-bottom:14px}
+.review .who{display:flex;align-items:center;gap:10px;font:600 13px/1.2 var(--sans)}
+.review .av{width:34px;height:34px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-soft)}
+.review .vf{font:500 11px/1 var(--sans);color:var(--ok)}
+
+/* guarantee */
+.guarantee{text-align:center}
+.guarantee .seal{width:96px;height:96px;border-radius:50%;border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 22px;font:700 11px/1.1 var(--sans);letter-spacing:.04em;text-transform:uppercase}
+.guarantee .seal b{font:600 26px/1 var(--serif)}
+.guarantee h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:14px}
+.guarantee p{max-width:560px;margin:0 auto 26px;color:var(--ink-2)}
+.guarantee .add-to-cart{max-width:340px;margin-left:auto;margin-right:auto}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;font:500 17px/1.3 var(--serif);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 24px/1 var(--sans);color:var(--ink-soft)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 20px;color:var(--ink-2);font-size:15px}
+
+/* final cta */
+.final{text-align:center}
+.final .packs{max-width:520px;margin:24px auto 8px}
+.final .add-to-cart{max-width:340px;margin:14px auto 0}
+
+/* footer */
+.footer{border-top:1px solid var(--line);padding:46px 0 38px;background:var(--card)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.footer .logo{justify-self:auto;font-size:22px}
+.footer-links{display:flex;gap:20px;font:500 13.5px/1 var(--sans);color:var(--ink-soft)}
+.footer-links a:hover{color:var(--ink)}
+.footer-fine{margin-top:22px;font:400 12px/1.6 var(--sans);color:var(--faint)}
+
+/* sticky cta */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(249,248,246,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s ease;padding:11px 16px}
+.sticky-cta.show{transform:none}
+.sc-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sc-info{display:flex;flex-direction:column;line-height:1.2}
+.sc-name{font:600 14px/1.2 var(--sans)}
+.sc-meta{font:500 13px/1 var(--sans);color:var(--ink-soft)}
+.sc-btn{width:auto;padding:13px 26px;margin:0;flex:0 0 auto}
+
+/* ---------- cart drawer ---------- */
+.cart-overlay{position:fixed;inset:0;background:rgba(20,18,16,.42);opacity:0;visibility:hidden;transition:opacity .3s;z-index:60}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:420px;max-width:92vw;background:var(--paper);z-index:61;transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+.cart-drawer.open{transform:none}
+.cart-head{display:flex;align-items:center;gap:10px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart-head h3{font:600 18px/1 var(--serif);display:flex;align-items:center;gap:8px;flex:1}
+.ch-free{font:600 11px/1 var(--sans);color:var(--ok);background:var(--ok-soft);padding:6px 9px;border-radius:20px}
+.cart-close{font-size:26px;line-height:1;color:var(--ink-soft);width:30px}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:30px}
+.cart-empty .ce-ic{color:var(--faint);margin-bottom:6px}
+.ce-title{font:600 18px/1 var(--serif)}
+.ce-sub{font-size:14px;color:var(--ink-soft)}
+.cart-body{flex:1;overflow-y:auto;padding:20px 22px}
+.cart-item{display:flex;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cart-item-img{position:relative;flex:0 0 auto}
+.cart-item-img img{width:96px;height:96px;object-fit:cover;border-radius:10px;background:var(--paper-2)}
+.ci-qty{position:absolute;top:-7px;right:-7px;background:var(--ink);color:var(--paper);font:700 11px/1 var(--sans);padding:5px 7px;border-radius:20px}
+.cart-item-name{font:600 15px/1.3 var(--sans)}
+.cart-item-meta{font-size:13px;color:var(--ink-soft);margin:3px 0 8px}
+.cart-item-price{display:flex;align-items:baseline;gap:8px}
+.cart-item-price #cartPrice{font:700 18px/1 var(--sans)}
+.ci-was{font-size:13px;text-decoration:line-through;color:var(--faint)}
+.cart-colours{margin:18px 0}
+.cart-gift{margin:18px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.cg-h{display:block;font:600 12px/1.3 var(--sans);color:var(--ink-2);margin-bottom:8px}
+.cg-item{display:block;font:500 13px/1.7 var(--sans);color:var(--ink-soft)}
+.cg-item b{color:var(--ok)}
+.cart-foot{padding:18px 22px;border-top:1px solid var(--line);background:var(--card)}
+.cart-totals{display:flex;justify-content:space-between;font:500 14px/1.6 var(--sans);color:var(--ink-2)}
+.ct-save{color:var(--ok);font-weight:600}
+.cart-totals.grand{font:700 18px/1.4 var(--sans);color:var(--ink);margin-top:6px;padding-top:8px;border-top:1px solid var(--line)}
+.cart-checkout{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:17px;border-radius:12px;margin-top:14px;transition:background .15s}
+.cart-checkout:hover{background:#000}
+.cart-foot-trust{display:flex;justify-content:center;gap:14px;margin-top:12px;font:500 11px/1 var(--sans);color:var(--ink-soft)}
+
+/* cookie banner */
+.cookie{position:fixed;left:16px;bottom:16px;z-index:55;max-width:380px;background:var(--ink);color:var(--paper);border-radius:14px;padding:18px 20px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .4s ease}
+.cookie.show{transform:none}
+.cookie p{font-size:13px;line-height:1.5}
+.cookie a{text-decoration:underline}
+.cookie-actions{display:flex;gap:10px;margin-top:12px}
+.cookie-actions button{flex:1;padding:10px;border-radius:9px;font:600 13px/1 var(--sans)}
+.cookie .accept{background:var(--paper);color:var(--ink)}
+.cookie .deny{border:1px solid rgba(255,255,255,.4);color:var(--paper)}
+
+/* email-gate popup */
+.eg{position:fixed;inset:0;z-index:70;background:rgba(20,18,16,.5);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s}
+.eg.open{opacity:1;visibility:visible}
+.eg-card{position:relative;background:var(--paper);border-radius:18px;max-width:420px;width:100%;padding:38px 32px 32px;text-align:center;box-shadow:0 30px 80px -30px rgba(0,0,0,.5);transform:translateY(12px);transition:transform .3s}
+.eg.open .eg-card{transform:none}
+.eg-close{position:absolute;top:14px;right:16px;font-size:24px;line-height:1;color:var(--ink-soft)}
+.eg-badge{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.eg-card h3{font-size:30px;margin-bottom:10px}
+.eg-card p{font-size:15px;color:var(--ink-2);margin-bottom:20px}
+.eg-card input{width:100%;padding:15px 16px;border:1.5px solid var(--line-2);border-radius:11px;font:500 15px/1 var(--sans);background:var(--card);margin-bottom:10px}
+.eg-card input:focus{outline:none;border-color:var(--ink)}
+.eg-sub{width:100%;background:var(--ink);color:var(--paper);font:600 15px/1 var(--sans);padding:15px;border-radius:11px;transition:background .15s}
+.eg-sub:hover{background:#000}
+.eg-err{color:#C8102E;font-size:12.5px;min-height:16px;margin-top:6px}
+.eg-fine{font-size:11px;color:var(--faint);margin-top:14px;line-height:1.5}
+.eg-fine a{text-decoration:underline}
+.eg-fine label{display:flex;gap:7px;align-items:flex-start;text-align:left;margin-bottom:10px}
+.eg-check{width:54px;height:54px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.eg-code{font:700 26px/1 var(--sans);letter-spacing:.16em;background:var(--card);border:2px dashed var(--ink);border-radius:11px;padding:16px;margin:6px 0 14px}
+.eg-copy{font:600 13px/1 var(--sans);color:var(--ink-soft);text-decoration:underline;margin-bottom:16px}
+.eg-shop{width:100%;background:var(--ink);color:var(--paper);font:600 15px/1 var(--sans);padding:15px;border-radius:11px}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .gallery{position:static}
+  .row2{grid-template-columns:1fr;gap:22px;margin-bottom:40px}
+  .row2.rev .r2-media{order:0}
+  .cards3,.ben-grid,.rev-grid{grid-template-columns:1fr}
+  section{padding:54px 0}
+  .footer-top{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  .nav-left{display:none}
+  .nav-inner{grid-template-columns:1fr auto}
+  .logo{justify-self:start}
+  .bx-h1{font-size:34px}
+  .pack{padding:18px 5px 12px}
+  .pp-now{font-size:19px}
+  .pack-unit{font-size:10px}
+  .pack-badge{font-size:8px;padding:4px 7px}
+}
+</style>
+</head>
+<body>
+
+<button type="button" class="announce" id="egOpen">Free UK shipping · Get <b>10% off</b> your first order — tap to claim your code</button>
+
+<header class="nav" id="nav">
+  <div class="nav-inner wrap">
+    <span class="nav-left">★ 4.8 · 480+ reviews</span>
+    <a href="#top" class="logo">Kalmely<span>.</span></a>
+    <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <!-- gallery (placeholders — drop your editorial photos here) -->
+      <div class="gallery">
+        <div class="hero-stage">
+          <div class="hero-track" id="heroTrack">
+            <div class="hero-slide"><div class="ph" style="height:100%;border-radius:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 1</span></div></div>
+            <div class="hero-slide"><div class="ph" style="height:100%;border-radius:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 2</span></div></div>
+            <div class="hero-slide"><div class="ph" style="height:100%;border-radius:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 3</span></div></div>
+            <div class="hero-slide"><div class="ph" style="height:100%;border-radius:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 4</span></div></div>
+          </div>
+        </div>
+        <div class="hero-thumbs">
+          <button type="button" class="hero-thumb is-active"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>1</span></div></button>
+          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>2</span></div></button>
+          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>3</span></div></button>
+          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>4</span></div></button>
+        </div>
+      </div>
+
+      <!-- buy box -->
+      <div class="buybox fade-slow">
+        <div class="rating"><span class="stars">★★★★★</span> <span>4.8</span> <a href="#reviews">480+ verified reviews</a></div>
+        <h1 class="bx-h1">The Kalmely Sleep Mask</h1>
+        <p class="bx-sub">Total blackout · built-in sound · real rest, anywhere.</p>
+
+        <div class="bx-benefits">
+          <div class="bx-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c-3 1-7-1-7-5 0-2 1-3.5 2-4a9 9 0 0 0-4 0z"/></svg> Blocks 100% of light — true blackout</div>
+          <div class="bx-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg> Built-in wireless Bluetooth speakers</div>
+          <div class="bx-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg> 3D contour — zero pressure on your eyes</div>
+        </div>
+
+        <div class="label" style="margin:22px 0 0">Choose your pack</div>
+        <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
+          <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false">
+            <span class="pack-qty">1 Mask</span>
+            <span class="pack-price"><span class="pp-now">£39</span><s class="pp-was">£59</s></span>
+            <span class="pack-unit">£39 each</span>
+          </button>
+          <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false">
+            <span class="pack-badge">Most popular</span>
+            <span class="pack-qty">2 Masks</span>
+            <span class="pack-price"><span class="pp-now">£54</span><s class="pp-was">£118</s></span>
+            <span class="pack-unit">£27 each · save 31%</span>
+          </button>
+          <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false">
+            <span class="pack-badge alt">Best value</span>
+            <span class="pack-qty">3 Masks</span>
+            <span class="pack-price"><span class="pp-now">£69</span><s class="pp-was">£177</s></span>
+            <span class="pack-unit">£23 each · save 41%</span>
+          </button>
+        </div>
+
+        <div class="label" style="margin:20px 0 0">Select colour</div>
+        <div class="colour-picker" id="colourPicker"></div>
+
+        <div class="pack-gifts" id="packGifts"></div>
+
+        <button type="button" class="add-to-cart">Add to cart — <span class="cta-price">£39</span></button>
+
+        <div class="bx-trust">
+          <span>🔒 Secure checkout</span><span>🚚 Free UK shipping</span><span>↩ 100-night trial</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <div class="strip">
+    <div class="wrap strip-row">
+      <div class="si"><b>4.8 / 5</b><span>480+ verified reviews</span></div>
+      <div class="si"><b>100 nights</b><span>money-back trial</span></div>
+      <div class="si"><b>Free</b><span>UK shipping</span></div>
+      <div class="si"><b>12 months</b><span>warranty</span></div>
+    </div>
+  </div>
+
+  <!-- ===== PROBLEM ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow">
+        <div class="eyebrow">The problem</div>
+        <h2>Why you can't sleep on the go</h2>
+        <p>Planes, trains and bright bedrooms are built to keep you awake. A flimsy eye mask doesn't stand a chance.</p>
+      </div>
+      <div class="cards3 fade-slow">
+        <div class="card"><div class="ic">💡</div><h3>Light gets in</h3><p>Cabin lights, screens and street glow slip past flat eye masks and break your sleep cycle.</p></div>
+        <div class="card"><div class="ic">🔊</div><h3>Noise wakes you</h3><p>Engine drone, chatter and traffic keep your brain on alert — earplugs alone rarely cut it.</p></div>
+        <div class="card"><div class="ic">😣</div><h3>Pressure on your eyes</h3><p>Cheap masks press on your eyelids, so you can't fully relax or sleep on your side.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>Engineered for real rest</h2></div>
+
+      <div class="row2 fade-slow">
+        <div class="r2-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Blackout image</span></div></div>
+        <div class="r2-copy">
+          <h3>Total, contoured blackout</h3>
+          <p>A 3D moulded design seals out 100% of light while leaving room to blink. No pressure on your eyes, no gaps at the nose.</p>
+          <ul class="r2-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Blocks 100% of light</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Side-sleeper friendly</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Breathable, washable fabric</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row2 rev fade-slow">
+        <div class="r2-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Sound image</span></div></div>
+        <div class="r2-copy">
+          <h3>Built-in Bluetooth sound</h3>
+          <p>Ultra-thin speakers sit flat over your ears. Drift off to white noise, sleep stories or your own playlist — no earbuds digging in.</p>
+          <ul class="r2-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Pairs with any phone in seconds</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> All-night battery life</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Speakers are removable for washing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFITS ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Why Kalmely</div><h2>Everything you need to switch off</h2></div>
+      <div class="ben-grid fade-slow">
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c-3 1-7-1-7-5 0-2 1-3.5 2-4a9 9 0 0 0-4 0z"/></svg><h3>True blackout</h3><p>Blocks every bit of light, even in a bright cabin.</p></div>
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg><h3>Bluetooth audio</h3><p>White noise and sleep sounds, no earbuds needed.</p></div>
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg><h3>3D comfort</h3><p>Contoured cups mean zero pressure on your eyes.</p></div>
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><h3>Featherlight</h3><p>So light you forget you're wearing it.</p></div>
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>All-night battery</h3><p>Lasts the whole flight and then some.</p></div>
+        <div class="ben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 0 18 9 9 0 0 1-9-9z"/><path d="M3 12h6"/></svg><h3>Washable</h3><p>Pop the speakers out and machine wash the band.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">The difference</div><h2>Kalmely vs the rest</h2></div>
+      <div class="cmp fade-slow">
+        <table>
+          <thead><tr><th>&nbsp;</th><th class="own">Kalmely</th><th>Basic eye mask</th><th>Earplugs</th><th>Sleeping pills</th></tr></thead>
+          <tbody>
+            <tr><td>Blocks 100% light</td><td class="own yes">✓</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td></tr>
+            <tr><td>Masks noise</td><td class="own yes">✓</td><td class="no">✕</td><td class="yes">✓</td><td class="no">✕</td></tr>
+            <tr><td>Comfortable on your side</td><td class="own yes">✓</td><td class="no">✕</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>No morning grogginess</td><td class="own yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✕</td></tr>
+            <tr><td>Reusable for years</td><td class="own yes">✓</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="rev-head fade-slow">
+        <div class="eyebrow">Loved by travellers</div>
+        <div class="big">4.8 ★★★★★</div>
+        <p style="color:var(--ink-soft)">From 480+ verified customers</p>
+      </div>
+      <div class="rev-grid fade-slow">
+        <div class="review"><div class="st">★★★★★</div><p>"First time I've ever actually slept on a long-haul. The blackout is unreal and the sound drowns out the engine."</p><div class="who"><span class="av">JL</span><span>James L.<br><span class="vf">✓ Verified buyer</span></span></div></div>
+        <div class="review"><div class="st">★★★★★</div><p>"I'm a side sleeper and most masks dig in. This one doesn't touch my eyes at all. Wear it every night now."</p><div class="who"><span class="av">SM</span><span>Sophie M.<br><span class="vf">✓ Verified buyer</span></span></div></div>
+        <div class="review"><div class="st">★★★★★</div><p>"Bought the 2-pack for me and my partner. Genuinely the best £54 I've spent on travel kit."</p><div class="who"><span class="av">DR</span><span>Daniel R.<br><span class="vf">✓ Verified buyer</span></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="band">
+    <div class="wrap guarantee fade-slow">
+      <div class="seal"><b>100</b>night trial</div>
+      <h2>Sleep on it for 100 nights</h2>
+      <p>Try Kalmely risk-free. If you're not sleeping better, send it back within 100 nights for a full refund — no questions asked.</p>
+      <button type="button" class="add-to-cart">Add to cart — <span class="cta-price">£39</span></button>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Good to know</div><h2>Questions, answered</h2></div>
+      <div class="faq fade-slow">
+        <details><summary>How long does the battery last?</summary><p>The built-in speakers last through a full night or long-haul flight on a single charge, and recharge over USB in about two hours.</p></details>
+        <details><summary>Can I wash it?</summary><p>Yes. The speakers pop out in seconds, then the band is fully machine washable.</p></details>
+        <details><summary>Does it work for side sleepers?</summary><p>Absolutely — the ultra-thin speakers and 3D contour are designed to stay comfortable when you're lying on your side.</p></details>
+        <details><summary>How do the Bluetooth speakers connect?</summary><p>It pairs with any phone or tablet over Bluetooth in seconds. Play white noise, sleep stories or your own music.</p></details>
+        <details><summary>What's your shipping &amp; returns policy?</summary><p>Free UK shipping on every order, dispatched within 24 hours. Not for you? Return within 100 nights for a full refund.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="band final">
+    <div class="wrap fade-slow">
+      <div class="eyebrow">Ready to sleep better?</div>
+      <h2 style="font-size:clamp(28px,3.6vw,42px);margin:10px 0 4px">Choose your pack</h2>
+      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>4.8 · 480+ reviews</span></div>
+      <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
+        <button type="button" class="pack" data-sku="MASK-1" data-price="39" role="radio" aria-checked="false">
+          <span class="pack-qty">1 Mask</span>
+          <span class="pack-price"><span class="pp-now">£39</span><s class="pp-was">£59</s></span>
+          <span class="pack-unit">£39 each</span>
+        </button>
+        <button type="button" class="pack" data-sku="MASK-2" data-price="54" role="radio" aria-checked="false">
+          <span class="pack-badge">Most popular</span>
+          <span class="pack-qty">2 Masks</span>
+          <span class="pack-price"><span class="pp-now">£54</span><s class="pp-was">£118</s></span>
+          <span class="pack-unit">£27 each · save 31%</span>
+        </button>
+        <button type="button" class="pack" data-sku="MASK-3" data-price="69" role="radio" aria-checked="false">
+          <span class="pack-badge alt">Best value</span>
+          <span class="pack-qty">3 Masks</span>
+          <span class="pack-price"><span class="pp-now">£69</span><s class="pp-was">£177</s></span>
+          <span class="pack-unit">£23 each · save 41%</span>
+        </button>
+      </div>
+      <button type="button" class="add-to-cart">Add to cart — <span class="cta-price">£39</span></button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="logo">Kalmely<span>.</span></a>
+      <div class="footer-links"><a href="contact.html">Contact</a><a href="shipping-policy.html">Shipping</a><a href="refund-policy.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    </div>
+    <div class="footer-fine">© 2026 Kalmely Ltd · Designed in the UK · Free UK shipping · 100-night money-back guarantee. Reviews are from verified customers; individual experiences vary.</div>
+  </div>
+</footer>
+
+<!-- sticky cta -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sc-inner">
+    <div class="sc-info"><span class="sc-name">Kalmely Sleep Mask</span><span class="sc-meta"><span id="scLabel">1 mask</span> · <span id="scPrice">£39</span></span></div>
+    <button type="button" class="add-to-cart sc-btn">Add to cart — <span class="cta-price">£39</span></button>
+  </div>
+</div>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Your cart" aria-hidden="true">
+  <div class="cart-head">
+    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Your cart</h3>
+    <span class="ch-free">✓ Free UK shipping</span>
+    <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-empty" id="cartEmpty" style="display:none">
+    <div class="ce-ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+    <p class="ce-title">Your cart is empty</p>
+    <p class="ce-sub">Add a Kalmely Sleep Mask to get started.</p>
+    <button type="button" class="cart-checkout" id="cartEmptyCta">Choose your pack →</button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-item">
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/mask-black.webp" alt="Kalmely Sleep Mask" width="96" height="96"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name" id="cartName">Kalmely Sleep Mask</div>
+        <div class="cart-item-meta" id="cartMeta">Black</div>
+        <div class="cart-item-price"><span id="cartPrice">£39</span><span class="ci-was" id="cartWas">£59</span></div>
+      </div>
+    </div>
+    <div class="colour-picker cart-colours" id="cartColours"></div>
+    <div class="cart-gift" id="cartGifts"></div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">£59.00</span></div>
+    <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−£20.00</span></div>
+    <div class="cart-totals grand"><span>Total</span><span id="cartTotal">£39.00</span></div>
+    <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 100-night returns</span><span>🚚 Free UK shipping</span></div>
+  </div>
+</aside>
+
+<div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to improve the site and measure ads. Read our <a href="privacy.html">privacy policy</a>.</p>
+  <div class="cookie-actions"><button type="button" class="accept" id="cookieAccept">Accept</button><button type="button" class="deny" id="cookieDeny">Essential only</button></div>
+</div>
+
+<!-- ===== EMAIL-GATE POPUP (isolated, eg-* ids) ===== -->
+<div class="eg" id="egModal" role="dialog" aria-label="Get 10% off" aria-modal="true">
+  <div class="eg-card">
+    <button type="button" class="eg-close" id="egClose" aria-label="Close">×</button>
+    <form id="egForm">
+      <div class="eg-badge">Welcome offer</div>
+      <h3>Get 10% off your first order</h3>
+      <p>Drop your email and we'll send your code — plus our free "How to Sleep on Any Flight" guide.</p>
+      <input type="email" id="egEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
+      <div class="eg-err" id="egErr"></div>
+      <button type="submit" class="eg-sub" id="egSubmit">Reveal my 10% code</button>
+      <div class="eg-fine">
+        <label><input type="checkbox" id="egConsent" required> I agree to receive emails from Kalmely. Unsubscribe anytime.</label>
+        By subscribing you agree to our <a href="privacy.html">privacy policy</a>.
+      </div>
+    </form>
+    <div id="egSuccess" style="display:none">
+      <div class="eg-check">✓</div>
+      <h3>You're in.</h3>
+      <p>Here's your <b>10% off</b> code — enter it at checkout:</p>
+      <div class="eg-code" id="egCode">WELCOME10</div>
+      <button type="button" class="eg-copy" id="egCopy">Copy code</button>
+      <button type="button" class="eg-shop" id="egShop">Shop the sale →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
+  // ===== Offer model: 1/2/3-pack tiers (backend SKUs MASK-1/2/3 already exist) =====
+  var VARIANT='TIERS';                       // page-level tag carried in Pixel/CAPI custom_data
+  var TIERS={
+    'MASK-1':{qty:1,price:39,was:59},
+    'MASK-2':{qty:2,price:54,was:118},
+    'MASK-3':{qty:3,price:69,was:177}
+  };
+  var DEFAULT='MASK-1';
+  function info(s){return TIERS[s]||TIERS[DEFAULT];}
+  var packs=document.querySelectorAll('.pack');
+  var addBtns=document.querySelectorAll('.add-to-cart');
+  var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
+  var colours=[]; var pillowColor='black';try{pillowColor=localStorage.getItem('kalmely_pillow')||'black'}catch(e){}
+  var curSku=DEFAULT, curPrice='39';
+  var packName=function(s){var q=info(s).qty;return q===1?'Kalmely Sleep Mask':'Kalmely Sleep Mask · '+q+'-pack';};
+  var saveColours=function(){try{localStorage.setItem('kalmely_colors',JSON.stringify(colours))}catch(e){}};
+  function ctaPriceTxt(){return '£'+info(curSku).price;}
+  // Each tier is a single Stripe line item (the 1/2/3-pack Price), so checkoutQty is always 1.
+  function lineMath(){var t=info(curSku);return {qty:t.qty,price:t.price,was:t.was,save:t.was-t.price,checkoutQty:1};}
+  function updateCtas(){
+    var m=lineMath();
+    addBtns.forEach(function(a){var p=a.querySelector('.cta-price');if(p)p.textContent=ctaPriceTxt();});
+    var scP=document.getElementById('scPrice'),scL=document.getElementById('scLabel');
+    if(scP)scP.textContent='£'+m.price; if(scL)scL.textContent=m.qty+(m.qty>1?' masks':' mask');
+  }
+  function renderPicker(qty){
+    var prev=colours.slice();colours=[];for(var i=0;i<qty;i++)colours.push(prev[i]||'black');
+    var html=colours.map(function(c,i){return '<div class="colour-row"><span class="colour-label">'+(qty>1?'Mask '+(i+1):'Colour')+'</span><button type="button" class="swatch swatch-black'+(c==='black'?' is-selected':'')+'" data-i="'+i+'" data-c="black" aria-label="Mask '+(i+1)+' black"></button><button type="button" class="swatch swatch-pink'+(c==='pink'?' is-selected':'')+'" data-i="'+i+'" data-c="pink" aria-label="Mask '+(i+1)+' pink"></button></div>';}).join('');
+    pickerEls.forEach(function(el){el.innerHTML=html;});
+    saveColours();
+  }
+  var giftsBuilt=false;
+  function giftCard(name,emoji,img,sw,tag,min){var c='<div class="gift-card" data-min="'+min+'"><span class="gift-free">FREE</span>'+(tag?'<span class="gift-type">'+tag+'</span>':'')+'<div class="gift-img" data-e="'+emoji+'"><img src="assets/'+img+'.webp" alt="'+name+'" decoding="async" onerror="this.style.visibility=&#39;hidden&#39;"></div><span class="gift-name">'+name+'</span>';if(sw)c+='<div class="gift-sw"><button type="button" class="gsw gsw-black" data-pc="black" aria-label="Black"></button><button type="button" class="gsw gsw-pink" data-pc="pink" aria-label="Pink"></button></div>';return c+'</div>';}
+  function buildGifts(){var el=document.getElementById('packGifts');if(!el)return;el.innerHTML='<div class="pg-h">🎁 Your free bonus bundle — included with every order (£20 value)</div><div class="pg-row">'+giftCard('Sleep e-book','📘','gift-ebook-v2',false,'E-BOOK',1)+giftCard('Neck pillow','🛌','gift-pillow-'+pillowColor,true,null,2)+giftCard('Lavender mist','🌿','gift-mist',false,null,3)+'</div>';giftsBuilt=true;}
+  function renderGifts(sku){var el=document.getElementById('packGifts');if(!el)return;if(!giftsBuilt)buildGifts();var pimg=el.querySelector('.gift-card[data-min="2"] img');if(pimg){var want='assets/gift-pillow-'+pillowColor+'.webp';if((pimg.getAttribute('src')||'')!==want){pimg.style.visibility='';pimg.setAttribute('src',want);}}var sws=el.querySelectorAll('.gsw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',sws[k].getAttribute('data-pc')===pillowColor);}}
+  function select(sku,persist){
+    if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
+    curSku=sku;
+    packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
+    renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
+    if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
+  }
+  function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
+  pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
+  packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
+  var _pg=document.getElementById('packGifts');if(_pg)_pg.addEventListener('click',function(e){var b=e.target.closest('.gsw');if(!b)return;pillowColor=b.dataset.pc;try{localStorage.setItem('kalmely_pillow',pillowColor)}catch(e){}renderGifts(curSku);});
+  try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
+  var saved=DEFAULT;try{saved=localStorage.getItem('kalmely_pack')||DEFAULT}catch(e){}
+
+  // ---------- Meta cookies for CAPI matching ----------
+  function fbCookie(name){var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));return m?decodeURIComponent(m[1]):'';}
+  function getFbc(){var fbc=fbCookie('_fbc');if(!fbc){var cid=new URLSearchParams(location.search).get('fbclid');if(cid)fbc='fb.1.'+Date.now()+'.'+cid;}return fbc;}
+
+  // ---------- Cart drawer ----------
+  var overlay=document.getElementById('cartOverlay'),drawer=document.getElementById('cartDrawer');
+  var cartOpen=false;
+  function money(n){return '£'+Number(n).toFixed(2);}
+  function populateCart(){
+    var m=lineMath(),qty=m.qty,price=m.price,was=m.was,save=m.save;
+    document.getElementById('cartName').textContent=packName(curSku);
+    document.getElementById('cartMeta').textContent=colours.map(function(c){return c.charAt(0).toUpperCase()+c.slice(1);}).join(' · ')||'Black';
+    document.getElementById('cartQty').textContent='×'+qty;
+    document.getElementById('cartImg').src=(qty>1?'assets/mask-both.webp':(colours[0]==='pink'?'assets/mask-pink.webp':'assets/mask-black.webp'));
+    document.getElementById('cartPrice').textContent='£'+price;
+    var wasEl=document.getElementById('cartWas');if(was){wasEl.textContent='£'+was;wasEl.style.display='';}else{wasEl.style.display='none';}
+    document.getElementById('cartSubtotal').textContent=money(was||price);
+    var savingRow=document.getElementById('cartSaving').parentNode;
+    if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
+    document.getElementById('cartTotal').textContent=money(price);
+    document.getElementById('cartCount').textContent=String(qty);
+    var _cg=document.getElementById('cartGifts');if(_cg){var _gl=['“How to Sleep on Any Flight” e-book','Travel neck pillow','Lavender sleep mist'];_cg.innerHTML='<span class="cg-h">Free bonus bundle included (£20 value)</span>'+_gl.map(function(t){return '<span class="cg-item">🎁 '+t+' <b>FREE</b></span>';}).join('');}
+  }
+  function openCart(){
+    var m=lineMath(),price=m.price,qty=m.qty;
+    try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
+    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'GBP',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
+    setEmpty(false);populateCart();openDrawer();
+  }
+  function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
+  function setEmpty(isEmpty){
+    var empty=document.getElementById('cartEmpty'),body=drawer.querySelector('.cart-body'),foot=drawer.querySelector('.cart-foot'),free=drawer.querySelector('.ch-free');
+    if(empty)empty.style.display=isEmpty?'flex':'none';
+    if(body)body.style.display=isEmpty?'none':'';
+    if(foot)foot.style.display=isEmpty?'none':'';
+    if(free)free.style.display=isEmpty?'none':'';
+  }
+  function viewCart(){if(readBagQty()){setEmpty(false);populateCart();}else{setEmpty(true);}openDrawer();}
+  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';}
+  addBtns.forEach(function(b){b.addEventListener('click',openCart);});
+  document.getElementById('navCart').addEventListener('click',viewCart);
+  document.getElementById('cartEmptyCta').addEventListener('click',function(){closeCart();var box=document.querySelector('.buybox');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}});
+  document.getElementById('cartClose').addEventListener('click',closeCart);
+  overlay.addEventListener('click',closeCart);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cartOpen)closeCart();});
+  function readBagQty(){try{var b=JSON.parse(localStorage.getItem('kalmely_bag')||'null');return b&&b.qty?b.qty:0;}catch(e){return 0;}}
+
+  // ---------- Checkout (from drawer) → InitiateCheckout + Stripe ----------
+  var checkingOut=false;
+  window.addEventListener('pageshow',function(){checkingOut=false;var _b=document.getElementById('cartCheckout');if(_b){_b.textContent='Secure checkout →';_b.style.opacity='';}});
+  document.getElementById('cartCheckout').addEventListener('click',async function(){
+    if(checkingOut)return;
+    var sku=curSku,m=lineMath(),price=m.price,qty=m.qty;
+    var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
+    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'GBP',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
+    try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'GBP',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
+    checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
+    try{
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,gifts:'Sleep e-book, Neck pillow, Lavender mist',colors:(colours.join(',')+' | pillow:'+pillowColor),fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
+      var data=await res.json();
+      if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
+      window.location.href=data.url;
+    }catch(err){console.error('[Checkout]',err);checkingOut=false;btn.textContent='Secure checkout →';btn.style.opacity='';alert('We could not start secure checkout just now. Your selection is saved — please try again, or email hello@kalmely.com.');}
+  });
+
+  select(saved,false);
+  ['gift-ebook-v2','gift-pillow-black','gift-pillow-pink','gift-mist'].forEach(function(n){(new Image()).src='assets/'+n+'.webp';});
+
+  // ---------- Cookie banner ----------
+  var cb=document.getElementById('cookieBanner');
+  setTimeout(function(){try{if(!localStorage.getItem('kalmely_consent'))cb&&cb.classList.add('show')}catch(e){}},800);
+  var ac=document.getElementById('cookieAccept'),dn=document.getElementById('cookieDeny');
+  ac&&ac.addEventListener('click',function(){try{localStorage.setItem('kalmely_consent','all')}catch(e){}cb.classList.remove('show');});
+  dn&&dn.addEventListener('click',function(){try{localStorage.setItem('kalmely_consent','essential')}catch(e){}cb.classList.remove('show');});
+
+  // ---------- Reveals ----------
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  document.querySelectorAll('.fade-slow').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*0.95)el.classList.add('in');else io.observe(el);});
+  addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});},2500);});
+
+  // ---------- Sticky CTA + nav shadow ----------
+  var sc=document.getElementById('stickyCta'),box=document.querySelector('.buybox');
+  if(sc&&box){var sio=new IntersectionObserver(function(es){es.forEach(function(e){sc.classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0);});},{threshold:0});sio.observe(box);}
+  var nav=document.querySelector('.nav');addEventListener('scroll',function(){if(nav)nav.classList.toggle('is-scrolled',scrollY>50);},{passive:true});
+
+  // ---------- Hero carousel (smooth swipe + thumbnails) ----------
+  var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack');
+  if(hThumbs.length&&hTrack){
+    var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
+    function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
+    hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
+    hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
+    hGo(0);
+  }
+
+  // ---------- Email-gate popup (isolated; key kalmely_eg_seen) ----------
+  (function(){
+    var modal=document.getElementById('egModal');if(!modal)return;
+    var seen=false;try{seen=!!localStorage.getItem('kalmely_eg_seen')}catch(e){}
+    function open(){if(modal.classList.contains('open'))return;modal.classList.add('open');try{localStorage.setItem('kalmely_eg_seen','1')}catch(e){}}
+    function close(){modal.classList.remove('open');}
+    if(!seen){var t=setTimeout(open,8000);document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)open();});}
+    var trigger=document.getElementById('egOpen');if(trigger)trigger.addEventListener('click',open);
+    document.getElementById('egClose').addEventListener('click',close);
+    modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    var form=document.getElementById('egForm');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=(document.getElementById('egEmail').value||'').trim();
+      var err=document.getElementById('egErr');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email.';return;}
+      if(!document.getElementById('egConsent').checked){err.textContent='Please tick the box to continue.';return;}
+      err.textContent='';
+      var btn=document.getElementById('egSubmit');btn.disabled=true;btn.textContent='Sending…';
+      try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'email-gate-10off'})}).catch(function(){});}catch(e){}
+      form.style.display='none';
+      document.getElementById('egSuccess').style.display='block';
+    });
+    var copy=document.getElementById('egCopy');
+    if(copy)copy.addEventListener('click',function(){try{navigator.clipboard.writeText('WELCOME10');copy.textContent='Copied ✓';}catch(e){copy.textContent='WELCOME10';}});
+    var shop=document.getElementById('egShop');
+    if(shop)shop.addEventListener('click',function(){close();var box=document.querySelector('.buybox');if(box)box.scrollIntoView({behavior:'smooth',block:'center'});});
+  })();
+
+})();
+</script>
+
+</body>
+</html>
