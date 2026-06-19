@@ -179,11 +179,12 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .free-tag.t2{top:34%;left:3%}
 .free-tag.t3{top:9%;right:5%}
 .free-tag.t4{top:60%;right:4%}
-/* positioned over the real tea-hero photo (applicator · file · patches · book) */
-.free-tag.t-app{top:27%;left:0}
-.free-tag.t-file{top:63%;left:5%}
-.free-tag.t-patch{top:60%;right:21%}
-.free-tag.t-book{top:11%;right:0}
+/* positioned around the white margins of the tea-hero photo so they point at each
+   product without covering it (applicator top-left · book top-right · file bottom-left · patches bottom-right) */
+.free-tag.t-app{top:5%;left:0}
+.free-tag.t-file{bottom:6%;left:11%}
+.free-tag.t-patch{bottom:6%;right:26%}
+.free-tag.t-book{top:6%;right:0}
 .hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-cap{text-align:center;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
 .hero-thumbs{display:flex;gap:10px}
