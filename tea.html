@@ -179,12 +179,12 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .free-tag.t2{top:34%;left:3%}
 .free-tag.t3{top:9%;right:5%}
 .free-tag.t4{top:60%;right:4%}
-/* positioned around the white margins of the tea-hero photo so they point at each
-   product without covering it (applicator top-left · book top-right · file bottom-left · patches bottom-right) */
-.free-tag.t-app{top:5%;left:0}
-.free-tag.t-file{bottom:6%;left:11%}
-.free-tag.t-patch{bottom:6%;right:26%}
-.free-tag.t-book{top:6%;right:0}
+/* sit ON each product (small overlap, anchored to it) without covering it fully:
+   applicator (far-left brush) · file (2nd) · patches box (centre-right) · book (right) */
+.free-tag.t-app{top:52%;left:0}
+.free-tag.t-file{top:28%;left:12%}
+.free-tag.t-patch{top:48%;right:23%}
+.free-tag.t-book{top:31%;right:1%}
 .hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-cap{text-align:center;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
 .hero-thumbs{display:flex;gap:10px}
@@ -311,7 +311,8 @@ section{padding:74px 0}
 @media(max-width:780px){.timeline{grid-template-columns:1fr;gap:26px}}
 
 /* buy-box subscribe note + disclaimer */
-.pack .pack-sub{display:block;font:600 9px/1.25 var(--sans);color:var(--ok);margin-top:4px;letter-spacing:.01em}
+.pack .pack-sub{display:block;font:600 9px/1.25 var(--sans);color:var(--ink-soft);margin-top:5px;letter-spacing:.01em}
+.pack .pack-banner{display:block;margin-top:6px;background:var(--ok);color:#fff;font:700 9.5px/1.3 var(--sans);letter-spacing:.01em;padding:5px 7px;border-radius:7px}
 .sub-note{margin-top:10px;text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
 .bx-disclaimer{margin-top:14px;font:400 11px/1.5 var(--sans);color:var(--faint);text-align:center}
 
@@ -523,7 +524,7 @@ section{padding:74px 0}
               <div class="free-tag t-app"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
               <div class="free-tag t-file"><div class="ft-val"><s>$7.95</s>FREE</div><div class="ft-name">Crystal file</div></div>
               <div class="free-tag t-patch"><div class="ft-val"><s>$14.95</s>FREE</div><div class="ft-name">Invisible patches</div></div>
-              <div class="free-tag t-book"><div class="ft-val"><s>$19.95</s>FREE</div><div class="ft-name">Wart-Free eBook</div></div>
+              <div class="free-tag t-book"><div class="ft-val"><s>$22.95</s>FREE</div><div class="ft-name">Wart-Free eBook</div></div>
             </div>
             <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 2</span></div></div>
             <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Hero image 3</span></div></div>
@@ -553,7 +554,7 @@ section{padding:74px 0}
         </div>
 
         <div class="bx-sec">
-          <div class="label">Choose your size <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 60 ml + gifts</span></div>
+          <div class="label">Choose your size <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 100 ml + gifts</span></div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your size">
             <button type="button" class="pack" data-sku="TEA-30" data-price="34.95" role="radio" aria-checked="false">
               <span class="pack-thumb"><span class="ph" data-n="30">30 ml</span></span>
@@ -562,18 +563,18 @@ section{padding:74px 0}
               <span class="pack-price">$34.95<s>$44.95</s></span>
             </button>
             <button type="button" class="pack" data-sku="TEA-60" data-price="49.95" role="radio" aria-checked="false">
-              <span class="pack-badge alt">Best value</span>
+              <span class="pack-badge alt">2× the size</span>
               <span class="pack-thumb"><span class="ph" data-n="60">60 ml</span></span>
               <span class="pack-qty">60 ml</span>
-              <span class="pack-unit">$0.83/ml · 2× the size</span>
+              <span class="pack-unit">$0.83/ml</span>
               <span class="pack-price">$49.95<s>$69.95</s></span>
             </button>
             <button type="button" class="pack" data-sku="TEA-60-GIFTS" data-price="52.95" role="radio" aria-checked="false">
               <span class="pack-badge">Most popular</span>
-              <span class="pack-thumb"><span class="ph" data-n="gift">60 ml +4</span></span>
-              <span class="pack-qty">60 ml + 4 gifts</span>
-              <span class="pack-unit">+ $52 in free gifts</span>
+              <span class="pack-thumb"><span class="ph" data-n="gift">100 ml +4</span></span>
+              <span class="pack-qty">100 ml + 4 gifts</span>
               <span class="pack-price">$52.95<s>$104.95</s></span>
+              <span class="pack-banner">🎁 $56 in free gifts · just $0.53/ml</span>
               <span class="pack-sub">Subscribe &amp; Save · renews every 2 months · cancel anytime</span>
             </button>
           </div>
@@ -716,14 +717,15 @@ section{padding:74px 0}
           <span class="pack-qty">30 ml</span><span class="pack-unit">$1.17/ml</span><span class="pack-price">$34.95<s>$44.95</s></span>
         </button>
         <button type="button" class="pack" data-sku="TEA-60" data-price="49.95" role="radio" aria-checked="false">
-          <span class="pack-badge alt">Best value</span>
+          <span class="pack-badge alt">2× the size</span>
           <span class="pack-thumb"><span class="ph" data-n="60">60 ml</span></span>
-          <span class="pack-qty">60 ml</span><span class="pack-unit">$0.83/ml · 2× the size</span><span class="pack-price">$49.95<s>$69.95</s></span>
+          <span class="pack-qty">60 ml</span><span class="pack-unit">$0.83/ml</span><span class="pack-price">$49.95<s>$69.95</s></span>
         </button>
         <button type="button" class="pack" data-sku="TEA-60-GIFTS" data-price="52.95" role="radio" aria-checked="false">
           <span class="pack-badge">Most popular</span>
-          <span class="pack-thumb"><span class="ph" data-n="gift">60 ml +4</span></span>
-          <span class="pack-qty">60 ml + 4 gifts</span><span class="pack-unit">+ $52 in free gifts</span><span class="pack-price">$52.95<s>$104.95</s></span>
+          <span class="pack-thumb"><span class="ph" data-n="gift">100 ml +4</span></span>
+          <span class="pack-qty">100 ml + 4 gifts</span><span class="pack-price">$52.95<s>$104.95</s></span>
+          <span class="pack-banner">🎁 $56 in free gifts · just $0.53/ml</span>
           <span class="pack-sub">Subscribe &amp; Save · renews every 2 months · cancel anytime</span>
         </button>
       </div>
@@ -760,7 +762,7 @@ section{padding:74px 0}
 <!-- sticky cta -->
 <div class="sticky-cta" id="stickyCta">
   <div class="sc-inner">
-    <div class="sc-info"><span class="sc-name">Kalmely Tea Tree Oil</span><span class="sc-meta"><span id="scLabel">60 ml + gifts</span> · <span id="scPrice">$52.95</span></span></div>
+    <div class="sc-info"><span class="sc-name">Kalmely Tea Tree Oil</span><span class="sc-meta"><span id="scLabel">100 ml + gifts</span> · <span id="scPrice">$52.95</span></span></div>
     <button type="button" class="add-to-cart sc-btn">Add to cart — <span class="cta-price">$52.95</span></button>
   </div>
 </div>
@@ -784,7 +786,7 @@ section{padding:74px 0}
       <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/favicon-kalmely.png" alt="Kalmely Tea Tree Oil" width="96" height="96"></div>
       <div class="cart-item-info">
         <div class="cart-item-name" id="cartName">Kalmely Tea Tree Oil</div>
-        <div class="cart-item-meta" id="cartMeta">60 ml + 4 gifts</div>
+        <div class="cart-item-meta" id="cartMeta">100 ml + 4 gifts</div>
         <div class="cart-item-price"><span id="cartPrice">$52.95</span><span class="ci-was" id="cartWas">$104.95</span></div>
       </div>
     </div>
@@ -848,7 +850,7 @@ section{padding:74px 0}
   var TIERS={
     'TEA-30':{price:34.95,was:44.95,label:'30 ml',sub:false,gifts:false},
     'TEA-60':{price:49.95,was:69.95,label:'60 ml',sub:false,gifts:false},
-    'TEA-60-GIFTS':{price:52.95,was:104.95,label:'60 ml + 4 gifts',sub:true,gifts:true}
+    'TEA-60-GIFTS':{price:52.95,was:104.95,label:'100 ml + 4 gifts',sub:true,gifts:true}
   };
   var DEFAULT='TEA-60-GIFTS';
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -881,9 +883,9 @@ section{padding:74px 0}
       html+=row('Precision applicator','<s>$9.95</s><b class="inc-free">FREE</b>')
           +row('Crystal prep file','<s>$7.95</s><b class="inc-free">FREE</b>')
           +row('Invisible tea-tree patches','<s>$14.95</s><b class="inc-free">FREE</b>')
-          +row('“The Wart-Free Protocol” eBook','<s>$19.95</s><b class="inc-free">FREE</b>');
+          +row('“The Wart-Free Protocol” eBook','<s>$22.95</s><b class="inc-free">FREE</b>');
     }
-    html+='</ul><div class="inc-foot">✓ Free shipping · 6-month money-back guarantee'+(t.gifts?' · $52 in free gifts':'')+'</div>';
+    html+='</ul><div class="inc-foot">✓ Free shipping · 6-month money-back guarantee'+(t.gifts?' · $56 in free gifts':'')+'</div>';
     el.innerHTML=html;
   }
   function select(sku,persist){
@@ -922,7 +924,7 @@ section{padding:74px 0}
     document.getElementById('cartCount').textContent='1';
     var _cg=document.getElementById('cartGifts');
     if(_cg){
-      if(t.gifts){var _gl=['Precision applicator','Crystal prep file','Invisible tea-tree patches','“The Wart-Free Protocol” eBook'];_cg.innerHTML='<span class="cg-h">$52 in free gifts included</span>'+_gl.map(function(x){return '<span class="cg-item">🎁 '+x+' <b>FREE</b></span>';}).join('')+'<span class="cg-item" style="margin-top:6px">↻ Subscribe &amp; Save · renews every 2 months · cancel anytime</span>';}
+      if(t.gifts){var _gl=['Precision applicator','Crystal prep file','Invisible tea-tree patches','“The Wart-Free Protocol” eBook'];_cg.innerHTML='<span class="cg-h">$56 in free gifts included</span>'+_gl.map(function(x){return '<span class="cg-item">🎁 '+x+' <b>FREE</b></span>';}).join('')+'<span class="cg-item" style="margin-top:6px">↻ Subscribe &amp; Save · renews every 2 months · cancel anytime</span>';}
       else{_cg.innerHTML='<span class="cg-h">Free shipping · 6-month money-back guarantee</span>';}
     }
   }
