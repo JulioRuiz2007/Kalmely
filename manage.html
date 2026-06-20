@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F6F6F0">
+<meta name="robots" content="noindex, nofollow">
+<title>Manage your subscription — Kalmely</title>
+<meta property="og:site_name" content="Kalmely">
+<meta name="application-name" content="Kalmely">
+<meta name="description" content="Manage, update, or cancel your Kalmely Tea Tree Oil subscription. Enter your email and we'll send you a secure link.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="stylesheet" href="assets/legal-2.css">
+<style>
+  .mgmt-form{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px;max-width:520px}
+  .mgmt-form input{flex:1 1 240px;font-family:var(--sans);font-size:15px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .mgmt-form input:focus{outline:none;border-color:var(--brand)}
+  .mgmt-form button{font-family:var(--sans);font-size:14px;font-weight:600;padding:13px 24px;background:var(--brand);color:#F6F6F0;border-radius:10px;transition:background .2s}
+  .mgmt-form button:hover{background:var(--brand-deep)}
+  .mgmt-form button[disabled]{opacity:.6;cursor:default}
+  .mgmt-msg{font-size:15px;color:var(--ink);max-width:520px;line-height:1.6;margin-top:6px}
+  .mgmt-msg.ok{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
+    <a href="index.html" class="nav-cta">← Home</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-eyebrow">Subscriptions</div>
+  <h1>Manage your <em>subscription.</em></h1>
+
+  <p class="lead">Subscribe &amp; Save renews every 2 months — and you're in control. Update your details or cancel anytime, no questions asked.</p>
+
+  <p>Enter the email you used at checkout and we'll send you a <strong>secure link</strong> to your subscription portal, where you can update your payment method, change your address, or cancel. For your privacy, the link only ever goes to your inbox.</p>
+
+  <form class="mgmt-form" id="mgmtForm" novalidate>
+    <input type="email" id="mgmtEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
+    <button type="submit" id="mgmtBtn">Email me a manage link</button>
+  </form>
+  <div class="mgmt-msg" id="mgmtMsg"></div>
+
+  <h2>Prefer to email us?</h2>
+  <p>Write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> from your order email and we'll cancel or change it for you within one business day.</p>
+
+  <div class="callout">
+    <p>Your Kalmely is backed by a <strong>6-month money-back guarantee</strong> — wart-free or your money back. Results may vary. This product and guide are for educational purposes and are not medical advice.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="contact.html">Contact</a>
+    <a href="shipping-policy.html">Shipping</a>
+    <a href="refund-policy.html">Refunds</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+  Kalmely · <a href="https://kalmely.com">kalmely.com</a> · Results may vary.
+</footer>
+
+<script>
+(function(){
+  var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
+  var form=document.getElementById('mgmtForm'),email=document.getElementById('mgmtEmail'),btn=document.getElementById('mgmtBtn'),msg=document.getElementById('mgmtMsg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=(email.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){msg.className='mgmt-msg';msg.textContent='Please enter a valid email address.';return;}
+    btn.disabled=true;btn.textContent='Sending…';msg.textContent='';
+    fetch(WORKER_URL+'/api/portal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v})})
+      .then(function(){return null;}).catch(function(){return null;})
+      .then(function(){
+        btn.disabled=false;btn.textContent='Email me a manage link';
+        msg.className='mgmt-msg ok';
+        msg.textContent='Done. If that email has an active subscription, a secure manage-and-cancel link is on its way to your inbox (check spam too).';
+        form.style.display='none';
+      });
+  });
+})();
+</script>
+</body>
+</html>
