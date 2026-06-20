@@ -544,8 +544,8 @@ section{padding:74px 0}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <!-- hero slides are synced to the pack selector: 30ml / 60ml / 100ml+gifts (selecting a pack swaps the main image) -->
-            <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>30 ml bottle photo</span></div></div>
-            <div class="hero-slide"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>60 ml bottle photo</span></div></div>
+            <div class="hero-slide"><img src="assets/tea-bottle.webp" alt="Kalmely Tea Tree Oil — 30 ml" width="600" height="600" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/tea-bottle-alt.webp" alt="Kalmely Tea Tree Oil — 60 ml" width="600" height="600" loading="lazy"></div>
             <div class="hero-slide">
               <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil — 100 ml + 4 free gifts" width="600" height="600" loading="lazy">
               <div class="free-tag t-app"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
@@ -557,8 +557,8 @@ section{padding:74px 0}
         </div>
         <div class="hero-cap">100% pure tea tree oil · gentle on skin</div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb is-active"><img src="assets/tea-bottle.webp" alt="30 ml"></button>
+          <button type="button" class="hero-thumb"><img src="assets/tea-bottle-alt.webp" alt="60 ml"></button>
           <button type="button" class="hero-thumb"><img src="assets/tea-hero.webp" alt="100 ml + 4 gifts"></button>
         </div>
       </div>
@@ -580,14 +580,14 @@ section{padding:74px 0}
           <div class="label">Choose your size <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 100 ml + gifts</span></div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your size">
             <button type="button" class="pack" data-sku="TEA-30" data-price="34.95" role="radio" aria-checked="false">
-              <span class="pack-thumb"><span class="ph" data-n="30">30 ml</span></span>
+              <span class="pack-thumb"><img src="assets/tea-bottle.webp" alt="30 ml"></span>
               <span class="pack-qty">30 ml</span>
               <span class="pack-unit">$1.17/ml</span>
               <span class="pack-price">$34.95<s>$44.95</s></span>
             </button>
             <button type="button" class="pack" data-sku="TEA-60" data-price="49.95" role="radio" aria-checked="false">
               <span class="pack-badge alt">2× the size</span>
-              <span class="pack-thumb"><span class="ph" data-n="60">60 ml</span></span>
+              <span class="pack-thumb"><img src="assets/tea-bottle-alt.webp" alt="60 ml"></span>
               <span class="pack-qty">60 ml</span>
               <span class="pack-unit">$0.83/ml</span>
               <span class="pack-price">$49.95<s>$69.95</s></span>
@@ -767,12 +767,12 @@ section{padding:74px 0}
       <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>Loved by families · free shipping · 6-month guarantee</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your size">
         <button type="button" class="pack" data-sku="TEA-30" data-price="34.95" role="radio" aria-checked="false">
-          <span class="pack-thumb"><span class="ph" data-n="30">30 ml</span></span>
+          <span class="pack-thumb"><img src="assets/tea-bottle.webp" alt="30 ml"></span>
           <span class="pack-qty">30 ml</span><span class="pack-unit">$1.17/ml</span><span class="pack-price">$34.95<s>$44.95</s></span>
         </button>
         <button type="button" class="pack" data-sku="TEA-60" data-price="49.95" role="radio" aria-checked="false">
           <span class="pack-badge alt">2× the size</span>
-          <span class="pack-thumb"><span class="ph" data-n="60">60 ml</span></span>
+          <span class="pack-thumb"><img src="assets/tea-bottle-alt.webp" alt="60 ml"></span>
           <span class="pack-qty">60 ml</span><span class="pack-unit">$0.83/ml</span><span class="pack-price">$49.95<s>$69.95</s></span>
         </button>
         <button type="button" class="pack" data-sku="TEA-60-GIFTS" data-price="54.95" role="radio" aria-checked="false">
