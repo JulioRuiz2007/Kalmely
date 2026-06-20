@@ -469,7 +469,7 @@ main { max-width: 880px; }
   const intro = document.getElementById('tyIntro');
   if (isEbookOnly) {
     heading.innerHTML = 'Your guide is <em>in your inbox.</em>';
-    intro.innerHTML = 'The 30-Day Migraine Tracker PDF has been sent to the email you entered. Check your spam folder if it hasn\'t arrived in five minutes, or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+    intro.innerHTML = 'Your Wart-Free Protocol guide has been sent to the email you entered. Check your spam folder if it hasn\'t arrived in five minutes, or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
   } else if (sku === 'KAL-SOLO') {
     heading.innerHTML = 'Your Kalmely is <em>on its way.</em>';
     intro.innerHTML = 'A confirmation email is in your inbox with tracking details. If you don\'t see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
@@ -484,8 +484,8 @@ main { max-width: 880px; }
     document.getElementById('step02').hidden = true;
     document.getElementById('step03').hidden = true;
     // Update step 01 + step 04 wording for digital order
-    document.querySelector('#step01 p').textContent = 'Your receipt and download link are now in your inbox. Save the PDF locally — the link is permanent but printing helps the daily-tracking habit stick.';
-    document.querySelector('#step04 p').innerHTML = 'You have a 100-day trial. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the PDF remains yours.';
+    document.querySelector('#step01 p').textContent = 'Your receipt and guide download link are now in your inbox. Save the PDF locally so it\'s always handy.';
+    document.querySelector('#step04 p').innerHTML = 'You\'re covered by our 6-month money-back guarantee. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the guide remains yours.';
   } else {
     // Physical: set estimated arrival to today + 7 weekdays
     const date = new Date();
@@ -494,7 +494,7 @@ main { max-width: 880px; }
       date.setDate(date.getDate() + 1);
       if (date.getDay() !== 0 && date.getDay() !== 6) added++;
     }
-    const dateStr = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
     document.getElementById('arrival').textContent = `By ${dateStr}`;
   }
 
@@ -504,7 +504,7 @@ main { max-width: 880px; }
   if (sessionId) {
     // Prefer the real charged value stored at checkout time (accounts for RELIEF15 -£15).
     // Fallback: 149 (bundle without coupon) or 29 (ebook-only).
-    let value = isEbookOnly ? 29 : 149;
+    let value = isEbookOnly ? 22 : 54.95;
     try {
       const stored = JSON.parse(localStorage.getItem('kalmely_last_purchase') || '{}');
       if (stored && stored.value && (Date.now() - (stored.ts || 0)) < 30 * 60 * 1000) {
@@ -516,9 +516,9 @@ main { max-width: 880px; }
     if (window.fbq) {
       fbq('track', 'Purchase', {
         value: value,
-        currency: 'GBP',
+        currency: 'USD',
         content_ids: [sku],
-        content_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager',
+        content_name: isEbookOnly ? 'The Wart-Free Protocol' : 'Kalmely Tea Tree Oil',
         ...(_ab ? { offer_variant: _ab } : {})
       }, {
         eventID: sessionId
@@ -535,9 +535,9 @@ main { max-width: 880px; }
     if (window.gtag) {
       gtag('event', 'purchase', {
         value: value,
-        currency: 'GBP',
+        currency: 'USD',
         transaction_id: prefix + suffix,
-        items: [{ item_id: sku, item_name: isEbookOnly ? '30-Day Migraine Tracker' : 'Kalmely Head Massager', price: value, quantity: 1 }]
+        items: [{ item_id: sku, item_name: isEbookOnly ? 'The Wart-Free Protocol' : 'Kalmely Tea Tree Oil', price: value, quantity: 1 }]
       });
     }
   }
