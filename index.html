@@ -459,7 +459,9 @@ section{padding:74px 0}
 .eg-err{color:#C8102E;font-size:12.5px;min-height:15px;margin-top:5px}
 .eg-fine{font-size:11px;color:var(--faint);margin-top:13px;line-height:1.5}
 .eg-fine a{text-decoration:underline}
-.eg-fine label{display:flex;gap:7px;align-items:flex-start;text-align:left;margin-bottom:9px}
+.eg-fine label{display:flex;gap:8px;align-items:flex-start;justify-content:flex-start;text-align:left;width:100%;margin-bottom:9px}
+.eg-fine label input{flex:0 0 auto;width:14px;height:14px;margin:1px 0 0;accent-color:var(--ink)}
+.eg-fine label span{flex:1 1 auto}
 .eg-no{display:block;margin-top:12px;font:500 12px/1 var(--sans);color:var(--ink-soft);text-decoration:underline}
 .eg-check{width:52px;height:52px;border-radius:50%;background:#F4EBE2;color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:14px}
 .eg-code{font:700 25px/1 var(--sans);letter-spacing:.16em;background:var(--card);border:2px dashed var(--ink);border-radius:10px;padding:15px;margin:4px 0 12px;text-align:center}
@@ -828,6 +830,7 @@ section{padding:74px 0}
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">$104.95</span></div>
     <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$50.00</span></div>
+    <div class="cart-totals" id="cartWelcomeRow" style="display:none"><span>WELCOME10 (10% off)</span><span class="ct-save" id="cartWelcome">−$5.50</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$54.95</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
     <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 6-month guarantee</span><span>🚚 Free shipping</span></div>
@@ -858,7 +861,7 @@ section{padding:74px 0}
         <div class="eg-err" id="egErr"></div>
         <button type="submit" class="eg-sub" id="egSubmit">Claim my 10% code</button>
         <div class="eg-fine">
-          <label><input type="checkbox" id="egConsent" required> I agree to receive emails from Kalmely. Unsubscribe anytime.</label>
+          <label><input type="checkbox" id="egConsent" required><span>I agree to receive emails from Kalmely. Unsubscribe anytime.</span></label>
           By subscribing you agree to our <a href="privacy.html">privacy policy</a>.
         </div>
       </form>
@@ -954,7 +957,11 @@ section{padding:74px 0}
     document.getElementById('cartSubtotal').textContent=money(was||price);
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
-    document.getElementById('cartTotal').textContent=money(price);
+    var _claimed=(function(){try{return localStorage.getItem('kalmely_welcome')==='WELCOME10'}catch(e){return false}})();
+    var _wRow=document.getElementById('cartWelcomeRow'),_cents=Math.round(price*100),_total=price;
+    if(_claimed){var _disc=Math.round(_cents*0.10);document.getElementById('cartWelcome').textContent='−'+money(_disc/100);_wRow.style.display='';_total=(_cents-_disc)/100;}
+    else{_wRow.style.display='none';}
+    document.getElementById('cartTotal').textContent=money(_total);
     document.getElementById('cartCount').textContent='1';
     var _cg=document.getElementById('cartGifts');
     if(_cg){
