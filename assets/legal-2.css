@@ -5,19 +5,19 @@
 @font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/sora.woff2) format('woff2')}
 
 :root {
-  --bg: #FFFFFF;
-  --bg-2: #FFF4F2;
-  --ink: #2A1A1C;
-  --ink-soft: rgba(22, 51, 77, 0.70);
-  --ink-faint: rgba(22, 51, 77, 0.45);
-  --line: rgba(22, 51, 77, 0.13);
-  --brand: #C8102E;
-  --brand-deep: #A00C24;
-  --brand-soft: rgba(23, 115, 176, 0.08);
-  --accent: #C8102E;
+  --bg: #F6F6F0;
+  --bg-2: #ECEDE2;
+  --ink: #3F4A2B;
+  --ink-soft: rgba(63, 74, 43, 0.74);
+  --ink-faint: rgba(63, 74, 43, 0.5);
+  --line: rgba(63, 74, 43, 0.14);
+  --brand: #3F4A2B;
+  --brand-deep: #2F3820;
+  --brand-soft: rgba(63, 74, 43, 0.07);
+  --accent: #9A7B3F;
   --pad: clamp(20px, 4vw, 56px);
   --serif: "Cormorant Garamond", Georgia, serif;
-  --display: "Sora", "Inter", sans-serif;
+  --display: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -44,7 +44,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(246, 246, 240, 0.9);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--line);
@@ -61,9 +61,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .brand-logo {
   font-family: var(--display);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--ink);
   text-decoration: none;
 }
@@ -116,7 +116,7 @@ main {
 h1 {
   font-family: var(--display);
   font-size: clamp(34px, 5vw, 52px);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.025em;
   margin-bottom: 28px;
@@ -127,7 +127,7 @@ h1 em { font-family: var(--serif); font-style: italic; font-weight: 500; color: 
 h2 {
   font-family: var(--display);
   font-size: clamp(21px, 2.4vw, 27px);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.015em;
   margin: 56px 0 18px;
