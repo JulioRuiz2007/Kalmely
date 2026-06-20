@@ -543,14 +543,15 @@ section{padding:74px 0}
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
+            <!-- hero slides are synced to the pack selector: 30ml / 60ml / 100ml+gifts (selecting a pack swaps the main image) -->
             <div class="hero-slide">
-              <img src="assets/tea-bottle-alt.webp" alt="Kalmely Tea Tree Oil bottle" width="600" height="600" fetchpriority="high">
+              <img src="assets/tea-bottle-alt.webp" alt="Kalmely Tea Tree Oil — 30 ml" width="600" height="600" fetchpriority="high">
             </div>
             <div class="hero-slide">
-              <img src="assets/tea-apply.webp" alt="Applying a drop of Kalmely Tea Tree Oil with the dropper" width="600" height="600" loading="lazy">
+              <img src="assets/tea-bottle.webp" alt="Kalmely Tea Tree Oil — 60 ml" width="600" height="600" loading="lazy">
             </div>
             <div class="hero-slide">
-              <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil bundle with 4 free gifts" width="600" height="600" loading="lazy">
+              <img src="assets/tea-hero.webp" alt="Kalmely Tea Tree Oil — 100 ml + 4 free gifts" width="600" height="600" loading="lazy">
               <div class="free-tag t-app"><div class="ft-val"><s>$9.95</s>FREE</div><div class="ft-name">Precision applicator</div></div>
               <div class="free-tag t-file"><div class="ft-val"><s>$7.95</s>FREE</div><div class="ft-name">Crystal file</div></div>
               <div class="free-tag t-patch"><div class="ft-val"><s>$14.95</s>FREE</div><div class="ft-name">Invisible patches</div></div>
@@ -560,9 +561,9 @@ section{padding:74px 0}
         </div>
         <div class="hero-cap">100% pure tea tree oil · gentle on skin</div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active"><img src="assets/tea-bottle-alt.webp" alt="Bottle"></button>
-          <button type="button" class="hero-thumb"><img src="assets/tea-apply.webp" alt="In use"></button>
-          <button type="button" class="hero-thumb"><img src="assets/tea-hero.webp" alt="Bundle"></button>
+          <button type="button" class="hero-thumb is-active"><img src="assets/tea-bottle-alt.webp" alt="30 ml"></button>
+          <button type="button" class="hero-thumb"><img src="assets/tea-bottle.webp" alt="60 ml"></button>
+          <button type="button" class="hero-thumb"><img src="assets/tea-hero.webp" alt="100 ml + 4 gifts"></button>
         </div>
       </div>
 
@@ -945,11 +946,13 @@ section{padding:74px 0}
     html+='</ul><div class="inc-foot">✓ Free shipping · 6-month money-back guarantee'+(t.gifts?' · $56 in free gifts':'')+'</div>';
     el.innerHTML=html;
   }
+  var PACK_IDX={'TEA-30':0,'TEA-60':1,'TEA-60-GIFTS':2}, heroGo=null;  // hero gallery slides are synced to the pack selector
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
+    if(heroGo&&PACK_IDX[sku]!=null)heroGo(PACK_IDX[sku]);   // selecting a pack swaps the main hero image
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
@@ -1054,11 +1057,11 @@ section{padding:74px 0}
   if(hThumbs.length&&hTrack){
     var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
     function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});}
-    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){var s=['TEA-30','TEA-60','TEA-60-GIFTS'][i];if(s){select(s,true);if(cartOpen)populateCart();}else{hGo(i);}});});
     hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
     hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
     hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
-    hGo(0);
+    heroGo=hGo; hGo(PACK_IDX[curSku]!=null?PACK_IDX[curSku]:0);   // start on the selected pack's slide
   }
 
   // ---------- Email-gate popup + newsletter footer (post to /api/lead-magnet) ----------
