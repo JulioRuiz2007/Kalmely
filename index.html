@@ -168,7 +168,7 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 
 /* gallery */
 .gallery{grid-area:gallery;position:sticky;top:84px}
-.hero-stage{position:relative;overflow:hidden;border-radius:14px;background:var(--paper-2)}
+.hero-stage{position:relative;overflow:hidden;border-radius:14px;background:var(--paper-2);touch-action:pan-y}
 .hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .hero-track.dragging{transition:none}
 .hero-slide{flex:0 0 100%;aspect-ratio:1/1;position:relative}
@@ -412,7 +412,7 @@ section{padding:74px 0}
 .news-word{font:600 clamp(80px,18vw,240px)/0.85 var(--serif);text-align:center;color:rgba(249,248,246,.1);margin-top:40px;letter-spacing:-.01em;overflow:hidden;user-select:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
 .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.foot-links{display:flex;gap:20px;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px 20px;max-width:100%;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
 .foot-links a:hover{color:var(--paper)}
 .foot-fine{font:400 11.5px/1.6 var(--sans);color:rgba(249,248,246,.45);margin-top:12px}
 
@@ -776,8 +776,8 @@ section{padding:74px 0}
         <div class="rev-dist" id="revDist"></div>
       </div>
       <div class="rev-grid fade-slow" id="revFeatured"></div>
-      <div class="rev-more" id="revMore" hidden></div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">See all 487 reviews ↓</button></div>
+      <div class="rev-more" id="revMore" hidden></div>
     </div>
   </section>
 
@@ -1212,11 +1212,11 @@ section{padding:74px 0}
     if(vis===0&&s!==0){em.hidden=false;em.textContent='No '+s+'-star reviews — and we intend to keep it that way.';}else em.hidden=true;
   }
   if(btn)btn.addEventListener('click',function(){
-    if(more.hidden){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
+    if(more.hidden){more.hidden=false;btn.textContent='Show less ↑';}
     else{more.hidden=true;setFilter(0);btn.textContent='See all '+TOTAL+' reviews ↓';}
   });
   dist.addEventListener('click',function(e){var b=e.target.closest('.rev-bar');if(!b)return;
-    if(more.hidden&&btn){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
+    if(more.hidden&&btn){more.hidden=false;btn.textContent='Show less ↑';}
     var s=+b.dataset.star;setFilter(active===s?0:s);
   });
 })();
