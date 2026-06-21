@@ -200,9 +200,14 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .bx-h1{font-size:clamp(32px,3.6vw,44px);margin:12px 0 4px}
 .bx-sub{font:400 17px/1.4 var(--sans);color:var(--ink-2);margin-bottom:8px}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
-.bx-benefits{display:flex;flex-direction:column;gap:11px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.bx-benefit{display:flex;align-items:center;gap:11px;font:500 14.5px/1.3 var(--sans);color:var(--ink-2)}
-.bx-benefit .bp{flex:0 0 auto;width:20px;height:20px;color:var(--ink)}
+.bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-benefit{border-bottom:1px solid var(--line)}
+.bx-benefit:last-child{border-bottom:none}
+.bx-benefit summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;font:500 14.5px/1.3 var(--sans);color:var(--ink)}
+.bx-benefit summary::-webkit-details-marker{display:none}
+.bx-benefit summary::after{content:"+";font:400 19px/1 var(--sans);color:var(--ink-soft);flex:0 0 auto}
+.bx-benefit[open] summary::after{content:"\2212"}
+.bx-benefit p{padding:0 0 12px;margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
 .bx-sec{margin-top:18px}
 .bx-sec .label{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .bx-sec .help{font:500 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:underline;cursor:pointer}
@@ -576,9 +581,9 @@ section{padding:74px 0}
         <a href="#results" class="bx-link">See real before &amp; afters ›</a>
 
         <div class="bx-benefits">
-          <div class="bx-benefit"><svg class="bp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> No freezing. No acid. No pain.</div>
-          <div class="bx-benefit"><svg class="bp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Gentle enough for face &amp; kids 4+.</div>
-          <div class="bx-benefit"><svg class="bp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> You'll see it work — real, visible change.</div>
+          <details class="bx-benefit"><summary>No freezing. No acid. No pain.</summary><p>Pure tea tree oil works gently on the surface — no burning or blistering, and safe on the healthy skin around the wart.</p></details>
+          <details class="bx-benefit"><summary>Gentle enough for face &amp; kids 4+.</summary><p>No harsh chemicals. You dab it only on the wart with the precision applicator, so it's suitable for delicate areas and children 4+ (supervised).</p></details>
+          <details class="bx-benefit"><summary>You'll see it work — real, visible change.</summary><p>Most warts darken within days, then dry out and lift away over 2–6 weeks — so you're never left guessing.</p></details>
         </div>
 
         <div class="bx-sec">
