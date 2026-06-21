@@ -1104,5 +1104,27 @@ section{padding:74px 0}
 })();
 </script>
 
+<!-- Image lightbox (tap-to-zoom — turns image taps into engagement instead of dead clicks) -->
+<style>
+.zoomable{cursor:zoom-in}
+#lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(31,37,22,.82);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:24px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);background:#F6F6F0}
+#lightbox .lb-close{position:absolute;top:18px;right:20px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(246,246,240,.92);color:#3F4A2B;font:400 26px/1 var(--sans,sans-serif);display:flex;align-items:center;justify-content:center;cursor:pointer}
+</style>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image"><button type="button" class="lb-close" aria-label="Close">&times;</button><img src="" alt=""></div>
+<script>
+(function(){
+  var sel='.reason img,.ba-grid img,.rev-img,.ugc-strip img,.life img,.mech-img img';
+  var lb=document.getElementById('lightbox'); if(!lb) return;
+  var lbImg=lb.querySelector('img');
+  document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Enlarge image');});
+  function open(im){lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(function(){lbImg.src='';},200);}
+  document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest(sel);if(im){e.preventDefault();open(im);}});
+  document.addEventListener('keydown',function(e){var im=e.target&&e.target.closest&&e.target.closest(sel);if(im&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(im);}if(e.key==='Escape'&&lb.classList.contains('open'))close();});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-close'))close();});
+})();
+</script>
 </body>
 </html>
