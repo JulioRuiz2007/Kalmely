@@ -1060,7 +1060,16 @@ section{padding:74px 0}
     var seen=false;try{seen=!!localStorage.getItem('kalmely_scratch_seen')}catch(e){}
     function open(){if(modal.classList.contains('open'))return;modal.classList.add('open');try{localStorage.setItem('kalmely_scratch_seen','1')}catch(e){}setTimeout(initScratch,60);}
     function close(){modal.classList.remove('open');}
-    if(force){setTimeout(open,300);} else if(!seen){setTimeout(open,7000);document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)open();});}
+    if(force){setTimeout(open,300);}
+    else if(!seen){
+      // Don't interrupt cold visitors with a timed pop-up (Clarity: #egClose was the #1 click → people closed it and bounced).
+      // Only surface it once the visitor shows interest (scrolls past the hero) or on exit-intent. Bouncers never see it.
+      var fired=false; function fire(){if(fired)return;fired=true;open();}
+      function onScroll(){if(window.scrollY > Math.max(450, window.innerHeight*0.8)){window.removeEventListener('scroll',onScroll);fire();}}
+      window.addEventListener('scroll',onScroll,{passive:true});
+      document.addEventListener('mouseout',function(e){if(e.clientY<=0&&!e.relatedTarget)fire();}); // desktop exit-intent
+      setTimeout(fire,60000); // safety net for long lingerers (early bouncers are long gone)
+    }
     var trg=document.getElementById('egOpen');if(trg)trg.addEventListener('click',open);
     document.getElementById('egClose').addEventListener('click',close);
     var no=document.getElementById('egNo');if(no)no.addEventListener('click',close);
