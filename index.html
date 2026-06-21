@@ -365,6 +365,16 @@ section{padding:74px 0}
 .rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
 .rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
 .rev-bar .pct{min-width:34px;text-align:right;color:var(--ink-2)}
+.rev-bar{cursor:pointer;border:none;background:none;width:100%;text-align:left}
+.rev-bar .lab{min-width:30px;font-weight:600;color:var(--ink-2)}
+.rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
+.rev-bar.is-active .fill{background:var(--gold)}
+.rev-more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.rev-morewrap{text-align:center;margin-top:26px}
+.rev-morebtn{font:600 14px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
+.rev-morebtn:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:980px){.rev-more{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.rev-more{grid-template-columns:1fr}}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .review .rh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -606,7 +616,7 @@ section{padding:74px 0}
       <!-- hero headline (need RESOLVED first — Elixir pattern; on mobile shows above the image) -->
       <div class="hero-head fade-slow">
         <div class="hx-eyebrow">Kalmely · Tea Tree Oil</div>
-        <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews">Loved by families</a></div>
+        <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews"><b>4.8</b> · 3,000+ cleared their skin</a></div>
         <h1 class="bx-h1">Finally clear that <span class="hl">stubborn wart</span><span class="h1-sub">Gently, at home — no freezing, no acid, no doctor.</span></h1>
         <p class="bx-sub">Pure tea tree oil that targets the wart, not the skin around it — watch it darken, dry, and lift away. No burns, no scars.</p>
         <div class="hx-proof">“It darkened in days and was gone in about three weeks.” <span class="vf">✓ Verified review</span></div>
@@ -759,12 +769,14 @@ section{padding:74px 0}
   <!-- ===== REVIEWS ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Real customers, real reviews</div><h2>Loved by families everywhere</h2></div>
-      <div class="rev-grid fade-slow">
-        <div class="review"><img class="rev-img" src="assets/tea-review1.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">Gone in a month</div><p>After a month, fifteen warts on my daughter's hands were gone. No tears, no doctor visits.</p><div class="rev-by"><span class="nm">Sarah M.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
-        <div class="review"><img class="rev-img" src="assets/tea-review2.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">A plantar wart I'd had for years</div><p>No pain, no skin peeling, no foot-doctor visits. The plantar wart I'd had for years finally lifted off.</p><div class="rev-by"><span class="nm">Diana R.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
-        <div class="review"><img class="rev-img" src="assets/tea-review3.webp" alt="Verified customer holding Kalmely Tea Tree Oil" loading="lazy"><div class="st">★★★★★</div><div class="rt">No more pain walking</div><p>My son no longer felt pain when he walked. We just dabbed it on every night.</p><div class="rev-by"><span class="nm">Megan T.</span><span class="vf">✓ Verified Buyer</span></div><div class="rec">👍 I recommend this product</div></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Real customers, real reviews</div><h2>Loved by 3,000+ families</h2></div>
+      <div class="rev-top fade-slow">
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">487 verified reviews</div></div>
+        <div class="rev-dist" id="revDist"></div>
       </div>
+      <div class="rev-grid fade-slow" id="revFeatured"></div>
+      <div class="rev-more" id="revMore" hidden></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">See all 487 reviews ↓</button></div>
       <div class="ugc-strip fade-slow">
         <img src="assets/tea-review4.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
         <img src="assets/tea-review5.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
@@ -789,7 +801,7 @@ section{padding:74px 0}
     <div class="wrap fade-slow">
       <div class="eyebrow">Ready for clear skin?</div>
       <h2 style="font-size:clamp(28px,3.4vw,40px);margin:9px 0 4px">Choose your pack</h2>
-      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>Loved by families · free shipping · 6-month guarantee</span></div>
+      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span><b>4.8</b> · 487 reviews · 3,000+ cleared</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your size">
         <button type="button" class="pack" data-sku="TEA-30" data-price="34.95" role="radio" aria-checked="false">
           <span class="pack-thumb"><img src="assets/tea-bottle.webp" alt="30 ml"></span>
@@ -1176,6 +1188,42 @@ section{padding:74px 0}
   document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest(sel);if(im){e.preventDefault();open(im);}});
   document.addEventListener('keydown',function(e){var im=e.target&&e.target.closest&&e.target.closest(sel);if(im&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(im);}if(e.key==='Escape'&&lb.classList.contains('open'))close();});
   lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-close'))close();});
+})();
+</script>
+<!-- Reviews data + render (featured w/ photos, rating distribution, see-more, filter by star) -->
+<script src="assets/reviews.js"></script>
+<script>
+(function(){
+  var R=window.KALMELY_REVIEWS||[];
+  var feat=document.getElementById('revFeatured'),more=document.getElementById('revMore'),dist=document.getElementById('revDist'),btn=document.getElementById('revMoreBtn');
+  if(!R.length||!feat||!dist||!more)return;
+  var photos=['tea-review1','tea-review2','tea-review3','tea-review4','tea-review5','tea-review6','tea-review7'];
+  var TOTAL=487, DIST=[[5,85],[4,10],[3,3],[2,1],[1,1]];
+  function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function ini(nm){return (nm||'').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
+  function cP(r,i){return '<div class="review" data-r="'+r.r+'"><img class="rev-img" src="assets/'+photos[i%photos.length]+'.webp" alt="Verified Kalmely customer" loading="lazy"><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p><div class="rev-by"><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified · '+esc(r.loc)+'</span></div></div>';}
+  function cT(r){return '<div class="review" data-r="'+r.r+'"><div class="rh"><span class="av">'+ini(r.n)+'</span><span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
+  feat.innerHTML=R.slice(0,9).map(cP).join('');
+  more.innerHTML=R.slice(9).map(cT).join('');
+  dist.innerHTML=DIST.map(function(d){return '<button type="button" class="rev-bar" data-star="'+d[0]+'"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></button>';}).join('');
+  var em=document.createElement('p');em.className='rev-empty';em.hidden=true;em.style.cssText='text-align:center;color:var(--ink-soft);margin-top:16px;font:500 14px/1.5 var(--sans)';more.parentNode.insertBefore(em,more.nextSibling);
+  var active=0;
+  function setFilter(s){
+    active=s; var vis=0;
+    [].forEach.call(dist.children,function(b){b.classList.toggle('is-active',+b.dataset.star===s&&s!==0);});
+    function f(c){var show=(s===0||+c.dataset.r===s);c.style.display=show?'':'none';if(show)vis++;}
+    [].forEach.call(feat.children,f);[].forEach.call(more.children,f);
+    if(vis===0&&s!==0){em.hidden=false;em.textContent='No '+s+'-star reviews — and we intend to keep it that way.';}else em.hidden=true;
+  }
+  if(btn)btn.addEventListener('click',function(){
+    if(more.hidden){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
+    else{more.hidden=true;setFilter(0);btn.textContent='See all '+TOTAL+' reviews ↓';}
+  });
+  dist.addEventListener('click',function(e){var b=e.target.closest('.rev-bar');if(!b)return;
+    if(more.hidden&&btn){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
+    var s=+b.dataset.star;setFilter(active===s?0:s);
+  });
 })();
 </script>
 </body>
