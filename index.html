@@ -276,7 +276,7 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .bx-pay span{font:600 10px/1 var(--sans);letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line-2);border-radius:5px;padding:5px 7px}
 .bx-desc{font:400 14.5px/1.6 var(--sans);color:var(--ink-2);margin-top:20px}
 /* Elixir-style emphasis: colour the important phrases (gold) so they pop — used across description/reviews/benefits */
-.key{color:var(--gold);font-weight:700}
+.key{color:var(--gold);font-weight:700;white-space:nowrap}
 .bx-desc em{color:var(--ink)}
 /* accordions */
 .acc{margin-top:14px}
@@ -554,7 +554,8 @@ section{padding:74px 0}
   .gallery{max-width:300px;margin:0 auto}
   .hx-proof{display:none}
   .buybox{display:flex;flex-direction:column}
-  .bx-benefits{order:9;margin-top:12px}
+  .bx-benefits{order:1;margin-top:14px}
+  .sub-note,.bx-deliver,.bx-pay,.bx-disclaimer,.bx-desc,.acc{order:2}
   .bx-sub{display:none}  /* the H1 + h1-sub already carry the promise; saves space so the offer enters the first screen */
   .hero-cap{display:none}
   .pack{padding:12px 5px 10px}.pack-price{font-size:15px}.pack-badge{font-size:8px;padding:4px 7px}.pack-qty{font-size:11.5px}.pack-unit{font-size:9.5px}.pack .pack-sub{display:none}.pack .pack-banner{font:700 8px/1.25 var(--sans);padding:4px 5px;margin-top:4px}
@@ -670,7 +671,7 @@ section{padding:74px 0}
         <div class="bx-pay"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>PAYPAL</span></div>
         <div class="bx-disclaimer">Results may vary. This product and guide are not medical advice. Consult a doctor if unsure whether a growth is a wart, if it bleeds or changes, or if you have diabetes or a weakened immune system.</div>
 
-        <p class="bx-desc">Tea tree oil (<em>Melaleuca alternifolia</em>) has been trusted on skin for generations. Ours is <span class="key">100% pure</span>, applied <span class="key">only on the wart</span> with the precision tip — so it goes to work where you need it, and nowhere you don't. <span class="key">No frozen tissue, no chemical burns, no scarring</span> of healthy skin.</p>
+        <p class="bx-desc">Tea tree oil (<em>Melaleuca alternifolia</em>) has been trusted on skin for generations. Ours is <span class="key">100% pure</span>, applied <span class="key">only on the wart</span> with the precision tip — so it goes to work where you need it, and nowhere you don't. <span class="key">No frozen tissue</span>, <span class="key">no chemical burns</span>, <span class="key">no scarring</span> of healthy skin.</p>
 
         <div class="acc">
           <details><summary>How fast does it work?</summary><p>Most people see darkening within days and full results in 2–6 weeks. Stubborn or plantar warts take longer. Consistency (2–3× a day) is everything.</p></details>
@@ -777,12 +778,6 @@ section{padding:74px 0}
       <div class="rev-grid fade-slow" id="revFeatured"></div>
       <div class="rev-more" id="revMore" hidden></div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">See all 487 reviews ↓</button></div>
-      <div class="ugc-strip fade-slow">
-        <img src="assets/tea-review4.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
-        <img src="assets/tea-review5.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
-        <img src="assets/tea-review6.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
-        <img src="assets/tea-review7.webp" alt="Happy Kalmely customer holding the product" loading="lazy">
-      </div>
     </div>
   </section>
 
