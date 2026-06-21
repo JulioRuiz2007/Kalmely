@@ -161,10 +161,13 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 
 /* ============ HERO ============ */
 .hero{padding:30px 0 14px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 468px;gap:54px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 468px;grid-template-areas:"gallery head" "gallery buy";gap:16px 54px;align-items:start}
+.hero-head{grid-area:head}
+.buybox{grid-area:buy}
+.hx-eyebrow{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
 
 /* gallery */
-.gallery{position:sticky;top:84px}
+.gallery{grid-area:gallery;position:sticky;top:84px}
 .hero-stage{position:relative;overflow:hidden;border-radius:14px;background:var(--paper-2)}
 .hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .hero-track.dragging{transition:none}
@@ -198,6 +201,8 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .stars{color:var(--ink);letter-spacing:2px;font-size:14px}
 .rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
 .bx-h1{font-size:clamp(32px,3.6vw,44px);margin:12px 0 4px}
+.bx-h1 .hl{color:var(--gold);font-style:italic}
+.bx-h1 .h1-sub{display:block;font:400 .46em/1.25 var(--sans);color:var(--ink-2);margin-top:9px;letter-spacing:0}
 .bx-sub{font:400 17px/1.4 var(--sans);color:var(--ink-2);margin-bottom:8px}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -510,7 +515,7 @@ section{padding:74px 0}
 
 /* ============ responsive ============ */
 @media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .hero-grid{grid-template-columns:1fr;grid-template-areas:"head" "gallery" "buy";gap:20px}
   .gallery{position:static}
   .reasons,.values,.steps,.life,.rev-grid{grid-template-columns:1fr 1fr}
   .rev-top{grid-template-columns:1fr;gap:20px}
@@ -573,12 +578,17 @@ section{padding:74px 0}
         </div>
       </div>
 
+      <!-- hero headline (need RESOLVED first — Elixir pattern; on mobile shows above the image) -->
+      <div class="hero-head fade-slow">
+        <div class="hx-eyebrow">Kalmely · Tea Tree Oil</div>
+        <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews">Loved by families</a></div>
+        <h1 class="bx-h1">Finally clear that <span class="hl">stubborn wart</span><span class="h1-sub">Gently, at home — no freezing, no acid, no doctor.</span></h1>
+        <p class="bx-sub">Pure tea tree oil that targets the wart, not the skin around it — watch it darken, dry, and lift away. No burns, no scars.</p>
+        <a href="#results" class="bx-link">See real before &amp; afters ›</a>
+      </div>
+
       <!-- buy box -->
       <div class="buybox fade-slow">
-        <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews">Loved by families</a></div>
-        <h1 class="bx-h1">Kalmely Tea Tree Oil</h1>
-        <p class="bx-sub">Clear skin, the gentle way — no freezing, no acid, no tears.</p>
-        <a href="#results" class="bx-link">See real before &amp; afters ›</a>
 
         <div class="bx-benefits">
           <details class="bx-benefit"><summary>No freezing. No acid. No pain.</summary><p>Pure tea tree oil works gently on the surface — no burning or blistering, and safe on the healthy skin around the wart.</p></details>
