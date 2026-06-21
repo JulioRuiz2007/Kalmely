@@ -267,6 +267,9 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 @keyframes scpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
 .hx-proof{font:500 13.5px/1.45 var(--sans);color:var(--ink-2);margin:0 0 15px;font-style:italic}
 .hx-proof .vf{font-style:normal;font-size:11px;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.04em;margin-left:5px}
+.pack-stock{display:block;margin-top:7px;font:700 10.5px/1.2 var(--sans);color:var(--ok);letter-spacing:.01em}
+.bx-stockbar{height:6px;border-radius:4px;background:var(--line-2);overflow:hidden;margin:8px 0 0}
+.bx-stockbar span{display:block;height:100%;width:96%;background:var(--ok);border-radius:4px;transition:width .35s ease}
 .bx-deliver{text-align:center;font:500 13px/1.4 var(--sans);color:var(--ink-2);margin-top:12px}
 .bx-deliver b{color:var(--ink)}
 .bx-pay{display:flex;justify-content:center;gap:8px;margin-top:12px;opacity:.7}
@@ -632,7 +635,8 @@ section{padding:74px 0}
 
         <div class="pack-gifts" id="packGifts"></div>
 
-        <div class="bx-scarcity"><span class="sdot"></span> Selling fast — low stock at this price</div>
+        <div class="bx-scarcity"><span class="sdot"></span> Only <b id="scarceN">2</b> left in stock — selling fast</div>
+        <div class="bx-stockbar"><span id="scarceBar"></span></div>
         <button type="button" class="add-to-cart">Add to cart</button>
         <div class="sub-note" id="subNote">Subscribe &amp; Save · renews every 2 months · cancel anytime</div>
         <div class="bx-deliver">🚚 Free shipping · order today, get it by <b id="deliveryDate">soon</b></div>
@@ -907,13 +911,15 @@ section{padding:74px 0}
   // ===== Offer model: tea-tree sizes (USD) — 30ml / 60ml / 60ml+gifts (subscription) =====
   var VARIANT='TEA';
   var TIERS={
-    'TEA-30':{price:34.95,was:44.95,label:'30 ml',sub:false,gifts:false},
-    'TEA-60':{price:49.95,was:69.95,label:'60 ml',sub:false,gifts:false},
-    'TEA-60-GIFTS':{price:54.95,was:104.95,label:'100 ml + 4 gifts',sub:true,gifts:true}
+    'TEA-30':{price:34.95,was:44.95,label:'30 ml',sub:false,gifts:false,stock:9},
+    'TEA-60':{price:49.95,was:69.95,label:'60 ml',sub:false,gifts:false,stock:5},
+    'TEA-60-GIFTS':{price:54.95,was:104.95,label:'100 ml + 4 gifts',sub:true,gifts:true,stock:2}
   };
   var DEFAULT='TEA-30';  // land on the low-friction hook pack (one-time), not the subscription — they trade up to "Most popular"
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
   var packs=document.querySelectorAll('.pack');
+  // per-pack low-stock urgency badge (rendered once on each pack card)
+  packs.forEach(function(p){var s=(TIERS[p.dataset.sku]||{}).stock;if(s){var el=document.createElement('span');el.className='pack-stock';el.textContent='🔥 Only '+s+' left';p.appendChild(el);}});
   var addBtns=document.querySelectorAll('.add-to-cart');
   var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
   var colours=[]; var pillowColor='';
@@ -929,6 +935,9 @@ section{padding:74px 0}
     if(scP)scP.textContent=money(m.price); if(scL)scL.textContent=lab;
     var ql=document.getElementById('qtyLabel');if(ql)ql.textContent='· '+lab;
     var sn=document.getElementById('subNote');if(sn)sn.style.display=info(curSku).sub?'block':'none';
+    var st=info(curSku).stock||0;
+    var scN=document.getElementById('scarceN');if(scN)scN.textContent=st;
+    var scB=document.getElementById('scarceBar');if(scB)scB.style.width=Math.max(80,Math.round((1-st/60)*100))+'%';
   }
   // No colour variant for the oil — keep the picker containers empty.
   function renderPicker(){ pickerEls.forEach(function(el){el.innerHTML='';}); }
