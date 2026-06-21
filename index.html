@@ -370,6 +370,7 @@ section{padding:74px 0}
 .rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
 .rev-bar.is-active .fill{background:var(--gold)}
 .rev-more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.rev-more[hidden]{display:none}
 .rev-morewrap{text-align:center;margin-top:26px}
 .rev-morebtn{font:600 14px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
 .rev-morebtn:hover{background:var(--ink);color:var(--paper)}
@@ -776,7 +777,7 @@ section{padding:74px 0}
         <div class="rev-dist" id="revDist"></div>
       </div>
       <div class="rev-grid fade-slow" id="revFeatured"></div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">See all 487 reviews ↓</button></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
     </div>
   </section>
@@ -1213,7 +1214,7 @@ section{padding:74px 0}
   }
   if(btn)btn.addEventListener('click',function(){
     if(more.hidden){more.hidden=false;btn.textContent='Show less ↑';}
-    else{more.hidden=true;setFilter(0);btn.textContent='See all '+TOTAL+' reviews ↓';}
+    else{more.hidden=true;setFilter(0);btn.textContent='Show more reviews ↓';}
   });
   dist.addEventListener('click',function(e){var b=e.target.closest('.rev-bar');if(!b)return;
     if(more.hidden&&btn){more.hidden=false;btn.textContent='Show less ↑';}
