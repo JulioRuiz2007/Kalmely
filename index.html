@@ -84,9 +84,9 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .nav-links a{color:var(--ink);font:700 16px/1 var(--sans)}
 .nav-links a:hover{color:var(--brand)}
 .nav-right{display:flex;align-items:center;gap:18px}
-.phone{display:flex;align-items:center;gap:9px;font:800 17px/1.1 var(--sans);color:var(--ink)}
-.phone svg{width:22px;height:22px;color:var(--brand);flex:none}
-.phone small{display:block;font:600 11px/1.2 var(--sans);color:var(--soft)}
+.phone{display:flex;align-items:center;gap:6px;font:700 13px/1.1 var(--sans);color:var(--ink2)}
+.phone svg{width:16px;height:16px;color:var(--brand);flex:none}
+.phone small{display:block;font:600 10px/1.2 var(--sans);color:var(--soft)}
 .phone .ph-num{white-space:nowrap}
 .phone span{white-space:nowrap}
 .cart-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--ink)}
@@ -110,12 +110,16 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 
 /* gallery */
 .gallery{grid-area:gallery;position:sticky;top:90px}
-.stage{position:relative;aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;background:var(--bg2);touch-action:pan-y}
-.stage .ph{border-radius:var(--r)}
-.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:11px;min-height:44px}/* reserve thumb row (CLS) */
-.thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;opacity:.6;background:var(--bg2);padding:0}
-.thumb.on{opacity:1;border-color:var(--brand)}
-.thumb .ph{min-height:0;border:none;border-radius:8px;padding:4px}
+/* hero carousel (translateX track + swipe — smooth, reserves space → no CLS) */
+.hero-stage{position:relative;overflow:hidden;border-radius:var(--r);background:var(--bg2);touch-action:pan-y}
+.hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-track.dragging{transition:none}
+.hero-slide{flex:0 0 100%;aspect-ratio:1/1;position:relative}
+.hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:11px}
+.hero-thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;opacity:.55;background:var(--bg2);padding:0;transition:opacity .2s,border-color .2s}
+.hero-thumb.is-active{opacity:1;border-color:var(--cta)}
+.hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb .ph svg{width:18px;height:18px}.thumb .ph .pl{font-size:8px;line-height:1.1}
 
 /* ---- buy box / offer ---- */
@@ -291,7 +295,7 @@ body.cookie-open .sticky{display:none!important}
 
 .stage .ph .pt{font:700 14px/1.3 var(--sans);letter-spacing:.04em;text-transform:none;opacity:.85;color:var(--ink2)}
 .gift-tags{position:absolute;inset:0;pointer-events:none}
-.free-tag{position:absolute;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 11px;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);font:700 12.5px/1.25 var(--sans);max-width:48%}
+.free-tag{position:absolute;z-index:2;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 11px;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);font:700 12.5px/1.25 var(--sans);max-width:48%}
 .free-tag .ft-val{color:var(--cta-text);font-weight:800;margin-top:2px}
 .free-tag .ft-val s{color:var(--soft);font-weight:600;margin-right:5px}
 .free-tag.t1{top:5%;left:3%}.free-tag.t2{top:31%;right:3%}.free-tag.t3{top:5%;left:50%;transform:translateX(-50%)}
@@ -311,8 +315,6 @@ body.cookie-open .sticky{display:none!important}
 .gift-val s{color:var(--soft);font-weight:600;margin-right:6px}
 .rev-ava{width:60px;height:60px;border-radius:50%;flex:none;background:repeating-linear-gradient(45deg,#ECE5D6,#ECE5D6 8px,#E4DBC8 8px,#E4DBC8 16px);border:2px dashed #C2B393;display:flex;align-items:center;justify-content:center;font:700 9px/1.1 var(--sans);color:#8A7C5E}
 /* gallery images */
-.stage img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
 /* 60-day seal graphic — CSS stand-in for the Canva seal (gallery slide 6 + guarantee) */
 .seal-graphic{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;background:radial-gradient(circle at 50% 36%,#155472,#103A4F 62%,#0B2C3D);color:#fff;border-radius:var(--r);padding:26px}
 .seal-graphic .seal-top{font:800 30px/1 var(--serif);color:#FFC9A0}
@@ -422,8 +424,28 @@ window.kPixelOn();
     </div>
 
     <div class="gallery">
-      <div class="stage" id="stage"><img src="assets/balm/balm-master.webp" alt="Get back on the floor with the grandkids" width="1024" height="1024" fetchpriority="high"></div>
-      <div class="thumbs" id="thumbs"></div>
+      <div class="hero-stage">
+        <div class="hero-track" id="heroTrack">
+          <div class="hero-slide"><img src="assets/balm/balm-master.webp" alt="Get back on the floor with the grandkids" width="1024" height="1024" fetchpriority="high"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-inuse.webp" alt="Kalmely Relief balm rubbed on a sore knee" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-benefits.webp" alt="Why it works — move freely, sleep, no pills" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-howto.webp" alt="How to use it — easy as 1-2-3" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-seal.webp" alt="60-day money-back guarantee" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-bundle.webp" alt="2 jars plus 3 free gifts" width="1024" height="1024" loading="lazy">
+            <div class="free-tag t1">Knee sleeve<div class="ft-val"><s>$19</s> FREE</div></div>
+            <div class="free-tag t2">Hot/cold pack<div class="ft-val"><s>$14</s> FREE</div></div>
+            <div class="free-tag t3">Mobility e-book<div class="ft-val"><s>$19</s> FREE</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-thumbs">
+        <button type="button" class="hero-thumb is-active" aria-label="Back on the floor"><img src="assets/balm/balm-master.webp" alt=""></button>
+        <button type="button" class="hero-thumb" aria-label="In use"><img src="assets/balm/balm-inuse.webp" alt=""></button>
+        <button type="button" class="hero-thumb" aria-label="Why it works"><img src="assets/balm/balm-benefits.webp" alt=""></button>
+        <button type="button" class="hero-thumb" aria-label="How to use"><img src="assets/balm/balm-howto.webp" alt=""></button>
+        <button type="button" class="hero-thumb" aria-label="Guarantee"><img src="assets/balm/balm-seal.webp" alt=""></button>
+        <button type="button" class="hero-thumb" aria-label="2 jars plus gifts"><img src="assets/balm/balm-bundle.webp" alt=""></button>
+      </div>
     </div>
 
     <div class="buybox">
@@ -457,16 +479,6 @@ window.kPixelOn();
   </div>
 </section>
 
-<!-- gallery slides — real images; slide 6 (seal) is a CSS stand-in until the Canva seal PNG is dropped in -->
-<script id="slides" type="application/json">[
- {"t":"Back on the floor with the grandkids","img":"assets/balm/balm-master.webp"},
- {"t":"In use on the knee","img":"assets/balm/balm-inuse.webp"},
- {"t":"Why it works — move freely, sleep, no pills","img":"assets/balm/balm-benefits.webp"},
- {"t":"How to use it — easy as 1-2-3","img":"assets/balm/balm-howto.webp"},
- {"t":"60-day money-back guarantee","img":"assets/balm/balm-seal.webp"},
- {"t":"2 jars + 3 free gifts","img":"assets/balm/balm-bundle.webp","gifts":[["Knee sleeve","$19"],["Mobility e-book","$19"],["Hot/cold pack","$14"]]}
-]</script>
-
 <!-- ===== TRUST BAR ===== -->
 <div class="trustbar">
   <div class="wrap">
@@ -480,26 +492,20 @@ window.kPixelOn();
 <!-- ===== THE PROBLEM (their language) ===== -->
 <section>
   <div class="wrap narrow">
-    <h2>When getting out of bed feels like getting hit by a truck</h2>
+    <h2>If this sounds familiar, <span class="hl">Kalmely is for you</span></h2>
     <ul class="pain-points">
-      <li>Hit by a truck every morning, before the day even starts</li>
+      <li>When getting out of bed feels like getting hit by a truck</li>
       <li>Rusty hinges that grind when you stand</li>
       <li>Watching from the couch while life happens on the floor</li>
     </ul>
   </div>
 </section>
 
-<!-- ===== WHY IT WORKS (infographic, below the hero) ===== -->
-<section>
-  <div class="wrap narrow" style="text-align:center">
-    <img src="assets/balm/balm-why-works.webp" alt="Why Kalmely Relief works — reaches past the skin to the joint with natural actives" width="1080" height="1080" loading="lazy" style="width:100%;height:auto;max-width:680px;border-radius:var(--r);border:1px solid var(--line);display:block;margin:0 auto">
-  </div>
-</section>
-
-<!-- ===== MECHANISM ===== -->
+<!-- ===== HOW IT WORKS (mechanism + "Why Kalmely works" infographic) ===== -->
 <section id="how">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">How it works</div><h2>Why your other creams quit after 20 minutes<br>and this one doesn't</h2><p>Most rubs only heat or cool the skin for a few minutes. Kalmely Relief is built to reach the part that <span class="key">actually hurts</span>.</p></div>
+    <div style="max-width:680px;margin:4px auto 24px"><img src="assets/balm/balm-why-works.webp" alt="Why Kalmely Relief works — reaches past the skin to the joint with natural actives" width="1080" height="1080" loading="lazy" style="width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);display:block"></div>
     <div class="mech">
       <div class="step"><div class="n">1</div><h3>They only cool the skin</h3><p>Menthol creams numb the surface; the ache lives deeper, untouched.</p></div>
       <div class="step"><div class="n">2</div><h3>This sinks to the joint</h3><p>Arnica, boswellia and MSM carry deep, where the grinding really is.</p></div>
@@ -546,6 +552,43 @@ window.kPixelOn();
   </div>
 </section>
 
+<!-- ===== AUTHORITY / FORMULATED WITH ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">What's inside</div><h2>The three the physical therapist told her to look for: arnica, boswellia &amp; MSM</h2><p>No fillers you can't pronounce. Here's what's doing the work:</p></div>
+    <div class="ingredients narrow">
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg></div><div><h3>Arnica</h3><p>Traditionally used to soothe sore joints &amp; bruising.</p></div></div>
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div><div><h3>Boswellia</h3><p>Traditionally used to ease stiff, aching joints.</p></div></div>
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="2"/><circle cx="5.5" cy="7" r="2"/><circle cx="18.5" cy="7" r="2"/><path d="M7.2 8.2 10.3 11.6M16.8 8.2 13.7 11.6M12 15v3.5"/></svg></div><div><h3>MSM</h3><p>Supports comfortable joint movement.</p></div></div>
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M4.2 7l15.6 10M19.8 7 4.2 17"/></svg></div><div><h3>Menthol</h3><p>Cooling relief that calms the ache on contact.</p></div></div>
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><div><h3>Magnesium</h3><p>Helps relax tight, tired muscles.</p></div></div>
+      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div><div><h3>Camphor</h3><p>Warming comfort that works with the menthol.</p></div></div>
+    </div>
+    <p class="narrow" style="text-align:center;margin-top:18px;color:var(--ink2);font-size:16px">Formulated in the USA with clinically-used natural actives. No parabens, no harsh chemicals.</p>
+  </div>
+</section>
+
+<!-- ===== HOW TO USE + FAQ ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">It couldn't be simpler</div><h2>How to use it: rub it in, two or three times a day</h2></div>
+    <div class="steps narrow">
+      <div class="step"><div class="n">1</div><h3>Apply</h3><p>Squeeze a small amount onto the sore knee, back or shoulder.</p></div>
+      <div class="step"><div class="n">2</div><h3>Massage in</h3><p>Rub gently until it absorbs — about 30 seconds. No grease left behind.</p></div>
+      <div class="step"><div class="n">3</div><h3>Feel relief</h3><p>Feel it cool and calm. Use morning, evening, and before activity.</p></div>
+    </div>
+    <div class="faq">
+      <details><summary>How fast will I feel it?</summary><p>Most people feel cooling relief within minutes of applying. For deeper, lasting comfort, use it daily — many notice a real difference within about a week.</p></details>
+      <details><summary>Is it safe to use with my other medications?</summary><p>It's for external use — you rub it on the skin, you don't swallow it, so it doesn't interact the way a pill does. If you take blood thinners or have a skin condition, check with your doctor or pharmacist to be safe.</p></details>
+      <details><summary>Does the savings option lock me into anything?</summary><p>No. The Subscribe &amp; Save option is the only one that repeats: we send 2 jars every 60 days and email you 3 days before each charge. You can cancel anytime in one click or one call — no commitment, no fees. The 1-jar and 2-jar packs are one-time purchases that never renew.</p></details>
+      <details><summary>Will it feel greasy or smell like medicine?</summary><p>No. It absorbs quickly with no greasy residue and a clean, light botanical scent — so you can apply it and go about your day.</p></details>
+      <details><summary>Where on the body can I use it?</summary><p>Knees, lower back, shoulders, neck, hands, hips, feet — anywhere you have joint or muscle aches. Avoid broken skin and eyes.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>Then you pay nothing. You're covered by our 60-day money-back guarantee — keep the jar and we'll refund you, no questions asked.</p></details>
+      <details><summary>Can I speak to a real person?</summary><p>Yes. Call <b>1-800-555-0188</b> and a real US-based person will help you — with your order, your questions, or your guarantee.</p></details>
+    </div>
+  </div>
+</section>
+
 <!-- ===== REVIEWS ===== -->
 <section class="band" id="reviews">
   <div class="wrap">
@@ -573,49 +616,12 @@ window.kPixelOn();
   </div>
 </section>
 
-<!-- ===== AUTHORITY / FORMULATED WITH ===== -->
-<section>
-  <div class="wrap">
-    <div class="sec-head"><div class="eyebrow">What's inside</div><h2>The three the physical therapist told her to look for: arnica, boswellia &amp; MSM</h2><p>No fillers you can't pronounce. Here's what's doing the work:</p></div>
-    <div class="ingredients narrow">
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg></div><div><h3>Arnica</h3><p>Traditionally used to soothe sore joints &amp; bruising.</p></div></div>
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div><div><h3>Boswellia</h3><p>Traditionally used to ease stiff, aching joints.</p></div></div>
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="2"/><circle cx="5.5" cy="7" r="2"/><circle cx="18.5" cy="7" r="2"/><path d="M7.2 8.2 10.3 11.6M16.8 8.2 13.7 11.6M12 15v3.5"/></svg></div><div><h3>MSM</h3><p>Supports comfortable joint movement.</p></div></div>
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M4.2 7l15.6 10M19.8 7 4.2 17"/></svg></div><div><h3>Menthol</h3><p>Cooling relief that calms the ache on contact.</p></div></div>
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><div><h3>Magnesium</h3><p>Helps relax tight, tired muscles.</p></div></div>
-      <div class="ing"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div><div><h3>Camphor</h3><p>Warming comfort that works with the menthol.</p></div></div>
-    </div>
-    <p class="narrow" style="text-align:center;margin-top:18px;color:var(--ink2);font-size:16px">Formulated in the USA with clinically-used natural actives. No parabens, no harsh chemicals.</p>
-  </div>
-</section>
-
 <!-- ===== GUARANTEE ===== -->
 <section class="guarantee" id="guarantee">
   <div class="wrap narrow">
     <img class="guar-seal" src="assets/balm/balm-seal.webp" alt="60-Day Money-Back Guarantee — Keep the jar" width="190" height="190" style="width:190px;height:auto;margin:0 auto 16px;display:block;mix-blend-mode:multiply">
     <h2>Try it for 60 days. If it doesn't reach your pain, we'll refund you.</h2>
     <p>Use it as directed. If you're not moving more comfortably, email or call us within 60 days for a <span class="key">full refund</span>. <span class="key">No need to return the jar</span>, no fine print. We'd rather earn your trust than keep your money.</p>
-  </div>
-</section>
-
-<!-- ===== HOW TO USE + FAQ ===== -->
-<section class="band">
-  <div class="wrap">
-    <div class="sec-head"><div class="eyebrow">It couldn't be simpler</div><h2>How to use it: rub it in, two or three times a day</h2></div>
-    <div class="steps narrow">
-      <div class="step"><div class="n">1</div><h3>Apply</h3><p>Squeeze a small amount onto the sore knee, back or shoulder.</p></div>
-      <div class="step"><div class="n">2</div><h3>Massage in</h3><p>Rub gently until it absorbs — about 30 seconds. No grease left behind.</p></div>
-      <div class="step"><div class="n">3</div><h3>Feel relief</h3><p>Feel it cool and calm. Use morning, evening, and before activity.</p></div>
-    </div>
-    <div class="faq">
-      <details><summary>How fast will I feel it?</summary><p>Most people feel cooling relief within minutes of applying. For deeper, lasting comfort, use it daily — many notice a real difference within about a week.</p></details>
-      <details><summary>Is it safe to use with my other medications?</summary><p>It's for external use — you rub it on the skin, you don't swallow it, so it doesn't interact the way a pill does. If you take blood thinners or have a skin condition, check with your doctor or pharmacist to be safe.</p></details>
-      <details><summary>Does the savings option lock me into anything?</summary><p>No. The Subscribe &amp; Save option is the only one that repeats: we send 2 jars every 60 days and email you 3 days before each charge. You can cancel anytime in one click or one call — no commitment, no fees. The 1-jar and 2-jar packs are one-time purchases that never renew.</p></details>
-      <details><summary>Will it feel greasy or smell like medicine?</summary><p>No. It absorbs quickly with no greasy residue and a clean, light botanical scent — so you can apply it and go about your day.</p></details>
-      <details><summary>Where on the body can I use it?</summary><p>Knees, lower back, shoulders, neck, hands, hips, feet — anywhere you have joint or muscle aches. Avoid broken skin and eyes.</p></details>
-      <details><summary>What if it doesn't work for me?</summary><p>Then you pay nothing. You're covered by our 60-day money-back guarantee — keep the jar and we'll refund you, no questions asked.</p></details>
-      <details><summary>Can I speak to a real person?</summary><p>Yes. Call <b>1-800-555-0188</b> and a real US-based person will help you — with your order, your questions, or your guarantee.</p></details>
-    </div>
   </div>
 </section>
 
@@ -706,30 +712,17 @@ window.kPixelOn();
 <script src="assets/relief-reviews.js"></script>
 <script>
 (function(){
-  // ---------- gallery ----------
-  var slides=[]; try{slides=JSON.parse(document.getElementById('slides').textContent);}catch(e){}
-  var stage=document.getElementById('stage'), thumbsBox=document.getElementById('thumbs');
-  function aAttr(s){return (s||'').replace(/"/g,'&quot;');}
-  function sealHTML(){return '<div class="seal-graphic"><span class="seal-top">60-Day</span><span class="seal-mid">Money-Back<br>Guarantee</span><span class="seal-bot">Keep the jar</span></div>';}
-  function tagsHTML(g){return g&&g.length?'<div class="gift-tags">'+g.map(function(x,i){return '<div class="free-tag t'+(i+1)+'">'+aAttr(x[0])+'<div class="ft-val"><s>'+aAttr(x[1])+'</s> FREE</div></div>';}).join('')+'</div>':'';}
-  function stageHTML(s,i){
-    if(s.seal) return sealHTML();
-    if(s.img) return '<img src="'+s.img+'" alt="'+aAttr(s.t)+'" width="1024" height="1024"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'>'+tagsHTML(s.gifts);
-    return '<div class="ph"><span class="pt">'+aAttr(s.t)+'</span></div>';
+  // ---------- hero carousel (translateX track + native swipe — smooth, no innerHTML rebuild) ----------
+  var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack');
+  if(hThumbs.length&&hTrack){
+    var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
+    function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
+    hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
+    hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
+    hGo(0);
   }
-  var curSlide=0;
-  function showSlide(i){if(i<0)i=slides.length-1;if(i>=slides.length)i=0;curSlide=i;var s=slides[i]||{};stage.innerHTML=stageHTML(s,i);[].forEach.call(thumbsBox.children,function(t,k){t.classList.toggle('on',k===i);});}
-  thumbsBox.innerHTML=slides.map(function(s,i){
-    var inner=s.seal?'<div class="thumb-seal">60-day<br>guarantee</div>':(s.img?'<img src="'+s.img+'" alt="" width="1024" height="1024" loading="lazy">':'<div class="ph"><span class="pl">'+aAttr(s.t)+'</span></div>');
-    return '<button class="thumb'+(i===0?' on':'')+'" data-i="'+i+'" aria-label="'+aAttr(s.t)+'">'+inner+'</button>';
-  }).join('');
-  [].forEach.call(thumbsBox.children,function(t,i){t.addEventListener('click',function(){showSlide(i);});});
-  // initial slide is already in the HTML stage (reserves space, no CLS) — just mark the active thumb
-  curSlide=0;[].forEach.call(thumbsBox.children,function(t,k){t.classList.toggle('on',k===0);});
-  // swipe on mobile (horizontal changes slide; vertical still scrolls the page)
-  var _sx=0,_sy=0;
-  stage.addEventListener('touchstart',function(e){_sx=e.changedTouches[0].clientX;_sy=e.changedTouches[0].clientY;},{passive:true});
-  stage.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-_sx,dy=e.changedTouches[0].clientY-_sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))showSlide(curSlide+(dx<0?1:-1));},{passive:true});
 
   // ---------- offer ----------
   var TIERS={
