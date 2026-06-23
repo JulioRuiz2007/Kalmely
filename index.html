@@ -14,7 +14,7 @@
 <meta property="og:description" content="Move freely again — without the pills. A natural balm that reaches the deep joint &amp; muscle ache. 60-day money-back guarantee.">
 <meta property="og:image" content="https://kalmely.com/assets/balm/balm-master.webp">
 <link rel="icon" type="image/png" href="assets/favicon-k64.png">
-<link rel="preload" as="image" href="assets/balm/balm-master.webp" fetchpriority="high"><!-- LCP -->
+<link rel="preload" as="image" imagesrcset="assets/balm/balm-master-sm.webp 720w, assets/balm/balm-master.webp 1024w" imagesizes="(max-width:560px) 320px, 460px" fetchpriority="high"><!-- LCP -->
 <style>
 :root{
   --bg:#F6F2EA;        /* warm off-white, NOT pure white (glare) */
@@ -111,11 +111,11 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 /* gallery */
 .gallery{grid-area:gallery;position:sticky;top:90px}
 /* hero carousel (translateX track + swipe — smooth, reserves space → no CLS) */
-.hero-stage{position:relative;overflow:hidden;border-radius:var(--r);background:var(--bg2);touch-action:pan-y}
+.hero-stage{position:relative;overflow:hidden;border-radius:var(--r);background:var(--bg2);touch-action:pan-y;aspect-ratio:1/1}
 .hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .hero-track.dragging{transition:none}
 .hero-slide{flex:0 0 100%;aspect-ratio:1/1;position:relative}
-.hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-slide>img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}/* in-flow + aspect-ratio reserves height before pixels load → no CLS */
 .hero-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:11px}
 .hero-thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;opacity:.55;background:var(--bg2);padding:0;transition:opacity .2s,border-color .2s}
 .hero-thumb.is-active{opacity:1;border-color:var(--cta)}
@@ -426,12 +426,12 @@ window.kPixelOn();
     <div class="gallery">
       <div class="hero-stage">
         <div class="hero-track" id="heroTrack">
-          <div class="hero-slide"><img src="assets/balm/balm-master.webp" alt="Get back on the floor with the grandkids" width="1024" height="1024" fetchpriority="high"></div>
-          <div class="hero-slide"><img src="assets/balm/balm-inuse.webp" alt="Kalmely Relief balm rubbed on a sore knee" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/balm/balm-benefits.webp" alt="Why it works — move freely, sleep, no pills" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/balm/balm-howto.webp" alt="How to use it — easy as 1-2-3" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/balm/balm-seal.webp" alt="60-day money-back guarantee" width="1024" height="1024" loading="lazy"></div>
-          <div class="hero-slide"><img src="assets/balm/balm-bundle.webp" alt="2 jars plus 3 free gifts" width="1024" height="1024" loading="lazy">
+          <div class="hero-slide"><img src="assets/balm/balm-master-sm.webp" srcset="assets/balm/balm-master-sm.webp 720w, assets/balm/balm-master.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="Get back on the floor with the grandkids" width="1024" height="1024" fetchpriority="high"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-inuse-sm.webp" srcset="assets/balm/balm-inuse-sm.webp 720w, assets/balm/balm-inuse.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="Kalmely Relief balm rubbed on a sore knee" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-benefits-sm.webp" srcset="assets/balm/balm-benefits-sm.webp 720w, assets/balm/balm-benefits.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="Why it works — move freely, sleep, no pills" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-howto-sm.webp" srcset="assets/balm/balm-howto-sm.webp 720w, assets/balm/balm-howto.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="How to use it — easy as 1-2-3" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-seal-sm.webp" srcset="assets/balm/balm-seal-sm.webp 720w, assets/balm/balm-seal.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="60-day money-back guarantee" width="1024" height="1024" loading="lazy"></div>
+          <div class="hero-slide"><img src="assets/balm/balm-bundle-sm.webp" srcset="assets/balm/balm-bundle-sm.webp 720w, assets/balm/balm-bundle.webp 1024w" sizes="(max-width:560px) 320px, 460px" alt="2 jars plus 3 free gifts" width="1024" height="1024" loading="lazy">
             <div class="free-tag t1">Knee sleeve<div class="ft-val"><s>$19</s> FREE</div></div>
             <div class="free-tag t2">Hot/cold pack<div class="ft-val"><s>$14</s> FREE</div></div>
             <div class="free-tag t3">Mobility e-book<div class="ft-val"><s>$19</s> FREE</div></div>
@@ -439,12 +439,12 @@ window.kPixelOn();
         </div>
       </div>
       <div class="hero-thumbs">
-        <button type="button" class="hero-thumb is-active" aria-label="Back on the floor"><img src="assets/balm/balm-master.webp" alt=""></button>
-        <button type="button" class="hero-thumb" aria-label="In use"><img src="assets/balm/balm-inuse.webp" alt=""></button>
-        <button type="button" class="hero-thumb" aria-label="Why it works"><img src="assets/balm/balm-benefits.webp" alt=""></button>
-        <button type="button" class="hero-thumb" aria-label="How to use"><img src="assets/balm/balm-howto.webp" alt=""></button>
-        <button type="button" class="hero-thumb" aria-label="Guarantee"><img src="assets/balm/balm-seal.webp" alt=""></button>
-        <button type="button" class="hero-thumb" aria-label="2 jars plus gifts"><img src="assets/balm/balm-bundle.webp" alt=""></button>
+        <button type="button" class="hero-thumb is-active" aria-label="Back on the floor"><img src="assets/balm/balm-master-tn.webp" alt="" width="160" height="160"></button>
+        <button type="button" class="hero-thumb" aria-label="In use"><img src="assets/balm/balm-inuse-tn.webp" alt="" width="160" height="160"></button>
+        <button type="button" class="hero-thumb" aria-label="Why it works"><img src="assets/balm/balm-benefits-tn.webp" alt="" width="160" height="160"></button>
+        <button type="button" class="hero-thumb" aria-label="How to use"><img src="assets/balm/balm-howto-tn.webp" alt="" width="160" height="160"></button>
+        <button type="button" class="hero-thumb" aria-label="Guarantee"><img src="assets/balm/balm-seal-tn.webp" alt="" width="160" height="160"></button>
+        <button type="button" class="hero-thumb" aria-label="2 jars plus gifts"><img src="assets/balm/balm-bundle-tn.webp" alt="" width="160" height="160"></button>
       </div>
     </div>
 
