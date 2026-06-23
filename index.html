@@ -122,18 +122,21 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .bb-title{font:800 18px/1.2 var(--sans);margin-bottom:4px}
 .bb-sub{font-size:14px;color:var(--soft);margin-bottom:16px}
 .packs{display:grid;gap:12px}
-.pack{position:relative;display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;
-  border:2px solid var(--line);border-radius:14px;padding:16px 16px;cursor:pointer;background:#fff;text-align:left;min-height:64px;color:var(--ink);-webkit-appearance:none;appearance:none}
+.pack{position:relative;display:grid;grid-template-columns:26px 1fr;align-items:start;gap:13px;
+  border:2px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer;background:#fff;text-align:left;min-height:58px;color:var(--ink);-webkit-appearance:none;appearance:none}
 .pack.on{border-color:var(--cta);background:#FFF7EF;box-shadow:0 0 0 3px rgba(232,129,48,.18)}
-.pack .radio{width:24px;height:24px;border-radius:50%;border:2px solid #BBB;flex:none;position:relative}
+.pack .radio{width:24px;height:24px;border-radius:50%;border:2px solid #BBB;flex:none;position:relative;margin-top:1px}
 .pack.on .radio{border-color:var(--cta)}
 .pack.on .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--cta)}
-.pk-save{font:700 12px/1 var(--sans);color:var(--cta-text);text-align:right;margin-top:3px}
-.pack .pk-name{display:block;font:800 18px/1.2 var(--sans);color:var(--ink)}
-.pack .pk-meta{display:block;font-size:13px;color:var(--ink2);margin-top:4px}
-.pack .pk-price{font:800 20px/1 var(--sans);text-align:right;color:var(--ink)}
-.pack .pk-price s{display:block;font:600 13px/1 var(--sans);color:var(--soft);margin-bottom:3px}
-.pack .pk-per{font:600 12px/1 var(--sans);color:var(--soft);text-align:right;margin-top:3px}
+.pk-body{min-width:0}
+.pk-top,.pk-bot{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.pk-bot{margin-top:3px}
+.pack .pk-name{font:800 17.5px/1.15 var(--sans);color:var(--ink)}
+.pack .pk-meta{font-size:13px;line-height:1.3;color:var(--ink2)}
+.pack .pk-price{font:800 20px/1 var(--sans);color:var(--ink);white-space:nowrap;text-align:right;flex:none}
+.pack .pk-price s{font-weight:600;font-size:13px;color:var(--soft);margin-right:6px}
+.pack .pk-per{font:600 12.5px/1 var(--sans);color:var(--soft);white-space:nowrap;text-align:right;flex:none}
+.pk-save{font:700 12.5px/1 var(--sans);color:var(--cta-text);text-align:right;margin-top:6px}
 .tag{position:absolute;top:-11px;left:16px;font:800 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:7px;color:#fff}
 .tag.pop{background:var(--cta);color:var(--ink)}
 .tag.best{background:var(--brand)}
@@ -725,7 +728,7 @@ body.cookie-open .sticky{display:none!important}
   var TIERS={
     'BALM-1':{name:'1 Jar',price:44.95,was:null,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try'},
     'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down'},
-    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses, on a subscription'}
+    'BALM-2-GIFTS':{name:'2 Jars + Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses · subscription'}
   };
   var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2';
   var packEls=[].slice.call(document.querySelectorAll('.packs'));
@@ -735,8 +738,11 @@ body.cookie-open .sticky{display:none!important}
       var save=t.was?('<div class="pk-save">You save '+money(t.was-t.price)+'</div>'):'';
       return '<button class="pack'+(sku===cur?' on':'')+'" data-sku="'+sku+'" role="radio" aria-checked="'+(sku===cur)+'">'
         +tag+'<span class="radio"></span>'
-        +'<span><span class="pk-name">'+t.name+'</span><span class="pk-meta">'+t.line+'</span></span>'
-        +'<span class="pk-price">'+(t.was?'<s>'+money(t.was)+'</s>':'')+money(t.price)+'<span class="pk-per">'+money(parseFloat(t.per))+'/jar</span>'+save+'</span>'
+        +'<span class="pk-body">'
+        +'<span class="pk-top"><span class="pk-name">'+t.name+'</span><span class="pk-price">'+(t.was?'<s>'+money(t.was)+'</s>':'')+money(t.price)+'</span></span>'
+        +'<span class="pk-bot"><span class="pk-meta">'+t.line+'</span><span class="pk-per">'+money(parseFloat(t.per))+'/jar</span></span>'
+        +save
+        +'</span>'
         +'</button>';
     }).join('');}
   function select(sku){cur=sku;
