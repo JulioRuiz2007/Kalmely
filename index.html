@@ -125,6 +125,18 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .hero-thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;opacity:.55;background:var(--bg2);padding:0;transition:opacity .2s,border-color .2s}
 .hero-thumb.is-active{opacity:1;border-color:var(--cta)}
 .hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+/* swipe affordance: tappable arrows + a "Swipe" hint that fades after the first interaction */
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.86);box-shadow:0 2px 10px rgba(0,0,0,.22);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:opacity .2s}
+.hero-arrow svg{width:20px;height:20px}
+.hero-arrow.prev{left:9px}.hero-arrow.next{right:9px}
+.hero-arrow[disabled]{opacity:0;pointer-events:none}
+.hero-swipe{position:absolute;bottom:11px;left:50%;transform:translateX(-50%);z-index:4;display:inline-flex;align-items:center;gap:3px;background:rgba(16,58,79,.86);color:#fff;font:800 12.5px/1 var(--sans);letter-spacing:.02em;padding:7px 13px;border-radius:999px;pointer-events:none;transition:opacity .45s}
+.hero-swipe svg{width:13px;height:13px}
+.hero-swipe svg:first-child{animation:swpL 1.5s ease-in-out infinite}
+.hero-swipe svg:last-child{animation:swpR 1.5s ease-in-out infinite}
+@keyframes swpL{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(-2px);opacity:1}}
+@keyframes swpR{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(2px);opacity:1}}
+.hero-swipe.hide{opacity:0}
 .thumb .ph svg{width:18px;height:18px}.thumb .ph .pl{font-size:8px;line-height:1.1}
 
 /* ---- buy box / offer ---- */
@@ -452,6 +464,9 @@ window.kPixelOn();
             <div class="free-tag t3">Mobility e-book<div class="ft-val"><s>$19</s> FREE</div></div>
           </div>
         </div>
+        <button type="button" class="hero-arrow prev" id="heroPrev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button type="button" class="hero-arrow next" id="heroNext" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 18l6-6-6-6"/></svg></button>
+        <div class="hero-swipe" id="heroSwipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 18l-6-6 6-6"/></svg>Swipe<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
       <div class="hero-thumbs">
         <button type="button" class="hero-thumb is-active" aria-label="Back on the floor"><img src="assets/balm/balm-master-tn.webp" alt="" width="160" height="160"></button>
@@ -723,9 +738,13 @@ window.kPixelOn();
   var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack'),hStage=hTrack&&hTrack.parentElement;
   if(hThumbs.length&&hTrack&&hStage){
     var hN=hTrack.children.length,hIdx=0,hSx=0,hSy=0,hLock=null,hW=1,hMoved=false;
-    function hGo(i){hIdx=i<0?0:(i>hN-1?hN-1:i);hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});}
-    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
-    hStage.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hLock=null;hMoved=false;hW=hStage.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
+    var hPrev=document.getElementById('heroPrev'),hNext=document.getElementById('heroNext'),hSwipe=document.getElementById('heroSwipe');
+    function hideSwipe(){if(hSwipe)hSwipe.classList.add('hide');}
+    function hGo(i){hIdx=i<0?0:(i>hN-1?hN-1:i);hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});if(hPrev)hPrev.disabled=hIdx===0;if(hNext)hNext.disabled=hIdx===hN-1;}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hideSwipe();hGo(i);});});
+    if(hPrev)hPrev.addEventListener('click',function(){hideSwipe();hGo(hIdx-1);});
+    if(hNext)hNext.addEventListener('click',function(){hideSwipe();hGo(hIdx+1);});
+    hStage.addEventListener('touchstart',function(e){hideSwipe();hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hLock=null;hMoved=false;hW=hStage.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
     hStage.addEventListener('touchmove',function(e){var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;
       if(hLock===null){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';}
       if(hLock!=='x')return;                       // vertical → let the page scroll
@@ -740,6 +759,7 @@ window.kPixelOn();
       if(Math.abs(dx)>hW*0.18)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);   // one slide at a time, clamped
     },{passive:false});
     hGo(0);
+    setTimeout(hideSwipe,6000);   // hint fades on its own if they don't interact
   }
 
   // ---------- offer ----------
