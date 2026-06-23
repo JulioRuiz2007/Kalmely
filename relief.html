@@ -695,9 +695,18 @@ footer a{color:#CBD2D6}
   document.getElementById('cartBtn').addEventListener('click',function(){renderCart();openCart();});
   document.getElementById('drClose').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
-  document.getElementById('checkoutBtn').addEventListener('click',function(){
-    // reuses the Kalmely worker once BALM SKUs are added there; local = will be CORS-blocked (structure only)
-    alert('Checkout wiring pending: will POST '+cur+' to the Kalmely worker once balm SKUs are added.');
+  document.getElementById('checkoutBtn').addEventListener('click',async function(){
+    var sku=(cart[0]&&cart[0].sku)||cur, t=TIERS[sku]||TIERS[cur];
+    var btn=this,_txt=btn.textContent; btn.disabled=true; btn.textContent='Loading…';
+    try{
+      var res=await fetch('https://kalmely-api.julioruizbayarri.workers.dev/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        sku:sku, currency:'usd', subscription:!!t.sub, value:t.price,
+        gifts:(t.gifts?'Compression knee sleeve, Reusable hot/cold pack, 7-Day Joint Mobility e-book':'')
+      })});
+      var data=await res.json();
+      if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
+      window.location.href=data.url;
+    }catch(e){ btn.disabled=false; btn.textContent=_txt; alert('Sorry, checkout is unavailable right now. Please try again in a moment, or call us.'); }
   });
 
   // ---------- sticky CTA on scroll ----------
