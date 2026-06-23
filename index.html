@@ -482,15 +482,7 @@ window.kPixelOn();
       <div class="bb-title">Choose your pack</div>
       <div class="bb-sub">Most customers pick 2 jars — one upstairs, one down.</div>
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
-      <div class="bb-gifts" hidden>
-        <b>Includes 3 free bonuses:</b>
-        <ul class="gift-list">
-          <li><span>"7-Day Joint Mobility" e-book</span> <span class="g-val"><s>$19</s> FREE</span></li>
-          <li><span>Reusable hot/cold pack</span> <span class="g-val"><s>$14</s> FREE</span></li>
-          <li><span>Compression knee sleeve</span> <span class="g-val"><s>$19</s> FREE</span></li>
-        </ul>
-        <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
-      </div>
+      <div class="bb-gifts"><!-- populated per selected pack by select() --></div>
       <div class="bb-incl">
         <b>Every order includes:</b>
         <ul>
@@ -516,7 +508,6 @@ window.kPixelOn();
     <div class="faq">
       <details><summary>How fast will I feel it?</summary><p>Most people feel cooling relief within minutes of applying. For deeper, lasting comfort, use it daily — many notice a real difference within about a week.</p></details>
       <details><summary>Is it safe to use with my other medications?</summary><p>It's for external use — you rub it on the skin, you don't swallow it, so it doesn't interact the way a pill does. If you take blood thinners or have a skin condition, check with your doctor or pharmacist to be safe.</p></details>
-      <details><summary>Does the savings option lock me into anything?</summary><p>No. The Subscribe &amp; Save option is the only one that repeats: we send 2 jars every 60 days and email you 3 days before each charge. You can cancel anytime in one click or one call — no commitment, no fees. The 1-jar and 2-jar packs are one-time purchases that never renew.</p></details>
       <details><summary>Will it feel greasy or smell like medicine?</summary><p>No. It absorbs quickly with no greasy residue and a clean, light botanical scent — so you can apply it and go about your day.</p></details>
       <details><summary>Where on the body can I use it?</summary><p>Knees, lower back, shoulders, neck, hands, hips, feet — anywhere you have joint or muscle aches. Avoid broken skin and eyes.</p></details>
       <details><summary>What if it doesn't work for me?</summary><p>Then you pay nothing. You're covered by our 60-day money-back guarantee — keep the jar and we'll refund you, no questions asked.</p></details>
@@ -655,15 +646,7 @@ window.kPixelOn();
       <div class="bb-title">Choose your pack</div>
       <div class="bb-sub">Most customers pick 2 jars — one upstairs, one down.</div>
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
-      <div class="bb-gifts" hidden>
-        <b>Includes 3 free bonuses:</b>
-        <ul class="gift-list">
-          <li><span>"7-Day Joint Mobility" e-book</span> <span class="g-val"><s>$19</s> FREE</span></li>
-          <li><span>Reusable hot/cold pack</span> <span class="g-val"><s>$14</s> FREE</span></li>
-          <li><span>Compression knee sleeve</span> <span class="g-val"><s>$19</s> FREE</span></li>
-        </ul>
-        <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
-      </div>
+      <div class="bb-gifts"><!-- populated per selected pack by select() --></div>
       <div class="bb-incl">
         <b>Every order includes:</b>
         <ul>
@@ -764,11 +747,14 @@ window.kPixelOn();
 
   // ---------- offer ----------
   var TIERS={
-    'BALM-1':{name:'1 Jar',price:44.95,was:89.90,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try',saveLabel:'Save 50%'},
-    'BALM-2':{name:'2 Jars',price:59.99,was:179.80,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down'},
-    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:231.80,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses · subscription'}
+    'BALM-1':{name:'1 Jar',price:44.95,was:89.90,per:'44.95',saveLabel:'Save 50%',img:'assets/balm/balm-pack-1.webp',line:'+ 1 free gift',
+      gifts:[['7-Day Joint Mobility e-book','19']]},
+    'BALM-2':{name:'2 Jars',price:59.99,was:179.80,per:'30.00',pop:true,img:'assets/balm/balm-pack-2.webp',line:'+ 2 free gifts',
+      gifts:[['7-Day Joint Mobility e-book','19'],['Reusable hot/cold pack','14']]},
+    'BALM-3':{name:'3 Jars',price:79.99,was:269.70,per:'26.66',best:true,img:'assets/balm/balm-bundle.webp',line:'+ 3 free gifts',
+      gifts:[['7-Day Joint Mobility e-book','19'],['Reusable hot/cold pack','14'],['Compression knee sleeve','19']]}
   };
-  var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2';
+  var ORDER=['BALM-1','BALM-2','BALM-3'], cur='BALM-2';
   var packEls=[].slice.call(document.querySelectorAll('.packs'));
   function money(n){return '$'+n.toFixed(2);}
   function packHTML(){return ORDER.map(function(sku){var t=TIERS[sku];
@@ -785,7 +771,9 @@ window.kPixelOn();
     }).join('');}
   function select(sku){cur=sku;
     packEls.forEach(function(el){[].forEach.call(el.children,function(b){var on=b.dataset.sku===sku;b.classList.toggle('on',on);b.setAttribute('aria-checked',on);});});
-    [].forEach.call(document.querySelectorAll('.bb-gifts'),function(g){g.hidden=!TIERS[sku].gifts;});
+    var g=TIERS[sku].gifts||[];
+    var html='<b>Includes '+g.length+' free gift'+(g.length>1?'s':'')+', yours FREE:</b><ul class="gift-list">'+g.map(function(x){return '<li><span>'+x[0]+'</span> <span class="g-val"><s>$'+x[1]+'</s> FREE</span></li>';}).join('')+'</ul>';
+    [].forEach.call(document.querySelectorAll('.bb-gifts'),function(bg){bg.innerHTML=html;bg.hidden=false;});
     updateSticky();}
   function updateSticky(){var t=TIERS[cur];var sp=document.getElementById('stickyPrice');if(sp)sp.innerHTML=(t.was?'<s>'+money(t.was)+'</s>':'')+money(t.price);}
   packEls.forEach(function(el){el.innerHTML=packHTML();[].forEach.call(el.children,function(b){b.addEventListener('click',function(){select(b.dataset.sku);});});});
@@ -797,14 +785,15 @@ window.kPixelOn();
   var overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
   function openCart(){overlay.classList.add('on');drawer.classList.add('on');}
   function closeCart(){overlay.classList.remove('on');drawer.classList.remove('on');}
-  function addToCart(){var t=TIERS[cur];cart=[{sku:cur,name:t.name,price:t.price,sub:t.sub,img:t.img}];renderCart();var c=document.getElementById('cartCount');c.style.display='flex';c.textContent='1';openCart();window.kPixel&&kPixel('AddToCart',{currency:'USD',value:t.price,content_type:'product',content_name:t.name});}
+  function addToCart(){var t=TIERS[cur];cart=[{sku:cur,name:t.name,price:t.price,img:t.img}];renderCart();var c=document.getElementById('cartCount');c.style.display='flex';c.textContent='1';openCart();window.kPixel&&kPixel('AddToCart',{currency:'USD',value:t.price,content_type:'product',content_name:t.name});}
   function renderCart(){
     var body=document.getElementById('drBody'),tot=0,note=document.querySelector('.dr-note');
     if(note)note.hidden=!cart.length;
     if(!cart.length){body.innerHTML='<p style="color:var(--soft)">Your cart is empty.</p>';document.getElementById('drTotal').textContent=money(0);return;}
     body.innerHTML=cart.map(function(it){tot+=it.price;var t=TIERS[it.sku]||{};
-      var gifts=t.gifts?'<div class="dr-gifts"><b>+ 3 free bonuses, yours FREE:</b> &ldquo;7-Day Joint Mobility&rdquo; e-book, reusable hot/cold pack, compression knee sleeve</div><div class="dr-sub">Subscription &middot; ships every 60 days &middot; cancel anytime in one click</div>':'';
-      return '<div class="dr-item"><img class="dr-thumb" src="'+(it.img||'assets/balm/balm-pack-1.webp')+'" alt="'+it.name+'" width="72" height="72"><div style="flex:1"><div class="nm" style="font-weight:800">'+it.name+'</div><div style="color:var(--soft);font-size:14px">'+(it.sub?'Subscribe &amp; save &middot; ':'')+money(it.price)+'</div>'+gifts+'</div></div>';
+      var g=t.gifts||[];
+      var gifts=g.length?'<div class="dr-gifts"><b>+ '+g.length+' free gift'+(g.length>1?'s':'')+', yours FREE:</b> '+g.map(function(x){return x[0];}).join(', ')+'</div>':'';
+      return '<div class="dr-item"><img class="dr-thumb" src="'+(it.img||'assets/balm/balm-pack-1.webp')+'" alt="'+it.name+'" width="72" height="72"><div style="flex:1"><div class="nm" style="font-weight:800">'+it.name+'</div><div style="color:var(--soft);font-size:14px">'+money(it.price)+'</div>'+gifts+'</div></div>';
     }).join('');
     document.getElementById('drTotal').textContent=money(tot);
   }
@@ -821,8 +810,8 @@ window.kPixelOn();
     window.kPixel&&kPixel('InitiateCheckout',{currency:'USD',value:t.price,content_type:'product',content_name:t.name},icEventId);
     try{
       var res=await fetch('https://kalmely-api.julioruizbayarri.workers.dev/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-        sku:sku, currency:'usd', subscription:!!t.sub, value:t.price,
-        gifts:(t.gifts?'Compression knee sleeve, Reusable hot/cold pack, 7-Day Joint Mobility e-book':''),
+        sku:sku, currency:'usd', value:t.price,
+        gifts:((t.gifts||[]).map(function(x){return x[0];}).join(', ')),
         fbp:gck('_fbp'), fbc:gck('_fbc'), icEventId:icEventId
       })});
       var data=await res.json();

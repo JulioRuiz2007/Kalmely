@@ -46,10 +46,6 @@ window.kPixelOn();
     <tr><td>Need anything?</td><td>Email <a href="mailto:support@kalmely.com">support@kalmely.com</a> or call <a href="tel:18005550188">1-800-555-0188</a> (Mon–Fri, 9am–6pm ET).</td></tr>
   </table>
 
-  <div class="callout" id="subnote" hidden>
-    <p style="margin:0;"><strong>About your Subscribe &amp; Save plan.</strong> You chose the subscription bundle — we send 2 jars every 60 days and email you 3 days before each charge. You can cancel anytime in one click or one call, no commitment. <a href="relief-refund.html#cancel">See how to cancel →</a></p>
-  </div>
-
   <div style="text-align:center;margin:34px 0 6px;">
     <a href="/" style="display:inline-block;background:var(--cta);color:var(--ink);font:800 18px/1 var(--sans);text-decoration:none;padding:17px 34px;border-radius:14px;box-shadow:0 10px 24px -10px rgba(232,129,48,.55);">Back to the store</a>
   </div>
@@ -73,10 +69,8 @@ window.kPixelOn();
   (function(){
     var q=new URLSearchParams(location.search);
     var sku=q.get('sku')||'', sid=q.get('session_id')||'';
-    // Show the subscription note only for the Subscribe & Save bundle.
-    try { if (/BALM-2-GIFTS/i.test(sku)) { var s=document.getElementById('subnote'); if(s) s.hidden=false; } } catch(e){}
     // Meta Pixel Purchase — eventID = Stripe session id, so it dedupes with the server-side CAPI Purchase.
-    var V={'BALM-1':44.95,'BALM-2':59.99,'BALM-2-GIFTS':64.00};
+    var V={'BALM-1':44.95,'BALM-2':59.99,'BALM-3':79.99};
     var val=V[sku]||0;
     try { window.kPixel && val && kPixel('Purchase',{currency:'USD',value:val,content_type:'product',content_name:'Kalmely Relief'}, sid||undefined); } catch(e){}
   })();
