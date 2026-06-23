@@ -100,6 +100,11 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .hero .buybox{grid-area:buy;margin-top:2px}
 .hero-copy .rating{display:flex;align-items:center;gap:10px;font:700 17px/1 var(--sans);color:var(--ink);margin-bottom:18px;flex-wrap:wrap}
 .stars{color:var(--gold);letter-spacing:2px;font-size:19px}
+/* partial-fill stars: shows 4.8/5 (96% gold over grey) */
+.stars48{position:relative;display:inline-block;color:#D9CDB0;letter-spacing:2px;font-size:19px;line-height:1;white-space:nowrap}
+.stars48::before{content:"★★★★★"}
+.stars48 b{position:absolute;left:0;top:0;width:96%;overflow:hidden;color:var(--gold)}
+.stars48 b::before{content:"★★★★★"}
 .hero h1{font-size:clamp(34px,5.4vw,52px);font-weight:800}
 .hero h1 .hl{color:var(--cta-text);font-style:italic}
 .hero-sub{font-size:clamp(19px,2.6vw,22px);color:var(--ink2);margin:18px 0 22px;max-width:30ch}
@@ -184,6 +189,11 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .mech .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
 .mech .n{width:46px;height:46px;border-radius:50%;background:var(--cta);color:#1E2429;font:800 22px/46px var(--sans);margin:0 auto 12px}
 #how{background:#FDEBD8}              /* soft-orange band → alternates with the navy benefits block */
+.how-figs{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start;max-width:940px;margin:8px auto 0}
+.how-figs figure{margin:0}
+.how-figs img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);border:1px solid var(--line);display:block}
+.how-figs figcaption{margin-top:13px;font-size:16px;line-height:1.55;color:var(--ink2);text-align:left}
+@media(max-width:720px){.how-figs{grid-template-columns:1fr;gap:22px;max-width:560px}}
 
 /* comparison table */
 .cmp{overflow-x:auto;margin-top:8px}
@@ -413,7 +423,7 @@ window.kPixelOn();
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <a href="#reviews" class="rating" style="text-decoration:none;cursor:pointer" aria-label="Read our reviews"><span class="stars">★★★★★</span> <span><b>4.8</b> · Loved by 12,000+ people who got their lives back</span></a>
+      <a href="#reviews" class="rating" style="text-decoration:none;cursor:pointer" aria-label="4.8 out of 5 — read our reviews"><span class="stars48"><b></b></span> <span><b>4.8</b> · 12,000+ purchases · <u style="text-underline-offset:2px">480+ reviews</u></span></a>
       <h1>Get back on the floor with the <span class="hl">grandkids</span></h1>
       <p class="hero-sub">A natural balm for the stiff, <span class="key">aching knees, back and shoulders</span> that keep you off the floor — so you can <span class="key">move freely</span> and feel like yourself again, without the pills.</p>
       <ul class="hero-bullets">
@@ -505,13 +515,10 @@ window.kPixelOn();
 <section id="how">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">How it works</div><h2>Why your other creams quit after 20 minutes<br>and this one doesn't</h2><p>Most rubs only heat or cool the skin for a few minutes. Kalmely Relief is built to reach the part that <span class="key">actually hurts</span>.</p></div>
-    <div style="max-width:680px;margin:4px auto 24px"><img src="assets/balm/balm-why-works.webp" alt="Why Kalmely Relief works — reaches past the skin to the joint with natural actives" width="1080" height="1080" loading="lazy" style="width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);display:block"></div>
-    <div class="mech">
-      <div class="step"><div class="n">1</div><h3>They only cool the skin</h3><p>Menthol creams numb the surface; the ache lives deeper, untouched.</p></div>
-      <div class="step"><div class="n">2</div><h3>This sinks to the joint</h3><p>Arnica, boswellia and MSM carry deep, where the grinding really is.</p></div>
-      <div class="step"><div class="n">3</div><h3>So the relief lasts</h3><p>Not a 20-minute trick that wears off and leaves you right where you started.</p></div>
+    <div class="how-figs">
+      <figure><img src="assets/balm/balm-why-works.webp" alt="Why Kalmely Relief works — reaches past the skin to the joint with natural actives" width="1080" height="1080" loading="lazy"></figure>
+      <figure><img src="assets/balm/balm-mechanism.webp" alt="Ordinary cream stays on the surface while Kalmely Relief reaches the joint through skin and muscle" width="1080" height="1080" loading="lazy"><figcaption>An ordinary cream tingles the skin and quits. Kalmely carries the actives past the surface, to the joint where the ache actually lives — so the relief lasts.</figcaption></figure>
     </div>
-    <div style="max-width:620px;margin:30px auto 0"><img src="assets/balm/balm-mechanism.webp" alt="Cutaway diagram: ordinary cream stays on the surface while Kalmely Relief reaches the joint through skin and muscle" width="1080" height="1080" loading="lazy" style="width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);display:block"></div>
   </div>
 </section>
 
@@ -520,7 +527,7 @@ window.kPixelOn();
   <div class="wrap narrow" style="text-align:center">
     <div class="eyebrow">What it gives you back</div>
     <h2>Relief that goes deep<br>and gives you back the things you stopped doing</h2>
-    <p class="lead">Every morning you negotiate with your own body — which stairs, which chair, whether today is a garden day. You've tried the pills that worry your stomach and the creams that quit after twenty minutes. <b>You deserve to have the things you stopped doing back.</b></p>
+    <p class="lead">You've tried the pills that upset your stomach and the creams that quit after twenty minutes. <b>You deserve to have the things you stopped doing — back.</b></p>
     <div class="why-pillars">
       <div class="why-pill"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg> Back on the floor with the grandkids</h3><p>Down with them, and back up on your own.</p></div>
       <div class="why-pill"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Sleep through the night</h3><p>No more waking up every time you shift your weight.</p></div>
@@ -568,18 +575,6 @@ window.kPixelOn();
   </div>
 </section>
 
-<!-- ===== HOW TO USE + FAQ ===== -->
-<section class="band">
-  <div class="wrap">
-    <div class="sec-head"><div class="eyebrow">It couldn't be simpler</div><h2>How to use it: rub it in, two or three times a day</h2></div>
-    <div class="steps narrow">
-      <div class="step"><div class="n">1</div><h3>Apply</h3><p>Squeeze a small amount onto the sore knee, back or shoulder.</p></div>
-      <div class="step"><div class="n">2</div><h3>Massage in</h3><p>Rub gently until it absorbs — about 30 seconds. No grease left behind.</p></div>
-      <div class="step"><div class="n">3</div><h3>Feel relief</h3><p>Feel it cool and calm. Use morning, evening, and before activity.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== REVIEWS ===== -->
 <section class="band" id="reviews">
   <div class="wrap">
@@ -588,8 +583,8 @@ window.kPixelOn();
     <div class="rev-summary">
       <div class="rev-score">
         <div class="rev-big">4.8</div>
-        <div class="stars">★★★★★</div>
-        <div class="rev-cnt" id="revCnt">3,000+ verified reviews</div>
+        <div class="stars48" style="font-size:24px"><b></b></div>
+        <div class="rev-cnt" id="revCnt">480+ verified reviews · 12,000+ purchases</div>
       </div>
       <div class="rev-dist" id="revDist"></div>
     </div>
