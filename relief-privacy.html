@@ -10,15 +10,20 @@
 <link rel="stylesheet" href="assets/relief-legal.css">
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 <link rel="dns-prefetch" href="https://kalmely-api.julioruizbayarri.workers.dev">
-<!-- Meta Pixel — Kalmely (consent-gated; CAPI dedup via worker) -->
+<!-- Admin Mode Guard: owner's own visits don't pollute Pixel/Clarity (?admin_mode=kalmely_julio_2026) -->
+<script>(function(){try{var p=new URLSearchParams(location.search);if(p.get('admin_mode')==='kalmely_julio_2026'){document.cookie='kalmely_admin=true;max-age=2592000;path=/;SameSite=Lax';}if(document.cookie.indexOf('kalmely_admin=true')!==-1)window._kalmelyAdmin=true;}catch(e){}})();</script>
+<!-- Meta Pixel — Kalmely (consent-gated + admin-gated; CAPI dedup via worker) -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 window.KPIXEL_ID='2038496957090347';
-window.kPixelOn=function(){try{if(window.__kpx)return;var c=null;try{c=localStorage.getItem('kalmely_consent');}catch(e){}if(c==='reject')return;window.__kpx=1;fbq('init',window.KPIXEL_ID);fbq('track','PageView');}catch(e){}};
+window.kPixelOn=function(){try{if(window.__kpx||window._kalmelyAdmin)return;var c=null;try{c=localStorage.getItem('kalmely_consent');}catch(e){}if(c==='reject')return;window.__kpx=1;fbq('init',window.KPIXEL_ID);fbq('track','PageView');}catch(e){}};
 window.kPixel=function(ev,data,eid){try{if(!window.__kpx||!window.fbq)return;eid?fbq('track',ev,data,{eventID:eid}):fbq('track',ev,data);}catch(e){}};
 window.kPixelOn();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"/></noscript>
+<!-- Microsoft Clarity — skipped in admin mode -->
+<script>(function(){try{if(window._kalmelyAdmin)return;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x4mat5v5ce");}catch(e){}})();</script>
+
 </head>
 <body>
 
