@@ -109,7 +109,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 
 /* gallery */
 .gallery{grid-area:gallery;position:sticky;top:90px}
-.stage{position:relative;aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;background:var(--bg2)}
+.stage{position:relative;aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;background:var(--bg2);touch-action:pan-y}
 .stage .ph{border-radius:var(--r)}
 .thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:11px}
 .thumb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;opacity:.6;background:var(--bg2);padding:0}
@@ -123,15 +123,15 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .bb-sub{font-size:14px;color:var(--soft);margin-bottom:16px}
 .packs{display:grid;gap:12px}
 .pack{position:relative;display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;
-  border:2px solid var(--line);border-radius:14px;padding:16px 16px;cursor:pointer;background:#fff;text-align:left;min-height:64px}
+  border:2px solid var(--line);border-radius:14px;padding:16px 16px;cursor:pointer;background:#fff;text-align:left;min-height:64px;color:var(--ink);-webkit-appearance:none;appearance:none}
 .pack.on{border-color:var(--cta);background:#FFF7EF;box-shadow:0 0 0 3px rgba(232,129,48,.18)}
 .pack .radio{width:24px;height:24px;border-radius:50%;border:2px solid #BBB;flex:none;position:relative}
 .pack.on .radio{border-color:var(--cta)}
 .pack.on .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--cta)}
 .pk-save{font:700 12px/1 var(--sans);color:var(--cta-text);text-align:right;margin-top:3px}
-.pack .pk-name{font:800 18px/1.2 var(--sans)}
-.pack .pk-meta{font-size:13.5px;color:var(--ink2);margin-top:3px}
-.pack .pk-price{font:800 20px/1 var(--sans);text-align:right}
+.pack .pk-name{display:block;font:800 18px/1.2 var(--sans);color:var(--ink)}
+.pack .pk-meta{display:block;font-size:13px;color:var(--ink2);margin-top:4px}
+.pack .pk-price{font:800 20px/1 var(--sans);text-align:right;color:var(--ink)}
 .pack .pk-price s{display:block;font:600 13px/1 var(--sans);color:var(--soft);margin-bottom:3px}
 .pack .pk-per{font:600 12px/1 var(--sans);color:var(--soft);text-align:right;margin-top:3px}
 .tag{position:absolute;top:-11px;left:16px;font:800 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:7px;color:#fff}
@@ -274,6 +274,10 @@ body.cookie-open .sticky{display:none!important}
 .dr-body{flex:1;overflow-y:auto;padding:20px}
 .dr-note{padding:13px 20px;background:var(--panel);font:600 13.5px/1.5 var(--sans);color:var(--ink2);border-bottom:1px solid var(--line)}
 .dr-note b{color:var(--ink)}
+.dr-note[hidden]{display:none}
+.dr-gifts{margin-top:8px;font-size:13px;line-height:1.5;color:var(--ink2)}
+.dr-gifts b{color:var(--cta-text)}
+.dr-sub{margin-top:5px;font-size:12.5px;color:var(--soft)}
 .dr-item{display:flex;gap:14px;align-items:center;margin-bottom:16px}
 .dr-item .ph{width:72px;height:72px;min-height:0;flex:none}
 .dr-foot{padding:20px;border-top:1px solid var(--line)}
@@ -681,7 +685,7 @@ body.cookie-open .sticky{display:none!important}
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" aria-label="Cart">
   <div class="dr-head"><h3>Your cart</h3><button class="dr-close" id="drClose" aria-label="Close">×</button></div>
-  <div class="dr-note"><b>Added.</b> Review your order and tap Checkout — we only ask for your address and card. 2 steps, 60-day guarantee.</div>
+  <div class="dr-note" hidden><b>Added.</b> Review your order and tap Checkout — we only ask for your address and card. 2 steps, 60-day guarantee.</div>
   <div class="dr-body" id="drBody"></div>
   <div class="dr-foot">
     <div class="dr-total"><span>Total</span><span id="drTotal">$0.00</span></div>
@@ -704,19 +708,24 @@ body.cookie-open .sticky{display:none!important}
     if(s.img) return '<img src="'+s.img+'" alt="'+aAttr(s.t)+'" width="1024" height="1024"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'>'+tagsHTML(s.gifts);
     return '<div class="ph"><span class="pt">'+aAttr(s.t)+'</span></div>';
   }
-  function showSlide(i){var s=slides[i]||{};stage.innerHTML=stageHTML(s,i);[].forEach.call(thumbsBox.children,function(t,k){t.classList.toggle('on',k===i);});}
+  var curSlide=0;
+  function showSlide(i){if(i<0)i=slides.length-1;if(i>=slides.length)i=0;curSlide=i;var s=slides[i]||{};stage.innerHTML=stageHTML(s,i);[].forEach.call(thumbsBox.children,function(t,k){t.classList.toggle('on',k===i);});}
   thumbsBox.innerHTML=slides.map(function(s,i){
     var inner=s.seal?'<div class="thumb-seal">60-day<br>guarantee</div>':(s.img?'<img src="'+s.img+'" alt="" width="1024" height="1024" loading="lazy">':'<div class="ph"><span class="pl">'+aAttr(s.t)+'</span></div>');
     return '<button class="thumb'+(i===0?' on':'')+'" data-i="'+i+'" aria-label="'+aAttr(s.t)+'">'+inner+'</button>';
   }).join('');
   [].forEach.call(thumbsBox.children,function(t,i){t.addEventListener('click',function(){showSlide(i);});});
+  // swipe on mobile (horizontal changes slide; vertical still scrolls the page)
+  var _sx=0,_sy=0;
+  stage.addEventListener('touchstart',function(e){_sx=e.changedTouches[0].clientX;_sy=e.changedTouches[0].clientY;},{passive:true});
+  stage.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-_sx,dy=e.changedTouches[0].clientY-_sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))showSlide(curSlide+(dx<0?1:-1));},{passive:true});
   showSlide(0);
 
   // ---------- offer ----------
   var TIERS={
     'BALM-1':{name:'1 Jar',price:44.95,was:null,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try'},
-    'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down — most pick this'},
-    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'Plus 3 free bonuses — on a subscription'}
+    'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down'},
+    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses, on a subscription'}
   };
   var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2';
   var packEls=[].slice.call(document.querySelectorAll('.packs'));
@@ -745,8 +754,13 @@ body.cookie-open .sticky{display:none!important}
   function closeCart(){overlay.classList.remove('on');drawer.classList.remove('on');}
   function addToCart(){var t=TIERS[cur];cart=[{sku:cur,name:t.name,price:t.price,sub:t.sub,img:t.img}];renderCart();var c=document.getElementById('cartCount');c.style.display='flex';c.textContent='1';openCart();}
   function renderCart(){
-    var body=document.getElementById('drBody'),tot=0;
-    body.innerHTML=cart.map(function(it){tot+=it.price;return '<div class="dr-item"><img class="dr-thumb" src="'+(it.img||'assets/balm/balm-pack-1.webp')+'" alt="'+it.name+'" width="72" height="72"><div><div class="nm" style="font-weight:800">'+it.name+'</div><div style="color:var(--soft);font-size:14px">'+(it.sub?'Subscribe &amp; save · ':'')+money(it.price)+'</div></div></div>';}).join('') || '<p style="color:var(--soft)">Your cart is empty.</p>';
+    var body=document.getElementById('drBody'),tot=0,note=document.querySelector('.dr-note');
+    if(note)note.hidden=!cart.length;
+    if(!cart.length){body.innerHTML='<p style="color:var(--soft)">Your cart is empty.</p>';document.getElementById('drTotal').textContent=money(0);return;}
+    body.innerHTML=cart.map(function(it){tot+=it.price;var t=TIERS[it.sku]||{};
+      var gifts=t.gifts?'<div class="dr-gifts"><b>+ 3 free bonuses, yours FREE:</b> &ldquo;7-Day Joint Mobility&rdquo; e-book, reusable hot/cold pack, compression knee sleeve</div><div class="dr-sub">Subscription &middot; ships every 60 days &middot; cancel anytime in one click</div>':'';
+      return '<div class="dr-item"><img class="dr-thumb" src="'+(it.img||'assets/balm/balm-pack-1.webp')+'" alt="'+it.name+'" width="72" height="72"><div style="flex:1"><div class="nm" style="font-weight:800">'+it.name+'</div><div style="color:var(--soft);font-size:14px">'+(it.sub?'Subscribe &amp; save &middot; ':'')+money(it.price)+'</div>'+gifts+'</div></div>';
+    }).join('');
     document.getElementById('drTotal').textContent=money(tot);
   }
   [].forEach.call(document.querySelectorAll('.add-to-cart'),function(b){b.addEventListener('click',addToCart);});
