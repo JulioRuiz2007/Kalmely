@@ -13,7 +13,8 @@
 <meta property="og:title" content="Kalmely Relief — Natural Joint & Muscle Pain Balm">
 <meta property="og:description" content="Move freely again — without the pills. A natural balm that reaches the deep joint &amp; muscle ache. 60-day money-back guarantee.">
 <meta property="og:image" content="https://kalmely.com/assets/balm/balm-master.webp">
-<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="icon" type="image/png" href="assets/favicon-k64.png">
+<link rel="preload" as="image" href="assets/balm/balm-master.webp" fetchpriority="high"><!-- LCP -->
 <style>
 :root{
   --bg:#F6F2EA;        /* warm off-white, NOT pure white (glare) */
@@ -366,6 +367,17 @@ body.cookie-open .sticky{display:none!important}
   .free-tag .ft-val s{margin-right:4px}
 }
 </style>
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="dns-prefetch" href="https://kalmely-api.julioruizbayarri.workers.dev">
+<!-- Meta Pixel — Kalmely (consent-gated; CAPI dedup via worker) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+window.KPIXEL_ID='2038496957090347';
+window.kPixelOn=function(){try{if(window.__kpx)return;var c=null;try{c=localStorage.getItem('kalmely_consent');}catch(e){}if(c==='reject')return;window.__kpx=1;fbq('init',window.KPIXEL_ID);fbq('track','PageView');}catch(e){}};
+window.kPixel=function(ev,data,eid){try{if(!window.__kpx||!window.fbq)return;eid?fbq('track',ev,data,{eventID:eid}):fbq('track',ev,data);}catch(e){}};
+window.kPixelOn();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
@@ -746,13 +758,14 @@ body.cookie-open .sticky{display:none!important}
   function updateSticky(){var t=TIERS[cur];var sp=document.getElementById('stickyPrice');if(sp)sp.innerHTML=(t.was?'<s>'+money(t.was)+'</s>':'')+money(t.price);}
   packEls.forEach(function(el){el.innerHTML=packHTML();[].forEach.call(el.children,function(b){b.addEventListener('click',function(){select(b.dataset.sku);});});});
   select(cur);
+  try{window.kPixel&&kPixel('ViewContent',{currency:'USD',value:TIERS[cur].price,content_type:'product',content_name:'Kalmely Relief'});}catch(e){}
 
   // ---------- cart ----------
   var cart=[];
   var overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
   function openCart(){overlay.classList.add('on');drawer.classList.add('on');}
   function closeCart(){overlay.classList.remove('on');drawer.classList.remove('on');}
-  function addToCart(){var t=TIERS[cur];cart=[{sku:cur,name:t.name,price:t.price,sub:t.sub,img:t.img}];renderCart();var c=document.getElementById('cartCount');c.style.display='flex';c.textContent='1';openCart();}
+  function addToCart(){var t=TIERS[cur];cart=[{sku:cur,name:t.name,price:t.price,sub:t.sub,img:t.img}];renderCart();var c=document.getElementById('cartCount');c.style.display='flex';c.textContent='1';openCart();window.kPixel&&kPixel('AddToCart',{currency:'USD',value:t.price,content_type:'product',content_name:t.name});}
   function renderCart(){
     var body=document.getElementById('drBody'),tot=0,note=document.querySelector('.dr-note');
     if(note)note.hidden=!cart.length;
@@ -768,13 +781,17 @@ body.cookie-open .sticky{display:none!important}
   document.getElementById('cartBtn').addEventListener('click',function(){renderCart();openCart();});
   document.getElementById('drClose').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
+  function gck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):'';}
   document.getElementById('checkoutBtn').addEventListener('click',async function(){
     var sku=(cart[0]&&cart[0].sku)||cur, t=TIERS[sku]||TIERS[cur];
     var btn=this,_txt=btn.textContent; btn.disabled=true; btn.textContent='Loading…';
+    var icEventId='ic.'+Date.now()+'.'+Math.floor(Math.random()*1e6);
+    window.kPixel&&kPixel('InitiateCheckout',{currency:'USD',value:t.price,content_type:'product',content_name:t.name},icEventId);
     try{
       var res=await fetch('https://kalmely-api.julioruizbayarri.workers.dev/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
         sku:sku, currency:'usd', subscription:!!t.sub, value:t.price,
-        gifts:(t.gifts?'Compression knee sleeve, Reusable hot/cold pack, 7-Day Joint Mobility e-book':'')
+        gifts:(t.gifts?'Compression knee sleeve, Reusable hot/cold pack, 7-Day Joint Mobility e-book':''),
+        fbp:gck('_fbp'), fbc:gck('_fbc'), icEventId:icEventId
       })});
       var data=await res.json();
       if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
