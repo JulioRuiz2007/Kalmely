@@ -71,10 +71,15 @@ section{padding:54px 0}
 .cta.nav{background:var(--brand);color:#fff;box-shadow:0 10px 24px -10px rgba(16,58,79,.5)}
 .cta.nav:hover{background:var(--brand-d)}
 .cta.ghost{background:none;color:var(--brand);border:2px solid var(--brand);box-shadow:none}
+/* Add to cart = the obvious action in the offer (heatmaps: clicks went to the title/image) */
+.add-to-cart{min-height:70px;font-size:21px;letter-spacing:.3px;box-shadow:0 12px 28px -8px rgba(232,129,48,.62);animation:atcPulse 2.4s ease-in-out infinite}
+.add-to-cart.ghost{animation:none}
+@keyframes atcPulse{0%,100%{box-shadow:0 12px 26px -10px rgba(232,129,48,.5)}50%{box-shadow:0 16px 34px -8px rgba(232,129,48,.92)}}
+@media(prefers-reduced-motion:reduce){.add-to-cart{animation:none}}
 .cta-sub{font-size:14px;color:var(--soft);text-align:center;margin-top:8px}
 
 /* ---- announce + header ---- */
-.announce{background:var(--cta);color:var(--ink);text-align:center;font:700 clamp(10.5px,3.1vw,15px)/1.2 var(--sans);padding:10px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.announce{display:block;text-decoration:none;background:var(--cta);color:var(--ink);text-align:center;font:700 clamp(10.5px,3.1vw,15px)/1.2 var(--sans);padding:10px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .announce b{color:var(--brand)}
 header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 20px;max-width:1120px;margin:0 auto}
@@ -116,7 +121,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 /* gallery */
 .gallery{grid-area:gallery;position:sticky;top:90px}
 /* hero carousel (translateX track + swipe — smooth, reserves space → no CLS) */
-.hero-stage{position:relative;overflow:hidden;border-radius:var(--r);background:var(--bg2);touch-action:pan-y;aspect-ratio:1/1}
+.hero-stage{position:relative;overflow:hidden;border-radius:var(--r);background:var(--bg2);touch-action:pan-y;aspect-ratio:1/1;cursor:pointer}
 .hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .hero-track.dragging{transition:none}
 .hero-slide{flex:0 0 100%;aspect-ratio:1/1;position:relative}
@@ -285,14 +290,17 @@ footer a{color:#CBD2D6}
 .cookie p{font:600 14px/1.45 var(--sans);color:var(--ink2);margin:0;flex:1;min-width:240px}
 .cookie a{color:var(--cta-text);font-weight:700}
 .cookie .ck-btns{display:flex;gap:10px;flex:none}
-.cookie .ck-btn{min-height:44px;padding:0 18px;border-radius:10px;font:800 14px/1 var(--sans);cursor:pointer;border:2px solid var(--brand)}
+.cookie .ck-btn{min-height:42px;padding:0 18px;border-radius:10px;font:800 14px/1 var(--sans);cursor:pointer;border:2px solid var(--cta)}
 .cookie .ck-accept{background:var(--cta);color:var(--ink);border-color:var(--cta)}
-.cookie .ck-reject{background:none;color:var(--brand)}
+.cookie .ck-reject{background:none;border:none;color:var(--soft);font:600 13px/1 var(--sans);text-decoration:underline;text-underline-offset:2px;min-height:auto;padding:6px 8px;cursor:pointer}
 body.cookie-open .sticky{display:none!important}
 @media(max-width:560px){
-  .cookie p{font-size:13px;min-width:0;flex:1 1 100%;text-align:center}
-  .cookie .ck-btns{flex:1 1 100%}
-  .cookie .ck-btn{flex:1}
+  .cookie{padding:9px 13px}                       /* slim — doesn't cover the hero */
+  .cookie .ck-in{gap:9px;flex-wrap:nowrap}
+  .cookie p{font-size:11.5px;line-height:1.35;min-width:0;flex:1;text-align:left}
+  .cookie .ck-btns{flex:none;align-items:center;gap:4px}
+  .cookie .ck-accept{min-height:38px;padding:0 15px;font-size:13px}
+  .cookie .ck-reject{padding:6px 3px;font-size:11.5px}
 }
 
 /* cart drawer */
@@ -411,7 +419,7 @@ window.kPixelOn();
 <body>
 
 <!-- ===== ANNOUNCE ===== -->
-<div class="announce">Free US shipping · <b>Doesn't work? Get your money back</b></div>
+<a class="announce" href="#guarantee">Free US shipping · <b>Doesn't work? Get your money back ›</b></a>
 
 <!-- ===== HEADER ===== -->
 <header>
@@ -725,8 +733,9 @@ window.kPixelOn();
     function hideSwipe(){if(hSwipe)hSwipe.classList.add('hide');}
     function hGo(i){hIdx=i<0?0:(i>hN-1?hN-1:i);hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});if(hPrev)hPrev.disabled=hIdx===0;if(hNext)hNext.disabled=hIdx===hN-1;}
     hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hideSwipe();hGo(i);});});
-    if(hPrev)hPrev.addEventListener('click',function(){hideSwipe();hGo(hIdx-1);});
-    if(hNext)hNext.addEventListener('click',function(){hideSwipe();hGo(hIdx+1);});
+    if(hPrev)hPrev.addEventListener('click',function(e){e.stopPropagation();hideSwipe();hGo(hIdx-1);});
+    if(hNext)hNext.addEventListener('click',function(e){e.stopPropagation();hideSwipe();hGo(hIdx+1);});
+    hStage.addEventListener('click',function(){if(hMoved){hMoved=false;return;}hideSwipe();hGo((hIdx+1)%hN);});   // tap the image → next (cycles) → kills dead clicks
     hStage.addEventListener('touchstart',function(e){hideSwipe();hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hLock=null;hMoved=false;hW=hStage.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
     hStage.addEventListener('touchmove',function(e){var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;
       if(hLock===null){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';}
