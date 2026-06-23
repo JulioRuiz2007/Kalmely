@@ -13,6 +13,7 @@
 <meta property="og:title" content="Kalmely Relief — Natural Joint & Muscle Pain Balm">
 <meta property="og:description" content="Move freely again — without the pills. A natural balm that reaches the deep joint &amp; muscle ache. 60-day money-back guarantee.">
 <meta property="og:image" content="https://kalmely.com/assets/balm/balm-master.webp">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <style>
 :root{
   --bg:#F6F2EA;        /* warm off-white, NOT pure white (glare) */
@@ -148,6 +149,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .pain-points{list-style:none;max-width:600px;margin:8px auto 0;display:grid;gap:13px;text-align:left}
 .pain-points li{padding:15px 18px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cta);border-radius:10px;font:600 clamp(17px,2.3vw,19px)/1.4 var(--sans)}
 .bb-phone{text-align:center;margin-top:12px;font-size:14px;color:var(--ink2)}
+.bb-time{font:600 12.5px/1.5 var(--sans);color:var(--soft);margin-top:11px;text-align:center}
 .bb-phone b{color:var(--ink)}
 
 /* ---- trust bar ---- */
@@ -268,6 +270,8 @@ body.cookie-open .sticky{display:none!important}
 .dr-head h3{font-size:20px}
 .dr-close{background:none;border:none;font-size:30px;cursor:pointer;line-height:1;color:var(--ink);min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;margin:-7px -10px -7px 0}
 .dr-body{flex:1;overflow-y:auto;padding:20px}
+.dr-note{padding:13px 20px;background:var(--panel);font:600 13.5px/1.5 var(--sans);color:var(--ink2);border-bottom:1px solid var(--line)}
+.dr-note b{color:var(--ink)}
 .dr-item{display:flex;gap:14px;align-items:center;margin-bottom:16px}
 .dr-item .ph{width:72px;height:72px;min-height:0;flex:none}
 .dr-foot{padding:20px;border-top:1px solid var(--line)}
@@ -283,7 +287,10 @@ body.cookie-open .sticky{display:none!important}
 .bb-gifts[hidden]{display:none}
 .bb-gifts b{display:block;margin-bottom:8px;font-size:14.5px}
 .bb-gifts ul{list-style:none;display:grid;gap:8px}
-.bb-gifts li{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;align-items:baseline}
+.bb-gifts li{font-size:14.5px;padding-left:20px;position:relative}
+.bb-gifts li::before{content:"\2713";position:absolute;left:0;color:var(--trust);font-weight:800}
+.bb-substext{margin-top:11px;padding-top:11px;border-top:1px solid #F1D6C2;font:600 13px/1.5 var(--sans);color:var(--ink2)}
+.bb-substext b{color:var(--ink)}
 .gift-val{font-weight:800;color:var(--cta-text);white-space:nowrap}
 .gift-val s{color:var(--soft);font-weight:600;margin-right:6px}
 .rev-ava{width:60px;height:60px;border-radius:50%;flex:none;background:repeating-linear-gradient(45deg,#ECE5D6,#ECE5D6 8px,#E4DBC8 8px,#E4DBC8 16px);border:2px dashed #C2B393;display:flex;align-items:center;justify-content:center;font:700 9px/1.1 var(--sans);color:#8A7C5E}
@@ -371,7 +378,7 @@ body.cookie-open .sticky{display:none!important}
     <div class="hero-copy">
       <a href="#reviews" class="rating" style="text-decoration:none;cursor:pointer" aria-label="Read our reviews"><span class="stars">★★★★★</span> <span><b>4.8</b> · Loved by 12,000+ people who got their lives back</span></a>
       <h1>Get back on the floor with the grandkids — <span class="hl">and feel like yourself again</span></h1>
-      <p class="hero-sub">A natural balm that reaches the deep, <span class="key">bone-on-bone</span> ache in your knees, back and shoulders — so you can <span class="key">move freely</span> and feel like yourself again, not 30 years older.</p>
+      <p class="hero-sub">A natural balm that reaches the deep, <span class="key">aching joint</span> — the ache surface creams never touch — in your knees, back and shoulders, so you can <span class="key">move freely</span> and feel like yourself again, not 30 years older.</p>
       <ul class="hero-bullets">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Get down on the floor — and back up — on your own again</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Reaches the deep ache — not a 20-minute skin tingle that wears off</li>
@@ -389,21 +396,24 @@ body.cookie-open .sticky{display:none!important}
       <div class="bb-sub">Most customers pick 2 jars — one upstairs, one down.</div>
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
       <div class="bb-gifts" hidden>
-        <b>+ 3 free gifts with this pack:</b>
+        <b>Includes 3 free bonuses:</b>
         <ul>
-          <li><span>"7-Day Joint Mobility" e-book</span><span class="gift-val"><s>$19</s>FREE</span></li>
-          <li><span>Reusable hot/cold pack</span><span class="gift-val"><s>$14</s>FREE</span></li>
-          <li><span>Compression knee sleeve</span><span class="gift-val"><s>$19</s>FREE</span></li>
+          <li>"7-Day Joint Mobility" e-book</li>
+          <li>Reusable hot/cold pack</li>
+          <li>Compression knee sleeve</li>
         </ul>
+        <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
       </div>
       <div class="bb-incl">
         <b>Every order includes:</b>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Free US shipping</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Free US shipping — <b>arrives in 5–8 days from the USA</b></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 60-day money-back guarantee</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 0.5&nbsp;oz (17.5&nbsp;g) per jar — about 3 weeks of daily use</li>
         </ul>
       </div>
       <button class="cta add-to-cart" style="margin-top:6px">Add to cart</button>
+      <div class="bb-time">Cooling relief right away; the deeper relief builds with daily use, usually within a week — give it 2–3 weeks, backed by the 60-day guarantee.</div>
       <div class="bb-guar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Covered by our 60-day money-back guarantee</div>
       <div class="bb-pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL-secured checkout · we never store your card</div>
       <div class="bb-cards"><span class="cardchip">VISA</span><span class="cardchip">MASTERCARD</span><span class="cardchip">AMEX</span><span class="cardchip">PayPal</span></div>
@@ -518,7 +528,7 @@ body.cookie-open .sticky{display:none!important}
 <section class="band" id="reviews">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">Real customers · verified reviews</div><h2>&ldquo;There you are.&rdquo; — from people who got themselves back</h2></div>
-    <div class="rev-ribbon-wrap"><span class="rev-ribbon"><span class="rr-stars">★★★★★</span> Loved by 12,000+ adults 50+</span></div>
+    <div class="rev-ribbon-wrap"><span class="rev-ribbon"><span class="rr-stars">★★★★★</span> Loved by 12,000+ customers</span></div>
     <div class="rev-summary">
       <div class="rev-score">
         <div class="rev-big">4.8</div>
@@ -528,12 +538,12 @@ body.cookie-open .sticky{display:none!important}
       <div class="rev-dist" id="revDist"></div>
     </div>
     <div class="rev-grid" id="revFeatured">
-      <div class="review"><div class="rstars">★★★★★</div><div class="rt">First thing that lasted all day</div><p>I tried three drugstore creams for my shoulder and they'd warm up for twenty minutes, then nothing. This one is different — I put it on after breakfast and don't think about my shoulder again until bedtime.</p><div class="rh"><span class="nm">Margaret H. · Asheville, NC</span><span class="vf">✓ Verified Buyer · 2 weeks ago</span></div></div>
-      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Stairs don't scare me anymore</div><p>My knees would catch on every step up to the bedroom and I'd grab the rail and wince. After about a week and a half I went up without holding on and didn't even notice until I got to the top.</p><div class="rh"><span class="nm">Donald R. · Springfield, IL</span><span class="vf">✓ Verified Buyer · last month</span></div></div>
-      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Back in my garden</div><p>My lower back kept me from bending over my flower beds for almost two years. I rubbed this on at night and again in the morning, and I spent two hours planting tomatoes Saturday. My husband couldn't believe it.</p><div class="rh"><span class="nm">Patricia L. · Mesa, AZ</span><span class="vf">✓ Verified Buyer · 3 weeks ago</span></div></div>
-      <div class="review"><div class="rstars">★★★★★</div><div class="rt">No more pills, thank goodness</div><p>My doctor wasn't happy about me taking ibuprofen every day for my back because of my stomach. This lets me skip the pills most days and I haven't had the heartburn since. That alone is worth it.</p><div class="rh"><span class="nm">Gary W. · Dayton, OH</span><span class="vf">✓ Verified Buyer · 1 month ago</span></div></div>
-      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Walking the dog again</div><p>I had quit walking my little dog because my knee would ache by the end of the block. Now we do our full loop around the park every morning and I'm the one waiting on him.</p><div class="rh"><span class="nm">Linda S. · Tacoma, WA</span><span class="vf">✓ Verified Buyer · 2 months ago</span></div></div>
-      <div class="review"><div class="rstars">★★★★☆</div><div class="rt">Worked, just took a bit</div><p>It didn't do much the first two or three days and I almost gave up. But by the end of the first week my shoulder pain was clearly less, and it stays gone — not like the cooling creams that quit on you.</p><div class="rh"><span class="nm">Richard M. · Naples, FL</span><span class="vf">✓ Verified Buyer · 3 weeks ago</span></div></div>
+      <div class="review"><div class="rstars">★★★★★</div><div class="rt">First thing that lasted all day</div><p>I tried three drugstore creams for my shoulder and they'd warm up for twenty minutes, then nothing. This one is different — I put it on after breakfast and don't think about my shoulder again until bedtime.</p><div class="rh"><span class="nm">Margaret H., 71 · Asheville, NC · shoulder</span><span class="vf">✓ Verified Buyer · 2 weeks ago</span></div></div>
+      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Stairs don't scare me anymore</div><p>My knees would catch on every step up to the bedroom and I'd grab the rail and wince. After about a week and a half I went up without holding on and didn't even notice until I got to the top.</p><div class="rh"><span class="nm">Donald R., 74 · Springfield, IL · knees</span><span class="vf">✓ Verified Buyer · last month</span></div></div>
+      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Back in my garden</div><p>My lower back kept me from bending over my flower beds for almost two years. I rubbed this on at night and again in the morning, and I spent two hours planting tomatoes Saturday. My husband couldn't believe it.</p><div class="rh"><span class="nm">Patricia L., 68 · Mesa, AZ · back</span><span class="vf">✓ Verified Buyer · 3 weeks ago</span></div></div>
+      <div class="review"><div class="rstars">★★★★★</div><div class="rt">No more pills, thank goodness</div><p>My doctor wasn't happy about me taking ibuprofen every day for my back because of my stomach. This lets me skip the pills most days and I haven't had the heartburn since. That alone is worth it.</p><div class="rh"><span class="nm">Gary W., 66 · Dayton, OH · back</span><span class="vf">✓ Verified Buyer · 1 month ago</span></div></div>
+      <div class="review"><div class="rstars">★★★★★</div><div class="rt">Walking the dog again</div><p>I had quit walking my little dog because my knee would ache by the end of the block. Now we do our full loop around the park every morning and I'm the one waiting on him.</p><div class="rh"><span class="nm">Linda S., 70 · Tacoma, WA · knees</span><span class="vf">✓ Verified Buyer · 2 months ago</span></div></div>
+      <div class="review"><div class="rstars">★★★★☆</div><div class="rt">Worked, just took a bit</div><p>It didn't do much the first two or three days and I almost gave up. But by the end of the first week my shoulder pain was clearly less, and it stays gone — not like the cooling creams that quit on you.</p><div class="rh"><span class="nm">Richard M., 76 · Naples, FL · shoulder</span><span class="vf">✓ Verified Buyer · 3 weeks ago</span></div></div>
     </div>
     <div class="rev-morewrap"><button type="button" class="cta ghost" id="revMoreBtn" style="width:auto;min-height:54px">Show more reviews ↓</button></div>
     <div class="rev-more" id="revMore" hidden></div>
@@ -576,7 +586,8 @@ body.cookie-open .sticky{display:none!important}
     </div>
     <div class="faq">
       <details><summary>How fast will I feel it?</summary><p>Most people feel cooling relief within minutes of applying. For deeper, lasting comfort, use it daily — many notice a real difference within about a week.</p></details>
-      <details><summary>Is it safe to use with my other medications?</summary><p>Kalmely Relief is a topical balm with natural actives. As with any product, if you take prescription medication or have a condition, check with your doctor or pharmacist first. Our team is happy to answer questions by phone.</p></details>
+      <details><summary>Is it safe to use with my other medications?</summary><p>It's for external use — you rub it on the skin, you don't swallow it, so it doesn't interact the way a pill does. If you take blood thinners or have a skin condition, check with your doctor or pharmacist to be safe.</p></details>
+      <details><summary>Does the savings option lock me into anything?</summary><p>No. The Subscribe &amp; Save option is the only one that repeats: we send 2 jars every 60 days and email you 3 days before each charge. You can cancel anytime in one click or one call — no commitment, no fees. The 1-jar and 2-jar packs are one-time purchases that never renew.</p></details>
       <details><summary>Will it feel greasy or smell like medicine?</summary><p>No. It absorbs quickly with no greasy residue and a clean, light botanical scent — so you can apply it and go about your day.</p></details>
       <details><summary>Where on the body can I use it?</summary><p>Knees, lower back, shoulders, neck, hands, hips, feet — anywhere you have joint or muscle aches. Avoid broken skin and eyes.</p></details>
       <details><summary>What if it doesn't work for me?</summary><p>Then you pay nothing. You're covered by our 60-day money-back guarantee — keep the jar and we'll refund you, no questions asked.</p></details>
@@ -594,21 +605,24 @@ body.cookie-open .sticky{display:none!important}
       <div class="bb-sub">Most customers pick 2 jars — one upstairs, one down.</div>
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
       <div class="bb-gifts" hidden>
-        <b>+ 3 free gifts with this pack:</b>
+        <b>Includes 3 free bonuses:</b>
         <ul>
-          <li><span>"7-Day Joint Mobility" e-book</span><span class="gift-val"><s>$19</s>FREE</span></li>
-          <li><span>Reusable hot/cold pack</span><span class="gift-val"><s>$14</s>FREE</span></li>
-          <li><span>Compression knee sleeve</span><span class="gift-val"><s>$19</s>FREE</span></li>
+          <li>"7-Day Joint Mobility" e-book</li>
+          <li>Reusable hot/cold pack</li>
+          <li>Compression knee sleeve</li>
         </ul>
+        <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
       </div>
       <div class="bb-incl">
         <b>Every order includes:</b>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Free US shipping</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Free US shipping — <b>arrives in 5–8 days from the USA</b></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 60-day money-back guarantee</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 0.5&nbsp;oz (17.5&nbsp;g) per jar — about 3 weeks of daily use</li>
         </ul>
       </div>
       <button class="cta add-to-cart" style="margin-top:6px">Add to cart</button>
+      <div class="bb-time">Cooling relief right away; the deeper relief builds with daily use, usually within a week — give it 2–3 weeks, backed by the 60-day guarantee.</div>
       <div class="bb-guar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Covered by our 60-day money-back guarantee</div>
       <div class="bb-pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL-secured checkout · we never store your card</div>
       <div class="bb-cards"><span class="cardchip">VISA</span><span class="cardchip">MASTERCARD</span><span class="cardchip">AMEX</span><span class="cardchip">PayPal</span></div>
@@ -657,6 +671,7 @@ body.cookie-open .sticky{display:none!important}
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" aria-label="Cart">
   <div class="dr-head"><h3>Your cart</h3><button class="dr-close" id="drClose" aria-label="Close">×</button></div>
+  <div class="dr-note"><b>Added.</b> Review your order and tap Checkout — we only ask for your address and card. 2 steps, 60-day guarantee.</div>
   <div class="dr-body" id="drBody"></div>
   <div class="dr-foot">
     <div class="dr-total"><span>Total</span><span id="drTotal">$0.00</span></div>
@@ -673,7 +688,7 @@ body.cookie-open .sticky{display:none!important}
   var stage=document.getElementById('stage'), thumbsBox=document.getElementById('thumbs');
   function aAttr(s){return (s||'').replace(/"/g,'&quot;');}
   function sealHTML(){return '<div class="seal-graphic"><span class="seal-top">60-Day</span><span class="seal-mid">Money-Back<br>Guarantee</span><span class="seal-bot">Keep the jar</span></div>';}
-  function tagsHTML(g){return g&&g.length?'<div class="gift-tags">'+g.map(function(x,i){return '<div class="free-tag t'+(i+1)+'">'+aAttr(x[0])+'<div class="ft-val"><s>'+aAttr(x[1])+'</s>FREE</div></div>';}).join('')+'</div>':'';}
+  function tagsHTML(g){return g&&g.length?'<div class="gift-tags">'+g.map(function(x,i){return '<div class="free-tag t'+(i+1)+'">'+aAttr(x[0])+'<div class="ft-val">FREE</div></div>';}).join('')+'</div>':'';}
   function stageHTML(s,i){
     if(s.seal) return sealHTML();
     if(s.img) return '<img src="'+s.img+'" alt="'+aAttr(s.t)+'" width="1024" height="1024"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'>'+tagsHTML(s.gifts);
@@ -689,20 +704,19 @@ body.cookie-open .sticky{display:none!important}
 
   // ---------- offer ----------
   var TIERS={
-    'BALM-1':{name:'1 Jar',price:44.95,was:null,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp'},
-    'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp'},
-    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:104.85,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp'}
+    'BALM-1':{name:'1 Jar',price:44.95,was:null,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try'},
+    'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down — most pick this'},
+    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'Plus 3 free bonuses — on a subscription'}
   };
-  var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2-GIFTS';
+  var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2';
   var packEls=[].slice.call(document.querySelectorAll('.packs'));
   function money(n){return '$'+n.toFixed(2);}
   function packHTML(){return ORDER.map(function(sku){var t=TIERS[sku];
-      var tag=t.pop?'<span class="tag pop">Most Popular</span>':(t.best?'<span class="tag best">Best Value</span>':'');
+      var tag=t.pop?'<span class="tag pop">Most Popular</span>':(t.best?'<span class="tag best">Most Complete</span>':'');
       var save=t.was?('<div class="pk-per">You save '+money(t.was-t.price)+'</div>'):'';
-      var sub=t.sub?' · subscribe &amp; save':'';
       return '<button class="pack'+(sku===cur?' on':'')+'" data-sku="'+sku+'" role="radio" aria-checked="'+(sku===cur)+'">'
         +tag+'<span class="radio"></span>'
-        +'<span><span class="pk-name">'+t.name+'</span><span class="pk-meta">'+money(t.price)+sub+'</span></span>'
+        +'<span><span class="pk-name">'+t.name+'</span><span class="pk-meta">'+t.line+'</span></span>'
         +'<span class="pk-price">'+(t.was?'<s>'+money(t.was)+'</s>':'')+money(t.price)+'<span class="pk-per">'+money(parseFloat(t.per))+'/jar</span>'+save+'</span>'
         +'</button>';
     }).join('');}
@@ -756,7 +770,11 @@ body.cookie-open .sticky{display:none!important}
   var more=document.getElementById('revMore'),btn=document.getElementById('revMoreBtn');
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-  function who(r){return esc(r.n)+(r.loc?' · '+esc(r.loc):'');}  // age dropped — conveyed by the testimonial language, not a number
+  function painOf(r){var b=(r.b||'').toLowerCase();
+    if(/knee/.test(b))return'knees'; if(/\bback\b/.test(b))return'back'; if(/shoulder/.test(b))return'shoulder';
+    if(/\bhip\b/.test(b))return'hip'; if(/neck/.test(b))return'neck'; if(/elbow/.test(b))return'elbow';
+    if(/hand|wrist/.test(b))return'hands'; return'joints';}
+  function who(r){return esc(r.n)+(r.age?', '+r.age:'')+(r.loc?' · '+esc(r.loc):'')+' · '+painOf(r);}  // name + age + city + pain area (buyer-audit format)
   function cardText(r){return '<div class="review"><div class="rstars">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p><div class="rh"><span class="nm">'+who(r)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></div></div>';}
   if(R.length&&more&&btn){
     more.innerHTML=R.slice(6).map(cardText).join('');
