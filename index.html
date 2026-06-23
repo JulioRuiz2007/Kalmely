@@ -129,12 +129,13 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 .pack.on .radio{border-color:var(--cta)}
 .pack.on .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--cta)}
 .pk-body{min-width:0}
-.pk-top,.pk-bot{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.pk-bot{margin-top:3px}
-.pack .pk-name{font:800 17.5px/1.15 var(--sans);color:var(--ink)}
-.pack .pk-meta{font-size:13px;line-height:1.3;color:var(--ink2)}
-.pack .pk-price{font:800 20px/1 var(--sans);color:var(--ink);white-space:nowrap;text-align:right;flex:none}
-.pack .pk-price s{font-weight:600;font-size:13px;color:var(--soft);margin-right:6px}
+.pk-top,.pk-bot{display:flex;justify-content:space-between;gap:10px}
+.pk-top{align-items:flex-start}
+.pk-bot{align-items:baseline;margin-top:3px}
+.pack .pk-name{flex:1;min-width:0;font:800 17px/1.18 var(--sans);color:var(--ink)}
+.pack .pk-meta{flex:1;min-width:0;font-size:13px;line-height:1.3;color:var(--ink2)}
+.pack .pk-price{font:800 21px/1 var(--sans);color:var(--ink);white-space:nowrap;text-align:right;flex:none}
+.pack .pk-price s{display:block;font-weight:600;font-size:13px;color:var(--soft);text-align:right;margin:0 0 2px}
 .pack .pk-per{font:600 12.5px/1 var(--sans);color:var(--soft);white-space:nowrap;text-align:right;flex:none}
 .pk-save{font:700 12.5px/1 var(--sans);color:var(--cta-text);text-align:right;margin-top:6px}
 .tag{position:absolute;top:-11px;left:16px;font:800 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:7px;color:#fff}
@@ -176,7 +177,8 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,242,234,.96);backdro
 /* mechanism steps */
 .mech{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:10px}
 .mech .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
-.mech .n{width:46px;height:46px;border-radius:50%;background:var(--brand);color:#fff;font:800 22px/46px var(--sans);margin:0 auto 12px}
+.mech .n{width:46px;height:46px;border-radius:50%;background:var(--cta);color:#1E2429;font:800 22px/46px var(--sans);margin:0 auto 12px}
+#how{background:#FDEBD8}              /* soft-orange band → alternates with the navy benefits block */
 
 /* comparison table */
 .cmp{overflow-x:auto;margin-top:8px}
@@ -298,6 +300,10 @@ body.cookie-open .sticky{display:none!important}
 .bb-gifts ul{list-style:none;display:grid;gap:8px}
 .bb-gifts li{font-size:14.5px;padding-left:20px;position:relative}
 .bb-gifts li::before{content:"\2713";position:absolute;left:0;color:var(--trust);font-weight:800}
+.bb-gifts .gift-list li{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bb-gifts .gift-list li>span:first-child{flex:1}
+.g-val{white-space:nowrap;font-weight:800;color:var(--cta-text)}
+.g-val s{color:var(--soft);font-weight:600;margin-right:5px}
 .bb-substext{margin-top:11px;padding-top:11px;border-top:1px solid #F1D6C2;font:600 13px/1.5 var(--sans);color:var(--ink2)}
 .bb-substext b{color:var(--ink)}
 .gift-val{font-weight:800;color:var(--cta-text);white-space:nowrap}
@@ -394,8 +400,8 @@ body.cookie-open .sticky{display:none!important}
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <a href="#reviews" class="rating" style="text-decoration:none;cursor:pointer" aria-label="Read our reviews"><span class="stars">★★★★★</span> <span><b>4.8</b> · Loved by 12,000+ people who got their lives back</span></a>
-      <h1>Get back on the floor with the grandkids<br><span class="hl">and feel like yourself again</span></h1>
-      <p class="hero-sub">A natural balm for the stiff, <span class="key">aching knees, back and shoulders</span> that keep you off the floor and out of the garden — so you can <span class="key">move freely</span> again, without the pills.</p>
+      <h1>Get back on the floor with the <span class="hl">grandkids</span></h1>
+      <p class="hero-sub">A natural balm for the stiff, <span class="key">aching knees, back and shoulders</span> that keep you off the floor — so you can <span class="key">move freely</span> and feel like yourself again, without the pills.</p>
       <ul class="hero-bullets">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Get down on the floor, and back up, on your own again</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sleep through the night again, without waking when you shift your weight</li>
@@ -414,10 +420,10 @@ body.cookie-open .sticky{display:none!important}
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
       <div class="bb-gifts" hidden>
         <b>Includes 3 free bonuses:</b>
-        <ul>
-          <li>"7-Day Joint Mobility" e-book</li>
-          <li>Reusable hot/cold pack</li>
-          <li>Compression knee sleeve</li>
+        <ul class="gift-list">
+          <li><span>"7-Day Joint Mobility" e-book</span> <span class="g-val"><s>$19</s> FREE</span></li>
+          <li><span>Reusable hot/cold pack</span> <span class="g-val"><s>$14</s> FREE</span></li>
+          <li><span>Compression knee sleeve</span> <span class="g-val"><s>$19</s> FREE</span></li>
         </ul>
         <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
       </div>
@@ -611,10 +617,10 @@ body.cookie-open .sticky{display:none!important}
       <div class="packs" role="radiogroup" aria-label="Choose your pack"></div>
       <div class="bb-gifts" hidden>
         <b>Includes 3 free bonuses:</b>
-        <ul>
-          <li>"7-Day Joint Mobility" e-book</li>
-          <li>Reusable hot/cold pack</li>
-          <li>Compression knee sleeve</li>
+        <ul class="gift-list">
+          <li><span>"7-Day Joint Mobility" e-book</span> <span class="g-val"><s>$19</s> FREE</span></li>
+          <li><span>Reusable hot/cold pack</span> <span class="g-val"><s>$14</s> FREE</span></li>
+          <li><span>Compression knee sleeve</span> <span class="g-val"><s>$19</s> FREE</span></li>
         </ul>
         <div class="bb-substext"><b>This is a subscription.</b> We send 2 jars every 60 days. We email you 3 days before each charge. Cancel anytime in one click or one call — no commitment.</div>
       </div>
@@ -693,7 +699,7 @@ body.cookie-open .sticky{display:none!important}
   var stage=document.getElementById('stage'), thumbsBox=document.getElementById('thumbs');
   function aAttr(s){return (s||'').replace(/"/g,'&quot;');}
   function sealHTML(){return '<div class="seal-graphic"><span class="seal-top">60-Day</span><span class="seal-mid">Money-Back<br>Guarantee</span><span class="seal-bot">Keep the jar</span></div>';}
-  function tagsHTML(g){return g&&g.length?'<div class="gift-tags">'+g.map(function(x,i){return '<div class="free-tag t'+(i+1)+'">'+aAttr(x[0])+'<div class="ft-val">FREE</div></div>';}).join('')+'</div>':'';}
+  function tagsHTML(g){return g&&g.length?'<div class="gift-tags">'+g.map(function(x,i){return '<div class="free-tag t'+(i+1)+'">'+aAttr(x[0])+'<div class="ft-val"><s>'+aAttr(x[1])+'</s> FREE</div></div>';}).join('')+'</div>':'';}
   function stageHTML(s,i){
     if(s.seal) return sealHTML();
     if(s.img) return '<img src="'+s.img+'" alt="'+aAttr(s.t)+'" width="1024" height="1024"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'>'+tagsHTML(s.gifts);
@@ -714,16 +720,16 @@ body.cookie-open .sticky{display:none!important}
 
   // ---------- offer ----------
   var TIERS={
-    'BALM-1':{name:'1 Jar',price:44.95,was:null,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try'},
-    'BALM-2':{name:'2 Jars',price:59.99,was:89.90,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down'},
-    'BALM-2-GIFTS':{name:'2 Jars + Gifts',price:64.00,was:null,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses · subscription'}
+    'BALM-1':{name:'1 Jar',price:44.95,was:89.90,per:'44.95',gifts:false,sub:false,img:'assets/balm/balm-pack-1.webp',line:'To try',saveLabel:'Save 50%'},
+    'BALM-2':{name:'2 Jars',price:59.99,was:179.80,per:'30.00',gifts:false,sub:false,pop:true,img:'assets/balm/balm-pack-2.webp',line:'One upstairs, one down'},
+    'BALM-2-GIFTS':{name:'2 Jars + 3 Free Gifts',price:64.00,was:231.80,per:'32.00',gifts:true,sub:true,best:true,img:'assets/balm/balm-bundle.webp',line:'3 free bonuses · subscription'}
   };
   var ORDER=['BALM-1','BALM-2','BALM-2-GIFTS'], cur='BALM-2';
   var packEls=[].slice.call(document.querySelectorAll('.packs'));
   function money(n){return '$'+n.toFixed(2);}
   function packHTML(){return ORDER.map(function(sku){var t=TIERS[sku];
-      var tag=t.pop?'<span class="tag pop">Most Popular</span>':(t.best?'<span class="tag best">Most Complete</span>':'');
-      var save=t.was?('<div class="pk-save">You save '+money(t.was-t.price)+'</div>'):'';
+      var tag=t.pop?'<span class="tag pop">Most Popular</span>':(t.best?'<span class="tag best">Best Value</span>':'');
+      var save=t.saveLabel?('<div class="pk-save">'+t.saveLabel+'</div>'):(t.was?('<div class="pk-save">You save '+money(t.was-t.price)+'</div>'):'');
       return '<button class="pack'+(sku===cur?' on':'')+'" data-sku="'+sku+'" role="radio" aria-checked="'+(sku===cur)+'">'
         +tag+'<span class="radio"></span>'
         +'<span class="pk-body">'
