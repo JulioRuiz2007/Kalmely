@@ -1,7 +1,7 @@
 :root{
   --bg:#F6F2EA;--ink:#1E2429;--ink2:#46525C;--soft:#6B7680;
   --brand:#103A4F;--brand-d:#0B2C3D;--cta:#E88130;--cta-text:#A6581C;
-  --panel:#EDF3FA;--line:#DCD3C2;--card:#fff;
+  --panel:#FBEEE1;--line:#DCD3C2;--card:#fff;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --serif:Georgia,"Times New Roman",serif;
 }
@@ -29,7 +29,7 @@ p{margin:0 0 14px}
 ul,ol{margin:0 0 16px;padding-left:22px}
 li{margin-bottom:8px}
 strong{color:var(--ink)}
-.callout{background:var(--panel);border:1px solid #CFE0EA;border-left:4px solid var(--brand);border-radius:12px;padding:18px 20px;margin:22px 0}
+.callout{background:var(--panel);border:1px solid #EAD9C6;border-left:4px solid var(--brand);border-radius:12px;padding:18px 20px;margin:22px 0}
 .callout p{margin:0 0 10px}.callout p:last-child{margin:0}
 .callout.warn{background:#FFF6EF;border-color:#F1D6C2;border-left-color:var(--cta)}
 table.kv{width:100%;border-collapse:collapse;margin:6px 0 18px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
