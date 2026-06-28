@@ -637,14 +637,12 @@ section{padding:74px 0}
           <div class="label">Choose your pack <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 1 Bar</span></div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="24.95" role="radio" aria-checked="false">
-              <span class="pack-thumb"><span class="ph"><span>1 BAR</span></span></span>
               <span class="pack-qty">1 Bar</span>
               <span class="pack-unit">$24.95/bar</span>
               <span class="pack-price">$24.95<s>$49.95</s></span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="39.95" role="radio" aria-checked="false">
               <span class="pack-badge">Most popular</span>
-              <span class="pack-thumb"><span class="ph"><span>2 BARS</span></span></span>
               <span class="pack-qty">2 Bars</span>
               <span class="pack-unit">$19.98/bar</span>
               <span class="pack-price">$39.95<s>$99.90</s></span>
@@ -652,7 +650,6 @@ section{padding:74px 0}
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="54.95" role="radio" aria-checked="false">
               <span class="pack-badge alt">Best value</span>
-              <span class="pack-thumb"><span class="ph"><span>3 BARS</span></span></span>
               <span class="pack-qty">3 Bars</span>
               <span class="pack-unit">$18.32/bar</span>
               <span class="pack-price">$54.95<s>$149.85</s></span>
@@ -841,18 +838,15 @@ section{padding:74px 0}
       <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span><b>4.8</b> · 14,200+ scalps revived</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="24.95" role="radio" aria-checked="false">
-          <span class="pack-thumb"><span class="ph"><span>1 BAR</span></span></span>
           <span class="pack-qty">1 Bar</span><span class="pack-unit">$24.95/bar</span><span class="pack-price">$24.95<s>$49.95</s></span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-2" data-price="39.95" role="radio" aria-checked="false">
           <span class="pack-badge">Most popular</span>
-          <span class="pack-thumb"><span class="ph"><span>2 BARS</span></span></span>
           <span class="pack-qty">2 Bars</span><span class="pack-unit">$19.98/bar</span><span class="pack-price">$39.95<s>$99.90</s></span>
           <span class="pack-banner">🎁 + free massage brush</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="54.95" role="radio" aria-checked="false">
           <span class="pack-badge alt">Best value</span>
-          <span class="pack-thumb"><span class="ph"><span>3 BARS</span></span></span>
           <span class="pack-qty">3 Bars</span><span class="pack-unit">$18.32/bar</span><span class="pack-price">$54.95<s>$149.85</s></span>
           <span class="pack-banner">🎁 + brush + bonus bar</span>
         </button>
@@ -1227,7 +1221,7 @@ section{padding:74px 0}
 <script src="assets/reviews.js"></script>
 <script>
 (function(){
-  var R=window.KALMELY_REVIEWS||[];
+  var R=(window.KALMELY_REVIEWS||[]).map(function(r){return {r:r.r,n:r.n,d:r.d,loc:r.loc,t:'Verified review',b:'— review placeholder · scalp reviews pending —'};});
   var feat=document.getElementById('revFeatured'),more=document.getElementById('revMore'),dist=document.getElementById('revDist'),btn=document.getElementById('revMoreBtn');
   if(!R.length||!feat||!dist||!more)return;
   var photos=['tea-review1','tea-review2','tea-review3','tea-review4','tea-review5','tea-review6','tea-review7'];
