@@ -119,10 +119,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   /* Olive-green editorial: greenish cream + deep olive ink (replaces near-black), warm terracotta for FREE/savings so they pop */
-  --paper:#F6F6F0; --paper-2:#ECEDE2; --paper-3:#E2E4D3; --card:#FFFFFF;
-  --ink:#3F4A2B; --ink-2:#525C3F; --ink-soft:#696E59; --faint:#A6A88F;
-  --line:#E1E3D4; --line-2:#D1D4C0;
-  --ok:#B0552E; --gold:#9A7B3F;
+  --paper:#FAF9F5; --paper-2:#F1F0EA; --paper-3:#E9E7DF; --card:#FFFFFF;
+  --ink:#384032; --ink-2:#566150; --ink-soft:#717767; --faint:#ABAB9F;
+  --line:#EAE8E0; --line-2:#DBD8CF;
+  --ok:#9B5B33; --gold:#384032;
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -206,6 +206,8 @@ h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:.004e
 .bx-sub{font:400 17px/1.4 var(--sans);color:var(--ink-2);margin-bottom:8px}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges{display:flex;flex-wrap:wrap;gap:7px;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges span{font:600 11.5px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:8px 12px}
 .bx-benefit{border-bottom:1px solid var(--line)}
 .bx-benefit:last-child{border-bottom:none}
 .bx-benefit summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;font:500 14.5px/1.3 var(--sans);color:var(--ink)}
@@ -620,7 +622,6 @@ section{padding:74px 0}
         <div class="hx-eyebrow">Kalmely · Scalp Care</div>
         <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews"><b>4.8</b> · 14,200+ scalps revived</a></div>
         <h1 class="bx-h1">Healthy hair starts at the <span class="hl">scalp you forgot to wash</span><span class="h1-sub">One fermented botanical bar clears buildup, calms the itch, and leaves hair feeling thicker, fuller, and shedding less.</span></h1>
-        <p class="bx-sub">A salon-grade scalp cleanse in a single bar — lifts the buildup ordinary shampoo leaves behind, soothes the itch, and revives flat, tired roots.</p>
         <div class="hx-proof">“Three washes in, the itch was gone and my roots actually had life again.” <span class="vf">✓ Verified review</span></div>
         <a href="#results" class="bx-link">See real before &amp; afters ›</a>
       </div>
@@ -628,10 +629,8 @@ section{padding:74px 0}
       <!-- buy box -->
       <div class="buybox fade-slow">
 
-        <div class="bx-benefits">
-          <details class="bx-benefit"><summary>Clears the buildup shampoo leaves behind</summary><p>Liquid shampoo cleans your hair and leaves the scalp coated in sebum, product and hard-water residue. The bar lifts that buildup at the root, so follicles aren't congested and hair doesn't fall flat.</p></details>
-          <details class="bx-benefit"><summary>Calms the itch &amp; flaking — from the first wash</summary><p>Fermented botanicals soothe an irritated, flaky scalp without the harsh sulfates that strip your skin and start the itch all over again.</p></details>
-          <details class="bx-benefit"><summary>Fuller, fresher hair from the root up</summary><p>A clean, balanced scalp is where healthy-looking hair starts. Most users say their hair feels thicker, lighter and sheds less within a few weeks.</p></details>
+        <div class="bx-badges">
+          <span>Fermented botanicals</span><span>Sulfate-free</span><span>100% vegan</span><span>Dermatologist-tested</span>
         </div>
 
         <div class="bx-sec">
@@ -672,8 +671,6 @@ section{padding:74px 0}
         <div class="bx-pay"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>PAYPAL</span></div>
         <div class="bx-disclaimer">Results may vary. A cosmetic scalp-care product — not medical advice. If you have a diagnosed scalp condition or a known allergy, check the ingredients and consult your doctor before use.</div>
 
-        <p class="bx-desc">Most shampoos clean the <em>hair</em> and leave the <em>scalp</em> coated in buildup. The Scalp Revival Bar flips that — a <span class="key">water-free</span>, <span class="key">sulfate-free</span> bar of <span class="key">fermented botanicals</span> that lifts buildup at the root, calms the itch, and leaves hair looking <span class="key">thicker and fuller</span>. Glide, massage, rinse.</p>
-
         <div class="acc">
           <details><summary>How fast will I feel it?</summary><p>Most people feel a cleaner, calmer, less itchy scalp from the very first wash. The fuller look and reduced shedding build over a few weeks of regular use.</p></details>
           <details><summary>How is a bar better than my shampoo?</summary><p>Shampoo is built to clean hair strands, often with harsh sulfates that strip and irritate. The bar is built for the scalp — concentrated, sulfate-free, and made to clear buildup where healthy hair actually starts.</p></details>
@@ -681,6 +678,32 @@ section{padding:74px 0}
           <details><summary>Will it work for my hair type?</summary><p>Yes — straight, wavy, curly, coily, fine or thick, oily or dry. It treats the scalp, not the strand, so it suits every hair type. Colour-safe, too.</p></details>
           <details><summary>What if it doesn't work for me?</summary><p>60-day money-back guarantee. Love your scalp or every cent back — and you don't even have to send the bar back.</p></details>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="band" id="reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Real people, real scalps</div><h2>Loved by 14,200+</h2></div>
+      <div class="rev-top fade-slow">
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,200+ verified reviews</div></div>
+        <div class="rev-dist" id="revDist"></div>
+      </div>
+      <div class="rev-grid fade-slow" id="revFeatured"></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
+      <div class="rev-more" id="revMore" hidden></div>
+    </div>
+  </section>
+
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section id="results">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Real results</div><h2>The difference your scalp can feel</h2><p>Real photos and stories shared by Kalmely users after several weeks of regular use. Everyone's scalp and hair are different, so results may vary — but the pattern is the same: less itch, less flaking, fuller-feeling roots.</p></div>
+      <div class="ba-grid fade-slow">
+        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Itchy, flaky scalp · 4 weeks</figcaption></figure>
+        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Oily, flat roots · 3 weeks</figcaption></figure>
+        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Fuller-looking roots · 6 weeks</figcaption></figure>
       </div>
     </div>
   </section>
@@ -693,6 +716,18 @@ section{padding:74px 0}
         <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Itch / flaking</span></div><div class="rb"><span>The relentless itch &amp; flaking that comes back hours after you shower</span></div></div>
         <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Oily roots</span></div><div class="rb"><span>An oily, weighed-down feeling at the roots even on a fresh wash day</span></div></div>
         <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Limp / shedding</span></div><div class="rb"><span>Limp, thinning-feeling hair that sheds more than it used to and won't hold volume</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIFESTYLE ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">It starts at the scalp</div><h2>Healthy, full-looking hair grows from a clean, balanced scalp — not a bottle of suds</h2><p>A clogged scalp can't grow hair that looks its best — the same way a blocked drain can't run clear no matter how much water you pour in. Most liquid shampoos are built around harsh sulfates that foam up, strip your scalp's natural oils, and trigger it to overproduce sebum — which is why you feel greasy and flaky at once. A solid bar works differently: a concentrated, water-free formula with fermented botanicals that clears buildup at the root and calms the scalp's barrier, leaving follicles free to do what they do best.</p></div>
+      <div class="life fade-slow">
+        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Lifestyle</span></div>
+        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Scalp close-up</span></div>
+        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Fuller hair</span></div>
       </div>
     </div>
   </section>
@@ -710,21 +745,6 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== INGREDIENTS ===== -->
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">What's inside</div><h2>Six fermented botanicals, one little bar</h2><p>No sulfates, no fillers you can't pronounce — just a concentrated blend chosen to clear buildup and bring a tired scalp back to life.</p></div>
-      <div class="values fade-slow" style="grid-template-columns:repeat(3,1fr);gap:26px 30px">
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Rice Water</h3><p>Tradition-loved Korean clarifier that helps clear buildup and leaves strands feeling smoother and glossier.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Green Tea Ferment</h3><p>Antioxidant-rich and balancing — helps soothe an oily, irritated scalp so hair feels lighter and less greasy.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Ginseng Root</h3><p>An energizing botanical that wakes up tired-looking roots for fuller, more resilient-looking hair.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Tea Tree Oil</h3><p>Naturally purifying and cooling — helps calm itchiness and flaking while leaving the scalp genuinely clean.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Biotin &amp; Panthenol (B5)</h3><p>A nourishing duo that conditions the scalp and coats each strand for thicker-feeling, healthier-looking hair.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Soybean</h3><p>A plant-based moisture boost that softens and strengthens, helping reduce breakage and visible shedding.</p></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== HOW TO USE (3 steps) ===== -->
   <section id="usage">
     <div class="wrap">
@@ -737,14 +757,17 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== BEFORE / AFTER ===== -->
-  <section id="results">
+  <!-- ===== INGREDIENTS ===== -->
+  <section class="band">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Real results</div><h2>The difference your scalp can feel</h2><p>Real photos and stories shared by Kalmely users after several weeks of regular use. Everyone's scalp and hair are different, so results may vary — but the pattern is the same: less itch, less flaking, fuller-feeling roots.</p></div>
-      <div class="ba-grid fade-slow">
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Itchy, flaky scalp · 4 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Oily, flat roots · 3 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Fuller-looking roots · 6 weeks</figcaption></figure>
+      <div class="sec-head fade-slow"><div class="eyebrow">What's inside</div><h2>Six fermented botanicals, one little bar</h2><p>No sulfates, no fillers you can't pronounce — just a concentrated blend chosen to clear buildup and bring a tired scalp back to life.</p></div>
+      <div class="values fade-slow" style="grid-template-columns:repeat(3,1fr);gap:26px 30px">
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Rice Water</h3><p>Tradition-loved Korean clarifier that helps clear buildup and leaves strands feeling smoother and glossier.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Green Tea Ferment</h3><p>Antioxidant-rich and balancing — helps soothe an oily, irritated scalp so hair feels lighter and less greasy.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Ginseng Root</h3><p>An energizing botanical that wakes up tired-looking roots for fuller, more resilient-looking hair.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Tea Tree Oil</h3><p>Naturally purifying and cooling — helps calm itchiness and flaking while leaving the scalp genuinely clean.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Biotin &amp; Panthenol (B5)</h3><p>A nourishing duo that conditions the scalp and coats each strand for thicker-feeling, healthier-looking hair.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Soybean</h3><p>A plant-based moisture boost that softens and strengthens, helping reduce breakage and visible shedding.</p></div>
       </div>
     </div>
   </section>
@@ -782,42 +805,6 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== LIFESTYLE ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">It starts at the scalp</div><h2>Healthy, full-looking hair grows from a clean, balanced scalp — not a bottle of suds</h2><p>A clogged scalp can't grow hair that looks its best — the same way a blocked drain can't run clear no matter how much water you pour in. Most liquid shampoos are built around harsh sulfates that foam up, strip your scalp's natural oils, and trigger it to overproduce sebum — which is why you feel greasy and flaky at once. A solid bar works differently: a concentrated, water-free formula with fermented botanicals that clears buildup at the root and calms the scalp's barrier, leaving follicles free to do what they do best.</p></div>
-      <div class="life fade-slow">
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Lifestyle</span></div>
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Scalp close-up</span></div>
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Fuller hair</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== REVIEWS ===== -->
-  <section class="band" id="reviews">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Real people, real scalps</div><h2>Loved by 14,200+</h2></div>
-      <div class="rev-top fade-slow">
-        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,200+ verified reviews</div></div>
-        <div class="rev-dist" id="revDist"></div>
-      </div>
-      <div class="rev-grid fade-slow" id="revFeatured"></div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
-      <div class="rev-more" id="revMore" hidden></div>
-    </div>
-  </section>
-
-  <!-- ===== GUARANTEE ===== -->
-  <section>
-    <div class="wrap guarantee fade-slow">
-      <div class="seal fade-slow"><b>60</b>day money-back</div>
-      <h2>Love your scalp in 60 days — or it's on us</h2>
-      <p>Give the bar a fair shot for 60 days. If your scalp doesn't feel cleaner, calmer and less itchy, or your hair doesn't feel fuller, just email us for a full refund. No photos, no hoops — and you don't even have to mail the bar back. Keep it.</p>
-      <button type="button" class="add-to-cart">Add to cart</button>
-    </div>
-  </section>
-
   <!-- ===== FAQ ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
@@ -833,6 +820,16 @@ section{padding:74px 0}
         <details><summary>Does it work for men too?</summary><p>Definitely. Scalp buildup, itch and thinning-feeling hair aren't a women's-only problem — men deal with all of it. The bar works exactly the same way for everyone, and plenty of guys keep one in the shower for a quick, no-fuss scalp cleanse. One bar, the whole household.</p></details>
         <details><summary>How do I use it?</summary><p>It takes about a minute. Wet your hair and scalp, then glide the bar directly along your scalp in sections until you feel a light lather. Massage with your fingertips (or the scalp brush included in our bundles) for around 60 seconds to lift buildup and leave your scalp feeling refreshed. Rinse thoroughly, then condition your lengths if you like. Let the bar dry between uses and it'll last for months.</p></details>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section>
+    <div class="wrap guarantee fade-slow">
+      <div class="seal fade-slow"><b>60</b>day money-back</div>
+      <h2>Love your scalp in 60 days — or it's on us</h2>
+      <p>Give the bar a fair shot for 60 days. If your scalp doesn't feel cleaner, calmer and less itchy, or your hair doesn't feel fuller, just email us for a full refund. No photos, no hoops — and you don't even have to mail the bar back. Keep it.</p>
+      <button type="button" class="add-to-cart">Add to cart</button>
     </div>
   </section>
 
