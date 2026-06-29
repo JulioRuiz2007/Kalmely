@@ -169,7 +169,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* ============ HERO ============ */
 .hero{padding:30px 0 14px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,620px) 468px;grid-template-areas:"gallery head" "gallery buy";gap:16px 54px;align-items:start;justify-content:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 530px;grid-template-areas:"gallery head" "gallery buy";gap:20px 50px;align-items:start}
 .hero-head{grid-area:head}
 .buybox{grid-area:buy}
 .hx-eyebrow{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
@@ -215,10 +215,10 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .bx-h1{font-family:'Fraunces',var(--serif);font-size:clamp(30px,3.4vw,40px);font-weight:600;color:#161616;line-height:1.08;margin:24px 0 6px}
 .bx-h1 .hl{color:inherit;font-weight:700;font-style:normal}
 .bx-h1 .h1-sub{display:block;font:400 15px/1.45 var(--sans);color:var(--ink-2);margin-top:14px;letter-spacing:0;white-space:normal}
-.bx-sub{font:400 17px/1.4 var(--sans);color:var(--ink-2);margin-bottom:8px}
+.bx-sub{font:400 17px/1.5 var(--sans);color:var(--ink-2);margin-bottom:18px}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.bx-badges{padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bx-badges-h{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
 .bx-badges-row{display:flex;flex-wrap:wrap;gap:7px}
 .bx-badges span{font:600 11.5px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:8px 12px}
@@ -233,7 +233,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .bx-benefit summary::after{content:"+";font:400 19px/1 var(--sans);color:var(--ink-soft);flex:0 0 auto}
 .bx-benefit[open] summary::after{content:"\2212"}
 .bx-benefit p{padding:0 0 12px;margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
-.bx-sec{margin-top:18px}
+.bx-sec{margin-top:26px}
 .bx-sec .label{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .bx-sec .help{font:500 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:underline;cursor:pointer}
 
@@ -595,15 +595,15 @@ section{padding:74px 0}
 .bx-stock b{color:#000;font-weight:700}
 .sale-divider{display:flex;align-items:center;gap:14px;justify-content:center;text-align:center;font:700 13.5px/1.3 var(--sans);letter-spacing:.01em;color:var(--ink);margin:2px 0 12px}
 .sale-divider::before,.sale-divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
-.bx-micro{font:400 13.5px/1.5 var(--sans);color:var(--ink-soft);margin:11px 0 2px;font-style:italic}
-.bx-promise{list-style:none;margin:17px 0 2px;display:flex;flex-direction:column;gap:9px}
+.bx-micro{font:400 14px/1.55 var(--sans);color:var(--ink-soft);margin:0 0 20px;font-style:italic}
+.bx-promise{list-style:none;margin:24px 0 6px;display:flex;flex-direction:column;gap:13px}
 .bx-promise li{position:relative;padding-left:27px;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
 .bx-promise li::before{content:"";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:var(--gold)}
 .bx-promise li::after{content:"";position:absolute;left:6px;top:5px;width:6px;height:3px;border-left:1.7px solid #fff;border-bottom:1.7px solid #fff;transform:rotate(-45deg)}
 .sub-optin{display:flex;gap:9px;align-items:flex-start;margin-top:13px;padding:11px 13px;border:1px solid var(--line-2);border-radius:10px;background:var(--paper-2);cursor:pointer}
 .sub-optin input{flex:0 0 auto;width:16px;height:16px;margin-top:1px;accent-color:var(--ink)}
 .sub-optin span{font:500 12.5px/1.45 var(--sans);color:var(--ink-2)}
-.bx-h1.product{font-family:'Fraunces',var(--serif);font-size:clamp(28px,3.2vw,38px);margin:18px 0 4px}
+.bx-h1.product{font-family:'Fraunces',var(--serif);font-size:clamp(28px,3.2vw,38px);margin:20px 0 14px}
 
 /* social-proof strip (B3) */
 .sproof-h{font:600 clamp(21px,2.6vw,28px)/1.2 'Sora',var(--sans);text-align:center;color:var(--ink);margin-bottom:6px}
