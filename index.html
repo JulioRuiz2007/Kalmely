@@ -590,8 +590,11 @@ section{padding:74px 0}
 .nav-inner{grid-template-columns:1fr auto}
 .logo{justify-self:start}
 .announce{cursor:default}
-.bx-scarce{display:flex;align-items:flex-start;gap:8px;font:600 12.5px/1.45 var(--sans);color:var(--ok);margin-top:14px}
-.bx-scarce svg{width:15px;height:15px;flex:0 0 auto;margin-top:1px}
+.bx-stock{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin:18px 0}
+.bx-stock .ic{width:26px;height:26px;flex:0 0 auto;background:#111;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.bx-stock .ic svg{width:16px;height:16px;color:#fff;display:block}
+.bx-stock p{font:400 13.5px/1.5 var(--sans);color:#111;margin:0}
+.bx-stock b{color:#000;font-weight:700}
 .bx-micro{font:400 13.5px/1.5 var(--sans);color:var(--ink-soft);margin:11px 0 2px;font-style:italic}
 .bx-promise{list-style:none;margin:17px 0 2px;display:flex;flex-direction:column;gap:9px}
 .bx-promise li{position:relative;padding-left:27px;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
@@ -749,7 +752,7 @@ section{padding:74px 0}
 
         <div class="pack-gifts" id="packGifts"></div>
 
-        <div class="bx-scarce"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>These sell out fast — we sold out 3 times last year. Order while it's in stock.</span></div>
+        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><p><b>These sell out fast</b> — we sold out 3 times last year. Order while it's in stock.</p></div>
 
         <label class="sub-optin"><input type="checkbox" id="subOptin"><span>Make it a refill &amp; save — ship a fresh bar every 60 days, cancel anytime.</span></label>
 
@@ -834,7 +837,7 @@ section{padding:74px 0}
         <li>60-Day Money-Back Guarantee</li>
       </ul>
       <p class="cost-reframe">That's less than $1 a wash — less than a single-use serum packet, for the step that comes before everything else you've tried.</p>
-      <div class="bx-scarce" style="justify-content:center;max-width:430px;margin-left:auto;margin-right:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>These sell out fast — we sold out 3 times last year. Order while it's in stock.</span></div>
+      <div class="bx-stock" style="max-width:440px;margin-left:auto;margin-right:auto;text-align:left"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><p><b>These sell out fast</b> — we sold out 3 times last year. Order while it's in stock.</p></div>
       <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
       <label class="sub-optin"><input type="checkbox"><span>Make it a refill &amp; save — fresh bar every 60 days, cancel anytime.</span></label>
     </div>
