@@ -727,24 +727,26 @@ section{padding:74px 0}
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
-            <!-- slide 1 = real product photo; 2-6 PLACEHOLDERS (real woman/mirror UGC + steps + reviews + guarantee). NO before/after framing. -->
-            <div class="hero-slide">
-              <img src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar" width="1024" height="1024" fetchpriority="high">
-            </div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Real woman · at the mirror</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>How it works</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer reviews</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Sixty-second ritual</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>60-day guarantee</span></div></div>
+            <!-- 8 real hero images, fixed order 01..08 (01-packshot is the featured/default) -->
+            <div class="hero-slide"><img src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar with its gift box" width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-02.webp" alt="Woman holding the Kalmely scalp bar" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-03.webp" alt="The hair part over weeks of regular use" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-04.webp" alt="What the Kalmely scalp bar is designed to help with" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-05.webp" alt="Real customers using the Kalmely scalp bar" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-06.webp" alt="What women report after using the Kalmely bar" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-07.webp" alt="The herbal botanicals inside the Kalmely bar" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-08.webp" alt="Kalmely Korean Scalp Revival Bar" width="1080" height="1080" loading="lazy"></div>
           </div>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product"><img src="assets/scalp-hero.webp" alt=""></button>
-          <button type="button" class="hero-thumb" aria-label="At the mirror"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb" aria-label="How it works"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb" aria-label="Reviews"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb" aria-label="Ritual"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb" aria-label="Guarantee"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Holding the bar"><img src="assets/hero-02.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="The part over time"><img src="assets/hero-03.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Benefits"><img src="assets/hero-04.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Customers"><img src="assets/hero-05.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Results"><img src="assets/hero-06.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Ingredients"><img src="assets/hero-07.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Closing"><img src="assets/hero-08.webp" alt="" loading="lazy"></button>
         </div>
       </div>
 
@@ -1122,7 +1124,7 @@ section{padding:74px 0}
   </div>
   <div class="cart-body">
     <div class="cart-item">
-      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar" width="96" height="96"></div>
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar" width="96" height="96"></div>
       <div class="cart-item-info">
         <div class="cart-item-name" id="cartName">Kalmely Scalp Revival Bar</div>
         <div class="cart-item-meta" id="cartMeta">2 Bars</div>
@@ -1252,7 +1254,7 @@ section{padding:74px 0}
     document.getElementById('cartName').textContent='Kalmely Scalp Revival Bar';
     document.getElementById('cartMeta').textContent=t.label;
     document.getElementById('cartQty').textContent='×1';
-    document.getElementById('cartImg').src='assets/scalp-hero.webp';
+    document.getElementById('cartImg').src='assets/hero-01.webp';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
