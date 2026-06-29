@@ -41,6 +41,8 @@
 <meta name="application-name" content="Kalmely">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
@@ -119,10 +121,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   /* Olive-green editorial: greenish cream + deep olive ink (replaces near-black), warm terracotta for FREE/savings so they pop */
-  --paper:#FAF9F5; --paper-2:#F1F0EA; --paper-3:#E9E7DF; --card:#FFFFFF;
-  --ink:#384032; --ink-2:#566150; --ink-soft:#717767; --faint:#ABAB9F;
-  --line:#EAE8E0; --line-2:#DBD8CF;
-  --ok:#9B5B33; --gold:#384032;
+  --paper:#FCFBF9; --paper-2:#F3F2EE; --paper-3:#EAE9E3; --card:#FFFFFF;
+  --ink:#234F2B; --ink-2:#45533F; --ink-soft:#6A7460; --faint:#A9A99E;
+  --line:#ECEBE4; --line-2:#DCD9D0;
+  --ok:#9B5B33; --gold:#5E9A45;
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -147,13 +149,16 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .ph span{font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
 
 /* announce + nav */
-.announce{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font:500 12.5px/1 var(--sans);letter-spacing:.02em;padding:11px 16px}
+.announce{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font:300 13.5px/1 'Poppins',var(--sans);letter-spacing:.04em;padding:13px 16px}
 .announce b{text-decoration:underline;text-underline-offset:2px}
-.nav{position:sticky;top:0;z-index:40;background:rgba(249,248,246,.9);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line-2);box-shadow:0 1px 0 rgba(35,79,43,.04);transition:border-color .2s}
 .nav.is-scrolled{border-bottom-color:var(--line)}
 .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
 .nav-left{font:600 11px/1 var(--sans);letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
-.logo{font:700 22px/1 'Sora',var(--sans);letter-spacing:-.01em;justify-self:center}
+.nav-menu{display:flex;gap:20px;align-items:center}
+.nav-menu a{font:700 12px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink);transition:color .15s}
+.nav-menu a:hover{color:var(--ink)}
+.logo{font:600 32px/1 var(--serif);letter-spacing:.01em;justify-self:center}
 .logo span{color:var(--gold)}
 .nav-cart{justify-self:end;display:flex;align-items:center;gap:7px;font:600 13px/1 var(--sans)}
 .nav-cart svg{width:21px;height:21px}
@@ -161,13 +166,13 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* ============ HERO ============ */
 .hero{padding:30px 0 14px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 468px;grid-template-areas:"gallery head" "gallery buy";gap:16px 54px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,620px) 468px;grid-template-areas:"gallery head" "gallery buy";gap:16px 54px;align-items:start;justify-content:center}
 .hero-head{grid-area:head}
 .buybox{grid-area:buy}
 .hx-eyebrow{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
 
 /* gallery */
-.gallery{grid-area:gallery;position:sticky;top:84px}
+.gallery{grid-area:gallery;align-self:start;position:sticky;top:84px}
 .hero-stage{position:relative;overflow:hidden;border-radius:14px;background:var(--paper-2);touch-action:pan-y}
 .hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .hero-track.dragging{transition:none}
@@ -190,7 +195,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .free-tag.t-book{top:30%;right:2%}
 .hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-cap{text-align:center;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
-.hero-thumbs{display:flex;gap:10px}
+.hero-thumbs{display:flex;gap:10px;margin-top:12px}
 .hero-thumb{flex:1;aspect-ratio:1/1;border-radius:9px;overflow:hidden;opacity:.55;border:1px solid var(--line);transition:opacity .2s,border-color .2s;padding:0}
 .hero-thumb.is-active{opacity:1;border-color:var(--ink)}
 .hero-thumb .ph{width:100%;height:100%}
@@ -199,15 +204,25 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 /* buy box */
 .rating{display:flex;align-items:center;gap:8px;font:500 13px/1 var(--sans);color:var(--ink-2)}
 .stars{color:var(--ink);letter-spacing:2px;font-size:14px}
+.starrow{position:relative;display:inline-block;color:#D9D3C0;font-size:16px;letter-spacing:2px;line-height:1;white-space:nowrap;vertical-align:middle}
+.starrow::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #CCC5AD}
+.starrow-fill{position:absolute;left:0;top:0;width:93.4%;overflow:hidden;color:#C2A24E;white-space:nowrap}
+.starrow-fill::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #8A6E2A}
 .rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
-.bx-h1{font-size:clamp(32px,3.6vw,44px);margin:12px 0 4px}
-.bx-h1 .hl{color:var(--gold);font-weight:700;font-style:normal}
-.bx-h1 .h1-sub{display:block;font:400 .46em/1.25 var(--sans);color:var(--ink-2);margin-top:9px;letter-spacing:0}
+.bx-h1{font-family:'Fraunces',var(--serif);font-size:clamp(30px,3.4vw,40px);font-weight:600;color:#161616;line-height:1.08;margin:24px 0 6px}
+.bx-h1 .hl{color:inherit;font-weight:700;font-style:normal}
+.bx-h1 .h1-sub{display:block;font:400 15px/1.45 var(--sans);color:var(--ink-2);margin-top:14px;letter-spacing:0;white-space:normal}
 .bx-sub{font:400 17px/1.4 var(--sans);color:var(--ink-2);margin-bottom:8px}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.bx-badges{display:flex;flex-wrap:wrap;gap:7px;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges{padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges-h{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
+.bx-badges-row{display:flex;flex-wrap:wrap;gap:7px}
 .bx-badges span{font:600 11.5px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:8px 12px}
+.bx-warn{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin-top:16px}
+.bx-warn-ic{width:20px;height:20px;flex:0 0 auto;color:var(--ink);margin-top:1px}
+.bx-warn p{font:400 13.5px/1.5 var(--sans);color:var(--ink-2);margin:0}
+.bx-warn b{color:var(--ink);font-weight:700}
 .bx-benefit{border-bottom:1px solid var(--line)}
 .bx-benefit:last-child{border-bottom:none}
 .bx-benefit summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;font:500 14.5px/1.3 var(--sans);color:var(--ink)}
@@ -274,8 +289,13 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .bx-stockbar span{display:block;height:100%;width:96%;background:var(--ok);border-radius:4px;transition:width .35s ease}
 .bx-deliver{text-align:center;font:500 13px/1.4 var(--sans);color:var(--ink-2);margin-top:12px}
 .bx-deliver b{color:var(--ink)}
-.bx-pay{display:flex;justify-content:center;gap:8px;margin-top:12px;opacity:.7}
+.bx-pay{display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px}
+.bx-pay svg{flex:0 0 auto;display:block}
 .bx-pay span{font:600 10px/1 var(--sans);letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line-2);border-radius:5px;padding:5px 7px}
+.bx-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.bx-trust-i{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.bx-trust-i svg{width:26px;height:26px;color:var(--ink)}
+.bx-trust-i span{font:600 12px/1.3 var(--sans);color:var(--ink-2)}
 .bx-desc{font:400 14.5px/1.6 var(--sans);color:var(--ink-2);margin-top:20px}
 /* Elixir-style emphasis: colour the important phrases (gold) so they pop — used across description/reviews/benefits */
 .key{color:var(--gold);font-weight:700;white-space:nowrap}
@@ -329,7 +349,7 @@ section{padding:74px 0}
 .tl-when{display:inline-block;font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ok);background:var(--paper-3);border-radius:20px;padding:7px 13px;margin-bottom:11px}
 .tl-step h3{font-size:21px;margin-bottom:6px}
 .tl-step p{font-size:13.5px;color:var(--ink-2)}
-.tl-note{max-width:660px;margin:34px auto 0;text-align:center;font:italic 400 18px/1.5 var(--serif);color:var(--ink-2);padding:22px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tl-note{max-width:660px;margin:34px auto 0;text-align:center;font:500 17px/1.55 var(--sans);color:var(--ink-2);padding:22px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .tl-foot{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:18px}
 @media(max-width:780px){.timeline{grid-template-columns:1fr;gap:26px}}
 
@@ -412,7 +432,7 @@ section{padding:74px 0}
 .news-form input::placeholder{color:rgba(249,248,246,.5)}
 .news-form button{background:var(--paper);color:var(--ink);font:600 14px/1 var(--sans);padding:0 22px;border-radius:9px}
 .news-msg{font:500 13px/1 var(--sans);color:#E6C29C;margin-top:12px;min-height:16px}
-.news-word{font:600 clamp(80px,18vw,240px)/0.85 var(--serif);text-align:center;color:rgba(249,248,246,.1);margin-top:40px;letter-spacing:-.01em;overflow:hidden;user-select:none}
+.news-word{font:800 clamp(64px,15vw,190px)/0.9 'Sora',var(--sans);text-align:center;color:rgba(249,248,246,.08);margin-top:40px;letter-spacing:-.03em;overflow:hidden;user-select:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
 .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
 .foot-links{display:flex;flex-wrap:wrap;gap:14px 20px;max-width:100%;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
@@ -569,11 +589,14 @@ section{padding:74px 0}
 </head>
 <body>
 
-<button type="button" class="announce" id="egOpen">Spring Scalp Reset · Save 50% today + get <b>10% off</b> your first order with code WELCOME10 — tap to claim</button>
+<button type="button" class="announce" id="egOpen">Free shipping · 60-day money-back guarantee</button>
 
 <header class="nav" id="nav">
   <div class="nav-inner wrap">
-    <span class="nav-left">Free shipping · 60-day guarantee</span>
+    <nav class="nav-left nav-menu" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="contact.html">Contact</a>
+    </nav>
     <a href="#top" class="logo">Kalmely<span>.</span></a>
     <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -593,11 +616,7 @@ section{padding:74px 0}
           <div class="hero-track" id="heroTrack">
             <!-- 6 functional hero slides (Andreu playbook): 1 product+gifts · 2 before/after · 3 how-it-works · 4 social proof · 5 how-to 1-2-3 · 6 guarantee. PLACEHOLDERS — swap for real scalp-bar photos. -->
             <div class="hero-slide">
-              <div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Product + free gifts</span></div>
-              <div class="free-tag t-app"><div class="ft-val"><s>$14</s>FREE</div><div class="ft-name">Scalp massage brush</div></div>
-              <div class="free-tag t-file"><div class="ft-val"><s>$9</s>FREE</div><div class="ft-name">Drying tin</div></div>
-              <div class="free-tag t-patch"><div class="ft-val"><s>$19</s>FREE</div><div class="ft-name">Scalp Reset guide</div></div>
-              <div class="free-tag t-book"><div class="ft-val"><s>$24.95</s>FREE</div><div class="ft-name">Bonus bar</div></div>
+              <img src="assets/scalp-hero.webp" alt="Kalmely Scalp Revival Bar" width="1024" height="1024" fetchpriority="high">
             </div>
             <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div></div>
             <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>How it works</span></div></div>
@@ -606,9 +625,8 @@ section{padding:74px 0}
             <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>60-day guarantee</span></div></div>
           </div>
         </div>
-        <div class="hero-cap">Fermented botanical bar · sulfate-free, vegan</div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product + gifts"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product + gifts"><img src="assets/scalp-hero.webp" alt=""></button>
           <button type="button" class="hero-thumb" aria-label="Before / after"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
           <button type="button" class="hero-thumb" aria-label="How it works"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
           <button type="button" class="hero-thumb" aria-label="Reviews"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
@@ -619,10 +637,8 @@ section{padding:74px 0}
 
       <!-- hero headline (need RESOLVED first — Elixir pattern; on mobile shows above the image) -->
       <div class="hero-head fade-slow">
-        <div class="hx-eyebrow">Kalmely · Scalp Care</div>
-        <div class="rating"><span class="stars">★★★★★</span> <a href="#reviews"><b>4.8</b> · 14,200+ scalps revived</a></div>
+        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (14,268 reviews)</a></div>
         <h1 class="bx-h1">Healthy hair starts at the <span class="hl">scalp you forgot to wash</span><span class="h1-sub">One fermented botanical bar clears buildup, calms the itch, and leaves hair feeling thicker, fuller, and shedding less.</span></h1>
-        <div class="hx-proof">“Three washes in, the itch was gone and my roots actually had life again.” <span class="vf">✓ Verified review</span></div>
         <a href="#results" class="bx-link">See real before &amp; afters ›</a>
       </div>
 
@@ -630,7 +646,8 @@ section{padding:74px 0}
       <div class="buybox fade-slow">
 
         <div class="bx-badges">
-          <span>Fermented botanicals</span><span>Sulfate-free</span><span>100% vegan</span><span>Dermatologist-tested</span>
+          <div class="bx-badges-h">Key features</div>
+          <div class="bx-badges-row"><span>Fermented botanicals</span><span>Sulfate-free</span><span>100% vegan</span><span>Dermatologist-tested</span></div>
         </div>
 
         <div class="bx-sec">
@@ -660,13 +677,27 @@ section{padding:74px 0}
 
         <div class="pack-gifts" id="packGifts"></div>
 
-        <div class="bx-scarcity"><span class="sdot"></span> Only <b id="scarceN">2</b> left in stock — selling fast</div>
-        <div class="bx-stockbar"><span id="scarceBar"></span></div>
+        <div class="bx-warn">
+          <svg class="bx-warn-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <p><b>Low stock notice</b> — these sell out fast, and the Spring Reset sale is a limited run. Order now to lock in your discount and skip the wait for the next restock.</p>
+        </div>
         <button type="button" class="add-to-cart">Add to cart</button>
         <div class="sub-note" id="subNote"></div>
-        <div class="bx-deliver">🚚 Free shipping · order today, get it by <b id="deliveryDate">soon</b></div>
-        <div class="bx-pay"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>PAYPAL</span></div>
-        <div class="bx-disclaimer">Results may vary. A cosmetic scalp-care product — not medical advice. If you have a diagnosed scalp condition or a known allergy, check the ingredients and consult your doctor before use.</div>
+        <div class="bx-pay" aria-label="Accepted payments">
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Mastercard"><rect width="40" height="26" rx="4" fill="#16181C"/><circle cx="16.5" cy="13" r="6.7" fill="#EB001B"/><circle cx="23.5" cy="13" r="6.7" fill="#F79E1B"/></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Maestro"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><circle cx="16.5" cy="13" r="6.7" fill="#0099DF"/><circle cx="23.5" cy="13" r="6.7" fill="#ED0006"/></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Google Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="700" fill="#5F6368" text-anchor="middle">G Pay</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" font-style="italic" fill="#003087" text-anchor="middle">Pay<tspan fill="#0070E0">Pal</tspan></text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Shop Pay"><rect width="40" height="26" rx="4" fill="#5A31F4"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">shop</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="American Express"><rect width="40" height="26" rx="4" fill="#1F72CD"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="7.5" font-weight="700" fill="#fff" text-anchor="middle">AMEX</text></svg>
+        </div>
+        <div class="bx-trust">
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>60-day guarantee</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Fast shipping</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure payment</span></div>
+        </div>
 
         <div class="acc">
           <details><summary>How fast will I feel it?</summary><p>Most people feel a cleaner, calmer, less itchy scalp from the very first wash. The fuller look and reduced shedding build over a few weeks of regular use.</p></details>
@@ -978,8 +1009,7 @@ section{padding:74px 0}
   var DEFAULT='SCALP-1';  // land on the low-friction hook pack; they trade up to "Most popular" / "Best value"
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
   var packs=document.querySelectorAll('.pack');
-  // per-pack low-stock urgency badge (rendered once on each pack card)
-  packs.forEach(function(p){var s=(TIERS[p.dataset.sku]||{}).stock;if(s){var el=document.createElement('span');el.className='pack-stock';el.textContent='🔥 Only '+s+' left';p.appendChild(el);}});
+  // (per-pack "only N left" badges removed — replaced by a single low-stock notice in the buybox)
   var addBtns=document.querySelectorAll('.add-to-cart');
   var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
   var colours=[]; var pillowColor='';
