@@ -590,11 +590,13 @@ section{padding:74px 0}
 .nav-inner{grid-template-columns:1fr auto}
 .logo{justify-self:start}
 .announce{cursor:default}
-.bx-stock{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin:18px 0}
-.bx-stock .ic{width:26px;height:26px;flex:0 0 auto;background:#111;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.bx-stock .ic svg{width:16px;height:16px;color:#fff;display:block}
-.bx-stock p{font:400 13.5px/1.5 var(--sans);color:#111;margin:0}
+.bx-stock{display:flex;align-items:flex-start;gap:11px;border:1.5px solid var(--line-2);border-radius:12px;padding:13px 15px;margin:16px 0}
+.bx-stock .ic{flex:0 0 auto;margin-top:1px;color:#111}
+.bx-stock .ic svg{width:19px;height:19px;color:#111;display:block}
+.bx-stock p{font:400 13px/1.55 var(--sans);color:#111;margin:0}
 .bx-stock b{color:#000;font-weight:700}
+.sale-divider{display:flex;align-items:center;gap:14px;justify-content:center;text-align:center;font:700 13.5px/1.3 var(--sans);letter-spacing:.01em;color:var(--ink);margin:2px 0 12px}
+.sale-divider::before,.sale-divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
 .bx-micro{font:400 13.5px/1.5 var(--sans);color:var(--ink-soft);margin:11px 0 2px;font-style:italic}
 .bx-promise{list-style:none;margin:17px 0 2px;display:flex;flex-direction:column;gap:9px}
 .bx-promise li{position:relative;padding-left:27px;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
@@ -724,8 +726,9 @@ section{padding:74px 0}
 
       <!-- buy box -->
       <div class="buybox fade-slow">
+        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>WARNING: Low Stock Notice</b> — This product sold out <b>12 times</b> last year. Take advantage of the <b>limited sale</b> and buy now. Ordering now helps you avoid future stock outs.</p></div>
         <div class="bx-sec">
-          <div class="label">Choose your pack <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 2 Bars</span></div>
+          <div class="sale-divider">Summer Sale – Limited Time Only</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
               <span class="pack-qty">1 Bar</span>
@@ -751,8 +754,6 @@ section{padding:74px 0}
         </div>
 
         <div class="pack-gifts" id="packGifts"></div>
-
-        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><p><b>These sell out fast</b> — we sold out 3 times last year. Order while it's in stock.</p></div>
 
         <label class="sub-optin"><input type="checkbox" id="subOptin"><span>Make it a refill &amp; save — ship a fresh bar every 60 days, cancel anytime.</span></label>
 
@@ -816,6 +817,7 @@ section{padding:74px 0}
   <section>
     <div class="wrap recap fade-slow">
       <div class="sec-head" style="margin-bottom:14px;max-width:560px"><div class="eyebrow">Pick your ritual length</div><h2>Most women start with the 60-Day</h2><p>It's our most popular tier — two bars for $39 instead of $58, and about how long the scalp usually needs to start feeling clean and light.</p></div>
+      <div class="sale-divider" style="max-width:520px;margin-left:auto;margin-right:auto">Summer Sale – Limited Time Only</div>
       <div class="packs" id="packsRecap" role="radiogroup" aria-label="Choose your pack">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
           <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 + free ebook</span>
@@ -837,7 +839,7 @@ section{padding:74px 0}
         <li>60-Day Money-Back Guarantee</li>
       </ul>
       <p class="cost-reframe">That's less than $1 a wash — less than a single-use serum packet, for the step that comes before everything else you've tried.</p>
-      <div class="bx-stock" style="max-width:440px;margin-left:auto;margin-right:auto;text-align:left"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><p><b>These sell out fast</b> — we sold out 3 times last year. Order while it's in stock.</p></div>
+      <div class="bx-stock" style="max-width:480px;margin-left:auto;margin-right:auto;text-align:left"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>WARNING: Low Stock Notice</b> — This product sold out <b>12 times</b> last year. Take advantage of the <b>limited sale</b> and buy now. Ordering now helps you avoid future stock outs.</p></div>
       <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
       <label class="sub-optin"><input type="checkbox"><span>Make it a refill &amp; save — fresh bar every 60 days, cancel anytime.</span></label>
     </div>
