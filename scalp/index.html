@@ -707,7 +707,7 @@ section{padding:74px 0}
   <div class="nav-inner wrap">
     <nav class="nav-left nav-menu" aria-label="Main">
       <a href="/">Home</a>
-      <a href="/scalp/">Product</a>
+      <a href="/scalp/" class="is-active" aria-current="page">Product</a>
       <a href="/contact">Contact</a>
     </nav>
     <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Korean Beauty Secret</span></a>
@@ -1090,7 +1090,7 @@ section{padding:74px 0}
     <div class="foot-bottom">
       <div class="foot-row">
         <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
-        <div class="foot-links"><a href="/contact.html">Contact</a><a href="/shipping-policy.html">Shipping</a><a href="/refund-policy.html">Returns &amp; Refunds</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+        <div class="foot-links"><a href="/shipping-policy.html">Shipping</a><a href="/refund-policy.html">Returns &amp; Refunds</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
       </div>
       <div class="foot-fine">🔒 Secure SSL checkout · Fast U.S. shipping · Free over $49 · 60-Day Money-Back Guarantee. &nbsp;Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. © 2026 Kalmely.</div>
     </div>
@@ -1461,8 +1461,7 @@ section{padding:74px 0}
 <script>
 /* announcement bar — rotate the two file-33 messages */
 (function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping on orders $49+ · 60-Day Money-Back Guarantee','Korean Scalp Science · Sulfate-Free · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
-/* active nav link — colour-contrast the page you're on */
-(function(){var p=(location.pathname||'/').replace(/\/+$/,'')||'/';document.querySelectorAll('.nav-menu a').forEach(function(a){var h=(a.getAttribute('href')||'').replace(/\/+$/,'')||'/';if(h===p)a.classList.add('is-active');});})();
+/* active nav state is hardcoded per page (Product on this PdP) for coherence regardless of deploy path */
 </script>
 </body>
 </html>
