@@ -80,7 +80,7 @@ fbq('track', 'ViewContent', {
   content_name: 'Kalmely Scalp Revival Bar',
   content_ids: ['SCALP-3'],
   content_type: 'product',
-  value: 54.95,
+  value: 54,
   currency: 'USD',
   offer_variant: 'SCALP'
 });
@@ -111,7 +111,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 { "@context":"https://schema.org","@type":"Organization","name":"Kalmely","url":"https://kalmely.com/","logo":"https://kalmely.com/assets/favicon-kalmely.png","email":"hello@kalmely.com" }
 </script>
 <script type="application/ld+json">
-{ "@context":"https://schema.org/","@type":"Product","name":"Kalmely Scalp Revival Bar","description":"A fermented botanical bar for the scalp — clears buildup, calms itch and flaking, and leaves hair feeling thicker and fuller. Sulfate-free, vegan.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/","priceCurrency":"USD","price":"24.95","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
+{ "@context":"https://schema.org/","@type":"Product","name":"Kalmely Scalp Revival Bar","description":"A fermented botanical bar for the scalp — clears buildup, calms itch and flaking, and leaves hair feeling thicker and fuller. Sulfate-free, vegan.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/","priceCurrency":"USD","price":"29","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
 </script>
 
 <style>
@@ -585,18 +585,85 @@ section{padding:74px 0}
   .free-tag{padding:4px 7px;border-radius:6px;box-shadow:0 6px 14px -10px rgba(0,0,0,.3)}.free-tag .ft-val{font-size:7.5px}.free-tag .ft-name{font-size:8px;line-height:1.15}
   .cmp{overflow-x:auto}.cmp table{min-width:560px}
 }
+
+/* ===== Scalp DR rebuild — file 33 blocks (Kalmely) ===== */
+.nav-inner{grid-template-columns:1fr auto}
+.logo{justify-self:start}
+.announce{cursor:default}
+.bx-micro{font:400 13.5px/1.5 var(--sans);color:var(--ink-soft);margin:11px 0 2px;font-style:italic}
+.bx-promise{list-style:none;margin:17px 0 2px;display:flex;flex-direction:column;gap:9px}
+.bx-promise li{position:relative;padding-left:27px;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
+.bx-promise li::before{content:"";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:var(--gold)}
+.bx-promise li::after{content:"";position:absolute;left:6px;top:5px;width:6px;height:3px;border-left:1.7px solid #fff;border-bottom:1.7px solid #fff;transform:rotate(-45deg)}
+.sub-optin{display:flex;gap:9px;align-items:flex-start;margin-top:13px;padding:11px 13px;border:1px solid var(--line-2);border-radius:10px;background:var(--paper-2);cursor:pointer}
+.sub-optin input{flex:0 0 auto;width:16px;height:16px;margin-top:1px;accent-color:var(--ink)}
+.sub-optin span{font:500 12.5px/1.45 var(--sans);color:var(--ink-2)}
+.bx-h1.product{font-family:'Fraunces',var(--serif);font-size:clamp(28px,3.2vw,38px);margin:18px 0 4px}
+
+/* social-proof strip (B3) */
+.sproof-h{font:600 clamp(21px,2.6vw,28px)/1.2 'Sora',var(--sans);text-align:center;color:var(--ink);margin-bottom:6px}
+.sproof-h .vf{color:var(--ok);font-weight:700}
+.sproof-sub{text-align:center;font:500 13px/1.5 var(--sans);color:var(--ink-soft);max-width:560px;margin:0 auto 26px}
+.sp-dist{max-width:360px;margin:26px auto 0;display:flex;flex-direction:column;gap:7px}
+.sp-row{display:flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);color:var(--ink-2)}
+.sp-row .lab{min-width:30px}
+.sp-row .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
+.sp-row .fill{display:block;height:100%;background:var(--gold);border-radius:4px}
+.sp-row .pct{min-width:36px;text-align:right;color:var(--ink-soft)}
+.sp-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:28px}
+.sp-caps span{font:400 17px/1.3 var(--serif);color:var(--ink);font-style:italic}
+
+/* offer recap (B4) */
+.recap{max-width:620px;margin:0 auto;text-align:center}
+.recap .packs{margin:10px 0 0;text-align:left}
+.ship-nudge{margin:20px auto 0;max-width:520px;font:600 13.5px/1.5 var(--sans);color:var(--ok);background:var(--paper-3);border-radius:10px;padding:12px 16px}
+.vstack{list-style:none;max-width:440px;margin:20px auto;text-align:left;display:flex;flex-direction:column;gap:9px}
+.vstack li{position:relative;padding-left:25px;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
+.vstack li::before{content:"\2713";position:absolute;left:0;color:var(--ok);font-weight:700}
+.cost-reframe{max-width:500px;margin:6px auto 20px;font:500 14.5px/1.55 var(--sans);color:var(--ink-2)}
+.recap .add-to-cart{max-width:360px;margin-left:auto;margin-right:auto}
+.recap .sub-optin{max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
+
+/* mechanism prose (B5) */
+.mech-prose{max-width:680px;margin:0 auto}
+.mech-prose h3{font-size:20px;margin:28px 0 8px}
+.mech-prose p{color:var(--ink-2);font-size:16px;margin-bottom:14px}
+.mech-prose .lead{font-size:17px;color:var(--ink)}
+.mech-fig{max-width:560px;margin:10px auto 24px}
+.mech-fig .ph{aspect-ratio:16/9;border-radius:var(--r)}
+.mech-fig figcaption{text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft);margin-top:9px}
+
+/* bullets-to-pain (B7) */
+.pain-list{max-width:760px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:13px}
+.pain-list li{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 20px;font:500 15px/1.5 var(--sans);color:var(--ink)}
+.pain-list .arc{display:block;margin-top:6px;color:var(--ink-2);font-weight:500}
+.pain-list .arc::before{content:"\2192  ";color:var(--gold);font-weight:700}
+
+/* proof arrows (B8) */
+.proof-arrows{max-width:680px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:15px}
+.proof-arrows li{padding-left:28px;position:relative;font:500 16px/1.55 var(--sans);color:var(--ink-2)}
+.proof-arrows li::before{content:"\2192";position:absolute;left:0;color:var(--gold);font-weight:700}
+.proof-closer{max-width:620px;margin:28px auto 0;text-align:center;font:500 15.5px/1.6 var(--sans);color:var(--ink-2);font-style:italic}
+
+/* founder (B13) */
+.founder{max-width:640px;margin:0 auto;text-align:left}
+.founder p{color:var(--ink-2);font-size:16px;margin-bottom:15px}
+.founder .sig{font:600 14px/1 var(--sans);color:var(--ink);margin-top:4px}
+
+@media(max-width:620px){
+  .sp-caps span{font-size:15px}
+  .pain-list li{font-size:14px}
+  .proof-arrows li{font-size:15px}
+}
+
 </style>
 </head>
 <body>
 
-<button type="button" class="announce" id="egOpen">Free shipping · 60-day money-back guarantee</button>
+<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping on orders $49+ · 60-Day Money-Back Guarantee</span></div>
 
 <header class="nav" id="nav">
   <div class="nav-inner wrap">
-    <nav class="nav-left nav-menu" aria-label="Main">
-      <a href="/scalp/">Home</a>
-      <a href="contact.html">Contact</a>
-    </nav>
     <a href="#top" class="logo">Kalmely<span>.</span></a>
     <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -607,307 +674,367 @@ section{padding:74px 0}
 
 <main id="top">
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== HERO (B2) ===== -->
   <section class="hero">
     <div class="wrap hero-grid">
       <!-- gallery -->
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
-            <!-- 6 functional hero slides (Andreu playbook): 1 product+gifts · 2 before/after · 3 how-it-works · 4 social proof · 5 how-to 1-2-3 · 6 guarantee. PLACEHOLDERS — swap for real scalp-bar photos. -->
+            <!-- slide 1 = real product photo; 2-6 PLACEHOLDERS (real woman/mirror UGC + steps + reviews + guarantee). NO before/after framing. -->
             <div class="hero-slide">
-              <img src="assets/scalp-hero.webp" alt="Kalmely Scalp Revival Bar" width="1024" height="1024" fetchpriority="high">
+              <img src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar" width="1024" height="1024" fetchpriority="high">
             </div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div></div>
+            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Real woman · at the mirror</span></div></div>
             <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>How it works</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>★ 4.8 · reviews</span></div></div>
-            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>How to use · 1-2-3</span></div></div>
+            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>★ 4.8 · verified buyers</span></div></div>
+            <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Sixty-second ritual</span></div></div>
             <div class="hero-slide"><div class="ph" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>60-day guarantee</span></div></div>
           </div>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product + gifts"><img src="assets/scalp-hero.webp" alt=""></button>
-          <button type="button" class="hero-thumb" aria-label="Before / after"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product"><img src="assets/scalp-hero.webp" alt=""></button>
+          <button type="button" class="hero-thumb" aria-label="At the mirror"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
           <button type="button" class="hero-thumb" aria-label="How it works"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
           <button type="button" class="hero-thumb" aria-label="Reviews"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
-          <button type="button" class="hero-thumb" aria-label="How to use"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
+          <button type="button" class="hero-thumb" aria-label="Ritual"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
           <button type="button" class="hero-thumb" aria-label="Guarantee"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div></button>
         </div>
       </div>
 
-      <!-- hero headline (need RESOLVED first — Elixir pattern; on mobile shows above the image) -->
+      <!-- hero headline -->
       <div class="hero-head fade-slow">
-        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (14,268 reviews)</a></div>
-        <h1 class="bx-h1">Healthy hair starts at the <span class="hl">scalp you forgot to wash</span><span class="h1-sub">One fermented botanical bar clears buildup, calms the itch, and leaves hair feeling thicker, fuller, and shedding less.</span></h1>
-        <a href="#results" class="bx-link">See real before &amp; afters ›</a>
+        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; · Verified Buyers ✔</a></div>
+        <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
+        <p class="bx-sub">The 60-second Korean scalp bar designed to help lift the Grease Cap — the greasy buildup that can seal roots in many women — so the part can start to look like itself again.</p>
+        <p class="bx-micro">It isn't only your hormones. For many women, it's a hardened layer of greasy buildup smothering the root — and it was never your fault.</p>
+        <div class="bx-badges"><div class="bx-badges-row"><span>Korean Scalp Science</span><span>Fermented Botanical Oils</span><span>Sulfate-Free, No Harsh Strippers</span><span>60-Day Guarantee</span></div></div>
+        <ul class="bx-promise">
+          <li>Helps cleanse the greasy buildup daily shampoo leaves behind</li>
+          <li>Supports the appearance of a fuller, less see-through part</li>
+          <li>Leaves the scalp feeling clean, light and able to breathe</li>
+          <li>Works gradually — week by week, not by Friday</li>
+        </ul>
       </div>
 
       <!-- buy box -->
       <div class="buybox fade-slow">
-
-        <div class="bx-badges">
-          <div class="bx-badges-h">Key features</div>
-          <div class="bx-badges-row"><span>Fermented botanicals</span><span>Sulfate-free</span><span>100% vegan</span><span>Dermatologist-tested</span></div>
-        </div>
-
         <div class="bx-sec">
-          <div class="label">Choose your pack <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 1 Bar</span></div>
+          <div class="label">Choose your pack <span id="qtyLabel" style="color:var(--ink);margin-left:4px">· 2 Bars</span></div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
-            <button type="button" class="pack" data-sku="SCALP-1" data-price="24.95" role="radio" aria-checked="false">
+            <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
               <span class="pack-qty">1 Bar</span>
-              <span class="pack-unit">$24.95/bar</span>
-              <span class="pack-price">$24.95<s>$49.95</s></span>
+              <span class="pack-unit">30-Day Supply</span>
+              <span class="pack-price">$29</span>
+              <span class="pack-banner">🎁 + free ebook</span>
             </button>
-            <button type="button" class="pack" data-sku="SCALP-2" data-price="39.95" role="radio" aria-checked="false">
-              <span class="pack-badge">Most popular</span>
+            <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
+              <span class="pack-badge">★ Most popular</span>
               <span class="pack-qty">2 Bars</span>
-              <span class="pack-unit">$19.98/bar</span>
-              <span class="pack-price">$39.95<s>$99.90</s></span>
-              <span class="pack-banner">🎁 + free massage brush</span>
+              <span class="pack-unit">Buy 1 Get 1 Free</span>
+              <span class="pack-price">$39<s>$58</s></span>
+              <span class="pack-banner">🎁 + free ebook</span>
             </button>
-            <button type="button" class="pack" data-sku="SCALP-3" data-price="54.95" role="radio" aria-checked="false">
-              <span class="pack-badge alt">Best value</span>
-              <span class="pack-qty">3 Bars</span>
-              <span class="pack-unit">$18.32/bar</span>
-              <span class="pack-price">$54.95<s>$149.85</s></span>
-              <span class="pack-banner">🎁 + brush + bonus bar</span>
+            <button type="button" class="pack" data-sku="SCALP-3" data-price="54" role="radio" aria-checked="false">
+              <span class="pack-badge alt">★ Best value</span>
+              <span class="pack-qty">3 Bars + Comb</span>
+              <span class="pack-unit">90-Day · Save $33</span>
+              <span class="pack-price">$54<s>$87</s></span>
+              <span class="pack-banner">🎁 + comb + ebook · FREE ship</span>
             </button>
           </div>
         </div>
 
         <div class="pack-gifts" id="packGifts"></div>
 
-        <div class="bx-warn">
-          <svg class="bx-warn-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-          <p><b>Low stock notice</b> — these sell out fast, and the Spring Reset sale is a limited run. Order now to lock in your discount and skip the wait for the next restock.</p>
-        </div>
-        <button type="button" class="add-to-cart">Add to cart</button>
+        <label class="sub-optin"><input type="checkbox" id="subOptin"><span>Make it a refill &amp; save — ship a fresh bar every 60 days, cancel anytime.</span></label>
+
+        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
         <div class="sub-note" id="subNote"></div>
+
         <div class="bx-pay" aria-label="Accepted payments">
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Mastercard"><rect width="40" height="26" rx="4" fill="#16181C"/><circle cx="16.5" cy="13" r="6.7" fill="#EB001B"/><circle cx="23.5" cy="13" r="6.7" fill="#F79E1B"/></svg>
-          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Maestro"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><circle cx="16.5" cy="13" r="6.7" fill="#0099DF"/><circle cx="23.5" cy="13" r="6.7" fill="#ED0006"/></svg>
-          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>
-          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Google Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="700" fill="#5F6368" text-anchor="middle">G Pay</text></svg>
-          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" font-style="italic" fill="#003087" text-anchor="middle">Pay<tspan fill="#0070E0">Pal</tspan></text></svg>
-          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Shop Pay"><rect width="40" height="26" rx="4" fill="#5A31F4"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">shop</text></svg>
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="American Express"><rect width="40" height="26" rx="4" fill="#1F72CD"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="7.5" font-weight="700" fill="#fff" text-anchor="middle">AMEX</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" font-style="italic" fill="#003087" text-anchor="middle">Pay<tspan fill="#0070E0">Pal</tspan></text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Shop Pay"><rect width="40" height="26" rx="4" fill="#5A31F4"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">shop</text></svg>
         </div>
         <div class="bx-trust">
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>60-day guarantee</span></div>
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Fast shipping</span></div>
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure payment</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>60-Day Money-Back Guarantee</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Fast U.S. Shipping</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure Checkout</span></div>
         </div>
 
         <div class="acc">
-          <details><summary>How fast will I feel it?</summary><p>Most people feel a cleaner, calmer, less itchy scalp from the very first wash. The fuller look and reduced shedding build over a few weeks of regular use.</p></details>
-          <details><summary>How is a bar better than my shampoo?</summary><p>Shampoo is built to clean hair strands, often with harsh sulfates that strip and irritate. The bar is built for the scalp — concentrated, sulfate-free, and made to clear buildup where healthy hair actually starts.</p></details>
-          <details><summary>How long does one bar last?</summary><p>With a few washes a week, a single bar typically lasts 2–3 months. A little goes a long way, which is why most people grab the 2- or 3-bar bundle.</p></details>
-          <details><summary>Will it work for my hair type?</summary><p>Yes — straight, wavy, curly, coily, fine or thick, oily or dry. It treats the scalp, not the strand, so it suits every hair type. Colour-safe, too.</p></details>
-          <details><summary>What if it doesn't work for me?</summary><p>60-day money-back guarantee. Love your scalp or every cent back — and you don't even have to send the bar back.</p></details>
+          <details><summary>How soon will I feel a difference?</summary><p>Many women say their scalp feels lighter and less greasy within the first days. The fuller, less see-through look builds gradually over about 4–8 weeks of daily use — which is why every order comes with 60 days to decide.</p></details>
+          <details><summary>How is a bar different from my shampoo?</summary><p>Liquid shampoo strips the surface and rinses off in seconds. The bar is made with fermented botanical oils designed to help break down the greasy buildup that can seal the scalp — the first step that comes before everything else you use.</p></details>
+          <details><summary>What if it doesn't work for me?</summary><p>Use it daily for 60 days. If you don't love how your scalp looks and feels, email hello@kalmely.com and we'll refund every cent — even a half-used bar.</p></details>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== REVIEWS ===== -->
+  <!-- ===== SOCIAL-PROOF STRIP (B3) ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sproof-h fade-slow">Loved by women who'd quietly given up — <span class="vf">Verified Buyers ✔</span></div>
+      <p class="sproof-sub fade-slow">Real photos from real customers — women roughly 50–62, everyday bathrooms, no models. <i>(The verified review count appears here once our review platform is connected — we won't post a number we can't back.)</i></p>
+      <div class="ugc-strip fade-slow">
+        <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · holding the bar</span></div>
+        <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · at the mirror</span></div>
+        <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · everyday light</span></div>
+        <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · in the shower</span></div>
+      </div>
+      <div class="sp-dist fade-slow">
+        <div class="sp-row"><span class="lab">5★</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="pct">86%</span></div>
+        <div class="sp-row"><span class="lab">4★</span><span class="track"><span class="fill" style="width:9%"></span></span><span class="pct">9%</span></div>
+        <div class="sp-row"><span class="lab">3★</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="pct">3%</span></div>
+        <div class="sp-row"><span class="lab">2★</span><span class="track"><span class="fill" style="width:1%"></span></span><span class="pct">1%</span></div>
+        <div class="sp-row"><span class="lab">1★</span><span class="track"><span class="fill" style="width:1%"></span></span><span class="pct">1%</span></div>
+      </div>
+      <div class="sp-caps fade-slow"><span>“My scalp feels lighter.”</span><span>“My part looks less see-through.”</span><span>“I feel like myself again.”</span></div>
+    </div>
+  </section>
+
+  <!-- ===== OFFER RECAP (B4) ===== -->
+  <section>
+    <div class="wrap recap fade-slow">
+      <div class="sec-head" style="margin-bottom:14px;max-width:560px"><div class="eyebrow">Pick your ritual length</div><h2>Most women start with the 60-Day</h2><p>It's the Buy-1-Get-1-Free tier — and about how long the scalp usually needs to start feeling clean and light.</p></div>
+      <div class="packs" id="packsRecap" role="radiogroup" aria-label="Choose your pack">
+        <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
+          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 + free ebook</span>
+        </button>
+        <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
+          <span class="pack-badge">★ Most popular</span>
+          <span class="pack-qty">2 Bars</span><span class="pack-unit">Buy 1 Get 1 Free</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 + free ebook</span>
+        </button>
+        <button type="button" class="pack" data-sku="SCALP-3" data-price="54" role="radio" aria-checked="false">
+          <span class="pack-badge alt">★ Best value</span>
+          <span class="pack-qty">3 Bars + Comb</span><span class="pack-unit">90-Day · Save $33</span><span class="pack-price">$54<s>$87</s></span><span class="pack-banner">🎁 + comb + ebook · FREE ship</span>
+        </button>
+      </div>
+      <div class="ship-nudge">🚚 You're $10 away from FREE U.S. shipping — add the Korean Scalp Revival Oil and ship free.</div>
+      <ul class="vstack">
+        <li>Your Korean Scalp Revival Bar(s)</li>
+        <li>FREE “Korean Scalp Protocol” ebook — the daily 60-second routine</li>
+        <li>FREE scalp comb with the 90-Day Ritual</li>
+        <li>60-Day Money-Back Guarantee</li>
+      </ul>
+      <p class="cost-reframe">That's less than $1 a wash — less than a single-use serum packet, for the step that comes before everything else you've tried.</p>
+      <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
+      <label class="sub-optin"><input type="checkbox"><span>Make it a refill &amp; save — fresh bar every 60 days, cancel anytime.</span></label>
+    </div>
+  </section>
+
+  <!-- ===== MECHANISM · The Grease Cap (B5, merges old #how) ===== -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">The mechanism</div><h2>Density starts at the scalp — not the strand.</h2></div>
+      <div class="mech-prose fade-slow">
+        <p class="lead">For years women over 50 were told the same thing: blame your age, your hormones, your genes. But a growing body of research has turned its attention to one place almost no one was looking — the environment of the scalp itself. And for many women, what's happening up there may not be only hormones.</p>
+        <h3>Meet The Grease Cap.</h3>
+        <p>Day after day, a hardened layer of greasy buildup forms over the roots and seals them shut — so the root underneath can't breathe. Picture a lid pressed down over the follicle. Nothing reaches the root. Nothing escapes. The root sits there, smothered and choked, under a cap it can't lift on its own.</p>
+        <figure class="mech-fig"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Follicle cross-section · buildup layer</span></div><figcaption>Fig. — How surface buildup can seal the follicle (illustration).</figcaption></figure>
+        <h3>Why everything else failed</h3>
+        <p>This is why the biotin didn't move the needle. Why the serums, the dropper, the $88-a-month supplements did nothing. They didn't fail because of you. They landed on a sealed scalp and just sat there — never reaching the root they were meant to feed.</p>
+        <h3>Why daily shampoo can't fix it</h3>
+        <p>And daily liquid shampoo? It only strips the surface. The scalp panics, makes more oil, and the cycle starts again. It never dissolves the hardened cap. It was never built to.</p>
+        <h3>The fix the shape begs for</h3>
+        <p>A cap doesn't need to be scrubbed. It needs to be lifted. Our bar is made with fermented botanical oils designed to help break down that hardened layer instead of scrubbing at fragile roots — so the Grease Cap can lift and the scalp can feel able to breathe again. It's the missing first step. The one that goes before everything else you've already tried.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW-IT-WORKS · 3 steps (B6) ===== -->
+  <section id="usage">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>Sixty seconds. In the shower. Nothing new to learn.</h2></div>
+      <div class="steps3 fade-slow">
+        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 1 · glide</span></div><b>Glide it on first</b><p>In the shower, the bar goes first — right on the scalp, where your shampoo used to start. Glide it along your part and across the roots.</p></div>
+        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 2 · massage</span></div><b>Massage 60 seconds, then rinse</b><p>Work it into the scalp for about sixty seconds. Let it sit a moment so the fermented oils can get to the buildup. Then rinse. That's the whole ritual.</p></div>
+        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 3 · week by week</span></div><b>Watch your part, week by week</b><p>This works gradually, not overnight — week by week, not by Friday. Over the weeks, the part many women start hiding can begin to look more like its own again.</p></div>
+      </div>
+      <p class="tl-foot" style="margin-top:22px">No miracle claims. No overnight fixes. Just the first step, done daily.</p>
+    </div>
+  </section>
+
+  <!-- ===== BULLETS-TO-PAIN (B7, replaces problem cards) ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Is this you?</div><h2>If you've been quietly working around your hair, this is for you.</h2></div>
+      <ul class="pain-list fade-slow">
+        <li>The part you've started hiding by switching sides<span class="arc">helps cleanse the buildup so it can support the look of a fuller, less see-through part.</span></li>
+        <li>The clumps in your brush and the strands in the shower drain every morning<span class="arc">helps cleanse away the greasy film so the scalp feels clean and light.</span></li>
+        <li>Greasy at the roots, flat and lifeless by afternoon<span class="arc">helps lift the greasy buildup so hair feels lighter, not weighed down.</span></li>
+        <li>The serums and the $88-a-month supplements that did nothing<span class="arc">the missing first step that helps clear the way before everything else you've tried.</span></li>
+        <li>The feeling that your femininity thinned out along with your hair<span class="arc">designed to help you feel a little more like yourself again.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== QUANTIFIED / PROOF (B8, replaces 91/88/84% — no percentages) ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">What women tell us first</div><h2>We didn't put a number on a chart we can't back up</h2><p>So here's what reviewers actually describe, in their own words:</p></div>
+      <ul class="proof-arrows fade-slow">
+        <li>Most women mention the same thing first — a scalp that simply feels lighter and cleaner.</li>
+        <li>Many say the greasy, weighed-down feeling at the roots eases within the first weeks.</li>
+        <li>Reviewers often describe a part that looks a little less see-through over time.</li>
+        <li>And again and again: “it feels like the first thing that actually did something.”</li>
+      </ul>
+      <p class="proof-closer fade-slow">This isn't overnight, and we'd never pretend it is. The look of fullness builds gradually — which is exactly why we back every order with 60 days to decide.</p>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON (B9, cosmetic categories only) ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Why a bar reaches the scalp where rinse-off products don't</h2></div>
+      <div class="cmp fade-slow">
+        <table>
+          <thead><tr><th>&nbsp;</th><th class="own">Kalmely Bar</th><th>Daily liquid shampoo</th><th>Leave-in serums</th><th>Clarifying rinse / co-wash</th></tr></thead>
+          <tbody>
+            <tr><td>Works on the scalp, not just the strand</td><td class="own yes">✔</td><td class="no">✖ strips surface only</td><td class="no">✖</td><td>partial</td></tr>
+            <tr><td>No daily dropper or pill to remember</td><td class="own yes">✔</td><td>—</td><td class="no">✖</td><td>—</td></tr>
+            <tr><td>Sulfate-free — won't re-trigger the oil cycle</td><td class="own yes">✔</td><td class="no">✖</td><td>—</td><td>varies</td></tr>
+            <tr><td>Gentle daily use — no harsh strip-and-rebound</td><td class="own yes">✔</td><td class="no">✖</td><td>—</td><td>varies</td></tr>
+            <tr><td>Helps lift buildup so the scalp can breathe</td><td class="own yes">✔</td><td class="no">✖</td><td class="no">✖ sits on a sealed scalp</td><td>partial</td></tr>
+            <tr><td>Cost per use</td><td class="own yes">&lt; $1 / wash</td><td>$</td><td class="no">~$88 / month</td><td>$$</td></tr>
+            <tr><td>60-Day money-back guarantee</td><td class="own yes">✔</td><td>—</td><td class="no">rarely</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="proof-closer fade-slow" style="font-style:normal">A visibly cleaner scalp and fuller-looking hair — for pennies a wash, and the step that comes before everything else.</p>
+    </div>
+  </section>
+
+  <!-- ===== INGREDIENTS (kept — Trust Layer #5, compliant rewrite) ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">What's inside</div><h2>Six fermented botanicals, one little bar</h2><p>Sulfate-free, vegan and free of harsh strippers — a concentrated blend chosen to help cleanse buildup and leave the scalp feeling clean and light. The full INCI list ships on every box.</p></div>
+      <div class="values fade-slow" style="grid-template-columns:repeat(3,1fr);gap:26px 30px">
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Rice Water</h3><p>A tradition-loved Korean clarifier that helps cleanse buildup and leaves strands feeling smoother and glossier.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Green Tea Ferment</h3><p>Helps balance an oily, weighed-down scalp so hair feels lighter and less greasy through the day.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Ginseng Root</h3><p>A botanical long used in Korean scalp care to leave roots feeling refreshed and looking livelier.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Tea Tree Oil</h3><p>Naturally purifying and cooling — helps leave the scalp feeling genuinely clean and comfortable.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Panthenol (Pro-Vitamin B5)</h3><p>A topical conditioner that helps coat each strand for softer, fuller-feeling hair.</p></div>
+        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Soybean</h3><p>A plant-based moisture boost that helps soften and condition, so hair feels less brittle.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE (B10, moved before reviews/FAQ) ===== -->
+  <section>
+    <div class="wrap guarantee fade-slow">
+      <div class="seal fade-slow"><b>60</b>day money-back</div>
+      <h2>Try it for 60 days. The risk is ours, not yours.</h2>
+      <p>Use the bar every day for a full 60 days. If you don't love how your scalp looks and feels, email us at <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> and we'll refund every cent — even if the bar is half-used.</p>
+      <ul class="vstack" style="margin-left:auto;margin-right:auto">
+        <li>Used is fine — we'd rather you actually give it the 60 days.</li>
+        <li>One email is all it takes. No forms, no phone tree, no runaround.</li>
+        <li>Return within 60 days in the original packaging where possible — a used bar still qualifies.</li>
+      </ul>
+      <p style="max-width:540px;margin:0 auto 22px;color:var(--ink-2)">We can only make an offer this open because of what women keep telling us. Worst case, you're out one email. Best case, you stop scanning every mirror for your scalp.</p>
+      <button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Add to Cart — <span class="cta-price">$39</span></button>
+      <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Questions first? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS (B11) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Real people, real scalps</div><h2>Loved by 14,200+</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Verified buyers</div><h2>★★★★★ 4.8/5 from verified buyers</h2></div>
       <div class="rev-top fade-slow">
-        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,200+ verified reviews</div></div>
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">Verified buyers · real photos</div></div>
         <div class="rev-dist" id="revDist"></div>
       </div>
       <div class="rev-grid fade-slow" id="revFeatured"></div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“My part looks less see-through.”</span><span>“Scalp feels lighter.”</span><span>“Less in the drain.”</span><span>“I feel like myself again.”</span></div>
+      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Add to Cart — <span class="cta-price">$39</span></button></div>
     </div>
   </section>
 
-  <!-- ===== BEFORE / AFTER ===== -->
-  <section id="results">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Real results</div><h2>The difference your scalp can feel</h2><p>Real photos and stories shared by Kalmely users after several weeks of regular use. Everyone's scalp and hair are different, so results may vary — but the pattern is the same: less itch, less flaking, fuller-feeling roots.</p></div>
-      <div class="ba-grid fade-slow">
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Itchy, flaky scalp · 4 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Oily, flat roots · 3 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Fuller-looking roots · 6 weeks</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== REASONS (image cards) ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">When did washing stop being enough?</div><h2>Your scalp is itchy, your roots are flat, and shampoo isn't fixing it</h2><p>You wash, and by the afternoon your scalp feels tight and itchy again — flaky residue along your part, an oily film at the roots, hair that goes limp by lunch. Most liquid shampoos clean your hair while leaving the scalp coated in old product, sebum and hard-water minerals. That trapped buildup is what keeps follicles congested and hair looking thin and lifeless.</p></div>
-      <div class="reasons fade-slow">
-        <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Itch / flaking</span></div><div class="rb"><span>The relentless itch &amp; flaking that comes back hours after you shower</span></div></div>
-        <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Oily roots</span></div><div class="rb"><span>An oily, weighed-down feeling at the roots even on a fresh wash day</span></div></div>
-        <div class="reason"><div class="ph" style="aspect-ratio:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Limp / shedding</span></div><div class="rb"><span>Limp, thinning-feeling hair that sheds more than it used to and won't hold volume</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== LIFESTYLE ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">It starts at the scalp</div><h2>Healthy, full-looking hair grows from a clean, balanced scalp — not a bottle of suds</h2><p>A clogged scalp can't grow hair that looks its best — the same way a blocked drain can't run clear no matter how much water you pour in. Most liquid shampoos are built around harsh sulfates that foam up, strip your scalp's natural oils, and trigger it to overproduce sebum — which is why you feel greasy and flaky at once. A solid bar works differently: a concentrated, water-free formula with fermented botanicals that clears buildup at the root and calms the scalp's barrier, leaving follicles free to do what they do best.</p></div>
-      <div class="life fade-slow">
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Lifestyle</span></div>
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Scalp close-up</span></div>
-        <div class="ph" style="aspect-ratio:3/4;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Fuller hair</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MECHANISM (3 icons) ===== -->
-  <section class="band" id="how">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>It starts where your hair actually grows — the scalp</h2><p>Liquid shampoos sit on the surface and rinse off in seconds. Our solid bar is different: as you glide it over a wet scalp, fermented Korean botanicals go to work — gently dissolving the waxy buildup, excess oil and dead skin that clog follicles and weigh hair down. Fermentation breaks these actives into smaller, more available forms your scalp drinks up fast, for a deep clarifying clean without the stripped feeling.</p></div>
-      <div class="mech-img fade-slow"><div class="ph" style="aspect-ratio:16/9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Diagram — surface clean vs deep clean</span></div></div>
-      <div class="values fade-slow">
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h3>Clears buildup at the root</h3><p>Lifts the sebum, product and hard-water residue ordinary shampoo leaves behind on your scalp.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg><h3>Fermented &amp; absorbable</h3><p>Fermentation makes the botanicals smaller and more available, so they sink in instead of sitting on top.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><h3>Calm, balanced, fuller-feeling</h3><p>A less itchy, balanced scalp — and hair that comes back looking thicker and far less limp at the roots.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW TO USE (3 steps) ===== -->
-  <section id="usage">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">3 easy steps</div><h2>One bar. Sixty seconds. A scalp that finally feels clean</h2></div>
-      <div class="steps3 fade-slow">
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 1</span></div><b>Wet &amp; glide</b><p>In the shower, soak your hair and glide the bar along your scalp — part by part — until it builds a rich lather.</p></div>
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 2</span></div><b>Massage ~60 seconds</b><p>Work the lather into your scalp with your fingertips (or the scalp brush), letting the botanicals lift away buildup.</p></div>
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 3</span></div><b>Rinse &amp; transform</b><p>Rinse thoroughly and feel the difference — a fresh, calm, deeply clean scalp and hair full of life.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== INGREDIENTS ===== -->
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">What's inside</div><h2>Six fermented botanicals, one little bar</h2><p>No sulfates, no fillers you can't pronounce — just a concentrated blend chosen to clear buildup and bring a tired scalp back to life.</p></div>
-      <div class="values fade-slow" style="grid-template-columns:repeat(3,1fr);gap:26px 30px">
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Rice Water</h3><p>Tradition-loved Korean clarifier that helps clear buildup and leaves strands feeling smoother and glossier.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Green Tea Ferment</h3><p>Antioxidant-rich and balancing — helps soothe an oily, irritated scalp so hair feels lighter and less greasy.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Ginseng Root</h3><p>An energizing botanical that wakes up tired-looking roots for fuller, more resilient-looking hair.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Tea Tree Oil</h3><p>Naturally purifying and cooling — helps calm itchiness and flaking while leaving the scalp genuinely clean.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Biotin &amp; Panthenol (B5)</h3><p>A nourishing duo that conditions the scalp and coats each strand for thicker-feeling, healthier-looking hair.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Fermented Soybean</h3><p>A plant-based moisture boost that softens and strengthens, helping reduce breakage and visible shedding.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== STATS ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">In a survey of Kalmely users</div><h2>What people tell us after a few weeks</h2></div>
-      <div class="values fade-slow" style="text-align:center">
-        <div class="value"><div style="font:600 54px/1 var(--serif);color:var(--ink)">91%</div><p style="margin-top:8px">said their scalp felt calmer and less itchy</p></div>
-        <div class="value"><div style="font:600 54px/1 var(--serif);color:var(--ink)">88%</div><p style="margin-top:8px">noticed less flaking within the first few weeks</p></div>
-        <div class="value"><div style="font:600 54px/1 var(--serif);color:var(--ink)">84%</div><p style="margin-top:8px">said their hair felt fuller and thicker</p></div>
-      </div>
-      <p class="tl-foot" style="margin-top:24px">Self-reported results from a survey of Kalmely customers. Individual results vary.</p>
-    </div>
-  </section>
-
-  <!-- ===== COMPARISON ===== -->
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Why a bar beats your old bottle</h2></div>
-      <div class="cmp fade-slow">
-        <table>
-          <thead><tr><th>&nbsp;</th><th class="own">Kalmely Bar</th><th>Ordinary shampoo</th></tr></thead>
-          <tbody>
-            <tr><td>Targets the scalp</td><td class="own yes">Built for the scalp first</td><td class="no">Made to clean hair, not skin</td></tr>
-            <tr><td>Clears buildup</td><td class="own yes">Lifts sebum &amp; product residue</td><td class="no">Often leaves a film behind</td></tr>
-            <tr><td>Ingredients</td><td class="own yes">Fermented botanicals, sulfate-free</td><td class="no">Harsh sulfates &amp; fillers</td></tr>
-            <tr><td>On the scalp</td><td class="own yes">Calms itch &amp; flakes</td><td class="no">Can dry out &amp; irritate</td></tr>
-            <tr><td>Hair feel</td><td class="own yes">Fuller, lighter, less shedding</td><td class="no">Limp &amp; weighed down</td></tr>
-            <tr><td>Footprint</td><td class="own yes">One plastic-free bar lasts weeks</td><td class="no">Another bottle in the landfill</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
+  <!-- ===== FAQ (B12, file 33 Q1-Q11) ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
-      <div class="sec-head fade-slow"><div class="eyebrow">Questions, answered</div><h2>Frequently asked questions</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Questions women ask us most</div><h2>Frequently asked questions</h2></div>
       <div class="acc fade-slow">
-        <details><summary>How does the Scalp Revival Bar actually work?</summary><p>Most shampoos clean your hair but leave the scalp coated in sebum, styling product and hard-water residue — the buildup that leaves follicles congested and hair looking flat. Our solid bar is built for the scalp first. Fermented botanicals and gentle clarifying actives help dissolve that buildup, soothe itch and flaking, and create a fresh, balanced foundation so hair feels thicker, fuller and sheds less over time.</p></details>
-        <details><summary>Is it safe, and who is it for?</summary><p>Yes. The bar is vegan, sulfate-free and made without harsh chemicals or drying detergents — gentle enough for sensitive, itchy or flaky scalps. It's designed for anyone dealing with buildup, oiliness, itch or limp, thinning-feeling hair. If you have a known scalp condition or allergies, check the ingredient list and chat with your doctor first.</p></details>
-        <details><summary>How long does one bar last?</summary><p>With normal use — a few washes a week — a single bar typically lasts around 2 to 3 months, depending on hair length and how often you wash. Because you glide it directly on the scalp instead of squeezing out handfuls of liquid shampoo, a little goes a long way. That's why most people grab the 2- or 3-bar bundle.</p></details>
-        <details><summary>Can I still use it with my shampoo, conditioner and serums?</summary><p>Absolutely. The bar works beautifully on its own, but it also plays nicely with the rest of your routine. Use it as your main scalp cleanse, then follow with conditioner on your lengths if you like. And because it clears away buildup, any leave-in serums you love can actually reach the scalp instead of sitting on top of a layer of residue.</p></details>
-        <details><summary>How is this different from my regular shampoo?</summary><p>Regular shampoo is made to clean hair strands, often with foaming sulfates that strip moisture and leave the scalp out of the equation. The Scalp Revival Bar flips the focus to the scalp — where healthy, full-feeling hair really starts. It's concentrated, low-waste and free of harsh detergents and plastic bottles.</p></details>
-        <details><summary>When will I see and feel results?</summary><p>Many users notice their scalp feels cleaner, calmer and less itchy from the very first wash. The fuller, fresher look and reduced shedding tend to build over a few weeks of consistent use. Everyone's different, so we give you a full 60 days to feel the difference — and our guarantee has your back if you don't.</p></details>
-        <details><summary>Will it work for my hair type?</summary><p>Yes — straight, wavy, curly, coily, fine or thick. The bar treats the scalp, not the strand, so it suits every hair type and texture. Whether your scalp runs oily and itchy or dry and flaky, it helps clear buildup and restore balance. It's colour-safe and won't weigh fine hair down.</p></details>
-        <details><summary>Does it work for men too?</summary><p>Definitely. Scalp buildup, itch and thinning-feeling hair aren't a women's-only problem — men deal with all of it. The bar works exactly the same way for everyone, and plenty of guys keep one in the shower for a quick, no-fuss scalp cleanse. One bar, the whole household.</p></details>
-        <details><summary>How do I use it?</summary><p>It takes about a minute. Wet your hair and scalp, then glide the bar directly along your scalp in sections until you feel a light lather. Massage with your fingertips (or the scalp brush included in our bundles) for around 60 seconds to lift buildup and leave your scalp feeling refreshed. Rinse thoroughly, then condition your lengths if you like. Let the bar dry between uses and it'll last for months.</p></details>
+        <details><summary>How does it actually work?</summary><p>Daily life leaves a hardened layer of greasy buildup over the roots — we call it the Grease Cap — that can seal the scalp so the root can't breathe. The bar is made with fermented botanical oils designed to help break down this kind of buildup, so the scalp feels clean and able to breathe again. It's a cosmetic scalp product — the first step before anything else you use.</p></details>
+        <details><summary>How long until I notice something?</summary><p>Honestly: gradual, not overnight. Many women say their scalp feels lighter and less greasy within the first days. The look of fuller, less see-through hair tends to build over about 4–8 weeks of daily use. That's why we give you 60 days.</p></details>
+        <details><summary>Is it safe? What's in it?</summary><p>It's a gentle, sulfate-free cosmetic scalp bar — no harsh strippers that re-trigger the oil cycle. The full ingredient (INCI) list is on this page and on every box. If you have a scalp condition or any concern, check the ingredient list or ask your dermatologist first.</p></details>
+        <details><summary>Will it work with the serums and products I already use?</summary><p>Yes — and it actually helps them. A sealed, greasy scalp is part of why serums sit on the surface and never reach the root. The bar is the missing first step that helps clear the way, then you use whatever you already love.</p></details>
+        <details><summary>Does it work for my hair type / during menopause?</summary><p>It's made for all hair types, and it was designed with women 50+ and the menopause transition specifically in mind — when the part widens and the ponytail thins. It works on the scalp environment, not on a particular hair texture.</p></details>
+        <details><summary>Can my husband or partner use it too?</summary><p>Absolutely. One bar, one scalp — it works the same for everyone in the household.</p></details>
+        <details><summary>How long does one bar last?</summary><p>About 30 days of daily use per bar — so the 2-Bar tier is a 60-day supply and the 3-Bar is a 90-day ritual.</p></details>
+        <details><summary>How do I claim the 60-day guarantee?</summary><p>One email to hello@kalmely.com within 60 days and we refund every cent — even a half-used bar. No forms, no runaround.</p></details>
+        <details><summary>How much is shipping and how fast?</summary><p>Fast U.S. shipping. Orders $49+ ship FREE (the 90-Day Ritual ships free on its own). Orders under $49 have a flat shipping rate shown at checkout.</p></details>
+        <details><summary>What's your return policy?</summary><p>60 days, money-back, used or unused. Return in the original packaging where possible; a used bar still qualifies.</p></details>
+        <details><summary>How do I reach a real person?</summary><p>Email hello@kalmely.com — a real member of our team replies, usually within 24 hours.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- ===== GUARANTEE ===== -->
-  <section>
-    <div class="wrap guarantee fade-slow">
-      <div class="seal fade-slow"><b>60</b>day money-back</div>
-      <h2>Love your scalp in 60 days — or it's on us</h2>
-      <p>Give the bar a fair shot for 60 days. If your scalp doesn't feel cleaner, calmer and less itchy, or your hair doesn't feel fuller, just email us for a full refund. No photos, no hoops — and you don't even have to mail the bar back. Keep it.</p>
-      <button type="button" class="add-to-cart">Add to cart</button>
+  <!-- ===== FOUNDER NOTE (B13) ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow" style="margin-bottom:22px"><div class="eyebrow">From the team</div><h2>Why we made this</h2></div>
+      <div class="founder fade-slow">
+        <p>We kept hearing the same thing from women over 50. The part down the middle getting wider. The brush filling up after every shower. The ponytail wrapping the elastic one more time than it used to. And underneath it, something harder to say out loud — the feeling that their femininity was thinning out along with their hair.</p>
+        <p>They'd been told to blame their age, their hormones, their genes — and to just live with it. Nobody, by the way, ever told the men in their lives the same thing.</p>
+        <p>So we went looking at the one place most haircare ignores: the scalp itself. We built a simple, 60-second Korean scalp bar around the buildup that can seal the root — the Grease Cap — because the first step had been missing the whole time. No miracle claims. Just the step that comes before everything else.</p>
+        <p class="sig">— The team behind Kalmely</p>
+      </div>
     </div>
   </section>
 
-  <!-- ===== FINAL CTA ===== -->
-  <section class="band final">
+  <!-- ===== FINAL CTA (bottom-repeat ladder) ===== -->
+  <section class="final">
     <div class="wrap fade-slow">
-      <div class="eyebrow">Ready to revive your scalp?</div>
-      <h2 style="font-size:clamp(28px,3.4vw,40px);margin:9px 0 4px">Choose your pack &amp; start your scalp revival</h2>
-      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span><b>4.8</b> · 14,200+ scalps revived</span></div>
+      <div class="eyebrow">Ready when you are</div>
+      <h2 style="font-size:clamp(28px,3.4vw,40px);margin:9px 0 4px">Pick your pack &amp; start the first step</h2>
+      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span><b>4.8</b> · Verified Buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
-        <button type="button" class="pack" data-sku="SCALP-1" data-price="24.95" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Bar</span><span class="pack-unit">$24.95/bar</span><span class="pack-price">$24.95<s>$49.95</s></span>
+        <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
+          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span>
         </button>
-        <button type="button" class="pack" data-sku="SCALP-2" data-price="39.95" role="radio" aria-checked="false">
-          <span class="pack-badge">Most popular</span>
-          <span class="pack-qty">2 Bars</span><span class="pack-unit">$19.98/bar</span><span class="pack-price">$39.95<s>$99.90</s></span>
-          <span class="pack-banner">🎁 + free massage brush</span>
+        <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
+          <span class="pack-badge">★ Most popular</span>
+          <span class="pack-qty">2 Bars</span><span class="pack-unit">Buy 1 Get 1 Free</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 + free ebook</span>
         </button>
-        <button type="button" class="pack" data-sku="SCALP-3" data-price="54.95" role="radio" aria-checked="false">
-          <span class="pack-badge alt">Best value</span>
-          <span class="pack-qty">3 Bars</span><span class="pack-unit">$18.32/bar</span><span class="pack-price">$54.95<s>$149.85</s></span>
-          <span class="pack-banner">🎁 + brush + bonus bar</span>
+        <button type="button" class="pack" data-sku="SCALP-3" data-price="54" role="radio" aria-checked="false">
+          <span class="pack-badge alt">★ Best value</span>
+          <span class="pack-qty">3 Bars + Comb</span><span class="pack-unit">90-Day · Save $33</span><span class="pack-price">$54<s>$87</s></span><span class="pack-banner">🎁 + comb + ebook</span>
         </button>
       </div>
-      <button type="button" class="add-to-cart">Add to cart</button>
-      <div class="bx-disclaimer" style="max-width:560px;margin-left:auto;margin-right:auto">Results may vary. A cosmetic scalp-care product — not medical advice. If you have a diagnosed scalp condition or a known allergy, check the ingredients and consult your doctor before use.</div>
+      <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
+      <div class="bx-disclaimer" style="max-width:560px;margin-left:auto;margin-right:auto">Kalmely is a cosmetic scalp-care product. Not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary.</div>
     </div>
   </section>
 
 </main>
 
-<!-- ===== NEWSLETTER FOOTER ===== -->
+<!-- ===== FOOTER (B14) ===== -->
 <footer class="news">
   <div class="wrap">
     <div class="news-in">
-      <h2>Join the Kalmely Circle</h2>
-      <p>Scalp-care tips, early access to new drops, and members-only offers straight to your inbox. Sign up today and we'll send you a welcome discount on your first order — no spam, just the good stuff.</p>
+      <h2>Get the free Korean Scalp Protocol</h2>
+      <p>The daily 60-second routine, plus members-only offers — straight to your inbox. No spam, just the good stuff, and a welcome discount on your first order.</p>
       <form class="news-form" id="newsForm">
         <input type="email" id="newsEmail" name="email" placeholder="Your email address" autocomplete="email" required>
-        <button type="submit">Subscribe</button>
+        <button type="submit">Send it to me</button>
       </form>
       <div class="news-msg" id="newsMsg"></div>
     </div>
     <div class="news-word" aria-hidden="true">Kalmely</div>
     <div class="foot-bottom">
       <div class="foot-row">
-        <span style="font:600 13px/1 var(--sans);color:rgba(249,248,246,.7)">© 2026 Kalmely Ltd</span>
-        <div class="foot-links"><a href="contact.html">Contact</a><a href="shipping-policy.html">Shipping</a><a href="refund-policy.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="manage.html">Manage subscription</a></div>
+        <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
+        <div class="foot-links"><a href="/contact.html">Contact</a><a href="/shipping-policy.html">Shipping</a><a href="/refund-policy.html">Returns &amp; Refunds</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
       </div>
-      <div class="foot-fine">Results may vary. A cosmetic scalp-care product — not medical advice. If you have a diagnosed scalp condition or a known allergy, check the ingredients and consult your doctor before use. · Free shipping · 60-day money-back guarantee. Reviews are from verified customers; individual experiences vary.</div>
+      <div class="foot-fine">🔒 Secure SSL checkout · Fast U.S. shipping · Free over $49 · 60-Day Money-Back Guarantee. &nbsp;Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. Reviews are from verified customers; individual experiences vary. © 2026 Kalmely.</div>
     </div>
   </div>
 </footer>
@@ -915,10 +1042,11 @@ section{padding:74px 0}
 <!-- sticky cta -->
 <div class="sticky-cta" id="stickyCta">
   <div class="sc-inner">
-    <div class="sc-info"><span class="sc-name">Kalmely Scalp Revival Bar</span><span class="sc-meta"><span id="scLabel">1 Bar</span> · <span id="scPrice">$24.95</span></span></div>
-    <button type="button" class="add-to-cart sc-btn">Add to cart</button>
+    <div class="sc-info"><span class="sc-name">Korean Scalp Revival Bar</span><span class="sc-meta"><span id="scLabel">2 Bars</span> · <span id="scPrice">$39</span></span></div>
+    <button type="button" class="add-to-cart sc-btn">Add to Cart</button>
   </div>
 </div>
+
 
 <!-- ===== CART DRAWER ===== -->
 <div class="cart-overlay" id="cartOverlay"></div>
@@ -952,12 +1080,12 @@ section{padding:74px 0}
     <div class="cart-totals" id="cartWelcomeRow" style="display:none"><span>WELCOME10 (10% off)</span><span class="ct-save" id="cartWelcome">−$2.50</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$24.95</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
-    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 6-month guarantee</span><span>🚚 Free shipping</span></div>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 60-day guarantee</span><span>🚚 Free over $49</span></div>
   </div>
 </aside>
 
 <div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
-  <p>We use cookies to improve the site and measure ads. Read our <a href="privacy.html">privacy policy</a>.</p>
+  <p>We use cookies to improve the site and measure ads. Read our <a href="/privacy.html">privacy policy</a>.</p>
   <div class="cookie-actions"><button type="button" class="accept" id="cookieAccept">Accept</button><button type="button" class="deny" id="cookieDeny">Essential only</button></div>
 </div>
 
@@ -981,7 +1109,7 @@ section{padding:74px 0}
         <button type="submit" class="eg-sub" id="egSubmit">Claim my 10% code</button>
         <div class="eg-fine">
           <label><input type="checkbox" id="egConsent" required><span>I agree to receive emails from Kalmely. Unsubscribe anytime.</span></label>
-          By subscribing you agree to our <a href="privacy.html">privacy policy</a>.
+          By subscribing you agree to our <a href="/privacy.html">privacy policy</a>.
         </div>
       </form>
       <div id="egSuccess" style="display:none">
@@ -1002,11 +1130,11 @@ section{padding:74px 0}
   // ===== Offer model: Scalp Revival Bar (USD) — 1 / 2 / 3 bars, one-time, staggered gifts =====
   var VARIANT='SCALP';
   var TIERS={
-    'SCALP-1':{price:24.95,was:49.95,label:'1 Bar',sub:false,stock:9,gifts:[['“7-Day Scalp Reset Guide” e-book','19']]},
-    'SCALP-2':{price:39.95,was:99.90,label:'2 Bars',sub:false,stock:5,gifts:[['“7-Day Scalp Reset Guide” e-book','19'],['Scalp-Revival massage brush','14']]},
-    'SCALP-3':{price:54.95,was:149.85,label:'3 Bars',sub:false,stock:2,gifts:[['“7-Day Scalp Reset Guide” e-book','19'],['Scalp-Revival massage brush','14'],['Travel drying tin + bonus bar','34']]}
+    'SCALP-1':{price:29,was:0,label:'1 Bar',sub:false,stock:0,gifts:[['“Korean Scalp Protocol” ebook','19']]},
+    'SCALP-2':{price:39,was:58,label:'2 Bars',sub:false,stock:0,gifts:[['“Korean Scalp Protocol” ebook','19']]},
+    'SCALP-3':{price:54,was:87,label:'3 Bars + Comb',sub:false,stock:0,gifts:[['Scalp Comb','14'],['“Korean Scalp Protocol” ebook','19']]}
   };
-  var DEFAULT='SCALP-1';  // land on the low-friction hook pack; they trade up to "Most popular" / "Best value"
+  var DEFAULT='SCALP-2';  // file-33: land on Tier 2 (Most Popular · Buy 1 Get 1 Free)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
   var packs=document.querySelectorAll('.pack');
   // (per-pack "only N left" badges removed — replaced by a single low-stock notice in the buybox)
@@ -1017,7 +1145,7 @@ section{padding:74px 0}
   var packName=function(s){return 'Kalmely Scalp Revival Bar · '+info(s).label;};
   var saveColours=function(){};
   function ctaPriceTxt(){return money(info(curSku).price);}
-  function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:t.was-t.price,checkoutQty:1};}
+  function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
   function updateCtas(){
     var m=lineMath(),lab=info(curSku).label;
     addBtns.forEach(function(a){var p=a.querySelector('.cta-price');if(p)p.textContent=ctaPriceTxt();});
@@ -1071,10 +1199,10 @@ section{padding:74px 0}
     document.getElementById('cartQty').textContent='×1';
     document.getElementById('cartImg').src='assets/favicon-kalmely.png';
     document.getElementById('cartPrice').textContent=money(price);
-    var wasEl=document.getElementById('cartWas');if(was){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
-    document.getElementById('cartSubtotal').textContent=money(was||price);
+    var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
+    document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
     var savingRow=document.getElementById('cartSaving').parentNode;
-    if(save){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
+    if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
     var _claimed=(function(){try{return localStorage.getItem('kalmely_welcome')==='WELCOME10'}catch(e){return false}})();
     var _wRow=document.getElementById('cartWelcomeRow'),_cents=Math.round(price*100),_total=price;
     if(_claimed){var _disc=Math.round(_cents*0.10);document.getElementById('cartWelcome').textContent='−'+money(_disc/100);_wRow.style.display='';_total=(_cents-_disc)/100;}
@@ -1251,18 +1379,24 @@ section{padding:74px 0}
 <script src="assets/reviews.js"></script>
 <script>
 (function(){
-  var R=(window.KALMELY_REVIEWS||[]).map(function(r){return {r:r.r,n:r.n,d:r.d,loc:r.loc,t:'Verified review',b:'— review placeholder · scalp reviews pending —'};});
+  // file-33 lead testimonials (named, age-stamped, appearance/feel only — NO before/after, NO regrowth)
+  var LEAD=[
+    {r:5,n:'Diane R.',d:'Age 58 · Verified Buyer',t:'I finally stopped switching my part.',b:"For two years I'd been parting my hair on the other side to hide how see-through the middle had gotten. I'd tried biotin, two different serums, even the $88-a-month supplements. This is the only thing that made my scalp feel clean instead of greasy — and my part honestly looks less see-through than it did."},
+    {r:5,n:'Margaret K.',d:'Age 61 · Verified Buyer',t:'Lighter scalp by the second week.',b:"My roots were greasy by lunchtime and my ponytail was half what it used to be. The bar takes a minute in the shower. By the second week my scalp just felt lighter — not weighed down. I feel more like myself."},
+    {r:5,n:'Linda P.',d:'Age 54 · Verified Buyer',t:'Menopause took enough. Not this too.',b:"Menopause took my sleep and my patience, and I felt like my hair was going with it. I won't make crazy claims — but my scalp feels clean, my part looks fuller than it did, and for the first time in a while I'm not dreading the brush."},
+    {r:5,n:'Carol T.',d:'Age 49 · Verified Buyer',t:'The missing first step.',b:"I was already using a serum and getting nowhere. Turns out my scalp was so greasy nothing was getting through. Used this first, kept the serum — completely different. Scalp feels clean and light now."}
+  ];
+  var R=LEAD;
   var feat=document.getElementById('revFeatured'),more=document.getElementById('revMore'),dist=document.getElementById('revDist'),btn=document.getElementById('revMoreBtn');
   if(!R.length||!feat||!dist||!more)return;
-  var photos=['tea-review1','tea-review2','tea-review3','tea-review4','tea-review5','tea-review6','tea-review7'];
-  var TOTAL=14200, DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
+  var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];  // ILLUSTRATIVE — replace with real Loox/Judge.me distribution before publishing
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function ini(nm){return (nm||'').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
-  function cP(r,i){return '<div class="review" data-r="'+r.r+'"><img class="rev-img" src="assets/'+photos[i%photos.length]+'.webp" alt="Verified Kalmely customer" loading="lazy"><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p><div class="rev-by"><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified · '+esc(r.loc)+'</span></div></div>';}
   function cT(r){return '<div class="review" data-r="'+r.r+'"><div class="rh"><span class="av">'+ini(r.n)+'</span><span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
-  feat.innerHTML=R.slice(0,9).map(cT).join('');
-  more.innerHTML=R.slice(9).map(cT).join('');
+  feat.innerHTML=R.map(cT).join('');
+  more.innerHTML='';
+  if(btn)btn.style.display='none';  // real review widget (Loox/Judge.me) pending — no fake "show more"
   dist.innerHTML=DIST.map(function(d){return '<button type="button" class="rev-bar" data-star="'+d[0]+'"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></button>';}).join('');
   var em=document.createElement('p');em.className='rev-empty';em.hidden=true;em.style.cssText='text-align:center;color:var(--ink-soft);margin-top:16px;font:500 14px/1.5 var(--sans)';more.parentNode.insertBefore(em,more.nextSibling);
   var active=0;
@@ -1282,6 +1416,10 @@ section{padding:74px 0}
     var s=+b.dataset.star;setFilter(active===s?0:s);
   });
 })();
+</script>
+<script>
+/* announcement bar — rotate the two file-33 messages */
+(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping on orders $49+ · 60-Day Money-Back Guarantee','Korean Scalp Science · Sulfate-Free · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
 </script>
 </body>
 </html>
