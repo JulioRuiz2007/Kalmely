@@ -404,7 +404,9 @@ section{padding:74px 0}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .review .rh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.review .av{width:36px;height:36px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--sans);color:var(--ink-soft)}
+.review .av{width:42px;height:42px;flex:0 0 auto;border-radius:50%;background:var(--paper-3);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--faint)}
+.review .av svg{width:22px;height:22px}
+.review .av img{width:100%;height:100%;object-fit:cover;display:block}
 .review .nm{font:600 13px/1.3 var(--sans)}
 .review .vf{font:600 10px/1 var(--sans);color:var(--ok);display:flex;align-items:center;gap:3px;margin-top:2px}
 .review .st{color:var(--ink);letter-spacing:1px;font-size:12px;margin-bottom:7px}
@@ -824,88 +826,52 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== SOCIAL-PROOF STRIP (B3) ===== -->
-  <section class="band">
+  <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
+  <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sproof-h fade-slow">Loved by 14,268+ women — <span class="vf">Verified Buyers ✔</span></div>
-      <p class="sproof-sub fade-slow">Real photos from real customers — women roughly 50–62, everyday bathrooms, no models.</p>
+      <div class="sec-head fade-slow"><div class="eyebrow">Loved by women 50+</div><h2>★★★★★ 4.8/5 from 14,268 verified buyers</h2><p>Real photos from real customers — women roughly 50–62, everyday bathrooms, no models.</p></div>
+      <div class="rev-top fade-slow">
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,268 verified reviews</div></div>
+        <div class="rev-dist" id="revDist"></div>
+      </div>
       <div class="ugc-strip fade-slow">
         <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · holding the bar</span></div>
         <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · at the mirror</span></div>
         <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · everyday light</span></div>
         <div class="ph" style="aspect-ratio:1/1;border-radius:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Customer · in the shower</span></div>
       </div>
+      <div class="rev-grid fade-slow" id="revFeatured"></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
+      <div class="rev-more" id="revMore" hidden></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“My part looks less see-through.”</span><span>“Scalp feels lighter.”</span><span>“Less in the drain.”</span><span>“I feel like myself again.”</span></div>
+      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Add to Cart — <span class="cta-price">$39</span></button></div>
+    </div>
+  </section>
 
-      <div class="sec-head fade-slow" style="margin:48px auto 20px;max-width:560px"><div class="eyebrow">Before &amp; after</div><h2 style="font-size:clamp(22px,2.6vw,30px)">The change women keep showing us</h2><p style="font-size:14.5px">Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
+  <!-- ===== 2. BEFORE / AFTER ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
       <div class="ba-grid fade-slow">
         <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption></figure>
         <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Part looks less see-through · 8 weeks</figcaption></figure>
         <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption></figure>
       </div>
-
-      <div class="sp-dist fade-slow">
-        <div class="sp-row"><span class="lab">5★</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="pct">86%</span></div>
-        <div class="sp-row"><span class="lab">4★</span><span class="track"><span class="fill" style="width:9%"></span></span><span class="pct">9%</span></div>
-        <div class="sp-row"><span class="lab">3★</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="pct">3%</span></div>
-        <div class="sp-row"><span class="lab">2★</span><span class="track"><span class="fill" style="width:1%"></span></span><span class="pct">1%</span></div>
-        <div class="sp-row"><span class="lab">1★</span><span class="track"><span class="fill" style="width:1%"></span></span><span class="pct">1%</span></div>
-      </div>
-      <div class="sp-caps fade-slow"><span>“My scalp feels lighter.”</span><span>“My part looks less see-through.”</span><span>“I feel like myself again.”</span></div>
     </div>
   </section>
 
-  <!-- ===== OFFER RECAP (B4) ===== -->
-  <section>
-    <div class="wrap recap fade-slow">
-      <div class="sec-head" style="margin-bottom:14px;max-width:560px"><div class="eyebrow">Pick your ritual length</div><h2>Most women start with the 60-Day</h2><p>It's our most popular tier — two bars for $39 instead of $58, and about how long the scalp usually needs to start feeling clean and light.</p></div>
-      <div class="sale-divider" style="max-width:520px;margin-left:auto;margin-right:auto">Summer Sale – Limited Time Only</div>
-      <div class="packs" id="packsRecap" role="radiogroup" aria-label="Choose your pack">
-        <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 + free ebook</span>
-        </button>
-        <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
-          <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Bars</span><span class="pack-unit">Save $19 · 60-Day Supply</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 + free ebook</span>
-        </button>
-        <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
-          <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $43</span><span class="pack-price">$59<s>$102</s></span><span class="pack-banner">🎁 + free Scalp Serum + ebook · FREE ship</span>
-        </button>
-      </div>
-      <div class="ship-nudge">🚚 The 3-Bar bundle ships FREE — like every order over $49.</div>
-      <ul class="vstack">
-        <li>Your Korean Scalp Revival Bar(s)</li>
-        <li>FREE “Korean Scalp Protocol” ebook — the daily 60-second routine</li>
-        <li>FREE Scalp Serum with the 3-Bar bundle</li>
-        <li>60-Day Money-Back Guarantee</li>
-      </ul>
-      <p class="cost-reframe">That's less than $1 a wash — less than a single-use serum packet, for the step that comes before everything else you've tried.</p>
-      <div class="bx-stock" style="max-width:480px;margin-left:auto;margin-right:auto;text-align:left"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>WARNING: Low Stock Notice</b> — This product sold out <b>12 times</b> last year. Take advantage of the <b>limited sale</b> and buy now. Ordering now helps you avoid future stock outs.</p></div>
-      <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
-      <label class="sub-optin"><input type="checkbox"><span>Subscribe &amp; save 15% — we auto-refill the SAME pack you bought when you're due (1-bar ~every 2 months · 2-bar ~every 3–4 · 3-bar ~every 5–6). Gifts are first-order only. Cancel anytime in 1 click.</span></label>
-    </div>
-  </section>
-
-  <!-- ===== MECHANISM · The Grease Cap (B5, merges old #how) ===== -->
+  <!-- ===== 3. MECHANISM · The Grease Cap (BRIEF — the aha in 5 seconds) ===== -->
   <section class="band" id="how">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">The mechanism</div><h2>Density starts at the scalp — not the strand.</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">The mechanism</div><h2>Meet the Grease Cap</h2></div>
       <div class="mech-prose fade-slow">
-        <p class="lead">For years women over 50 were told the same thing: blame your age, your hormones, your genes. But a growing body of research has turned its attention to one place almost no one was looking — the environment of the scalp itself. And for many women, what's happening up there may not be only hormones.</p>
-        <h3>Meet The Grease Cap.</h3>
-        <p>Day after day, a hardened layer of greasy buildup forms over the roots and seals them shut — so the root underneath can't breathe. Picture a lid pressed down over the follicle. Nothing reaches the root. Nothing escapes. The root sits there, smothered and choked, under a cap it can't lift on its own.</p>
+        <p class="lead">Over the years a hardened layer of greasy buildup forms over the roots and seals them shut — which is exactly why the serums, oils and supplements just sat on top and never got through. Our bar is made with fermented botanical oils designed to dissolve that layer, so the scalp can finally breathe and the part can start to look like itself again.</p>
         <figure class="mech-fig"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Follicle cross-section · buildup layer</span></div><figcaption>Fig. — How surface buildup can seal the follicle (illustration).</figcaption></figure>
-        <h3>Why everything else failed</h3>
-        <p>This is why the biotin didn't move the needle. Why the serums, the dropper, the $88-a-month supplements did nothing. They didn't fail because of you. They landed on a sealed scalp and just sat there — never reaching the root they were meant to feed.</p>
-        <h3>Why daily shampoo can't fix it</h3>
-        <p>And daily liquid shampoo? It only strips the surface. The scalp panics, makes more oil, and the cycle starts again. It never dissolves the hardened cap. It was never built to.</p>
-        <h3>The fix the shape begs for</h3>
-        <p>A cap doesn't need to be scrubbed. It needs to be lifted. Our bar is made with fermented botanical oils designed to help break down that hardened layer instead of scrubbing at fragile roots — so the Grease Cap can lift and the scalp can feel able to breathe again. It's the missing first step — and, over weeks of regular use, what supports a visibly fuller, healthier-looking part. The one that goes before everything else you've already tried.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== HOW-IT-WORKS · 3 steps (B6) ===== -->
+  <!-- ===== 4. HOW-IT-WORKS · 3 steps ===== -->
   <section id="usage">
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>Sixty seconds. In the shower. Nothing new to learn.</h2></div>
@@ -918,35 +884,7 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== BULLETS-TO-PAIN (B7, replaces problem cards) ===== -->
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Is this you?</div><h2>If you've been quietly working around your hair, this is for you.</h2></div>
-      <ul class="pain-list fade-slow">
-        <li>The part you've started hiding by switching sides<span class="arc">helps cleanse the buildup so it can support the look of a fuller, less see-through part.</span></li>
-        <li>The clumps in your brush and the strands in the shower drain every morning<span class="arc">helps cleanse away the greasy film so the scalp feels clean and light.</span></li>
-        <li>Greasy at the roots, flat and lifeless by afternoon<span class="arc">helps lift the greasy buildup so hair feels lighter, not weighed down.</span></li>
-        <li>The serums and the $88-a-month supplements that did nothing<span class="arc">the missing first step that helps clear the way before everything else you've tried.</span></li>
-        <li>The feeling that your femininity thinned out along with your hair<span class="arc">designed to help you feel a little more like yourself again.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===== QUANTIFIED / PROOF (B8, replaces 91/88/84% — no percentages) ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">What women tell us first</div><h2>We didn't put a number on a chart we can't back up</h2><p>So here's what reviewers actually describe, in their own words:</p></div>
-      <ul class="proof-arrows fade-slow">
-        <li>Most women mention the same thing first — a scalp that simply feels lighter and cleaner.</li>
-        <li>Many say the greasy, weighed-down feeling at the roots eases within the first weeks.</li>
-        <li>Reviewers often describe a part that looks a little less see-through over time.</li>
-        <li>And again and again: “it feels like the first thing that actually did something.”</li>
-      </ul>
-      <p class="proof-closer fade-slow">Most women notice a cleaner, lighter scalp within the first week, and a visibly fuller, healthier-looking part builds gradually over 6–8 weeks of regular use. This isn't overnight — which is exactly why we back every order with 60 days to decide.</p>
-    </div>
-  </section>
-
-  <!-- ===== COMPARISON (B9, cosmetic categories only) ===== -->
+  <!-- ===== 5. COMPARISON ===== -->
   <section class="band">
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Why a bar reaches the scalp where rinse-off products don't</h2></div>
@@ -968,23 +906,27 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== INGREDIENTS (kept — Trust Layer #5, compliant rewrite) ===== -->
-  <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">What's inside</div><h2>A traditional East-Asian herbal blend</h2><p>A water-free bar built on a long-standing herbal scalp formula — dozens of botanicals, plant oils and butters chosen to help cleanse buildup and condition. No sulfates, no harsh strippers. The full list is below and printed on every box.</p></div>
-      <div class="values fade-slow" style="gap:26px 30px">
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Oriental Arborvitae</h3><p>The lead botanical in this herbal tradition — helps leave the scalp feeling clean, clarified and refreshed.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Ginseng &amp; He Shou Wu</h3><p>Two prized roots of traditional Asian hair-care rituals — here to leave roots feeling refreshed and hair conditioned.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Rosemary, Tea Tree &amp; Peppermint</h3><p>Naturally purifying, cooling botanical oils that help leave the scalp feeling genuinely clean and comfortable.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Goji Berry, Mulberry &amp; Licorice</h3><p>Antioxidant-rich botanicals that help leave the scalp feeling balanced and cared-for.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Coconut, Jojoba, Shea &amp; Olive</h3><p>Plant oils and butters that condition and soften, so hair feels less brittle and easier to manage.</p></div>
-        <div class="value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg><h3>Frankincense, Cedarwood &amp; Ginger</h3><p>Warming aromatic oils that round out the blend and leave hair lightly, naturally scented.</p></div>
+  <!-- ===== 6. FAQ ===== -->
+  <section id="faq">
+    <div class="wrap" style="max-width:760px">
+      <div class="sec-head fade-slow"><div class="eyebrow">Questions women ask us most</div><h2>Frequently asked questions</h2></div>
+      <div class="acc fade-slow">
+        <details><summary>How does it actually work?</summary><p>Daily life leaves a hardened layer of greasy buildup over the roots — we call it the Grease Cap — that can seal the scalp so the root can't breathe. The bar is made with fermented botanical oils designed to help break down this kind of buildup, so the scalp feels clean and able to breathe again. It's a cosmetic scalp product — the first step before anything else you use.</p></details>
+        <details><summary>How long until I notice something?</summary><p>Honestly: gradual, not overnight. Most women notice a cleaner, lighter scalp within the first week, and a visibly fuller, healthier-looking part builds gradually over 6–8 weeks of regular use. That's why we give you 60 days.</p></details>
+        <details><summary>Is it safe? What's in it?</summary><p>It's a gentle, sulfate-free cosmetic scalp bar — no harsh strippers that re-trigger the oil cycle. The full ingredient (INCI) list is on every box. If you have a scalp condition or any concern, check the ingredient list or ask your dermatologist first.</p></details>
+        <details><summary>Can I use it with my other products / serums?</summary><p>Yes — it's the first step. By clearing the greasy buildup, it helps the products you already use actually reach the scalp. Use the bar first, then carry on with whatever you already love.</p></details>
+        <details><summary>Does it work for my hair type / during menopause?</summary><p>It's made for all hair types, and it was designed with women 50+ and the menopause transition specifically in mind — when the part widens and the ponytail thins. It works on the scalp environment, not on a particular hair texture.</p></details>
+        <details><summary>Can my husband or partner use it too?</summary><p>Absolutely. One bar, one scalp — it works the same for everyone in the household.</p></details>
+        <details><summary>How long does one bar last?</summary><p>Around 40–60 washes per bar — roughly 1–2 months of regular use. So the 2-Bar tier covers most women's full reset and the 3-Bar is the longer ritual. At under $1 a wash, it stretches a long way.</p></details>
+        <details><summary>How do I claim the 60-day guarantee?</summary><p>One email to hello@kalmely.com within 60 days and we refund every cent — even a half-used bar. No forms, no runaround.</p></details>
+        <details><summary>How much is shipping and how fast?</summary><p>Fast U.S. shipping. Orders $49+ ship FREE (the 3-Bar bundle ships free on its own). Orders under $49 have a flat shipping rate shown at checkout.</p></details>
+        <details><summary>What's your return policy?</summary><p>60 days, money-back, used or unused. Return in the original packaging where possible; a used bar still qualifies.</p></details>
+        <details><summary>How do I reach a real person?</summary><p>Email hello@kalmely.com — a real member of our team replies, usually within 24 hours.</p></details>
       </div>
-      <p class="fade-slow" style="max-width:840px;margin:30px auto 0;font:400 12.5px/1.7 var(--sans);color:var(--ink-soft);text-align:center"><b style="color:var(--ink-2)">Full blend:</b> Oriental Arborvitae, Woad Root, Dendrobium Orchid, He Shou Wu, Dong Quai, Black Ganoderma, Ku Shen, Sesame, Goji Berry, White Mulberry Fruit, Ginseng, White Mulberry Root Bark, Three-Leaf Vitex Fruit, Rosemary Leaf Oil, Chinese Peppermint, Coconut Oil, Grapeseed Oil, Olive Oil, Shea Butter, Jojoba Oil, Macadamia Oil, Fractionated Coconut Oil, Ginger Root Oil, Tea Tree Oil, Frankincense Oil, Cedarwood Oil, Lemongrass Oil, Butylene Glycol, Licorice Root, Rosemary, Dandelion, Paris Polyphylla, Chinese Indigo.</p>
     </div>
   </section>
 
-  <!-- ===== GUARANTEE (B10, moved before reviews/FAQ) ===== -->
+  <!-- ===== 7. GUARANTEE (60-day) ===== -->
   <section>
     <div class="wrap guarantee fade-slow">
       <div class="seal fade-slow"><b>60</b>day money-back</div>
@@ -1001,61 +943,12 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== REVIEWS (B11) ===== -->
-  <section class="band" id="reviews">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Verified buyers</div><h2>★★★★★ 4.8/5 from 14,268 verified buyers</h2></div>
-      <div class="rev-top fade-slow">
-        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,268 verified reviews</div></div>
-        <div class="rev-dist" id="revDist"></div>
-      </div>
-      <div class="rev-grid fade-slow" id="revFeatured"></div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
-      <div class="rev-more" id="revMore" hidden></div>
-      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“My part looks less see-through.”</span><span>“Scalp feels lighter.”</span><span>“Less in the drain.”</span><span>“I feel like myself again.”</span></div>
-      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Add to Cart — <span class="cta-price">$39</span></button></div>
-    </div>
-  </section>
-
-  <!-- ===== FAQ (B12, file 33 Q1-Q11) ===== -->
-  <section id="faq">
-    <div class="wrap" style="max-width:760px">
-      <div class="sec-head fade-slow"><div class="eyebrow">Questions women ask us most</div><h2>Frequently asked questions</h2></div>
-      <div class="acc fade-slow">
-        <details><summary>How does it actually work?</summary><p>Daily life leaves a hardened layer of greasy buildup over the roots — we call it the Grease Cap — that can seal the scalp so the root can't breathe. The bar is made with fermented botanical oils designed to help break down this kind of buildup, so the scalp feels clean and able to breathe again. It's a cosmetic scalp product — the first step before anything else you use.</p></details>
-        <details><summary>How long until I notice something?</summary><p>Honestly: gradual, not overnight. Most women notice a cleaner, lighter scalp within the first week, and a visibly fuller, healthier-looking part builds gradually over 6–8 weeks of regular use. That's why we give you 60 days.</p></details>
-        <details><summary>Is it safe? What's in it?</summary><p>It's a gentle, sulfate-free cosmetic scalp bar — no harsh strippers that re-trigger the oil cycle. The full ingredient (INCI) list is on this page and on every box. If you have a scalp condition or any concern, check the ingredient list or ask your dermatologist first.</p></details>
-        <details><summary>Can I use it with my other products / serums?</summary><p>Yes — it's the first step. By clearing the greasy buildup, it helps the products you already use actually reach the scalp. Use the bar first, then carry on with whatever you already love.</p></details>
-        <details><summary>Does it work for my hair type / during menopause?</summary><p>It's made for all hair types, and it was designed with women 50+ and the menopause transition specifically in mind — when the part widens and the ponytail thins. It works on the scalp environment, not on a particular hair texture.</p></details>
-        <details><summary>Can my husband or partner use it too?</summary><p>Absolutely. One bar, one scalp — it works the same for everyone in the household.</p></details>
-        <details><summary>How long does one bar last?</summary><p>Around 40–60 washes per bar — roughly 1–2 months of regular use. So the 2-Bar tier covers most women's full reset and the 3-Bar is the longer ritual. At under $1 a wash, it stretches a long way.</p></details>
-        <details><summary>How do I claim the 60-day guarantee?</summary><p>One email to hello@kalmely.com within 60 days and we refund every cent — even a half-used bar. No forms, no runaround.</p></details>
-        <details><summary>How much is shipping and how fast?</summary><p>Fast U.S. shipping. Orders $49+ ship FREE (the 3-Bar bundle ships free on its own). Orders under $49 have a flat shipping rate shown at checkout.</p></details>
-        <details><summary>What's your return policy?</summary><p>60 days, money-back, used or unused. Return in the original packaging where possible; a used bar still qualifies.</p></details>
-        <details><summary>How do I reach a real person?</summary><p>Email hello@kalmely.com — a real member of our team replies, usually within 24 hours.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOUNDER NOTE (B13) ===== -->
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head fade-slow" style="margin-bottom:22px"><div class="eyebrow">From the team</div><h2>Why we made this</h2></div>
-      <div class="founder fade-slow">
-        <p>We kept hearing the same thing from women over 50. The part down the middle getting wider. The brush filling up after every shower. The ponytail wrapping the elastic one more time than it used to. And underneath it, something harder to say out loud — the feeling that their femininity was thinning out along with their hair.</p>
-        <p>They'd been told to blame their age, their hormones, their genes — and to just live with it. Nobody, by the way, ever told the men in their lives the same thing.</p>
-        <p>So we went looking at the one place most haircare ignores: the scalp itself. We built a simple, 60-second Korean scalp bar around the buildup that can seal the root — the Grease Cap — because the first step had been missing the whole time. No miracle claims. Just the step that comes before everything else.</p>
-        <p class="sig">— The team behind Kalmely</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FINAL CTA (bottom-repeat ladder) ===== -->
+  <!-- ===== 7b. FINAL CTA (bottom-repeat ladder) ===== -->
   <section class="final">
     <div class="wrap fade-slow">
       <div class="eyebrow">Ready when you are</div>
       <h2 style="font-size:clamp(28px,3.4vw,40px);margin:9px 0 4px">Pick your pack &amp; start the first step</h2>
-      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>Loved by early customers</span></div>
+      <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>4.8/5 · 14,268 verified buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
           <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 + free ebook</span>
@@ -1073,6 +966,7 @@ section{padding:74px 0}
       <div class="bx-disclaimer" style="max-width:560px;margin-left:auto;margin-right:auto">Kalmely is a cosmetic scalp-care product. Not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary.</div>
     </div>
   </section>
+
 
 </main>
 
@@ -1355,6 +1249,7 @@ section{padding:74px 0}
   function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'welcome-10off'})}).catch(function(){});}catch(e){}}
   (function(){
     var modal=document.getElementById('egModal');if(!modal)return;
+    return; // email-capture popup disabled per request (no scratch/welcome modal)
     var force=/[?&]eg=1/.test(location.search);                 // ?eg=1 → force-open for testing
     if(/[?&]reset=1/.test(location.search)){try{Object.keys(localStorage).forEach(function(k){if(/^kalmely_/.test(k))localStorage.removeItem(k)})}catch(e){}}  // ?reset=1 → wipe local state, test as a fresh visitor
     var seen=false;try{seen=!!localStorage.getItem('kalmely_scratch_seen')}catch(e){}
@@ -1453,7 +1348,8 @@ section{padding:74px 0}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function ini(nm){return (nm||'').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
   // Aggregate rating + distribution + "verified buyer" labels restored per client decision (risk accepted) — swap for real Loox/Judge.me data once wired
-  function cT(r){return '<div class="review" data-r="'+r.r+'"><div class="rh"><span class="av">'+ini(r.n)+'</span><span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
+  // round face-avatar placeholder next to name/age (real customer photos swap in separately)
+  function cT(r){return '<div class="review" data-r="'+r.r+'"><div class="rh"><span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span><span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
   feat.innerHTML=R.map(cT).join('');
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
   if(btn)btn.style.display='none';
