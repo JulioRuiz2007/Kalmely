@@ -39,15 +39,16 @@
 <meta property="og:description" content="One 60-second Korean scalp bar designed to help lift the greasy buildup that can seal the roots — for a cleaner, lighter scalp and fuller-looking hair. Sulfate-free · vegan · 60-day money-back guarantee.">
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
+<!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
+<link rel="preload" as="image" href="assets/hero-01.webp" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
 @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
 @font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces.woff2) format('woff2')}
 </style>
 
 <!-- Admin Mode Guard -->
@@ -801,14 +802,14 @@ section{padding:74px 0}
           <button type="button" class="hero-arrow hero-next" aria-label="Next image">›</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Holding the bar"><img src="assets/hero-02.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="The part over time"><img src="assets/hero-03.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Benefits"><img src="assets/hero-04.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Customers"><img src="assets/hero-05.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Results"><img src="assets/hero-06.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Ingredients"><img src="assets/hero-07.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Closing"><img src="assets/hero-08.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Holding the bar"><img src="assets/hero-02-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="The part over time"><img src="assets/hero-03-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Benefits"><img src="assets/hero-04-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Customers"><img src="assets/hero-05-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Results"><img src="assets/hero-06-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Ingredients"><img src="assets/hero-07-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Closing"><img src="assets/hero-08-thumb.webp" alt="" loading="lazy"></button>
         </div>
       </div>
 
@@ -1322,7 +1323,7 @@ section{padding:74px 0}
 })();
 </script>
 <!-- Reviews data + render (featured w/ photos, rating distribution, see-more, filter by star) -->
-<script src="assets/reviews.js"></script>
+<script defer src="assets/reviews.js"></script>
 <script>
 (function(){
   // file-33 lead testimonials (named, age-stamped, appearance/feel only — NO before/after, NO regrowth)
