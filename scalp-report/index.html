@@ -97,7 +97,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 :root{
   --paper:#FBFAF7; --paper-2:#F3F1EA;
   --ink:#1A1A1A; --ink-2:#383634; --muted:#6E6A62; --faint:#9a948a;
-  --olive:#234F2B; --terra:#9B5B33;
+  --accent:#2E4057; /* editorial slate — deliberately NOT the Kalmely brand green, so the advertorial doesn't read as self-published */ --terra:#9B5B33;
   --line:#E4E0D6; --line-2:#D6D1C4;
   --serif:'Fraunces',Georgia,'Times New Roman',serif;
   --body:Georgia,'Times New Roman',serif;
@@ -120,7 +120,7 @@ img{max-width:100%;display:block}
 .article{padding:34px 0 70px}
 
 /* article header */
-.kicker{text-align:center;font:700 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--olive);margin:8px 0 22px}
+.kicker{text-align:center;font:700 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:8px 0 22px}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);line-height:1.13;letter-spacing:-.01em;text-align:center;color:var(--ink);margin:0 auto;max-width:660px}
 .dek{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(19px,2.4vw,23px);line-height:1.5;color:var(--ink-2);text-align:center;margin:20px auto 0;max-width:560px}
 .byline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;font:500 13px/1.5 var(--sans);color:var(--muted);margin:26px auto 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:560px;text-align:center}
@@ -130,20 +130,20 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 .toc{background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin:34px auto 0;max-width:600px}
 .toc-h{font:700 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
 .toc ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.toc a{font:500 14.5px/1.35 var(--sans);color:var(--olive);text-decoration:none;display:flex;gap:9px}
+.toc a{font:500 14.5px/1.35 var(--sans);color:var(--accent);text-decoration:none;display:flex;gap:9px}
 .toc a:hover{text-decoration:underline;text-underline-offset:2px}
 .toc a::before{content:"—";color:var(--faint)}
 
 /* body */
 .body{margin-top:40px}
 .body > p{margin:0 0 22px}
-.body .lead::first-letter{font-family:var(--serif);font-weight:600;float:left;font-size:62px;line-height:.82;padding:6px 10px 0 0;color:var(--olive)}
+.body .lead::first-letter{font-family:var(--serif);font-weight:600;float:left;font-size:62px;line-height:.82;padding:6px 10px 0 0;color:var(--accent)}
 .body h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3vw,29px);line-height:1.2;color:var(--ink);margin:46px 0 16px;letter-spacing:-.01em}
 .body strong{font-weight:700;color:var(--ink)}
 .body em{font-style:italic}
 
 /* pull quote */
-.pull{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(23px,3.4vw,30px);line-height:1.35;color:var(--olive);border-left:3px solid var(--olive);padding:6px 0 6px 24px;margin:34px 0}
+.pull{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(23px,3.4vw,30px);line-height:1.35;color:var(--accent);border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:34px 0}
 
 /* figure */
 .fig{margin:36px 0;border:1px solid var(--line);border-radius:6px;background:#fff;overflow:hidden}
@@ -156,7 +156,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 .voices{margin:34px 0 0;border-top:1px solid var(--line)}
 .voice{padding:24px 0;border-bottom:1px solid var(--line)}
 .voice-q{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:var(--ink-2)}
-.voice-who{font:600 13px/1.4 var(--sans);color:var(--olive);margin-top:12px}
+.voice-who{font:600 13px/1.4 var(--sans);color:var(--accent);margin-top:12px}
 .voice-who span{color:var(--muted);font-weight:500}
 .voices-note{font:500 11.5px/1.5 var(--sans);color:var(--faint);text-align:center;margin:16px 0 0}
 
@@ -166,9 +166,9 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 
 /* CTA */
 .cta-wrap{text-align:center;margin:34px 0}
-.cta{display:inline-flex;align-items:center;gap:9px;background:var(--olive);color:#fff;font:600 16px/1 var(--sans);padding:17px 30px;border-radius:8px;text-decoration:none;transition:background .15s,transform .12s;box-shadow:0 10px 24px -14px rgba(35,79,43,.7)}
-.cta:hover{background:#1a3d20;transform:translateY(-1px)}
-.cta.alt{background:#fff;color:var(--olive);border:1.5px solid var(--olive);box-shadow:none}
+.cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font:600 16px/1 var(--sans);padding:17px 30px;border-radius:8px;text-decoration:none;transition:background .15s,transform .12s;box-shadow:0 10px 24px -14px rgba(46,64,87,.65)}
+.cta:hover{background:#22303f;transform:translateY(-1px)}
+.cta.alt{background:#fff;color:var(--accent);border:1.5px solid var(--accent);box-shadow:none}
 .cta.alt:hover{background:var(--paper-2)}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:30px 0}
 
@@ -243,18 +243,25 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 
       <figure class="fig">
         <div class="fig-canvas">
-          <svg viewBox="0 0 420 230" role="img" aria-label="Diagram: a follicle sealed by a layer of surface buildup">
-            <rect x="0" y="86" width="420" height="144" fill="#EBE6D9"/>
-            <rect x="0" y="86" width="420" height="10" fill="#E0D8C4"/>
-            <path d="M196 96 q14 70 14 120 h-20 q0-50 14-120" fill="#F4F0E6" stroke="#234F2B" stroke-width="1.4"/>
-            <path d="M204 200 q-2 -60 -1 -118 q0 -16 4 -34" fill="none" stroke="#3a3a3a" stroke-width="3" stroke-linecap="round"/>
-            <path d="M168 88 q42 -22 84 0 q12 8 6 18 q-48 14 -96 0 q-6 -10 6 -18 z" fill="#9B5B33" fill-opacity=".35" stroke="#9B5B33" stroke-width="1.3"/>
-            <line x1="208" y1="40" x2="208" y2="56" stroke="#9a948a" stroke-width="1"/>
-            <text x="208" y="32" text-anchor="middle" class="fig-lab">Hair shaft</text>
-            <line x1="300" y1="84" x2="262" y2="92" stroke="#9a948a" stroke-width="1"/>
-            <text x="302" y="80" class="fig-lab">Buildup layer · the "Grease Cap"</text>
-            <line x1="120" y1="170" x2="190" y2="150" stroke="#9a948a" stroke-width="1"/>
-            <text x="48" y="170" class="fig-lab">Follicle</text>
+          <svg viewBox="0 0 440 250" role="img" aria-label="Diagram: a follicle sealed by a layer of surface buildup">
+            <!-- skin -->
+            <rect x="0" y="104" width="440" height="146" fill="#EBE6D9"/>
+            <rect x="0" y="104" width="440" height="9" fill="#E0D8C4"/>
+            <!-- follicle channel -->
+            <path d="M214 113 q14 72 14 124 h-20 q0-52 14-124" fill="#F4F0E6" stroke="#2E4057" stroke-width="1.4"/>
+            <!-- hair shaft (thin, struggling) -->
+            <path d="M222 222 q-2 -64 -1 -126 q0 -16 4 -32" fill="none" stroke="#3a3a3a" stroke-width="3" stroke-linecap="round"/>
+            <!-- buildup cap over the opening -->
+            <path d="M186 106 q40 -22 80 0 q12 8 6 18 q-46 14 -92 0 q-6 -10 6 -18 z" fill="#9B5B33" fill-opacity=".35" stroke="#9B5B33" stroke-width="1.3"/>
+            <!-- label: hair shaft (top centre) -->
+            <line x1="224" y1="42" x2="224" y2="60" stroke="#9a948a" stroke-width="1"/>
+            <text x="224" y="34" text-anchor="middle" class="fig-lab">Hair shaft</text>
+            <!-- label: grease cap (anchored to the right edge so it never clips) -->
+            <line x1="356" y1="92" x2="278" y2="104" stroke="#9a948a" stroke-width="1"/>
+            <text x="430" y="88" text-anchor="end" class="fig-lab">The &#8220;Grease Cap&#8221;</text>
+            <!-- label: follicle (left) -->
+            <line x1="120" y1="182" x2="206" y2="162" stroke="#9a948a" stroke-width="1"/>
+            <text x="14" y="186" text-anchor="start" class="fig-lab">Follicle</text>
           </svg>
         </div>
         <figcaption>Fig. 1 — How surface buildup can seal the follicle and slow new growth (illustration for explanation).</figcaption>
