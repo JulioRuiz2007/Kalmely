@@ -129,7 +129,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
 }
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -616,12 +616,12 @@ section{padding:74px 0}
   .hero-grid{gap:16px}
   .gallery{max-width:none;margin:0 auto;min-width:0}
   .hero-grid,.hero-head,.buybox{min-width:0}
-  /* full-bleed hero image + bigger scrollable thumbnails (match competitor mobile) */
+  /* edge-to-edge hero via 100vw; html{overflow-x:hidden} clips iOS's 1px 100vw rounding so the page can't scroll sideways */
   .hero-stage{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);border-radius:0}
-  /* shorten the square slightly so rating + product title reach the first view, like the competitor */
-  .hero-slide{aspect-ratio:11/10}
+  /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
+  .hero-slide{aspect-ratio:6/5}
   .hero{padding:14px 0 14px}
-  .hero-thumbs{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);padding:0 16px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero-thumbs{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);padding:0 20px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .hero-thumbs::-webkit-scrollbar{display:none}
   .hero-thumb{flex:0 0 60px;border-radius:10px}
   .hx-proof{display:none}
