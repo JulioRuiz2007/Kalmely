@@ -116,23 +116,41 @@ img{max-width:100%;display:block}
 .mh-name{font-family:var(--serif);font-weight:600;font-size:clamp(27px,5.4vw,42px);letter-spacing:.005em;color:var(--ink);line-height:1}
 .mh-tag{font:600 10px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:10px}
 
-.wrap{max-width:690px;margin:0 auto;padding:0 24px}
-.article{padding:34px 0 70px}
+/* ===== layout: a narrow reading column with feature images that break out wider.
+   The width contrast (text ~680px vs images ~920px / full-bleed) is the editorial
+   signature — it's what stops the page reading like a phone column lost in a desktop void. ===== */
+.article{padding:30px 0 72px}
 
-/* article header */
+/* centered headline block */
+.lede{max-width:720px;margin:0 auto;padding:0 24px}
 .kicker{text-align:center;font:700 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:8px 0 22px}
-h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);line-height:1.13;letter-spacing:-.01em;text-align:center;color:var(--ink);margin:0 auto;max-width:660px}
-.dek{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(19px,2.4vw,23px);line-height:1.5;color:var(--ink-2);text-align:center;margin:20px auto 0;max-width:560px}
-.byline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;font:500 13px/1.5 var(--sans);color:var(--muted);margin:26px auto 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:560px;text-align:center}
-.byline b{color:var(--ink-2);font-weight:600}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);line-height:1.12;letter-spacing:-.012em;text-align:center;color:var(--ink);margin:0 auto;max-width:700px}
+.dek{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(19px,2.2vw,24px);line-height:1.5;color:var(--ink-2);text-align:center;margin:20px auto 0;max-width:600px}
 
-/* documentary lede photo — full-width, magazine (not a sales banner) */
-.lede-photo{width:100%;margin:30px 0 6px;background:var(--paper-2)}
-.lede-photo img{display:block;width:100%;height:clamp(420px,50vw,600px);object-fit:cover;object-position:50% 20%}
-@media(max-width:600px){
-  .lede-photo{margin:22px 0 2px}
-  .lede-photo img{height:auto;aspect-ratio:4/5}
+/* documentary lede photo — break-out band on desktop, full-bleed portrait on mobile (not a sales banner) */
+.lede-photo{max-width:1060px;margin:34px auto 6px;padding:0 24px;background:transparent}
+.lede-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 20%;border-radius:8px}
+
+/* prose grid — text rail centered at ~680px; images opt into the wider feature band or full-bleed */
+.body{
+  display:grid;
+  grid-template-columns:
+    [full-start] minmax(20px,1fr)
+    [feature-start] minmax(0,124px)
+    [text-start] min(680px, 100% - 40px) [text-end]
+    minmax(0,124px) [feature-end]
+    minmax(20px,1fr) [full-end];
+  max-width:1200px;
+  margin:38px auto 0;
 }
+.body > *{grid-column:text-start / text-end;min-width:0}
+.body > .fig,
+.body > .figphoto{grid-column:feature-start / feature-end}
+.body > .full-bleed{grid-column:full-start / full-end}
+
+/* byline + toc live inside the text rail */
+.byline{font:500 13px/1.6 var(--sans);color:var(--muted);margin:4px auto 0;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:600px;text-align:center}
+.byline b{color:var(--ink-2);font-weight:600}
 
 /* in this report */
 .toc{background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin:34px auto 0;max-width:600px}
@@ -142,8 +160,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 .toc a:hover{text-decoration:underline;text-underline-offset:2px}
 .toc a::before{content:"—";color:var(--faint)}
 
-/* body */
-.body{margin-top:40px}
+/* body type */
 .body > p{margin:0 0 22px}
 .body .lead::first-letter{font-family:var(--serif);font-weight:600;float:left;font-size:62px;line-height:.82;padding:6px 10px 0 0;color:var(--accent)}
 .body h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3vw,29px);line-height:1.2;color:var(--ink);margin:46px 0 16px;letter-spacing:-.01em}
@@ -153,12 +170,15 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 /* pull quote */
 .pull{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(23px,3.4vw,30px);line-height:1.35;color:var(--accent);border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:34px 0}
 
-/* figure */
-.fig{margin:36px 0;border:1px solid var(--line);border-radius:6px;background:#fff;overflow:hidden}
-.fig-canvas{background:linear-gradient(180deg,#FAF8F3,#F1EEE6);padding:26px 20px 18px}
-.fig svg{width:100%;max-width:420px;height:auto;margin:0 auto;display:block}
-.fig figcaption{font:500 12.5px/1.5 var(--sans);color:var(--muted);text-align:center;padding:13px 20px;border-top:1px solid var(--line);background:var(--paper-2);font-style:italic}
-.fig-lab{font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;fill:var(--muted)}
+/* explanatory figure (realistic diagram) */
+.fig{margin:40px 0;border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
+.fig img{width:100%;height:auto;display:block}
+.fig figcaption{font:500 12.5px/1.5 var(--sans);color:var(--muted);text-align:center;padding:13px 22px;border-top:1px solid var(--line);background:var(--paper-2);font-style:italic}
+
+/* documentary photo break (no chrome, just the image + optional caption) */
+.figphoto{margin:40px 0}
+.figphoto img{width:100%;height:auto;display:block;border-radius:8px;aspect-ratio:3/2;object-fit:cover;object-position:50% 58%}
+.figphoto figcaption{font:500 12.5px/1.5 var(--sans);color:var(--muted);font-style:italic;text-align:center;margin-top:11px}
 
 /* interview-style testimonials */
 .voices{margin:34px 0 0;border-top:1px solid var(--line)}
@@ -188,9 +208,19 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 .foot-links a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;margin:0 7px}
 .foot-fine{font:500 11.5px/1.6 var(--sans);color:var(--faint);margin-top:12px}
 
-@media(max-width:600px){
-  body{font-size:18px}
-  .body .lead::first-letter{font-size:52px}
+@media(max-width:700px){
+  body{font-size:18px;line-height:1.72}
+  .lede{padding:0 22px}
+  /* hero: full-width portrait, edge to edge, natural ratio */
+  .lede-photo{max-width:none;margin:22px 0 2px;padding:0}
+  .lede-photo img{aspect-ratio:4/5;border-radius:0}
+  /* body becomes a simple padded column; feature images bleed to the screen edges (no 100vw — it overflows on iOS) */
+  .body{display:block;max-width:none;margin:30px 0 0;padding:0 22px}
+  .body > .fig,
+  .body > .figphoto{margin-left:-22px;margin-right:-22px}
+  .fig{border-radius:0;border-left:0;border-right:0}
+  .figphoto img{border-radius:0;aspect-ratio:auto}
+  .body .lead::first-letter{font-size:50px}
   .cta{width:100%;justify-content:center}
 }
 </style>
@@ -205,17 +235,17 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 </header>
 
 <article class="article">
-  <div class="wrap">
+  <div class="lede">
     <div class="kicker">Hair &amp; Scalp · A Special Report</div>
     <h1>Why So Many Women Over 50 Are Quietly Losing Hair at the Crown — And the Overlooked Scalp Problem Getting New Attention</h1>
     <p class="dek">It isn't only age or hormones. A newer explanation points to something most women never think to check.</p>
   </div>
 
   <figure class="lede-photo">
-    <img src="lede.webp" alt="A woman in her sixties looking closely at her hairline and scalp in the bathroom mirror" width="1122" height="1402" fetchpriority="high">
+    <img src="assets/hero.webp" alt="A woman in her sixties looking closely at her hairline and scalp in the bathroom mirror" width="1100" height="1375" fetchpriority="high">
   </figure>
 
-  <div class="wrap">
+  <div class="body">
     <div class="byline"><b>By Linda Harper</b>, Health &amp; Wellness Columnist · Updated June 2026 · 5 min read</div>
 
     <nav class="toc" aria-label="In this report">
@@ -228,7 +258,6 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
       </ul>
     </nav>
 
-    <div class="body">
       <p class="lead">Something quiet is happening to women over 50.</p>
       <p>It rarely makes the news. It doesn't show up overnight. It shows up in the brush, in the shower drain, on the pillow — a little more each month.</p>
       <p>And then one morning, under the bathroom light, the part down the middle looks wider than it used to. A little see-through.</p>
@@ -246,6 +275,11 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
       <p>Many women describe the same quiet changes — a little more scalp showing at the part.</p>
       <p>A ponytail that wraps the elastic one more time than it used to.</p>
       <p>Hair that just isn't what it was a few years ago — finer, flatter, gone limp by the afternoon.</p>
+
+      <figure class="figphoto">
+        <img src="assets/brush.webp" alt="A hairbrush resting on a bathroom counter in morning light, holding a noticeable amount of shed hair" width="1240" height="930" loading="lazy">
+      </figure>
+
       <p>Most blame the hot-flashes era. The hormones. The unfairness of it all — nobody batted an eye when their husband thinned out at 25.</p>
       <p>But here is the part that's been missing. <strong>For many of them, it may not be only hormones. And it was never their fault.</strong></p>
       <p>There is something sitting on the scalp that almost no one talks about.</p>
@@ -257,28 +291,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
       <p>It doesn't have a formal clinical name. Dermatology describes the underlying process as sebum buildup, or occlusion; here we'll call it what it looks like — <strong>the Grease Cap</strong>.</p>
 
       <figure class="fig">
-        <div class="fig-canvas">
-          <svg viewBox="0 0 440 250" role="img" aria-label="Diagram: a follicle sealed by a layer of surface buildup">
-            <!-- skin -->
-            <rect x="0" y="104" width="440" height="146" fill="#EBE6D9"/>
-            <rect x="0" y="104" width="440" height="9" fill="#E0D8C4"/>
-            <!-- follicle channel -->
-            <path d="M214 113 q14 72 14 124 h-20 q0-52 14-124" fill="#F4F0E6" stroke="#2E4057" stroke-width="1.4"/>
-            <!-- hair shaft (thin, struggling) -->
-            <path d="M222 222 q-2 -64 -1 -126 q0 -16 4 -32" fill="none" stroke="#3a3a3a" stroke-width="3" stroke-linecap="round"/>
-            <!-- buildup cap over the opening -->
-            <path d="M186 106 q40 -22 80 0 q12 8 6 18 q-46 14 -92 0 q-6 -10 6 -18 z" fill="#9B5B33" fill-opacity=".35" stroke="#9B5B33" stroke-width="1.3"/>
-            <!-- label: hair shaft (top centre) -->
-            <line x1="224" y1="42" x2="224" y2="60" stroke="#9a948a" stroke-width="1"/>
-            <text x="224" y="34" text-anchor="middle" class="fig-lab">Hair shaft</text>
-            <!-- label: grease cap (anchored to the right edge so it never clips) -->
-            <line x1="356" y1="92" x2="278" y2="104" stroke="#9a948a" stroke-width="1"/>
-            <text x="430" y="88" text-anchor="end" class="fig-lab">The &#8220;Grease Cap&#8221;</text>
-            <!-- label: follicle (left) -->
-            <line x1="120" y1="182" x2="206" y2="162" stroke="#9a948a" stroke-width="1"/>
-            <text x="14" y="186" text-anchor="start" class="fig-lab">Follicle</text>
-          </svg>
-        </div>
+        <img src="assets/diagram.webp" alt="Cross-section of skin showing a hair follicle whose opening is sealed by a cap of hardened yellow sebum buildup" width="1240" height="930">
         <figcaption>Fig. 1 — How surface buildup can seal the follicle and slow new growth (illustration for explanation).</figcaption>
       </figure>
 
@@ -377,7 +390,6 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
         </div>
         <div class="foot-fine">© 2026 Kalmely · Free U.S. shipping · 60-day money-back guarantee · Results may vary.</div>
       </div>
-    </div>
   </div>
 </article>
 
