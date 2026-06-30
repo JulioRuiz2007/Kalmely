@@ -284,6 +284,11 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .pack-preview{text-align:center;margin:0 0 14px}
 #packImage{display:block;margin:0 auto;max-width:100%;max-height:230px;width:auto;height:auto;object-fit:contain;border-radius:12px;transition:opacity .18s ease}
 .inc-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
+.inc-row.inc-total{border-top:1.5px solid var(--line-2);margin-top:5px;padding-top:12px}
+.inc-total .inc-name{font:700 14px/1.3 var(--sans);color:var(--ink)}
+.inc-total .inc-val{font-size:13px;white-space:nowrap}
+.inc-total .inc-val s{color:var(--ink-soft);font-weight:500}
+.inc-today{color:var(--ink);font-weight:800;margin-left:7px}
 
 /* add to cart + reassurance */
 .add-to-cart{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:18px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;transition:background .15s,transform .12s}
@@ -659,14 +664,16 @@ section{padding:74px 0}
 .recap .sub-optin{max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
 
 /* mechanism prose (B5) */
-.mech-prose{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:46px;align-items:center;text-align:left}
+.mech-prose{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.25fr;gap:40px;align-items:center;text-align:left}
 .mech-prose h3{font-size:20px;margin:28px 0 8px}
 .mech-prose p{color:var(--ink-2);font-size:16px;margin-bottom:14px}
-.mech-prose .lead{font-size:19.5px;line-height:1.7;color:var(--ink);margin-bottom:0}
-.mech-fig{max-width:330px;margin:0;justify-self:center}
-@media(max-width:780px){.mech-prose{grid-template-columns:1fr;text-align:center;gap:22px;max-width:620px}.mech-prose .lead{margin-bottom:0}.mech-fig{max-width:440px;margin:4px auto 0}}
-.mech-fig .ph{aspect-ratio:16/9;border-radius:var(--r)}
-.mech-fig figcaption{text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft);margin-top:9px}
+.mech-prose .lead{font-size:19px;line-height:1.66;color:var(--ink);margin-bottom:0}
+.mech-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mech-fig{max-width:100%;margin:0}
+.mech-fig figcaption{text-align:center;font:600 12.5px/1.35 var(--sans);color:var(--ink-soft);margin-top:9px}
+#how{padding-top:60px;padding-bottom:60px}
+#how .sec-head{margin-bottom:24px}
+@media(max-width:780px){.mech-prose{grid-template-columns:1fr;text-align:center;gap:22px;max-width:560px}.mech-prose .lead{margin-bottom:0}.mech-pair{grid-template-columns:1fr;gap:16px;max-width:420px;margin:0 auto}}
 
 /* bullets-to-pain (B7) */
 .pain-list{max-width:760px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:13px}
@@ -709,7 +716,7 @@ section{padding:74px 0}
   .sub-optin span{font-size:13px;line-height:1.5}
   .bx-badges span{font-size:12px}
   .bx-trust-i span{font-size:12px}
-  /* PACK SELECTOR — full-width vertical bars (yoracare style) */
+  /* PACK SELECTOR — full-width vertical bars */
   .packs{display:flex;flex-direction:column;gap:15px;margin-top:8px}
   .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
@@ -805,21 +812,21 @@ section{padding:74px 0}
               <span class="pack-qty">1 Bar</span>
               <span class="pack-unit">30-Day Supply</span>
               <span class="pack-price">$29</span>
-              <span class="pack-banner">🎁 Free ebook</span>
+              <span class="pack-banner">🎁 Free ebook + free ship</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
               <span class="pack-badge">★ Most popular</span>
               <span class="pack-qty">2 Bars</span>
               <span class="pack-unit">Save $19 · 60-Day Supply</span>
               <span class="pack-price">$39<s>$58</s></span>
-              <span class="pack-banner">🎁 Free ebook</span>
+              <span class="pack-banner">🎁 Free ebook + free ship</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Best value</span>
               <span class="pack-qty">3 Bars</span>
-              <span class="pack-unit">90-Day · Save $56</span>
-              <span class="pack-price">$59<s>$115</s></span>
-              <span class="pack-banner">🎁 Serum + ebook</span>
+              <span class="pack-unit">90-Day · Save $28</span>
+              <span class="pack-price">$59<s>$87</s></span>
+              <span class="pack-banner">🎁 Serum + ebook + free ship</span>
             </button>
           </div>
         </div>
@@ -905,7 +912,10 @@ section{padding:74px 0}
       <div class="sec-head fade-slow"><div class="eyebrow">The mechanism</div><h2>Meet the Grease Cap</h2></div>
       <div class="mech-prose fade-slow">
         <p class="lead">Over the years a hardened layer of greasy buildup forms over the roots and seals them shut — which is exactly why the serums, oils and supplements just sat on top and never got through. Our bar is made with fermented botanical oils designed to dissolve that layer, so the scalp can finally breathe and the part can start to look like itself again.</p>
-        <figure class="mech-fig"><img src="assets/grease-cap-diagram.webp" alt="Cross-section of a hair follicle sealed by a waxy buildup layer" width="560" height="560" loading="lazy" style="width:100%;height:auto;border-radius:var(--r);display:block;background:#FBF7EF"><figcaption>Fig. — How surface buildup can seal the follicle (illustration).</figcaption></figure>
+        <div class="mech-pair">
+          <figure class="mech-fig"><img src="assets/grease-cap-diagram.webp" alt="Cross-section of a hair follicle sealed shut by a waxy grease-cap layer" width="560" height="560" loading="lazy" style="width:100%;height:auto;object-fit:contain;border-radius:var(--r);display:block;background:#FBF7EF"><figcaption>Sealed by the Grease Cap</figcaption></figure>
+          <figure class="mech-fig"><img src="assets/grease-cap-cleared.webp" alt="Cross-section of a hair follicle cleared of buildup, the scalp able to breathe" width="560" height="560" loading="lazy" style="width:100%;height:auto;object-fit:contain;border-radius:var(--r);display:block;background:#FBF7EF"><figcaption>Cleared — the scalp can breathe</figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
@@ -982,15 +992,15 @@ section{padding:74px 0}
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · 14,268 verified buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack" style="max-width:690px;margin:18px auto 0">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 Free ebook</span>
+          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 Free ebook + free ship</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
           <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Bars</span><span class="pack-unit">Save $19 · 60-Day Supply</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 Free ebook</span>
+          <span class="pack-qty">2 Bars</span><span class="pack-unit">Save $19 · 60-Day Supply</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 Free ebook + free ship</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $56</span><span class="pack-price">$59<s>$115</s></span><span class="pack-banner">🎁 Serum + ebook</span>
+          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $28</span><span class="pack-price">$59<s>$87</s></span><span class="pack-banner">🎁 Serum + ebook + free ship</span>
         </button>
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$39</span></button>
@@ -1083,7 +1093,7 @@ section{padding:74px 0}
   var TIERS={
     'SCALP-1':{price:29,was:0,label:'1 Bar',sub:false,img:'bundle-1',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d','Your week-by-week protocol — how to use the bar and the daily habits that keep your scalp clean and your part looking fuller.']]},
     'SCALP-2':{price:39,was:58,label:'2 Bars',sub:false,img:'bundle-2',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d','Your week-by-week protocol — how to use the bar and the daily habits that keep your scalp clean and your part looking fuller.']]},
-    'SCALP-3':{price:59,was:115,label:'3 Bars',sub:false,img:'bundle-3',gifts:[['Scalp Serum','39','serum','A lightweight daily leave-in that nourishes the scalp once the bar has cleared the buildup — so it finally absorbs where it couldn\'t before.'],['“Korean Scalp Protocol” ebook','19','ebook-physical-3d','Your week-by-week protocol — how to use the bar and the daily habits that keep your scalp clean and your part looking fuller.']]}
+    'SCALP-3':{price:59,was:87,label:'3 Bars',sub:false,img:'bundle-3',gifts:[['Scalp Serum','39','serum','A lightweight daily leave-in that nourishes the scalp once the bar clears the buildup, so it finally absorbs where it couldn\'t before.'],['“Korean Scalp Protocol” ebook','19','ebook-physical-3d','Your week-by-week protocol — how to use the bar and the daily habits that keep your scalp clean and your part looking fuller.']]}
   };
   var DEFAULT='SCALP-1';  // land on the smallest pack (1 Bar · $29) by default
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1111,10 +1121,16 @@ section{padding:74px 0}
   function renderGifts(sku){
     var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
     el.className='includes';
-    var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Kalmely Scalp Revival Bar — '+t.label+'</span><span class="inc-val"><span class="inc-inc">Included</span></span></li>';
-    var gifts=(t.gifts||[]).map(function(g){return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
+    var count=({'SCALP-1':1,'SCALP-2':2,'SCALP-3':3})[sku]||1;
+    var barReg=count*29; // anchor = single-bar price × count (2-bar $58, 3-bar $87)
+    var barVal=(count>1)?'<s>$'+barReg+'</s>':'$'+barReg; // struck bundle anchor only when there's a multi-bar discount
+    var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+' Kalmely Scalp Bar'+(count>1?'s':'')+'</span><span class="inc-val">'+barVal+'</span></li>';
+    var giftTotal=0;
+    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseInt(g[1],10)||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
     var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Free U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
-    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+ship+'</ul><div class="inc-foot">✓ 60-day money-back guarantee</div>';
+    var totalValue=barReg+giftTotal;
+    var total='<li class="inc-row inc-total"><span class="inc-name">Total value</span><span class="inc-val"><s>$'+totalValue+'</s> <b class="inc-today">Today $'+t.price+'</b></span></li>';
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+ship+total+'</ul><div class="inc-foot">✓ 60-day money-back guarantee</div>';
   }
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
   function select(sku,persist){
