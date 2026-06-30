@@ -603,10 +603,12 @@ section{padding:74px 0}
   section{padding:56px 0}
 }
 @media(max-width:620px){
-  .nav-inner{grid-template-areas:"sp logo cart" "nav nav nav";row-gap:8px;min-height:0;padding-top:10px;padding-bottom:10px}
-  .nav-left{grid-area:nav;justify-self:center;gap:24px}
-  .nav-menu a{font-size:12px}
-  .logo-brand{font-size:34px}
+  /* compact single-row header like the competitor: logo + cart only, no nav row */
+  .nav-inner{grid-template-areas:"sp logo cart";min-height:0;padding-top:8px;padding-bottom:8px}
+  .nav-left{display:none}
+  .logo-brand{font-size:29px}
+  .logo-tag{font-size:6px;letter-spacing:.14em}
+  .announce{font-size:11.5px;padding:8px 14px;letter-spacing:.02em}
   .reasons,.values,.steps,.life,.rev-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .eg-card{grid-template-columns:1fr;max-width:400px}
@@ -616,6 +618,9 @@ section{padding:74px 0}
   .hero-grid,.hero-head,.buybox{min-width:0}
   /* full-bleed hero image + bigger scrollable thumbnails (match competitor mobile) */
   .hero-stage{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);border-radius:0}
+  /* shorten the square slightly so rating + product title reach the first view, like the competitor */
+  .hero-slide{aspect-ratio:11/10}
+  .hero{padding:14px 0 14px}
   .hero-thumbs{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);padding:0 16px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .hero-thumbs::-webkit-scrollbar{display:none}
   .hero-thumb{flex:0 0 60px;border-radius:10px}
@@ -752,7 +757,7 @@ section{padding:74px 0}
 </head>
 <body>
 
-<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee</span></div>
+<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping · 60-Day Money-Back Guarantee</span></div>
 
 <header class="nav" id="nav">
   <div class="nav-inner wrap">
@@ -1349,7 +1354,7 @@ section{padding:74px 0}
 </script>
 <script>
 /* announcement bar — rotate the two file-33 messages */
-(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee','Korean Scalp Science · Sulfate-Free · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
+(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping · 60-Day Money-Back Guarantee','Korean Scalp Science · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
 /* active nav state is hardcoded per page (Product on this PdP) for coherence regardless of deploy path */
 </script>
 </body>
