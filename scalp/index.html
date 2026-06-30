@@ -1105,7 +1105,9 @@ section{padding:74px 0}
   var curSku=DEFAULT, curPrice='34.95';
   var packName=function(s){return 'Kalmely Scalp Revival Bar · '+info(s).label;};
   var saveColours=function(){};
-  function ctaPriceTxt(){return money(info(curSku).price);}
+  function _wantsSub(){var c=document.getElementById('subOptin');return !!(c&&c.checked);}
+  function subEveryMonths(s){return ({'SCALP-1':2,'SCALP-2':3,'SCALP-3':5})[s||curSku]||2;}
+  function ctaPriceTxt(){return money(_wantsSub()?info(curSku).price*0.85:info(curSku).price);}
   function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
   function updateCtas(){
     var m=lineMath(),lab=info(curSku).label;
@@ -1113,7 +1115,7 @@ section{padding:74px 0}
     var scP=document.getElementById('scPrice'),scL=document.getElementById('scLabel');
     if(scP)scP.textContent=money(m.price); if(scL)scL.textContent=lab;
     var ql=document.getElementById('qtyLabel');if(ql)ql.textContent='· '+lab;
-    var sn=document.getElementById('subNote');if(sn)sn.style.display=info(curSku).sub?'block':'none';
+    var sn=document.getElementById('subNote');if(sn){if(_wantsSub()){sn.style.display='block';sn.innerHTML='✓ <b>Subscribe &amp; Save 15%</b> applied — billed every '+subEveryMonths(curSku)+' months · cancel anytime in 1 click.';}else{sn.style.display='none';}}
   }
   // No colour variant for the oil — keep the picker containers empty.
   function renderPicker(){ pickerEls.forEach(function(el){el.innerHTML='';}); }
@@ -1145,6 +1147,7 @@ section{padding:74px 0}
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
+  (function(){var _so=document.getElementById('subOptin');if(_so)_so.addEventListener('change',function(){updateCtas();if(cartOpen)populateCart();});})();
   try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
   var saved=DEFAULT;try{saved=localStorage.getItem('kalmely_pack')||DEFAULT}catch(e){}
 
@@ -1207,13 +1210,13 @@ section{padding:74px 0}
   window.addEventListener('pageshow',function(){checkingOut=false;var _b=document.getElementById('cartCheckout');if(_b){_b.textContent='Secure checkout →';_b.style.opacity='';}});
   document.getElementById('cartCheckout').addEventListener('click',async function(){
     if(checkingOut)return;
-    var sku=curSku,m=lineMath(),price=m.price,qty=m.qty;
+    var sku=curSku,m=lineMath(),qty=m.qty,wsub=_wantsSub(),price=wsub?Math.round(m.price*85)/100:m.price;
     var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'USD',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
     try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'USD',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
-      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:!!info(sku).sub,coupon:'',gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:wsub,coupon:'',gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
       var data=await res.json();
       if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
       window.location.href=data.url;
