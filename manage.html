@@ -1,67 +1,116 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+<script type="text/javascript">
+  (function(){try{
+    function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?m[1]:'';}
+    function sc(n,v){document.cookie=n+'='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    var cid=new URLSearchParams(location.search).get('fbclid');
+    if(cid && !gc('_fbc')) sc('_fbc','fb.1.'+Date.now()+'.'+cid);
+    if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
+  }catch(e){}})();
+</script>
+<script type="text/javascript">
+  (function(){
+    var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
+      || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
+    if (isAdmin) return;
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x4mat5v5ce");
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F6F6F0">
+<meta name="theme-color" content="#FCFBF9">
 <meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://kalmely.com/manage">
 <title>Manage your subscription — Kalmely</title>
-<meta property="og:site_name" content="Kalmely">
-<meta name="application-name" content="Kalmely">
 <meta name="description" content="Manage, update, or cancel your Kalmely subscription. Enter your email and we'll send you a secure link.">
-<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
-<link rel="stylesheet" href="assets/legal-2.css">
+<link rel="icon" type="image/png" href="/assets/favicon-kalmely.png">
+<meta property="og:site_name" content="Kalmely">
+<meta property="og:title" content="Manage your subscription — Kalmely">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/legal-scalp.css">
 <style>
-  .mgmt-form{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px;max-width:520px}
-  .mgmt-form input{flex:1 1 240px;font-family:var(--sans);font-size:15px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
-  .mgmt-form input:focus{outline:none;border-color:var(--brand)}
-  .mgmt-form button{font-family:var(--sans);font-size:14px;font-weight:600;padding:13px 24px;background:var(--brand);color:#F6F6F0;border-radius:10px;transition:background .2s}
-  .mgmt-form button:hover{background:var(--brand-deep)}
+  .mgmt-form{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 14px;max-width:520px}
+  .mgmt-form input{flex:1 1 240px;font-family:var(--sans);font-size:15px;padding:14px 17px;border:1.5px solid var(--line-2);border-radius:11px;background:#fff;color:var(--ink)}
+  .mgmt-form input:focus{outline:none;border-color:var(--ink)}
+  .mgmt-form button{font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 26px;background:var(--ink);color:var(--paper);border-radius:11px;cursor:pointer;transition:background .2s}
+  .mgmt-form button:hover{background:#1a3d20}
   .mgmt-form button[disabled]{opacity:.6;cursor:default}
-  .mgmt-msg{font-size:15px;color:var(--ink);max-width:520px;line-height:1.6;margin-top:6px}
-  .mgmt-msg.ok{color:var(--brand)}
+  .mgmt-msg{font-size:15px;color:var(--ink-2);max-width:520px;line-height:1.6;margin-top:6px}
+  .mgmt-msg.ok{color:var(--gold);font-weight:600}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="brand-logo">Kalmely<span class="dot"></span></a>
-    <a href="index.html" class="nav-cta">← Home</a>
+<div class="announce">FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee</div>
+
+<header class="nav">
+  <div class="nav-inner wrap">
+    <nav class="nav-left" aria-label="Main">
+      <a href="/scalp/">Product</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/scalp/" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Korean Beauty Secret</span></a>
+    <a href="/scalp/" class="nav-cart" aria-label="Shop">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </a>
   </div>
-</nav>
+</header>
 
 <main>
-  <div class="page-eyebrow">Subscriptions</div>
-  <h1>Manage your <em>subscription.</em></h1>
+  <div class="wrap">
+    <div class="legal">
+      <div class="page-eyebrow">Subscriptions</div>
+      <h1>Manage your <em>subscription.</em></h1>
 
-  <p class="lead">Subscribe &amp; Save renews every 2 months — and you're in control. Update your details or cancel anytime, no questions asked.</p>
+      <p class="lead">Subscribe &amp; Save refills the same pack you bought on your own schedule (about every 2–5 months, depending on your pack) at 15% off — and you're always in control. Update your details or cancel anytime, no questions asked.</p>
 
-  <p>Enter the email you used at checkout and we'll send you a <strong>secure link</strong> to your subscription portal, where you can update your payment method, change your address, or cancel. For your privacy, the link only ever goes to your inbox.</p>
+      <p>Enter the email you used at checkout and we'll send you a <strong>secure link</strong> to your subscription portal, where you can update your payment method, change your address, skip a refill, or cancel. For your privacy, the link only ever goes to your own inbox.</p>
 
-  <form class="mgmt-form" id="mgmtForm" novalidate>
-    <input type="email" id="mgmtEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
-    <button type="submit" id="mgmtBtn">Email me a manage link</button>
-  </form>
-  <div class="mgmt-msg" id="mgmtMsg"></div>
+      <form class="mgmt-form" id="mgmtForm" novalidate>
+        <input type="email" id="mgmtEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
+        <button type="submit" id="mgmtBtn">Email me a manage link</button>
+      </form>
+      <div class="mgmt-msg" id="mgmtMsg"></div>
 
-  <h2>Prefer to email us?</h2>
-  <p>Write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> from your order email and we'll cancel or change it for you within one business day.</p>
+      <h2>Prefer to email us?</h2>
+      <p>Write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> from your order email and we'll cancel or change it for you within one business day.</p>
 
-  <div class="callout">
-    <p>Your Kalmely is backed by a <strong>60-day money-back guarantee</strong>. Results may vary. Kalmely is a cosmetic product and this page is for general information, not medical advice.</p>
+      <div class="callout">
+        <p>Your Kalmely is backed by a <strong>60-day money-back guarantee</strong>. Results may vary. Kalmely is a cosmetic product and this page is for general information, not medical advice.</p>
+      </div>
+    </div>
   </div>
 </main>
 
-<footer>
-  <div class="footer-links">
-    <a href="contact.html">Contact</a>
-    <a href="shipping-policy.html">Shipping</a>
-    <a href="refund-policy.html">Refunds</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="/scalp/" style="text-decoration:none"><span class="foot-logo">Kalmely<i>.</i><span class="tag">The Korean Beauty Secret</span></span></a>
+      </div>
+      <div>
+        <div class="foot-h">Menu</div>
+        <nav class="foot-menu">
+          <a href="/scalp/">Product</a>
+          <a href="/contact">Contact</a>
+          <a href="/scalp-shipping.html">Shipping</a>
+          <a href="/scalp-refund.html">Returns &amp; Refunds</a>
+          <a href="/scalp-privacy.html">Privacy</a>
+          <a href="/scalp-terms.html">Terms</a>
+        </nav>
+      </div>
+      <div class="foot-news">
+        <div class="foot-h">Need a hand?</div>
+        <p>Questions about your subscription or order? Email <a href="mailto:hello@kalmely.com" style="color:rgba(249,248,246,.85);text-decoration:underline">hello@kalmely.com</a> — real people, usually within 24 hours.</p>
+      </div>
+    </div>
+    <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 60-Day Money-Back Guarantee. Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. © 2026 Kalmely.</div>
   </div>
-  Kalmely · <a href="https://kalmely.com">kalmely.com</a> · Results may vary.
 </footer>
 
 <script>
