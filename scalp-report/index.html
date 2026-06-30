@@ -126,6 +126,14 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
 .byline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;font:500 13px/1.5 var(--sans);color:var(--muted);margin:26px auto 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:560px;text-align:center}
 .byline b{color:var(--ink-2);font-weight:600}
 
+/* documentary lede photo — full-width, magazine (not a sales banner) */
+.lede-photo{width:100%;margin:30px 0 6px;background:var(--paper-2)}
+.lede-photo img{display:block;width:100%;height:clamp(420px,50vw,600px);object-fit:cover;object-position:50% 20%}
+@media(max-width:600px){
+  .lede-photo{margin:22px 0 2px}
+  .lede-photo img{height:auto;aspect-ratio:4/5}
+}
+
 /* in this report */
 .toc{background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin:34px auto 0;max-width:600px}
 .toc-h{font:700 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
@@ -201,6 +209,13 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
     <div class="kicker">Hair &amp; Scalp · A Special Report</div>
     <h1>Why So Many Women Over 50 Are Quietly Losing Hair at the Crown — And the Overlooked Scalp Problem Getting New Attention</h1>
     <p class="dek">It isn't only age or hormones. A newer explanation points to something most women never think to check.</p>
+  </div>
+
+  <figure class="lede-photo">
+    <img src="lede.webp" alt="A woman in her sixties looking closely at her hairline and scalp in the bathroom mirror" width="1122" height="1402" fetchpriority="high">
+  </figure>
+
+  <div class="wrap">
     <div class="byline"><b>By Linda Harper</b>, Health &amp; Wellness Columnist · Updated June 2026 · 5 min read</div>
 
     <nav class="toc" aria-label="In this report">
@@ -327,7 +342,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);lin
           <p class="voice-who">Sandra M. <span>· 61, has been using it since the spring</span></p>
         </div>
         <div class="voice">
-          <p class="voice-q">"It's not overnight — they're honest about that. But a few weeks in, my part doesn't catch my eye in the bathroom light the way it used to."</p>
+          <p class="voice-q">"It's not overnight — they're honest about that. But a few weeks in, my scalp just feels healthier and I stopped fussing over it in the mirror."</p>
           <p class="voice-who">Denise K. <span>· 63</span></p>
         </div>
       </div>
