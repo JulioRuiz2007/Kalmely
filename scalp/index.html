@@ -30,7 +30,7 @@
 <link rel="canonical" href="https://kalmely.com/scalp/">
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
 <title>Korean Scalp Revival Bar — Lift the Grease Cap for a Cleaner Scalp & Fuller-Looking Hair</title>
-<meta name="description" content="A 60-second Korean scalp bar designed to help lift the greasy buildup that can seal the roots — for a scalp that feels clean and light and hair that looks fuller. Sulfate-free, vegan. Free U.S. shipping over $49 · 60-day money-back guarantee.">
+<meta name="description" content="A 60-second Korean scalp bar designed to help lift the greasy buildup that can seal the roots — for a scalp that feels clean and light and hair that looks fuller. Sulfate-free, vegan. Free U.S. shipping on every order · 60-day money-back guarantee.">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <meta property="og:site_name" content="Kalmely">
 <meta property="og:type" content="website">
@@ -272,6 +272,8 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .inc-row{display:flex;align-items:center;gap:10px;padding:6px 0;font:500 14px/1.3 var(--sans);color:var(--ink-2)}
 .inc-check{color:var(--ok);font-weight:700;flex:0 0 auto}
 .inc-name{flex:1}
+.inc-desc{display:block;font:400 11.5px/1.45 var(--sans);color:var(--ink-soft);margin-top:3px}
+.inc-row.gift{align-items:flex-start}
 .inc-val{font-size:12.5px;white-space:nowrap}
 .inc-val s{margin-right:5px}
 .inc-free{color:var(--ok);font-weight:700;letter-spacing:.02em}
@@ -560,7 +562,7 @@ section{padding:74px 0}
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ba-grid figure{margin:0}
 .ba-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);display:block;border:1px solid var(--line)}
-.ba-grid figcaption{text-align:center;font:600 12px/1.3 var(--sans);color:var(--ink-soft);margin-top:9px}
+.ba-grid figcaption{text-align:center;font:600 12px/1.3 var(--sans);color:var(--ink-soft);margin-bottom:11px}
 .ugc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
 .ugc-strip img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
 /* 4 photo reviews (default view) */
@@ -605,7 +607,12 @@ section{padding:74px 0}
   .buybox{display:flex;flex-direction:column}
   .hero-cap{display:none}
   .free-tag{padding:4px 7px;border-radius:6px;box-shadow:0 6px 14px -10px rgba(0,0,0,.3)}.free-tag .ft-val{font-size:7.5px}.free-tag .ft-name{font-size:8px;line-height:1.15}
-  .cmp{overflow-x:auto}.cmp table{min-width:560px}
+  .cmp{overflow-x:visible}.cmp table{min-width:0;width:100%;table-layout:fixed}
+  .cmp th,.cmp td{padding:10px 5px;font-size:12px;word-break:break-word}
+  .cmp thead th{font-size:9.5px;padding-bottom:12px;letter-spacing:.02em}
+  .cmp thead th.own{font-size:13px}
+  .cmp tbody td:first-child,.cmp thead th:first-child{font-size:11.5px}
+  .cmp .no{font-size:10.5px}
 }
 
 /* ===== Scalp DR rebuild — file 33 blocks (Kalmely) ===== */
@@ -652,11 +659,12 @@ section{padding:74px 0}
 .recap .sub-optin{max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
 
 /* mechanism prose (B5) */
-.mech-prose{max-width:620px;margin:0 auto;text-align:center}
+.mech-prose{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:46px;align-items:center;text-align:left}
 .mech-prose h3{font-size:20px;margin:28px 0 8px}
 .mech-prose p{color:var(--ink-2);font-size:16px;margin-bottom:14px}
-.mech-prose .lead{font-size:17px;color:var(--ink)}
-.mech-fig{max-width:520px;margin:38px auto 24px}
+.mech-prose .lead{font-size:18px;line-height:1.62;color:var(--ink);margin-bottom:0}
+.mech-fig{max-width:100%;margin:0}
+@media(max-width:780px){.mech-prose{grid-template-columns:1fr;text-align:center;gap:22px;max-width:620px}.mech-prose .lead{margin-bottom:0}.mech-fig{max-width:440px;margin:4px auto 0}}
 .mech-fig .ph{aspect-ratio:16/9;border-radius:var(--r)}
 .mech-fig figcaption{text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft);margin-top:9px}
 
@@ -723,7 +731,7 @@ section{padding:74px 0}
 </head>
 <body>
 
-<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping on orders $49+ · 60-Day Money-Back Guarantee</span></div>
+<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee</span></div>
 
 <header class="nav" id="nav">
   <div class="nav-inner wrap">
@@ -811,7 +819,7 @@ section{padding:74px 0}
               <span class="pack-qty">3 Bars</span>
               <span class="pack-unit">90-Day · Save $43</span>
               <span class="pack-price">$59<s>$102</s></span>
-              <span class="pack-banner">🎁 Serum + ebook · Free shipping</span>
+              <span class="pack-banner">🎁 Serum + ebook</span>
             </button>
           </div>
         </div>
@@ -857,19 +865,19 @@ section{padding:74px 0}
       <div class="photo-reviews fade-slow">
         <figure class="prev-card">
           <img src="assets/ugc-1-holding.webp" alt="Marisol R., verified customer, holding the Kalmely scalp bar" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Clean and light all day now.”</p><span class="pr-by">Marisol R. <em>✓ Verified Buyer · Age 56</em></span></figcaption>
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“By midday my roots used to look greasy. Now they stay clean and light all day.”</p><span class="pr-by">Marisol R. <em>✓ Verified Buyer · Age 56</em></span></figcaption>
         </figure>
         <figure class="prev-card">
           <img src="assets/ugc-2-mirror.webp" alt="Gloria W., verified customer, at the bathroom mirror" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Gentle — and it actually feels clean.”</p><span class="pr-by">Gloria W. <em>✓ Verified Buyer · Age 62</em></span></figcaption>
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I'd tried everything. This is the first thing that left my scalp clean instead of coated.”</p><span class="pr-by">Gloria W. <em>✓ Verified Buyer · Age 62</em></span></figcaption>
         </figure>
         <figure class="prev-card">
           <img src="assets/ugc-3-daylight.webp" alt="Margaret K., verified customer, in everyday daylight" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Lighter scalp by the second week.”</p><span class="pr-by">Margaret K. <em>✓ Verified Buyer · Age 61</em></span></figcaption>
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“By the second week my scalp felt lighter — and my ponytail looked fuller in my hand.”</p><span class="pr-by">Margaret K. <em>✓ Verified Buyer · Age 61</em></span></figcaption>
         </figure>
         <figure class="prev-card">
           <img src="assets/ugc-4-sink.webp" alt="Diane R., verified customer, using the Kalmely bar at the sink" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I finally stopped switching my part.”</p><span class="pr-by">Diane R. <em>✓ Verified Buyer · Age 58</em></span></figcaption>
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“The first thing that let me stop hiding my part — it looks less see-through now.”</p><span class="pr-by">Diane R. <em>✓ Verified Buyer · Age 58</em></span></figcaption>
         </figure>
       </div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
@@ -884,9 +892,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
       <div class="ba-grid fade-slow">
-        <figure><img src="assets/beforeafter-blonde.webp" alt="Susan T., verified customer — her center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“Six weeks in and my roots finally feel clean.”</p><span class="ba-name">Susan T. <em>✓ Verified Buyer · Age 57</em></span></div></figure>
-        <figure><img src="assets/beforeafter-black.webp" alt="Renée A., verified customer — her part looking less see-through after regular use" width="820" height="820" loading="lazy"><figcaption>Part looks less see-through · 8 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“My part doesn't look as wide in photos now.”</p><span class="ba-name">Renée A. <em>✓ Verified Buyer · Age 60</em></span></div></figure>
-        <figure><img src="assets/beforeafter-latina.webp" alt="Carmen O., verified customer — her hair looking fuller after regular use" width="820" height="820" loading="lazy"><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“It looks fuller and feels lighter than it did.”</p><span class="ba-name">Carmen O. <em>✓ Verified Buyer · Age 55</em></span></div></figure>
+        <figure><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption><img src="assets/beforeafter-blonde.webp" alt="Susan T., verified customer — her center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“Six weeks in and my roots finally feel clean.”</p><span class="ba-name">Susan T. <em>✓ Verified Buyer · Age 57</em></span></div></figure>
+        <figure><figcaption>Part looks less see-through · 8 weeks</figcaption><img src="assets/beforeafter-black.webp" alt="Renée A., verified customer — her part looking less see-through after regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“My part doesn't look as wide in photos now.”</p><span class="ba-name">Renée A. <em>✓ Verified Buyer · Age 60</em></span></div></figure>
+        <figure><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption><img src="assets/beforeafter-latina.webp" alt="Carmen O., verified customer — her hair looking fuller after regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“It looks fuller and feels lighter than it did.”</p><span class="ba-name">Carmen O. <em>✓ Verified Buyer · Age 55</em></span></div></figure>
       </div>
     </div>
   </section>
@@ -897,7 +905,7 @@ section{padding:74px 0}
       <div class="sec-head fade-slow"><div class="eyebrow">The mechanism</div><h2>Meet the Grease Cap</h2></div>
       <div class="mech-prose fade-slow">
         <p class="lead">Over the years a hardened layer of greasy buildup forms over the roots and seals them shut — which is exactly why the serums, oils and supplements just sat on top and never got through. Our bar is made with fermented botanical oils designed to dissolve that layer, so the scalp can finally breathe and the part can start to look like itself again.</p>
-        <figure class="mech-fig"><img src="assets/grease-cap-diagram.webp" alt="Cross-section of a hair follicle sealed by a waxy buildup layer" width="560" height="560" loading="lazy" style="width:100%;border-radius:var(--r);display:block"><figcaption>Fig. — How surface buildup can seal the follicle (illustration).</figcaption></figure>
+        <figure class="mech-fig"><img src="assets/grease-cap-diagram.webp" alt="Cross-section of a hair follicle sealed by a waxy buildup layer" width="560" height="560" loading="lazy" style="width:100%;height:auto;border-radius:var(--r);display:block;background:#FBF7EF"><figcaption>Fig. — How surface buildup can seal the follicle (illustration).</figcaption></figure>
       </div>
     </div>
   </section>
@@ -950,7 +958,7 @@ section{padding:74px 0}
         <details><summary>Can my husband or partner use it too?</summary><p>Absolutely. One bar, one scalp — it works the same for everyone in the household.</p></details>
         <details><summary>How long does one bar last?</summary><p>Around 40–60 washes per bar — roughly 1–2 months of regular use. So the 2-Bar tier covers most women's full reset and the 3-Bar is the longer ritual. At under $1 a wash, it stretches a long way.</p></details>
         <details><summary>How do I claim the 60-day guarantee?</summary><p>One email to hello@kalmely.com within 60 days and we refund every cent — even a half-used bar. No forms, no runaround.</p></details>
-        <details><summary>How much is shipping and how fast?</summary><p>Fast U.S. shipping. Orders $49+ ship FREE (the 3-Bar bundle ships free on its own). Orders under $49 have a flat shipping rate shown at checkout.</p></details>
+        <details><summary>How much is shipping and how fast?</summary><p>Shipping is FREE on every order — all packs, no minimum. Fast, tracked U.S. shipping, with most orders arriving within a few business days.</p></details>
         <details><summary>What's your return policy?</summary><p>60 days, money-back, used or unused. Return in the original packaging where possible; a used bar still qualifies.</p></details>
         <details><summary>How do I reach a real person?</summary><p>Email hello@kalmely.com — a real member of our team replies, usually within 24 hours.</p></details>
       </div>
@@ -990,7 +998,7 @@ section{padding:74px 0}
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $43</span><span class="pack-price">$59<s>$102</s></span><span class="pack-banner">🎁 Serum + ebook · Free shipping</span>
+          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $43</span><span class="pack-price">$59<s>$102</s></span><span class="pack-banner">🎁 Serum + ebook</span>
         </button>
       </div>
       <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
@@ -1019,7 +1027,7 @@ section{padding:74px 0}
         <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
         <div class="foot-links"><a href="/shipping-policy.html">Shipping</a><a href="/refund-policy.html">Returns &amp; Refunds</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
       </div>
-      <div class="foot-fine">🔒 Secure SSL checkout · Fast U.S. shipping · Free over $49 · 60-Day Money-Back Guarantee. &nbsp;Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. © 2026 Kalmely.</div>
+      <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 60-Day Money-Back Guarantee. &nbsp;Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. © 2026 Kalmely.</div>
     </div>
   </div>
 </footer>
@@ -1064,7 +1072,7 @@ section{padding:74px 0}
     <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$19.00</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$39</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
-    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 60-day guarantee</span><span>🚚 Free over $49</span></div>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 60-day guarantee</span><span>🚚 Free shipping</span></div>
   </div>
 </aside>
 
@@ -1082,7 +1090,7 @@ section{padding:74px 0}
   var TIERS={
     'SCALP-1':{price:29,was:0,label:'1 Bar',sub:false,img:'bundle-1',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]},
     'SCALP-2':{price:39,was:58,label:'2 Bars',sub:false,img:'bundle-2',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]},
-    'SCALP-3':{price:59,was:102,label:'3 Bars',sub:false,img:'bundle-3',gifts:[['Scalp Serum','29','serum'],['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]}
+    'SCALP-3':{price:59,was:102,label:'3 Bars',sub:false,img:'bundle-3',gifts:[['Scalp Serum','39','serum','A lightweight daily leave-in that nourishes the scalp once the bar has cleared the buildup — so it finally absorbs where it couldn\'t before.'],['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]}
   };
   var DEFAULT='SCALP-1';  // land on the smallest pack (1 Bar · $29) by default
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1111,8 +1119,9 @@ section{padding:74px 0}
     var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
     el.className='includes';
     var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Kalmely Scalp Revival Bar — '+t.label+'</span><span class="inc-val"><span class="inc-inc">Included</span></span></li>';
-    var gifts=(t.gifts||[]).map(function(g){return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
-    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+'</ul><div class="inc-foot">'+(t.price>=49?'✓ Free U.S. shipping · 60-day money-back guarantee':'✓ 60-day money-back guarantee · free U.S. shipping over $49')+'</div>';
+    var gifts=(t.gifts||[]).map(function(g){return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
+    var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Free U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+ship+'</ul><div class="inc-foot">✓ Free U.S. shipping on every order · 60-day money-back guarantee</div>';
   }
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
   function select(sku,persist){
@@ -1152,7 +1161,7 @@ section{padding:74px 0}
     document.getElementById('cartTotal').textContent=money(price);
     document.getElementById('cartCount').textContent='1';
     var _free=document.querySelector('.ch-free');
-    if(_free){if(price>=49){_free.textContent='✓ Free shipping';}else{_free.textContent='Add '+money(49-price)+' for free shipping';}}
+    if(_free){_free.textContent='✓ Free shipping';}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
       var _g=t.gifts||[];
@@ -1294,7 +1303,7 @@ section{padding:74px 0}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
   function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  var TEXTR=R.slice(4); // text-only reviews (no large photo)
+  var TEXTR=R; // Show more reveals ALL 8 written reviews (the 4 photo cards above are highlights)
   if(more&&btn&&TEXTR.length){
     more.innerHTML=TEXTR.map(cT).join('');
     more.hidden=true;
@@ -1308,7 +1317,7 @@ section{padding:74px 0}
 </script>
 <script>
 /* announcement bar — rotate the two file-33 messages */
-(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping on orders $49+ · 60-Day Money-Back Guarantee','Korean Scalp Science · Sulfate-Free · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
+(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee','Korean Scalp Science · Sulfate-Free · Loved by women 50+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
 /* active nav state is hardcoded per page (Product on this PdP) for coherence regardless of deploy path */
 </script>
 </body>
