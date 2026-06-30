@@ -220,8 +220,8 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bx-badges{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bx-badges-h{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
-.bx-badges-row{display:flex;flex-wrap:wrap;gap:4px}
-.bx-badges span{font:600 8.5px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:5px 7px;white-space:nowrap}
+.bx-badges-row{display:flex;flex-wrap:wrap;gap:5px}
+.bx-badges span{font:600 11px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:5px 7px;white-space:nowrap}
 .bx-warn{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin-top:16px}
 .bx-warn-ic{width:20px;height:20px;flex:0 0 auto;color:var(--ink);margin-top:1px}
 .bx-warn p{font:400 13.5px/1.5 var(--sans);color:var(--ink-2);margin:0}
@@ -251,7 +251,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* quantity tier cards (with thumbnails inside) */
 .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:12px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;transition:border-color .15s,box-shadow .15s}
+.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:17px 11px 15px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:border-color .15s,box-shadow .15s}
 .pack:hover{border-color:var(--ink-soft)}
 .pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
 .pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
@@ -363,7 +363,7 @@ section{padding:74px 0}
 
 /* buy-box subscribe note + disclaimer */
 .pack .pack-sub{display:block;font:600 9px/1.25 var(--sans);color:var(--ink-soft);margin-top:5px;letter-spacing:.01em}
-.pack .pack-banner{display:block;margin-top:6px;background:var(--ok);color:#fff;font:700 9.5px/1.3 var(--sans);letter-spacing:.01em;padding:5px 7px;border-radius:7px}
+.pack .pack-banner{display:block;max-width:100%;margin-top:9px;background:#F4EBE2;color:var(--ok);font:700 10px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #ECDBC9;text-align:center}
 .sub-note{margin-top:10px;text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
 .bx-disclaimer{margin-top:14px;font:400 11px/1.5 var(--sans);color:var(--faint);text-align:center}
 
@@ -763,7 +763,7 @@ section{padding:74px 0}
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
         <p class="bx-sub">The 60-second Korean scalp bar designed to help lift the Grease Cap — the greasy buildup that can seal roots in many women — so the part can start to look like itself again.</p>
         <p class="bx-micro">It isn't only your hormones. For many women, it's a hardened layer of greasy buildup smothering the root — and it was never your fault.</p>
-        <div class="bx-badges"><div class="bx-badges-row"><span>Korean Scalp Science</span><span>Clinically Inspired</span><span>Sulfate-Free</span><span>60-Day Guarantee</span><span>Dermatologist Approved</span></div></div>
+        <div class="bx-badges"><div class="bx-badges-row"><span>Korean Scalp Science</span><span>Sulfate-Free</span><span>60-Day Guarantee</span><span>Dermatologist Approved</span></div></div>
         <ul class="bx-promise">
           <li>Helps cleanse the greasy buildup daily shampoo leaves behind</li>
           <li>Supports a visibly fuller, healthier-looking part over time</li>
@@ -783,21 +783,21 @@ section{padding:74px 0}
               <span class="pack-qty">1 Bar</span>
               <span class="pack-unit">30-Day Supply</span>
               <span class="pack-price">$29</span>
-              <span class="pack-banner">🎁 + free ebook</span>
+              <span class="pack-banner">🎁 Free ebook</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
               <span class="pack-badge">★ Most popular</span>
               <span class="pack-qty">2 Bars</span>
               <span class="pack-unit">Save $19 · 60-Day Supply</span>
               <span class="pack-price">$39<s>$58</s></span>
-              <span class="pack-banner">🎁 + free ebook</span>
+              <span class="pack-banner">🎁 Free ebook</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Best value</span>
               <span class="pack-qty">3 Bars</span>
               <span class="pack-unit">90-Day · Save $43</span>
               <span class="pack-price">$59<s>$102</s></span>
-              <span class="pack-banner">🎁 + free Scalp Serum + ebook · FREE ship</span>
+              <span class="pack-banner">🎁 Serum + ebook · Free shipping</span>
             </button>
           </div>
         </div>
@@ -957,15 +957,15 @@ section{padding:74px 0}
       <div class="rating" style="justify-content:center"><span class="stars">★★★★★</span> <span>4.8/5 · 14,268 verified buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 + free ebook</span>
+          <span class="pack-qty">1 Bar</span><span class="pack-unit">30-Day Supply</span><span class="pack-price">$29</span><span class="pack-banner">🎁 Free ebook</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-2" data-price="39" role="radio" aria-checked="false">
           <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Bars</span><span class="pack-unit">Save $19 · 60-Day Supply</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 + free ebook</span>
+          <span class="pack-qty">2 Bars</span><span class="pack-unit">Save $19 · 60-Day Supply</span><span class="pack-price">$39<s>$58</s></span><span class="pack-banner">🎁 Free ebook</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="59" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $43</span><span class="pack-price">$59<s>$102</s></span><span class="pack-banner">🎁 + free Scalp Serum + ebook · FREE ship</span>
+          <span class="pack-qty">3 Bars</span><span class="pack-unit">90-Day · Save $43</span><span class="pack-price">$59<s>$102</s></span><span class="pack-banner">🎁 Serum + ebook · Free shipping</span>
         </button>
       </div>
       <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39</span></button>
