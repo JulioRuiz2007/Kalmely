@@ -129,12 +129,12 @@ img{max-width:100%;display:block}
 /* centered headline block */
 .lede{max-width:720px;margin:0 auto;padding:0 24px}
 .kicker{text-align:center;font:700 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:8px 0 22px}
-h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);line-height:1.12;letter-spacing:-.012em;text-align:center;color:var(--ink);margin:0 auto;max-width:700px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,7vw,44px);line-height:1.12;letter-spacing:-.012em;text-align:center;color:var(--ink);margin:0 auto;max-width:720px}
 .dek{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(19px,2.2vw,24px);line-height:1.5;color:var(--ink-2);text-align:center;margin:20px auto 0;max-width:600px}
 
 /* documentary lede photo — break-out band on desktop, full-bleed portrait on mobile (not a sales banner) */
 .lede-photo{max-width:1060px;margin:34px auto 6px;padding:0 24px;background:transparent}
-.lede-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 20%;border-radius:8px}
+.lede-photo img{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:50% 22%;border-radius:8px}
 
 /* prose grid — text rail centered at ~680px; images opt into the wider feature band or full-bleed */
 .body{
@@ -167,7 +167,10 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);lin
 
 /* body type */
 .body > p{margin:0 0 22px}
-.body .lead::first-letter{font-family:var(--serif);font-weight:600;float:left;font-size:62px;line-height:.82;padding:6px 10px 0 0;color:var(--accent)}
+/* lead paragraph: extra space below the TOC box, tight to the paragraph that follows so it wraps the drop cap */
+.body > p.lead{margin:34px 0 6px}
+/* drop cap: cap of the letter aligns to the top of the first line; text flows to its right with a small gap and wraps its lower half */
+.body .lead::first-letter{font-family:var(--serif);font-weight:600;float:left;font-size:3.2em;line-height:.85;margin:.02em .14em 0 0;padding:0;color:var(--accent)}
 .body h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3vw,29px);line-height:1.2;color:var(--ink);margin:46px 0 16px;letter-spacing:-.01em}
 .body strong{font-weight:700;color:var(--ink)}
 .body em{font-style:italic}
@@ -213,6 +216,12 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);lin
 .foot-links a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;margin:0 7px}
 .foot-fine{font:500 11.5px/1.6 var(--sans);color:var(--faint);margin-top:12px}
 
+/* desktop: a commanding magazine headline that fills the column (widen the lede block so the H1 isn't capped by it) */
+@media(min-width:900px){
+  .lede{max-width:920px}
+  h1{font-size:64px;max-width:880px;line-height:1.08}
+}
+
 @media(max-width:700px){
   body{font-size:18px;line-height:1.72}
   .lede{padding:0 22px}
@@ -225,7 +234,6 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);lin
   .body > .figphoto{margin-left:-22px;margin-right:-22px}
   .fig{border-radius:0;border-left:0;border-right:0}
   .figphoto img{border-radius:0;aspect-ratio:auto}
-  .body .lead::first-letter{font-size:50px}
   .cta{width:100%;justify-content:center}
 }
 </style>
