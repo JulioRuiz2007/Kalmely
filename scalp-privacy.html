@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<!-- Persist Meta click-id: _fbc from ?fbclid + _fbp, so Pixel & CAPI always have them (even if the Pixel is blocked/deferred) -->
+<script type="text/javascript">
+  (function(){try{
+    function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?m[1]:'';}
+    function sc(n,v){document.cookie=n+'='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    var cid=new URLSearchParams(location.search).get('fbclid');
+    if(cid && !gc('_fbc')) sc('_fbc','fb.1.'+Date.now()+'.'+cid);
+    if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
+  }catch(e){}})();
+</script>
+<!-- Microsoft Clarity — skipped in admin mode (cookie kalmely_admin / ?admin_mode) so own visits don't pollute recordings -->
+<script type="text/javascript">
+  (function(){
+    var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
+      || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
+    if (isAdmin) return;
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x4mat5v5ce");
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F6F6F0">
+<title>Privacy Policy — Kalmely Korean Scalp Revival Bar</title>
+<meta name="description" content="How Kalmely collects, uses, and protects your data when you shop the Korean Scalp Revival Bar. We don't sell your data — ever. Questions: hello@kalmely.com.">
+<meta property="og:site_name" content="Kalmely">
+<meta name="application-name" content="Kalmely">
+<meta property="og:title" content="Privacy Policy — Kalmely Korean Scalp Revival Bar">
+<meta property="og:description" content="How Kalmely collects, uses, and protects your data when you shop the Korean Scalp Revival Bar. We don't sell your data — ever. Questions: hello@kalmely.com.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<!-- fonts self-hosted via legal.css (Sora / Cormorant / Inter) -->
+
+<!-- Admin Mode Guard -->
+<script>
+(function() {
+  // Set admin cookie via secret URL param
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin_mode') === 'kalmely_julio_2026') {
+    document.cookie = 'kalmely_admin=true; max-age=2592000; path=/; SameSite=Lax';
+    console.log('Admin mode activated. Pixel events disabled for 30 days.');
+  }
+  // Disable Pixel + GA if admin cookie present
+  if (document.cookie.includes('kalmely_admin=true')) {
+    window.fbq = function() { console.log('[admin] fbq call blocked:', arguments); };
+    window.gtag = function() { console.log('[admin] gtag call blocked:', arguments); };
+    window._kalmelyAdmin = true;
+  }
+})();
+</script>
+<!-- End Admin Mode Guard -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2038496957090347');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="stylesheet" href="assets/legal-2.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/scalp/" class="brand-logo">Kalmely<span class="dot"></span></a>
+    <a href="/scalp/" class="nav-cta">← Home</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-eyebrow">Legal</div>
+  <h1>Privacy <em>policy.</em></h1>
+  <div class="updated">Last updated · June 30, 2026</div>
+
+  <p class="lead">We collect the minimum we need to ship your Korean Scalp Revival Bar, take payment, and answer your questions. We don't sell your data — to anyone, ever.</p>
+
+  <h2>1. Who we are</h2>
+  <p>This is the privacy policy for Kalmely ("Kalmely", "we", "us", "our"), the maker of the Korean Scalp Revival Bar sold at kalmely.com. You can reach us anytime at <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
+  <p>This policy explains what personal information we collect, how we use it, who we share it with, and the choices you have.</p>
+
+  <h2>2. What we collect</h2>
+  <p><strong>When you place an order:</strong></p>
+  <ul>
+    <li>Your name, shipping address, email address, and phone number (collected at checkout for delivery and order updates)</li>
+    <li>Order details — which pack you bought (1, 2, or 3 bars) and whether you started a Subscribe &amp; Save plan</li>
+    <li>Payment is handled securely by Stripe; we never see or store your full card number</li>
+    <li>Order history, refund requests, and any support messages you send us</li>
+  </ul>
+  <p><strong>When you browse kalmely.com:</strong></p>
+  <ul>
+    <li>IP address, browser type, device, and referring URL</li>
+    <li>Pages viewed, pack selected, and items added to cart</li>
+    <li>Cookie and pixel identifiers (see section 5)</li>
+  </ul>
+  <p><strong>What we never collect:</strong></p>
+  <ul>
+    <li>Medical records, diagnoses, or any clinical or health information</li>
+    <li>Your full payment card details — those go straight to Stripe and never touch our systems</li>
+  </ul>
+  <p>The Korean Scalp Revival Bar is a cosmetic scalp-care product, not a medical service. It is not intended to diagnose, treat, cure, or prevent any disease. Results may vary, and our free guide is for educational purposes only and is not medical advice. Consult a doctor or dermatologist if you have a scalp condition or any concern about your skin.</p>
+
+  <h2>3. How we use your information</h2>
+  <p>We use the information we collect to:</p>
+  <ul>
+    <li>Fulfill your order, ship your product, and send shipping and tracking updates</li>
+    <li>Manage Subscribe &amp; Save plans, including renewals and cancellations</li>
+    <li>Process refunds and handle our 60-day money-back guarantee</li>
+    <li>Answer your questions and provide customer support</li>
+    <li>Detect and prevent fraud, and keep the site secure</li>
+    <li>Measure and improve our website and advertising</li>
+    <li>Send you transactional emails (order confirmations, shipping notices, receipts) and, if you opt in, occasional marketing emails you can unsubscribe from at any time</li>
+  </ul>
+
+  <h2>4. Who we share it with</h2>
+  <p>We don't sell your personal information. We share it only with the trusted service providers we use to run the business:</p>
+  <ul>
+    <li><strong>Stripe</strong> — processes payments in USD (Visa, Mastercard, Amex, Apple Pay, Google Pay, Link, and Amazon Pay). Stripe has its own <a href="https://stripe.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</li>
+    <li><strong>Resend</strong> — sends our transactional emails, such as order confirmations and shipping notifications.</li>
+    <li><strong>Meta (Facebook) Pixel and Conversions API</strong> — measures the performance of our ads. We may share order and event data with Meta to attribute and improve advertising.</li>
+    <li><strong>Microsoft Clarity</strong> — provides anonymized session analytics (heatmaps and aggregate session recordings) so we can understand how the site is used and improve it.</li>
+    <li><strong>Shipping and fulfillment partners</strong> — receive your name and shipping address so we can pack and deliver your order and provide tracking.</li>
+  </ul>
+  <p>We may also disclose information if required by law or to protect our rights, safety, or property.</p>
+
+  <h2>5. Cookies and trackers</h2>
+  <p>We use cookies and similar technologies for the following purposes:</p>
+  <ul>
+    <li><strong>Essential:</strong> remember your cart, keep the site working, and complete checkout. The site won't function properly without these.</li>
+    <li><strong>Analytics:</strong> Microsoft Clarity helps us understand which pages and packs get the most attention, using anonymized data.</li>
+    <li><strong>Advertising:</strong> the Meta Pixel uses cookies including <code>_fbp</code> and <code>_fbc</code> to measure ad performance and show you our products on platforms you already use.</li>
+  </ul>
+  <p>You can manage or block cookies through your browser settings, and you can clear your browser's site data for kalmely.com at any time. Blocking some cookies may affect how the site works.</p>
+
+  <h2>6. How we protect your data</h2>
+  <p>We use reputable providers and industry-standard safeguards to protect your information. Payments are encrypted and processed by Stripe, and we limit access to personal data to what is needed to run Kalmely. No method of transmission over the internet is 100% secure, but we work to keep your data safe.</p>
+
+  <h2>7. How long we keep it</h2>
+  <ul>
+    <li>Order and payment records: kept as long as needed to fulfill orders, handle guarantees, and meet tax and accounting requirements</li>
+    <li>Support messages: kept while we help you and for a reasonable period afterward</li>
+    <li>Marketing email lists: until you unsubscribe, after which we suppress your address so we don't contact you again</li>
+    <li>Cookie and pixel identifiers: kept for the lifetime of the cookie, then expire automatically</li>
+  </ul>
+
+  <h2>8. Your rights and choices</h2>
+  <p>You can ask us to access the personal information we hold about you, correct it, or delete it. To make a request, email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> and we'll respond promptly. You can unsubscribe from marketing emails at any time using the link in those emails. If you have a Subscribe &amp; Save plan, you can cancel anytime in one click via the customer portal linked in your order confirmation email, or by emailing us.</p>
+  <p>Depending on where you live, you may have additional privacy rights under your local laws (such as the right to opt out of certain sharing). To exercise any of these rights, just email us.</p>
+
+  <h2>9. Children's privacy</h2>
+  <p>Kalmely is sold to adults only — you must be 18 or older to order. We do not knowingly collect personal information from anyone under 18. If you believe a minor has provided us with information, contact us and we will delete it.</p>
+
+  <h2>10. Changes to this policy</h2>
+  <p>We may update this policy from time to time. The "Last updated" date at the top of this page always reflects the current version. Please check back periodically.</p>
+
+  <div class="callout">
+    <p style="margin:0;"><strong>Questions?</strong> Email us at <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>. We read and answer every message ourselves — typically within one business day.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="/scalp/">Home</a>
+    <a href="/scalp-terms.html">Terms</a>
+    <a href="/scalp-refund.html">Refund policy</a>
+    <a href="/scalp-shipping.html">Shipping policy</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <div>© 2026 Kalmely. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
