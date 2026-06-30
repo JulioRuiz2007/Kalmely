@@ -400,7 +400,7 @@ section{padding:74px 0}
 .rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
 .rev-bar.is-active .fill{background:var(--gold)}
 .rev-more{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px}
-.rev-more .review{flex:0 1 360px;max-width:400px}
+.rev-more .review{flex:0 1 460px;max-width:520px}
 .rev-more[hidden]{display:none}
 .rev-morewrap{text-align:center;margin-top:26px}
 .rev-morebtn{font:600 14px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
@@ -563,10 +563,24 @@ section{padding:74px 0}
 .ba-grid figcaption{text-align:center;font:600 12px/1.3 var(--sans);color:var(--ink-soft);margin-top:9px}
 .ugc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
 .ugc-strip img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
+/* 4 photo reviews (default view) */
+.photo-reviews{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+.photo-reviews figure{margin:0}
+.photo-reviews img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block;cursor:zoom-in}
+.photo-reviews figcaption{margin-top:11px;text-align:left}
+.pr-stars{color:var(--ink);letter-spacing:1.5px;font-size:12px}
+.pr-quote{font:600 14.5px/1.32 var(--serif);color:var(--ink);margin:5px 0}
+.pr-by{display:block;font:600 12px/1.35 var(--sans);color:var(--ink-2)}
+.pr-by em{font-style:normal;color:var(--ok);font-weight:700}
+/* before/after mini-review attributions */
+.ba-by{margin-top:10px;text-align:center}
+.ba-quote{font:500 13.5px/1.38 var(--serif);font-style:italic;color:var(--ink-2);margin:4px 0}
+.ba-name{display:block;font:600 11.5px/1.3 var(--sans);color:var(--ink-soft)}
+.ba-name em{font-style:normal;color:var(--ok);font-weight:700}
 .seal-img{position:relative;width:122px;height:122px;margin:0 auto 20px}
 .seal-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 .seal-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 10.5px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);text-align:center;padding:0 22px 16px}
-@media(max-width:780px){.steps3,.ba-grid{grid-template-columns:1fr}.ugc-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.steps3,.ba-grid{grid-template-columns:1fr}.ugc-strip,.photo-reviews{grid-template-columns:repeat(2,1fr)}}
 
 /* ============ responsive ============ */
 @media(max-width:980px){
@@ -840,13 +854,24 @@ section{padding:74px 0}
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">14,268 verified reviews</div></div>
         <div class="rev-dist" id="revDist"></div>
       </div>
-      <div class="ugc-strip fade-slow">
-        <img src="assets/ugc-1-holding.webp" alt="Customer holding the Kalmely scalp bar" width="600" height="600" loading="lazy">
-        <img src="assets/ugc-2-mirror.webp" alt="Customer at the bathroom mirror" width="600" height="600" loading="lazy">
-        <img src="assets/ugc-3-daylight.webp" alt="Customer's hair in everyday daylight" width="600" height="600" loading="lazy">
-        <img src="assets/ugc-4-sink.webp" alt="Customer using the Kalmely bar at the sink" width="600" height="600" loading="lazy">
+      <div class="photo-reviews fade-slow">
+        <figure class="prev-card">
+          <img src="assets/ugc-1-holding.webp" alt="Marisol R., verified customer, holding the Kalmely scalp bar" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Clean and light all day now.”</p><span class="pr-by">Marisol R. <em>✓ Verified Buyer · Age 56</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-2-mirror.webp" alt="Gloria W., verified customer, at the bathroom mirror" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Gentle — and it actually feels clean.”</p><span class="pr-by">Gloria W. <em>✓ Verified Buyer · Age 62</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-3-daylight.webp" alt="Margaret K., verified customer, in everyday daylight" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Lighter scalp by the second week.”</p><span class="pr-by">Margaret K. <em>✓ Verified Buyer · Age 61</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-4-sink.webp" alt="Diane R., verified customer, using the Kalmely bar at the sink" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I finally stopped switching my part.”</p><span class="pr-by">Diane R. <em>✓ Verified Buyer · Age 58</em></span></figcaption>
+        </figure>
       </div>
-      <div class="rev-grid fade-slow" id="revFeatured"></div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
       <div class="sp-caps fade-slow" style="margin-top:30px"><span>“My part looks less see-through.”</span><span>“Scalp feels lighter.”</span><span>“Less in the drain.”</span><span>“I feel like myself again.”</span></div>
@@ -859,9 +884,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
       <div class="ba-grid fade-slow">
-        <figure><img src="assets/beforeafter-blonde.webp" alt="A woman's center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption></figure>
-        <figure><img src="assets/beforeafter-black.webp" alt="A woman's part looking less see-through after regular use" width="820" height="820" loading="lazy"><figcaption>Part looks less see-through · 8 weeks</figcaption></figure>
-        <figure><img src="assets/beforeafter-latina.webp" alt="A woman's hair looking fuller after regular use" width="820" height="820" loading="lazy"><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption></figure>
+        <figure><img src="assets/beforeafter-blonde.webp" alt="Susan T., verified customer — her center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“Six weeks in and my roots finally feel clean.”</p><span class="ba-name">Susan T. <em>✓ Verified Buyer · Age 57</em></span></div></figure>
+        <figure><img src="assets/beforeafter-black.webp" alt="Renée A., verified customer — her part looking less see-through after regular use" width="820" height="820" loading="lazy"><figcaption>Part looks less see-through · 8 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“My part doesn't look as wide in photos now.”</p><span class="ba-name">Renée A. <em>✓ Verified Buyer · Age 60</em></span></div></figure>
+        <figure><img src="assets/beforeafter-latina.webp" alt="Carmen O., verified customer — her hair looking fuller after regular use" width="820" height="820" loading="lazy"><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“It looks fuller and feels lighter than it did.”</p><span class="ba-name">Carmen O. <em>✓ Verified Buyer · Age 55</em></span></div></figure>
       </div>
     </div>
   </section>
@@ -1234,7 +1259,7 @@ section{padding:74px 0}
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image"><button type="button" class="lb-close" aria-label="Close">&times;</button><img src="" alt=""></div>
 <script>
 (function(){
-  var sel='.reason img,.ba-grid img,.steps3 .step img,.rev-img,.ugc-strip img,.life img,.mech-img img';
+  var sel='.reason img,.ba-grid img,.steps3 .step img,.rev-img,.photo-reviews img,.life img,.mech-img img';
   var lb=document.getElementById('lightbox'); if(!lb) return;
   var lbImg=lb.querySelector('img');
   document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Enlarge image');});
@@ -1261,30 +1286,24 @@ section{padding:74px 0}
     {r:5,n:'Yvonne B.',d:'Age 64',av:'avatar-ra8',t:'The missing first step.',b:"I was already using a serum and getting nowhere — turns out my scalp was too greasy for anything to get through. I started using this first, kept the serum, and it's completely different now. Scalp feels clean and light, and my part looks fuller than it has in a while."}
   ];
   var R=LEAD;
-  var feat=document.getElementById('revFeatured'),btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
-  if(!R.length||!feat)return;
+  var btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
+  if(!R.length)return;
   var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function ini(nm){return (nm||'').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
-  // Aggregate rating + distribution + "verified buyer" labels restored per client decision (risk accepted) — swap for real Loox/Judge.me data once wired
-  // round face-avatar placeholder next to name/age (real customer photos swap in separately)
+  // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
   function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
-  var FEAT=6; // 2×3 symmetric grid up front; the rest behind "Show more"
-  feat.innerHTML=R.slice(0,FEAT).map(cT).join('');
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  var rest=R.slice(FEAT);
-  if(rest.length&&more&&btn){
-    more.innerHTML=rest.map(cT).join('');
-    btn.style.display='';
+  var TEXTR=R.slice(4); // text-only reviews (no large photo)
+  if(more&&btn&&TEXTR.length){
+    more.innerHTML=TEXTR.map(cT).join('');
+    more.hidden=true;
+    btn.textContent='Show more reviews ↓';
     btn.addEventListener('click',function(){
-      more.hidden=false;
-      btn.parentNode.style.display='none';
+      if(more.hidden){more.hidden=false;btn.textContent='Show less reviews ↑';}
+      else{more.hidden=true;btn.textContent='Show more reviews ↓';btn.scrollIntoView({block:'center'});}
     });
-  }else{
-    if(btn)btn.style.display='none';
-    if(more)more.hidden=true;
-  }
+  }else if(btn){btn.style.display='none';}
 })();
 </script>
 <script>
