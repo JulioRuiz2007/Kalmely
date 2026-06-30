@@ -614,14 +614,19 @@ section{padding:74px 0}
   .eg-card{grid-template-columns:1fr;max-width:400px}
   .eg-media{display:none}
   .hero-grid{gap:16px}
-  .gallery{max-width:none;margin:0 auto;min-width:0}
+  .gallery{width:100%;max-width:100%;margin:0 auto;min-width:0;overflow:hidden}
   .hero-grid,.hero-head,.buybox{min-width:0}
-  /* edge-to-edge hero via 100vw; html{overflow-x:hidden} clips iOS's 1px 100vw rounding so the page can't scroll sideways */
-  .hero-stage{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);border-radius:0}
+  /* full-width hero with NO vw unit (100vw overflows past the body on iOS Safari): zero the .wrap padding
+     for the hero only and give it back to the text blocks. Image = exactly body width = same as header/announce,
+     so nothing is wider than the page and there is zero horizontal scroll. */
+  /* definite 100% column (not flexible 1fr) so the wide thumbnail strip's content can't inflate the track */
+  .hero-grid{grid-template-columns:100%;padding-left:0;padding-right:0}
+  .hero-head,.buybox{padding-left:28px;padding-right:28px}
+  .hero-stage{width:100%;max-width:100%;margin-left:0;border-radius:0}
   /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
   .hero-slide{aspect-ratio:6/5}
   .hero{padding:14px 0 14px}
-  .hero-thumbs{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);padding:0 20px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero-thumbs{width:100%;max-width:100%;margin-left:0;padding:0 28px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .hero-thumbs::-webkit-scrollbar{display:none}
   .hero-thumb{flex:0 0 60px;border-radius:10px}
   .hx-proof{display:none}
