@@ -276,6 +276,11 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .inc-val s{margin-right:5px}
 .inc-free{color:var(--ok);font-weight:700;letter-spacing:.02em}
 .inc-inc{color:var(--ink-soft);font-weight:600}
+.inc-row.gift{padding:9px 0}
+.inc-img{width:46px;height:46px;flex:0 0 auto;border-radius:9px;object-fit:cover;background:#fff;border:1px solid var(--line)}
+/* pack bundle preview (swaps with the selected pack) */
+.pack-preview{text-align:center;margin:0 0 14px}
+#packImage{display:block;margin:0 auto;max-width:100%;max-height:230px;width:auto;height:auto;object-fit:contain;border-radius:12px;transition:opacity .18s ease}
 .inc-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
 
 /* add to cart + reassurance */
@@ -770,6 +775,7 @@ section{padding:74px 0}
       <div class="buybox fade-slow">
         <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>WARNING: Low Stock Notice</b> — This product sold out <b>12 times</b> last year. Take advantage of the <b>limited sale</b> and buy now. Ordering now helps you avoid future stock outs.</p></div>
         <div class="bx-sec">
+          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp" alt="Your Kalmely Korean Scalp Revival Bar bundle" width="760" height="760"></div>
           <div class="sale-divider">Summer Sale – Limited Time Only</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="29" role="radio" aria-checked="false">
@@ -852,9 +858,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
       <div class="ba-grid fade-slow">
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Part looks less see-through · 8 weeks</figcaption></figure>
-        <figure><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Before / after</span></div><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption></figure>
+        <figure><img src="assets/beforeafter-blonde.webp" alt="A woman's center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption></figure>
+        <figure><img src="assets/beforeafter-black.webp" alt="A woman's part looking less see-through after regular use" width="820" height="820" loading="lazy"><figcaption>Part looks less see-through · 8 weeks</figcaption></figure>
+        <figure><img src="assets/beforeafter-latina.webp" alt="A woman's hair looking fuller after regular use" width="820" height="820" loading="lazy"><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption></figure>
       </div>
     </div>
   </section>
@@ -875,9 +881,9 @@ section{padding:74px 0}
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">How it works</div><h2>Sixty seconds. In the shower. Nothing new to learn.</h2></div>
       <div class="steps3 fade-slow">
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 1 · glide</span></div><b>Glide it on first</b><p>In the shower, the bar goes first — right on the scalp, where your shampoo used to start. Glide it along your part and across the roots.</p></div>
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 2 · massage</span></div><b>Massage 60 seconds, then rinse</b><p>Work it into the scalp for about sixty seconds. Let it sit a moment so the fermented oils can get to the buildup. Then rinse. That's the whole ritual.</p></div>
-        <div class="step"><div class="ph" style="aspect-ratio:1/1;border-radius:var(--r)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Step 3 · week by week</span></div><b>Watch your part, week by week</b><p>This works gradually, not overnight — week by week, not by Friday. Over the weeks, the part many women start hiding can begin to look more like its own again.</p></div>
+        <div class="step"><img src="assets/step-1-glide.webp" alt="Gliding the Kalmely bar along the scalp in the shower" width="820" height="820" loading="lazy"><b>Glide it on first</b><p>In the shower, the bar goes first — right on the scalp, where your shampoo used to start. Glide it along your part and across the roots.</p></div>
+        <div class="step"><img src="assets/step-2-massage.webp" alt="Massaging the scalp for sixty seconds" width="820" height="820" loading="lazy"><b>Massage 60 seconds, then rinse</b><p>Work it into the scalp for about sixty seconds. Let it sit a moment so the fermented oils can get to the buildup. Then rinse. That's the whole ritual.</p></div>
+        <div class="step"><img src="assets/step-3-weekbyweek.webp" alt="A woman happy with her fuller-looking hair over time" width="820" height="820" loading="lazy"><b>Watch your part, week by week</b><p>This works gradually, not overnight — week by week, not by Friday. Over the weeks, the part many women start hiding can begin to look more like its own again.</p></div>
       </div>
       <p class="tl-foot" style="margin-top:22px">No miracle claims. No overnight fixes. Just the first step, done daily.</p>
     </div>
@@ -1048,9 +1054,9 @@ section{padding:74px 0}
   // ===== Offer model: Scalp Revival Bar (USD) — 1 / 2 / 3 bars, one-time, staggered gifts =====
   var VARIANT='SCALP';
   var TIERS={
-    'SCALP-1':{price:29,was:0,label:'1 Bar',sub:false,gifts:[['“Korean Scalp Protocol” ebook','19']]},
-    'SCALP-2':{price:39,was:58,label:'2 Bars',sub:false,gifts:[['“Korean Scalp Protocol” ebook','19']]},
-    'SCALP-3':{price:59,was:102,label:'3 Bars',sub:false,gifts:[['Scalp Serum','15'],['“Korean Scalp Protocol” ebook','19']]}
+    'SCALP-1':{price:29,was:0,label:'1 Bar',sub:false,img:'bundle-1',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]},
+    'SCALP-2':{price:39,was:58,label:'2 Bars',sub:false,img:'bundle-2',gifts:[['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]},
+    'SCALP-3':{price:59,was:102,label:'3 Bars',sub:false,img:'bundle-3',gifts:[['Scalp Serum','29','serum'],['“Korean Scalp Protocol” ebook','19','ebook-physical-3d']]}
   };
   var DEFAULT='SCALP-2';  // file-33: land on Tier 2 (Most Popular · 2 Bars · Save $19)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1078,11 +1084,9 @@ section{padding:74px 0}
   function renderGifts(sku){
     var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
     el.className='includes';
-    var row=function(name,right){return '<li class="inc-row"><span class="inc-check">✓</span><span class="inc-name">'+name+'</span><span class="inc-val">'+right+'</span></li>';};
-    var html='<div class="inc-h">What’s included</div><ul class="inc-list">'+row('Kalmely Scalp Revival Bar — '+t.label,'<span class="inc-inc">Included</span>');
-    (t.gifts||[]).forEach(function(g){html+=row(g[0],'<s>$'+g[1]+'</s><b class="inc-free">FREE</b>');});
-    html+='</ul><div class="inc-foot">'+(t.price>=49?'✓ Free U.S. shipping · 60-day money-back guarantee':'✓ 60-day money-back guarantee · free U.S. shipping over $49')+'</div>';
-    el.innerHTML=html;
+    var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Kalmely Scalp Revival Bar — '+t.label+'</span><span class="inc-val"><span class="inc-inc">Included</span></span></li>';
+    var gifts=(t.gifts||[]).map(function(g){return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+'</ul><div class="inc-foot">'+(t.price>=49?'✓ Free U.S. shipping · 60-day money-back guarantee':'✓ 60-day money-back guarantee · free U.S. shipping over $49')+'</div>';
   }
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
   function select(sku,persist){
@@ -1090,6 +1094,7 @@ section{padding:74px 0}
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
+    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp';}  // swap the bundle preview to match the selected pack
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
@@ -1228,7 +1233,7 @@ section{padding:74px 0}
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image"><button type="button" class="lb-close" aria-label="Close">&times;</button><img src="" alt=""></div>
 <script>
 (function(){
-  var sel='.reason img,.ba-grid img,.rev-img,.ugc-strip img,.life img,.mech-img img';
+  var sel='.reason img,.ba-grid img,.steps3 .step img,.rev-img,.ugc-strip img,.life img,.mech-img img';
   var lb=document.getElementById('lightbox'); if(!lb) return;
   var lbImg=lb.querySelector('img');
   document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Enlarge image');});
@@ -1245,10 +1250,14 @@ section{padding:74px 0}
 (function(){
   // file-33 lead testimonials (named, age-stamped, appearance/feel only — NO before/after, NO regrowth)
   var LEAD=[
-    {r:5,n:'Diane R.',d:'Age 58',t:'I finally stopped switching my part.',b:"For two years I'd been parting my hair on the other side to hide how see-through the middle had gotten. I'd tried biotin, two different serums, even the $88-a-month supplements. This is the only thing that made my scalp feel clean instead of greasy — and my part honestly looks less see-through than it did."},
-    {r:5,n:'Margaret K.',d:'Age 61',t:'Lighter scalp by the second week.',b:"My roots were greasy by lunchtime and my ponytail was half what it used to be. The bar takes a minute in the shower. By the second week my scalp just felt lighter — not weighed down. I feel more like myself."},
-    {r:5,n:'Linda P.',d:'Age 54',t:'Menopause took enough. Not this too.',b:"Menopause took my sleep and my patience, and I felt like my hair was going with it. I won't make crazy claims — but my scalp feels clean, my part looks fuller than it did, and for the first time in a while I'm not dreading the brush."},
-    {r:5,n:'Carol T.',d:'Age 49',t:'The missing first step.',b:"I was already using a serum and getting nowhere. Turns out my scalp was so greasy nothing was getting through. Used this first, kept the serum — completely different. Scalp feels clean and light now."}
+    {r:5,n:'Diane R.',d:'Age 58',av:'avatar-ra1',t:'I finally stopped switching my part.',b:"For two years I'd been parting my hair on the other side to hide how see-through the middle had gotten. I'd tried biotin, two different serums, even the $88-a-month supplements. This is the only thing that made my scalp feel clean instead of greasy — and my part honestly looks less see-through than it did."},
+    {r:5,n:'Margaret K.',d:'Age 61',av:'avatar-ra2',t:'Lighter scalp by the second week.',b:"My roots were greasy by lunchtime and my ponytail was half what it used to be. The bar takes a minute in the shower. By the second week my scalp just felt lighter — not weighed down. I feel more like myself."},
+    {r:5,n:'Marisol R.',d:'Age 56',av:'avatar-ra3',t:'Clean and light all day now.',b:"My hair always looked greasy at the roots by midday, no matter how often I washed. After a couple of weeks with the bar my scalp finally feels clean and light through the whole day — and my part doesn't look as wide in photos as it used to."},
+    {r:5,n:'Gloria W.',d:'Age 62',av:'avatar-ra4',t:'Gentle — and it actually feels clean.',b:"I was skeptical; I've tried so many things. But this is gentle, it doesn't dry me out, and my scalp actually feels clean instead of coated. My part looks a little fuller than it did, and I'm not fussing with it as much."},
+    {r:5,n:'Linda P.',d:'Age 54',av:'avatar-ra5',t:'Menopause took enough. Not this too.',b:"Menopause took my sleep and my patience, and I felt like my hair was going with it. I won't make crazy claims — but my scalp feels clean, my part looks fuller than it did, and for the first time in a while I'm not dreading the brush."},
+    {r:5,n:'Grace C.',d:'Age 59',av:'avatar-ra6',t:'Sixty seconds, and it feels light.',b:"Sixty seconds in the shower, that's it. My scalp used to feel heavy and tight; now it feels light and comfortable between washes. My part looks a touch less see-through than it did a couple of months ago. No big promises — just a real difference in how it feels."},
+    {r:5,n:'Priya N.',d:'Age 53',av:'avatar-ra7',t:'The first thing that did anything.',b:"Menopause changed my hair more than anything else, and nothing I bought made a dent. This is the first thing that made my scalp feel genuinely clean — not stripped. My ponytail feels a little fuller in my hand, and honestly I just feel more like myself."},
+    {r:5,n:'Yvonne B.',d:'Age 64',av:'avatar-ra8',t:'The missing first step.',b:"I was already using a serum and getting nowhere — turns out my scalp was too greasy for anything to get through. I started using this first, kept the serum, and it's completely different now. Scalp feels clean and light, and my part looks fuller than it has in a while."}
   ];
   var R=LEAD;
   var feat=document.getElementById('revFeatured'),btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
@@ -1259,7 +1268,7 @@ section{padding:74px 0}
   function ini(nm){return (nm||'').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();}
   // Aggregate rating + distribution + "verified buyer" labels restored per client decision (risk accepted) — swap for real Loox/Judge.me data once wired
   // round face-avatar placeholder next to name/age (real customer photos swap in separately)
-  function cT(r){return '<div class="review" data-r="'+r.r+'"><div class="rh"><span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span><span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
+  function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
   feat.innerHTML=R.map(cT).join('');
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
   if(btn)btn.style.display='none';
