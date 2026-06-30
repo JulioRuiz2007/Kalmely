@@ -39,8 +39,9 @@
 <meta property="og:description" content="It isn't only age or hormones. A newer explanation points to something most women never think to check — the condition of the scalp underneath.">
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Self-hosted fonts — no third-party (googleapis/gstatic) on the critical path. woff2 under /assets/fonts, @font-face inlined in <style>.
+     Only the LCP hero is preloaded (responsive: phones get the lighter 800w file); fonts load via @font-face + font-display:swap so they never steal bandwidth from the hero. -->
+<link rel="preload" as="image" href="assets/hero.webp" imagesrcset="assets/hero-800.webp 800w, assets/hero.webp 1100w" imagesizes="(max-width:700px) 100vw, 1040px" fetchpriority="high">
 
 <!-- Admin Mode Guard -->
 <script>
@@ -93,6 +94,10 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 </script>
 
 <style>
+/* self-hosted fonts (latin subset, variable woff2) — font-display:swap paints text immediately with the serif/sans fallback, then swaps */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --paper:#FBFAF7; --paper-2:#F3F1EA;
@@ -242,7 +247,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);lin
   </div>
 
   <figure class="lede-photo">
-    <img src="assets/hero.webp" alt="A woman in her sixties looking closely at her hairline and scalp in the bathroom mirror" width="1100" height="1375" fetchpriority="high">
+    <img src="assets/hero.webp" srcset="assets/hero-800.webp 800w, assets/hero.webp 1100w" sizes="(max-width:700px) 100vw, 1040px" alt="A woman in her sixties looking closely at her hairline and scalp in the bathroom mirror" width="1100" height="1375" fetchpriority="high" decoding="async">
   </figure>
 
   <div class="body">
@@ -291,7 +296,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.4vw,48px);lin
       <p>It doesn't have a formal clinical name. Dermatology describes the underlying process as sebum buildup, or occlusion; here we'll call it what it looks like — <strong>the Grease Cap</strong>.</p>
 
       <figure class="fig">
-        <img src="assets/diagram.webp" alt="Cross-section of skin showing a hair follicle whose opening is sealed by a cap of hardened yellow sebum buildup" width="1240" height="930">
+        <img src="assets/diagram.webp" alt="Cross-section of skin showing a hair follicle whose opening is sealed by a cap of hardened yellow sebum buildup" width="1240" height="930" loading="lazy" decoding="async">
         <figcaption>Fig. 1 — How surface buildup can seal the follicle and slow new growth (illustration for explanation).</figcaption>
       </figure>
 
