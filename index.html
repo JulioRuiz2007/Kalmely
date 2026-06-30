@@ -368,7 +368,7 @@ section{padding:74px 0}
 .bx-disclaimer{margin-top:14px;font:400 11px/1.5 var(--sans);color:var(--faint);text-align:center}
 
 /* comparison (borderless, soft highlight column) */
-.cmp{max-width:820px;margin:0 auto;position:relative}
+.cmp{max-width:680px;margin:0 auto;position:relative}
 .cmp table{width:100%;border-collapse:collapse}
 .cmp th,.cmp td{padding:15px 10px;text-align:center;font-size:14px}
 .cmp thead th{font:600 12px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding-bottom:18px}
@@ -379,7 +379,7 @@ section{padding:74px 0}
 .cmp thead th.own{border-radius:12px 12px 0 0;color:var(--ink);font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:0;text-transform:none}
 .cmp tbody td.own:last-child,.cmp tr:last-child td.own{border-radius:0 0 12px 12px}
 .cmp .yes{color:var(--ok);font-weight:700}
-.cmp .no{color:var(--faint)}
+.cmp .no{color:var(--ink-soft);font-size:13px}
 
 /* lifestyle 3-photo */
 .life{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
@@ -399,7 +399,8 @@ section{padding:74px 0}
 .rev-bar .lab{min-width:30px;font-weight:600;color:var(--ink-2)}
 .rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
 .rev-bar.is-active .fill{background:var(--gold)}
-.rev-more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.rev-more{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px}
+.rev-more .review{flex:0 1 360px;max-width:400px}
 .rev-more[hidden]{display:none}
 .rev-morewrap{text-align:center;margin-top:26px}
 .rev-morebtn{font:600 14px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
@@ -429,8 +430,8 @@ section{padding:74px 0}
 
 /* final */
 .final{text-align:center}
-.final .packs{max-width:540px;margin:22px auto 0}
-.final .add-to-cart{max-width:330px;margin:18px auto 0}
+.final .packs{max-width:690px;gap:14px;margin:30px auto 0}
+.final .add-to-cart{max-width:340px;margin:26px auto 0}
 
 /* newsletter footer */
 .news{background:var(--ink);color:var(--paper);padding:64px 0 0}
@@ -555,13 +556,13 @@ section{padding:74px 0}
 .seal-canva{display:block;width:210px;max-width:64%;margin:0 auto 18px;border-radius:50%}
 .eg-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.steps3 .step img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
+.steps3 .step img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ba-grid figure{margin:0}
 .ba-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);display:block;border:1px solid var(--line)}
 .ba-grid figcaption{text-align:center;font:600 12px/1.3 var(--sans);color:var(--ink-soft);margin-top:9px}
 .ugc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
-.ugc-strip img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
+.ugc-strip img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
 .seal-img{position:relative;width:122px;height:122px;margin:0 auto 20px}
 .seal-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 .seal-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 10.5px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);text-align:center;padding:0 22px 16px}
@@ -637,11 +638,11 @@ section{padding:74px 0}
 .recap .sub-optin{max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
 
 /* mechanism prose (B5) */
-.mech-prose{max-width:680px;margin:0 auto}
+.mech-prose{max-width:620px;margin:0 auto;text-align:center}
 .mech-prose h3{font-size:20px;margin:28px 0 8px}
 .mech-prose p{color:var(--ink-2);font-size:16px;margin-bottom:14px}
 .mech-prose .lead{font-size:17px;color:var(--ink)}
-.mech-fig{max-width:560px;margin:10px auto 24px}
+.mech-fig{max-width:520px;margin:38px auto 24px}
 .mech-fig .ph{aspect-ratio:16/9;border-radius:var(--r)}
 .mech-fig figcaption{text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft);margin-top:9px}
 
@@ -895,15 +896,15 @@ section{padding:74px 0}
       <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Why a bar reaches the scalp where rinse-off products don't</h2></div>
       <div class="cmp fade-slow">
         <table>
-          <thead><tr><th>&nbsp;</th><th class="own">Kalmely Bar</th><th>Daily liquid shampoo</th><th>Leave-in serums</th><th>Clarifying rinse / co-wash</th></tr></thead>
+          <thead><tr><th>&nbsp;</th><th class="own">Kalmely Bar</th><th>Other scalp products</th></tr></thead>
           <tbody>
-            <tr><td>Works on the scalp, not just the strand</td><td class="own yes">✔</td><td class="no">✖ strips surface only</td><td class="no">✖</td><td>partial</td></tr>
-            <tr><td>No daily dropper or pill to remember</td><td class="own yes">✔</td><td>—</td><td class="no">✖</td><td>—</td></tr>
-            <tr><td>Sulfate-free — won't re-trigger the oil cycle</td><td class="own yes">✔</td><td class="no">✖</td><td>—</td><td>varies</td></tr>
-            <tr><td>Gentle daily use — no harsh strip-and-rebound oil cycle</td><td class="own yes">✔</td><td class="no">✖</td><td>—</td><td>varies</td></tr>
-            <tr><td>Helps lift buildup so the scalp can breathe</td><td class="own yes">✔</td><td class="no">✖</td><td class="no">✖ sits on a sealed scalp</td><td>partial</td></tr>
-            <tr><td>Cost per use</td><td class="own yes">&lt; $1 / wash</td><td>$</td><td class="no">~$88 / month</td><td>$$</td></tr>
-            <tr><td>60-Day money-back guarantee</td><td class="own yes">✔</td><td>—</td><td class="no">rarely</td><td>—</td></tr>
+            <tr><td>Works on the scalp, not just the strand</td><td class="own yes">✔</td><td class="no">Mostly strip the surface</td></tr>
+            <tr><td>No daily dropper or pill to remember</td><td class="own yes">✔</td><td class="no">Often a multi-step routine</td></tr>
+            <tr><td>Sulfate-free — won't re-trigger the oil cycle</td><td class="own yes">✔</td><td class="no">Varies — many strip</td></tr>
+            <tr><td>Gentle enough for daily use</td><td class="own yes">✔</td><td class="no">Strip-and-rebound cycle</td></tr>
+            <tr><td>Helps lift buildup so the scalp can breathe</td><td class="own yes">✔</td><td class="no">Sit on a sealed scalp</td></tr>
+            <tr><td>Cost per use</td><td class="own yes">&lt; $1 / wash</td><td class="no">$$ and up</td></tr>
+            <tr><td>60-Day money-back guarantee</td><td class="own yes">✔</td><td class="no">Rarely</td></tr>
           </tbody>
         </table>
       </div>
@@ -1269,10 +1270,21 @@ section{padding:74px 0}
   // Aggregate rating + distribution + "verified buyer" labels restored per client decision (risk accepted) — swap for real Loox/Judge.me data once wired
   // round face-avatar placeholder next to name/age (real customer photos swap in separately)
   function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
-  feat.innerHTML=R.map(cT).join('');
+  var FEAT=6; // 2×3 symmetric grid up front; the rest behind "Show more"
+  feat.innerHTML=R.slice(0,FEAT).map(cT).join('');
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  if(btn)btn.style.display='none';
-  if(more)more.hidden=true;
+  var rest=R.slice(FEAT);
+  if(rest.length&&more&&btn){
+    more.innerHTML=rest.map(cT).join('');
+    btn.style.display='';
+    btn.addEventListener('click',function(){
+      more.hidden=false;
+      btn.parentNode.style.display='none';
+    });
+  }else{
+    if(btn)btn.style.display='none';
+    if(more)more.hidden=true;
+  }
 })();
 </script>
 <script>
