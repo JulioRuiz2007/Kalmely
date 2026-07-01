@@ -995,6 +995,8 @@ section{padding:74px 0}
       </div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
+      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Show even more reviews ↓</button></div>
+      <div class="rev-more" id="revMore2" hidden></div>
       <div class="sp-caps fade-slow" style="margin-top:30px"><span>“My part looks less see-through.”</span><span>“Scalp feels lighter.”</span><span>“Less in the drain.”</span><span>“I feel like myself again.”</span></div>
       <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Add to Cart — <span class="cta-price">$39</span></button></div>
     </div>
@@ -1406,9 +1408,12 @@ section{padding:74px 0}
     {r:5,n:'Priya N.',d:'Age 53',av:'avatar-ra7',t:'The first thing that did anything.',b:"Menopause changed my hair more than anything else, and nothing I bought made a dent. This is the first thing that made my scalp feel genuinely clean — not stripped. My ponytail feels a little fuller in my hand, and honestly I just feel more like myself."},
     {r:5,n:'Yvonne B.',d:'Age 64',av:'avatar-ra8',t:'The missing first step.',b:"I was already using a serum and getting nowhere — turns out my scalp was too greasy for anything to get through. I started using this first, kept the serum, and it's completely different now. Scalp feels clean and light, and my part looks fuller than it has in a while."}
   ];
-  // LEAD = 8 highlighted scalp reviews (4 shown as photo cards above); the rest of the wall comes from reviews.js (window.KALMELY_REVIEWS)
-  var R=LEAD.concat(window.KALMELY_REVIEWS||[]);
+  // Two tiers: LEAD = reviews WITH a profile photo (avatars), the rest (window.KALMELY_REVIEWS) have no photo.
+  var WITHPHOTO=LEAD;                              // tier 1 — "Show more reviews" reveals these (profile photos)
+  var NOPHOTO=(window.KALMELY_REVIEWS||[]);        // tier 2 — "Show even more reviews" reveals these
+  var R=WITHPHOTO.concat(NOPHOTO);
   var btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
+  var btn2=document.getElementById('revMoreBtn2'),more2=document.getElementById('revMore2'),more2wrap=document.getElementById('revMore2Wrap');
   if(!R.length)return;
   var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
@@ -1416,16 +1421,36 @@ section{padding:74px 0}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
   function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  var TEXTR=R; // Show more reveals ALL 8 written reviews (the 4 photo cards above are highlights)
-  if(more&&btn&&TEXTR.length){
-    more.innerHTML=TEXTR.map(cT).join('');
+  // TIER 1 — "Show more reviews" reveals the photo-profile reviews, and unveils the tier-2 button below them
+  if(more&&btn&&WITHPHOTO.length){
+    more.innerHTML=WITHPHOTO.map(cT).join('');
     more.hidden=true;
     btn.textContent='Show more reviews ↓';
     btn.addEventListener('click',function(){
-      if(more.hidden){more.hidden=false;btn.textContent='Show less reviews ↑';}
-      else{more.hidden=true;btn.textContent='Show more reviews ↓';btn.scrollIntoView({block:'center'});}
+      if(more.hidden){
+        more.hidden=false;btn.textContent='Show fewer reviews ↑';
+        if(more2wrap&&NOPHOTO.length)more2wrap.hidden=false;   // reveal the tier-2 button
+      }else{
+        more.hidden=true;btn.textContent='Show more reviews ↓';
+        // collapsing tier 1 also collapses tier 2 for a clean state
+        if(more2){more2.hidden=true;}
+        if(more2wrap){more2wrap.hidden=true;}
+        if(btn2){btn2.textContent='Show even more reviews ↓';}
+        btn.scrollIntoView({block:'center'});
+      }
     });
   }else if(btn){btn.style.display='none';}
+
+  // TIER 2 — "Show even more reviews" reveals the rest (no photo, face icon); also collapsible
+  if(more2&&btn2&&NOPHOTO.length){
+    more2.innerHTML=NOPHOTO.map(cT).join('');
+    more2.hidden=true;
+    btn2.textContent='Show even more reviews ↓';
+    btn2.addEventListener('click',function(){
+      if(more2.hidden){more2.hidden=false;btn2.textContent='Show fewer reviews ↑';}
+      else{more2.hidden=true;btn2.textContent='Show even more reviews ↓';btn2.scrollIntoView({block:'center'});}
+    });
+  }else if(more2wrap){more2wrap.hidden=true;}
 })();
 </script>
 <script>
