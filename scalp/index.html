@@ -170,9 +170,31 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* ============ HERO ============ */
 .hero{padding:30px 0 14px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 530px;grid-template-areas:"gallery head" "gallery buy";gap:20px 50px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 530px;grid-template-areas:"gallery head" "gallery convince" "gallery buy";gap:20px 50px;align-items:start}
 .hero-head{grid-area:head}
+.hero-convince{grid-area:convince}
 .buybox{grid-area:buy}
+/* convince strip — shown BEFORE the packs: mechanism teaser + one proof + guarantee badge (the visitor clicked "see how it works", so show it) */
+.hc{border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden;margin-bottom:2px}
+.hc + .hc{margin-top:14px}
+.hc-mech{padding:18px 18px 6px}
+.hc-eyebrow{font:700 10.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.hc-mech h3{font-family:'Fraunces',var(--serif);font-weight:600;font-size:20px;line-height:1.15;color:var(--ink);margin-bottom:8px}
+.hc-mech p{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin-bottom:14px}
+.hc-diag{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hc-diag figure{margin:0}
+.hc-diag img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#FBF7EF;border-radius:10px;display:block}
+.hc-diag figcaption{font:600 11px/1.3 var(--sans);color:var(--ink-soft);text-align:center;margin-top:6px}
+.hc-proof{display:flex;gap:14px;align-items:center;padding:16px 18px}
+.hc-proof img{width:112px;height:112px;flex:0 0 112px;object-fit:cover;border-radius:10px}
+.hc-proof .hc-pq{font-family:'Fraunces',var(--serif);font-style:italic;font-size:16px;line-height:1.35;color:var(--ink);margin-bottom:6px}
+.hc-proof .hc-pby{font:600 12px/1.4 var(--sans);color:var(--ink-2)}
+.hc-proof .hc-pby em{color:var(--ink-soft);font-weight:500;font-style:normal}
+.hc-proof .hc-pcap{font:600 11px/1 var(--sans);letter-spacing:.02em;color:var(--gold);text-transform:uppercase;margin-bottom:7px;display:block}
+.hc-guar{display:flex;gap:12px;align-items:center;padding:15px 18px;background:var(--paper-2)}
+.hc-guar svg{flex:0 0 30px;width:30px;height:30px;color:var(--ink)}
+.hc-guar b{font:700 14px/1.25 var(--sans);color:var(--ink);display:block;margin-bottom:2px}
+.hc-guar span{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
 .hx-eyebrow{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
 
 /* gallery */
@@ -597,7 +619,7 @@ section{padding:74px 0}
 
 /* ============ responsive ============ */
 @media(max-width:980px){
-  .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"gallery" "head" "buy";gap:20px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"gallery" "head" "convince" "buy";gap:20px}
   .gallery{position:static}
   .reasons,.values,.steps,.life,.rev-grid{grid-template-columns:1fr 1fr}
   .rev-top{grid-template-columns:1fr;gap:20px}
@@ -622,7 +644,7 @@ section{padding:74px 0}
      so nothing is wider than the page and there is zero horizontal scroll. */
   /* definite 100% column (not flexible 1fr) so the wide thumbnail strip's content can't inflate the track */
   .hero-grid{grid-template-columns:100%;padding-left:0;padding-right:0}
-  .hero-head,.buybox{padding-left:28px;padding-right:28px}
+  .hero-head,.hero-convince,.buybox{padding-left:28px;padding-right:28px}
   .hero-stage{width:100%;max-width:100%;margin-left:0;border-radius:0}
   /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
   .hero-slide{aspect-ratio:6/5}
@@ -819,13 +841,47 @@ section{padding:74px 0}
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
         <p class="bx-sub">The 60-second Korean scalp bar designed to help lift the Grease Cap — the greasy buildup that can seal roots in many women — so the part can start to look like itself again.</p>
         <p class="bx-micro">It isn't only your hormones. For many women, it's a hardened layer of greasy buildup smothering the root — and it was never your fault.</p>
-        <div class="bx-badges"><div class="bx-badges-row"><span>Korean Scalp Science</span><span>Sulfate-Free</span><span>60-Day Guarantee</span><span>Dermatologist Approved</span></div></div>
+        <div class="bx-badges"><div class="bx-badges-row"><span>Korean Scalp Science</span><span>Sulfate-Free</span><span>Vegan</span><span>60-Day Guarantee</span></div></div>
         <ul class="bx-promise">
           <li>Helps cleanse the greasy buildup daily shampoo leaves behind</li>
           <li>Supports a visibly fuller, healthier-looking part over time</li>
           <li>Leaves the scalp feeling clean, light and able to breathe</li>
           <li>Works gradually — week by week, not by Friday</li>
         </ul>
+      </div>
+
+      <!-- convince strip: shown BEFORE the packs (mechanism → one proof → guarantee) -->
+      <div class="hero-convince fade-slow">
+        <div class="hc">
+          <div class="hc-mech">
+            <div class="hc-eyebrow">Why nothing has worked</div>
+            <h3>Meet the Grease Cap</h3>
+            <p>Over the years a hardened layer of greasy buildup forms over the roots and seals them shut — which is exactly why serums, oils and supplements just sat on top and never got through. The bar is made with fermented botanical oils designed to dissolve that layer, so the scalp can finally breathe.</p>
+            <div class="hc-diag">
+              <figure><img src="assets/grease-cap-diagram.webp" alt="Cross-section of a hair follicle sealed shut by a waxy grease-cap layer" width="560" height="560" loading="lazy"><figcaption>Sealed by the Grease Cap</figcaption></figure>
+              <figure><img src="assets/grease-cap-cleared.webp" alt="Cross-section of a hair follicle cleared of buildup, the scalp able to breathe" width="560" height="560" loading="lazy"><figcaption>Cleared — able to breathe</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="hc">
+          <div class="hc-proof">
+            <img src="assets/beforeafter-blonde.webp" alt="Susan T., verified customer — her center part before and after several weeks of regular use" width="820" height="820" loading="lazy">
+            <div>
+              <span class="hc-pcap">Her part · 6 weeks</span>
+              <p class="hc-pq">“Six weeks in and my roots finally feel clean.”</p>
+              <span class="hc-pby">Susan T. <em>✓ Verified Buyer · Age 57</em></span>
+            </div>
+          </div>
+        </div>
+        <div class="hc">
+          <div class="hc-guar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><path d="m8.5 12 2.3 2.3L16 9"/></svg>
+            <div>
+              <b>60-Day Money-Back Guarantee</b>
+              <span>Use it daily for 60 days. If your scalp doesn't look and feel better, we refund every cent — even a half-used bar. The risk is ours, not yours.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- buy box -->
@@ -884,6 +940,29 @@ section{padding:74px 0}
           <details><summary>How is a bar different from my shampoo?</summary><p>Liquid shampoo strips the surface and rinses off in seconds. The bar is made with fermented botanical oils designed to help break down the greasy buildup that can seal the scalp — the first step that comes before everything else you use.</p></details>
           <details><summary>What if it doesn't work for me?</summary><p>Use it daily for 60 days. If you don't love how your scalp looks and feels, email hello@kalmely.com and we'll refund every cent — even a half-used bar.</p></details>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND ACCOUNTABILITY (honest — a real team stands behind the guarantee) ===== -->
+  <section>
+    <div class="wrap" style="max-width:680px">
+      <div class="founder fade-slow">
+        <div class="eyebrow" style="text-align:left">The team behind the bar</div>
+        <h2 style="font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.14;margin:9px 0 14px">A real team stands behind every bar — and every refund</h2>
+        <p>Kalmely is an independent scalp-care brand. Behind the guarantee is a small team that answers its own email and honors every refund — no call-center runaround, no fine print built to run out the clock. Use the bar daily for 60 days, and if you're not happy with how your scalp looks and feels, email us and we'll refund every cent — even a half-used bar.</p>
+        <p>A real person reads every message at <a href="mailto:hello@kalmely.com" style="color:var(--ink);font-weight:600">hello@kalmely.com</a> — before and after you buy.</p>
+        <div class="sig">— The Kalmely team</div>
+        <!-- DERM/LAB ENDORSEMENT SLOT — activate once Julio provides the REAL name + credential.
+             Do NOT invent a name. When ready, uncomment and fill the [BRACKETS]:
+        <div class="derm-endorse" style="margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;display:flex;gap:12px;align-items:center">
+          <img src="assets/[DERM-PHOTO].webp" alt="[Dr. NAME], [credential]" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 56px">
+          <div>
+            <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">"[one honest line of endorsement — no medical/cure claims]"</p>
+            <span style="font:600 12.5px/1.3 var(--sans);color:var(--ink)">[Dr. NAME], [credential/clinic]</span>
+          </div>
+        </div>
+        -->
       </div>
     </div>
   </section>
