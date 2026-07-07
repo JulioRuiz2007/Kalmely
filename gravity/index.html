@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-01.webp?v=gc2" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-01.webp?v=gc2" imagesrcset="assets/hero-01-800.webp 800w, assets/hero-01.webp?v=gc2 1080w" imagesizes="(max-width:980px) 100vw, 640px" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
 <style>
@@ -822,7 +822,7 @@ section{padding:74px 0}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <!-- 6 real hero images, fixed order 01..06 (01-packshot is the featured/default) -->
-            <div class="hero-slide"><img src="assets/hero-01.webp?v=gc2" alt="The Gravity Cradle with its box" width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-01.webp?v=gc2" srcset="assets/hero-01-800.webp 800w, assets/hero-01.webp?v=gc2 1080w" sizes="(max-width:980px) 100vw, 640px" alt="The Gravity Cradle with its box" width="1080" height="1080" fetchpriority="high"></div>
             <div class="hero-slide"><img src="assets/hero-02.webp?v=gc2" alt="Ten minutes lying down — the Gravity Cradle in use, 90-day trial" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-03.webp?v=gc2" alt="Why it works: the cushion of tension at the base of the neck" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-04.webp?v=gc2" alt="1,900+ women have taken the first step — before and after profiles" width="1080" height="1080" loading="lazy"></div>
