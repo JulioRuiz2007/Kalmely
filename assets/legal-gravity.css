@@ -1,0 +1,76 @@
+/* Kalmely scalp brand — legal pages (matches the PdP + /contact) */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{margin:0;padding:0}
+:root{
+  --paper:#FCFBF9; --paper-2:#F3F2EE; --paper-3:#EAE9E3; --card:#FFFFFF;
+  --ink:#1E3048; --ink-2:#3A4C63; --ink-soft:#64748B; --faint:#9FA4AB;
+  --line:#ECEBE4; --line-2:#DCD9D0; --gold:#46698B;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --max:1240px;
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;width:100%}
+
+/* announce + nav (shared with the PdP) */
+.announce{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font:300 13.5px/1 var(--sans);letter-spacing:.04em;padding:13px 16px}
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line-2)}
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;grid-template-areas:"nav logo cart";align-items:center;min-height:64px}
+.nav-left{grid-area:nav;justify-self:start;display:flex;gap:18px;align-items:center}
+.nav-left a{font:700 11.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:color .15s;padding-bottom:3px;border-bottom:2px solid transparent}
+.nav-left a:hover{color:var(--ink)}
+.nav-left a.is-active{color:var(--ink);border-bottom-color:var(--gold)}
+.logo{grid-area:logo;justify-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;line-height:1;text-decoration:none}
+.logo-brand{font:600 37px/1 var(--serif);letter-spacing:.01em;color:var(--ink)}
+.logo-brand i{color:var(--gold);font-style:normal}
+.logo-tag{font:500 6.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:1px}
+.nav-cart{grid-area:cart;justify-self:end;display:flex;align-items:center;gap:7px;color:var(--ink)}
+.nav-cart svg{width:21px;height:21px}
+
+/* legal content */
+main{flex:1;padding:60px 0 84px}
+.legal{max-width:760px;margin:0 auto}
+.page-eyebrow{display:flex;align-items:center;gap:12px;font:700 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:22px}
+.page-eyebrow::before{content:"";width:32px;height:1.5px;background:var(--gold)}
+.legal h1{font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(38px,6vw,58px);line-height:1.05;color:var(--ink);margin:0 0 12px;letter-spacing:-.01em}
+.legal h1 em{font-style:italic;color:var(--gold)}
+.updated{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:36px}
+.lead{font-family:'Fraunces',var(--serif);font-size:21px;line-height:1.5;font-style:italic;color:var(--ink);border-left:3px solid var(--gold);padding-left:24px;margin:0 0 42px}
+.legal h2{font-family:'Fraunces',var(--serif);font-weight:600;font-size:25px;line-height:1.22;color:var(--ink);margin:38px 0 13px}
+.legal p{font:400 16px/1.72 var(--sans);color:var(--ink-2);margin:0 0 16px}
+.legal strong{color:var(--ink);font-weight:600}
+.legal a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.legal ul,.legal ol{margin:0 0 16px;padding-left:22px}
+.legal li{font:400 16px/1.7 var(--sans);color:var(--ink-2);margin:0 0 9px}
+.legal li::marker{color:var(--gold)}
+.callout{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 22px;margin:26px 0}
+.callout p{margin:0;color:var(--ink-2)}
+.callout strong{color:var(--ink)}
+
+/* footer (green) */
+.foot{background:var(--ink);color:var(--paper);padding:54px 0 30px;margin-top:auto}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.4fr;gap:40px;align-items:start}
+.foot-logo{font:600 30px/1 var(--serif);color:var(--paper)}
+.foot-logo i{color:var(--gold);font-style:normal}
+.foot-logo .tag{display:block;font:500 7px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(249,248,246,.55);margin-top:6px}
+.foot-h{font:600 13px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:rgba(249,248,246,.6);margin-bottom:16px}
+.foot-menu{display:flex;flex-direction:column;gap:11px;font:500 14.5px/1 var(--sans);color:rgba(249,248,246,.85)}
+.foot-menu a:hover{color:var(--paper)}
+.foot-news p{font:400 14px/1.55 var(--sans);color:rgba(249,248,246,.72);margin-bottom:16px}
+.foot-news form{display:flex;gap:8px;max-width:380px}
+.foot-news input{flex:1;padding:13px 15px;border-radius:9px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:var(--paper);font:500 14px/1 var(--sans)}
+.foot-news input::placeholder{color:rgba(249,248,246,.5)}
+.foot-news button{background:var(--paper);color:var(--ink);font:600 14px/1 var(--sans);padding:0 20px;border-radius:9px;cursor:pointer}
+.foot-news .msg{font:500 12.5px/1 var(--sans);color:#E6C29C;margin-top:10px;min-height:14px}
+.foot-fine{font:400 11.5px/1.6 var(--sans);color:rgba(249,248,246,.42);margin-top:40px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+@media(max-width:620px){
+  .nav-inner{grid-template-areas:"sp logo cart" "nav nav nav";row-gap:8px;min-height:0;padding-top:10px;padding-bottom:10px}
+  .nav-left{grid-area:nav;justify-self:center;gap:24px}
+  .logo-brand{font-size:34px}
+  main{padding:40px 0 60px}
+  .lead{font-size:19px}
+  .legal h1{font-size:36px}
+}
