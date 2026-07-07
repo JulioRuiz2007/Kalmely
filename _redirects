@@ -1,7 +1,46 @@
-/ /scalp/ 301
-/tea /scalp/ 301
-/tea.html /scalp/ 301
-/relief /scalp/ 301
-/relief.html /scalp/ 301
-/returns /scalp-refund.html 301
-/returns.html /scalp-refund.html 301
+# Everything resolves to the Gravity Cradle. No old product page stays reachable.
+/ /gravity/ 301
+/index.html /gravity/ 301
+
+# --- scalp (previous product) ---
+/scalp /gravity/ 301
+/scalp/* /gravity/ 301
+/scalp-report /gravity/ 301
+/scalp-report/* /gravity/ 301
+/scalp-privacy.html /gravity-privacy.html 301
+/scalp-refund.html /gravity-refund.html 301
+/scalp-shipping.html /gravity-shipping.html 301
+/scalp-terms.html /gravity-terms.html 301
+/scalp-thankyou.html /gravity-thankyou.html 301
+
+# --- balm (Kalmely Relief) ---
+/relief /gravity/ 301
+/relief.html /gravity/ 301
+/relief-contact.html /contact.html 301
+/relief-privacy.html /gravity-privacy.html 301
+/relief-refund.html /gravity-refund.html 301
+/relief-shipping.html /gravity-shipping.html 301
+/relief-terms.html /gravity-terms.html 301
+/relief-thankyou.html /gravity-thankyou.html 301
+
+# --- tea tree ---
+/tea /gravity/ 301
+/tea.html /gravity/ 301
+
+# --- sleep mask era ---
+/v2 /gravity/ 301
+/v2.html /gravity/ 301
+/v3 /gravity/ 301
+/v3.html /gravity/ 301
+/v4 /gravity/ 301
+/v4.html /gravity/ 301
+/cart.html /gravity/ 301
+/thank-you.html /gravity-thankyou.html 301
+
+# --- old generic legals ---
+/privacy.html /gravity-privacy.html 301
+/refund-policy.html /gravity-refund.html 301
+/shipping-policy.html /gravity-shipping.html 301
+/terms.html /gravity-terms.html 301
+/returns /gravity-refund.html 301
+/returns.html /gravity-refund.html 301
