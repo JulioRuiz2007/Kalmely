@@ -1296,7 +1296,7 @@ section{padding:74px 0}
   }
 
   // ---------- Newsletter footer (post to /api/lead-magnet) ----------
-  function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'newsletter'})}).catch(function(){});}catch(e){}}
+  function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'newsletter',product:'gravity'})}).catch(function(){});}catch(e){}}
   // WELCOME10 fully removed — clear any stale local flag from older sessions
   try{localStorage.removeItem('kalmely_welcome');}catch(e){}
     (function(){
