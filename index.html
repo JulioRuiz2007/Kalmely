@@ -853,7 +853,7 @@ section{padding:74px 0}
       <div class="buybox fade-slow">
         <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>Launch Offer — Limited Stock</b> — This batch sold out <b>fast</b> last month. Order now to lock in the launch price and free gifts before this run is gone.</p></div>
         <div class="bx-sec">
-          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp" alt="Your Gravity Cradle bundle" width="760" height="760"></div>
+          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp?v=b2" alt="Your Gravity Cradle bundle" width="760" height="760"></div>
           <div class="sale-divider">Launch Offer – Limited Time Only</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
             <button type="button" class="pack" data-sku="GRAVITY-1" data-price="54.95" role="radio" aria-checked="false">
@@ -1174,7 +1174,7 @@ section{padding:74px 0}
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
-    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp';}  // swap the bundle preview to match the selected pack
+    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=b2';}  // swap the bundle preview to match the selected pack
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
