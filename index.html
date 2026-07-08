@@ -1126,7 +1126,7 @@ section{padding:74px 0}
   </div>
   <div class="cart-body">
     <div class="cart-item">
-      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01.webp?v=gc2" alt="The Gravity Cradle" width="96" height="96"></div>
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01-thumb.webp" alt="The Gravity Cradle" width="96" height="96" loading="lazy"></div>
       <div class="cart-item-info">
         <div class="cart-item-name" id="cartName">The Gravity Cradle</div>
         <div class="cart-item-meta" id="cartMeta">2 Bars</div>
@@ -1232,7 +1232,7 @@ section{padding:74px 0}
     document.getElementById('cartName').textContent='The Gravity Cradle';
     document.getElementById('cartMeta').textContent=t.label;
     document.getElementById('cartQty').textContent='×1';
-    document.getElementById('cartImg').src='assets/hero-01.webp';
+    document.getElementById('cartImg').src='assets/hero-01-thumb.webp';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
