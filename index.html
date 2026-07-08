@@ -125,7 +125,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   --paper:#FCFBF9; --paper-2:#F3F2EE; --paper-3:#EAE9E3; --card:#FFFFFF;
   --ink:#1E3048; --ink-2:#3A4C63; --ink-soft:#64748B; --faint:#9FA4AB;
   --line:#ECEBE4; --line-2:#DCD9D0;
-  --ok:#9B5B33; --gold:#46698B;
+  --ok:#E1701A; --gold:#46698B;
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -139,7 +139,7 @@ html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   .pack-thumb{height:0;padding-bottom:100%;position:relative}
   .pack-thumb img{position:absolute;top:0;left:0}
   .hc-diag img,.rev-img,.reason img,.steps3 .step img,.ba-grid img,.ugc-strip img,.photo-reviews img{height:auto}
-  @media(max-width:980px){.hero-slide{padding-bottom:83.34%}}
+  @media(max-width:980px){.hero-slide{padding-bottom:100%}}
 }
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
@@ -148,7 +148,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 s{color:var(--faint)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
 h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
-.eyebrow{font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.eyebrow{font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ok)}
 .label{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 .fade-slow{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .fade-slow.in{opacity:1;transform:none}
@@ -244,7 +244,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* buy box */
 .rating{display:flex;align-items:center;gap:8px;font:500 13px/1 var(--sans);color:var(--ink-2)}
-.stars{color:var(--ink);letter-spacing:2px;font-size:14px}
+.stars{color:var(--ok);letter-spacing:2px;font-size:14px}
 .starrow{position:relative;display:inline-block;color:#D9D3C0;font-size:16px;letter-spacing:2px;line-height:1;white-space:nowrap;vertical-align:middle}
 .starrow::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #CCC5AD}
 .starrow-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;color:#C2A24E;white-space:nowrap}
@@ -292,7 +292,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:17px 11px 15px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:border-color .15s,box-shadow .15s}
 .pack:hover{border-color:var(--ink-soft)}
 .pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
-.pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
+.pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ok);color:#fff;font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
 .pack-badge.alt{background:var(--gold);color:#fff}
 .pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
 .pack-thumb .ph{width:100%;height:100%}
@@ -408,7 +408,7 @@ section{padding:74px 0}
 
 /* buy-box subscribe note + disclaimer */
 .pack .pack-sub{display:block;font:600 9px/1.25 var(--sans);color:var(--ink-soft);margin-top:5px;letter-spacing:.01em}
-.pack .pack-banner{display:block;max-width:100%;margin-top:9px;background:#F4EBE2;color:var(--ok);font:700 10px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #ECDBC9;text-align:center}
+.pack .pack-banner{display:block;max-width:100%;margin-top:auto;padding-top:6px;background:#F4EBE2;color:var(--ok);font:700 10px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #ECDBC9;text-align:center}
 .sub-note{margin-top:10px;text-align:center;font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
 .bx-disclaimer{margin-top:14px;font:400 11px/1.5 var(--sans);color:var(--faint);text-align:center}
 
@@ -433,7 +433,7 @@ section{padding:74px 0}
 /* reviews */
 .rev-top{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin-bottom:34px}
 .rev-score .big{font:700 52px/1 'Sora',var(--sans);letter-spacing:-.02em}
-.rev-score .st{color:var(--ink);letter-spacing:2px;font-size:16px}
+.rev-score .st{color:var(--ok);letter-spacing:2px;font-size:16px}
 .rev-score .cnt{font:500 13px/1 var(--sans);color:var(--ink-soft);margin-top:4px}
 .rev-dist{display:flex;flex-direction:column;gap:6px}
 .rev-bar{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--sans);color:var(--ink-soft)}
@@ -460,7 +460,7 @@ section{padding:74px 0}
 .review .av img{width:100%;height:100%;object-fit:cover;display:block}
 .review .nm{font:600 13px/1.3 var(--sans)}
 .review .vf{font:600 10px/1 var(--sans);color:var(--ok);display:flex;align-items:center;gap:3px;margin-top:2px}
-.review .st{color:var(--ink);letter-spacing:1px;font-size:12px;margin-bottom:7px}
+.review .st{color:var(--ok);letter-spacing:1px;font-size:12px;margin-bottom:7px}
 .review .rt{font:600 14px/1.3 var(--serif);margin-bottom:5px}
 .review p{font-size:13.5px;color:var(--ink-2)}
 .review .rev-ph{width:132px;height:132px;object-fit:cover;border-radius:10px;margin-top:12px;display:block;border:1px solid var(--line)}
@@ -469,7 +469,7 @@ section{padding:74px 0}
 /* guarantee */
 .guarantee{text-align:center}
 .guarantee .seal{width:92px;height:92px;border-radius:50%;border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;font:700 10px/1.1 var(--sans);letter-spacing:.05em;text-transform:uppercase}
-.guarantee .seal b{font:600 24px/1 var(--serif)}
+.guarantee .seal b{font:600 24px/1 var(--serif);color:var(--ok)}
 .guarantee h2{font-family:'Fraunces',var(--serif);font-weight:600;letter-spacing:-.01em;font-size:clamp(29px,3.6vw,42px);line-height:1.12;margin-bottom:12px}
 .guarantee p{max-width:540px;margin:0 auto 24px;color:var(--ink-2)}
 .guarantee .add-to-cart{max-width:330px;margin-left:auto;margin-right:auto}
@@ -614,7 +614,7 @@ section{padding:74px 0}
 .photo-reviews figure{margin:0}
 .photo-reviews img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block;cursor:zoom-in}
 .photo-reviews figcaption{margin-top:11px;text-align:left}
-.pr-stars{color:var(--ink);letter-spacing:1.5px;font-size:12px}
+.pr-stars{color:var(--ok);letter-spacing:1.5px;font-size:12px}
 .pr-quote{font:600 14.5px/1.32 var(--serif);color:var(--ink);margin:5px 0}
 .pr-by{display:block;font:600 12px/1.35 var(--sans);color:var(--ink-2)}
 .pr-by em{font-style:normal;color:var(--ok);font-weight:700}
@@ -658,7 +658,7 @@ section{padding:74px 0}
   .hero-head,.hero-convince,.buybox{padding-left:28px;padding-right:28px}
   .hero-stage{width:100%;max-width:100%;margin-left:0;border-radius:0}
   /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
-  .hero-slide{aspect-ratio:6/5}
+  .hero-slide{aspect-ratio:1/1} /* slides con texto de borde a borde: sin recorte en móvil */
   .hero{padding:14px 0 14px}
   .hero-thumbs{width:100%;max-width:100%;margin-left:0;padding:0 28px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .hero-thumbs::-webkit-scrollbar{display:none}
@@ -844,7 +844,7 @@ section{padding:74px 0}
 
       <!-- hero headline -->
       <div class="hero-head fade-slow">
-        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (1,924 reviews)</a></div>
+        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; <span style="color:var(--ok);font-weight:600">(1,924 reviews)</span></a></div>
         <h1 class="bx-h1 product">The Gravity Cradle</h1>
         <p class="bx-sub">The passive 10-minute technique that lets gravity release the "Cushion Hump" — the soft pad of tension behind the dowager's hump.</p>
         <p class="bx-micro">It was never bad posture. And it was never your fault.</p>
@@ -875,14 +875,14 @@ section{padding:74px 0}
             <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
               <span class="pack-badge">★ Most popular</span>
               <span class="pack-qty">2 Cradles</span>
-              <span class="pack-unit">One to keep, one to gift · Save $39.95</span>
+              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span>
               <span class="pack-price">$69.95<s>$109.90</s></span>
               <span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
             </button>
             <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Best value</span>
               <span class="pack-qty">3 Cradles</span>
-              <span class="pack-unit">Best value · Save $64.90</span>
+              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span>
               <span class="pack-price">$99.95<s>$164.85</s></span>
               <span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
             </button>
@@ -919,7 +919,7 @@ section{padding:74px 0}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Loved by women 45+</div><h2>★★★★★ 4.8/5 from 1,924 verified buyers</h2><p>Real photos from real customers — women roughly 48–68, everyday bedrooms, no models.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Loved by women 45+</div><h2><span style="color:var(--ok)">★★★★★</span> <span style="color:var(--ok);font-weight:700">4.8/5</span> from <span style="color:var(--ok);font-weight:700">1,924</span> verified buyers</h2><p>Real photos from real customers — women roughly 48–68, everyday bedrooms, no models.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1,924 verified reviews</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -1048,11 +1048,11 @@ section{padding:74px 0}
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
           <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · Save $39.95</span><span class="pack-price">$69.95<s>$109.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span><span class="pack-price">$69.95<s>$109.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · Save $64.90</span><span class="pack-price">$99.95<s>$164.85</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span><span class="pack-price">$99.95<s>$164.85</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
         </button>
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$69.95</span></button>
