@@ -961,10 +961,7 @@ section{padding:74px 0}
           <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Loved mine so much I brought one to my mom — now she asks for her ten minutes every evening.”</p><span class="pr-by">Patricia H. <em>✓ Verified Buyer · Sarasota, FL</em></span></figcaption>
         </figure>
       </div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
-      <div class="rev-more" id="revMore" hidden></div>
-      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Show even more reviews ↓</button></div>
-      <div class="rev-more" id="revMore2" hidden></div>
+      <div class="rev-morewrap"><a class="rev-morebtn" id="revJump" href="#all-reviews" style="display:inline-block;text-decoration:none">Read more reviews ↓</a></div>
       <div class="sp-caps fade-slow" style="margin-top:30px"><span>“The bump looks smaller.”</span><span>“My neck feels released.”</span><span>“I stand taller.”</span><span>“I feel like myself again.”</span></div>
       <!-- (mid-page Add-to-Cart removed — redundant with the sticky CTA and it made the proof section read like an ad) -->
     </div>
@@ -1045,6 +1042,16 @@ section{padding:74px 0}
         <details><summary>How much is shipping and how fast?</summary><p>Shipping is FREE on every order — all packs, no minimum. Tracked U.S. shipping — orders are processed in 1–3 business days and typically arrive within 7–10 business days.</p></details>
         <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. 90 days, money-back, used or unused — lie on it every night for three months, and if your neck doesn't feel more released and the mirror doesn't agree, write to hello@kalmely.com and we refund every cent. No forms, no phone tree. Fewer than 1 in 100 customers ever ask — which is the only reason we can afford to make this offer.</p></details>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== 6b. ALL REVIEWS (última prueba social antes de la oferta de cierre; el botón de arriba baja aquí) ===== -->
+  <section class="band" id="all-reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--ok)">★★★★★</span> 4.8/5 from 1,924 verified buyers — photo reviews first.</p></div>
+      <div class="rev-more" id="revTier1" hidden></div>
+      <div class="rev-more" id="revTier2" hidden></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show reviews with photos ↓</button></div>
     </div>
   </section>
 
@@ -1387,34 +1394,41 @@ section{padding:74px 0}
 (function(){
   // file-33 lead testimonials (named, age-stamped, appearance/feel only — NO before/after, NO regrowth)
   var LEAD=[{"r": 5, "n": "Diane R.", "d": "Nashville, TN", "av": "avatar-ra1", "t": "No more scarves", "b": "I spent two winters wearing scarves to cover the bump at the base of my neck. Tried a posture brace (dug into my armpits, returned it) and a chiropractor for months, which helped for about a day each time. This you just lie on. I do it while my husband watches the news, ten minutes, that's it. Took me maybe a week to figure out where exactly to put my head — too high and it doesn't do anything. But the area back there is way less stiff now and I wore a scoop neck to my niece's shower without even thinking about it until my sister pointed it out. That was a good day. Only complaint is the cover attracts lint like crazy.", "dt": "June 9, 2026"}, {"r": 5, "n": "Margaret K.", "d": "Boise, ID", "av": "avatar-ra2", "t": "so far so good", "b": "That spot at the base of my neck was hard as a rock, got worse after menopause. Two weeks of lying on this before bed and it's not so bunched up anymore. Smelled a little rubbery out of the box but that went away in a couple days.", "dt": "May 27, 2026"}, {"r": 5, "n": "Marisol R.", "d": "Fort Worth, TX", "av": "avatar-ra3", "t": "Photos don't stress me out now", "b": "I used to dread group photos because of my side profile. A few weeks in and the bump honestly doesn't look as big in pictures, and that whole area is less stiff. Wish it came in gray, the blue doesn't match anything in my bedroom, but it lives under my pillow side so who cares.", "dt": "June 24, 2026"}, {"r": 5, "n": "Gloria W.", "d": "Dayton, OH", "av": "avatar-ra4", "t": "Actually stuck with this one", "b": "I've bought so many neck gadgets that ended up in a drawer. This one is gentle — no cracking, nothing to strap on, I just lie back for ten minutes. I'm not rubbing that knot all day anymore. Arrived in two days too.", "dt": "July 2, 2026"}, {"r": 5, "n": "Linda P.", "d": "Albany, NY", "av": "avatar-ra5", "t": "happy with it", "b": "Menopause gave me that soft bump at the base of my neck along with everything else. I won't make any big claims — it's not gone — but it looks a little smaller and it's not as tight, and last week I put my hair up in a clip without doing my usual mirror check. Bought during the Mother's Day sale, glad I did.", "dt": "June 15, 2026"}, {"r": 5, "n": "Grace C.", "d": "Spokane, WA", "av": "avatar-ra6", "t": "works", "b": "Ten minutes lying in bed. Neck used to feel heavy by dinner, now it doesn't. Bump maybe a touch smaller after two months, no miracle. My cat claimed the box immediately.", "dt": "April 18, 2026"}, {"r": 5, "n": "Priya N.", "d": "Edison, NJ", "av": "avatar-ra7", "t": "Finally something passive", "b": "The brace was homework, PT exercises were homework, and I never kept up with either. This asks nothing of me — I just lie on it and my head's weight does the work. That tight band across the base of my neck has eased up more than anything else I tried. The pouch is thinner than I expected from the pictures, but it does the job.", "dt": "July 4, 2026"}, {"r": 5, "n": "Yvonne B.", "d": "Grand Rapids, MI", "av": "avatar-ra8", "t": "Wish I'd found it sooner", "b": "I always assumed the hump was just how my back was and that was that. For me at least, a lot of it seems to have been built-up tightness sitting on top, because lying on the Gravity Cradle has loosened things up noticeably. It's gradual — took a few nights to even find the right position — but my upper back doesn't feel like a brick anymore.", "dt": "March 14, 2026"}];
-  // Two tiers: LEAD = reviews WITH a profile photo (avatars), the rest (window.KALMELY_REVIEWS) have no photo.
-  // SINGLE TIER — one button ("See all reviews") reveals everything at once, ordered:
-  // reviews with an attached customer photo first, then profile-photo reviews, then the rest.
+  // Reviews completas en #all-reviews (última sección antes de la oferta de cierre).
+  // Tres estados del botón: 0 = plegado · 1 = solo reseñas CON foto de cliente (tier1) · 2 = todas (tier1+tier2) · vuelta a 0 = "Show less".
+  // El botón de la sección de arriba (#revJump) es un ancla a #all-reviews y además abre el estado 1 al hacer clic.
   var ALL=LEAD.concat(window.KALMELY_REVIEWS||[]);
-  var R=ALL.filter(function(r){return r.ph;}).concat(ALL.filter(function(r){return !r.ph&&r.av;})).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
-  var btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
-  var btn2=document.getElementById('revMoreBtn2'),more2=document.getElementById('revMore2'),more2wrap=document.getElementById('revMore2Wrap');
-  if(!R.length)return;
+  var T1=ALL.filter(function(r){return r.ph;});
+  var T2=ALL.filter(function(r){return !r.ph&&r.av;}).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
+  var btn=document.getElementById('revMoreBtn'),t1=document.getElementById('revTier1'),t2=document.getElementById('revTier2'),jump=document.getElementById('revJump'),dist=document.getElementById('revDist');
+  if(!ALL.length)return;
   var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
   function cT(r){var av='<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';var ph=r.ph?'<img class="rev-ph zoomable" src="assets/'+r.ph+'.webp?v=r2" alt="Customer photo from '+esc(r.n)+'" width="600" height="600" loading="lazy" role="button" tabindex="0" aria-label="Enlarge image">':'';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+(r.dt?' · '+esc(r.dt):'')+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+ph+'</div>';}
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  // ONE button reveals all reviews at once (photo-attached first); collapsible
-  if(more&&btn){
-    more.innerHTML=R.map(cT).join('');
-    more.hidden=true;
-    var openLbl='Read more reviews ↓';   // no count: the aggregate (1,924) is the claimed total, we render a curated subset
-    btn.textContent=openLbl;
+  // Botón de 3 estados en #all-reviews; sin contadores (el agregado 1,924 es el total declarado, esto es un subconjunto curado)
+  if(t1&&t2&&btn){
+    t1.innerHTML=T1.map(cT).join('');
+    t2.innerHTML=T2.map(cT).join('');
+    var state=0;
+    var setState=function(s){
+      state=s;
+      t1.hidden=s<1;
+      t2.hidden=s<2;
+      btn.textContent=s===0?'Show reviews with photos ↓':(s===1?'Show more reviews ↓':'Show less ↑');
+    };
+    setState(0);
     btn.addEventListener('click',function(){
-      if(more.hidden){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
-      else{more.hidden=true;btn.textContent=openLbl;btn.scrollIntoView({block:'center'});}
+      if(state===2){
+        setState(0);
+        var sec=document.getElementById('all-reviews');
+        if(sec&&sec.scrollIntoView)sec.scrollIntoView({block:'start'});
+      }else{setState(state+1);}
     });
+    if(jump)jump.addEventListener('click',function(){if(state===0)setState(1);});
   }else if(btn){btn.style.display='none';}
-  // Tier-2 button retired — single-tier reveal
-  if(more2wrap){more2wrap.hidden=true;}
-  if(more2){more2.hidden=true;}
 })();
 </script>
 <script>
