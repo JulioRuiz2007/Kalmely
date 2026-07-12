@@ -837,7 +837,9 @@ section{padding:74px 0}
   .pack .kit-list{grid-column:1/-1;grid-row:auto}
   /* móvil: solo el kit SELECCIONADO despliega su "You get" — los demás quedan compactos (anti-muro-de-texto) */
   .pack:not(.is-selected) .kit-list{display:none}
-  .kit-list .ki{font-size:14.5px}
+  .kit-list .ki{font-size:13px;gap:8px}
+  .kit-list .ki>span:first-child{white-space:nowrap}
+  .kit-list .ki .kv{font-size:12.5px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
   .pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
@@ -957,8 +959,8 @@ section{padding:74px 0}
               <span class="pack-price">$39.99<s>$97</s></span>
               <span class="kit-list"><span class="kt">Everything in your kit:</span>
                 <span class="ki"><span>1× Cellular Reset Device</span><span class="kv"><s>$69.99</s> <b>INCLUDED</b></span></span>
-                <span class="ki"><span>Soft silicone tips + spare set</span><span class="kv"><s>$8</s> <b>INCLUDED</b></span></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>Silicone tips + spare set</span><span class="kv"><s>$8</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
                 <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
@@ -969,9 +971,9 @@ section{padding:74px 0}
               <span class="pack-price">$64.98<s>$219</s></span>
               <span class="kit-list"><span class="kt">Everything in your kit:</span>
                 <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
                 <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
                 <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
@@ -982,10 +984,10 @@ section{padding:74px 0}
               <span class="pack-price">$84.99<s>$333</s></span>
               <span class="kit-list"><span class="kt">Everything in your kit:</span>
                 <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
                 <span class="ki"><span>UV-C Sterilizer Case</span><span class="kv"><s>$24.99</s> <b>FREE</b></span></span>
                 <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
                 <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
