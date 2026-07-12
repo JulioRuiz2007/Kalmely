@@ -1395,7 +1395,7 @@ section{padding:74px 0}
     document.getElementById('cartName').textContent='Kalmely — The Cellular Reset';
     document.getElementById('cartMeta').textContent=t.label;
     document.getElementById('cartQty').textContent='×1';
-    document.getElementById('cartImg').src='assets/hero-01-thumb.webp?v=n1';
+    document.getElementById('cartImg').src='assets/'+(info(curSku).img||'bundle-1')+'.webp?v=n1';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
