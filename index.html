@@ -94,9 +94,9 @@ fbq('init', '2038496957090347');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
   content_name: 'Kalmely — The Cellular Reset',
-  content_ids: ['RESET-2'],
+  content_ids: ['RESET-1'],
   content_type: 'product',
-  value: 99.95,
+  value: 39.99,
   currency: 'USD',
   offer_variant: 'RESET'
 });
@@ -993,6 +993,8 @@ section{padding:74px 0}
           </div>
         </div>
 
+        <div id="packGifts"></div>
+
         <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39.99</span></button>
 
         <div class="bx-pay" aria-label="Accepted payments">
@@ -1331,7 +1333,7 @@ section{padding:74px 0}
   var curSku=DEFAULT, curPrice='34.95';
   var packName=function(s){return 'Kalmely — The Cellular Reset · '+info(s).label;};
   var saveColours=function(){};
-  function _wantsSub(){var c=document.getElementById('subOptin');return !!(c&&c.checked);}
+  function _wantsSub(){return false;} /* suscripción desactivada — one-time only (killer del bálsamo); reactivar solo por decisión explícita */
   function subEveryMonths(s){return ({'RESET-1':2,'RESET-2':3,'RESET-3':5})[s||curSku]||2;}
   function ctaPriceTxt(){return money(_wantsSub()?info(curSku).price*0.85:info(curSku).price);}
   function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
