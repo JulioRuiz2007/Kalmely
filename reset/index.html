@@ -840,6 +840,8 @@ section{padding:74px 0}
   .packs{display:flex;flex-direction:column;gap:15px;margin-top:8px}
   .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
   .pack .kit-list{grid-column:1/-1;grid-row:auto}
+  /* móvil: solo el kit SELECCIONADO despliega su "You get" — los demás quedan compactos (anti-muro-de-texto) */
+  .pack:not(.is-selected) .kit-list{display:none}
   .kit-list .ki{font-size:14.5px}
   .bx-addon .at{font-size:15.5px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
