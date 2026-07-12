@@ -140,7 +140,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
   --paper:#FCFBF9; --paper-2:#F3F2EE; --paper-3:#EAE9E3; --card:#FFFFFF;
   --ink:#6B1E15; --ink-2:#262626; --ink-soft:#5C5C5C; --faint:#A9A49E; /* cuerpo casi negro: el rojo queda solo para títulos/subtítulos (contraste) */
   --line:#ECEBE4; --line-2:#DCD9D0;
-  --ok:#0E7C3F; --gold:#B05A50; --pop:#0E7C3F; --pop-bg:#E7F3EB; /* --ok = color de DESTACAR (rol del naranja en gravity): estrellas, ahorros, contadores, eyebrows */
+  --ok:#0E7C3F; --gold:#B05A50; --pop:#0E7C3F; --pop-bg:#E7F3EB; --star:#F5A623; /* --ok = color de DESTACAR (rol del naranja en gravity): estrellas, ahorros, contadores, eyebrows */
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -274,11 +274,11 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 
 /* buy box */
 .rating{display:flex;align-items:center;gap:8px;font:500 15px/1 var(--sans);color:var(--ink-2)}
-.stars{color:var(--ok);letter-spacing:2px;font-size:15.5px}
+.stars{color:var(--star);letter-spacing:2px;font-size:15.5px}
 .starrow{position:relative;display:inline-block;color:#D9D3C0;font-size:17px;letter-spacing:2px;line-height:1;white-space:nowrap;vertical-align:middle}
 .starrow::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #CCC5AD}
-.starrow-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;color:#C2A24E;white-space:nowrap}
-.starrow-fill::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #8A6E2A}
+.starrow-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;color:var(--star);white-space:nowrap}
+.starrow-fill::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #D18B12}
 .rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
 .bx-h1{font-family:'Fraunces',var(--serif);font-size:clamp(30px,3.4vw,40px);font-weight:600;color:#161616;line-height:1.08;margin:24px 0 6px}
 .bx-h1 .hl{color:inherit;font-weight:700;font-style:normal}
@@ -477,7 +477,7 @@ section{padding:74px 0}
 /* reviews */
 .rev-top{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin-bottom:34px}
 .rev-score .big{font:700 52px/1 'Sora',var(--sans);letter-spacing:-.02em}
-.rev-score .st{color:var(--ok);letter-spacing:2px;font-size:17px}
+.rev-score .st{color:var(--star);letter-spacing:2px;font-size:17px}
 .rev-score .cnt{font:500 15px/1 var(--sans);color:var(--ink-soft);margin-top:4px}
 .rev-dist{display:flex;flex-direction:column;gap:6px}
 .rev-bar{display:flex;align-items:center;gap:10px;font:500 14px/1 var(--sans);color:var(--ink-soft)}
@@ -511,9 +511,9 @@ section{padding:74px 0}
 .review .av img{width:100%;height:100%;object-fit:cover;display:block}
 .review .nm{font:600 15px/1.3 var(--sans)}
 .review .vf{font:600 12px/1 var(--sans);color:var(--ok);display:flex;align-items:center;gap:3px;margin-top:2px}
-.review .st{color:var(--ok);letter-spacing:1px;font-size:14px;margin-bottom:7px}
-.review .rt{font:600 15.5px/1.3 var(--serif);margin-bottom:5px}
-.review p{font-size:15px;color:var(--ink-2)}
+.review .st{color:var(--star);letter-spacing:1px;font-size:14px;margin-bottom:7px}
+.review .rt{font:600 15.5px/1.3 var(--serif);color:#1F1F1F;margin-bottom:5px}
+.review p{font-size:15px;color:#262626}
 .review .rev-ph{width:132px;height:132px;object-fit:cover;border-radius:10px;margin-top:12px;display:block;border:1px solid var(--line)}
 .review .rec{margin-top:12px;font:500 13px/1 var(--sans);color:var(--ink-soft);display:flex;align-items:center;gap:5px}
 
@@ -665,9 +665,9 @@ section{padding:74px 0}
 .photo-reviews figure{margin:0}
 .photo-reviews img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block;cursor:zoom-in}
 .photo-reviews figcaption{margin-top:11px;text-align:left}
-.pr-stars{color:var(--ok);letter-spacing:1.5px;font-size:14px}
-.pr-quote{font:600 16px/1.32 var(--serif);color:var(--ink);margin:5px 0}
-.pr-by{display:block;font:600 14px/1.35 var(--sans);color:var(--ink-2)}
+.pr-stars{color:var(--star);letter-spacing:1.5px;font-size:14px}
+.pr-quote{font:600 16px/1.32 var(--serif);color:#1F1F1F;margin:5px 0}
+.pr-by{display:block;font:600 14px/1.35 var(--sans);color:#262626}
 .pr-by em{font-style:normal;color:var(--ok);font-weight:700}
 /* before/after mini-review attributions */
 .ba-by{margin-top:10px;text-align:center}
@@ -955,9 +955,9 @@ section{padding:74px 0}
               <span class="pack-qty">Starter Kit</span>
               <span class="pack-unit">1 Device · Full price</span>
               <span class="pack-price">$39.99<s>$97</s></span>
-              <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>1× Cellular Reset Device</span><span class="kv">$69.99</span></span>
-                <span class="ki"><span>Soft silicone tips + spare set</span><span class="kv">$8</span></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>1× Cellular Reset Device</span><span class="kv"><s>$69.99</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Soft silicone tips + spare set</span><span class="kv"><s>$8</s> <b>INCLUDED</b></span></span>
                 <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
                 <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
@@ -967,9 +967,9 @@ section{padding:74px 0}
               <span class="pack-qty">Complete Kit</span>
               <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 54%</em> · <span style="white-space:nowrap">$32.49 each</span></span>
               <span class="pack-price">$64.98<s>$219</s></span>
-              <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>2× Cellular Reset Device</span><span class="kv">$139.98</span></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv">$16</span></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
                 <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
                 <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
                 <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
@@ -980,9 +980,9 @@ section{padding:74px 0}
               <span class="pack-qty">Family Kit</span>
               <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 60%</em> · <span style="white-space:nowrap">$28.33 each</span></span>
               <span class="pack-price">$84.99<s>$333</s></span>
-              <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>3× Cellular Reset Device</span><span class="kv">$209.97</span></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv">$24</span></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
                 <span class="ki"><span>UV-C Sterilizer Case</span><span class="kv"><s>$24.99</s> <b>FREE</b></span></span>
                 <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
                 <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
@@ -1021,7 +1021,7 @@ section{padding:74px 0}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Loved by 1,000s finally sleeping through the night</div><h2><span style="color:var(--ok)">★★★★★</span> <span style="color:var(--ok);font-weight:700">4.8/5</span> from <span style="color:var(--ok);font-weight:700"><span class="rev-count">48</span></span> verified reviews</h2><p>Real photos from real customers — everyday nightstands, no models.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Trusted by 3,000+ customers finally sleeping through the night</div><h2><span style="color:var(--star)">★★★★★</span> <span style="color:var(--ok);font-weight:700">4.8/5</span> · <span style="color:var(--ok);font-weight:700"><span class="rev-count">48</span> verified reviews</span></h2><p>Real photos from real customers — everyday nightstands, no models.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt"><span class="rev-count">48</span> verified reviews</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -1174,7 +1174,7 @@ section{padding:74px 0}
   <!-- ===== 6b. ALL REVIEWS (última prueba social antes de la oferta de cierre; el botón de arriba baja aquí) ===== -->
   <section class="band" id="all-reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--ok)">★★★★★</span> 4.8/5 from <span class="rev-count">48</span> verified reviews — photo reviews first.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--star)">★★★★★</span> 4.8/5 from <span class="rev-count">48</span> verified reviews — photo reviews first.</p></div>
       <div class="rev-teaserwrap teasing" id="revTeaser">
         <div class="rev-more" id="revTier1"></div>
         <div class="rev-overlay" hidden><button type="button" class="rev-morebtn rev-overlay-btn" id="revTeaserBtn">Click to read more reviews</button></div>
@@ -1334,8 +1334,7 @@ section{padding:74px 0}
     el.className='includes';
     var count=t.count||1;
     var devReg=Math.round(count*69.99*100)/100; // anchor = single-device price × count
-    var devVal=(t.was&&t.was>t.price)?'<s>$'+devReg+'</s>':'$'+devReg;
-    var dev='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+'× Cellular Reset Device'+(count>1?'s':'')+' + soft tips</span><span class="inc-val">'+devVal+'</span></li>';
+    var dev='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+'× Cellular Reset Device'+(count>1?'s':'')+' + soft tips</span><span class="inc-val"><s>$'+devReg+'</s> <b class="inc-free">INCLUDED</b></span></li>';
     var giftTotal=0;
     var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseFloat(g[1])||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
     var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
