@@ -449,15 +449,10 @@ section{padding:74px 0}
 .kit-list .kt{display:block;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
 .kit-list .ki{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)}
 .kit-list .ki>span:first-child{text-align:left}
-.kit-list .ki s{color:var(--faint);font-weight:600;white-space:nowrap}
-.kit-list .ki b{color:var(--pop);font-weight:800;white-space:nowrap}
-/* add-on UV (solo visible con el Starter seleccionado) */
-.bx-addon{display:none;margin:10px 0 0;border:1.5px dashed var(--ok);border-radius:12px;padding:11px 13px;background:#FBF3EF}
-.bx-addon.show{display:block}
-.bx-addon label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
-.bx-addon input{width:18px;height:18px;margin-top:2px;accent-color:var(--ok);flex:0 0 auto}
-.bx-addon .at{font:700 14.5px/1.3 var(--sans);color:var(--ink)}
-.bx-addon .as{font:500 12.5px/1.45 var(--sans);color:var(--ink-2);display:block;margin-top:2px}
+.kit-list .ki .kv{white-space:nowrap;color:var(--faint);font-weight:600}
+.kit-list .ki .kv s{color:var(--faint);font-weight:600}
+.kit-list .ki .kv b{color:var(--pop);font-weight:800;margin-left:6px}
+
 .sub-note{margin-top:10px;text-align:center;font:500 14px/1.4 var(--sans);color:var(--ink-soft)}
 .bx-disclaimer{margin-top:14px;font:400 13px/1.5 var(--sans);color:var(--faint);text-align:center}
 
@@ -843,7 +838,6 @@ section{padding:74px 0}
   /* móvil: solo el kit SELECCIONADO despliega su "You get" — los demás quedan compactos (anti-muro-de-texto) */
   .pack:not(.is-selected) .kit-list{display:none}
   .kit-list .ki{font-size:14.5px}
-  .bx-addon .at{font-size:15.5px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
   .pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
@@ -962,44 +956,39 @@ section{padding:74px 0}
               <span class="pack-unit">1 Device · Full price</span>
               <span class="pack-price">$39.99<s>$97</s></span>
               <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>1× Cellular Reset Device</span><s>$69.99</s></span>
-                <span class="ki"><span>Soft silicone tips + spare set</span><s>$8</s></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
+                <span class="ki"><span>1× Cellular Reset Device</span><span class="kv">$69.99</span></span>
+                <span class="ki"><span>Soft silicone tips + spare set</span><span class="kv">$8</span></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
             <button type="button" class="pack" data-sku="RESET-2" data-price="64.98" role="radio" aria-checked="false">
               <span class="pack-badge">★ Most popular · 2 free gifts</span>
               <span class="pack-qty">Complete Kit</span>
-              <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700">You save 54% — $32.49 each</em></span>
+              <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 54%</em> · <span style="white-space:nowrap">$32.49 each</span></span>
               <span class="pack-price">$64.98<s>$219</s></span>
               <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>2× Cellular Reset Device</span><s>$139.98</s></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><s>$16</s></span>
-                <span class="ki"><span>Black Travel Washbag</span><b>FREE <s>$29</s></b></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
-                <span class="ki"><span>U.S. Shipping</span><b>FREE</b></span>
+                <span class="ki"><span>2× Cellular Reset Device</span><span class="kv">$139.98</span></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv">$16</span></span>
+                <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
             <button type="button" class="pack" data-sku="RESET-3" data-price="84.99" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Best value · everything unlocked</span>
               <span class="pack-qty">Family Kit</span>
-              <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700">You save 60% — $28.33 each</em></span>
+              <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 60%</em> · <span style="white-space:nowrap">$28.33 each</span></span>
               <span class="pack-price">$84.99<s>$333</s></span>
               <span class="kit-list"><span class="kt">You get:</span>
-                <span class="ki"><span>3× Cellular Reset Device</span><s>$209.97</s></span>
-                <span class="ki"><span>Soft silicone tips + spare sets</span><s>$24</s></span>
-                <span class="ki"><span>UV-C Sterilizer Case</span><b>FREE <s>$24.99</s></b></span>
-                <span class="ki"><span>Black Travel Washbag</span><b>FREE <s>$29</s></b></span>
-                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
-                <span class="ki"><span>U.S. Shipping</span><b>FREE</b></span>
+                <span class="ki"><span>3× Cellular Reset Device</span><span class="kv">$209.97</span></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><span class="kv">$24</span></span>
+                <span class="ki"><span>UV-C Sterilizer Case</span><span class="kv"><s>$24.99</s> <b>FREE</b></span></span>
+                <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
               </span>
             </button>
-          </div>
-          <div class="bx-addon" id="uvAddon">
-            <label><input type="checkbox" id="uvAddonCheck">
-              <span><span class="at">+ Add the UV-C Sterilizer Case — $19.99</span>
-              <span class="as">Sanitizes the tips after each session · fits 2 devices · included free in the Family Kit.</span></span>
-            </label>
           </div>
         </div>
 
@@ -1013,12 +1002,12 @@ section{padding:74px 0}
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>        </div>
         <div class="bx-trust">
           <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>90-Night Fair-Try Promise</span></div>
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Fast U.S. Shipping</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Free U.S. Shipping</span></div>
           <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure Checkout</span></div>
         </div>
 
         <div class="acc">
-          <details><summary>How long does delivery take?</summary><p>Packed in 1–3 business days, delivered in 7–10. Free U.S. shipping on the Complete and Family kits. You get a tracking link by email.</p></details>
+          <details><summary>How long does delivery take?</summary><p>Free U.S. shipping on every kit. Packed in 1–3 business days, delivered in 7–10. You get a tracking link by email.</p></details>
           <details><summary>How does the 90-night refund work?</summary><p>Use it every night for up to 90 nights. If your nights don't improve — even used? Email hello@kalmely.com and we refund every cent, with free returns.</p></details>
           <details><summary>How do I know my order went through?</summary><p>You get a confirmation email within minutes, then tracking when it ships. Payment runs through Stripe — encrypted, and we never see your card.</p></details>
           <div style="text-align:center;padding:12px 0 2px"><a href="#faq" style="font:600 14px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px">See frequently asked questions ↓</a></div>
@@ -1176,7 +1165,7 @@ section{padding:74px 0}
         <details><summary>Is it rechargeable? Does it get hot?</summary><p>USB rechargeable — no batteries to buy, and a charge lasts many sessions. It emits no heat and no UV; most people feel nothing at all during use.</p></details>
         <details><summary>Is it safe for kids, or during pregnancy?</summary><p>The device is gentle, with no UV and no heat. That said: for children, during pregnancy or nursing, or if you manage any medical condition or take medications — check with your doctor first. Thirty seconds of caution, always worth it.</p></details>
         <details><summary>Can I keep using my sprays or medications with it?</summary><p>The light doesn't interact with medication — there's nothing chemical in it. But don't change any medication routine on your own; if you're thinking about simplifying what you use at night, do it with your doctor or pharmacist. The e-book included with every kit covers this honestly.</p></details>
-        <details><summary>How fast is shipping?</summary><p>Packed in 1–3 business days, delivered in 7–10, tracked to your door. Free U.S. shipping on the Complete and Family kits.</p></details>
+        <details><summary>How fast is shipping?</summary><p>FREE U.S. shipping on every kit. Packed in 1–3 business days, delivered in 7–10, tracked to your door.</p></details>
         <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. Use it every night for up to 90 nights — if your nights don't improve, write to hello@kalmely.com and we refund every cent, with free returns. No forms, no phone tree.</p></details>
       </div>
     </div>
@@ -1290,7 +1279,7 @@ section{padding:74px 0}
     <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$19.00</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$39</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
-    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 90-night promise</span><span>🚚 Fast U.S. shipping</span></div>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 90-night promise</span><span>🚚 Free U.S. shipping</span></div>
   </div>
 </aside>
 
@@ -1311,8 +1300,7 @@ section{padding:74px 0}
   var WASHBAG=['Black Travel Washbag','29','gift-washbag','A premium washbag so the device — and the whole routine — travels with you. Trips, guest rooms, weekends away.'];
   var UVCASE=['UV-C Sterilizer Case','24.99','gift-uvcase','Sanitizes the silicone tips after each session — hygiene first, always. Fits 2 devices.'];
   var TIERS={
-    'RESET-1':{price:39.99,was:97,count:1,label:'Starter Kit',sub:false,img:'bundle-1',ship:false,gifts:[EBOOK]},
-    'RESET-1UV':{price:59.98,was:121.99,count:1,label:'Starter Kit + UV Case',sub:false,img:'bundle-1',ship:false,uvPaid:true,gifts:[EBOOK]},
+    'RESET-1':{price:39.99,was:97,count:1,label:'Starter Kit',sub:false,img:'bundle-1',ship:true,gifts:[EBOOK]},
     'RESET-2':{price:64.98,was:219,count:2,label:'Complete Kit',sub:false,img:'bundle-2',ship:true,gifts:[EBOOK,WASHBAG]},
     'RESET-3':{price:84.99,was:333,count:3,label:'Family Kit',sub:false,img:'bundle-3',ship:true,gifts:[EBOOK,WASHBAG,UVCASE]}
   };
@@ -1348,30 +1336,22 @@ section{padding:74px 0}
     var devReg=Math.round(count*69.99*100)/100; // anchor = single-device price × count
     var devVal=(t.was&&t.was>t.price)?'<s>$'+devReg+'</s>':'$'+devReg;
     var dev='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+'× Cellular Reset Device'+(count>1?'s':'')+' + soft tips</span><span class="inc-val">'+devVal+'</span></li>';
-    var uv=t.uvPaid?'<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/gift-uvcase.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">UV-C Sterilizer Case<span class="inc-desc">Your add-on — sanitizes the tips after each session.</span></span><span class="inc-val">$19.99</span></li>':'';
     var giftTotal=0;
     var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseFloat(g[1])||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
-    var ship=t.ship?'<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>':'';
-    var totalValue=Math.round((devReg+giftTotal+(t.uvPaid?24.99:0))*100)/100;
+    var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
+    var totalValue=Math.round((devReg+giftTotal)*100)/100;
     var total='<li class="inc-row inc-total"><span class="inc-name">Total value</span><span class="inc-val"><s>$'+totalValue+'</s> <b class="inc-today">Today $'+t.price+'</b></span></li>';
-    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+dev+uv+gifts+ship+total+'</ul><div class="inc-foot">✓ 90-Night Fair-Try Promise · free returns</div>';
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+dev+gifts+ship+total+'</ul><div class="inc-foot">✓ 90-Night Fair-Try Promise · free returns</div>';
   }
   var PACK_IDX={'RESET-1':0,'RESET-2':1,'RESET-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 7 slides
-  function _baseSku(s){return s==='RESET-1UV'?'RESET-1':s;}
-  function _uvChecks(){return [].slice.call(document.querySelectorAll('#uvAddonCheck'));}
   function select(sku,persist){
     if(!TIERS[sku])sku=DEFAULT;
     curSku=sku;
-    var base=_baseSku(sku);
-    packs.forEach(function(p){var on=p.dataset.sku===base;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=String(info(sku).price);});
-    // add-on UV: solo visible con el Starter; sincroniza el checkbox con el estado
-    var ao=document.getElementById('uvAddon');
-    if(ao){var show=base==='RESET-1';ao.className=show?'bx-addon show':'bx-addon';_uvChecks().forEach(function(c){c.checked=(sku==='RESET-1UV');});}
+    packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=String(info(sku).price);});
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
     var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=n1';}  // swap the kit preview to match the selection
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
-  (function(){var c=document.getElementById('uvAddonCheck');if(c)c.addEventListener('change',function(){select(this.checked?'RESET-1UV':'RESET-1',true);if(cartOpen)populateCart();});})();
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
@@ -1401,12 +1381,11 @@ section{padding:74px 0}
     document.getElementById('cartTotal').textContent=money(price);
     document.getElementById('cartCount').textContent='1';
     var _free=document.querySelector('.ch-free');
-    if(_free){_free.textContent=t.ship?'✓ Free shipping':'✓ Fast U.S. shipping';}
+    if(_free){_free.textContent='✓ Free shipping';}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
       var _g=t.gifts||[];
-      var _uv=t.uvPaid?'<span class="cg-item">➕ UV-C Sterilizer Case (add-on) <b>$19.99</b></span>':'';
-      if(_g.length||_uv){_cg.innerHTML='<span class="cg-h">'+(_g.length?'Free gifts included':'Your kit')+'</span>'+_uv+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
+      if(_g.length){_cg.innerHTML='<span class="cg-h">Free gifts included</span>'+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
       else{_cg.innerHTML='<span class="cg-h">90-Night Fair-Try Promise</span>';}
     }
   }
