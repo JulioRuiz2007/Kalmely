@@ -1,6 +1,6 @@
 # Everything resolves to Kalmely — The Cellular Reset. No old product page stays reachable.
-/ /reset/ 301
-/index.html /reset/ 301
+/ /reset/ 302
+/index.html /reset/ 302
 
 # --- gravity cradle (previous product) ---
 /gravity /reset/ 301
