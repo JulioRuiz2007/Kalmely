@@ -42,20 +42,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F6F6F0">
-<link rel="canonical" href="https://kalmely.com/gravity/">
+<link rel="canonical" href="https://kalmely.com/reset/">
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
-<title>The Gravity Cradle — Gently Release the Cushion Hump at the Base of Your Neck</title>
-<meta name="description" content="A passive 10-minute gravity technique you use lying in bed — designed to gently decompress the base of the neck and release the Cushion Hump, the soft cushion of built-up tension behind the dowager's hump. 90-day money-back guarantee · free U.S. shipping.">
+<title>Kalmely · The Cellular Reset — Breathe Freely Through Your Nose Again, In 3 Quiet Minutes a Night</title>
+<meta name="description" content="The drug-free 660nm Cellular Reset — nothing to inhale, nothing to build a tolerance to. 3 minutes before bed, and the light does the work. 180-Night Fair-Try Promise · free returns.">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <meta property="og:site_name" content="Kalmely">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Gravity Cradle — Gently Release the Cushion Hump at the Base of Your Neck">
-<meta property="og:url" content="https://kalmely.com/gravity/">
-<meta property="og:description" content="A passive 10-minute gravity technique, lying in bed — designed to gently decompress the neck and release the Cushion Hump behind the dowager's hump. No cracking, no straps, no appointments. 90-day money-back guarantee.">
+<meta property="og:title" content="Kalmely · The Cellular Reset — Breathe Freely Through Your Nose Again">
+<meta property="og:url" content="https://kalmely.com/reset/">
+<meta property="og:description" content="The drug-free 660nm Cellular Reset — nothing to inhale, nothing to build a tolerance to. 3 minutes before bed. 180-Night Fair-Try Promise.">
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-01.webp?v=gc2" imagesrcset="assets/hero-01-800.webp 800w, assets/hero-01.webp?v=gc2 1080w" imagesizes="(max-width:980px) 100vw, 640px" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-01.webp?v=n1" imagesrcset="assets/hero-01-800.webp?v=n1 800w, assets/hero-01.webp?v=n1 1080w" imagesizes="(max-width:980px) 100vw, 640px" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
 <style>
@@ -93,12 +93,12 @@ n.queue=[]}(window, document,'script',
 fbq('init', '2038496957090347');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
-  content_name: 'The Gravity Cradle',
-  content_ids: ['GRAVITY-3'],
+  content_name: 'Kalmely — The Cellular Reset',
+  content_ids: ['RESET-2'],
   content_type: 'product',
   value: 99.95,
   currency: 'USD',
-  offer_variant: 'GRAVITY'
+  offer_variant: 'RESET'
 });
 (function(){
   if (window._kalmelyAdmin) return;
@@ -127,7 +127,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 { "@context":"https://schema.org","@type":"Organization","name":"Kalmely","url":"https://kalmely.com/","logo":"https://kalmely.com/assets/favicon-kalmely.png","email":"hello@kalmely.com" }
 </script>
 <script type="application/ld+json">
-{ "@context":"https://schema.org/","@type":"Product","name":"The Gravity Cradle","description":"A passive acupressure cervical-traction device you lie on for about 10 minutes a day in bed. Designed to gently decompress the base of the neck with the head's own weight and release the Cushion Hump — the soft cushion of built-up tension behind the dowager's hump. Made for women 45-65+.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/gravity/","priceCurrency":"USD","price":"54.95","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
+{ "@context":"https://schema.org/","@type":"Product","name":"Kalmely — The Cellular Reset","description":"A drug-free 660nm red-light device for nighttime nasal comfort. Soft silicone tips rest just inside the nostrils for a 3-minute session before bed — nothing to inhale, nothing to build a tolerance to. 180-night money-back promise.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/reset/","priceCurrency":"USD","price":"39.99","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
 </script>
 
 <style>
@@ -251,6 +251,21 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .hero-prev{left:12px;padding-right:2px}
 .hero-next{right:12px;padding-left:2px}
 .hero-cap{text-align:center;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
+/* overlays de texto sobre las slides (Canva/HTML overlay del encargo) — solo con container queries; en navegadores viejos se ve la foto limpia */
+.hero-slide{position:relative}
+.hs-ov{display:none;position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;text-align:left}
+@supports (font-size:1cqw){
+  .hero-stage .hero-slide{container-type:inline-size}
+  .hs-ov{display:block}
+  .hs-ov .ovh{font-family:'Fraunces',var(--serif);font-weight:600;line-height:1.12;color:#4A1410;font-size:5.2cqw}
+  .hs-ov .ovs{font:500 3cqw/1.5 var(--sans);color:#7A4038;margin-top:2.4cqw}
+  .hs-ov .ovshield{display:inline-block;margin-top:3cqw;border:.5cqw solid #6B1E15;border-radius:999px;padding:1.7cqw 3.2cqw;font:700 2.5cqw/1 var(--sans);letter-spacing:.12em;color:#6B1E15}
+  .hs-ov .ovcard{background:rgba(255,255,255,.93);border-radius:1.8cqw;padding:2.1cqw 2.6cqw;font:600 2.6cqw/1.42 var(--sans);color:#3F1712;margin-bottom:1.7cqw;box-shadow:0 .3cqw 1.4cqw rgba(0,0,0,.16)}
+  .hs-ov .ovtitle{font:800 3.1cqw/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#4A1410;margin-bottom:1.2cqw}
+  .hs-ov .ovlist{font:600 2.8cqw/1.95 var(--sans)}
+  .hs-ov .ovlist.good{color:#1A6B3C}
+  .hs-ov .ovlist.bad{color:#8A2C22}
+}
 .hero-thumbs{display:flex;gap:10px;margin-top:12px}
 .hero-thumb{flex:1;aspect-ratio:1/1;border-radius:9px;overflow:hidden;opacity:.55;border:1px solid var(--line);transition:opacity .2s,border-color .2s;padding:0}
 .hero-thumb.is-active{opacity:1;border-color:var(--ink)}
@@ -424,6 +439,20 @@ section{padding:74px 0}
 /* buy-box subscribe note + disclaimer */
 .pack .pack-sub{display:block;font:600 10.5px/1.25 var(--sans);color:var(--ink-soft);margin-top:5px;letter-spacing:.01em}
 .pack .pack-banner{display:block;max-width:100%;margin-top:auto;padding-top:6px;background:#F4EBE2;color:var(--ok);font:700 12px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #ECDBC9;text-align:center}
+/* kit "You get:" — lista de valor por ítem dentro de cada card */
+.kit-list{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-2);text-align:left}
+.kit-list .kt{display:block;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.kit-list .ki{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)}
+.kit-list .ki>span:first-child{text-align:left}
+.kit-list .ki s{color:var(--faint);font-weight:600;white-space:nowrap}
+.kit-list .ki b{color:var(--ok);font-weight:800;white-space:nowrap}
+/* add-on UV (solo visible con el Starter seleccionado) */
+.bx-addon{display:none;margin:10px 0 0;border:1.5px dashed var(--ok);border-radius:12px;padding:11px 13px;background:#FBF3EF}
+.bx-addon.show{display:block}
+.bx-addon label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.bx-addon input{width:18px;height:18px;margin-top:2px;accent-color:var(--ok);flex:0 0 auto}
+.bx-addon .at{font:700 14.5px/1.3 var(--sans);color:var(--ink)}
+.bx-addon .as{font:500 12.5px/1.45 var(--sans);color:var(--ink-2);display:block;margin-top:2px}
 .sub-note{margin-top:10px;text-align:center;font:500 14px/1.4 var(--sans);color:var(--ink-soft)}
 .bx-disclaimer{margin-top:14px;font:400 13px/1.5 var(--sans);color:var(--faint);text-align:center}
 
@@ -703,7 +732,7 @@ section{padding:74px 0}
   .cmp .no{font-size:12.5px}
 }
 
-/* ===== Gravity Cradle ===== */
+/* ===== Kalmely — The Cellular Reset ===== */
 .announce{cursor:default}
 .bx-stock{display:flex;align-items:flex-start;gap:11px;border:1.5px solid var(--line-2);border-radius:12px;padding:13px 15px;margin:16px 0}
 .bx-stock .ic{flex:0 0 auto;margin-top:1px;color:#111}
@@ -805,6 +834,9 @@ section{padding:74px 0}
   /* PACK SELECTOR — full-width vertical bars */
   .packs{display:flex;flex-direction:column;gap:15px;margin-top:8px}
   .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
+  .pack .kit-list{grid-column:1/-1;grid-row:auto}
+  .kit-list .ki{font-size:14.5px}
+  .bx-addon .at{font-size:15.5px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
   .pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
@@ -824,15 +856,15 @@ section{padding:74px 0}
 </head>
 <body>
 
-<div class="announce" id="announceBar"><span id="announceMsg">FREE U.S. Shipping · 90-Day Money-Back Guarantee</span></div>
+<div class="announce" id="announceBar"><span id="announceMsg">180-Night Fair-Try Promise · Free returns</span></div>
 
 <header class="nav" id="nav">
   <div class="nav-inner wrap">
     <nav class="nav-left nav-menu" aria-label="Main">
-      <a href="/gravity/" class="is-active" aria-current="page">Product</a>
+      <a href="/reset/" class="is-active" aria-current="page">Product</a>
       <a href="/contact">Contact</a>
     </nav>
-    <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">Gentle Neck &amp; Posture Relief</span></a>
+    <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Cellular Reset</span></a>
     <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="cart-count" id="cartCount">0</span>
@@ -849,39 +881,63 @@ section{padding:74px 0}
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
-            <!-- 6 real hero images, fixed order 01..06 (01-packshot is the featured/default) -->
-            <div class="hero-slide"><img src="assets/hero-01.webp?v=gc2" srcset="assets/hero-01-800.webp 800w, assets/hero-01.webp?v=gc2 1080w" sizes="(max-width:980px) 100vw, 640px" alt="The Gravity Cradle with its box" width="1080" height="1080" fetchpriority="high"></div>
-            <div class="hero-slide"><img src="assets/hero-02.webp?v=gc3" alt="Ten minutes lying down — the Gravity Cradle in use, 90-day trial" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-03.webp?v=gc3" alt="Why it works: the cushion of tension at the base of the neck" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-04.webp?v=gc3" alt="1,900+ women have taken the first step — before and after profiles" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-05.webp?v=gc3" alt="What to expect week by week with daily use" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-06.webp?v=gc3" alt="Woman holding the Gravity Cradle" width="1080" height="1080" loading="lazy"></div>
+            <!-- 7 hero slides, order 01..07 (01-packshot featured; 05 collage y 06 macro-72% son PLACEHOLDER hasta que Julio genere) -->
+            <div class="hero-slide"><img src="assets/hero-01.webp?v=n1" srcset="assets/hero-01-800.webp?v=n1 800w, assets/hero-01.webp?v=n1 1080w" sizes="(max-width:980px) 100vw, 640px" alt="Kalmely — The Cellular Reset device with its box" width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-02.webp?v=n1" alt="3 minutes before bed — the Kalmely device in use while reading" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:4%;top:18%;width:30%"><div class="ovh">3 minutes.<br>Before bed.<br>That's it.</div><div class="ovs">You don't sleep in it — the light does its work while you read.</div><div class="ovshield">180-NIGHT TRIAL</div></div></div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-03.webp?v=n1" alt="The Cellular Reset — how the 660nm light works" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:4%;top:10%;width:40%"><div class="ovtitle">The Cellular Reset</div>
+                <div class="ovcard">Swollen, worn-out lining — that's the real blockage (not mucus)</div>
+                <div class="ovcard">Force makes it worse — sprays squeeze, tissue fights back</div>
+                <div class="ovcard">660nm light = fuel: cells recharge and calm down on their own</div>
+                <div class="ovcard">3 minutes a night. That's the reset.</div>
+              </div></div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-04.webp?v=n1" alt="Kalmely vs nasal sprays — no rebound, nothing to inhale" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov">
+                <div style="position:absolute;left:5%;top:5%;width:44%"><div class="ovtitle">Kalmely</div><div class="ovlist good">✓ Works with the tissue<br>✓ Nothing to inhale<br>✓ No tolerance build-up<br>✓ Relief that builds</div></div>
+                <div style="position:absolute;left:56%;top:5%;width:40%"><div class="ovtitle">Nasal sprays</div><div class="ovlist bad">✗ Chemical squeeze<br>✗ Rebound congestion<br>✗ "3-day" label warning<br>✗ Stops working</div></div>
+              </div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-05.webp?v=n1" alt="Real customers, real mornings" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-06.webp?v=n1" alt="72% reported improvement vs 24% placebo — published double-blind study on 660nm" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-07.webp?v=n1" alt="What to expect, night by night" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:4%;top:8%;width:42%"><div class="ovtitle">What to expect</div>
+                <div class="ovcard">Night 1: a warm, quiet 3 minutes — no fireworks</div>
+                <div class="ovcard">Week 1: waking up less often</div>
+                <div class="ovcard">Weeks 2–3: nights start staying quiet</div>
+                <div class="ovcard">Week 4+: the bottle gathers dust</div>
+                <div class="ovshield" style="margin-top:1.5cqw">180 NIGHTS TO DECIDE</div>
+              </div></div>
+            </div>
           </div>
           <button type="button" class="hero-arrow hero-prev" aria-label="Previous image">‹</button>
           <button type="button" class="hero-arrow hero-next" aria-label="Next image">›</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp?v=gc2" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="In use — 10 minutes lying down"><img src="assets/hero-02-thumb.webp?v=gc2" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Why it works"><img src="assets/hero-03-thumb.webp?v=gc2" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Before and after"><img src="assets/hero-04-thumb.webp?v=gc2" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="What to expect"><img src="assets/hero-05-thumb.webp?v=gc2" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Holding the Cradle"><img src="assets/hero-06-thumb.webp?v=gc2" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="In use — 3 minutes before bed"><img src="assets/hero-02-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="How it works"><img src="assets/hero-03-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Kalmely vs sprays"><img src="assets/hero-04-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Real customers"><img src="assets/hero-05-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="The published study"><img src="assets/hero-06-thumb.webp?v=n1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="What to expect"><img src="assets/hero-07-thumb.webp?v=n1" alt="" loading="lazy"></button>
         </div>
       </div>
 
       <!-- hero headline -->
       <div class="hero-head fade-slow">
-        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; <span style="color:var(--ok);font-weight:600">(1,924 reviews)</span></a></div>
-        <h1 class="bx-h1 product">The Gravity Cradle</h1>
-        <p class="bx-sub">10 minutes a day, lying in bed. Gravity releases the "Cushion Hump" — the soft pad of tension behind the neck hump.</p>
-        <p class="bx-micro">It was never bad posture. And it was never your fault.</p>
-        <div class="bx-badges"><div class="bx-badges-row"><span>Passive Gravity Release</span><span>No Cracking, No Straps</span><span>10 Min in Bed</span><span>90-Day Guarantee</span></div></div>
+        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; <span style="color:var(--ok);font-weight:600">(<span class="rev-count">48</span> verified reviews)</span></a></div>
+        <h1 class="bx-h1 product">Breathe Freely Through Your Nose Again<span class="h1-sub">In 3 quiet minutes a night — the drug-free 660nm Cellular Reset.</span></h1>
+        <p class="bx-sub">Nothing to inhale. Nothing to build a tolerance to. Soft red light reaches the swollen lining that's really blocking your nights — and the tissue settles on its own.</p>
+        <p class="bx-micro">You don't sleep in it. You don't feel it. You find out in the morning.</p>
+        <div class="bx-badges"><div class="bx-badges-row"><span>100% Drug-Free</span><span>Nothing to Inhale</span><span>3 Min Before Bed</span><span>180-Night Trial</span></div></div>
         <ul class="bx-promise">
-          <li>Your head's own weight does the work — zero effort</li>
-          <li>Releases the built-up tension behind the hump</li>
-          <li>No motors, no straps, no app — you just lie down</li>
-          <li>10 minutes a day. No willpower needed.</li>
+          <li>660nm red light — the wavelength from a published double-blind study</li>
+          <li>Works with the tissue, not against it — no rebound cycle</li>
+          <li>Clip in, press once, it switches itself off — 3 minutes</li>
+          <li>USB rechargeable. No heat, no UV, no refills to buy.</li>
         </ul>
       </div>
 
@@ -889,35 +945,58 @@ section{padding:74px 0}
 
       <!-- buy box -->
       <div class="buybox fade-slow">
-        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>Launch Offer — Limited Stock</b> — Last batch sold out fast. Lock in the launch price and free gifts now.</p></div>
+        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>Launch Offer — Limited Stock</b> — This production run is nearly allocated. Lock in the launch price and free gifts now.</p></div>
         <div class="bx-sec">
-          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp?v=b2" alt="Your Gravity Cradle bundle" width="760" height="760"></div>
-          <div class="sale-divider">Launch Offer – Limited Time Only</div>
-          <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
-            <button type="button" class="pack" data-sku="GRAVITY-1" data-price="54.95" role="radio" aria-checked="false">
-              <span class="pack-qty">1 Cradle</span>
-              <span class="pack-unit">For you</span>
-              <span class="pack-price">$54.95</span>
-              <span class="pack-banner">🎁 Free e-book guide + free ship</span>
+          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp?v=n1" alt="Your Cellular Reset kit" width="760" height="760"></div>
+          <div class="sale-divider">Buy More · Save More — Launch Pricing</div>
+          <div class="packs" id="packs" role="radiogroup" aria-label="Choose your kit">
+            <button type="button" class="pack" data-sku="RESET-1" data-price="39.99" role="radio" aria-checked="false">
+              <span class="pack-qty">Starter Kit</span>
+              <span class="pack-unit">1 Device · Full price</span>
+              <span class="pack-price">$39.99<s>$97</s></span>
+              <span class="kit-list"><span class="kt">You get:</span>
+                <span class="ki"><span>1× Cellular Reset Device</span><s>$69.99</s></span>
+                <span class="ki"><span>Soft silicone tips + spare set</span><s>$8</s></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
+              </span>
             </button>
-            <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
-              <span class="pack-badge">★ Most popular</span>
-              <span class="pack-qty">2 Cradles</span>
-              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span>
-              <span class="pack-price">$69.95<s>$109.90</s></span>
-              <span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+            <button type="button" class="pack" data-sku="RESET-2" data-price="64.98" role="radio" aria-checked="false">
+              <span class="pack-badge">★ Most popular · 2 free gifts</span>
+              <span class="pack-qty">Complete Kit</span>
+              <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--ok);font-weight:700">You save 54% — $32.49 each</em></span>
+              <span class="pack-price">$64.98<s>$219</s></span>
+              <span class="kit-list"><span class="kt">You get:</span>
+                <span class="ki"><span>2× Cellular Reset Device</span><s>$139.98</s></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><s>$16</s></span>
+                <span class="ki"><span>Black Travel Washbag</span><b>FREE <s>$29</s></b></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
+                <span class="ki"><span>U.S. Shipping</span><b>FREE</b></span>
+              </span>
             </button>
-            <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
-              <span class="pack-badge alt">★ Best value</span>
-              <span class="pack-qty">3 Cradles</span>
-              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span>
-              <span class="pack-price">$99.95<s>$164.85</s></span>
-              <span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+            <button type="button" class="pack" data-sku="RESET-3" data-price="84.99" role="radio" aria-checked="false">
+              <span class="pack-badge alt">★ Best value · everything unlocked</span>
+              <span class="pack-qty">Family Kit</span>
+              <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--ok);font-weight:700">You save 60% — $28.33 each</em></span>
+              <span class="pack-price">$84.99<s>$333</s></span>
+              <span class="kit-list"><span class="kt">You get:</span>
+                <span class="ki"><span>3× Cellular Reset Device</span><s>$209.97</s></span>
+                <span class="ki"><span>Soft silicone tips + spare sets</span><s>$24</s></span>
+                <span class="ki"><span>UV-C Sterilizer Case</span><b>FREE <s>$24.99</s></b></span>
+                <span class="ki"><span>Black Travel Washbag</span><b>FREE <s>$29</s></b></span>
+                <span class="ki"><span>“Cellular Reset Protocol” e-book</span><b>FREE <s>$19</s></b></span>
+                <span class="ki"><span>U.S. Shipping</span><b>FREE</b></span>
+              </span>
             </button>
+          </div>
+          <div class="bx-addon" id="uvAddon">
+            <label><input type="checkbox" id="uvAddonCheck">
+              <span><span class="at">+ Add the UV-C Sterilizer Case — $19.99</span>
+              <span class="as">Sanitizes the tips after each session · fits 2 devices · included free in the Family Kit.</span></span>
+            </label>
           </div>
         </div>
 
-        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$69.95</span></button>
+        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$64.98</span></button>
 
         <div class="bx-pay" aria-label="Accepted payments">
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
@@ -926,14 +1005,14 @@ section{padding:74px 0}
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" font-style="italic" fill="#003087" text-anchor="middle">Pay<tspan fill="#0070E0">Pal</tspan></text></svg>
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>        </div>
         <div class="bx-trust">
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>90-Day Money-Back Guarantee</span></div>
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Free U.S. Shipping</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>180-Night Fair-Try Promise</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Fast U.S. Shipping</span></div>
           <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure Checkout</span></div>
         </div>
 
         <div class="acc">
-          <details><summary>How long does delivery take?</summary><p>Free U.S. shipping on every order. Packed in 1–3 business days, delivered in 7–10. You get a tracking link by email.</p></details>
-          <details><summary>How does the 90-day refund work?</summary><p>You have 90 days from delivery. Not happy — even used? Email hello@kalmely.com and we refund every cent. Nothing to ship back.</p></details>
+          <details><summary>How long does delivery take?</summary><p>Packed in 1–3 business days, delivered in 7–10. Free U.S. shipping on the Complete and Family kits. You get a tracking link by email.</p></details>
+          <details><summary>How does the 180-night refund work?</summary><p>Use it every night for up to 180 nights. If your nights don't improve — even used? Email hello@kalmely.com and we refund every cent, with free returns.</p></details>
           <details><summary>How do I know my order went through?</summary><p>You get a confirmation email within minutes, then tracking when it ships. Payment runs through Stripe — encrypted, and we never see your card.</p></details>
           <div style="text-align:center;padding:12px 0 2px"><a href="#faq" style="font:600 14px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px">See frequently asked questions ↓</a></div>
         </div>
@@ -946,56 +1025,98 @@ section{padding:74px 0}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Loved by women 45+</div><h2><span style="color:var(--ok)">★★★★★</span> <span style="color:var(--ok);font-weight:700">4.8/5</span> from <span style="color:var(--ok);font-weight:700">1,924</span> verified buyers</h2><p>Real photos from real customers — women roughly 48–68, everyday bedrooms, no models.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Loved by 1,000s finally sleeping through the night</div><h2><span style="color:var(--ok)">★★★★★</span> <span style="color:var(--ok);font-weight:700">4.8/5</span> from <span style="color:var(--ok);font-weight:700"><span class="rev-count">48</span></span> verified reviews</h2><p>Real photos from real customers — everyday nightstands, no models.</p></div>
       <div class="rev-top fade-slow">
-        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1,924 verified reviews</div></div>
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt"><span class="rev-count">48</span> verified reviews</div></div>
         <div class="rev-dist" id="revDist"></div>
       </div>
       <div class="photo-reviews fade-slow">
         <figure class="prev-card">
-          <img src="assets/ugc-1-holding.webp?v=gc2" alt="Marisol R., verified customer, resting on the Gravity Cradle in bed" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Ten minutes in bed and the tension at the base of my neck finally lets go. My husband snapped this — I didn't even hear him.”</p><span class="pr-by">Marisol R. <em>✓ Verified Buyer · Fort Worth, TX</em></span></figcaption>
+          <img src="assets/rev-n6.webp?v=n1" alt="Verified customer using the Kalmely device on the sofa while knitting" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I do my three minutes while I knit. You don't feel it doing anything — and then you wake up at 6:40 and realize you never woke up at 2.”</p><span class="pr-by">Susan D. <em>✓ Verified Buyer · Dayton, OH</em></span></figcaption>
         </figure>
         <figure class="prev-card">
-          <img src="assets/ugc-2-mirror.webp?v=gc2" alt="Gloria W., verified customer, showing her Gravity Cradle at the kitchen table" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I'd tried braces and a chiropractor. This is the first thing I actually keep up with.”</p><span class="pr-by">Gloria W. <em>✓ Verified Buyer · Dayton, OH</em></span></figcaption>
+          <img src="assets/rev-n2.webp?v=n1" alt="The Kalmely device on a nightstand next to tea and reading glasses" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“That's my nightstand now — tea, glasses, Kalmely. The little bottle that lived there for six years is gone.”</p><span class="pr-by">Carol M. <em>✓ Verified Buyer · Boise, ID</em></span></figcaption>
         </figure>
         <figure class="prev-card">
-          <img src="assets/ugc-3-daylight.webp?v=gc2" alt="Margaret K., verified customer, with her hair up holding the Gravity Cradle" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“By a few weeks in the bump looked smaller — and I put my hair up without thinking.”</p><span class="pr-by">Margaret K. <em>✓ Verified Buyer · Boise, ID</em></span></figcaption>
+          <img src="assets/rev-n9.webp?v=n1" alt="Verified customer's husband reading the paper, device on the table" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“My husband teased me about it for a week. Then he started asking whose turn it was. We ordered a second one.”</p><span class="pr-by">Linda R. <em>✓ Verified Buyer · Fort Worth, TX</em></span></figcaption>
         </figure>
         <figure class="prev-card">
-          <img src="assets/ugc-4-sink.webp?v=gc2" alt="Patricia H., verified customer, showing the Gravity Cradle to her mother" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Loved mine so much I brought one to my mom — now she asks for her ten minutes every evening.”</p><span class="pr-by">Patricia H. <em>✓ Verified Buyer · Sarasota, FL</em></span></figcaption>
+          <img src="assets/rev-n7.webp?v=n1" alt="Family Kit — three devices, one marked MOM" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Got the 3-pack — one for me, one for my sister, one labeled MOM. Three houses, three quiet nights. Best gift I've given in years.”</p><span class="pr-by">Kate W. <em>✓ Verified Buyer · Sarasota, FL</em></span></figcaption>
         </figure>
       </div>
       <div class="rev-morewrap"><a class="rev-morebtn" id="revJump" href="#all-reviews" style="display:inline-block;text-decoration:none">Read more reviews ↓</a></div>
-      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“The bump looks smaller.”</span><span>“My neck feels released.”</span><span>“I stand taller.”</span><span>“I feel like myself again.”</span></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“No more 2:30 a.m.”</span><span>“I wake up clear.”</span><span>“The bottle gathers dust.”</span><span>“Our bedroom is quiet again.”</span></div>
       <!-- (mid-page Add-to-Cart removed — redundant with the sticky CTA and it made the proof section read like an ad) -->
     </div>
   </section>
 
   <!-- (Before/after section and 3-step how-it-works removed in the reduction pass — both live in the hero gallery now.) -->
 
-  <!-- ===== 2. MECHANISM (short) ===== -->
+  <!-- ===== 2. VILLANO — the worn-out lining (diagrama D) ===== -->
   <section id="usage">
     <div class="wrap" style="max-width:720px">
-      <div class="sec-head fade-slow"><div class="eyebrow">Why nothing has worked</div><h2>Meet the Cushion Hump</h2><p>Press the bump — it gives. That soft part isn't bone, it's built-up tension. The Cradle uses your head's own weight to release it. 10 minutes a day, in bed.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Why nothing has worked</div><h2>It's not mucus. Meet the worn-out lining.</h2><p>That blocked feeling at night isn't "stuff" you can rinse out. It's the <b>lining</b> — the soft tissue inside your nose, irritated and swollen from working overtime for years. Like a sprained ankle, but inside your nose. Lie down, and it swells even more. You can rinse all day long — <b>you can't rinse away swelling.</b></p></div>
       <div class="hc-diag fade-slow" style="max-width:640px;margin:0 auto">
-        <figure><img src="assets/cushion-diagram.webp?v=gc2" alt="Side view of the neck showing a soft cushion of built-up tension stacked on the vertebra at the base" width="560" height="560" loading="lazy"><figcaption>The Cushion Hump — soft tension on top</figcaption></figure>
-        <figure><img src="assets/cushion-released.webp?v=gc2" alt="Side view of the neck decompressed, the base of the neck released and longer" width="560" height="560" loading="lazy"><figcaption>Released — the neck can decompress</figcaption></figure>
+        <figure><img src="assets/diagram-d.webp?v=n1" alt="Cross-section of the nasal passage: the swollen, worn-out lining narrowing the airway" width="560" height="560" loading="lazy"><figcaption><b>Swollen lining</b> · airway narrowed · not mucus — tissue</figcaption></figure>
+        <figure><img src="assets/diagram-e.webp?v=n1" alt="The Kalmely device delivering gentle 660nm light to the lining, tissue settling" width="560" height="560" loading="lazy"><figcaption><b>660nm light</b> · cells recharge · lining calms down</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <!-- ===== BEFORE / AFTER (reinstaurada 8-jul: la slide 4 del hero no basta — la mayoría no pasa de la slide 2) ===== -->
+  <!-- ===== 3. MECANISMO NOMBRADO — The Cellular Reset ===== -->
   <section>
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos after weeks of daily use. Every neck is different and results vary.</p></div>
-      <div class="ba-grid fade-slow">
-        <figure><img src="assets/beforeafter-blonde.webp?v=ba2" alt="Judith R., verified customer — her profile before and after weeks of regular use" width="1200" height="1200" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“Eight weeks in and the base of my neck finally feels released.”</p><span class="ba-name">Judith R. <em>✓ Verified Buyer · Raleigh, NC</em></span></div></figure>
-        <figure><img src="assets/beforeafter-latina.webp?v=ba2" alt="Carmen O., verified customer — standing taller with a smoother neckline after regular use" width="1200" height="1200" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“My neckline looks smoother and I stand taller than I did.”</p><span class="ba-name">Carmen O. <em>✓ Verified Buyer · Fresno, CA</em></span></div></figure>
-        <figure><img src="assets/beforeafter-black.webp?v=ba2" alt="Renée A., verified customer — the bump at the base of her neck looking smaller after regular use" width="1200" height="1200" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“The bump doesn't look as big in photos now.”</p><span class="ba-name">Renée A. <em>✓ Verified Buyer · Mesa, AZ</em></span></div></figure>
+    <div class="wrap" style="max-width:820px">
+      <div class="sec-head fade-slow"><div class="eyebrow">The mechanism, named</div><h2>The Cellular Reset: why it works when sprays can't</h2><p>Sprays force the swollen tissue with a <b>chemical squeeze</b> — and when it wears off, the tissue swings back harder. That's the rebound cycle, and it's printed right on the label: <i>"do not use for more than 3 days."</i></p></div>
+      <div class="steps3 fade-slow" style="text-align:left">
+        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:18px 18px 22px">
+          <div style="font:800 30px/1 var(--sans);color:var(--ok);margin-bottom:8px">1</div>
+          <h3 style="font-size:18px;margin:0 0 6px">The light reaches the lining</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-2)">660nm red light is absorbed by the mitochondria — the power plants inside the cells of the swollen tissue. Nothing to inhale, nothing absorbed into your bloodstream.</p>
+        </div>
+        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:18px 18px 22px">
+          <div style="font:800 30px/1 var(--sans);color:var(--ok);margin-bottom:8px">2</div>
+          <h3 style="font-size:18px;margin:0 0 6px">Fuel, not force</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-2)">The cells drink it in the way dry ground drinks a slow, patient rain — recharging the exhausted tissue instead of squeezing it shut.</p>
+        </div>
+        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:18px 18px 22px">
+          <div style="font:800 30px/1 var(--sans);color:var(--ok);margin-bottom:8px">3</div>
+          <h3 style="font-size:18px;margin:0 0 6px">The tissue settles on its own</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-2)">Supported at the cellular level, the lining calms down by itself — night after night. No tolerance build-up, because there's nothing to build a tolerance to.</p>
+        </div>
+      </div>
+      <p class="proof-closer fade-slow" style="font-style:italic;margin-top:22px">Everything you could feel working was working on the wrong thing. This works where you can't feel it — and you find out in the morning.</p>
+    </div>
+  </section>
+
+  <!-- ===== 4. PRUEBA — el estudio publicado (nuestro as vs el "Clinically Proven" de otros) ===== -->
+  <section class="band">
+    <div class="wrap" style="max-width:820px;text-align:center">
+      <div class="sec-head fade-slow"><div class="eyebrow">Backed by published research</div><h2><span style="font:800 clamp(56px,9vw,88px)/1 var(--sans);color:var(--ok);display:block;margin-bottom:6px">72%</span>reported improvement in nasal symptoms — vs 24% with placebo</h2></div>
+      <div class="fade-slow" style="max-width:560px;margin:0 auto;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:22px 24px;text-align:left">
+        <div style="font:700 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">The study</div>
+        <p style="font-size:15.5px;line-height:1.65;color:var(--ink-2);margin-bottom:10px"><b>Double-blind, placebo-controlled trial of pure 660nm intranasal light</b> — published in <i>Annals of Allergy, Asthma &amp; Immunology</i> (Neuman &amp; Finkelstein, 1997). Participants used a placebo device identical to the real one; neither they nor the researchers knew which was which.</p>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0">Study on the 660nm wavelength, conducted on allergy sufferers — not on this specific device. Individual results vary.</p>
+        <img src="assets/estudio-pubmed.webp?v=n1" alt="The study on PubMed — Neuman & Finkelstein 1997" width="800" height="800" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-top:14px">
+        <div style="margin-top:14px"><a href="https://pubmed.ncbi.nlm.nih.gov/9109708/" target="_blank" rel="noopener" style="font:600 14.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px">View the study on PubMed →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4b. HOW-TO simplificado (1 imagen + 3 líneas — decisión Julio) ===== -->
+  <section>
+    <div class="wrap" style="max-width:880px">
+      <div class="sec-head fade-slow"><div class="eyebrow">How you use it</div><h2>Three minutes. That's the whole routine.</h2></div>
+      <div class="fade-slow" style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:center">
+        <img src="assets/howto-reset.webp?v=n1" alt="Using the Kalmely device while reading in bed" width="1080" height="1080" loading="lazy" style="flex:1 1 300px;max-width:420px;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)">
+        <ul style="flex:1 1 280px;max-width:380px;list-style:none;margin:0;padding:0">
+          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line)"><span style="color:var(--ok);font-weight:800">1 ·</span> Clip the soft tips just inside your nostrils.</li>
+          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line)"><span style="color:var(--ok);font-weight:800">2 ·</span> Press once. Three minutes — it switches itself off.</li>
+          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0"><span style="color:var(--ok);font-weight:800">3 ·</span> Set it on the nightstand. You don't sleep in it.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -1003,33 +1124,33 @@ section{padding:74px 0}
   <!-- ===== 5. COMPARISON ===== -->
   <section class="band">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Why this works where braces and chiropractors didn't</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Kalmely vs. nasal sprays</h2></div>
       <div class="cmp fade-slow">
         <table>
-          <thead><tr><th>&nbsp;</th><th class="own">The Gravity Cradle</th><th>Chiropractors · Braces · Neck-clouds</th></tr></thead>
+          <thead><tr><th>&nbsp;</th><th class="own">Kalmely · The Cellular Reset</th><th>Decongestant sprays</th></tr></thead>
           <tbody>
-            <tr><td>One-time cost</td><td class="own yes">✔</td><td class="no">$150/week or buy again</td></tr>
-            <tr><td>No weekly appointments</td><td class="own yes">✔</td><td class="no">Clinic visits or wear all day</td></tr>
-            <tr><td>Targets the soft-tissue tension, not just the symptom</td><td class="own yes">✔</td><td class="no">Pull at muscle or just mask it</td></tr>
-            <tr><td>Use at home, lying in bed</td><td class="own yes">✔</td><td class="no">Clinic, or strapped on all day</td></tr>
-            <tr><td>Gentle — no cracking, no pain</td><td class="own yes">✔</td><td class="no">Cracking, digging, dizziness</td></tr>
-            <tr><td>90-Day money-back guarantee</td><td class="own yes">✔</td><td class="no">Rarely</td></tr>
+            <tr><td>How it works</td><td class="own yes">✔ Works <b>with</b> the tissue</td><td class="no">Chemical squeeze on the vessels</td></tr>
+            <tr><td>What goes in your body</td><td class="own yes">✔ Nothing to inhale</td><td class="no">A dose, every single night</td></tr>
+            <tr><td>Over time</td><td class="own yes">✔ No tolerance build-up</td><td class="no">Rebound congestion — needs more to work</td></tr>
+            <tr><td>The label</td><td class="own yes">✔ Use it every night</td><td class="no">"Do not use for more than 3 days"</td></tr>
+            <tr><td>The trend</td><td class="own yes">✔ Relief that builds</td><td class="no">Stops working</td></tr>
+            <tr><td>Cost over a year</td><td class="own yes">✔ One-time purchase</td><td class="no">Bottle after bottle after bottle</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="proof-closer fade-slow" style="font-style:normal">Designed to gently decompress the base of the neck and release the built-up tension over time — no appointments, no straps, no cracking. Just ten passive minutes a day, in your own bed.</p>
+      <p class="proof-closer fade-slow" style="font-style:normal">Nothing against sprays for a bad cold — that's what they're for. But a three-day tool was never designed to run your nights for six years.</p>
     </div>
   </section>
 
-  <!-- ===== EXPERT AUTHORITY (1 sola tarjeta — decisión Julio 11-jul: un solo "Dr.", sin decir "doctor" explícito) -->
+  <!-- ===== EXPERT AUTHORITY (1 tarjeta, rol genérico SIN nombre inventado — reglas Julio 11-jul + encargo 12-jul; foto pendiente de Julio) -->
   <section>
     <div class="wrap" style="max-width:1080px;text-align:center">
-      <div class="sec-head fade-slow"><div class="eyebrow">Expert perspective</div><h2>Why gentle traction works</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Expert perspective</div><h2>Recommended by ENT specialists and pharmacists</h2></div>
       <div class="fade-slow" style="text-align:left;max-width:460px;margin:0 auto">
         <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px 16px 20px">
-          <img src="assets/doc-1.webp" alt="Dr. Rachel M. holding the Gravity Cradle" width="700" height="700" loading="lazy" style="width:100%;height:auto;border-radius:12px;display:block;margin-bottom:14px">
-          <p style="font-family:'Fraunces',var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:10px">“Gentle, sustained traction is one of the safest ways to ease the muscle tension that builds at the base of the neck — no force, no manipulation.”</p>
-          <div style="font:600 14px/1.4 var(--sans);color:var(--ink-2)">Dr. Rachel M. · PM&amp;R</div>
+          <img src="assets/doc-reset-1.webp?v=n1" alt="ENT specialist with the Kalmely device" width="700" height="700" loading="lazy" style="width:100%;height:auto;border-radius:12px;display:block;margin-bottom:14px">
+          <p style="font-family:'Fraunces',var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:10px">“Red light at 660 nanometers is one of the gentlest ways I know to support irritated nasal tissue — nothing inhaled, nothing absorbed, no tolerance to build. The patients who do well are the consistent ones: three minutes, every night.”</p>
+          <div style="font:600 14px/1.4 var(--sans);color:var(--ink-2)">ENT specialist · Ear, nose &amp; throat care</div>
         </div>
       </div>
     </div>
@@ -1038,17 +1159,18 @@ section{padding:74px 0}
   <!-- ===== 6. FAQ ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
-      <div class="sec-head fade-slow"><div class="eyebrow">Questions women ask us most</div><h2>Frequently asked questions</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Questions people ask us most</div><h2>Frequently asked questions</h2></div>
       <div class="acc fade-slow">
-        <details><summary>Isn't the hump just bone? Mine feels hard.</summary><p>Press into it — if your fingers sink in even a little, that part isn't bone. In most women the bulk is tense soft tissue and trapped fluid stacked on top of the vertebra after menopause. That soft layer is what the Cradle decompresses — and why the spot softens within weeks.</p></details>
-        <details><summary>I've already tried braces, exercises and a chiropractor. Why would this be different?</summary><p>They all work on the wrong layer. A brace pulls your shoulders, exercises build muscle, a chiropractor adjusts joints — none of them decompress the soft pad on your C7. The Cradle does only that. Gently, every night.</p></details>
-        <details><summary>How long until I actually see something?</summary><p>You'll <em>feel</em> the release in the first session or two. What you <em>see</em> takes longer: the spot softens over 2–3 weeks, and most women notice it in the mirror around week 4. That's why you get 90 days.</p></details>
-        <details><summary>Will it all come back if I stop?</summary><p>Anything that needs willpower comes back when life gets busy. This is ten passive minutes, lying in bed. Women keep it up like brushing their teeth — it costs nothing to continue.</p></details>
-        <details><summary>Is it safe? An inflatable one made me dizzy once.</summary><p>Yes. It's one solid, stable piece of medical-grade foam — no air chambers, no wobble, zero pressure on your throat. Start with 3–4 minutes and work up to 10. (Had neck surgery or a spinal condition? Ask your doctor first.)</p></details>
-        <details><summary>Do I need exercises, an app, or to lie on the floor?</summary><p>None of it. No routines, no app, nothing to charge — and your bed works perfectly. If you can lie down for ten minutes, you know how to use it.</p></details>
-        <details><summary>What if mine is from weight, not posture?</summary><p>The soft pad is largely tissue and trapped fluid — that's why diets leave the hump in place. Daily decompression works on that cushion directly, whatever the scale says.</p></details>
-        <details><summary>How much is shipping and how fast?</summary><p>FREE on every order. Packed in 1–3 business days, delivered in 7–10, tracked.</p></details>
-        <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. 90 days, money-back, used or unused. Write to hello@kalmely.com and we refund every cent — no forms, no phone tree.</p></details>
+        <details><summary>I don't feel it doing anything. Is it working?</summary><p>Here's the honest answer: everything you could <em>feel</em> working — the sting of a spray, the burn of a rinse — was force, working on the wrong thing. The light is fuel, not force, and fuel is silent. You don't judge it in the moment; you judge it in the mornings, across a couple of weeks. That's exactly why we give you 180 nights instead of 14 days.</p></details>
+        <details><summary>Will it fit smaller nostrils?</summary><p>Yes. The soft silicone tips fit most nostrils comfortably, and they rest just inside the opening — never deep. If yours are smaller, the device can also be used without the sleeves for a closer fit.</p></details>
+        <details><summary>Can I use it with a deviated septum?</summary><p>Yes — many people with a deviated septum use it for comfort. Being straight with you: it won't fix the structural issue itself. It supports the swollen lining, which is a separate part of what makes nights feel blocked.</p></details>
+        <details><summary>Can I breathe with it in my nose?</summary><p>Completely normally. The tips don't seal or block airflow — most people read or watch TV during the three minutes and forget it's there.</p></details>
+        <details><summary>Will the red light bother my eyes or keep me awake?</summary><p>The light shines inside the nasal passages, not at your eyes. Most people use it right before bed with no effect on falling asleep.</p></details>
+        <details><summary>Is it rechargeable? Does it get hot?</summary><p>USB rechargeable — no batteries to buy, and a charge lasts many sessions. It emits no heat and no UV; most people feel nothing at all during use.</p></details>
+        <details><summary>Is it safe for kids, or during pregnancy?</summary><p>The device is gentle, with no UV and no heat. That said: for children, during pregnancy or nursing, or if you manage any medical condition or take medications — check with your doctor first. Thirty seconds of caution, always worth it.</p></details>
+        <details><summary>Can I keep using my sprays or medications with it?</summary><p>The light doesn't interact with medication — there's nothing chemical in it. But don't change any medication routine on your own; if you're thinking about simplifying what you use at night, do it with your doctor or pharmacist. The e-book included with every kit covers this honestly.</p></details>
+        <details><summary>How fast is shipping?</summary><p>Packed in 1–3 business days, delivered in 7–10, tracked to your door. Free U.S. shipping on the Complete and Family kits.</p></details>
+        <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. Use it every night for up to 180 nights — if your nights don't improve, write to hello@kalmely.com and we refund every cent, with free returns. No forms, no phone tree.</p></details>
       </div>
     </div>
   </section>
@@ -1056,7 +1178,7 @@ section{padding:74px 0}
   <!-- ===== 6b. ALL REVIEWS (última prueba social antes de la oferta de cierre; el botón de arriba baja aquí) ===== -->
   <section class="band" id="all-reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--ok)">★★★★★</span> 4.8/5 from 1,924 verified buyers — photo reviews first.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--ok)">★★★★★</span> 4.8/5 from <span class="rev-count">48</span> verified reviews — photo reviews first.</p></div>
       <div class="rev-teaserwrap teasing" id="revTeaser">
         <div class="rev-more" id="revTier1"></div>
         <div class="rev-overlay" hidden><button type="button" class="rev-morebtn rev-overlay-btn" id="revTeaserBtn">Click to read more reviews</button></div>
@@ -1069,37 +1191,37 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== 7. GUARANTEE (90-day) ===== -->
+  <!-- ===== 7. GUARANTEE (180-Night Fair-Try Promise) ===== -->
   <section>
     <div class="wrap guarantee fade-slow">
-      <div class="seal fade-slow"><b>90</b>day money-back</div>
-      <h2>Try it for 90 days. The risk is ours, not yours.</h2>
-      <p>Use it 10 minutes a day for 90 days. If your neck doesn't feel more released, email <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> — we refund every cent, even if it's used.</p>
+      <div class="seal fade-slow"><b>180</b>night fair-try</div>
+      <h2>The 180-Night Fair-Try Promise.</h2>
+      <p>Use it every night, for up to <b>180 nights</b>. If your nights don't improve, email <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> — we refund every cent, with free returns.</p>
       <ul class="vstack" style="margin-left:auto;margin-right:auto">
-        <li>Used is fine — we'd rather you give it the full 90 days.</li>
+        <li>Used every night is exactly what we want — that's the fair try.</li>
         <li>One email is all it takes. No forms, no phone tree.</li>
-        <li>Nothing to ship back — a used Cradle still qualifies.</li>
+        <li>Free returns — the risk stays on our side of the table.</li>
       </ul>
-      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">Worst case, you're out one email. Best case, you stop hiding the back of your neck.</p>
+      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">Worst case, you're out one email. Best case, you stop planning your evenings around a little bottle.</p>
       <div class="eyebrow" style="margin-bottom:4px">Ready when you are</div>
-      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Pick your pack &amp; start today</h3>
-      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · 1,924 verified buyers</span></div>
-      <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack" style="max-width:690px;margin:18px auto 0">
-        <button type="button" class="pack" data-sku="GRAVITY-1" data-price="54.95" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Cradle</span><span class="pack-unit">For you</span><span class="pack-price">$54.95</span><span class="pack-banner">🎁 Free e-book guide + free ship</span>
+      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Pick your kit &amp; start tonight</h3>
+      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · <span class="rev-count">48</span> verified reviews</span></div>
+      <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your kit" style="max-width:690px;margin:18px auto 0">
+        <button type="button" class="pack" data-sku="RESET-1" data-price="39.99" role="radio" aria-checked="false">
+          <span class="pack-qty">Starter Kit</span><span class="pack-unit">1 Device · Full price</span><span class="pack-price">$39.99<s>$97</s></span><span class="pack-banner">🎁 Free “Cellular Reset Protocol” e-book</span>
         </button>
-        <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
-          <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span><span class="pack-price">$69.95<s>$109.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+        <button type="button" class="pack" data-sku="RESET-2" data-price="64.98" role="radio" aria-checked="false">
+          <span class="pack-badge">★ Most popular · 2 free gifts</span>
+          <span class="pack-qty">Complete Kit</span><span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--ok);font-weight:700">You save 54%</em></span><span class="pack-price">$64.98<s>$219</s></span><span class="pack-banner">🎁 Washbag + e-book + FREE shipping</span>
         </button>
-        <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
-          <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span><span class="pack-price">$99.95<s>$164.85</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+        <button type="button" class="pack" data-sku="RESET-3" data-price="84.99" role="radio" aria-checked="false">
+          <span class="pack-badge alt">★ Best value · everything unlocked</span>
+          <span class="pack-qty">Family Kit</span><span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--ok);font-weight:700">You save 60%</em></span><span class="pack-price">$84.99<s>$333</s></span><span class="pack-banner">🎁 UV-C Case + Washbag + e-book + FREE ship</span>
         </button>
       </div>
-      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$69.95</span></button>
+      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$64.98</span></button>
       <div style="margin-top:12px;font:500 15px/1.4 var(--sans);color:var(--ink-soft)">Questions first? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
-      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">The Gravity Cradle is a wellness device for gentle neck decompression and relaxation. Not intended to diagnose, treat, cure or prevent any disease. Individual results vary. If you've had neck surgery or a spinal condition, consult your doctor.</div>
+      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely is a wellness device for nighttime nasal comfort and relaxation. It is not a medical device, has not been evaluated by the FDA, and is not intended to diagnose, treat, cure or prevent any disease. Results may vary. Consult a healthcare professional before use, especially if pregnant, breastfeeding, under 18, managing a medical condition, or taking medications.</div>
     </div>
   </section>
 
@@ -1114,9 +1236,9 @@ section{padding:74px 0}
     <div class="foot-bottom">
       <div class="foot-row">
         <span style="font:500 15px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
-        <div class="foot-links"><a href="/gravity-shipping.html">Shipping</a><a href="/gravity-refund.html">Returns &amp; Refunds</a><a href="/gravity-privacy.html">Privacy</a><a href="/gravity-terms.html">Terms</a></div>
+        <div class="foot-links"><a href="/reset-shipping.html">Shipping</a><a href="/reset-refund.html">Returns &amp; Refunds</a><a href="/reset-privacy.html">Privacy</a><a href="/reset-terms.html">Terms</a></div>
       </div>
-      <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 90-Day Money-Back Guarantee. &nbsp;The Gravity Cradle is a wellness device for gentle neck decompression and relaxation. It is not intended to diagnose, treat, cure or prevent any disease. Individual results vary. If you've had neck surgery or a spinal condition, consult your doctor. © 2026 Kalmely.</div>
+      <div class="foot-fine">🔒 Secure SSL checkout · 180-Night Fair-Try Promise with free returns. &nbsp;<b>Consumer Safety Statement:</b> Kalmely is a wellness device, not a medical device, and has not been evaluated by the FDA. It is not intended to diagnose, treat, cure, or prevent any disease. Results may vary. Consult a healthcare professional before use, especially if pregnant, breastfeeding, under 18, have a medical condition, or take medications. Discontinue use if discomfort occurs. © 2026 Kalmely.</div>
     </div>
   </div>
 </footer>
@@ -1124,7 +1246,7 @@ section{padding:74px 0}
 <!-- sticky cta -->
 <div class="sticky-cta" id="stickyCta">
   <div class="sc-inner">
-    <div class="sc-info"><span class="sc-name">The Gravity Cradle</span><span class="sc-meta"><span id="scLabel">2 Cradles</span> · <span id="scPrice">$69.95</span></span></div>
+    <div class="sc-info"><span class="sc-name">Kalmely · The Cellular Reset</span><span class="sc-meta"><span id="scLabel">Complete Kit</span> · <span id="scPrice">$64.98</span></span></div>
     <button type="button" class="add-to-cart sc-btn">Add to Cart</button>
   </div>
 </div>
@@ -1141,14 +1263,14 @@ section{padding:74px 0}
   <div class="cart-empty" id="cartEmpty" style="display:none">
     <div class="ce-ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
     <p class="ce-title">Your cart is empty</p>
-    <p class="ce-sub">Add a Gravity Cradle to get started.</p>
+    <p class="ce-sub">Pick your Cellular Reset kit to get started.</p>
     <button type="button" class="cart-checkout" id="cartEmptyCta">Choose your pack →</button>
   </div>
   <div class="cart-body">
     <div class="cart-item">
-      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01-thumb.webp" alt="The Gravity Cradle" width="96" height="96" loading="lazy"></div>
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01-thumb.webp?v=n1" alt="Kalmely — The Cellular Reset" width="96" height="96" loading="lazy"></div>
       <div class="cart-item-info">
-        <div class="cart-item-name" id="cartName">The Gravity Cradle</div>
+        <div class="cart-item-name" id="cartName">Kalmely — The Cellular Reset</div>
         <div class="cart-item-meta" id="cartMeta">2 Bars</div>
         <div class="cart-item-price"><span id="cartPrice">$39</span><span class="ci-was" id="cartWas">$58</span></div>
       </div>
@@ -1161,12 +1283,12 @@ section{padding:74px 0}
     <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$19.00</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$39</span></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
-    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 90-day guarantee</span><span>🚚 Free shipping</span></div>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 180-night promise</span><span>🚚 Fast U.S. shipping</span></div>
   </div>
 </aside>
 
 <div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
-  <p>We use cookies to improve the site and measure ads. Read our <a href="/gravity-privacy.html">privacy policy</a>.</p>
+  <p>We use cookies to improve the site and measure ads. Read our <a href="/reset-privacy.html">privacy policy</a>.</p>
   <div class="cookie-actions"><button type="button" class="accept" id="cookieAccept">Accept</button><button type="button" class="deny" id="cookieDeny">Essential only</button></div>
 </div>
 
@@ -1176,14 +1298,18 @@ section{padding:74px 0}
   // Old-Android safety: NodeList.forEach is missing on some legacy in-app browsers.
   if(window.NodeList&&NodeList.prototype&&!NodeList.prototype.forEach)NodeList.prototype.forEach=Array.prototype.forEach;
   var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
-  // ===== Offer model: The Gravity Cradle (USD) — 1 / 2 / 3 bars, one-time, staggered gifts =====
-  var VARIANT='GRAVITY';
+  // ===== Offer model: Kalmely — The Cellular Reset (USD) — Starter / Complete / Family kits + add-on UV =====
+  var VARIANT='RESET';
+  var EBOOK=['“Cellular Reset Protocol” e-book','19','ebook-reset-3d','Your 3-minute nightly routine, the 14-night calendar of what to expect, and the evening habits that multiply your results.'];
+  var WASHBAG=['Black Travel Washbag','29','gift-washbag','A premium washbag so the device — and the whole routine — travels with you. Trips, guest rooms, weekends away.'];
+  var UVCASE=['UV-C Sterilizer Case','24.99','gift-uvcase','Sanitizes the silicone tips after each session — hygiene first, always. Fits 2 devices.'];
   var TIERS={
-    'GRAVITY-1':{price:54.95,was:0,label:'1 Cradle',sub:false,img:'bundle-1',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.']]},
-    'GRAVITY-2':{price:69.95,was:109.90,label:'2 Cradles',sub:false,img:'bundle-2',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.']]},
-    'GRAVITY-3':{price:99.95,was:164.85,label:'3 Cradles',sub:false,img:'bundle-3',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.'],['Travel Organizer Set (6 pcs)','24','gift-organizer-set','Six packing organizers so the Cradle — and your whole routine — travels with you. Trips, guest rooms, visits to the grandkids.']]}
+    'RESET-1':{price:39.99,was:97,count:1,label:'Starter Kit',sub:false,img:'bundle-1',ship:false,gifts:[EBOOK]},
+    'RESET-1UV':{price:59.98,was:121.99,count:1,label:'Starter Kit + UV Case',sub:false,img:'bundle-1',ship:false,uvPaid:true,gifts:[EBOOK]},
+    'RESET-2':{price:64.98,was:219,count:2,label:'Complete Kit',sub:false,img:'bundle-2',ship:true,gifts:[EBOOK,WASHBAG]},
+    'RESET-3':{price:84.99,was:333,count:3,label:'Family Kit',sub:false,img:'bundle-3',ship:true,gifts:[EBOOK,WASHBAG,UVCASE]}
   };
-  var DEFAULT='GRAVITY-2';  // land on the Most-Popular 2-pack ($69.95) by default
+  var DEFAULT='RESET-2';  // land on the Most-Popular Complete Kit ($64.98) by default
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
   var packs=document.querySelectorAll('.pack');
   // (per-pack "only N left" badges removed — replaced by a single low-stock notice in the buybox)
@@ -1191,10 +1317,10 @@ section{padding:74px 0}
   var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
   var colours=[]; var pillowColor='';
   var curSku=DEFAULT, curPrice='34.95';
-  var packName=function(s){return 'The Gravity Cradle · '+info(s).label;};
+  var packName=function(s){return 'Kalmely — The Cellular Reset · '+info(s).label;};
   var saveColours=function(){};
   function _wantsSub(){var c=document.getElementById('subOptin');return !!(c&&c.checked);}
-  function subEveryMonths(s){return ({'GRAVITY-1':2,'GRAVITY-2':3,'GRAVITY-3':5})[s||curSku]||2;}
+  function subEveryMonths(s){return ({'RESET-1':2,'RESET-2':3,'RESET-3':5})[s||curSku]||2;}
   function ctaPriceTxt(){return money(_wantsSub()?info(curSku).price*0.85:info(curSku).price);}
   function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
   function updateCtas(){
@@ -1211,27 +1337,34 @@ section{padding:74px 0}
   function renderGifts(sku){
     var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
     el.className='includes';
-    var count=({'GRAVITY-1':1,'GRAVITY-2':2,'GRAVITY-3':3})[sku]||1;
-    var barReg=count*29; // anchor = single-bar price × count (2-bar $58, 3-bar $87)
-    var barVal=(count>1)?'<s>$'+barReg+'</s>':'$'+barReg; // struck bundle anchor only when there's a multi-bar discount
-    var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+' Gravity Cradle'+(count>1?'s':'')+'</span><span class="inc-val">'+barVal+'</span></li>';
+    var count=t.count||1;
+    var devReg=Math.round(count*69.99*100)/100; // anchor = single-device price × count
+    var devVal=(t.was&&t.was>t.price)?'<s>$'+devReg+'</s>':'$'+devReg;
+    var dev='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+'× Cellular Reset Device'+(count>1?'s':'')+' + soft tips</span><span class="inc-val">'+devVal+'</span></li>';
+    var uv=t.uvPaid?'<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/gift-uvcase.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">UV-C Sterilizer Case<span class="inc-desc">Your add-on — sanitizes the tips after each session.</span></span><span class="inc-val">$19.99</span></li>':'';
     var giftTotal=0;
-    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseInt(g[1],10)||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
-    var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Free U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
-    var totalValue=barReg+giftTotal;
+    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseFloat(g[1])||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
+    var ship=t.ship?'<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>':'';
+    var totalValue=Math.round((devReg+giftTotal+(t.uvPaid?24.99:0))*100)/100;
     var total='<li class="inc-row inc-total"><span class="inc-name">Total value</span><span class="inc-val"><s>$'+totalValue+'</s> <b class="inc-today">Today $'+t.price+'</b></span></li>';
-    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+bar+gifts+ship+total+'</ul><div class="inc-foot">✓ 90-day money-back guarantee</div>';
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+dev+uv+gifts+ship+total+'</ul><div class="inc-foot">✓ 180-Night Fair-Try Promise · free returns</div>';
   }
-  var PACK_IDX={'GRAVITY-1':0,'GRAVITY-2':1,'GRAVITY-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
+  var PACK_IDX={'RESET-1':0,'RESET-2':1,'RESET-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 7 slides
+  function _baseSku(s){return s==='RESET-1UV'?'RESET-1':s;}
+  function _uvChecks(){return [].slice.call(document.querySelectorAll('#uvAddonCheck'));}
   function select(sku,persist){
-    if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
+    if(!TIERS[sku])sku=DEFAULT;
     curSku=sku;
-    packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
+    var base=_baseSku(sku);
+    packs.forEach(function(p){var on=p.dataset.sku===base;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=String(info(sku).price);});
+    // add-on UV: solo visible con el Starter; sincroniza el checkbox con el estado
+    var ao=document.getElementById('uvAddon');
+    if(ao){var show=base==='RESET-1';ao.className=show?'bx-addon show':'bx-addon';_uvChecks().forEach(function(c){c.checked=(sku==='RESET-1UV');});}
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
-    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=b2';}  // swap the bundle preview to match the selected pack
-    // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
+    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=n1';}  // swap the kit preview to match the selection
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
+  (function(){var c=document.getElementById('uvAddonCheck');if(c)c.addEventListener('change',function(){select(this.checked?'RESET-1UV':'RESET-1',true);if(cartOpen)populateCart();});})();
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
@@ -1249,10 +1382,10 @@ section{padding:74px 0}
   function money(n){return '$'+Number(n).toFixed(2);}
   function populateCart(){
     var m=lineMath(),price=m.price,was=m.was,save=m.save,t=info(curSku);
-    document.getElementById('cartName').textContent='The Gravity Cradle';
+    document.getElementById('cartName').textContent='Kalmely — The Cellular Reset';
     document.getElementById('cartMeta').textContent=t.label;
     document.getElementById('cartQty').textContent='×1';
-    document.getElementById('cartImg').src='assets/hero-01-thumb.webp';
+    document.getElementById('cartImg').src='assets/hero-01-thumb.webp?v=n1';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
@@ -1261,12 +1394,13 @@ section{padding:74px 0}
     document.getElementById('cartTotal').textContent=money(price);
     document.getElementById('cartCount').textContent='1';
     var _free=document.querySelector('.ch-free');
-    if(_free){_free.textContent='✓ Free shipping';}
+    if(_free){_free.textContent=t.ship?'✓ Free shipping':'✓ Fast U.S. shipping';}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
       var _g=t.gifts||[];
-      if(_g.length){_cg.innerHTML='<span class="cg-h">Free gifts included</span>'+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
-      else{_cg.innerHTML='<span class="cg-h">90-day money-back guarantee</span>';}
+      var _uv=t.uvPaid?'<span class="cg-item">➕ UV-C Sterilizer Case (add-on) <b>$19.99</b></span>':'';
+      if(_g.length||_uv){_cg.innerHTML='<span class="cg-h">'+(_g.length?'Free gifts included':'Your kit')+'</span>'+_uv+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
+      else{_cg.innerHTML='<span class="cg-h">180-Night Fair-Try Promise</span>';}
     }
   }
   function openCart(){
@@ -1367,7 +1501,7 @@ section{padding:74px 0}
   }
 
   // ---------- Newsletter footer (post to /api/lead-magnet) ----------
-  function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'newsletter',product:'gravity'})}).catch(function(){});}catch(e){}}
+  function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'newsletter',product:'reset'})}).catch(function(){});}catch(e){}}
   // WELCOME10 fully removed — clear any stale local flag from older sessions
   try{localStorage.removeItem('kalmely_welcome');}catch(e){}
     (function(){
@@ -1403,11 +1537,20 @@ section{padding:74px 0}
 <!-- Reviews data + render (featured w/ photos, rating distribution, see-more, filter by star).
      Not deferred: it sits at the end of <body> (below the LCP hero, so no perf impact) and must run
      BEFORE the inline render block below, which reads window.KALMELY_REVIEWS. -->
-<script src="assets/reviews.js?v=gc4"></script>
+<script src="assets/reviews.js?v=n1"></script>
 <script>
 (function(){
-  // file-33 lead testimonials (named, age-stamped, appearance/feel only — NO before/after, NO regrowth)
-  var LEAD=[{"r": 5, "n": "Diane R.", "d": "Nashville, TN", "av": "avatar-ra1", "t": "No more scarves", "b": "I spent two winters wearing scarves to cover the bump at the base of my neck. Tried a posture brace (dug into my armpits, returned it) and a chiropractor for months, which helped for about a day each time. This you just lie on. I do it while my husband watches the news, ten minutes, that's it. Took me maybe a week to figure out where exactly to put my head — too high and it doesn't do anything. But the area back there is way less stiff now and I wore a scoop neck to my niece's shower without even thinking about it until my sister pointed it out. That was a good day. Only complaint is the cover attracts lint like crazy.", "dt": "June 9, 2026"}, {"r": 5, "n": "Margaret K.", "d": "Boise, ID", "av": "avatar-ra2", "t": "so far so good", "b": "That spot at the base of my neck was hard as a rock, got worse after menopause. Two weeks of lying on this before bed and it's not so bunched up anymore. Smelled a little rubbery out of the box but that went away in a couple days.", "dt": "May 27, 2026"}, {"r": 5, "n": "Marisol R.", "d": "Fort Worth, TX", "av": "avatar-ra3", "t": "Photos don't stress me out now", "b": "I used to dread group photos because of my side profile. A few weeks in and the bump honestly doesn't look as big in pictures, and that whole area is less stiff. Wish it came in gray, the blue doesn't match anything in my bedroom, but it lives under my pillow side so who cares.", "dt": "June 24, 2026"}, {"r": 5, "n": "Gloria W.", "d": "Dayton, OH", "av": "avatar-ra4", "t": "Actually stuck with this one", "b": "I've bought so many neck gadgets that ended up in a drawer. This one is gentle — no cracking, nothing to strap on, I just lie back for ten minutes. I'm not rubbing that knot all day anymore. Arrived in two days too.", "dt": "July 2, 2026"}, {"r": 5, "n": "Linda P.", "d": "Albany, NY", "av": "avatar-ra5", "t": "happy with it", "b": "Menopause gave me that soft bump at the base of my neck along with everything else. I won't make any big claims — it's not gone — but it looks a little smaller and it's not as tight, and last week I put my hair up in a clip without doing my usual mirror check. Bought during the Mother's Day sale, glad I did.", "dt": "June 15, 2026"}, {"r": 5, "n": "Grace C.", "d": "Spokane, WA", "av": "avatar-ra6", "t": "works", "b": "Ten minutes lying in bed. Neck used to feel heavy by dinner, now it doesn't. Bump maybe a touch smaller after two months, no miracle. My cat claimed the box immediately.", "dt": "April 18, 2026"}, {"r": 5, "n": "Priya N.", "d": "Edison, NJ", "av": "avatar-ra7", "t": "Finally something passive", "b": "The brace was homework, PT exercises were homework, and I never kept up with either. This asks nothing of me — I just lie on it and my head's weight does the work. That tight band across the base of my neck has eased up more than anything else I tried. The pouch is thinner than I expected from the pictures, but it does the job.", "dt": "July 4, 2026"}, {"r": 5, "n": "Yvonne B.", "d": "Grand Rapids, MI", "av": "avatar-ra8", "t": "Wish I'd found it sooner", "b": "I always assumed the hump was just how my back was and that was that. For me at least, a lot of it seems to have been built-up tightness sitting on top, because lying on the Gravity Cradle has loosened things up noticeably. It's gradual — took a few nights to even find the right position — but my upper back doesn't feel like a brick anymore.", "dt": "March 14, 2026"}];
+  // lead testimonials nasales (voz de los copys: sprays/2:30am/marido/farmacéutica — subjetivo, sin claims médicos)
+  var LEAD=[
+    {"r": 5, "n": "Diane R.", "d": "Nashville, TN", "av": "avatar-ra1", "t": "The bottle is in the trash", "b": "I kept one bottle on the nightstand, one in my purse, one in the car. Six years like that. I did the three minutes every night while my husband watched the news, mostly to prove it wouldn't work. Week one, nothing I could feel. Week two I realized I'd fallen asleep without reaching for the bottle twice. Last month I threw the nightstand one away. I kept the purse one for a while, just in case — haven't touched it.", "dt": "June 9, 2026"},
+    {"r": 5, "n": "Margaret K.", "d": "Boise, ID", "av": "avatar-ra2", "t": "so far so good", "b": "The 2:30 a.m. wake-up with my throat like sandpaper was my normal. Two-and-a-bit weeks in and I'm mostly sleeping through now. You don't feel the light doing anything, which threw me at first. You find out in the morning, like they say.", "dt": "May 27, 2026"},
+    {"r": 5, "n": "Marisol R.", "d": "Fort Worth, TX", "av": "avatar-ra3", "t": "My pharmacist was right", "b": "It was actually my pharmacist who pulled me aside about how often I was rebuying spray. She was too polite to say it plainly but I got the message. I found this, read everything, made my husband read everything. Three minutes while I take off my makeup. The nights are just... calmer. I stopped hiding the spray receipts, because there aren't any.", "dt": "June 24, 2026"},
+    {"r": 5, "n": "Gloria W.", "d": "Dayton, OH", "av": "avatar-ra4", "t": "Actually stuck with this one", "b": "Strips that peel off at 1 a.m., rinses hunched over the sink, a humidifier that fogged the windows. I've done it all and quit it all. This is the first thing that asks basically nothing — three minutes, it turns itself off, done. Arrived in five days too.", "dt": "July 2, 2026"},
+    {"r": 4, "n": "Linda P.", "d": "Albany, NY", "av": "avatar-ra5", "t": "honest review", "b": "Being honest: the first week I almost returned it because I felt nothing at all. Kept going because of the 180 nights. Around week three the difference showed up in the mornings — waking up with my mouth closed, throat fine. Four stars because I wish the charge indicator were easier to read. Otherwise glad I stayed with it.", "dt": "June 15, 2026"},
+    {"r": 5, "n": "Grace C.", "d": "Spokane, WA", "av": "avatar-ra6", "t": "works", "b": "Three minutes while my tea steeps. Nights used to be the hard part of my day, now they aren't. No smell, no sting, nothing to feel. My cat claimed the box immediately.", "dt": "April 18, 2026"},
+    {"r": 5, "n": "Priya N.", "d": "Edison, NJ", "av": "avatar-ra7", "t": "Finally something that isn't a chemical", "b": "I didn't want another thing to swallow or squirt. That's the whole reason I tried this — there's nothing going into your body, just light. The evenings feel simpler: brush teeth, three minutes, book. My nose feels clearer at night than it has in a couple of years, and nobody had to convince me to keep buying refills.", "dt": "July 4, 2026"},
+    {"r": 5, "n": "Yvonne B.", "d": "Grand Rapids, MI", "av": "avatar-ra8", "t": "My husband is back in our bed", "b": "I'm writing this one for the wives. Almost two years of him \"sleeping better in the guest room.\" I got this for me, for the blocked-up nights — and the calmer my nights got, the quieter our room got, and one Tuesday he just... came back with his pillow. Neither of us made a thing of it. Best purchase of the year and it wasn't close.", "dt": "March 14, 2026"}
+  ];
   // Reviews completas en #all-reviews (última sección antes de la oferta de cierre).
   // Estados: 0 = tier1 (con foto) BORROSAS con botón "Click to read more reviews" encima ·
   //          1 = tier1 nítidas, botones [Show more ↓][Show less ↑] · 2 = todas, botón [Show fewer ↑].
@@ -1417,6 +1560,8 @@ section{padding:74px 0}
   var T2=ALL.filter(function(r){return !r.ph&&r.av;}).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
   var btn=document.getElementById('revMoreBtn'),t1=document.getElementById('revTier1'),t2=document.getElementById('revTier2'),dist=document.getElementById('revDist');
   if(!ALL.length)return;
+  // contador ÚNICO y coherente en toda la web = nº real de reseñas renderizadas (regla del encargo: mismo número en todas partes)
+  try{[].slice.call(document.querySelectorAll('.rev-count')).forEach(function(el){el.textContent=ALL.length;});}catch(e){}
   var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -1455,7 +1600,7 @@ section{padding:74px 0}
 </script>
 <script>
 /* announcement bar — rotate the two file-33 messages */
-(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['FREE U.S. Shipping · 90-Day Money-Back Guarantee','Passive 10-minute release · Loved by women 45+'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
+(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['180-Night Fair-Try Promise · Free returns','The drug-free 3-minute Cellular Reset · Nothing to inhale'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
 /* active nav state is hardcoded per page (Product on this PdP) for coherence regardless of deploy path */
 </script>
 </body>
