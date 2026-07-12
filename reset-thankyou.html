@@ -349,11 +349,11 @@ main { max-width: 880px; }
   <!-- DIGITAL GUIDE — shown if order includes ebook -->
   <section class="ty-digital fade-slow" id="tyDigital" hidden aria-label="Digital guide delivery" style="--stagger:200ms;">
     <div class="ty-digital-cover kalm-reveal-zoom">
-      <img src="/assets/ebook-physical-3d.webp?v=b2" alt="The 10-Minute Cushion Release Guide eBook">
+      <img src="/reset/assets/ebook-reset-3d.webp?v=n1" alt="The Cellular Reset Protocol eBook">
     </div>
     <div>
       <div class="ty-digital-eyebrow">Digital guide on the way</div>
-      <h2>Your <em>10-Minute Cushion Release Guide</em> eBook.</h2>
+      <h2>Your <em>Cellular Reset Protocol</em> eBook.</h2>
       <p>Attached to your order confirmation email, normally within five minutes of payment. Search for "Kalmely" in your inbox — or your <strong>Promotions</strong> tab in Gmail.</p>
       <div class="ty-digital-email" id="tyEmailBox"><span class="ph">Delivered to your checkout email</span></div>
       <p style="margin-top:12px;">Not arrived after 30 minutes? Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> and we'll resend manually.</p>
@@ -435,13 +435,14 @@ main { max-width: 880px; }
 (function() {
   // Read sku + session_id from URL
   const params = new URLSearchParams(window.location.search);
-  let sku = (params.get('sku') || 'GRAVITY-1').toUpperCase();
+  let sku = (params.get('sku') || 'RESET-2').toUpperCase();
   const PACKS = {
-    'GRAVITY-1': { name: '1 device',  price: 54.95 },
-    'GRAVITY-2': { name: '2 devices', price: 69.95 },
-    'GRAVITY-3': { name: '3 devices', price: 99.95 }
+    'RESET-1':   { name: 'Starter Kit (1 device)',  price: 39.99 },
+    'RESET-1UV': { name: 'Starter Kit + UV Case',   price: 59.98 },
+    'RESET-2':   { name: 'Complete Kit (2 devices)', price: 64.98 },
+    'RESET-3':   { name: 'Family Kit (3 devices)',   price: 84.99 }
   };
-  if (!PACKS[sku]) sku = 'GRAVITY-1';
+  if (!PACKS[sku]) sku = 'RESET-2';
   const pack = PACKS[sku];
   const sessionId = params.get('session_id');
 
