@@ -950,7 +950,7 @@ section{padding:74px 0}
       <div class="buybox fade-slow">
         <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>Launch Offer — Limited Stock</b> — This production run is nearly allocated. Lock in the launch price and free gifts now.</p></div>
         <div class="bx-sec">
-          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp?v=n1" alt="Your Cellular Reset kit" width="760" height="760"></div>
+          <div class="pack-preview"><img id="packImage" src="assets/bundle-1.webp?v=n1" alt="Your Cellular Reset kit" width="760" height="760"></div>
           <div class="sale-divider">Buy More · Save More — Launch Pricing</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your kit">
             <button type="button" class="pack" data-sku="RESET-1" data-price="39.99" role="radio" aria-checked="false">
@@ -994,7 +994,7 @@ section{padding:74px 0}
           </div>
         </div>
 
-        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$64.98</span></button>
+        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39.99</span></button>
 
         <div class="bx-pay" aria-label="Accepted payments">
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
@@ -1238,7 +1238,7 @@ section{padding:74px 0}
           </span>
         </button>
       </div>
-      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$64.98</span></button>
+      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$39.99</span></button>
       <div style="margin-top:12px;font:500 15px/1.4 var(--sans);color:var(--ink-soft)">Questions first? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
       <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely is a wellness device for nighttime nasal comfort and relaxation. It is not a medical device, has not been evaluated by the FDA, and is not intended to diagnose, treat, cure or prevent any disease. Results may vary. Consult a healthcare professional before use, especially if pregnant, breastfeeding, under 18, managing a medical condition, or taking medications.</div>
     </div>
@@ -1265,7 +1265,7 @@ section{padding:74px 0}
 <!-- sticky cta -->
 <div class="sticky-cta" id="stickyCta">
   <div class="sc-inner">
-    <div class="sc-info"><span class="sc-name">Kalmely · The Cellular Reset</span><span class="sc-meta"><span id="scLabel">Complete Kit</span> · <span id="scPrice">$64.98</span></span></div>
+    <div class="sc-info"><span class="sc-name">Kalmely · The Cellular Reset</span><span class="sc-meta"><span id="scLabel">Starter Kit</span> · <span id="scPrice">$39.99</span></span></div>
     <button type="button" class="add-to-cart sc-btn">Add to Cart</button>
   </div>
 </div>
@@ -1327,7 +1327,7 @@ section{padding:74px 0}
     'RESET-2':{price:64.98,was:219,count:2,label:'Complete Kit',sub:false,img:'bundle-2',ship:true,gifts:[EBOOK,WASHBAG]},
     'RESET-3':{price:84.99,was:333,count:3,label:'Family Kit',sub:false,img:'bundle-3',ship:true,gifts:[EBOOK,WASHBAG,UVCASE]}
   };
-  var DEFAULT='RESET-2';  // land on the Most-Popular Complete Kit ($64.98) by default
+  var DEFAULT='RESET-1';  // por defecto la opción más barata (Starter $39.99) — decisión Julio 12-jul
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
   var packs=document.querySelectorAll('.pack');
   // (per-pack "only N left" badges removed — replaced by a single low-stock notice in the buybox)
