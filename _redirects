@@ -1,46 +1,55 @@
-# Everything resolves to the Gravity Cradle. No old product page stays reachable.
-/ /gravity/ 301
-/index.html /gravity/ 301
+# Everything resolves to Kalmely — The Cellular Reset. No old product page stays reachable.
+/ /reset/ 301
+/index.html /reset/ 301
 
-# --- scalp (previous product) ---
-/scalp /gravity/ 301
-/scalp/* /gravity/ 301
-/scalp-report /gravity/ 301
-/scalp-report/* /gravity/ 301
-/scalp-privacy.html /gravity-privacy.html 301
-/scalp-refund.html /gravity-refund.html 301
-/scalp-shipping.html /gravity-shipping.html 301
-/scalp-terms.html /gravity-terms.html 301
-/scalp-thankyou.html /gravity-thankyou.html 301
+# --- gravity cradle (previous product) ---
+/gravity /reset/ 301
+/gravity/* /reset/ 301
+/gravity-privacy.html /reset-privacy.html 301
+/gravity-refund.html /reset-refund.html 301
+/gravity-shipping.html /reset-shipping.html 301
+/gravity-terms.html /reset-terms.html 301
+/gravity-thankyou.html /reset-thankyou.html 301
+
+# --- scalp ---
+/scalp /reset/ 301
+/scalp/* /reset/ 301
+/scalp-report /reset/ 301
+/scalp-report/* /reset/ 301
+/scalp-privacy.html /reset-privacy.html 301
+/scalp-refund.html /reset-refund.html 301
+/scalp-shipping.html /reset-shipping.html 301
+/scalp-terms.html /reset-terms.html 301
+/scalp-thankyou.html /reset-thankyou.html 301
 
 # --- balm (Kalmely Relief) ---
-/relief /gravity/ 301
-/relief.html /gravity/ 301
+/relief /reset/ 301
+/relief.html /reset/ 301
 /relief-contact.html /contact.html 301
-/relief-privacy.html /gravity-privacy.html 301
-/relief-refund.html /gravity-refund.html 301
-/relief-shipping.html /gravity-shipping.html 301
-/relief-terms.html /gravity-terms.html 301
-/relief-thankyou.html /gravity-thankyou.html 301
+/relief-privacy.html /reset-privacy.html 301
+/relief-refund.html /reset-refund.html 301
+/relief-shipping.html /reset-shipping.html 301
+/relief-terms.html /reset-terms.html 301
+/relief-thankyou.html /reset-thankyou.html 301
 
 # --- tea tree ---
-/tea /gravity/ 301
-/tea.html /gravity/ 301
+/tea /reset/ 301
+/tea.html /reset/ 301
 
 # --- sleep mask era ---
-/v2 /gravity/ 301
-/v2.html /gravity/ 301
-/v3 /gravity/ 301
-/v3.html /gravity/ 301
-/v4 /gravity/ 301
-/v4.html /gravity/ 301
-/cart.html /gravity/ 301
-/thank-you.html /gravity-thankyou.html 301
+/v2 /reset/ 301
+/v2.html /reset/ 301
+/v3 /reset/ 301
+/v3.html /reset/ 301
+/v4 /reset/ 301
+/v4.html /reset/ 301
+/cart.html /reset/ 301
+/thank-you.html /reset-thankyou.html 301
 
 # --- old generic legals ---
-/privacy.html /gravity-privacy.html 301
-/refund-policy.html /gravity-refund.html 301
-/shipping-policy.html /gravity-shipping.html 301
-/terms.html /gravity-terms.html 301
-/returns /gravity-refund.html 301
-/returns.html /gravity-refund.html 301
+/privacy.html /reset-privacy.html 301
+/refund-policy.html /reset-refund.html 301
+/shipping-policy.html /reset-shipping.html 301
+/terms.html /reset-terms.html 301
+/returns /reset-refund.html 301
+/returns.html /reset-refund.html 301
