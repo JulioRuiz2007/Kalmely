@@ -653,6 +653,13 @@ section{padding:58px 0}
 .reason img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .seal-canva{display:block;width:210px;max-width:64%;margin:0 auto 18px;border-radius:50%}
 .eg-media img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover}
+/* how-to: 3 pasos con número en badge y sangría colgante (texto alineado al saltar de línea) */
+.howto-steps{flex:1 1 300px;max-width:400px;list-style:none;margin:0;padding:0}
+.howto-steps li{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line)}
+.howto-steps li:last-child{border-bottom:none}
+.howto-steps .hs-n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--pop-bg);color:var(--pop);font:800 15px/30px var(--sans);text-align:center}
+.howto-steps .hs-t{flex:1 1 auto;font:600 17px/1.5 var(--sans);color:var(--ink);padding-top:3px}
+@media(max-width:520px){.howto-steps .hs-t{font-size:16px}.howto-steps li{padding:13px 0}}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .steps3 .step img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -1083,10 +1090,10 @@ section{padding:58px 0}
       <div class="sec-head fade-slow"><div class="eyebrow">How you use it</div><h2>Three minutes. That's the whole routine.</h2></div>
       <div class="fade-slow" style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:center">
         <img src="assets/howto-reset.webp?v=n1" alt="Using the Kalmely device while reading in bed" width="1080" height="1080" loading="lazy" style="flex:1 1 300px;max-width:420px;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)">
-        <ul style="flex:1 1 280px;max-width:380px;list-style:none;margin:0;padding:0">
-          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line)"><span style="color:var(--ok);font-weight:800">1 ·</span> Clip the soft tips just inside your nostrils.</li>
-          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line)"><span style="color:var(--ok);font-weight:800">2 ·</span> Press once. Three minutes — it switches itself off.</li>
-          <li style="font:600 18px/1.5 var(--sans);color:var(--ink);padding:14px 0"><span style="color:var(--ok);font-weight:800">3 ·</span> Set it on the nightstand. You don't sleep in it.</li>
+        <ul class="howto-steps">
+          <li><span class="hs-n">1</span><span class="hs-t">Clip the soft tips just inside your nostrils.</span></li>
+          <li><span class="hs-n">2</span><span class="hs-t">Press once — three minutes, then it switches itself off.</span></li>
+          <li><span class="hs-n">3</span><span class="hs-t">Set it on the nightstand. You don't sleep in it.</span></li>
         </ul>
       </div>
     </div>
