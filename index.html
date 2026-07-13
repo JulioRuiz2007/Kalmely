@@ -256,7 +256,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .hs-ov{display:none;position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;text-align:left}
 @supports (font-size:1cqw){
   .hero-stage .hero-slide{container-type:inline-size}
-  .hs-ov{display:block}
+  .hs-ov{display:none} /* heroes Canva llevan texto incrustado (v=n3): overlays HTML OFF para no duplicar */
   .hs-ov .ovh{font-family:'Fraunces',var(--serif);font-weight:600;line-height:1.12;color:#4A1410;font-size:4.6cqw}
   .hs-ov .ovs{font:500 2.6cqw/1.5 var(--sans);color:#7A4038;margin-top:2cqw}
   .hs-ov .ovshield{display:inline-block;margin-top:2.2cqw;border:.4cqw solid #6B1E15;border-radius:999px;padding:1.4cqw 2.6cqw;font:700 2.2cqw/1 var(--sans);letter-spacing:.12em;color:#6B1E15;background:rgba(252,251,249,.75)}
@@ -966,7 +966,7 @@ section{padding:74px 0}
               <span class="pack-badge">★ Most popular · 2 free gifts</span>
               <span class="pack-qty">Complete Kit</span>
               <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 71%</em> · <span style="white-space:nowrap">$29.99 each</span></span>
-              <span style="display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for your partner — or a spare. Most order two.</span>
+              <span style="grid-column:1/-1;display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for your partner — or a spare. Most order two.</span>
               <span class="pack-price">$59.98<s>$204</s></span>
               <span class="kit-list"><span class="kt">Everything in your kit:</span>
                 <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
@@ -980,7 +980,7 @@ section{padding:74px 0}
               <span class="pack-badge alt">★ Best value · everything unlocked</span>
               <span class="pack-qty">Family Kit</span>
               <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 74%</em> · <span style="white-space:nowrap">$26.66 each</span></span>
-              <span style="display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for every bedroom — the whole house sleeps quiet.</span>
+              <span style="grid-column:1/-1;display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for every bedroom — the whole house sleeps quiet.</span>
               <span class="pack-price">$79.98<s>$307</s></span>
               <span class="kit-list"><span class="kt">Everything in your kit:</span>
                 <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
@@ -1230,7 +1230,7 @@ section{padding:74px 0}
         </button>
         <button type="button" class="pack" data-sku="RESET-2" data-price="59.98" role="radio" aria-checked="false">
           <span class="pack-badge">★ Most popular · 2 free gifts</span>
-          <span class="pack-qty">Complete Kit</span><span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 71%</em> · <span style="white-space:nowrap">$29.99 each</span></span><span style="display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for your partner — or a spare. Most order two.</span><span class="pack-price">$59.98<s>$204</s></span>
+          <span class="pack-qty">Complete Kit</span><span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 71%</em> · <span style="white-space:nowrap">$29.99 each</span></span><span style="grid-column:1/-1;display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for your partner — or a spare. Most order two.</span><span class="pack-price">$59.98<s>$204</s></span>
           <span class="kit-list"><span class="kt">Everything in your kit:</span>
             <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
             <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
@@ -1241,7 +1241,7 @@ section{padding:74px 0}
         </button>
         <button type="button" class="pack" data-sku="RESET-3" data-price="79.98" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value · everything unlocked</span>
-          <span class="pack-qty">Family Kit</span><span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 74%</em> · <span style="white-space:nowrap">$26.66 each</span></span><span style="display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for every bedroom — the whole house sleeps quiet.</span><span class="pack-price">$79.98<s>$307</s></span>
+          <span class="pack-qty">Family Kit</span><span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 74%</em> · <span style="white-space:nowrap">$26.66 each</span></span><span style="grid-column:1/-1;display:block;font:600 13.5px/1.35 var(--sans);color:var(--ok);margin-top:2px">One for every bedroom — the whole house sleeps quiet.</span><span class="pack-price">$79.98<s>$307</s></span>
           <span class="kit-list"><span class="kt">Everything in your kit:</span>
             <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
             <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
