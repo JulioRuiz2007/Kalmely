@@ -581,10 +581,11 @@ section{padding:58px 0}
 .cart-item-price #cartPrice{font:700 18px/1 var(--sans)}
 .ci-was{font-size:15px;text-decoration:line-through;color:var(--faint)}
 .cart-colours{margin:18px 0}
-.cart-gift{margin:18px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px}
-.cg-h{display:block;font:600 14px/1.3 var(--sans);color:var(--ink-2);margin-bottom:8px}
-.cg-item{display:block;font:500 15px/1.7 var(--sans);color:var(--ink-soft)}
-.cg-item b{color:var(--pop)}
+.cart-gift{margin:16px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.cg-h{display:block;font:700 11.5px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.cg-item{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:500 14px/1.55 var(--sans);color:var(--ink-2);padding:2px 0}
+.cg-item>span:first-child{flex:1 1 auto;min-width:0}
+.cg-item .cg-tag{flex:0 0 auto;white-space:nowrap;font-weight:800;color:var(--pop)}
 .cart-foot{padding:18px 22px;border-top:1px solid var(--line);background:var(--card)}
 .cart-totals{display:flex;justify-content:space-between;font:500 15.5px/1.6 var(--sans);color:var(--ink-2)}
 .ct-save{color:var(--ok);font-weight:600}
@@ -1386,9 +1387,12 @@ section{padding:58px 0}
     if(_free){_free.textContent='✓ Free shipping';}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
-      var _g=t.gifts||[];
-      if(_g.length){_cg.innerHTML='<span class="cg-h">Free gifts included</span>'+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
-      else{_cg.innerHTML='<span class="cg-h">90-Night Fair-Try Promise</span>';}
+      var _n=t.count||1;
+      var _rows='<span class="cg-item"><span>'+_n+'× Cellular Reset Device</span><span class="cg-tag">INCLUDED</span></span>';
+      _rows+='<span class="cg-item"><span>Silicone tips + spare set'+(_n>1?'s':'')+'</span><span class="cg-tag">INCLUDED</span></span>';
+      (t.gifts||[]).forEach(function(x){_rows+='<span class="cg-item"><span>'+x[0].replace(/[“”]/g,'')+'</span><span class="cg-tag">FREE</span></span>';});
+      _rows+='<span class="cg-item"><span>U.S. Shipping</span><span class="cg-tag">FREE</span></span>';
+      _cg.innerHTML='<span class="cg-h">Everything in your kit</span>'+_rows;
     }
   }
   function openCart(){
