@@ -446,6 +446,7 @@ section{padding:74px 0}
 .pack .pack-banner{display:block;max-width:100%;margin-top:auto;padding-top:6px;background:var(--pop-bg);color:var(--pop);font:700 12px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #C9E4D2;text-align:center}
 /* kit "You get:" — lista de valor por ítem dentro de cada card */
 .kit-list{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-2);text-align:left}
+.pack:not(.is-selected) .kit-list{display:none} /* el "Everything in your kit" solo se despliega en el pack seleccionado — desktop Y móvil, arriba (#packs) y abajo (#packsFinal) */
 .kit-list .kt{display:block;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
 .kit-list .ki{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)}
 .kit-list .ki>span:first-child{text-align:left}
