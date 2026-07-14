@@ -1,15 +1,7 @@
-# Everything resolves to Kalmely — The Cellular Reset. No old product page stays reachable.
+# Root → Cellular Reset (producto principal). /gravity/ vive como página paralela archivada (navy, noindex).
 / /reset/ 302
 /index.html /reset/ 302
-
-# --- gravity cradle (previous product) ---
-/gravity /reset/ 301
-/gravity/* /reset/ 301
-/gravity-privacy.html /reset-privacy.html 301
-/gravity-refund.html /reset-refund.html 301
-/gravity-shipping.html /reset-shipping.html 301
-/gravity-terms.html /reset-terms.html 301
-/gravity-thankyou.html /reset-thankyou.html 301
+# /gravity y /gravity-*.html YA NO redirigen — sirven su propia web navy paralela
 
 # --- scalp ---
 /scalp /reset/ 301
