@@ -476,7 +476,7 @@ main { max-width: 880px; }
     // Fallback: the list price of the pack in the URL.
     let value = pack.price;
     try {
-      const stored = JSON.parse(localStorage.getItem('kalmely_last_purchase') || '{}');
+      const stored = JSON.parse(localStorage.getItem('kalmely_last_purchase_g') || '{}');
       if (stored && stored.value && (Date.now() - (stored.ts || 0)) < 30 * 60 * 1000) {
         value = stored.value;
       }
@@ -495,12 +495,12 @@ main { max-width: 880px; }
       });
     }
     // Clear so a refresh doesn't double-fire with stale value
-    try { localStorage.removeItem('kalmely_last_purchase'); } catch (_) {}
+    try { localStorage.removeItem('kalmely_last_purchase_g'); } catch (_) {}
     // Empty the persistent bag after a real purchase so the landing no longer shows "Resume your order"
     try {
-      localStorage.removeItem('kalmely_bag');
-      localStorage.removeItem('kalmely_pack');
-      localStorage.removeItem('kalmely_colors');
+      localStorage.removeItem('kalmely_bag_g');
+      localStorage.removeItem('kalmely_pack_g');
+      localStorage.removeItem('kalmely_colors_g');
     } catch (_) {}
     if (window.gtag) {
       gtag('event', 'purchase', {

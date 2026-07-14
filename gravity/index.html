@@ -1201,13 +1201,13 @@ section{padding:74px 0}
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
     var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=b2';}  // swap the bundle preview to match the selected pack
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
-    if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
+    if(persist){try{localStorage.setItem('kalmely_pack_g',sku)}catch(e){}}
   }
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
   (function(){var _so=document.getElementById('subOptin');if(_so)_so.addEventListener('change',function(){updateCtas();if(cartOpen)populateCart();});})();
-  try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
+  try{colours=JSON.parse(localStorage.getItem('kalmely_colors_g'))||[]}catch(e){colours=[]}
   var saved=DEFAULT;  // always land on the smallest pack ($29) regardless of any previously-saved choice
 
   // ---------- Meta cookies for CAPI matching ----------
@@ -1242,7 +1242,7 @@ section{padding:74px 0}
   }
   function openCart(){
     var m=lineMath(),price=m.price,qty=m.qty;
-    try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
+    try{localStorage.setItem('kalmely_bag_g',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
     if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'USD',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
     setEmpty(false);populateCart();openDrawer();
   }
@@ -1262,7 +1262,7 @@ section{padding:74px 0}
   document.getElementById('cartClose').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cartOpen)closeCart();});
-  function readBagQty(){try{var b=JSON.parse(localStorage.getItem('kalmely_bag')||'null');return b&&b.qty?b.qty:0;}catch(e){return 0;}}
+  function readBagQty(){try{var b=JSON.parse(localStorage.getItem('kalmely_bag_g')||'null');return b&&b.qty?b.qty:0;}catch(e){return 0;}}
 
   // ---------- Checkout (from drawer) → InitiateCheckout + Stripe ----------
   var checkingOut=false;
@@ -1272,7 +1272,7 @@ section{padding:74px 0}
     var sku=curSku,m=lineMath(),qty=m.qty,wsub=_wantsSub(),price=wsub?Math.round(m.price*85)/100:m.price;
     var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'USD',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
-    try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'USD',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
+    try{localStorage.setItem('kalmely_last_purchase_g',JSON.stringify({value:price,currency:'USD',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
       var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:wsub,coupon:'',gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
