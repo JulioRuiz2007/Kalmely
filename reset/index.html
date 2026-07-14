@@ -560,7 +560,7 @@ section{padding:58px 0}
 /* cart drawer */
 .cart-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(20,18,16,.42);opacity:0;visibility:hidden;transition:opacity .3s;z-index:60}
 .cart-overlay.open{opacity:1;visibility:visible}
-.cart-drawer{position:fixed;top:0;right:0;height:100%;width:430px;max-width:92vw;background:var(--paper);z-index:61;transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;overscroll-behavior:contain;width:430px;max-width:92vw;background:var(--paper);z-index:61;transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
 .cart-drawer.open{transform:none}
 .cart-head{display:flex;align-items:center;gap:10px;padding:20px 22px;border-bottom:1px solid var(--line)}
 .cart-head h3{font:600 18px/1 var(--serif);display:flex;align-items:center;gap:8px;flex:1}
@@ -1401,7 +1401,7 @@ section{padding:58px 0}
     if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'USD',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
     setEmpty(false);populateCart();openDrawer();
   }
-  function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
+  function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;}
   function setEmpty(isEmpty){
     var empty=document.getElementById('cartEmpty'),body=drawer.querySelector('.cart-body'),foot=drawer.querySelector('.cart-foot'),free=drawer.querySelector('.ch-free');
     if(empty)empty.style.display=isEmpty?'flex':'none';
@@ -1410,7 +1410,7 @@ section{padding:58px 0}
     if(free)free.style.display=isEmpty?'none':'';
   }
   function viewCart(){if(readBagQty()){setEmpty(false);populateCart();}else{setEmpty(true);}openDrawer();}
-  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';}
+  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;}
   addBtns.forEach(function(b){b.addEventListener('click',openCart);});
   document.getElementById('navCart').addEventListener('click',viewCart);
   document.getElementById('cartEmptyCta').addEventListener('click',function(){closeCart();var box=document.querySelector('.buybox');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}});
@@ -1519,8 +1519,8 @@ section{padding:58px 0}
   var lb=document.getElementById('lightbox'); if(!lb) return;
   var lbImg=lb.querySelector('img');
   document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Enlarge image');});
-  function open(im){lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
-  function close(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(function(){lbImg.src='';},200);}
+  function open(im){lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');}
+  function close(){lb.classList.remove('open');setTimeout(function(){lbImg.src='';},200);}
   document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest(sel);if(im){e.preventDefault();open(im);}});
   document.addEventListener('keydown',function(e){var im=e.target&&e.target.closest&&e.target.closest(sel);if(im&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(im);}if(e.key==='Escape'&&lb.classList.contains('open'))close();});
   lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-close'))close();});
