@@ -1,7 +1,14 @@
-# Root → Cellular Reset (producto principal). /gravity/ vive como página paralela archivada (navy, noindex).
-/ /reset/ 302
-/index.html /reset/ 302
-# /gravity y /gravity-*.html YA NO redirigen — sirven su propia web navy paralela
+# Root → Gravity Cradle (producto ACTIVO en retest). Reset archivado en rama reset-archive (fuera del deploy).
+/ /gravity/ 302
+/index.html /gravity/ 302
+# reset fuera del deploy: cualquier /reset* → gravity (así ninguna visita carga el reset → pixel/clarity solo capturan gravity)
+/reset /gravity/ 301
+/reset/* /gravity/ 301
+/reset-privacy.html /gravity-privacy.html 301
+/reset-refund.html /gravity-refund.html 301
+/reset-shipping.html /gravity-shipping.html 301
+/reset-terms.html /gravity-terms.html 301
+/reset-thankyou.html /gravity-thankyou.html 301
 
 # --- scalp ---
 /scalp /reset/ 301
