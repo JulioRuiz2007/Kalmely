@@ -290,20 +290,27 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .cdot-black{background:#1a1a1a}.cdot-pink{background:#e7a6b4}
 
 /* quantity tier cards (with thumbnails inside) */
-.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:17px 11px 15px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:border-color .15s,box-shadow .15s}
+.packs{display:flex;flex-direction:column;gap:15px}
+.pack{position:relative;width:100%;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:16px 18px;transition:border-color .15s,box-shadow .15s}
+.pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
+.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+.pack .kit-list{grid-column:1/-1;grid-row:auto}
 .pack:hover{border-color:var(--ink-soft)}
 .pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
-.pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--green);color:#fff;font:700 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
+.pack-badge{position:absolute;top:-11px;left:16px;transform:none;white-space:nowrap;background:var(--green);color:#fff;font:700 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:20px}
 .pack-badge.alt{background:var(--gold);color:#fff}
-.pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
-.pack-thumb .ph{width:100%;height:100%}
-.pack-thumb .ph span{font-size:15px;letter-spacing:.02em;color:var(--ink-soft);font-weight:700}
-.pack-thumb .ph svg{display:none}
-.pack-qty{font:600 17px/1 var(--sans)}
-.pack-unit{font:600 14px/1.2 var(--sans);color:var(--ink-soft)}
-.pack-price{font:700 19px/1 var(--sans);margin-top:2px}
-.pack-price s{font-size:15px;font-weight:500;margin-left:5px}
+.pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
+.pack-unit{grid-area:unit;align-self:start;font:600 14px/1.3 var(--sans);color:var(--ink-soft)}
+.pack-price{grid-area:price;justify-self:end;text-align:right;font:700 19px/1 var(--sans);margin-top:0}
+.pack-price s{font-size:15px;font-weight:500;margin-left:6px}
+.kit-list{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-2);text-align:left}
+.pack:not(.is-selected) .kit-list{display:none}
+.kit-list .kt{display:block;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.kit-list .ki{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)}
+.kit-list .ki>span:first-child{text-align:left}
+.kit-list .ki .kv{white-space:nowrap;color:var(--faint);font-weight:600}
+.kit-list .ki .kv s{color:var(--faint);font-weight:600}
+.kit-list .ki .kv b{color:var(--pop);font-weight:800;margin-left:6px}
 
 /* includes list */
 .includes{margin-top:18px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -791,7 +798,9 @@ section{padding:74px 0}
   .bx-trust-i span{font-size:14px}
   /* PACK SELECTOR, full-width vertical bars */
   .packs{display:flex;flex-direction:column;gap:15px;margin-top:8px}
-  .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit unit" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
+  .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
+  .kit-list .ki{font-size:13px;gap:8px}
+  .kit-list .ki .kv{font-size:12.5px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
   .pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
@@ -888,21 +897,21 @@ section{padding:74px 0}
               <span class="pack-qty">1 Cradle</span>
               <span class="pack-unit">For you</span>
               <span class="pack-price">$44.95<s>$89.90</s></span>
-              <span class="pack-banner">🎁 Free e-book guide + free ship</span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>1× Gravity Cradle</span><span class="kv"><s>$60.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
             </button>
             <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
-              <span class="pack-badge">★ Most popular</span>
+              <span class="pack-badge">★ Most popular · 2 free gifts</span>
               <span class="pack-qty">2 Cradles</span>
-              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--green);font-weight:700">Save $69.95</em></span>
+              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--green);font-weight:700;white-space:nowrap">Save $69.95</em></span>
               <span class="pack-price">$69.95<s>$139.90</s></span>
-              <span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>2× Gravity Cradle</span><span class="kv"><s>$96.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>Acupressure Massage Ball</span><span class="kv"><s>$14</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
             </button>
             <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
-              <span class="pack-badge alt">★ Best value</span>
+              <span class="pack-badge alt">★ Best value · 3 free gifts</span>
               <span class="pack-qty">3 Cradles</span>
-              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--green);font-weight:700">Save $99.95</em></span>
+              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--green);font-weight:700;white-space:nowrap">Save $99.95</em></span>
               <span class="pack-price">$99.95<s>$199.90</s></span>
-              <span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>3× Gravity Cradle</span><span class="kv"><s>$132.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>Acupressure Massage Ball</span><span class="kv"><s>$14</s> <b>FREE</b></span></span><span class="ki"><span>Travel Organizer Set (6 pcs)</span><span class="kv"><s>$24</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
             </button>
           </div>
         </div>
@@ -1061,15 +1070,15 @@ section{padding:74px 0}
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · 270+ verified buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack" style="max-width:690px;margin:18px auto 0">
         <button type="button" class="pack" data-sku="GRAVITY-1" data-price="44.95" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Cradle</span><span class="pack-unit">For you</span><span class="pack-price">$44.95<s>$89.90</s></span><span class="pack-banner">🎁 Free e-book guide + free ship</span>
+          <span class="pack-qty">1 Cradle</span><span class="pack-unit">For you</span><span class="pack-price">$44.95<s>$89.90</s></span><span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>1× Gravity Cradle</span><span class="kv"><s>$60.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
-          <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--green);font-weight:700">Save $69.95</em></span><span class="pack-price">$69.95<s>$139.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+          <span class="pack-badge">★ Most popular · 2 free gifts</span>
+          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--green);font-weight:700;white-space:nowrap">Save $69.95</em></span><span class="pack-price">$69.95<s>$139.90</s></span><span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>2× Gravity Cradle</span><span class="kv"><s>$96.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>Acupressure Massage Ball</span><span class="kv"><s>$14</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
-          <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--green);font-weight:700">Save $99.95</em></span><span class="pack-price">$99.95<s>$199.90</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+          <span class="pack-badge alt">★ Best value · 3 free gifts</span>
+          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--green);font-weight:700;white-space:nowrap">Save $99.95</em></span><span class="pack-price">$99.95<s>$199.90</s></span><span class="kit-list"><span class="kt">Everything in your kit:</span><span class="ki"><span>3× Gravity Cradle</span><span class="kv"><s>$132.90</s> <b>INCLUDED</b></span></span><span class="ki"><span>“10-Minute Cushion Release Guide” e-book</span><span class="kv"><s>$29</s> <b>FREE</b></span></span><span class="ki"><span>Acupressure Massage Ball</span><span class="kv"><s>$14</s> <b>FREE</b></span></span><span class="ki"><span>Travel Organizer Set (6 pcs)</span><span class="kv"><s>$24</s> <b>FREE</b></span></span><span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span></span>
         </button>
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart, <span class="cta-price">$69.95</span></button>
