@@ -450,6 +450,12 @@ section{padding:74px 0}
 .rev-morewrap{text-align:center;margin-top:26px}
 .rev-morebtn{font:600 15.5px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
 .rev-morebtn:hover{background:var(--ink);color:var(--paper)}
+.rev-teaserwrap{position:relative}
+.rev-teaserwrap.teasing #revTier1{filter:blur(5px);-webkit-filter:blur(5px);max-height:560px;overflow:hidden;pointer-events:none;-webkit-user-select:none;user-select:none}
+.rev-teaserwrap .rev-overlay{display:none}
+.rev-teaserwrap.teasing .rev-overlay:not([hidden]){display:flex;position:absolute;top:0;left:0;right:0;bottom:0;align-items:center;justify-content:center;z-index:2}
+.rev-overlay-btn{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 12px 32px -10px rgba(30,48,72,.5)}
+#revBar .rev-morebtn{margin:0 5px 10px}
 @media(max-width:980px){.rev-more{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.rev-more{grid-template-columns:1fr}}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -942,10 +948,7 @@ section{padding:74px 0}
           <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Loved mine so much I brought one to my mom — now she asks for her ten minutes every evening.”</p><span class="pr-by">Patricia H. <em>✓ Verified Buyer · Sarasota, FL</em></span></figcaption>
         </figure>
       </div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button></div>
-      <div class="rev-more" id="revMore" hidden></div>
-      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Show even more reviews ↓</button></div>
-      <div class="rev-more" id="revMore2" hidden></div>
+      <div class="rev-morewrap"><a class="rev-morebtn" id="revJump" href="#all-reviews" style="display:inline-block;text-decoration:none">Read more reviews ↓</a></div>
       <div class="sp-caps fade-slow" style="margin-top:30px"><span>“The bump looks smaller.”</span><span>“My neck feels released.”</span><span>“I stand taller.”</span><span>“I feel like myself again.”</span></div>
       <!-- (mid-page Add-to-Cart removed — redundant with the sticky CTA and it made the proof section read like an ad) -->
     </div>
@@ -1035,6 +1038,22 @@ section{padding:74px 0}
         <details><summary>What if mine is from weight, not posture?</summary><p>Then you're describing exactly what the Cradle targets. The soft pad is largely tissue and trapped fluid — which is why crash diets and even injections leave so many women with the hump still there, and why it returns with a few pounds. Daily decompression works on that cushion directly, whatever the scale says. No extreme weight loss required.</p></details>
         <details><summary>How much is shipping and how fast?</summary><p>Shipping is FREE on every order — all packs, no minimum. Tracked U.S. shipping — orders are processed in 1–3 business days and typically arrive within 7–10 business days.</p></details>
         <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. 90 days, money-back, used or unused — lie on it every night for three months, and if your neck doesn't feel more released and the mirror doesn't agree, write to hello@kalmely.com and we refund every cent. No forms, no phone tree. Fewer than 1 in 100 customers ever ask — which is the only reason we can afford to make this offer.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6b. ALL REVIEWS (última prueba social antes de la oferta; el botón de arriba baja aquí) ===== -->
+  <section class="band" id="all-reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--star)">★★★★★</span> 4.8/5 from <b>1,924</b> verified buyers — photo reviews first.</p></div>
+      <div class="rev-teaserwrap teasing" id="revTeaser">
+        <div class="rev-more" id="revTier1"></div>
+        <div class="rev-overlay" hidden><button type="button" class="rev-morebtn rev-overlay-btn" id="revTeaserBtn">Click to read more reviews</button></div>
+      </div>
+      <div class="rev-more" id="revTier2" hidden></div>
+      <div class="rev-morewrap" id="revBar" hidden>
+        <button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button>
+        <button type="button" class="rev-morebtn" id="revLessBtn">Show less ↑</button>
       </div>
     </div>
   </section>
@@ -1380,30 +1399,44 @@ section{padding:74px 0}
   // SINGLE TIER — one button ("See all reviews") reveals everything at once, ordered:
   // reviews with an attached customer photo first, then profile-photo reviews, then the rest.
   var ALL=LEAD.concat(window.KALMELY_REVIEWS||[]);
-  var R=ALL.filter(function(r){return r.ph;}).concat(ALL.filter(function(r){return !r.ph&&r.av;})).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
-  var btn=document.getElementById('revMoreBtn'),more=document.getElementById('revMore'),dist=document.getElementById('revDist');
-  var btn2=document.getElementById('revMoreBtn2'),more2=document.getElementById('revMore2'),more2wrap=document.getElementById('revMore2Wrap');
-  if(!R.length)return;
+  var T1=ALL.filter(function(r){return r.ph;});
+  var T2=ALL.filter(function(r){return !r.ph&&r.av;}).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
+  var btn=document.getElementById('revMoreBtn'),t1=document.getElementById('revTier1'),t2=document.getElementById('revTier2'),dist=document.getElementById('revDist');
+  if(!ALL.length)return;
   var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
   function cT(r){var av='<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';var ph=r.ph?'<img class="rev-ph zoomable" src="assets/'+r.ph+'.webp?v=r2" alt="Customer photo from '+esc(r.n)+'" width="600" height="600" loading="lazy" role="button" tabindex="0" aria-label="Enlarge image">':'';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+(r.dt?' · '+esc(r.dt):'')+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+ph+'</div>';}
   if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
-  // ONE button reveals all reviews at once (photo-attached first); collapsible
-  if(more&&btn){
-    more.innerHTML=R.map(cT).join('');
-    more.hidden=true;
-    var openLbl='Read more reviews ↓';   // no count: the aggregate (1,924) is the claimed total, we render a curated subset
-    btn.textContent=openLbl;
-    btn.addEventListener('click',function(){
-      if(more.hidden){more.hidden=false;btn.textContent='Show fewer reviews ↑';}
-      else{more.hidden=true;btn.textContent=openLbl;btn.scrollIntoView({block:'center'});}
+  // Teaser borroso + reveal en 2 niveles (portado de reset)
+  if(t1&&t2&&btn){
+    t1.innerHTML=T1.map(cT).join('');
+    t2.innerHTML=T2.map(cT).join('');
+    var teaser=document.getElementById('revTeaser');
+    var overlay=teaser?teaser.querySelector('.rev-overlay'):null;
+    var tbtn=document.getElementById('revTeaserBtn');
+    var bar=document.getElementById('revBar');
+    var less=document.getElementById('revLessBtn');
+    if(overlay)overlay.hidden=false;
+    var state=0;
+    var setState=function(sN){
+      state=sN;
+      if(teaser)teaser.className=sN===0?'rev-teaserwrap teasing':'rev-teaserwrap';
+      t2.hidden=sN<2;
+      if(bar)bar.hidden=sN===0;
+      btn.style.display=sN===1?'':'none';
+      if(less)less.textContent=sN===2?'Show fewer reviews ↑':'Show less ↑';
+    };
+    setState(0);
+    if(tbtn)tbtn.addEventListener('click',function(){setState(1);});
+    btn.addEventListener('click',function(){setState(2);});
+    if(less)less.addEventListener('click',function(){
+      setState(state===2?1:0);
+      var sec=document.getElementById('all-reviews');
+      if(sec&&sec.scrollIntoView)sec.scrollIntoView({block:'start'});
     });
   }else if(btn){btn.style.display='none';}
-  // Tier-2 button retired — single-tier reveal
-  if(more2wrap){more2wrap.hidden=true;}
-  if(more2){more2.hidden=true;}
 })();
 </script>
 <script>
