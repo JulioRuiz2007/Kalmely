@@ -1358,6 +1358,11 @@ section{padding:58px 0}
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
+  (function(){
+    var foot=document.querySelector('.cart-foot'),oldT=foot&&foot.querySelector('.cart-foot-trust');
+    var pay=document.querySelector('.buybox .bx-pay'),tr=document.querySelector('.buybox .bx-trust');
+    if(foot&&oldT&&pay&&tr){var p=pay.cloneNode(true);p.style.marginTop='14px';var t=tr.cloneNode(true);t.style.marginTop='14px';oldT.replaceWith(p);p.after(t);}
+  })();
   (function(){var _so=document.getElementById('subOptin');if(_so)_so.addEventListener('change',function(){updateCtas();if(cartOpen)populateCart();});})();
   try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
   var saved=DEFAULT;  // always land on the smallest pack ($29) regardless of any previously-saved choice
