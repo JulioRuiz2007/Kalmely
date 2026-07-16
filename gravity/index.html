@@ -79,9 +79,9 @@ fbq('init', '2038496957090347');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
   content_name: 'The Gravity Cradle',
-  content_ids: ['GRAVITY-3'],
+  content_ids: ['GRAVITY-2'],
   content_type: 'product',
-  value: 99.95,
+  value: 69.95,
   currency: 'USD',
   offer_variant: 'GRAVITY'
 });
@@ -112,7 +112,7 @@ src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
 { "@context":"https://schema.org","@type":"Organization","name":"Kalmely","url":"https://kalmely.com/","logo":"https://kalmely.com/assets/favicon-kalmely.png","email":"hello@kalmely.com" }
 </script>
 <script type="application/ld+json">
-{ "@context":"https://schema.org/","@type":"Product","name":"The Gravity Cradle","description":"A passive acupressure cervical-traction device you lie on for about 10 minutes a day in bed. Designed to gently decompress the base of the neck with the head's own weight and release the Cushion Hump — the soft cushion of built-up tension behind the dowager's hump. Made for women 45-65+.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/gravity/","priceCurrency":"USD","price":"54.95","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
+{ "@context":"https://schema.org/","@type":"Product","name":"The Gravity Cradle","description":"A passive acupressure cervical-traction device you lie on for about 10 minutes a day in bed. Designed to gently decompress the base of the neck with the head's own weight and release the Cushion Hump — the soft cushion of built-up tension behind the dowager's hump. Made for women 45-65+.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/gravity/","priceCurrency":"USD","price":"44.95","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
 </script>
 
 <style>
@@ -504,7 +504,7 @@ section{padding:74px 0}
 .foot-fine{font:400 13px/1.6 var(--sans);color:rgba(249,248,246,.45);margin-top:12px}
 
 /* sticky cta */
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(249,248,246,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s;padding:11px 16px}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(249,248,246,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s;padding:11px 16px}
 .sticky-cta.show{transform:none}
 .sc-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .sc-info{display:flex;flex-direction:column;line-height:1.2}
@@ -551,6 +551,7 @@ section{padding:74px 0}
 /* cookie */
 .cookie{position:fixed;left:16px;bottom:16px;z-index:55;max-width:370px;background:var(--ink);color:var(--paper);border-radius:14px;padding:18px 20px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);transform:translateY(160%);transition:transform .4s}
 .cookie.show{transform:none}
+.cookie.raised{bottom:calc(env(safe-area-inset-bottom, 0px) + 88px)}
 .cookie p{font-size:15px;line-height:1.5}.cookie a{text-decoration:underline}
 .cookie-actions{display:flex;gap:10px;margin-top:12px}
 .cookie-actions button{flex:1;padding:10px;border-radius:9px;font:600 15px/1 var(--sans)}
@@ -809,9 +810,10 @@ section{padding:74px 0}
   <div class="nav-inner wrap">
     <nav class="nav-left nav-menu" aria-label="Main">
       <a href="/gravity/" class="is-active" aria-current="page">Product</a>
+      <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </nav>
-    <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">Gentle Neck &amp; Posture Relief</span></a>
+    <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">Gentle Neck Decompression</span></a>
     <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="cart-count" id="cartCount">0</span>
@@ -873,30 +875,31 @@ section{padding:74px 0}
           <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp?v=b2" alt="Your Gravity Cradle bundle" width="760" height="760"></div>
           <div class="sale-divider">Launch Offer – Limited Time Only</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Choose your pack">
-            <button type="button" class="pack" data-sku="GRAVITY-1" data-price="54.95" role="radio" aria-checked="false">
+            <button type="button" class="pack" data-sku="GRAVITY-1" data-price="44.95" role="radio" aria-checked="false">
               <span class="pack-qty">1 Cradle</span>
               <span class="pack-unit">For you</span>
-              <span class="pack-price">$54.95</span>
+              <span class="pack-price">$44.95<s>$89.90</s></span>
               <span class="pack-banner">🎁 Free e-book guide + free ship</span>
             </button>
             <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
               <span class="pack-badge">★ Most popular</span>
               <span class="pack-qty">2 Cradles</span>
-              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span>
-              <span class="pack-price">$69.95<s>$109.90</s></span>
+              <span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $69.95</em></span>
+              <span class="pack-price">$69.95<s>$139.90</s></span>
               <span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
             </button>
             <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Best value</span>
               <span class="pack-qty">3 Cradles</span>
-              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span>
-              <span class="pack-price">$99.95<s>$164.85</s></span>
+              <span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $99.95</em></span>
+              <span class="pack-price">$99.95<s>$199.90</s></span>
               <span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
             </button>
           </div>
         </div>
 
         <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$69.95</span></button>
+        <div class="bx-official" style="text-align:center;font:600 12.5px/1.45 var(--sans);color:var(--ink-soft);margin-top:10px">Only available on the official Kalmely site — not sold on Amazon or in stores.</div>
 
         <div class="bx-pay" aria-label="Accepted payments">
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
@@ -1001,26 +1004,13 @@ section{padding:74px 0}
     </div>
   </section>
 
-  <!-- ===== DOCTOR AUTHORITY (panel of 3 — decisión Julio 7-jul: bata médica, riesgo compliance asumido; rollback = regenerar sin bata) -->
+  <!-- ===== HOW IT WORKS (educational — sustituye el panel de doctores fabricado; sin nombres/fotos de médicos, sin claims de cura) ===== -->
   <section>
-    <div class="wrap" style="max-width:1080px;text-align:center">
-      <div class="sec-head fade-slow"><div class="eyebrow">What doctors say</div><h2>Recommended by doctors</h2></div>
-      <div class="steps3 fade-slow" style="text-align:left">
-        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px 16px 20px">
-          <img src="assets/doc-1.webp" alt="Dr. Rachel M. holding the Gravity Cradle in her clinic" width="700" height="700" loading="lazy">
-          <p style="font-family:'Fraunces',var(--serif);font-style:italic;font-size:15.5px;line-height:1.5;color:var(--ink);margin-bottom:10px">“Gentle, sustained traction is one of the safest ways to ease the muscle tension that builds at the base of the neck — no force, no manipulation.”</p>
-          <div style="font:600 12.5px/1.4 var(--sans);color:var(--ink-2)">Dr. Rachel M. · Physical Medicine &amp; Rehabilitation</div>
-        </div>
-        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px 16px 20px">
-          <img src="assets/doc-2.webp" alt="Dr. Grace L. explaining the Gravity Cradle to a patient" width="700" height="700" loading="lazy">
-          <p style="font-family:'Fraunces',var(--serif);font-style:italic;font-size:15.5px;line-height:1.5;color:var(--ink);margin-bottom:10px">“After menopause, soft tissue at the base of the neck tightens and traps fluid. Daily decompression helps that area soften and settle over time.”</p>
-          <div style="font:600 12.5px/1.4 var(--sans);color:var(--ink-2)">Dr. Grace L. · Women's Health</div>
-        </div>
-        <div class="step" style="border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px 16px 20px">
-          <img src="assets/doc-3.webp" alt="Dr. Alan P. presenting the Gravity Cradle in a rehabilitation room" width="700" height="700" loading="lazy">
-          <p style="font-family:'Fraunces',var(--serif);font-style:italic;font-size:15.5px;line-height:1.5;color:var(--ink);margin-bottom:10px">“What I value here is compliance: ten passive minutes lying down is a routine my patients actually keep — and consistency is what produces results.”</p>
-          <div style="font:600 12.5px/1.4 var(--sans);color:var(--ink-2)">Dr. Alan P. · Musculoskeletal Care</div>
-        </div>
+    <div class="wrap" style="max-width:760px;text-align:center">
+      <div class="sec-head fade-slow"><div class="eyebrow">The gentle approach</div><h2>Why gentle, sustained traction helps</h2></div>
+      <div class="fade-slow" style="max-width:620px;margin:0 auto;text-align:center">
+        <p style="font-size:17px;line-height:1.6;color:var(--ink-2);margin-bottom:16px">Gentle, sustained traction is one of the calmest ways to ease the tension that builds at the base of the neck — no force, no cracking, no straps. You lie back and let the weight of your own head do the work.</p>
+        <p style="font-size:17px;line-height:1.6;color:var(--ink-2)">As that area decompresses a little each day, the soft, built-up tension behind the neck has room to release and settle. It's slow and passive by design — ten quiet minutes is a routine that's easy to keep, and gentle consistency is what makes the difference over time.</p>
       </div>
     </div>
   </section>
@@ -1075,16 +1065,16 @@ section{padding:74px 0}
       <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Pick your pack &amp; start today</h3>
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · 270+ verified buyers</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your pack" style="max-width:690px;margin:18px auto 0">
-        <button type="button" class="pack" data-sku="GRAVITY-1" data-price="54.95" role="radio" aria-checked="false">
-          <span class="pack-qty">1 Cradle</span><span class="pack-unit">For you</span><span class="pack-price">$54.95</span><span class="pack-banner">🎁 Free e-book guide + free ship</span>
+        <button type="button" class="pack" data-sku="GRAVITY-1" data-price="44.95" role="radio" aria-checked="false">
+          <span class="pack-qty">1 Cradle</span><span class="pack-unit">For you</span><span class="pack-price">$44.95<s>$89.90</s></span><span class="pack-banner">🎁 Free e-book guide + free ship</span>
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-2" data-price="69.95" role="radio" aria-checked="false">
           <span class="pack-badge">★ Most popular</span>
-          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $39.95</em></span><span class="pack-price">$69.95<s>$109.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
+          <span class="pack-qty">2 Cradles</span><span class="pack-unit">One to keep, one to gift · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $69.95</em></span><span class="pack-price">$69.95<s>$139.90</s></span><span class="pack-banner">🎁 E-book + Acupressure Ball + free ship</span>
         </button>
         <button type="button" class="pack" data-sku="GRAVITY-3" data-price="99.95" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Best value</span>
-          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $64.90</em></span><span class="pack-price">$99.95<s>$164.85</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
+          <span class="pack-qty">3 Cradles</span><span class="pack-unit">Best value · <em style="font-style:normal;color:var(--ok);font-weight:700">Save $99.95</em></span><span class="pack-price">$99.95<s>$199.90</s></span><span class="pack-banner">🎁 E-book + Ball + 6-pc Travel Set + free ship</span>
         </button>
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$69.95</span></button>
@@ -1104,7 +1094,7 @@ section{padding:74px 0}
     <div class="foot-bottom">
       <div class="foot-row">
         <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
-        <div class="foot-links"><a href="/gravity-shipping.html">Shipping</a><a href="/gravity-refund.html">Returns &amp; Refunds</a><a href="/gravity-privacy.html">Privacy</a><a href="/gravity-terms.html">Terms</a></div>
+        <div class="foot-links"><a href="/about">About</a><a href="/gravity-shipping.html">Shipping</a><a href="/gravity-refund.html">Returns &amp; Refunds</a><a href="/gravity-privacy.html">Privacy</a><a href="/gravity-terms.html">Terms</a></div>
       </div>
       <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 90-Day Money-Back Guarantee. &nbsp;The Gravity Cradle is a wellness device for gentle neck decompression and relaxation. It is not intended to diagnose, treat, cure or prevent any disease. Individual results vary. If you've had neck surgery or a spinal condition, consult your doctor. © 2026 Kalmely.</div>
     </div>
@@ -1169,9 +1159,9 @@ section{padding:74px 0}
   // ===== Offer model: The Gravity Cradle (USD) — 1 / 2 / 3 bars, one-time, staggered gifts =====
   var VARIANT='GRAVITY';
   var TIERS={
-    'GRAVITY-1':{price:54.95,was:0,label:'1 Cradle',sub:false,img:'bundle-1',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.']]},
-    'GRAVITY-2':{price:69.95,was:109.90,label:'2 Cradles',sub:false,img:'bundle-2',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.']]},
-    'GRAVITY-3':{price:99.95,was:164.85,label:'3 Cradles',sub:false,img:'bundle-3',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.'],['Travel Organizer Set (6 pcs)','24','gift-organizer-set','Six packing organizers so the Cradle — and your whole routine — travels with you. Trips, guest rooms, visits to the grandkids.']]}
+    'GRAVITY-1':{price:44.95,was:89.90,label:'1 Cradle',sub:false,img:'bundle-1',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.']]},
+    'GRAVITY-2':{price:69.95,was:139.90,label:'2 Cradles',sub:false,img:'bundle-2',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.']]},
+    'GRAVITY-3':{price:99.95,was:199.90,label:'3 Cradles',sub:false,img:'bundle-3',gifts:[['“10-Minute Cushion Release Guide” e-book','29','ebook-physical-3d','Your step-by-step guide — how to position the Cradle, the 10-minute daily routine, and the gentle habits that help the neck stay released.'],['Acupressure Massage Ball','14','gift-massage-ball','A firm textured ball for the shoulders and upper back — ease the tension that builds between sessions, anywhere you sit.'],['Travel Organizer Set (6 pcs)','24','gift-organizer-set','Six packing organizers so the Cradle — and your whole routine — travels with you. Trips, guest rooms, visits to the grandkids.']]}
   };
   var DEFAULT='GRAVITY-2';  // land on the Most-Popular 2-pack ($69.95) by default
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1330,9 +1320,9 @@ section{padding:74px 0}
   if(sc&&box){
     try{
       if('IntersectionObserver' in window){
-        var sio=new IntersectionObserver(function(es){es.forEach(function(e){sc.classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0);});},{threshold:0});sio.observe(box);
+        var sio=new IntersectionObserver(function(es){es.forEach(function(e){var _sh=!e.isIntersecting&&e.boundingClientRect.top<0;sc.classList.toggle('show',_sh);var _cb=document.getElementById('cookieBanner');if(_cb)_cb.classList.toggle('raised',_sh);});},{threshold:0});sio.observe(box);
       }else{
-        addEventListener('scroll',function(){var r=box.getBoundingClientRect();if(r.bottom<0){sc.classList.add('show');}else{sc.classList.remove('show');}},{passive:true});
+        addEventListener('scroll',function(){var r=box.getBoundingClientRect();var _sh=r.bottom<0;sc.classList.toggle('show',_sh);var _cb=document.getElementById('cookieBanner');if(_cb)_cb.classList.toggle('raised',_sh);},{passive:true});
       }
     }catch(e){}
   }
