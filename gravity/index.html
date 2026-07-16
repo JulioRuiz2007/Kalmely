@@ -1217,6 +1217,11 @@ section{padding:74px 0}
   function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
   pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
   packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
+  (function(){
+    var foot=document.querySelector('.cart-foot'),oldT=foot&&foot.querySelector('.cart-foot-trust');
+    var pay=document.querySelector('.buybox .bx-pay'),tr=document.querySelector('.buybox .bx-trust');
+    if(foot&&oldT&&pay&&tr){var p=pay.cloneNode(true);p.style.marginTop='14px';var t=tr.cloneNode(true);t.style.marginTop='14px';oldT.replaceWith(p);p.after(t);}
+  })();
   (function(){var _so=document.getElementById('subOptin');if(_so)_so.addEventListener('change',function(){updateCtas();if(cartOpen)populateCart();});})();
   try{colours=JSON.parse(localStorage.getItem('kalmely_colors_g'))||[]}catch(e){colours=[]}
   var saved=DEFAULT;  // always land on the smallest pack ($29) regardless of any previously-saved choice
@@ -1247,8 +1252,14 @@ section{padding:74px 0}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
       var _g=t.gifts||[];
-      if(_g.length){_cg.innerHTML='<span class="cg-h">Free gifts included</span>'+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>FREE</b></span>';}).join('');}
-      else{_cg.innerHTML='<span class="cg-h">90-day money-back guarantee</span>';}
+      var _n=parseInt(t.label)||1;
+      var _gs=_g.reduce(function(a,x){return a+(parseFloat(x[1])||0);},0);
+      var _dev=(was&&was>price)?(was-_gs):0;
+      var _rows='<span class="kt">Everything in your kit:</span>';
+      _rows+='<span class="ki"><span>'+_n+'\u00d7 Gravity Cradle</span><span class="kv">'+(_dev>0?'<s>'+money(_dev)+'</s> ':'')+'<b>INCLUDED</b></span></span>';
+      _rows+=_g.map(function(x){return '<span class="ki"><span>'+x[0]+'</span><span class="kv"><s>$'+x[1]+'</s> <b>FREE</b></span></span>';}).join('');
+      _rows+='<span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>';
+      _cg.innerHTML='<span class="kit-list" style="margin:0;padding:0;border:0;display:block">'+_rows+'</span>';
     }
   }
   function openCart(){
