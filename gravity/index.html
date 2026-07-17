@@ -1333,7 +1333,7 @@ section{padding:74px 0}
     if('IntersectionObserver' in window){
       var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
       document.querySelectorAll('.fade-slow').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*0.95)el.classList.add('in');else io.observe(el);});
-      addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});},2500);});
+      var _rvSafety=function(){document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});};setTimeout(_rvSafety,1600);addEventListener('load',function(){setTimeout(_rvSafety,400);});
     }else{_revealAll();}
   }catch(e){_revealAll();}
 
