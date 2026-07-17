@@ -14,8 +14,7 @@
 <!-- Microsoft Clarity — skipped in admin mode -->
 <script type="text/javascript">
   (function(){
-    var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
-      || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
+    var isAdmin = true; // reset apagado del pixel/clarity mientras gravity está en campaña
     if (isAdmin) return;
     // Clarity DIFERIDO: stub inmediato (las llamadas clarity('set',...) se encolan), el script
     // real se inyecta tras la primera interaccion o load+2.5s — fuera de la ventana del LCP.
@@ -74,8 +73,8 @@
     document.cookie = 'kalmely_admin=true; max-age=2592000; path=/; SameSite=Lax';
     console.log('Admin mode activated. Pixel events disabled for 30 days.');
   }
-  if (document.cookie.includes('kalmely_admin=true')) {
-    window.fbq = function() { console.log('[admin] fbq call blocked:', arguments); };
+  if (true) { // reset apagado del pixel mientras gravity está en campaña
+    window.fbq = function() { console.log('[reset-off] fbq blocked:', arguments); };
     window.gtag = function() { console.log('[admin] gtag call blocked:', arguments); };
     window._kalmelyAdmin = true;
   }
@@ -115,9 +114,6 @@ fbq('track', 'ViewContent', {
   setTimeout(loadPixel, 3000);
 })();
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2038496957090347&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 
 <script type="application/ld+json">
