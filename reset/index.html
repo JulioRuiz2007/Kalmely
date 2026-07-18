@@ -55,7 +55,7 @@
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-03.webp?v=r1" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-01.webp?v=r1" imagesrcset="assets/hero-01-800.webp?v=r1 800w, assets/hero-01.webp?v=r1 1080w" imagesizes="(max-width:980px) 100vw, 640px" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
 <style>
@@ -897,22 +897,48 @@ section{padding:58px 0}
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
-            <!-- 5 hero slides; el texto va HORNEADO en cada imagen, sin overlays HTML. Orden: mecanismo primero (aprendizaje b). hero-06 (86% fabricado) y hero-07 (typo/verde) retirados hasta regenerar. -->
-            <div class="hero-slide"><img src="assets/hero-03.webp?v=r1" alt="Why nothing worked before: it is not mucus, it is the swollen lining. 660nm red light helps the cells recharge." width="1080" height="1080" fetchpriority="high"></div>
-            <div class="hero-slide"><img src="assets/hero-01.webp?v=r1" srcset="assets/hero-01-800.webp?v=r1 800w, assets/hero-01.webp?v=r1 1080w" sizes="(max-width:980px) 100vw, 640px" alt="Kalmely, The Cellular Reset device with its box" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-02.webp?v=r1" alt="How to use it: 3 quiet minutes before sleep, then it switches itself off. 90-Night Fair-Try." width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-04.webp?v=r1" alt="Kalmely vs nasal sprays: works with the tissue, nothing to inhale, no rebound cycle." width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-05.webp?v=r1" alt="Real customers, 4.8 out of 5 from 270+ verified reviews." width="1080" height="1080" loading="lazy"></div>
+            <!-- 7 hero slides, order 01..07 (01-packshot featured; 05 collage y 06 macro-72% son PLACEHOLDER hasta que Julio genere) -->
+            <div class="hero-slide"><img src="assets/hero-01.webp?v=r1" srcset="assets/hero-01-800.webp?v=r1 800w, assets/hero-01.webp?v=r1 1080w" sizes="(max-width:980px) 100vw, 640px" alt="Kalmely — The Cellular Reset device with its box" width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-02.webp?v=r1" alt="3 minutes before bed — the Kalmely device in use while reading" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:9%;top:9%;width:26%"><div class="ovh">3 minutes.<br>Before bed.<br>That's it.</div><div class="ovs">You don't sleep in it — the light does its work while you read.</div><div class="ovshield">90-NIGHT TRIAL</div></div></div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-03.webp?v=r1" alt="The Cellular Reset — how the 660nm light works" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:9%;top:7%;width:31%"><div class="ovtitle">The Cellular Reset</div>
+                <div class="ovcard">Swollen, worn-out lining — that's the real blockage (not mucus)</div>
+                <div class="ovcard">Force makes it worse — sprays squeeze, tissue fights back</div>
+                <div class="ovcard">660nm light = fuel: cells recharge and calm down on their own</div>
+                <div class="ovcard">3 minutes a night. That's the reset.</div>
+              </div></div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-04.webp?v=r1" alt="Kalmely vs nasal sprays — no rebound, nothing to inhale" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov">
+                <div style="position:absolute;left:8%;top:5%;width:40%"><div class="ovtitle">Kalmely</div><div class="ovlist good">✓ Works with the tissue<br>✓ Nothing to inhale<br>✓ No tolerance build-up<br>✓ Relief that builds</div></div>
+                <div style="position:absolute;left:56%;top:5%;width:38%"><div class="ovtitle">Nasal sprays</div><div class="ovlist bad">✗ Chemical squeeze<br>✗ Rebound congestion<br>✗ "3-day" label warning<br>✗ Stops working</div></div>
+              </div>
+            </div>
+            <div class="hero-slide"><img src="assets/hero-05.webp?v=r1" alt="Real customers, real mornings" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-06.webp?v=r1" alt="86% of customers reported improvement in nasal symptoms — 660nm light, backed by published research" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-07.webp?v=r1" alt="What to expect, night by night" width="1080" height="1080" loading="lazy">
+              <div class="hs-ov"><div style="position:absolute;left:9%;top:7%;width:34%"><div class="ovtitle">What to expect</div>
+                <div class="ovcard">Night 1: a warm, quiet 3 minutes — no fireworks</div>
+                <div class="ovcard">Week 1: waking up less often</div>
+                <div class="ovcard">Weeks 2–3: nights start staying quiet</div>
+                <div class="ovcard">Week 4+: the bottle gathers dust</div>
+                <div class="ovshield" style="margin-top:1.5cqw">90 NIGHTS TO DECIDE</div>
+              </div></div>
+            </div>
           </div>
           <button type="button" class="hero-arrow hero-prev" aria-label="Previous image">‹</button>
           <button type="button" class="hero-arrow hero-next" aria-label="Next image">›</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Why it works"><img src="assets/hero-03-thumb.webp?v=r1" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp?v=r1" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="How to use"><img src="assets/hero-02-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="In use — 3 minutes before bed"><img src="assets/hero-02-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="How it works"><img src="assets/hero-03-thumb.webp?v=r1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Kalmely vs sprays"><img src="assets/hero-04-thumb.webp?v=r1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Real customers"><img src="assets/hero-05-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="The published study"><img src="assets/hero-06-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="What to expect"><img src="assets/hero-07-thumb.webp?v=r1" alt="" loading="lazy"></button>
         </div>
       </div>
 
