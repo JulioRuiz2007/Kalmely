@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Functional pages — keep out of the index
-Disallow: /gravity-thankyou.html
+Disallow: /reset-thankyou.html
 Disallow: /manage.html
 
 Sitemap: https://kalmely.com/sitemap.xml
