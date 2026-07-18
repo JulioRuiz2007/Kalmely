@@ -137,7 +137,7 @@ fbq('track', 'ViewContent', {
   --paper:#FFFFFF; --paper-2:#FAFAFA; --paper-3:#F2F2F2; --card:#FFFFFF; /* claridad Elixir: blanco puro + grises neutros */
   --ink:#6B1E15; --ink-2:#262626; --ink-soft:#5C5C5C; --faint:#A9A49E; /* cuerpo casi negro: el rojo queda solo para títulos/subtítulos (contraste) */
   --line:#E7E7E7; --line-2:#D9D9D9;
-  --ok:#0E7C3F; --gold:#B05A50; --pop:#0E7C3F; --pop-bg:#E7F3EB; --star:#F5A623; /* --ok = color de DESTACAR (rol del naranja en gravity): estrellas, ahorros, contadores, eyebrows */
+  --ok:#0E7C3F; --gold:#B05A50; --pop:#0E7C3F; --pop-bg:#E7F3EB; --star:#F5A623; --orange:#C2410C; /* --ok = color de DESTACAR (rol del naranja en gravity): estrellas, ahorros, contadores, eyebrows */
   --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px; --r:12px;
@@ -160,7 +160,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 s{color:var(--faint)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
 h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
-.eyebrow{font:700 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ok)}
+.eyebrow{font:700 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
 .label{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 .fade-slow{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .fade-slow.in{opacity:1;transform:none}
@@ -1029,7 +1029,7 @@ section{padding:58px 0}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow" style="color:var(--pop)">Trusted by 3,000+ customers finally sleeping through the night</div><h2><span style="color:var(--star)">★★★★★</span> <span style="color:var(--ink);font-weight:700">4.8/5</span><br><span style="color:var(--ink);font-weight:700"><span class="rev-count">270+</span> verified reviews</span></h2><p>Real photos from real customers — everyday nightstands, no models.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow" style="color:var(--orange)">Trusted by 3,000+ customers finally sleeping through the night</div><h2><span style="color:var(--star)">★★★★★</span> <span style="color:var(--ink);font-weight:700">4.8/5</span><br><span style="color:var(--ink);font-weight:700"><span class="rev-count">270+</span> verified reviews</span></h2><p>Real photos from real customers — everyday nightstands, no models.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt"><span class="rev-count">270+</span> verified reviews</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -1172,7 +1172,7 @@ section{padding:58px 0}
     <div class="wrap guarantee fade-slow">
       <div class="seal fade-slow"><b>90</b>night fair-try</div>
       <h2>The 90-Night Fair-Try Promise.</h2>
-      <p>Use it every night, for up to <b>90 nights</b>. If your nights don't improve, email <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a>.<br><span style="display:inline-block;margin-top:6px;color:var(--pop);font-weight:700">We refund every cent, with free returns.</span></p>
+      <p>Use it every night, for up to <b>90 nights</b>. If your nights don't improve, email <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a>.<br><span style="display:inline-block;margin-top:6px;color:var(--orange);font-weight:700">We refund every cent, with free returns.</span></p>
       <ul class="vstack" style="margin-left:auto;margin-right:auto">
         <li>Used every night is exactly what we want — that's the fair try.</li>
         <li>One email is all it takes. No forms, no phone tree.</li>
