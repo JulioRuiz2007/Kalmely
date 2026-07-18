@@ -1,15 +1,7 @@
-# Cellular Reset = ÚNICO producto LIVE. Raíz → /reset/. Gravity ARCHIVADO (rama gravity-archive), fuera del deploy = solo modelo de referencia.
+# Cellular Reset = producto ADVERTISED (pixel + Clarity + ads). Raíz → /reset/.
+# Gravity Cradle sigue LIVE en /gravity/ pero MUDO (sin pixel/Clarity/ads) = producto dormido, no se redirige.
 / /reset/ 302
 /index.html /reset/ 302
-
-# --- gravity (archivado, fuera del deploy) → reset ---
-/gravity /reset/ 301
-/gravity/* /reset/ 301
-/gravity-privacy.html /reset-privacy.html 301
-/gravity-refund.html /reset-refund.html 301
-/gravity-shipping.html /reset-shipping.html 301
-/gravity-terms.html /reset-terms.html 301
-/gravity-thankyou.html /reset-thankyou.html 301
 
 # --- scalp (retirado) → reset ---
 /scalp /reset/ 301
