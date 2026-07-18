@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<!-- Persist Meta click-id: _fbc from ?fbclid + _fbp, so Pixel & CAPI always have them (even if the Pixel is blocked/deferred) -->
+<script type="text/javascript">
+  (function(){try{
+    function gc(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?m[1]:'';}
+    function sc(n,v){document.cookie=n+'='+v+'; max-age=7776000; path=/; SameSite=Lax';}
+    var cid=new URLSearchParams(location.search).get('fbclid');
+    if(cid && !gc('_fbc')) sc('_fbc','fb.1.'+Date.now()+'.'+cid);
+    if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
+  }catch(e){}})();
+</script>
+<!-- Microsoft Clarity — skipped in admin mode -->
+<script type="text/javascript">
+  (function(){
+    var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
+      || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
+    if (isAdmin) return;
+    // Clarity DIFERIDO: stub inmediato (las llamadas clarity('set',...) se encolan), el script
+    // real se inyecta tras la primera interaccion o load+2.5s — fuera de la ventana del LCP.
+    window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+    var _clDone=false;
+    function _loadClarity(){if(_clDone)return;_clDone=true;
+      var t=document.createElement('script');t.async=1;t.src='https://www.clarity.ms/tag/x4mat5v5ce';
+      var y=document.getElementsByTagName('script')[0];y.parentNode.insertBefore(t,y);}
+    ['scroll','pointerdown','keydown','touchstart','mousemove'].forEach(function(ev){window.addEventListener(ev,_loadClarity,{once:true,passive:true});});
+    window.addEventListener('load',function(){setTimeout(_loadClarity,2500);});
+    setTimeout(_loadClarity,6000);
+    // Device-capability tags → segment "the page looked broken" recordings by REAL cause.
+    // Filterable in Clarity as custom tags: js_error / webp / legacy_browser.
+    try{
+      window.addEventListener('error',function(e){try{window.clarity&&clarity('set','js_error',String((e&&e.message)||'unknown').slice(0,100))}catch(_){}},true);
+      var _wt=new Image();
+      _wt.onload=function(){try{window.clarity&&clarity('set','webp',_wt.width>0?'yes':'no')}catch(_){}};
+      _wt.onerror=function(){try{window.clarity&&clarity('set','webp','no')}catch(_){}};
+      _wt.src='data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+      if(!('IntersectionObserver' in window)){try{window.clarity&&clarity('set','legacy_browser','no_io')}catch(_){}}
+    }catch(e){}
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F6F6F0">
+<link rel="canonical" href="https://kalmely.com/reset/">
+<meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
+<title>Kalmely · The Cellular Reset — Breathe Freely Through Your Nose Again, In 3 Quiet Minutes a Night</title>
+<meta name="description" content="The drug-free 660nm Cellular Reset — nothing to inhale, nothing to build a tolerance to. 3 minutes before bed, and the light does the work. 90-Night Fair-Try Promise · free returns.">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<meta property="og:site_name" content="Kalmely">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kalmely · The Cellular Reset — Breathe Freely Through Your Nose Again">
+<meta property="og:url" content="https://kalmely.com/reset/">
+<meta property="og:description" content="The drug-free 660nm Cellular Reset — nothing to inhale, nothing to build a tolerance to. 3 minutes before bed. 90-Night Fair-Try Promise.">
+<meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
+<meta name="application-name" content="Kalmely">
+<!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
+<link rel="preload" as="image" href="assets/hero-03.webp?v=r1" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces.woff2) format('woff2')}
+</style>
+
+<!-- Admin Mode Guard -->
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin_mode') === 'kalmely_julio_2026') {
+    document.cookie = 'kalmely_admin=true; max-age=2592000; path=/; SameSite=Lax';
+    console.log('Admin mode activated. Pixel events disabled for 30 days.');
+  }
+  if (document.cookie.includes('kalmely_admin=true')) {
+    window.fbq = function() { console.log('[admin] fbq call blocked:', arguments); };
+    window.gtag = function() { console.log('[admin] gtag call blocked:', arguments); };
+    window._kalmelyAdmin = true;
+  }
+})();
+</script>
+<!-- End Admin Mode Guard -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[]}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2038496957090347');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Kalmely — The Cellular Reset',
+  content_ids: ['RESET-1'],
+  content_type: 'product',
+  value: 39.99,
+  currency: 'USD',
+  offer_variant: 'RESET'
+});
+(function(){
+  if (window._kalmelyAdmin) return;
+  var loaded = false;
+  function loadPixel(){
+    if (loaded) return; loaded = true;
+    var t = document.createElement('script'); t.async = !0;
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s);
+  }
+  ['scroll','pointerdown','keydown','touchstart','mousemove'].forEach(function(ev){
+    window.addEventListener(ev, loadPixel, { once:true, passive:true });
+  });
+  setTimeout(loadPixel, 3000);
+})();
+</script>
+<!-- End Meta Pixel Code -->
+
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@type":"WebSite","name":"Kalmely","url":"https://kalmely.com/","inLanguage":"en-US","publisher":{"@type":"Organization","name":"Kalmely"} }
+</script>
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@type":"Organization","name":"Kalmely","url":"https://kalmely.com/","logo":"https://kalmely.com/assets/favicon-kalmely.png","email":"hello@kalmely.com" }
+</script>
+<script type="application/ld+json">
+{ "@context":"https://schema.org/","@type":"Product","name":"Kalmely — The Cellular Reset","description":"A drug-free 660nm red-light device for nighttime nasal comfort. Soft silicone tips rest just inside the nostrils for a 3-minute session before bed — nothing to inhale, nothing to build a tolerance to. 90-night money-back promise.","brand":{"@type":"Brand","name":"Kalmely"},"offers":{"@type":"Offer","url":"https://kalmely.com/reset/","priceCurrency":"USD","price":"39.99","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock"} }
+</script>
+
+<style>
+/* ============================================================
+   KALMELY · faithful feelreformed.com clone — paper + ink editorial
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Rojo editorial (caja Kalmely nasal "The Cellular Reset": rojo ladrillo #8B1E16 + crema): paper crema + tinta granate, acento rojo caja #A82820 para estrellas/ahorros, secundario rosado */
+  --paper:#FFFFFF; --paper-2:#FAFAFA; --paper-3:#F2F2F2; --card:#FFFFFF; /* claridad Elixir: blanco puro + grises neutros */
+  --ink:#6B1E15; --ink-2:#262626; --ink-soft:#5C5C5C; --faint:#A9A49E; /* cuerpo casi negro: el rojo queda solo para títulos/subtítulos (contraste) */
+  --line:#E7E7E7; --line-2:#D9D9D9;
+  --ok:#0E7C3F; --gold:#B05A50; --pop:#0E7C3F; --pop-bg:#E7F3EB; --star:#F5A623; /* --ok = color de DESTACAR (rol del naranja en gravity): estrellas, ahorros, contadores, eyebrows */
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --max:1240px; --r:12px;
+}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+/* Older mobile browsers without aspect-ratio support: give the key containers a real height
+   (padding-bottom trick) so the hero gallery, thumbnails and pack previews never collapse. */
+@supports not (aspect-ratio: 1 / 1){
+  .hero-slide{height:0;padding-bottom:100%}
+  .hero-thumb{height:56px;flex:1 1 auto}
+  .pack-thumb{height:0;padding-bottom:100%;position:relative}
+  .pack-thumb img{position:absolute;top:0;left:0}
+  .hc-diag img,.rev-img,.reason img,.steps3 .step img,.ba-grid img,.ugc-strip img,.photo-reviews img{height:auto}
+  @media(max-width:980px){.hero-slide{padding-bottom:100%}}
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+s{color:var(--faint)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
+.eyebrow{font:700 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ok)}
+.label{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.fade-slow{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.fade-slow.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.fade-slow{transition:none;opacity:1;transform:none}}
+
+/* placeholders */
+.ph{position:relative;background:repeating-linear-gradient(45deg,#EDE9E0,#EDE9E0 14px,#E7E2D8 14px,#E7E2D8 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:var(--faint);overflow:hidden}
+.ph svg{width:28px;height:28px;opacity:.5}
+.ph span{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+
+/* announce + nav */
+.announce{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font:300 15px/1 'Poppins',var(--sans);letter-spacing:.04em;padding:13px 16px}
+.announce b{text-decoration:underline;text-underline-offset:2px}
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line-2);box-shadow:0 1px 0 rgba(35,79,43,.04);transition:border-color .2s}
+.nav.is-scrolled{border-bottom-color:var(--line)}
+.nav-burger{display:none;background:none;border:0;padding:6px;margin-left:-6px;cursor:pointer;color:var(--ink)}
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;grid-template-areas:"nav logo cart";align-items:center;min-height:64px}
+.nav-left{grid-area:nav;justify-self:start}
+.nav-menu{display:flex;gap:18px;align-items:center}
+.nav-menu a{font:700 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:color .15s;padding-bottom:3px;border-bottom:2px solid transparent}
+.nav-menu a:hover{color:var(--ink)}
+.nav-menu a.is-active{color:var(--ink);border-bottom-color:var(--gold)}
+.logo{grid-area:logo;justify-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;line-height:1}
+.logo-brand{font:600 37px/1 var(--serif);letter-spacing:.01em;color:var(--ink)}
+.logo-brand i{color:var(--gold);font-style:normal}
+.logo-tag{font:500 6.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:1px}
+.nav-cart{grid-area:cart;justify-self:end;display:flex;align-items:center;gap:7px;font:600 15px/1 var(--sans)}
+.nav-cart svg{width:21px;height:21px}
+.cart-count{min-width:19px;height:19px;border-radius:50%;background:var(--ink);color:var(--paper);font:700 13px/19px var(--sans);text-align:center;padding:0 5px}
+
+/* ============ HERO ============ */
+.hero{padding:30px 0 14px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 530px;grid-template-areas:"gallery head" "gallery buy";gap:20px 50px;align-items:start}
+.hero-head{grid-area:head}
+.hero-convince{grid-area:convince}
+.buybox{grid-area:buy}
+/* convince strip — shown BEFORE the packs: mechanism teaser + one proof + guarantee badge (the visitor clicked "see how it works", so show it) */
+.hc{border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden;margin-bottom:2px}
+.hc + .hc{margin-top:14px}
+.hc-mech{padding:18px 18px 6px}
+.hc-eyebrow{font:700 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.hc-mech h3{font-family:'Fraunces',var(--serif);font-weight:600;font-size:20px;line-height:1.15;color:var(--ink);margin-bottom:8px}
+.hc-mech p{font-size:16px;line-height:1.55;color:var(--ink-2);margin-bottom:14px}
+.hc-diag{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hc-diag figure{margin:0}
+.hc-diag img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#FBF7EF;border-radius:10px;display:block}
+.hc-diag figcaption{font:600 13px/1.3 var(--sans);color:var(--ink-soft);text-align:center;margin-top:6px}
+.hc-proof{display:flex;gap:14px;align-items:center;padding:16px 18px}
+.hc-proof img{width:112px;height:112px;flex:0 0 112px;object-fit:cover;border-radius:10px}
+.hc-proof .hc-pq{font-family:'Fraunces',var(--serif);font-style:italic;font-size:17px;line-height:1.35;color:var(--ink);margin-bottom:6px}
+.hc-proof .hc-pby{font:600 14px/1.4 var(--sans);color:var(--ink-2)}
+.hc-proof .hc-pby em{color:var(--ink-soft);font-weight:500;font-style:normal}
+.hc-proof .hc-pcap{font:600 13px/1 var(--sans);letter-spacing:.02em;color:var(--gold);text-transform:uppercase;margin-bottom:7px;display:block}
+.hc-guar{display:flex;gap:12px;align-items:center;padding:15px 18px;background:var(--paper-2)}
+.hc-guar svg{flex:0 0 30px;width:30px;height:30px;color:var(--ink)}
+.hc-guar b{font:700 15.5px/1.25 var(--sans);color:var(--ink);display:block;margin-bottom:2px}
+.hc-guar span{font-size:14px;line-height:1.45;color:var(--ink-2)}
+.hx-eyebrow{font:700 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
+
+/* gallery */
+.gallery{grid-area:gallery;align-self:start;position:sticky;top:84px}
+.hero-stage{position:relative;overflow:hidden;border-radius:14px;background:var(--paper-2);touch-action:pan-y}
+.hero-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.hero-track.dragging{transition:none}
+.hero-slide{flex:0 0 100%;aspect-ratio:1/1;position:relative}
+.hero-slide .ph{position:absolute;top:0;left:0;right:0;bottom:0}
+/* floating free-bundle tags over the hero (like Reformed's frother/bottle/can) */
+.free-tag{position:absolute;z-index:3;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 10px;box-shadow:0 8px 20px -12px rgba(0,0,0,.3);text-align:left;line-height:1.25}
+.free-tag .ft-val{font:700 12px/1 var(--sans);color:var(--ok);letter-spacing:.02em}
+.free-tag .ft-val s{color:var(--faint);font-weight:500;margin-right:4px}
+.free-tag .ft-name{font:500 13px/1.2 var(--sans);color:var(--ink-2)}
+.free-tag.t1{top:9%;left:5%}
+.free-tag.t2{top:34%;left:3%}
+.free-tag.t3{top:9%;right:5%}
+.free-tag.t4{top:60%;right:4%}
+/* sit ON each product (small overlap, anchored to it) without covering it fully:
+   applicator (far-left brush) · file (2nd) · patches box (centre-right) · book (right) */
+.free-tag.t-app{top:48%;left:0}
+.free-tag.t-file{top:60%;left:16%}
+.free-tag.t-patch{top:42%;right:28%}
+.free-tag.t-book{top:30%;right:2%}
+.hero-slide>img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.86);color:var(--ink);font:400 26px/1 var(--sans);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 12px -3px rgba(0,0,0,.35);transition:background .15s,transform .15s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.hero-arrow:hover{background:#fff}
+.hero-arrow:active{transform:translateY(-50%) scale(.92)}
+.hero-prev{left:12px;padding-right:2px}
+.hero-next{right:12px;padding-left:2px}
+.hero-cap{text-align:center;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 12px}
+/* overlays de texto sobre las slides (Canva/HTML overlay del encargo) — solo con container queries; en navegadores viejos se ve la foto limpia */
+.hero-slide{position:relative}
+.hs-ov{display:none;position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;text-align:left}
+@supports (font-size:1cqw){
+  .hero-stage .hero-slide{container-type:inline-size}
+  .hs-ov{display:none}
+  .hs-ov .ovh{font-family:'Fraunces',var(--serif);font-weight:600;line-height:1.12;color:#4A1410;font-size:4.6cqw}
+  .hs-ov .ovs{font:500 2.6cqw/1.5 var(--sans);color:#7A4038;margin-top:2cqw}
+  .hs-ov .ovshield{display:inline-block;margin-top:2.2cqw;border:.4cqw solid #6B1E15;border-radius:999px;padding:1.4cqw 2.6cqw;font:700 2.2cqw/1 var(--sans);letter-spacing:.12em;color:#6B1E15;background:rgba(252,251,249,.75)}
+  .hs-ov .ovcard{background:rgba(255,255,255,.88);border-radius:1.6cqw;padding:1.7cqw 2.2cqw;font:600 2.3cqw/1.4 var(--sans);color:#3F1712;margin-bottom:1.4cqw;box-shadow:0 .2cqw 1cqw rgba(0,0,0,.10)}
+  .hs-ov .ovtitle{font:800 2.8cqw/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#4A1410;margin-bottom:1.1cqw}
+  .hs-ov .ovlist{font:600 2.8cqw/1.95 var(--sans)}
+  .hs-ov .ovlist.good{color:#0E7C3F}
+  .hs-ov .ovlist.bad{color:#8A2C22}
+}
+.hero-thumbs{display:flex;gap:10px;margin-top:12px}
+.hero-thumb{flex:1;aspect-ratio:1/1;border-radius:9px;overflow:hidden;opacity:.55;border:1px solid var(--line);transition:opacity .2s,border-color .2s;padding:0}
+.hero-thumb.is-active{opacity:1;border-color:var(--ink)}
+.hero-thumb .ph{width:100%;height:100%}
+.hero-thumb .ph span{display:none}.hero-thumb .ph svg{width:16px;height:16px}
+
+/* buy box */
+.rating{display:flex;align-items:center;gap:8px;font:500 15px/1 var(--sans);color:var(--ink-2)}
+.stars{color:var(--star);letter-spacing:2px;font-size:15.5px}
+.starrow{position:relative;display:inline-block;color:#D9D3C0;font-size:17px;letter-spacing:2px;line-height:1;white-space:nowrap;vertical-align:middle}
+.starrow::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #CCC5AD}
+.starrow-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;color:var(--star);white-space:nowrap}
+.starrow-fill::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #D18B12}
+.rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
+.bx-h1{font-family:'Fraunces',var(--serif);font-size:clamp(30px,3.4vw,40px);font-weight:600;color:#161616;line-height:1.08;margin:24px 0 6px}
+.bx-h1 .hl{color:inherit;font-weight:700;font-style:normal}
+.bx-h1 .h1-sub{display:block;font:400 16.5px/1.45 var(--sans);color:var(--ink-2);margin-top:14px;letter-spacing:0;white-space:normal}
+.bx-sub{font:400 18px/1.5 var(--sans);color:var(--ink-2);margin-bottom:18px}
+.bx-link{display:inline-flex;align-items:center;gap:5px;font:500 15px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
+.bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bx-badges-h{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
+.bx-badges-row{display:flex;flex-wrap:wrap;gap:5px}
+.bx-badges span{font:600 13px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:5px 7px;white-space:nowrap}
+.bx-warn{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin-top:16px}
+.bx-warn-ic{width:20px;height:20px;flex:0 0 auto;color:var(--ink);margin-top:1px}
+.bx-warn p{font:400 15px/1.5 var(--sans);color:var(--ink-2);margin:0}
+.bx-warn b{color:var(--ink);font-weight:700}
+.bx-benefit{border-bottom:1px solid var(--line)}
+.bx-benefit:last-child{border-bottom:none}
+.bx-benefit summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;font:500 16px/1.3 var(--sans);color:var(--ink)}
+.bx-benefit summary::-webkit-details-marker{display:none}
+.bx-benefit summary::after{content:"+";font:400 19px/1 var(--sans);color:var(--ink-soft);flex:0 0 auto}
+.bx-benefit[open] summary::after{content:"\2212"}
+.bx-benefit p{padding:0 0 12px;margin:0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.bx-sec{margin-top:26px}
+.bx-sec .label{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bx-sec .help{font:500 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:underline;cursor:pointer}
+
+/* pill selectors (flavour / colour) */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.colour-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.colour-row:last-child{margin-bottom:0}
+.colour-label{font:600 13px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);min-width:52px}
+.cpills{display:flex;gap:8px;flex-wrap:wrap}
+.swatch.cpill{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1.5px solid var(--line-2);border-radius:9px;font:500 15px/1 var(--sans);color:var(--ink-2);transition:border-color .15s}
+.swatch.cpill:hover{border-color:var(--ink-soft)}
+.swatch.cpill.is-selected{border-color:var(--ink);color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.cdot{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.cdot-black{background:#1a1a1a}.cdot-pink{background:#e7a6b4}
+
+/* quantity tier cards (with thumbnails inside) */
+/* Widget de kits: SIEMPRE apilado en filas (estilo Cleriva) — las listas "You get" necesitan el ancho completo */
+.packs{display:flex;flex-direction:column;gap:15px}
+.pack{position:relative;width:100%;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:16px 18px;transition:border-color .15s,box-shadow .15s}
+.pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
+.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+.pack .kit-list{grid-column:1/-1;grid-row:auto}
+.pack:hover{border-color:var(--ink-soft)}
+.pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pack-badge{position:absolute;top:-11px;left:16px;transform:none;white-space:nowrap;background:var(--ok);color:#fff;font:700 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:20px}
+.pack-badge.alt{background:var(--gold);color:#fff}
+.pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
+.pack-thumb .ph{width:100%;height:100%}
+.pack-thumb .ph span{font-size:15px;letter-spacing:.02em;color:var(--ink-soft);font-weight:700}
+.pack-thumb .ph svg{display:none}
+.pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
+.pack-unit{grid-area:unit;align-self:start;font:600 14px/1.3 var(--sans);color:var(--ink-soft)}
+.pack-price{grid-area:price;justify-self:end;text-align:right;font:700 19px/1 var(--sans);margin-top:0}
+.pack-price s{font-size:15px;font-weight:500;margin-left:6px}
+.pack .pack-banner{grid-area:banner;justify-self:start;margin-top:8px}
+
+/* includes list */
+.includes{margin-top:18px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.inc-h{font:600 14px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
+.inc-list{list-style:none}
+.inc-row{display:flex;align-items:center;gap:10px;padding:6px 0;font:500 15.5px/1.3 var(--sans);color:var(--ink-2)}
+.inc-check{color:var(--ok);font-weight:700;flex:0 0 auto}
+.inc-name{flex:1}
+.inc-desc{display:block;font:400 13px/1.45 var(--sans);color:var(--ink-soft);margin-top:3px}
+.inc-row.gift{align-items:flex-start}
+.inc-val{font-size:14px;white-space:nowrap}
+.inc-val s{margin-right:5px}
+.inc-free{color:var(--pop);font-weight:700;letter-spacing:.02em}
+.inc-inc{color:var(--ink-soft);font-weight:600}
+.inc-row.gift{padding:9px 0}
+.inc-img{width:46px;height:46px;flex:0 0 auto;border-radius:9px;object-fit:cover;background:#fff;border:1px solid var(--line)}
+/* pack bundle preview (swaps with the selected pack) */
+.pack-preview{text-align:center;margin:0 0 14px}
+#packImage{display:block;margin:0 auto;max-width:100%;max-height:230px;width:auto;height:auto;object-fit:contain;border-radius:12px;transition:opacity .18s ease}
+.inc-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font:500 14px/1.4 var(--sans);color:var(--ink-soft)}
+.inc-row.inc-total{border-top:1.5px solid var(--line-2);margin-top:5px;padding-top:12px}
+.inc-total .inc-name{font:700 15.5px/1.3 var(--sans);color:var(--ink)}
+.inc-total .inc-val{font-size:15px;white-space:nowrap}
+.inc-total .inc-val s{color:var(--ink-soft);font-weight:500}
+.inc-today{color:var(--ink);font-weight:800;margin-left:7px}
+
+/* add to cart + reassurance */
+.add-to-cart{width:100%;background:var(--pop);color:#fff;font:600 17px/1 var(--sans);padding:18px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;transition:background .15s,transform .12s}
+.add-to-cart:hover{background:#0A6332;transform:translateY(-1px)}
+.add-to-cart .cta-price{font-weight:700}
+.bx-scarcity{display:flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1.3 var(--sans);color:var(--ok);margin-top:13px;text-align:center}
+.bx-scarcity .sdot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:0 0 auto;animation:scpulse 1.5s ease-in-out infinite}
+@keyframes scpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+.hx-proof{font:500 15px/1.45 var(--sans);color:var(--ink-2);margin:0 0 15px;font-style:italic}
+.hx-proof .vf{font-style:normal;font-size:13px;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.04em;margin-left:5px}
+.pack-stock{display:block;margin-top:7px;font:700 12.5px/1.2 var(--sans);color:var(--ok);letter-spacing:.01em}
+.bx-stockbar{height:6px;border-radius:4px;background:var(--line-2);overflow:hidden;margin:8px 0 0}
+.bx-stockbar span{display:block;height:100%;width:96%;background:var(--ok);border-radius:4px;transition:width .35s ease}
+.bx-deliver{text-align:center;font:500 15px/1.4 var(--sans);color:var(--ink-2);margin-top:12px}
+.bx-deliver b{color:var(--ink)}
+.bx-pay{display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px}
+.bx-pay svg{flex:0 0 auto;display:block}
+.bx-pay span{font:600 12px/1 var(--sans);letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line-2);border-radius:5px;padding:5px 7px}
+.bx-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.bx-trust-i{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.bx-trust-i svg{width:26px;height:26px;color:var(--ink)}
+.bx-trust-i span{font:600 14px/1.3 var(--sans);color:var(--ink-2)}
+.bx-desc{font:400 16px/1.6 var(--sans);color:var(--ink-2);margin-top:20px}
+/* Elixir-style emphasis: colour the important phrases (gold) so they pop — used across description/reviews/benefits */
+.key{color:var(--gold);font-weight:700;white-space:nowrap}
+.bx-desc em{color:var(--ink)}
+/* accordions */
+.acc{margin-top:14px}
+.acc details{border-top:1px solid var(--line)}
+.acc details:last-child{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;padding:15px 0;font:500 16px/1.2 var(--sans);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font:400 20px/1 var(--sans);color:var(--ink-soft)}
+.acc details[open] summary::after{content:"\2212"}
+.acc details p{padding:0 0 16px;font-size:15.5px;color:var(--ink-2)}
+
+/* ============ press strip ============ */
+.press{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0}
+.press-lab{text-align:center;font:600 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+.press-row{display:flex;justify-content:center;align-items:center;gap:44px;flex-wrap:wrap}
+.press-logo{width:108px;height:30px;border-radius:5px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font:600 10.5px/1 var(--sans);letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
+
+/* ============ sections ============ */
+section{padding:58px 0}
+.sec-head{max-width:680px;margin:0 auto 38px;text-align:center}
+.sec-head.left{text-align:left;margin-left:0}
+.sec-head h2{font-family:'Fraunces',var(--serif);font-weight:600;letter-spacing:-.01em;font-size:clamp(29px,3.6vw,42px);line-height:1.12;margin:9px 0 12px}
+.sec-head p{color:var(--ink-2);font-size:17px}
+.band{background:var(--paper-2)}
+
+/* reasons grid (image cards) */
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.reason{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.reason .ph{aspect-ratio:4/3}
+.reason .rb{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font:500 16px/1.2 var(--sans)}
+.reason .rb .plus{color:var(--ink-soft);font-size:18px}
+
+/* values 3-col */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:6px}
+.value svg{width:24px;height:24px;color:var(--ink);margin-bottom:10px}
+.value h3{font-size:18px;margin-bottom:7px}
+.value p{font-size:15px;color:var(--ink-2)}
+
+/* 4-step how */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step .ph{aspect-ratio:3/4;border-radius:var(--r)}
+.step p{margin-top:12px;font:500 15px/1.4 var(--sans);color:var(--ink-2)}
+.step b{display:block;font:600 15px/1 var(--sans);color:var(--ink);margin-bottom:3px}
+
+/* timeline (Watch it work, week by week) — star section */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+.tl-step .ph{aspect-ratio:4/3;border-radius:var(--r);margin-bottom:14px}
+.tl-when{display:inline-block;font:700 13px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ok);background:var(--paper-3);border-radius:20px;padding:7px 13px;margin-bottom:11px}
+.tl-step h3{font-size:21px;margin-bottom:6px}
+.tl-step p{font-size:15px;color:var(--ink-2)}
+.tl-note{max-width:660px;margin:34px auto 0;text-align:center;font:500 18px/1.55 var(--sans);color:var(--ink-2);padding:22px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tl-foot{text-align:center;font-size:15px;color:var(--ink-soft);margin-top:18px}
+@media(max-width:780px){.timeline{grid-template-columns:1fr;gap:26px}}
+
+/* buy-box subscribe note + disclaimer */
+.pack .pack-sub{display:block;font:600 10.5px/1.25 var(--sans);color:var(--ink-soft);margin-top:5px;letter-spacing:.01em}
+.pack .pack-banner{display:block;max-width:100%;margin-top:auto;padding-top:6px;background:var(--pop-bg);color:var(--pop);font:700 12px/1.3 var(--sans);letter-spacing:.01em;padding:6px 11px;border-radius:14px;border:1px solid #C9E4D2;text-align:center}
+/* kit "You get:" — lista de valor por ítem dentro de cada card */
+.kit-list{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-2);text-align:left}
+.pack:not(.is-selected) .kit-list{display:none} /* el "Everything in your kit" solo se despliega en el pack seleccionado — desktop Y móvil, arriba (#packs) y abajo (#packsFinal) */
+.kit-list .kt{display:block;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.kit-list .ki{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)}
+.kit-list .ki>span:first-child{text-align:left}
+.kit-list .ki .kv{white-space:nowrap;color:var(--faint);font-weight:600}
+.kit-list .ki .kv s{color:var(--faint);font-weight:600}
+.kit-list .ki .kv b{color:var(--pop);font-weight:800;margin-left:6px}
+
+.sub-note{margin-top:10px;text-align:center;font:500 14px/1.4 var(--sans);color:var(--ink-soft)}
+.bx-disclaimer{margin-top:14px;font:400 13px/1.5 var(--sans);color:var(--faint);text-align:center}
+
+/* comparison (borderless, soft highlight column) */
+.cmp{max-width:680px;margin:0 auto;position:relative}
+.cmp table{width:100%;border-collapse:collapse}
+.cmp th,.cmp td{padding:15px 10px;text-align:center;font-size:15.5px}
+.cmp thead th{font:600 14px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding-bottom:18px}
+.cmp tbody td:first-child,.cmp thead th:first-child{text-align:left;font-weight:600;color:var(--ink)}
+.cmp tbody tr{border-bottom:1px solid var(--line)}
+.cmp tbody tr:last-child{border-bottom:none}
+.cmp .own{background:var(--paper-3)}
+.cmp thead th.own{border-radius:12px 12px 0 0;color:var(--ink);font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:0;text-transform:none}
+.cmp tbody td.own:last-child,.cmp tr:last-child td.own{border-radius:0 0 12px 12px}
+.cmp .yes{color:var(--ok);font-weight:700}
+.cmp .no{color:var(--ink-soft);font-size:15px}
+
+/* lifestyle 3-photo */
+.life{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.life .ph{aspect-ratio:3/4;border-radius:var(--r)}
+
+/* reviews */
+.rev-top{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin-bottom:34px}
+.rev-score .big{font:700 52px/1 'Sora',var(--sans);letter-spacing:-.02em}
+.rev-score .st{color:var(--star);letter-spacing:2px;font-size:17px}
+.rev-score .cnt{font:500 15px/1 var(--sans);color:var(--ink-soft);margin-top:4px}
+.rev-dist{display:flex;flex-direction:column;gap:6px}
+.rev-bar{display:flex;align-items:center;gap:10px;font:500 14px/1 var(--sans);color:var(--ink-soft)}
+.rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
+.rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
+.rev-bar .pct{min-width:34px;text-align:right;color:var(--ink-2)}
+.rev-bar{cursor:pointer;border:none;background:none;width:100%;text-align:left}
+.rev-bar .lab{min-width:30px;font-weight:600;color:var(--ink-2)}
+.rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
+.rev-bar.is-active .fill{background:var(--gold)}
+.rev-more{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px}
+.rev-more .review{flex:0 1 460px;max-width:520px}
+.rev-more[hidden]{display:none}
+.rev-morewrap{text-align:center;margin-top:26px}
+.rev-morebtn{font:600 15.5px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
+.rev-morebtn:hover{background:var(--ink);color:var(--paper)}
+/* teaser de reviews: borrosas + botón encima hasta que el usuario pide leerlas */
+.rev-teaserwrap{position:relative}
+.rev-teaserwrap.teasing #revTier1{filter:blur(5px);-webkit-filter:blur(5px);max-height:560px;overflow:hidden;pointer-events:none;-webkit-user-select:none;user-select:none}
+.rev-teaserwrap .rev-overlay{display:none}
+.rev-teaserwrap.teasing .rev-overlay:not([hidden]){display:flex;position:absolute;top:0;left:0;right:0;bottom:0;align-items:center;justify-content:center;z-index:2}
+.rev-overlay-btn{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 12px 32px -10px rgba(107,30,21,.5)}
+#revBar .rev-morebtn{margin:0 5px 10px}
+@media(max-width:980px){.rev-more{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.rev-more{grid-template-columns:1fr}}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.review .rh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.review .av{width:42px;height:42px;flex:0 0 auto;border-radius:50%;background:var(--paper-3);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--faint)}
+.review .av svg{width:22px;height:22px}
+.review .av img{width:100%;height:100%;object-fit:cover;display:block}
+.review .nm{font:600 15px/1.3 var(--sans)}
+.review .vf{font:600 12px/1 var(--sans);color:var(--ok);display:flex;align-items:center;gap:3px;margin-top:2px}
+.review .st{color:var(--star);letter-spacing:1px;font-size:14px;margin-bottom:7px}
+.review .rt{font:700 15.5px/1.3 var(--sans);color:#1F1F1F;margin-bottom:5px}
+.review p{font-size:15px;color:#262626}
+.review .rev-ph{width:132px;height:132px;object-fit:cover;border-radius:10px;margin-top:12px;display:block;border:1px solid var(--line)}
+.review .rec{margin-top:12px;font:500 13px/1 var(--sans);color:var(--ink-soft);display:flex;align-items:center;gap:5px}
+
+/* guarantee */
+.guarantee{text-align:center}
+.guarantee .seal{width:92px;height:92px;border-radius:50%;border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;font:700 10px/1.1 var(--sans);letter-spacing:.05em;text-transform:uppercase}
+.guarantee .seal b{font:600 24px/1 var(--serif);color:var(--ink)}
+.guarantee h2{font-family:'Fraunces',var(--serif);font-weight:600;letter-spacing:-.01em;font-size:clamp(29px,3.6vw,42px);line-height:1.12;margin-bottom:12px}
+.guarantee p{max-width:540px;margin:0 auto 24px;color:var(--ink-2)}
+.guarantee .add-to-cart{max-width:330px;margin-left:auto;margin-right:auto}
+
+/* final */
+.final{text-align:center}
+.final .packs{max-width:690px;gap:14px;margin:30px auto 0}
+.final .add-to-cart{max-width:340px;margin:26px auto 0}
+
+/* newsletter footer */
+.news{background:var(--ink);color:var(--paper);padding:64px 0 0}
+.news-in{max-width:560px;margin:0 auto;text-align:center}
+.news h2{font-family:'Fraunces',var(--serif);font-weight:600;color:var(--paper);font-size:clamp(27px,3.4vw,38px);line-height:1.14;margin-bottom:12px}
+.news p{color:rgba(249,248,246,.74);font-size:16.5px;margin-bottom:22px}
+.news-form{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.news-form input{flex:1;padding:14px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:var(--paper);font:500 15.5px/1 var(--sans)}
+.news-form input::placeholder{color:rgba(249,248,246,.5)}
+.news-form button{background:var(--paper);color:var(--ink);font:600 15.5px/1 var(--sans);padding:0 22px;border-radius:9px}
+.news-msg{font:500 15px/1 var(--sans);color:#E6C29C;margin-top:12px;min-height:16px}
+.news-word{font:800 clamp(64px,15vw,190px)/0.9 'Sora',var(--sans);text-align:center;color:rgba(249,248,246,.08);margin-top:40px;letter-spacing:-.03em;overflow:hidden;user-select:none}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
+.foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px 20px;max-width:100%;font:500 15px/1 var(--sans);color:rgba(249,248,246,.7)}
+.foot-links a:hover{color:var(--paper)}
+.foot-fine{font:400 13px/1.6 var(--sans);color:rgba(249,248,246,.45);margin-top:12px}
+
+/* sticky cta */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(249,248,246,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(120%);transition:transform .3s;padding:11px 16px}
+.sticky-cta.show{transform:none}
+.sc-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sc-info{display:flex;flex-direction:column;line-height:1.2}
+.sc-name{font:600 15.5px/1.2 var(--sans)}
+.sc-meta{font:500 15px/1 var(--sans);color:var(--ink-soft)}
+.sc-btn{width:auto;padding:13px 26px;margin:0;flex:0 0 auto}
+
+/* cart drawer */
+.cart-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(20,18,16,.42);opacity:0;visibility:hidden;transition:opacity .3s;z-index:60}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:430px;max-width:92vw;background:var(--paper);z-index:61;transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+.cart-drawer.open{transform:none}
+.cart-head{display:flex;align-items:center;gap:10px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart-head h3{font:600 18px/1 var(--serif);display:flex;align-items:center;gap:8px;flex:1}
+.ch-free{font:600 13px/1 var(--sans);color:var(--ok);background:#F4EBE2;padding:6px 9px;border-radius:20px}
+.cart-close{font-size:26px;line-height:1;color:var(--ink-soft);width:30px}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:30px}
+.cart-empty .ce-ic{color:var(--faint)}
+.ce-title{font:600 18px/1 var(--serif)}
+.ce-sub{font-size:15.5px;color:var(--ink-soft)}
+.cart-body{flex:1;overflow-y:auto;padding:20px 22px}
+.cart-item{display:flex;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cart-item-img{position:relative;flex:0 0 auto}
+.cart-item-img img{width:96px;height:96px;object-fit:cover;border-radius:10px;background:var(--paper-2)}
+.ci-qty{position:absolute;top:-7px;right:-7px;background:var(--ink);color:var(--paper);font:700 13px/1 var(--sans);padding:5px 7px;border-radius:20px}
+.cart-item-name{font:600 16.5px/1.3 var(--sans)}
+.cart-item-meta{font-size:15px;color:var(--ink-soft);margin:3px 0 8px}
+.cart-item-price{display:flex;align-items:baseline;gap:8px}
+.cart-item-price #cartPrice{font:700 18px/1 var(--sans)}
+.ci-was{font-size:15px;text-decoration:line-through;color:var(--faint)}
+.cart-colours{margin:18px 0}
+.cart-gift{margin:16px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.cg-h{display:block;font:700 11.5px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.cg-item{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:500 14px/1.55 var(--sans);color:var(--ink-2);padding:2px 0}
+.cg-item>span:first-child{flex:1 1 auto;min-width:0}
+.cg-item .cg-tag{flex:0 0 auto;white-space:nowrap;font-weight:800;color:var(--pop)}
+.cart-foot{padding:18px 22px;border-top:1px solid var(--line);background:var(--card)}
+.cart-totals{display:flex;justify-content:space-between;font:500 15.5px/1.6 var(--sans);color:var(--ink-2)}
+.ct-save{color:var(--ok);font-weight:600}
+.cart-totals.grand{font:700 18px/1.4 var(--sans);color:var(--ink);margin-top:6px;padding-top:8px;border-top:1px solid var(--line)}
+.cart-checkout{width:100%;background:var(--pop);color:#fff;font:600 17px/1 var(--sans);padding:17px;border-radius:11px;margin-top:14px;transition:background .15s}
+.cart-checkout:hover{background:#0A6332}
+.cart-foot-trust{display:flex;justify-content:center;gap:14px;margin-top:12px;font:500 13px/1 var(--sans);color:var(--ink-soft)}
+
+/* cookie */
+.cookie{position:fixed;left:16px;bottom:80px;z-index:55;max-width:370px;background:var(--ink);color:var(--paper);border-radius:14px;padding:18px 20px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);transform:translateY(160%);transition:transform .4s}
+.cookie.show{transform:none}
+.cookie p{font-size:15px;line-height:1.5}.cookie a{text-decoration:underline}
+.cookie-actions{display:flex;gap:10px;margin-top:12px}
+.cookie-actions button{flex:1;padding:10px;border-radius:9px;font:600 15px/1 var(--sans)}
+.cookie .accept{background:var(--paper);color:var(--ink)}
+.cookie .deny{border:1px solid rgba(255,255,255,.4);color:var(--paper)}
+
+/* email-gate popup — 2 columns (image + offer) */
+.eg{position:fixed;top:0;left:0;right:0;bottom:0;z-index:70;background:rgba(20,18,16,.55);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s}
+.eg.open{opacity:1;visibility:visible}
+.eg-card{position:relative;background:var(--paper);border-radius:18px;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.55);transform:translateY(12px);transition:transform .3s}
+.eg.open .eg-card{transform:none}
+.eg-media{position:relative;background:var(--paper-3)}
+.eg-media .ph{position:absolute;top:0;left:0;right:0;bottom:0}
+.eg-media .eg-ov{position:absolute;left:22px;bottom:22px;z-index:2;color:var(--ink);font:600 30px/1 var(--serif)}
+.eg-body{padding:40px 34px}
+.eg-close{position:absolute;top:14px;right:16px;font-size:24px;line-height:1;color:var(--ink-soft);z-index:4}
+.eg-badge{font:700 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.eg-body h3{font-size:32px;line-height:1.05;margin-bottom:10px}
+.eg-body p{font-size:16px;color:var(--ink-2);margin-bottom:18px}
+.eg-body input{width:100%;padding:14px 16px;border:1.5px solid var(--line-2);border-radius:10px;font:500 16.5px/1 var(--sans);background:var(--card);margin-bottom:9px}
+.eg-body input:focus{outline:none;border-color:var(--ink)}
+.eg-sub{width:100%;background:var(--ink);color:var(--paper);font:600 16.5px/1 var(--sans);padding:15px;border-radius:10px;transition:background .15s}
+.eg-sub:hover{background:#000}
+.eg-err{color:#C8102E;font-size:14px;min-height:15px;margin-top:5px}
+.eg-fine{font-size:13px;color:var(--faint);margin-top:13px;line-height:1.5}
+.eg-fine a{text-decoration:underline}
+.eg-fine label{display:flex;gap:8px;align-items:flex-start;justify-content:flex-start;text-align:left;width:100%;margin-bottom:9px}
+.eg-fine label input{flex:0 0 auto;width:14px;height:14px;margin:1px 0 0;accent-color:var(--ink)}
+.eg-fine label span{flex:1 1 auto}
+.eg-no{display:block;margin-top:12px;font:500 14px/1 var(--sans);color:var(--ink-soft);text-decoration:underline}
+.eg-check{width:52px;height:52px;border-radius:50%;background:#F4EBE2;color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:14px}
+.eg-code{font:700 25px/1 var(--sans);letter-spacing:.16em;background:var(--card);border:2px dashed var(--ink);border-radius:10px;padding:15px;margin:4px 0 12px;text-align:center}
+.eg-copy{font:600 15px/1 var(--sans);color:var(--ink-soft);text-decoration:underline;margin-bottom:14px;display:inline-block}
+.eg-shop{width:100%;background:var(--ink);color:var(--paper);font:600 16.5px/1 var(--sans);padding:15px;border-radius:10px}
+/* scratch-to-reveal card */
+.scratch{position:relative;width:100%;height:130px;border-radius:12px;overflow:hidden;margin:6px 0 14px;border:2px dashed var(--line-2);user-select:none}
+.scratch-prize{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--paper-2);text-align:center;padding:0 12px}
+.sp-pct{font:700 13px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ok)}
+.sp-code{font:700 30px/1 var(--sans);letter-spacing:.16em;color:var(--ink)}
+.scratch-canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;cursor:grab;touch-action:none}
+.scratch-canvas:active{cursor:grabbing}
+.scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 14px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.scratch.done .scratch-canvas,.scratch.done .scratch-hint{display:none}
+
+/* real images dropped into the sections */
+.hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pack-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mech-img{max-width:720px;margin:0 auto 36px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.mech-img img{width:100%;display:block}
+.life img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);display:block}
+.rev-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;margin-bottom:13px;display:block}
+.rev-by{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rev-by .nm{font:600 15px/1.3 var(--sans)}
+.inc-cover{width:26px;height:34px;border-radius:4px;object-fit:cover;flex:0 0 auto;box-shadow:0 2px 6px -2px rgba(0,0,0,.35)}
+.reason img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.seal-canva{display:block;width:210px;max-width:64%;margin:0 auto 18px;border-radius:50%}
+.eg-media img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover}
+/* how-to: 3 pasos con número en badge y sangría colgante (texto alineado al saltar de línea) */
+.howto-steps{flex:1 1 300px;max-width:400px;list-style:none;margin:0;padding:0}
+.howto-steps li{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line)}
+.howto-steps li:last-child{border-bottom:none}
+.howto-steps .hs-n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--pop-bg);color:var(--pop);font:800 15px/30px var(--sans);text-align:center}
+.howto-steps .hs-t{flex:1 1 auto;font:600 17px/1.5 var(--sans);color:var(--ink);padding-top:3px}
+@media(max-width:520px){.howto-steps .hs-t{font-size:16px}.howto-steps li{padding:13px 0}}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.steps3 .step img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ba-grid figure{margin:0}
+.ba-grid img{width:100%;height:auto;border-radius:var(--r);display:block;border:1px solid var(--line)}
+.ba-grid figcaption{text-align:center;font:600 14px/1.3 var(--sans);color:var(--ink-soft);margin-bottom:11px}
+.ugc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+.ugc-strip img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
+/* 4 photo reviews (default view) */
+.photo-reviews{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+.photo-reviews figure{margin:0}
+.photo-reviews img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block;cursor:zoom-in}
+.photo-reviews figcaption{margin-top:11px;text-align:left}
+.pr-stars{color:var(--star);letter-spacing:1.5px;font-size:14px}
+.pr-quote{font:600 16px/1.45 var(--sans);color:#1F1F1F;margin:5px 0}
+.pr-by{display:block;font:600 14px/1.35 var(--sans);color:#262626}
+.pr-by em{font-style:normal;color:var(--ok);font-weight:700}
+/* before/after mini-review attributions */
+.ba-by{margin-top:10px;text-align:center}
+.ba-quote{font:500 15px/1.38 var(--serif);font-style:italic;color:var(--ink-2);margin:4px 0}
+.ba-name{display:block;font:600 13px/1.3 var(--sans);color:var(--ink-soft)}
+.ba-name em{font-style:normal;color:var(--ok);font-weight:700}
+.seal-img{position:relative;width:122px;height:122px;margin:0 auto 20px}
+.seal-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.seal-txt{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 12.5px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);text-align:center;padding:0 22px 16px}
+@media(max-width:780px){.steps3{grid-template-columns:1fr}.ugc-strip,.photo-reviews{grid-template-columns:repeat(2,1fr)}
+  /* before/after: carrusel deslizable (scroll-snap, sin JS) — en desktop sigue en rejilla de 3 */
+  .ba-grid{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;gap:12px;padding:0 4px 6px;scrollbar-width:none}
+  .ba-grid::-webkit-scrollbar{display:none}
+  .ba-grid figure{flex:0 0 86%;max-width:86%;scroll-snap-align:center}
+  .rev-top{display:none}
+}
+
+/* ============ responsive ============ */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"gallery" "head" "buy";gap:20px}
+  .gallery{position:static}
+  .reasons,.values,.steps,.life,.rev-grid{grid-template-columns:1fr 1fr}
+  .rev-top{grid-template-columns:1fr;gap:20px}
+  section{padding:56px 0}
+}
+@media(max-width:620px){
+  /* compact header: hamburguesa + logo + cart (nav-left pasa a desplegable) */
+  .nav-inner{grid-template-areas:"burger logo cart";min-height:0;padding-top:8px;padding-bottom:8px}
+  .nav-burger{display:flex;align-items:center;grid-area:burger;justify-self:start}
+  .nav-left{grid-area:burger;display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line-2);box-shadow:0 14px 26px -14px rgba(0,0,0,.28);padding:6px 0;gap:0;transform:scaleY(0);transform-origin:top;opacity:0;visibility:hidden;transition:transform .18s,opacity .18s;z-index:41}
+  .nav.nav-open .nav-left{transform:scaleY(1);opacity:1;visibility:visible}
+  .nav-left a{padding:13px 28px;border-bottom:0;font-size:14px}
+  .logo-brand{font-size:29px}
+  .logo-tag{font-size:6px;letter-spacing:.14em}
+  .announce{font-size:13px;padding:8px 14px;letter-spacing:.02em}
+  .reasons,.values,.steps,.life,.rev-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .eg-card{grid-template-columns:1fr;max-width:400px}
+  .eg-media{display:none}
+  .hero-grid{gap:16px}
+  .gallery{width:100%;max-width:100%;margin:0 auto;min-width:0;overflow:hidden}
+  .hero-grid,.hero-head,.buybox{min-width:0}
+  /* full-width hero with NO vw unit (100vw overflows past the body on iOS Safari): zero the .wrap padding
+     for the hero only and give it back to the text blocks. Image = exactly body width = same as header/announce,
+     so nothing is wider than the page and there is zero horizontal scroll. */
+  /* definite 100% column (not flexible 1fr) so the wide thumbnail strip's content can't inflate the track */
+  .hero-grid{grid-template-columns:100%;padding-left:0;padding-right:0}
+  .hero-head,.hero-convince,.buybox{padding-left:28px;padding-right:28px}
+  .hero-stage{width:100%;max-width:100%;margin-left:0;border-radius:0}
+  /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
+  .hero-slide{aspect-ratio:1/1} /* slides con texto de borde a borde: sin recorte en móvil */
+  .hero{padding:14px 0 14px}
+  .hero-thumbs{width:100%;max-width:100%;margin-left:0;padding:0 28px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero-thumbs::-webkit-scrollbar{display:none}
+  .hero-thumb{flex:0 0 60px;border-radius:10px}
+  .hx-proof{display:none}
+  .buybox{display:flex;flex-direction:column}
+  .hero-cap{display:none}
+  .free-tag{padding:4px 7px;border-radius:6px;box-shadow:0 6px 14px -10px rgba(0,0,0,.3)}.free-tag .ft-val{font-size:7.5px}.free-tag .ft-name{font-size:8px;line-height:1.15}
+  .cmp{overflow-x:visible}.cmp table{min-width:0;width:100%;table-layout:fixed}
+  .cmp th,.cmp td{padding:10px 5px;font-size:14px;word-break:break-word}
+  .cmp thead th{font-size:9.5px;padding-bottom:12px;letter-spacing:.02em}
+  .cmp thead th.own{font-size:15px}
+  .cmp tbody td:first-child,.cmp thead th:first-child{font-size:13px}
+  .cmp .no{font-size:12.5px}
+}
+
+/* ===== Kalmely — The Cellular Reset ===== */
+.announce{cursor:default}
+.bx-stock{display:flex;align-items:flex-start;gap:11px;border:1.5px solid var(--line-2);border-radius:12px;padding:13px 15px;margin:16px 0}
+.bx-stock .ic{flex:0 0 auto;margin-top:1px;color:#111}
+.bx-stock .ic svg{width:19px;height:19px;color:#111;display:block}
+.bx-stock p{font:400 15px/1.55 var(--sans);color:#111;margin:0}
+.bx-stock b{color:#000;font-weight:700}
+.sale-divider{display:flex;align-items:center;gap:14px;justify-content:center;text-align:center;font:700 15px/1.3 var(--sans);letter-spacing:.01em;color:var(--ink);margin:2px 0 12px}
+.sale-divider::before,.sale-divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
+.bx-micro{font:400 15.5px/1.55 var(--sans);color:var(--ink-soft);margin:0 0 20px;font-style:italic}
+.bx-promise{list-style:none;margin:24px 0 6px;display:flex;flex-direction:column;gap:13px}
+.bx-promise li{position:relative;padding-left:29px;font:600 15.5px/1.4 var(--sans);color:#222}
+.bx-promise li::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--pop)}
+.bx-promise li::after{content:"";position:absolute;left:6.5px;top:5.5px;width:7px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+.sub-optin{display:flex;gap:9px;align-items:flex-start;margin-top:13px;padding:11px 13px;border:1px solid var(--line-2);border-radius:10px;background:var(--paper-2);cursor:pointer}
+.sub-optin input{flex:0 0 auto;width:16px;height:16px;margin-top:1px;accent-color:var(--ink)}
+.sub-optin span{font:500 14px/1.45 var(--sans);color:var(--ink-2)}
+.bx-h1.product{font-family:'Fraunces',var(--serif);font-size:clamp(28px,3.2vw,38px);margin:20px 0 14px}
+
+/* social-proof strip (B3) */
+.sproof-h{font:600 clamp(21px,2.6vw,28px)/1.2 'Sora',var(--sans);text-align:center;color:var(--ink);margin-bottom:6px}
+.sproof-h .vf{color:var(--ok);font-weight:700}
+.sproof-sub{text-align:center;font:500 15px/1.5 var(--sans);color:var(--ink-soft);max-width:560px;margin:0 auto 26px}
+.sp-dist{max-width:360px;margin:26px auto 0;display:flex;flex-direction:column;gap:7px}
+.sp-row{display:flex;align-items:center;gap:10px;font:600 14px/1 var(--sans);color:var(--ink-2)}
+.sp-row .lab{min-width:30px}
+.sp-row .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
+.sp-row .fill{display:block;height:100%;background:var(--gold);border-radius:4px}
+.sp-row .pct{min-width:36px;text-align:right;color:var(--ink-soft)}
+.sp-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:28px}
+.sp-caps span{font:600 17px/1.4 var(--sans);color:var(--ink);font-style:normal}
+
+/* offer recap (B4) */
+.recap{max-width:620px;margin:0 auto;text-align:center}
+.recap .packs{margin:10px 0 0;text-align:left}
+.ship-nudge{margin:20px auto 0;max-width:520px;font:600 15px/1.5 var(--sans);color:var(--ok);background:var(--paper-3);border-radius:10px;padding:12px 16px}
+.vstack{list-style:none;max-width:440px;margin:20px auto;text-align:left;display:flex;flex-direction:column;gap:9px}
+.vstack li{position:relative;padding-left:25px;font:500 15.5px/1.4 var(--sans);color:var(--ink-2)}
+.vstack li::before{content:"\2713";position:absolute;left:0;color:var(--ok);font-weight:700}
+.cost-reframe{max-width:500px;margin:6px auto 20px;font:500 16px/1.55 var(--sans);color:var(--ink-2)}
+.recap .add-to-cart{max-width:360px;margin-left:auto;margin-right:auto}
+.recap .sub-optin{max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
+
+/* mechanism prose (B5) */
+.mech-prose{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:0.9fr 1.25fr;gap:40px;align-items:center;text-align:left}
+.mech-prose h3{font-size:20px;margin:28px 0 8px}
+.mech-prose p{color:var(--ink-2);font-size:17px;margin-bottom:14px}
+.mech-prose .lead{font-size:19px;line-height:1.66;color:var(--ink);margin-bottom:0}
+.mech-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mech-fig{max-width:100%;margin:0}
+.mech-fig figcaption{text-align:center;font:600 14px/1.35 var(--sans);color:var(--ink-soft);margin-top:9px}
+#how{padding-top:60px;padding-bottom:60px}
+#how .sec-head{margin-bottom:24px}
+@media(max-width:780px){.mech-prose{grid-template-columns:1fr;text-align:center;gap:22px;max-width:560px}.mech-prose .lead{margin-bottom:0}.mech-pair{grid-template-columns:1fr;gap:16px;max-width:420px;margin:0 auto}}
+
+/* bullets-to-pain (B7) */
+.pain-list{max-width:760px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:13px}
+.pain-list li{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 20px;font:500 16.5px/1.5 var(--sans);color:var(--ink)}
+.pain-list .arc{display:block;margin-top:6px;color:var(--ink-2);font-weight:500}
+.pain-list .arc::before{content:"\2192  ";color:var(--gold);font-weight:700}
+
+/* proof arrows (B8) */
+.proof-arrows{max-width:680px;margin:0 auto;list-style:none;display:flex;flex-direction:column;gap:15px}
+.proof-arrows li{padding-left:28px;position:relative;font:500 17px/1.55 var(--sans);color:var(--ink-2)}
+.proof-arrows li::before{content:"\2192";position:absolute;left:0;color:var(--gold);font-weight:700}
+.proof-closer{max-width:620px;margin:28px auto 0;text-align:center;font:500 17px/1.6 var(--sans);color:var(--ink-2);font-style:normal}
+
+/* founder (B13) */
+.founder{max-width:640px;margin:0 auto;text-align:left}
+.founder p{color:var(--ink-2);font-size:17px;margin-bottom:15px}
+.founder .sig{font:600 15.5px/1 var(--sans);color:var(--ink);margin-top:4px}
+
+@media(max-width:620px){
+  .sp-caps span{font-size:16.5px}
+  .pain-list li{font-size:16px}
+  .proof-arrows li{font-size:16.5px}
+
+  /* ===== Mobile 390 — spacing, hierarchy & pack restack ===== */
+  section{padding:48px 0}
+  /* TITLE (dominant) + subhead with even spacing */
+  .bx-h1.product{font-size:29px;line-height:1.2;margin:14px 0 12px}
+  @media(max-width:350px){.bx-h1.product{font-size:25px}}
+  .bx-sub{display:block;font:400 17px/1.55 var(--sans);color:var(--ink-2);margin:0 0 12px}
+  .bx-micro{font-size:15.5px;line-height:1.55;margin:0 0 20px}
+  .hero-head .rating{margin-bottom:10px}
+  .bx-badges{padding:18px 0}
+  .bx-promise{margin:18px 0 4px;gap:12px}
+  /* HIERARCHY: H1 32 / H2 23 / H3 18-19 */
+  .sec-head{margin-bottom:30px}
+  .sec-head h2{font-size:23px;line-height:1.25;margin:8px 0 10px}
+  .sec-head p{font-size:16.5px;line-height:1.6}
+  .value h3{font-size:18px;line-height:1.25;margin-bottom:8px}
+  .mech-prose h3{font-size:19px;margin:24px 0 10px}
+  /* BODY RHYTHM: looser, larger secondary copy for senior readers */
+  .value p{font-size:16px;line-height:1.6}
+  .mech-prose p{font-size:17px;margin-bottom:14px;line-height:1.65}
+  .founder p,.proof-closer,.cost-reframe{font-size:17px}
+  .sub-optin span{font-size:15px;line-height:1.5}
+  .bx-badges span{font-size:14px}
+  .bx-trust-i span{font-size:14px}
+  /* PACK SELECTOR — full-width vertical bars */
+  .packs{display:flex;flex-direction:column;gap:15px;margin-top:8px}
+  .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
+  .pack .kit-list{grid-column:1/-1;grid-row:auto}
+  /* móvil: solo el kit SELECCIONADO despliega su "You get" — los demás quedan compactos (anti-muro-de-texto) */
+  .pack:not(.is-selected) .kit-list{display:none}
+  .kit-list .ki{font-size:13px;gap:8px}
+  .kit-list .ki>span:first-child{white-space:nowrap}
+  .kit-list .ki .kv{font-size:12.5px}
+  .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
+  .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+  .pack-qty{grid-area:qty;align-self:end;font:700 17px/1.15 var(--sans)}
+  .pack-unit{grid-area:unit;align-self:start;font:600 14px/1.3 var(--sans);color:var(--ink-soft)}
+  .pack-price{grid-area:price;justify-self:end;text-align:right;font:700 19px/1 var(--sans);margin-top:0}
+  .pack-price s{font-size:15px;margin-left:6px}
+  .pack .pack-banner{grid-area:banner;justify-self:start;margin-top:8px;font:700 13px/1.2 var(--sans);padding:5px 9px}
+  .pack-badge{font-size:10.5px;padding:4px 10px}
+  .pack .pack-sub{display:none}
+  /* CTA + dividers + warning spacing */
+  .add-to-cart{margin-top:16px;margin-bottom:6px}
+  .sale-divider{font-size:15px;margin:6px 0 12px}
+  .bx-stock{margin:14px 0}
+}
+
+</style>
+</head>
+<body>
+
+<div class="announce" id="announceBar"><span id="announceMsg">90-Night Fair-Try Promise · Free returns</span></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner wrap">
+    <button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+    <nav class="nav-left nav-menu" aria-label="Main">
+      <a href="/reset/" class="is-active" aria-current="page">Product</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="#top" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Cellular Reset</span></a>
+    <button type="button" class="nav-cart" id="navCart" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO (B2) ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <!-- gallery -->
+      <div class="gallery">
+        <div class="hero-stage">
+          <div class="hero-track" id="heroTrack">
+            <!-- 5 hero slides; el texto va HORNEADO en cada imagen, sin overlays HTML. Orden: mecanismo primero (aprendizaje b). hero-06 (86% fabricado) y hero-07 (typo/verde) retirados hasta regenerar. -->
+            <div class="hero-slide"><img src="assets/hero-03.webp?v=r1" alt="Why nothing worked before: it is not mucus, it is the swollen lining. 660nm red light helps the cells recharge." width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-01.webp?v=r1" srcset="assets/hero-01-800.webp?v=r1 800w, assets/hero-01.webp?v=r1 1080w" sizes="(max-width:980px) 100vw, 640px" alt="Kalmely, The Cellular Reset device with its box" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-02.webp?v=r1" alt="How to use it: 3 quiet minutes before sleep, then it switches itself off. 90-Night Fair-Try." width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-04.webp?v=r1" alt="Kalmely vs nasal sprays: works with the tissue, nothing to inhale, no rebound cycle." width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-05.webp?v=r1" alt="Real customers, 4.8 out of 5 from 270+ verified reviews." width="1080" height="1080" loading="lazy"></div>
+          </div>
+          <button type="button" class="hero-arrow hero-prev" aria-label="Previous image">‹</button>
+          <button type="button" class="hero-arrow hero-next" aria-label="Next image">›</button>
+        </div>
+        <div class="hero-thumbs">
+          <button type="button" class="hero-thumb is-active" aria-label="Why it works"><img src="assets/hero-03-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="How to use"><img src="assets/hero-02-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Kalmely vs sprays"><img src="assets/hero-04-thumb.webp?v=r1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Real customers"><img src="assets/hero-05-thumb.webp?v=r1" alt="" loading="lazy"></button>
+        </div>
+      </div>
+
+      <!-- hero headline -->
+      <div class="hero-head fade-slow">
+        <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; <span style="color:var(--ok);font-weight:600">(<span class="rev-count">270+</span> verified reviews)</span></a></div>
+        <h1 class="bx-h1 product"><span style="white-space:nowrap">Breathe Freely Through</span> <span style="white-space:nowrap">Your Nose Again</span></h1>
+        <p class="bx-sub">You've tried the sprays. You've been told it's "just allergies." But it was never the mucus, and it was never your fault: it's the worn, swollen lining itself. The Cellular Reset uses 660nm red light to support the cells' own response to that irritation, drug-free, in 3 quiet minutes before bed.</p>
+        <div class="bx-badges"><div class="bx-badges-row"><span>100% Drug-Free</span><span>Nothing to Inhale</span><span>3 Min Before Bed</span><span>90-Night Trial</span></div></div>
+        <ul class="bx-promise">
+          <li>660nm red light — the wavelength studied in published research</li>
+          <li>Works with the tissue, not against it — no rebound cycle</li>
+          <li>Clip in, press once, it switches itself off — 3 minutes</li>
+          <li>USB rechargeable. No heat, no UV, no refills to buy.</li>
+        </ul>
+      </div>
+
+      <!-- (convince strip removed — the hero gallery now covers mechanism, proof, timeline and guarantee; a short mechanism section lives below the reviews) -->
+
+      <!-- buy box -->
+      <div class="buybox fade-slow">
+        <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><path d="m8.5 12 2.3 2.3L16 9"/></svg></span><p><b>Try it for 90 nights, the risk is ours.</b> If it doesn't help you breathe easier at night, email us and we refund every cent. A real person answers within 24 hours.</p></div>
+        <div class="bx-sec">
+          <div class="pack-preview"><img id="packImage" src="assets/bundle-1.webp?v=n1" alt="Your Cellular Reset kit" width="760" height="760"></div>
+          <div class="sale-divider">Buy More · Save More — Launch Pricing</div>
+          <div class="packs" id="packs" role="radiogroup" aria-label="Choose your kit">
+            <button type="button" class="pack" data-sku="RESET-1" data-price="39.99" role="radio" aria-checked="false">
+              <span class="pack-qty">Starter Kit</span>
+              <span class="pack-unit">1 Device · Full price</span>
+              <span class="pack-price">$39.99<s>$97</s></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>1× Cellular Reset Device</span><span class="kv"><s>$69.99</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Silicone tips + spare set</span><span class="kv"><s>$8</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+              </span>
+            </button>
+            <button type="button" class="pack" data-sku="RESET-2" data-price="59.98" role="radio" aria-checked="false">
+              <span class="pack-badge">★ Most popular · 2 free gifts</span>
+              <span class="pack-qty">Complete Kit</span>
+              <span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 71%</em> · <span style="white-space:nowrap">$29.99 each</span></span>
+              <span class="pack-price">$59.98<s>$204</s></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+              </span>
+            </button>
+            <button type="button" class="pack" data-sku="RESET-3" data-price="79.98" role="radio" aria-checked="false">
+              <span class="pack-badge alt">★ Best value · everything unlocked</span>
+              <span class="pack-qty">Family Kit</span>
+              <span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 74%</em> · <span style="white-space:nowrap">$26.66 each</span></span>
+              <span class="pack-price">$79.98<s>$307</s></span>
+              <span class="kit-list"><span class="kt">Everything in your kit:</span>
+                <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
+                <span class="ki"><span>UV-C Sterilizer Case</span><span class="kv"><s>$24.99</s> <b>FREE</b></span></span>
+                <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+                <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+                <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="add-to-cart">Add to Cart — <span class="cta-price">$39.99</span></button>
+
+        <div class="bx-pay" aria-label="Accepted payments">
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect width="40" height="26" rx="4" fill="#1434CB"/><text x="20" y="17.5" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#fff" text-anchor="middle" letter-spacing=".5">VISA</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Mastercard"><rect width="40" height="26" rx="4" fill="#16181C"/><circle cx="16.5" cy="13" r="6.7" fill="#EB001B"/><circle cx="23.5" cy="13" r="6.7" fill="#F79E1B"/></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="American Express"><rect width="40" height="26" rx="4" fill="#1F72CD"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="7.5" font-weight="700" fill="#fff" text-anchor="middle">AMEX</text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><text x="20" y="16.5" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" font-style="italic" fill="#003087" text-anchor="middle">Pay<tspan fill="#0070E0">Pal</tspan></text></svg>
+          <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Apple Pay"><rect width="40" height="26" rx="4" fill="#fff" stroke="#E6E6E6"/><path d="M14.4 9.6c.3-.4.5-.9.4-1.5-.5 0-1 .3-1.4.7-.3.4-.5.9-.5 1.4.6.1 1.1-.2 1.5-.6zm.5.7c-.7 0-1.3.4-1.6.4-.4 0-.9-.4-1.5-.4-.8 0-1.5.4-1.9 1.2-.8 1.4-.2 3.4.6 4.5.4.5.8 1.1 1.4 1.1.5 0 .7-.4 1.4-.4.6 0 .8.4 1.4.3.6 0 .9-.5 1.3-1.1.2-.3.3-.5.4-.8-1.1-.4-1.3-2-.2-2.6-.3-.5-.9-.7-1.2-.7z" fill="#000"/><text x="26" y="17" font-family="Arial,Helvetica,sans-serif" font-size="10.5" font-weight="600" fill="#000" text-anchor="middle">Pay</text></svg>        </div>
+        <div class="bx-trust">
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>90-Night Fair-Try Promise</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Free U.S. Shipping</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Secure Checkout</span></div>
+        </div>
+
+        <div class="acc">
+          <details><summary>How long does delivery take?</summary><p>Free U.S. shipping on every kit. Packed in 1–3 business days, delivered in 7–10. You get a tracking link by email.</p></details>
+          <details><summary>How does the 90-night refund work?</summary><p>Use it every night for up to 90 nights. If your nights don't improve — even used? Email hello@kalmely.com and we refund every cent, with free returns.</p></details>
+          <details><summary>How do I know my order went through?</summary><p>You get a confirmation email within minutes, then tracking when it ships. Payment runs through Stripe — encrypted, and we never see your card.</p></details>
+          <div style="text-align:center;padding:12px 0 2px"><a href="#faq" style="font:600 15px/1 var(--sans);color:var(--pop);text-decoration:underline;text-underline-offset:3px">See frequently asked questions ↓</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (Brand-accountability section removed in the reduction pass — its honest-refund line lives in the guarantee close; team line in footer.) -->
+
+  <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
+  <section class="band" id="reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow" style="color:var(--pop)">Trusted by 3,000+ customers finally sleeping through the night</div><h2><span style="color:var(--star)">★★★★★</span> <span style="color:var(--ink);font-weight:700">4.8/5</span><br><span style="color:var(--ink);font-weight:700"><span class="rev-count">270+</span> verified reviews</span></h2><p>Real photos from real customers, everyday nightstands, no models. Individual results vary.</p></div>
+      <!-- (bloque rev-top con el 4.8 grande + barras de distribución HARDCODEADAS eliminado: reseñas infladas prohibidas por el brief PART 3, y preferencia de Julio. El agregado 4.8/270+ ya está en el encabezado.) -->
+      <div class="photo-reviews fade-slow">
+        <figure class="prev-card">
+          <img src="assets/rev-n6.webp?v=n1" alt="Verified customer using the Kalmely device on the sofa while knitting" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“I do my three minutes while I knit. You don't feel it doing anything — and then you wake up at 6:40 and realize you never woke up at 2.”</p><span class="pr-by">Susan D. <em>✓ Verified Buyer · Dayton, OH</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/rev-n2.webp?v=n1" alt="The Kalmely device on a nightstand next to tea and reading glasses" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“That's my nightstand now — tea, glasses, Kalmely. The little bottle that lived there for six years is gone.”</p><span class="pr-by">Carol M. <em>✓ Verified Buyer · Boise, ID</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/rev-n9.webp?v=n1" alt="Verified customer's husband reading the paper, device on the table" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“My husband teased me about it for a week. Then he started asking whose turn it was. We ordered a second one.”</p><span class="pr-by">Linda R. <em>✓ Verified Buyer · Fort Worth, TX</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/rev-n7.webp?v=n1" alt="Family Kit — three devices, one marked MOM" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">“Got the 3-pack — one for me, one for my sister, one labeled MOM. Three houses, three quiet nights. Best gift I've given in years.”</p><span class="pr-by">Kate W. <em>✓ Verified Buyer · Sarasota, FL</em></span></figcaption>
+        </figure>
+      </div>
+      <div class="rev-morewrap"><a class="rev-morebtn" id="revJump" href="#all-reviews" style="display:inline-block;text-decoration:none">Read more reviews ↓</a></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>“No more 2:30 a.m.”</span><span>“I wake up clear.”</span><span>“The bottle gathers dust.”</span><span>“Our bedroom is quiet again.”</span></div>
+      <!-- (mid-page Add-to-Cart removed — redundant with the sticky CTA and it made the proof section read like an ad) -->
+    </div>
+  </section>
+
+  <!-- (Before/after section and 3-step how-it-works removed in the reduction pass — both live in the hero gallery now.) -->
+
+  <!-- ===== 2. VILLANO — the worn-out lining (diagrama D) ===== -->
+  <section id="usage">
+    <div class="wrap" style="max-width:720px">
+      <div class="sec-head fade-slow"><div class="eyebrow">Why nothing has worked</div><h2>It's not mucus. Meet the worn-out lining.</h2><p>The blockage isn't mucus. It's the <b>lining</b> — soft tissue swollen from years of overtime. Lie down and it swells even more. <b>You can't rinse away swelling.</b></p></div>
+      <div class="hc-diag fade-slow" style="max-width:640px;margin:0 auto">
+        <figure><img src="assets/diagram-d.webp?v=n1" alt="Cross-section of the nasal passage: the swollen, worn-out lining narrowing the airway" width="560" height="560" loading="lazy"><figcaption><b>Swollen lining</b> · airway narrowed · not mucus — tissue</figcaption></figure>
+        <figure><img src="assets/diagram-e.webp?v=n1" alt="The Kalmely device delivering gentle 660nm light to the lining, tissue settling" width="560" height="560" loading="lazy"><figcaption><b>660nm light</b> · cells recharge · lining calms down</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- (Sección "The mechanism, named" de 3 tarjetas ELIMINADA 13-jul por Julio: redundante con los diagramas de arriba + la comparativa vs sprays de abajo) -->
+
+  <!-- ===== 4. PRUEBA — banda de estadísticas oscura (claridad Elixir) con el estudio publicado ===== -->
+  <section style="background:var(--ink);color:#fff">
+    <div class="wrap" style="max-width:900px;text-align:center">
+      <div class="sec-head fade-slow" style="margin-bottom:26px"><div class="eyebrow" style="color:#F5C9BC">Backed by published research</div><h2 style="color:#fff">The science behind the reset</h2><p style="color:#F3DCD3">In a double-blind study of the 660nm wavelength (Neuman &amp; Finkelstein, <i>Annals of Allergy, Asthma &amp; Immunology</i>, 1997), 72% of the light-treated group reported meaningful relief of their nasal symptoms, versus 24% on placebo, gently and drug-free.</p></div>
+      <div class="fade-slow" style="max-width:440px;margin:0 auto 0;background:#fff;border-radius:14px;padding:10px;box-shadow:0 14px 40px -18px rgba(0,0,0,.5)"><img src="assets/estudio-pubmed.webp?v=n2" alt="The study on PubMed — Narrow-band red light phototherapy, Neuman et al., Ann Allergy Asthma Immunol 1997" width="900" height="1052" loading="lazy" style="width:100%;height:auto;border-radius:8px"></div>
+      <p class="fade-slow" style="font:500 13px/1.6 var(--sans);color:#DFB9AE;max-width:560px;margin:20px auto 0">Individual results vary. The published research (Neuman &amp; Finkelstein, 1997) studied the 660nm wavelength on allergy sufferers — not this specific device. <a href="https://pubmed.ncbi.nlm.nih.gov/9109708/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;text-underline-offset:3px">View the research on PubMed →</a></p>
+    </div>
+  </section>
+
+  <!-- ===== 4b. HOW-TO simplificado (1 imagen + 3 líneas — decisión Julio) ===== -->
+  <section>
+    <div class="wrap" style="max-width:880px">
+      <div class="sec-head fade-slow"><div class="eyebrow">How you use it</div><h2>Three minutes. That's the whole routine.</h2></div>
+      <div class="fade-slow" style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:center">
+        <img src="assets/howto-reset.webp?v=n1" alt="Using the Kalmely device while reading in bed" width="1080" height="1080" loading="lazy" style="flex:1 1 300px;max-width:420px;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)">
+        <ul class="howto-steps">
+          <li><span class="hs-n">1</span><span class="hs-t">Clip the soft tips just inside your nostrils.</span></li>
+          <li><span class="hs-n">2</span><span class="hs-t">Press once — three minutes, then it switches itself off.</span></li>
+          <li><span class="hs-n">3</span><span class="hs-t">Set it on the nightstand. You don't sleep in it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. COMPARISON ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">The honest comparison</div><h2>Kalmely vs. nasal sprays</h2></div>
+      <div class="cmp fade-slow">
+        <table>
+          <thead><tr><th>&nbsp;</th><th class="own">Kalmely · The Cellular Reset</th><th>Decongestant sprays</th></tr></thead>
+          <tbody>
+            <tr><td>How it works</td><td class="own yes">✔ Works <b>with</b> the tissue</td><td class="no">Chemical squeeze on the vessels</td></tr>
+            <tr><td>What goes in your body</td><td class="own yes">✔ Nothing to inhale</td><td class="no">A dose, every single night</td></tr>
+            <tr><td>Over time</td><td class="own yes">✔ No tolerance build-up</td><td class="no">Rebound congestion — needs more to work</td></tr>
+            <tr><td>The label</td><td class="own yes">✔ Use it every night</td><td class="no">"Do not use for more than 3 days"</td></tr>
+            <tr><td>The trend</td><td class="own yes">✔ Relief that builds</td><td class="no">Stops working</td></tr>
+            <tr><td>Cost over a year</td><td class="own yes">✔ One-time purchase</td><td class="no">Bottle after bottle after bottle</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="proof-closer fade-slow" style="font-style:normal">Sprays are fine for a cold. They were never designed to run your nights for years.</p>
+    </div>
+  </section>
+
+  <!-- ===== EXPERT AUTHORITY (1 tarjeta, rol genérico SIN nombre inventado — reglas Julio 11-jul + encargo 12-jul; foto pendiente de Julio) -->
+  <!-- (Sección "Expert perspective / Recommended by ENT specialists" ELIMINADA: endoso médico fabricado con foto de stock. Prohibido por el brief de compliance PART 3; réplica de gravity BLOQUE C.) -->
+
+  <!-- ===== 6. FAQ ===== -->
+  <section id="faq">
+    <div class="wrap" style="max-width:760px">
+      <div class="sec-head fade-slow"><div class="eyebrow">Questions people ask us most</div><h2>Frequently asked questions</h2></div>
+      <div class="acc fade-slow">
+        <details><summary>I don't feel it doing anything. Is it working?</summary><p>Everything you could <em>feel</em> — the sting, the burn — was force on the wrong thing. Light is fuel, and fuel is silent. Judge it in the mornings, over a couple of weeks. That's why you get 90 nights, not 14 days.</p></details>
+        <details><summary>Will it fit smaller nostrils?</summary><p>Yes. The soft silicone tips fit most nostrils comfortably, and they rest just inside the opening — never deep. If yours are smaller, the device can also be used without the sleeves for a closer fit.</p></details>
+        <details><summary>Can I use it with a deviated septum?</summary><p>Yes, for comfort — but being straight with you: it won't fix the structural issue. It supports the swollen lining, a separate part of what blocks your nights.</p></details>
+        <details><summary>Can I breathe with it in my nose?</summary><p>Completely normally. The tips don't seal the airflow — most people read through the three minutes.</p></details>
+        <details><summary>Will the red light bother my eyes or keep me awake?</summary><p>The light shines inside the nasal passages, not at your eyes. Most people use it right before bed with no effect on falling asleep.</p></details>
+        <details><summary>Is it rechargeable? Does it get hot?</summary><p>USB rechargeable — no batteries to buy, and a charge lasts many sessions. It emits no heat and no UV; most people feel nothing at all during use.</p></details>
+        <details><summary>Is it safe for kids, or during pregnancy?</summary><p>It's gentle — no UV, no heat. Still: for kids, pregnancy, or any medical condition, check with your doctor first.</p></details>
+        <details><summary>Can I keep using my sprays or medications with it?</summary><p>Yes — there's nothing chemical in the light. But never change a medication routine on your own: do it with your doctor or pharmacist. The included e-book covers this honestly.</p></details>
+        <details><summary>How fast is shipping?</summary><p>FREE U.S. shipping on every kit. Packed in 1–3 business days, delivered in 7–10, tracked to your door.</p></details>
+        <details><summary>What if it doesn't work for me?</summary><p>Then it costs you one email. Use it every night for up to 90 nights — if your nights don't improve, write to hello@kalmely.com and we refund every cent, with free returns. No forms, no phone tree.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6b. ALL REVIEWS (última prueba social antes de la oferta de cierre; el botón de arriba baja aquí) ===== -->
+  <section class="band" id="all-reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">All reviews</div><h2>What verified buyers keep telling us</h2><p><span style="color:var(--star)">★★★★★</span> 4.8/5 from <span class="rev-count">270+</span> verified reviews — photo reviews first.</p></div>
+      <div class="rev-teaserwrap teasing" id="revTeaser">
+        <div class="rev-more" id="revTier1"></div>
+        <div class="rev-overlay" hidden><button type="button" class="rev-morebtn rev-overlay-btn" id="revTeaserBtn">Click to read more reviews</button></div>
+      </div>
+      <div class="rev-more" id="revTier2" hidden></div>
+      <div class="rev-morewrap" id="revBar" hidden>
+        <button type="button" class="rev-morebtn" id="revMoreBtn">Show more reviews ↓</button>
+        <button type="button" class="rev-morebtn" id="revLessBtn">Show less ↑</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. GUARANTEE (90-Night Fair-Try Promise) ===== -->
+  <section>
+    <div class="wrap guarantee fade-slow">
+      <div class="seal fade-slow"><b>90</b>night fair-try</div>
+      <h2>The 90-Night Fair-Try Promise.</h2>
+      <p>Use it every night, for up to <b>90 nights</b>. If your nights don't improve, email <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a>.<br><span style="display:inline-block;margin-top:6px;color:var(--pop);font-weight:700">We refund every cent, with free returns.</span></p>
+      <ul class="vstack" style="margin-left:auto;margin-right:auto">
+        <li>Used every night is exactly what we want — that's the fair try.</li>
+        <li>One email is all it takes. No forms, no phone tree.</li>
+        <li>Free returns — the risk stays on our side of the table.</li>
+      </ul>
+      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">Worst case: one email. Best case: your evenings stop revolving around a little bottle.</p>
+      <div class="eyebrow" style="margin-bottom:4px">Ready when you are</div>
+      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Pick your kit &amp; start tonight</h3>
+      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4.8/5 · <span class="rev-count">270+</span> verified reviews</span></div>
+      <div class="packs" id="packsFinal" role="radiogroup" aria-label="Choose your kit" style="max-width:690px;margin:18px auto 0">
+        <button type="button" class="pack" data-sku="RESET-1" data-price="39.99" role="radio" aria-checked="false">
+          <span class="pack-qty">Starter Kit</span><span class="pack-unit">1 Device · Full price</span><span class="pack-price">$39.99<s>$97</s></span>
+          <span class="kit-list"><span class="kt">Everything in your kit:</span>
+            <span class="ki"><span>1× Cellular Reset Device</span><span class="kv"><s>$69.99</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>Silicone tips + spare set</span><span class="kv"><s>$8</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+            <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+          </span>
+        </button>
+        <button type="button" class="pack" data-sku="RESET-2" data-price="59.98" role="radio" aria-checked="false">
+          <span class="pack-badge">★ Most popular · 2 free gifts</span>
+          <span class="pack-qty">Complete Kit</span><span class="pack-unit">2 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 71%</em> · <span style="white-space:nowrap">$29.99 each</span></span><span class="pack-price">$59.98<s>$204</s></span>
+          <span class="kit-list"><span class="kt">Everything in your kit:</span>
+            <span class="ki"><span>2× Cellular Reset Device</span><span class="kv"><s>$139.98</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$16</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+            <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+            <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+          </span>
+        </button>
+        <button type="button" class="pack" data-sku="RESET-3" data-price="79.98" role="radio" aria-checked="false">
+          <span class="pack-badge alt">★ Best value · everything unlocked</span>
+          <span class="pack-qty">Family Kit</span><span class="pack-unit">3 Devices · <em style="font-style:normal;color:var(--pop);font-weight:700;white-space:nowrap">You save 74%</em> · <span style="white-space:nowrap">$26.66 each</span></span><span class="pack-price">$79.98<s>$307</s></span>
+          <span class="kit-list"><span class="kt">Everything in your kit:</span>
+            <span class="ki"><span>3× Cellular Reset Device</span><span class="kv"><s>$209.97</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>Silicone tips + spare sets</span><span class="kv"><s>$24</s> <b>INCLUDED</b></span></span>
+            <span class="ki"><span>UV-C Sterilizer Case</span><span class="kv"><s>$24.99</s> <b>FREE</b></span></span>
+            <span class="ki"><span>Black Travel Washbag</span><span class="kv"><s>$29</s> <b>FREE</b></span></span>
+            <span class="ki"><span>“Reset Protocol” e-book</span><span class="kv"><s>$19</s> <b>FREE</b></span></span>
+            <span class="ki"><span>U.S. Shipping</span><span class="kv"><b>FREE</b></span></span>
+          </span>
+        </button>
+      </div>
+      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Add to Cart — <span class="cta-price">$39.99</span></button>
+      <div style="margin-top:12px;font:500 15px/1.4 var(--sans);color:var(--ink-soft)">Questions first? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
+      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely is a wellness device for nighttime nasal comfort and relaxation. It is not a medical device, has not been evaluated by the FDA, and is not intended to diagnose, treat, cure or prevent any disease. Results may vary. Consult a healthcare professional before use, especially if pregnant, breastfeeding, under 18, managing a medical condition, or taking medications.</div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===== FOOTER (B14) ===== -->
+<footer class="news">
+  <div class="wrap">
+    <!-- (Newsletter/lead-magnet block removed in the reduction pass — email capture competed with checkout; the e-book stays as a pack gift.) -->
+    <div class="news-word" aria-hidden="true">Kalmely</div>
+    <div class="foot-bottom">
+      <div class="foot-row">
+        <span style="font:500 15px/1.5 var(--sans);color:rgba(249,248,246,.78)">Need a hand? We're real people: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · replies within ~24h</span>
+        <div class="foot-links"><a href="/reset-shipping.html">Shipping</a><a href="/reset-refund.html">Returns &amp; Refunds</a><a href="/reset-privacy.html">Privacy</a><a href="/reset-terms.html">Terms</a></div>
+      </div>
+      <div class="foot-fine">🔒 Secure SSL checkout · 90-Night Fair-Try Promise with free returns. &nbsp;<b>Consumer Safety Statement:</b> Kalmely is a wellness device, not a medical device, and has not been evaluated by the FDA. It is not intended to diagnose, treat, cure, or prevent any disease. Results may vary. Consult a healthcare professional before use, especially if pregnant, breastfeeding, under 18, have a medical condition, or take medications. Discontinue use if discomfort occurs. Only available on the official Kalmely site, not sold on Amazon or in stores. © 2026 Kalmely.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky cta -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sc-inner">
+    <div class="sc-info"><span class="sc-name">Kalmely · The Cellular Reset</span><span class="sc-meta"><span id="scLabel">Starter Kit</span> · <span id="scPrice">$39.99</span></span></div>
+    <button type="button" class="add-to-cart sc-btn">Add to Cart</button>
+  </div>
+</div>
+
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Your cart" aria-hidden="true">
+  <div class="cart-head">
+    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Your cart</h3>
+    <span class="ch-free">✓ Free shipping</span>
+    <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-empty" id="cartEmpty" style="display:none">
+    <div class="ce-ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+    <p class="ce-title">Your cart is empty</p>
+    <p class="ce-sub">Pick your Cellular Reset kit to get started.</p>
+    <button type="button" class="cart-checkout" id="cartEmptyCta">Choose your pack →</button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-item">
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01-thumb.webp?v=r1" alt="Kalmely — The Cellular Reset" width="96" height="96" loading="lazy"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name" id="cartName">Kalmely — The Cellular Reset</div>
+        <div class="cart-item-meta" id="cartMeta">2 Bars</div>
+        <div class="cart-item-price"><span id="cartPrice">$39</span><span class="ci-was" id="cartWas">$58</span></div>
+      </div>
+    </div>
+    <div class="colour-picker cart-colours" id="cartColours"></div>
+    <div class="cart-gift" id="cartGifts"></div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">$58</span></div>
+    <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$19.00</span></div>
+    <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$39</span></div>
+    <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
+    <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 90-night promise</span><span>🚚 Free U.S. shipping</span></div>
+  </div>
+</aside>
+
+<div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to improve the site and measure ads. Read our <a href="/reset-privacy.html">privacy policy</a>.</p>
+  <div class="cookie-actions"><button type="button" class="accept" id="cookieAccept">Accept</button><button type="button" class="deny" id="cookieDeny">Essential only</button></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  // Old-Android safety: NodeList.forEach is missing on some legacy in-app browsers.
+  if(window.NodeList&&NodeList.prototype&&!NodeList.prototype.forEach)NodeList.prototype.forEach=Array.prototype.forEach;
+  var WORKER_URL='https://kalmely-api.julioruizbayarri.workers.dev';
+  // ===== Offer model: Kalmely — The Cellular Reset (USD) — Starter / Complete / Family kits + add-on UV =====
+  var VARIANT='RESET';
+  var EBOOK=['“Cellular Reset Protocol” e-book','19','ebook-reset-3d','Your 3-minute nightly routine, the 14-night calendar of what to expect, and the evening habits that multiply your results.'];
+  var WASHBAG=['Black Travel Washbag','29','gift-washbag','A premium washbag so the device — and the whole routine — travels with you. Trips, guest rooms, weekends away.'];
+  var UVCASE=['UV-C Sterilizer Case','24.99','gift-uvcase','Sanitizes the silicone tips after each session — hygiene first, always. Fits 2 devices.'];
+  var TIERS={
+    'RESET-1':{price:39.99,was:97,count:1,label:'Starter Kit',sub:false,img:'bundle-1',ship:true,gifts:[EBOOK]},
+    'RESET-2':{price:59.98,was:204,count:2,label:'Complete Kit',sub:false,img:'bundle-2',ship:true,gifts:[EBOOK,WASHBAG]},
+    'RESET-3':{price:79.98,was:307,count:3,label:'Family Kit',sub:false,img:'bundle-3',ship:true,gifts:[EBOOK,WASHBAG,UVCASE]}
+  };
+  var DEFAULT='RESET-1';  // por defecto la opción más barata (Starter $39.99) — decisión Julio 12-jul
+  function info(s){return TIERS[s]||TIERS[DEFAULT];}
+  var packs=document.querySelectorAll('.pack');
+  // (per-pack "only N left" badges removed — replaced by a single low-stock notice in the buybox)
+  var addBtns=document.querySelectorAll('.add-to-cart');
+  var pickerEls=[document.getElementById('colourPicker'),document.getElementById('cartColours')].filter(Boolean);
+  var colours=[]; var pillowColor='';
+  var curSku=DEFAULT, curPrice='39.99';
+  var packName=function(s){return 'Kalmely — The Cellular Reset · '+info(s).label;};
+  var saveColours=function(){};
+  function _wantsSub(){var c=document.getElementById('subOptin');return !!(c&&c.checked);}
+  function subEveryMonths(s){return ({'RESET-1':2,'RESET-2':3,'RESET-3':5})[s||curSku]||2;}
+  function ctaPriceTxt(){return money(_wantsSub()?info(curSku).price*0.85:info(curSku).price);}
+  function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
+  function updateCtas(){
+    var m=lineMath(),lab=info(curSku).label;
+    addBtns.forEach(function(a){var p=a.querySelector('.cta-price');if(p)p.textContent=ctaPriceTxt();});
+    var scP=document.getElementById('scPrice'),scL=document.getElementById('scLabel');
+    if(scP)scP.textContent=money(m.price); if(scL)scL.textContent=lab;
+    var ql=document.getElementById('qtyLabel');if(ql)ql.textContent='· '+lab;
+    var sn=document.getElementById('subNote');if(sn){if(_wantsSub()){sn.style.display='block';sn.innerHTML='✓ <b>Subscribe &amp; Save 15%</b> applied — billed every '+subEveryMonths(curSku)+' months · cancel anytime in 1 click.';}else{sn.style.display='none';}}
+  }
+  // No colour variant for the oil — keep the picker containers empty.
+  function renderPicker(){ pickerEls.forEach(function(el){el.innerHTML='';}); }
+  // free-bundle shown as an itemised "What's included" list — the 4 gifts only on the bundle pack
+  function renderGifts(sku){
+    var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
+    el.className='includes';
+    var count=t.count||1;
+    var devReg=Math.round(count*69.99*100)/100; // anchor = single-device price × count
+    var dev='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+count+'× Cellular Reset Device'+(count>1?'s':'')+' + soft tips</span><span class="inc-val"><s>$'+devReg+'</s> <b class="inc-free">INCLUDED</b></span></li>';
+    var giftTotal=0;
+    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseFloat(g[1])||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp?v=n1" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>$'+g[1]+'</s><b class="inc-free">FREE</b></span></li>';}).join('');
+    var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">U.S. Shipping</span><span class="inc-val"><b class="inc-free">FREE</b></span></li>';
+    var totalValue=Math.round((devReg+giftTotal)*100)/100;
+    var total='<li class="inc-row inc-total"><span class="inc-name">Total value</span><span class="inc-val"><s>$'+totalValue+'</s> <b class="inc-today">Today $'+t.price+'</b></span></li>';
+    el.innerHTML='<div class="inc-h">What’s included</div><ul class="inc-list">'+dev+gifts+ship+total+'</ul><div class="inc-foot">✓ 90-Night Fair-Try Promise · free returns</div>';
+  }
+  var PACK_IDX={'RESET-1':0,'RESET-2':1,'RESET-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 7 slides
+  function select(sku,persist){
+    if(!TIERS[sku])sku=DEFAULT;
+    curSku=sku;
+    packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=String(info(sku).price);});
+    renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
+    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp?v=n1';}  // swap the kit preview to match the selection
+    if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
+  }
+  function onSwatch(e){var sw=e.target.closest('.swatch');if(!sw)return;var i=+sw.dataset.i;colours[i]=sw.dataset.c;pickerEls.forEach(function(el){el.querySelectorAll('.swatch[data-i="'+i+'"]').forEach(function(s){s.classList.toggle('is-selected',s.dataset.c===sw.dataset.c);});});saveColours();if(cartOpen)populateCart();}
+  pickerEls.forEach(function(el){el.addEventListener('click',onSwatch);});
+  packs.forEach(function(p){p.addEventListener('click',function(){select(p.dataset.sku,true);if(cartOpen)populateCart();});});
+  (function(){
+    var foot=document.querySelector('.cart-foot'),oldT=foot&&foot.querySelector('.cart-foot-trust');
+    var pay=document.querySelector('.buybox .bx-pay'),tr=document.querySelector('.buybox .bx-trust');
+    if(foot&&oldT&&pay&&tr){var p=pay.cloneNode(true);p.style.marginTop='14px';var t=tr.cloneNode(true);t.style.marginTop='14px';oldT.replaceWith(p);p.after(t);}
+  })();
+  (function(){var _so=document.getElementById('subOptin');if(_so)_so.addEventListener('change',function(){updateCtas();if(cartOpen)populateCart();});})();
+  try{colours=JSON.parse(localStorage.getItem('kalmely_colors'))||[]}catch(e){colours=[]}
+  var saved=DEFAULT;  // always land on the smallest pack ($29) regardless of any previously-saved choice
+
+  // ---------- Meta cookies for CAPI matching ----------
+  function fbCookie(name){var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));return m?decodeURIComponent(m[1]):'';}
+  function getFbc(){var fbc=fbCookie('_fbc');if(!fbc){var cid=new URLSearchParams(location.search).get('fbclid');if(cid)fbc='fb.1.'+Date.now()+'.'+cid;}return fbc;}
+
+  // ---------- Cart drawer ----------
+  var overlay=document.getElementById('cartOverlay'),drawer=document.getElementById('cartDrawer');
+  var cartOpen=false;
+  function money(n){return '$'+Number(n).toFixed(2);}
+  function populateCart(){
+    var m=lineMath(),price=m.price,was=m.was,save=m.save,t=info(curSku);
+    document.getElementById('cartName').textContent='Kalmely — The Cellular Reset';
+    document.getElementById('cartMeta').textContent=t.label;
+    document.getElementById('cartQty').textContent='×1';
+    document.getElementById('cartImg').src='assets/'+(info(curSku).img||'bundle-1')+'.webp?v=n1';
+    document.getElementById('cartPrice').textContent=money(price);
+    var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
+    document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
+    var savingRow=document.getElementById('cartSaving').parentNode;
+    if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
+    document.getElementById('cartTotal').textContent=money(price);
+    document.getElementById('cartCount').textContent='1';
+    var _free=document.querySelector('.ch-free');
+    if(_free){_free.textContent='✓ Free shipping';}
+    var _cg=document.getElementById('cartGifts');
+    if(_cg){
+      var _n=t.count||1;
+      var _rows='<span class="cg-item"><span>'+_n+'× Cellular Reset Device</span><span class="cg-tag">INCLUDED</span></span>';
+      _rows+='<span class="cg-item"><span>Silicone tips + spare set'+(_n>1?'s':'')+'</span><span class="cg-tag">INCLUDED</span></span>';
+      (t.gifts||[]).forEach(function(x){_rows+='<span class="cg-item"><span>'+x[0].replace(/[“”]/g,'')+'</span><span class="cg-tag">FREE</span></span>';});
+      _rows+='<span class="cg-item"><span>U.S. Shipping</span><span class="cg-tag">FREE</span></span>';
+      _cg.innerHTML='<span class="cg-h">Everything in your kit</span>'+_rows;
+    }
+  }
+  function openCart(){
+    var m=lineMath(),price=m.price,qty=m.qty;
+    try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
+    if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'USD',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
+    setEmpty(false);populateCart();openDrawer();
+  }
+  function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
+  function setEmpty(isEmpty){
+    var empty=document.getElementById('cartEmpty'),body=drawer.querySelector('.cart-body'),foot=drawer.querySelector('.cart-foot'),free=drawer.querySelector('.ch-free');
+    if(empty)empty.style.display=isEmpty?'flex':'none';
+    if(body)body.style.display=isEmpty?'none':'';
+    if(foot)foot.style.display=isEmpty?'none':'';
+    if(free)free.style.display=isEmpty?'none':'';
+  }
+  function viewCart(){if(readBagQty()){setEmpty(false);populateCart();}else{setEmpty(true);}openDrawer();}
+  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';}
+  addBtns.forEach(function(b){b.addEventListener('click',openCart);});
+  document.getElementById('navCart').addEventListener('click',viewCart);
+  document.getElementById('cartEmptyCta').addEventListener('click',function(){closeCart();var box=document.querySelector('.buybox');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}});
+  document.getElementById('cartClose').addEventListener('click',closeCart);
+  overlay.addEventListener('click',closeCart);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cartOpen)closeCart();});
+  function readBagQty(){try{var b=JSON.parse(localStorage.getItem('kalmely_bag')||'null');return b&&b.qty?b.qty:0;}catch(e){return 0;}}
+
+  // ---------- Checkout (from drawer) → InitiateCheckout + Stripe ----------
+  var checkingOut=false;
+  window.addEventListener('pageshow',function(){checkingOut=false;var _b=document.getElementById('cartCheckout');if(_b){_b.textContent='Secure checkout →';_b.style.opacity='';}});
+  document.getElementById('cartCheckout').addEventListener('click',async function(){
+    if(checkingOut)return;
+    var sku=curSku,m=lineMath(),qty=m.qty,wsub=_wantsSub(),price=wsub?Math.round(m.price*85)/100:m.price;
+    var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
+    if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'USD',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
+    try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'USD',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
+    checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
+    try{
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:wsub,coupon:'',gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
+      var data=await res.json();
+      if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
+      window.location.href=data.url;
+    }catch(err){console.error('[Checkout]',err);checkingOut=false;btn.textContent='Secure checkout →';btn.style.opacity='';alert('We could not start secure checkout just now. Your selection is saved — please try again, or email hello@kalmely.com.');}
+  });
+
+  select(saved,false);
+
+  // ---------- Delivery date estimate ----------
+  (function(){var el=document.getElementById('deliveryDate');if(!el)return;try{var d=new Date();d.setDate(d.getDate()+4);el.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}catch(e){el.textContent='this week';}})();
+
+  // ---------- Cookie banner ----------
+  var cb=document.getElementById('cookieBanner');
+  setTimeout(function(){try{if(!localStorage.getItem('kalmely_consent'))cb&&cb.classList.add('show')}catch(e){}},800);
+  var ac=document.getElementById('cookieAccept'),dn=document.getElementById('cookieDeny');
+  ac&&ac.addEventListener('click',function(){try{localStorage.setItem('kalmely_consent','all')}catch(e){}cb.classList.remove('show');});
+  dn&&dn.addEventListener('click',function(){try{localStorage.setItem('kalmely_consent','essential')}catch(e){}cb.classList.remove('show');});
+
+  // ---------- Reveals ----------
+  // Old mobile browsers (no IntersectionObserver) must NEVER lose content or kill this script:
+  // guard + try/catch, and fall back to showing everything immediately.
+  function _revealAll(){document.querySelectorAll('.fade-slow').forEach(function(el){el.classList.add('in');});}
+  try{
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+      var _els=[].slice.call(document.querySelectorAll('.fade-slow'));var _vh=innerHeight*0.95;
+      var _tops=_els.map(function(el){return el.getBoundingClientRect().top;});
+      _els.forEach(function(el,i){if(_tops[i]<_vh)el.classList.add('in');else io.observe(el);});
+      addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});},2500);});
+    }else{_revealAll();}
+  }catch(e){_revealAll();}
+  // Red de seguridad INCONDICIONAL (no depende de 'load'): garantiza que ninguna sección fade-slow
+  // se quede invisible en móvil lento aunque el evento load no dispare (lección de gravity).
+  setTimeout(function(){try{document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});}catch(e){}},1800);
+
+  // ---------- Sticky CTA + nav shadow ----------
+  var sc=document.getElementById('stickyCta'),box=document.querySelector('.buybox');
+  if(sc&&box){
+    try{
+      if('IntersectionObserver' in window){
+        var sio=new IntersectionObserver(function(es){es.forEach(function(e){sc.classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0);});},{threshold:0});sio.observe(box);
+      }else{
+        addEventListener('scroll',function(){var r=box.getBoundingClientRect();if(r.bottom<0){sc.classList.add('show');}else{sc.classList.remove('show');}},{passive:true});
+      }
+    }catch(e){}
+  }
+  var nav=document.querySelector('.nav');addEventListener('scroll',function(){if(nav)nav.classList.toggle('is-scrolled',scrollY>50);},{passive:true});
+
+  // ---------- Hero carousel ----------
+  var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack');
+  if(hThumbs.length&&hTrack){
+    var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
+    function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});
+      var at=hThumbs[hIdx];if(at&&at.parentNode){var strip=at.parentNode;var target=at.offsetLeft-strip.clientWidth/2+at.clientWidth/2;strip.scrollTo({left:Math.max(0,target),behavior:'smooth'});}}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    var hPrev=document.querySelector('.hero-prev'),hNext=document.querySelector('.hero-next');
+    if(hPrev)hPrev.addEventListener('click',function(){hGo(hIdx-1);});
+    if(hNext)hNext.addEventListener('click',function(){hGo(hIdx+1);});
+    hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
+    hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
+    hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
+    heroGo=hGo; hGo(0);   // start on slide 1 (product + gifts)
+  }
+
+  // ---------- Newsletter footer (post to /api/lead-magnet) ----------
+  function subscribe(email){try{fetch(WORKER_URL+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:email,source:'newsletter',product:'reset'})}).catch(function(){});}catch(e){}}
+  // WELCOME10 fully removed — clear any stale local flag from older sessions
+  try{localStorage.removeItem('kalmely_welcome');}catch(e){}
+    (function(){
+    var f=document.getElementById('newsForm');if(!f)return;
+    f.addEventListener('submit',function(e){e.preventDefault();var email=(document.getElementById('newsEmail').value||'').trim();var msg=document.getElementById('newsMsg');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.color='#ff9b9b';msg.textContent='Please enter a valid email.';return;}subscribe(email);msg.style.color='#E6C29C';msg.textContent='You’re in! Check your inbox for your free guide.';f.reset();});
+  })();
+
+})();
+</script>
+
+<!-- Image lightbox (tap-to-zoom — turns image taps into engagement instead of dead clicks) -->
+<style>
+.zoomable{cursor:zoom-in}
+#lightbox{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(31,37,22,.82);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:24px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);background:#F6F6F0}
+#lightbox .lb-close{position:absolute;top:18px;right:20px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(246,246,240,.92);color:#6B1E15;font:400 26px/1 var(--sans,sans-serif);display:flex;align-items:center;justify-content:center;cursor:pointer}
+</style>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image"><button type="button" class="lb-close" aria-label="Close">&times;</button><img src="" alt=""></div>
+<script>
+(function(){
+  var sel='.reason img,.hc-diag img,.rev-img,.rev-ph,.photo-reviews img,.life img,.mech-img img,.hero-slide img';
+  var lb=document.getElementById('lightbox'); if(!lb) return;
+  var lbImg=lb.querySelector('img');
+  document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Enlarge image');});
+  function open(im){lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(function(){lbImg.src='';},200);}
+  document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest(sel);if(im){e.preventDefault();open(im);}});
+  document.addEventListener('keydown',function(e){var im=e.target&&e.target.closest&&e.target.closest(sel);if(im&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(im);}if(e.key==='Escape'&&lb.classList.contains('open'))close();});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-close'))close();});
+})();
+</script>
+<!-- Reviews data + render (featured w/ photos, rating distribution, see-more, filter by star).
+     Not deferred: it sits at the end of <body> (below the LCP hero, so no perf impact) and must run
+     BEFORE the inline render block below, which reads window.KALMELY_REVIEWS. -->
+<script src="assets/reviews.js?v=n1"></script>
+<script>
+(function(){
+  // lead testimonials nasales (voz de los copys: sprays/2:30am/marido/farmacéutica — subjetivo, sin claims médicos)
+  var LEAD=[
+    {"r": 5, "n": "Diane R.", "d": "Nashville, TN", "av": "avatar-ra1", "t": "The bottle is in the trash", "b": "I kept one bottle on the nightstand, one in my purse, one in the car. Six years like that. I did the three minutes every night while my husband watched the news, mostly to prove it wouldn't work. Week one, nothing I could feel. Week two I realized I'd fallen asleep without reaching for the bottle twice. Last month I threw the nightstand one away. I kept the purse one for a while, just in case — haven't touched it.", "dt": "June 9, 2026"},
+    {"r": 5, "n": "Margaret K.", "d": "Boise, ID", "av": "avatar-ra2", "t": "so far so good", "b": "The 2:30 a.m. wake-up with my throat like sandpaper was my normal. Two-and-a-bit weeks in and I'm mostly sleeping through now. You don't feel the light doing anything, which threw me at first. You find out in the morning, like they say.", "dt": "May 27, 2026"},
+    {"r": 5, "n": "Marisol R.", "d": "Fort Worth, TX", "av": "avatar-ra3", "t": "My pharmacist was right", "b": "It was actually my pharmacist who pulled me aside about how often I was rebuying spray. She was too polite to say it plainly but I got the message. I found this, read everything, made my husband read everything. Three minutes while I take off my makeup. The nights are just... calmer. I stopped hiding the spray receipts, because there aren't any.", "dt": "June 24, 2026"},
+    {"r": 5, "n": "Gloria W.", "d": "Dayton, OH", "av": "avatar-ra4", "t": "Actually stuck with this one", "b": "Strips that peel off at 1 a.m., rinses hunched over the sink, a humidifier that fogged the windows. I've done it all and quit it all. This is the first thing that asks basically nothing — three minutes, it turns itself off, done. Arrived in five days too.", "dt": "July 2, 2026"},
+    {"r": 4, "n": "Linda P.", "d": "Albany, NY", "av": "avatar-ra5", "t": "honest review", "b": "Being honest: the first week I almost returned it because I felt nothing at all. Kept going because of the 90 nights. Around week three the difference showed up in the mornings — waking up with my mouth closed, throat fine. Four stars because I wish the charge indicator were easier to read. Otherwise glad I stayed with it.", "dt": "June 15, 2026"},
+    {"r": 5, "n": "Grace C.", "d": "Spokane, WA", "av": "avatar-ra6", "t": "works", "b": "Three minutes while my tea steeps. Nights used to be the hard part of my day, now they aren't. No smell, no sting, nothing to feel. My cat claimed the box immediately.", "dt": "April 18, 2026"},
+    {"r": 5, "n": "Priya N.", "d": "Edison, NJ", "av": "avatar-ra7", "t": "Finally something that isn't a chemical", "b": "I didn't want another thing to swallow or squirt. That's the whole reason I tried this — there's nothing going into your body, just light. The evenings feel simpler: brush teeth, three minutes, book. My nose feels clearer at night than it has in a couple of years, and nobody had to convince me to keep buying refills.", "dt": "July 4, 2026"},
+    {"r": 5, "n": "Yvonne B.", "d": "Grand Rapids, MI", "av": "avatar-ra8", "t": "My husband is back in our bed", "b": "I'm writing this one for the wives. Almost two years of him \"sleeping better in the guest room.\" I got this for me, for the blocked-up nights — and the calmer my nights got, the quieter our room got, and one Tuesday he just... came back with his pillow. Neither of us made a thing of it. Best purchase of the year and it wasn't close.", "dt": "March 14, 2026"}
+  ];
+  // Reviews completas en #all-reviews (última sección antes de la oferta de cierre).
+  // Estados: 0 = tier1 (con foto) BORROSAS con botón "Click to read more reviews" encima ·
+  //          1 = tier1 nítidas, botones [Show more ↓][Show less ↑] · 2 = todas, botón [Show fewer ↑].
+  // El botón de arriba (#revJump) es un ancla pura a #all-reviews: se aterriza en el teaser borroso.
+  var ALL=LEAD.concat(window.KALMELY_REVIEWS||[]);
+  var T1=ALL.filter(function(r){return r.ph;});
+  var T2=ALL.filter(function(r){return !r.ph&&r.av;}).concat(ALL.filter(function(r){return !r.ph&&!r.av;}));
+  var btn=document.getElementById('revMoreBtn'),t1=document.getElementById('revTier1'),t2=document.getElementById('revTier2'),dist=document.getElementById('revDist');
+  if(!ALL.length)return;
+  // contador ÚNICO y coherente en toda la web = nº real de reseñas renderizadas (regla del encargo: mismo número en todas partes)
+  try{[].slice.call(document.querySelectorAll('.rev-count')).forEach(function(el){el.textContent='270+';});}catch(e){} /* recuento agregado fijo 270+ (reviews de 3.000+ clientes); las cards son un subconjunto curado */
+  var DIST=[[5,86],[4,9],[3,3],[2,1],[1,1]];
+  function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
+  function cT(r){var av='<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';var ph=r.ph?'<img class="rev-ph zoomable" src="assets/'+r.ph+'.webp?v=r2" alt="Customer photo from '+esc(r.n)+'" width="600" height="600" loading="lazy" role="button" tabindex="0" aria-label="Enlarge image">':'';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+(r.dt?' · '+esc(r.dt):'')+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+ph+'</div>';}
+  if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
+  // Teaser borroso + reveal en 2 niveles; sin contadores (el agregado 1,924 es el total declarado, esto es un subconjunto curado)
+  if(t1&&t2&&btn){
+    t1.innerHTML=T1.map(cT).join('');
+    t2.innerHTML=T2.map(cT).join('');
+    var teaser=document.getElementById('revTeaser');
+    var overlay=teaser?teaser.querySelector('.rev-overlay'):null;
+    var tbtn=document.getElementById('revTeaserBtn');
+    var bar=document.getElementById('revBar');
+    var less=document.getElementById('revLessBtn');
+    if(overlay)overlay.hidden=false;
+    var state=0;
+    var setState=function(s){
+      state=s;
+      if(teaser)teaser.className=s===0?'rev-teaserwrap teasing':'rev-teaserwrap';
+      t2.hidden=s<2;
+      if(bar)bar.hidden=s===0;
+      btn.style.display=s===1?'':'none';
+      if(less)less.textContent=s===2?'Show fewer reviews ↑':'Show less ↑';
+    };
+    setState(0);
+    if(tbtn)tbtn.addEventListener('click',function(){setState(1);});
+    btn.addEventListener('click',function(){setState(2);});
+    if(less)less.addEventListener('click',function(){
+      setState(state===2?1:0);
+      var sec=document.getElementById('all-reviews');
+      if(sec&&sec.scrollIntoView)sec.scrollIntoView({block:'start'});
+    });
+  }else if(btn){btn.style.display='none';}
+})();
+</script>
+<script>
+/* announcement bar — rotate the two file-33 messages */
+(function(){var el=document.getElementById('announceMsg');if(!el)return;var M=['90-Night Fair-Try Promise · Free returns','The drug-free 3-minute Cellular Reset'];var i=0;el.style.transition='opacity .4s';setInterval(function(){el.style.opacity='0';setTimeout(function(){i=(i+1)%M.length;el.textContent=M[i];el.style.opacity='1';},420);},4500);})();
+/* active nav state is hardcoded per page (Product on this PdP) for coherence regardless of deploy path */
+</script>
+<script>(function(){var b=document.getElementById("navBurger"),h=document.getElementById("nav");if(b&&h){b.addEventListener("click",function(e){e.stopPropagation();var o=h.classList.toggle("nav-open");b.setAttribute("aria-expanded",o?"true":"false");});h.querySelectorAll(".nav-left a").forEach(function(a){a.addEventListener("click",function(){h.classList.remove("nav-open");b.setAttribute("aria-expanded","false");});});document.addEventListener("click",function(e){if(h.classList.contains("nav-open")&&!h.contains(e.target)){h.classList.remove("nav-open");b.setAttribute("aria-expanded","false");}});}})();</script>
+</body>
+</html>

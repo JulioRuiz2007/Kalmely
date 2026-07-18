@@ -1,15 +1,9 @@
-# Root → Gravity Cradle (producto ACTIVO en retest). Reset archivado en rama reset-archive (fuera del deploy).
+# Root → Gravity Cradle (producto ACTIVO en retest). Reset = 2º producto LIVE en /reset/.
 / /gravity/ 302
 /index.html /gravity/ 302
 
-# reset fuera del deploy: cualquier /reset* → gravity (ninguna visita carga el reset → pixel/clarity solo capturan gravity)
-/reset /gravity/ 301
-/reset/* /gravity/ 301
-/reset-privacy.html /gravity-privacy.html 301
-/reset-refund.html /gravity-refund.html 301
-/reset-shipping.html /gravity-shipping.html 301
-/reset-terms.html /gravity-terms.html 301
-/reset-thankyou.html /gravity-thankyou.html 301
+# reset = Cellular Reset (nasal 660nm) LIVE en /reset/. Sirve la carpeta + sus legales reset-*.html.
+# Mismo pixel Kalmely que gravity, segmentado por content_ids RESET-*. NO redirigir /reset*.
 
 # --- scalp (producto retirado) → directo a gravity, sin doble salto ---
 /scalp /gravity/ 301
