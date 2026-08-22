@@ -434,14 +434,17 @@ section{padding:74px 0}
 .rev-bar .lab{min-width:30px;font-weight:600;color:var(--ink-2)}
 .rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
 .rev-bar.is-active .fill{background:var(--gold)}
-.rev-more{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px}
-.rev-more .review{flex:0 1 460px;max-width:520px}
+/* Masonry wall (Loox-style): CSS columns, so cards keep their natural height and stagger
+   instead of snapping to equal-height rows. inline-block + break-inside stops Chrome/Safari
+   splitting a card across two columns. */
+.rev-more{columns:3;column-gap:16px;margin-top:16px}
+.rev-more .review{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;display:inline-block;width:100%;margin:0 0 16px}
 .rev-more[hidden]{display:none}
 .rev-morewrap{text-align:center;margin-top:26px}
 .rev-morebtn{font:600 14px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:13px 28px;cursor:pointer;transition:background .15s,color .15s}
 .rev-morebtn:hover{background:var(--ink);color:var(--paper)}
-@media(max-width:980px){.rev-more{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.rev-more{grid-template-columns:1fr}}
+@media(max-width:980px){.rev-more{columns:2}}
+@media(max-width:620px){.rev-more{columns:1;column-gap:0}}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .review .rh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -529,6 +532,92 @@ section{padding:74px 0}
 .cart-checkout{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:17px;border-radius:11px;margin-top:14px;transition:background .15s}
 .cart-checkout:hover{background:#000}
 .cart-foot-trust{display:flex;justify-content:center;gap:14px;margin-top:12px;font:500 11px/1 var(--sans);color:var(--ink-soft)}
+
+/* cart urgency + unlock + promo + payment icons */
+.cart-timer{background:#F4EBE2;text-align:center;padding:11px 16px;font:500 13.5px/1.4 var(--sans);color:var(--ink-2);border-bottom:1px solid var(--line)}
+.cart-timer b{font-weight:700;color:var(--ok);font-variant-numeric:tabular-nums}
+.cart-timer[hidden]{display:none}
+.unlock{padding:16px 22px 14px;border-bottom:1px solid var(--line)}
+.unlock-msg{font:500 14px/1.45 var(--sans);color:var(--ink-2);text-align:center;margin-bottom:10px}
+.unlock-msg b{font-weight:700;color:var(--ok)}
+.unlock-msg .done{color:var(--gold);font-weight:700}
+.unlock-track{display:block;height:8px;border-radius:999px;background:var(--paper-3);overflow:hidden}
+.unlock-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--ink));width:0;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.unlock-steps{display:flex;justify-content:space-between;margin-top:8px;font:600 10.5px/1 var(--sans);color:var(--faint);letter-spacing:.03em;text-transform:uppercase}
+.unlock-steps .hit{color:var(--gold)}
+.unlock-bump{display:block;width:100%;margin-top:11px;background:none;border:1.5px dashed var(--line-2);border-radius:10px;padding:11px;font:600 12.5px/1.3 var(--sans);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.unlock-bump:hover{border-color:var(--ink);background:var(--paper-2)}
+.unlock-bump[hidden]{display:none}
+.cart-promo{display:flex;gap:8px;margin-top:13px}
+.cart-promo input{flex:1;min-width:0;background:var(--paper);border:1px solid var(--line-2);border-radius:10px;padding:13px 14px;font:500 14px/1 var(--sans);color:var(--ink)}
+.cart-promo input:focus{outline:none;border-color:var(--ink)}
+.cart-promo button{flex:0 0 auto;background:var(--paper-2);border:1px solid var(--line-2);border-radius:10px;padding:13px 20px;font:600 14px/1 var(--sans);color:var(--ink);cursor:pointer;transition:background .15s,color .15s}
+.cart-promo button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.promo-msg{margin-top:8px;font:500 12.5px/1.45 var(--sans);min-height:1px}
+.promo-msg.ok{color:var(--gold)}
+.promo-msg.bad{color:#B4472F}
+.promo-msg:empty{margin-top:0}
+.cart-pay{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}
+.cart-pay .pay{display:inline-flex;align-items:center;justify-content:center;width:40px;height:26px;border:1px solid var(--line-2);border-radius:5px;background:#fff;overflow:hidden}
+.cart-pay .pay svg{display:block}
+.cart-pay-note{width:100%;text-align:center;margin-top:9px;font:500 11px/1.4 var(--sans);color:var(--faint)}
+@media(max-width:520px){
+  .cart-drawer{width:100%;max-width:100%}
+  .unlock{padding:13px 18px 12px}
+  .cart-body{padding:16px 18px}
+  .cart-foot{padding:14px 18px calc(14px + env(safe-area-inset-bottom))}
+  .cart-timer{padding:9px 14px;font-size:12.5px}
+  .cart-pay .pay{width:36px;height:24px}
+}
+
+/* chat widget — bottom right, always under the cart drawer (z 60/61) */
+.chat-fab{position:fixed;right:18px;bottom:18px;z-index:52;width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -12px rgba(35,79,43,.55);cursor:pointer;border:none;padding:0;transition:transform .18s,bottom .28s}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-fab svg{width:25px;height:25px}
+.chat-fab .fab-dot{position:absolute;top:1px;right:1px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2.5px solid var(--paper)}
+.chat-nudge{position:fixed;right:84px;bottom:30px;z-index:52;max-width:216px;background:var(--card);border:1px solid var(--line);border-radius:14px;border-bottom-right-radius:4px;padding:12px 14px;box-shadow:0 16px 40px -18px rgba(0,0,0,.35);font:500 13px/1.45 var(--sans);color:var(--ink-2);cursor:pointer;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .35s,transform .35s,bottom .28s}
+.chat-nudge.show{opacity:1;transform:none;pointer-events:auto}
+.chat-nudge b{display:block;font:600 13px/1.3 var(--sans);color:var(--ink);margin-bottom:2px}
+.chat-nudge .nx{position:absolute;top:3px;right:7px;font-size:15px;color:var(--faint);line-height:1}
+body:has(.sticky-cta.show) .chat-fab{bottom:102px}
+body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
+.chat-panel{position:fixed;right:18px;bottom:84px;z-index:53;width:372px;max-width:calc(100vw - 32px);height:530px;max-height:calc(100vh - 130px);background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 70px -22px rgba(0,0,0,.42);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;transform:scale(.94) translateY(10px);opacity:0;visibility:hidden;transition:opacity .22s,transform .22s,visibility .22s}
+.chat-panel.open{opacity:1;transform:none;visibility:visible}
+.chat-top{display:flex;align-items:center;gap:11px;padding:15px 17px;background:var(--ink);color:var(--paper)}
+.chat-top .ct-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font:600 14px/1 var(--sans)}
+.chat-top .ct-t{flex:1;min-width:0}
+.chat-top .ct-name{font:600 14px/1.2 var(--sans)}
+.chat-top .ct-sub{font:500 11.5px/1.3 var(--sans);opacity:.82;display:flex;align-items:center;gap:5px;margin-top:2px}
+.chat-top .ct-sub i{width:7px;height:7px;border-radius:50%;background:#7ED07E;display:inline-block}
+.chat-x{background:none;border:none;color:var(--paper);font-size:24px;line-height:1;cursor:pointer;opacity:.8;padding:0 2px}
+.chat-x:hover{opacity:1}
+.chat-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
+.msg{max-width:84%;padding:11px 14px;border-radius:15px;font:400 13.5px/1.55 var(--sans);white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--ink-2)}
+.msg.me{align-self:flex-end;background:var(--ink);color:var(--paper);border-bottom-right-radius:5px}
+.msg.bot a{color:var(--ink);font-weight:600}
+.msg.typing{display:flex;gap:4px;align-items:center;padding:14px}
+.msg.typing i{width:6px;height:6px;border-radius:50%;background:var(--faint);animation:cdot 1.1s infinite}
+.msg.typing i:nth-child(2){animation-delay:.18s}
+.msg.typing i:nth-child(3){animation-delay:.36s}
+@keyframes cdot{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
+.chat-quick button{background:var(--card);border:1px solid var(--line-2);border-radius:999px;padding:8px 13px;font:500 12px/1 var(--sans);color:var(--ink);cursor:pointer;transition:background .14s,color .14s,border-color .14s}
+.chat-quick button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chat-form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line);background:var(--card)}
+.chat-form input{flex:1;min-width:0;border:1px solid var(--line-2);border-radius:999px;padding:12px 15px;font:400 13.5px/1 var(--sans);color:var(--ink);background:var(--paper)}
+.chat-form input:focus{outline:none;border-color:var(--ink)}
+.chat-form button{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-form button:disabled{opacity:.45;cursor:default}
+.chat-fine{padding:0 16px 11px;font:500 10.5px/1.4 var(--sans);color:var(--faint);text-align:center;background:var(--card)}
+@media(max-width:560px){
+  .chat-panel{right:0;left:0;bottom:0;width:100%;max-width:100%;height:88vh;height:88dvh;max-height:none;border-radius:18px 18px 0 0;transform-origin:bottom center;transform:translateY(14px)}
+  .chat-nudge{max-width:190px;right:80px}
+  .chat-fab{width:52px;height:52px;right:14px;bottom:14px}
+  body:has(.sticky-cta.show) .chat-fab{bottom:100px}
+  body:has(.sticky-cta.show) .chat-nudge{bottom:112px}
+}
+@media(prefers-reduced-motion:reduce){.chat-panel,.chat-nudge,.chat-fab{transition:none}.msg.typing i{animation:none}}
 
 /* cookie */
 .cookie{position:fixed;left:16px;bottom:16px;z-index:55;max-width:370px;background:var(--ink);color:var(--paper);border-radius:14px;padding:18px 20px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);transform:translateY(160%);transition:transform .4s}
@@ -1148,6 +1237,13 @@ section{padding:74px 0}
     <span class="ch-free">✓ Free shipping</span>
     <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">×</button>
   </div>
+  <div class="cart-timer" id="cartTimer" hidden>Your cart is reserved for <b id="cartTimerVal">05:00</b> minutes</div>
+  <div class="unlock" id="cartUnlock" hidden>
+    <div class="unlock-msg" id="unlockMsg"></div>
+    <span class="unlock-track"><span class="unlock-fill" id="unlockFill"></span></span>
+    <div class="unlock-steps"><span id="unlockS1">✓ Free shipping</span><span id="unlockS2">Free Scalp Serum</span></div>
+    <button type="button" class="unlock-bump" id="unlockBump" hidden></button>
+  </div>
   <div class="cart-empty" id="cartEmpty" style="display:none">
     <div class="ce-ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
     <p class="ce-title">Your cart is empty</p>
@@ -1169,11 +1265,53 @@ section{padding:74px 0}
   <div class="cart-foot">
     <div class="cart-totals"><span>Subtotal</span><span id="cartSubtotal">$58</span></div>
     <div class="cart-totals"><span>Bundle saving</span><span class="ct-save" id="cartSaving">−$19.00</span></div>
+    <div class="cart-totals" id="cartPromoRow" style="display:none"><span id="cartPromoLabel">Discount</span><span class="ct-save" id="cartPromoAmt">−$0.00</span></div>
     <div class="cart-totals grand"><span>Total</span><span id="cartTotal">$39</span></div>
+    <form class="cart-promo" id="promoForm" novalidate>
+      <input type="text" id="promoInput" placeholder="Discount code" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Discount code">
+      <button type="submit" id="promoApply">Apply</button>
+    </form>
+    <div class="promo-msg" id="promoMsg" role="status" aria-live="polite"></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Secure checkout →</button>
     <div class="cart-foot-trust"><span>🔒 SSL secure</span><span>↩ 60-day guarantee</span><span>🚚 Free shipping</span></div>
+    <div class="cart-pay" aria-label="Accepted payment methods">
+      <span class="pay" title="Visa"><svg width="34" height="12" viewBox="0 0 34 12" role="img" aria-label="Visa"><text x="17" y="10" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+      <span class="pay" title="Mastercard"><svg width="32" height="20" viewBox="0 0 32 20" role="img" aria-label="Mastercard"><circle cx="13" cy="10" r="6.4" fill="#EB001B"/><circle cx="19" cy="10" r="6.4" fill="#F79E1B" fill-opacity=".85"/></svg></span>
+      <span class="pay" title="American Express"><svg width="34" height="12" viewBox="0 0 34 12" role="img" aria-label="American Express"><rect width="34" height="12" rx="2" fill="#006FCF"/><text x="17" y="9" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" font-weight="bold" fill="#fff">AMEX</text></svg></span>
+      <span class="pay" title="Discover"><svg width="36" height="12" viewBox="0 0 36 12" role="img" aria-label="Discover"><text x="15" y="9.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7" font-weight="bold" fill="#231F20">DISCVR</text><circle cx="31" cy="6.5" r="3.4" fill="#F26E21"/></svg></span>
+      <span class="pay" title="Apple Pay"><svg width="34" height="14" viewBox="0 0 34 14" role="img" aria-label="Apple Pay"><path d="M8.6 4.1c.4-.5.7-1.2.6-1.9-.6 0-1.4.4-1.8.9-.4.5-.7 1.2-.6 1.8.7.1 1.4-.3 1.8-.8zm.6 1c-1 0-1.8.6-2.3.6-.5 0-1.2-.5-2-.5-1 0-2 .6-2.5 1.6-1.1 1.9-.3 4.6.8 6.1.5.7 1.1 1.5 1.9 1.5.8 0 1-.5 2-.5s1.2.5 2 .5c.8 0 1.4-.7 1.9-1.4.6-.8.8-1.6.8-1.7 0 0-1.6-.6-1.6-2.4 0-1.5 1.2-2.2 1.3-2.3-.7-1-1.8-1.1-2.3-1.5z" fill="#000"/><text x="23" y="11" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#000">Pay</text></svg></span>
+      <span class="pay" title="Google Pay"><svg width="34" height="14" viewBox="0 0 34 14" role="img" aria-label="Google Pay"><text x="8" y="11" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#4285F4">G</text><text x="22" y="11" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#5F6368">Pay</text></svg></span>
+      <span class="cart-pay-note">Encrypted checkout by Stripe. We never see your card details.</span>
+    </div>
   </div>
 </aside>
+
+<!-- Chat widget. Instant answers for the questions that actually block a sale; anything else goes
+     to the worker, which asks the model and falls back to email if it can't answer. -->
+<button type="button" class="chat-fab" id="chatFab" aria-label="Ask our team a question" aria-expanded="false">
+  <span class="fab-dot" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.5 9.5 0 0 1-2.8-.4L3 21l1.6-4.6A8.2 8.2 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4z"/></svg>
+</button>
+<div class="chat-nudge" id="chatNudge" role="button" tabindex="0">
+  <span class="nx" id="chatNudgeX" aria-hidden="true">×</span>
+  <b>Any questions?</b>Ask our team — we usually reply straight away.
+</div>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with the Kalmely team" aria-hidden="true">
+  <div class="chat-top">
+    <span class="ct-av" aria-hidden="true">K</span>
+    <span class="ct-t"><span class="ct-name">Kalmely Support</span><span class="ct-sub"><i aria-hidden="true"></i> Typically replies in a few minutes</span></span>
+    <button type="button" class="chat-x" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <form class="chat-form" id="chatForm" novalidate>
+    <input type="text" id="chatInput" placeholder="Ask us anything…" autocomplete="off" aria-label="Your question">
+    <button type="submit" id="chatSend" aria-label="Send">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+  <div class="chat-fine">We answer about orders and how the bar is used — not medical advice. Email <a href="mailto:hello@kalmely.com" style="color:var(--ink-soft)">hello@kalmely.com</a> anytime.</div>
+</div>
 
 <div class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie consent">
   <p>We use cookies to improve the site and measure ads. Read our <a href="/scalp-privacy.html">privacy policy</a>.</p>
@@ -1255,6 +1393,82 @@ section{padding:74px 0}
   var overlay=document.getElementById('cartOverlay'),drawer=document.getElementById('cartDrawer');
   var cartOpen=false;
   function money(n){return '$'+Number(n).toFixed(2);}
+
+  // ---------- Cart reservation timer, unlock ladder & discount code ----------
+  // WELCOME10 is a REAL coupon: the worker maps it to a live Stripe coupon (10% off), so the
+  // discount the drawer shows is the discount Stripe charges. Any other code is rejected honestly.
+  var PROMOS={'WELCOME10':{off:.10,label:'Welcome 10%'}};
+  var appliedCoupon='';
+  var SERUM_AT=59;   // the 3-Bar pack ($59) is the one that includes the free Scalp Serum
+  function promoOff(){return (appliedCoupon&&PROMOS[appliedCoupon])?PROMOS[appliedCoupon].off:0;}
+
+  // Progress toward the free Scalp Serum. Shipping is already free on every pack, so it shows as
+  // permanently cleared and the bar drives the gift instead — the only threshold that's real here.
+  function renderUnlock(price){
+    var box=document.getElementById('cartUnlock');if(!box)return;
+    box.hidden=false;
+    var msg=document.getElementById('unlockMsg'),fill=document.getElementById('unlockFill'),
+        bump=document.getElementById('unlockBump'),s2=document.getElementById('unlockS2');
+    fill.style.width=Math.max(6,Math.min(100,Math.round(price/SERUM_AT*100)))+'%';
+    if(price>=SERUM_AT){
+      msg.innerHTML='<span class="done">🎉 Free Scalp Serum unlocked!</span> Free U.S. shipping is already included.';
+      if(s2)s2.classList.add('hit');
+      if(bump)bump.hidden=true;
+    }else{
+      msg.innerHTML='Free U.S. shipping ✓ — you’re <b>'+money(SERUM_AT-price)+'</b> away from your <b>FREE Scalp Serum</b>';
+      if(s2)s2.classList.remove('hit');
+      if(bump){bump.hidden=false;bump.textContent='Upgrade to 3 Bars and unlock the Scalp Serum ($39 value) free →';}
+    }
+  }
+  (function(){var b=document.getElementById('unlockBump');if(b)b.addEventListener('click',function(){select('SCALP-3',true);populateCart();});})();
+
+  // Reservation countdown. Held in sessionStorage so closing and reopening the drawer doesn't
+  // restart it; adding to cart does. On zero it renews rather than dumping the customer's cart.
+  var TIMER_MS=5*60*1000,timerId=null;
+  function timerDeadline(reset){
+    var k='kalmely_cart_deadline',now=Date.now(),d=0;
+    try{d=+(sessionStorage.getItem(k)||0);}catch(e){}
+    if(reset||!d||d<=now){d=now+TIMER_MS;try{sessionStorage.setItem(k,String(d));}catch(e){}}
+    return d;
+  }
+  function startTimer(reset){
+    var el=document.getElementById('cartTimer');if(!el)return;
+    el.hidden=false;
+    var deadline=timerDeadline(reset);
+    if(timerId)clearInterval(timerId);
+    function tick(){
+      var left=deadline-Date.now();
+      if(left<=0){
+        deadline=timerDeadline(true);
+        el.innerHTML='Your reservation ran out — we’ve held your cart for <b id="cartTimerVal">05:00</b> more minutes';
+        left=deadline-Date.now();
+      }
+      var v=document.getElementById('cartTimerVal');if(!v)return;
+      var s=Math.max(0,Math.floor(left/1000));
+      v.textContent=('0'+Math.floor(s/60)).slice(-2)+':'+('0'+(s%60)).slice(-2);
+    }
+    tick();timerId=setInterval(tick,1000);
+  }
+  function stopTimer(){if(timerId){clearInterval(timerId);timerId=null;}}
+
+  (function(){
+    var f=document.getElementById('promoForm');if(!f)return;
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var inp=document.getElementById('promoInput'),m=document.getElementById('promoMsg');
+      var code=(inp.value||'').trim().toUpperCase();
+      if(!code){m.className='promo-msg';m.textContent='';return;}
+      if(PROMOS[code]){
+        appliedCoupon=code;inp.value=code;inp.disabled=true;
+        m.className='promo-msg ok';
+        m.textContent='✓ '+PROMOS[code].label+' applied — '+Math.round(PROMOS[code].off*100)+'% off, taken at checkout.';
+      }else{
+        appliedCoupon='';
+        m.className='promo-msg bad';m.textContent='That code isn’t valid or has expired.';
+      }
+      populateCart();
+    });
+  })();
   function populateCart(){
     var m=lineMath(),price=m.price,was=m.was,save=m.save,t=info(curSku);
     document.getElementById('cartName').textContent='Kalmely Scalp Revival Bar';
@@ -1266,8 +1480,16 @@ section{padding:74px 0}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
-    document.getElementById('cartTotal').textContent=money(price);
+    // discount code (real: WELCOME10 is a live Stripe coupon, applied again server-side at checkout)
+    var _off=promoOff(),_disc=_off?Math.round(price*_off*100)/100:0,_grand=Math.round((price-_disc)*100)/100;
+    var _pRow=document.getElementById('cartPromoRow');
+    if(_pRow){
+      if(_disc>0){_pRow.style.display='';document.getElementById('cartPromoLabel').textContent=PROMOS[appliedCoupon].label;document.getElementById('cartPromoAmt').textContent='−'+money(_disc);}
+      else{_pRow.style.display='none';}
+    }
+    document.getElementById('cartTotal').textContent=money(_grand);
     document.getElementById('cartCount').textContent='1';
+    renderUnlock(price);
     var _free=document.querySelector('.ch-free');
     if(_free){_free.textContent='✓ Free shipping';}
     var _cg=document.getElementById('cartGifts');
@@ -1281,7 +1503,7 @@ section{padding:74px 0}
     var m=lineMath(),price=m.price,qty=m.qty;
     try{localStorage.setItem('kalmely_bag',JSON.stringify({sku:curSku,colors:colours.slice(),qty:qty,price:price,ts:Date.now()}))}catch(e){}
     if(window.fbq){var atcId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('atc-'+Date.now()+'-'+Math.random().toString(36).slice(2));fbq('track','AddToCart',{value:price,currency:'USD',content_ids:[curSku],content_type:'product',content_name:packName(curSku),num_items:qty,offer_variant:VARIANT},{eventID:atcId});if(!window._kalmelyAdmin){try{fetch(WORKER_URL+'/api/atc',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({sku:curSku,value:price,qty:qty,eventID:atcId,offer_variant:VARIANT,fbp:fbCookie('_fbp'),fbc:getFbc()})}).catch(function(){});}catch(e){}}}
-    setEmpty(false);populateCart();openDrawer();
+    setEmpty(false);populateCart();openDrawer();startTimer(true);   // adding to cart renews the hold
   }
   function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');cartOpen=true;document.body.style.overflow='hidden';}
   function setEmpty(isEmpty){
@@ -1290,9 +1512,13 @@ section{padding:74px 0}
     if(body)body.style.display=isEmpty?'none':'';
     if(foot)foot.style.display=isEmpty?'none':'';
     if(free)free.style.display=isEmpty?'none':'';
+    var tm=document.getElementById('cartTimer'),ul=document.getElementById('cartUnlock');
+    if(tm)tm.hidden=isEmpty;
+    if(ul)ul.hidden=isEmpty;
+    if(isEmpty)stopTimer();
   }
-  function viewCart(){if(readBagQty()){setEmpty(false);populateCart();}else{setEmpty(true);}openDrawer();}
-  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';}
+  function viewCart(){if(readBagQty()){setEmpty(false);populateCart();startTimer(false);}else{setEmpty(true);}openDrawer();}
+  function closeCart(){overlay.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');cartOpen=false;document.body.style.overflow='';stopTimer();}
   addBtns.forEach(function(b){b.addEventListener('click',openCart);});
   document.getElementById('navCart').addEventListener('click',viewCart);
   document.getElementById('cartEmptyCta').addEventListener('click',function(){closeCart();var box=document.querySelector('.buybox');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}});
@@ -1307,12 +1533,13 @@ section{padding:74px 0}
   document.getElementById('cartCheckout').addEventListener('click',async function(){
     if(checkingOut)return;
     var sku=curSku,m=lineMath(),qty=m.qty,wsub=_wantsSub(),price=wsub?Math.round(m.price*85)/100:m.price;
+    if(promoOff())price=Math.round(price*(1-promoOff())*100)/100;   // keep the pixel value equal to what Stripe charges
     var icEventId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('ic-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     if(window.fbq)fbq('track','InitiateCheckout',{value:price,currency:'USD',num_items:qty,content_ids:[sku],content_type:'product',content_name:packName(sku),offer_variant:VARIANT},{eventID:icEventId});
     try{localStorage.setItem('kalmely_last_purchase',JSON.stringify({value:price,currency:'USD',sku:sku,qty:qty,ts:Date.now()}))}catch(e){}
     checkingOut=true;var btn=this;btn.textContent='Redirecting to secure checkout…';btn.style.opacity='.7';
     try{
-      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:wsub,coupon:'',gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
+      var res=await fetch(WORKER_URL+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:sku,qty:m.checkoutQty,offer_variant:VARIANT,currency:'usd',subscription:wsub,coupon:appliedCoupon,gifts:((info(sku).gifts||[]).map(function(g){return g[0].replace(/[“”]/g,'');}).join(', ')),colors:'',fbp:fbCookie('_fbp'),fbc:getFbc(),icEventId:icEventId,value:price,admin:!!window._kalmelyAdmin})});
       var data=await res.json();
       if(!res.ok||!data.url)throw new Error(data.error||'Checkout unavailable');
       window.location.href=data.url;
@@ -1320,6 +1547,134 @@ section{padding:74px 0}
   });
 
   select(saved,false);
+
+  // ---------- Chat widget ----------
+  // Hybrid on purpose: the handful of questions that actually block a sale answer instantly from
+  // here (no latency, no cost, nothing to hallucinate). Anything else goes to /api/chat, which is
+  // a worker-side proxy to the model — the API key never touches the browser. If that call fails
+  // or isn't configured yet, the customer still gets a real answer: email us.
+  (function(){
+    var fab=document.getElementById('chatFab'),panel=document.getElementById('chatPanel'),
+        log=document.getElementById('chatLog'),form=document.getElementById('chatForm'),
+        input=document.getElementById('chatInput'),quick=document.getElementById('chatQuick'),
+        nudge=document.getElementById('chatNudge');
+    if(!fab||!panel||!log)return;
+
+    var FAQ=[
+      {q:'How do I use it?',quick:1,k:/how (do|to) (i )?use|how does it work|apply|routine|instructions/i,
+       a:'Wet your hair, glide the bar straight onto your scalp — not your lengths — and massage for about 60 seconds with your fingertips. Rinse well. That\'s it. Use it in place of your shampoo, every wash.'},
+      {q:'How long does one bar last?',k:/how long.*(last|bar)|how many (washes|uses)|supply|run out/i,
+       a:'About a month of daily use per bar, so the 2-Bar pack is roughly a 60-day supply and the 3-Bar pack about 90 days. It lasts far longer than a bottle because you\'re only using it on the scalp.'},
+      {q:'When will I see a difference?',quick:1,k:/when.*(see|notice|result|difference|work)|how (long|soon).*(result|work)/i,
+       a:'Most people say their scalp feels cleaner and lighter within the first week or two. Anything to do with how your part or ponytail looks is gradual and builds over weeks — it varies from person to person, and we\'d rather tell you that than promise a date.'},
+      // Checked BEFORE the general shipping answer on purpose: "do you ship to Portugal?" used to
+      // match /ship/ and get the U.S. answer back, which reads like a yes. It isn't.
+      {q:'Do you ship outside the U.S.?',k:/(outside|international|abroad|worldwide|europe|spain|portugal|canada|australia|mexico|germany|france|ireland|\bu\.?k\b)|\b(euros?|pounds?|gbp|cad|aud)\b/i,
+       a:'We only ship within the United States at the moment, and we price in US dollars, so we can\'t send an order abroad yet. If you\'d like us to let you know when that changes, email hello@kalmely.com.'},
+      {q:'Shipping & delivery',quick:1,k:/ship|deliver|arrive|postage|how long.*(take|come)|track/i,
+       a:'Shipping is free on every order, and we ship within the United States only. We pack within 1–3 business days and it usually arrives 7–10 business days after that. You get a tracking link by email as soon as it leaves.'},
+      {q:'Returns & guarantee',quick:1,k:/return|refund|guarantee|money.?back|cancel|not happy|didn.?t work/i,
+       a:'You have 60 days, and you can have used the bar — that\'s the point of trying it. Email hello@kalmely.com with one line and we refund every cent. No forms, no arguing.'},
+      {q:'What\'s in it?',k:/ingredient|what.?s in|contain|sulfate|vegan|natural|allerg|sensitive|formula/i,
+       a:'Fermented botanicals in a solid bar — sulfate-free, vegan, no silicones. It\'s a cosmetic scalp-care product, so if you have a diagnosed scalp condition or known allergies, check the full list with your doctor first.'},
+      {q:'Is it safe for colour-treated hair?',k:/colou?r|dye|bleach|highlight|keratin|perm/i,
+       a:'Yes — it\'s sulfate-free, which is exactly what colour-treated hair wants. It cleans the scalp rather than stripping the lengths.'}
+    ];
+    var SAFE_OUT='I\'d rather not guess on that one. Email hello@kalmely.com and a real person will answer, usually within 24 hours.';
+
+    function esc2(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function linkify(s){return esc2(s).replace(/hello@kalmely\.com/g,'<a href="mailto:hello@kalmely.com">hello@kalmely.com</a>');}
+    function bubble(text,who){
+      var d=document.createElement('div');d.className='msg '+(who==='me'?'me':'bot');
+      if(who==='me')d.textContent=text;else d.innerHTML=linkify(text);
+      log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+    }
+    function typing(){
+      var d=document.createElement('div');d.className='msg bot typing';
+      d.innerHTML='<i></i><i></i><i></i>';log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+    }
+    function say(text,delay){
+      var t=typing();
+      setTimeout(function(){t.remove();bubble(text,'bot');},delay||520);
+    }
+    function renderQuick(){
+      if(!quick)return;
+      quick.innerHTML='';
+      FAQ.filter(function(f){return f.quick;}).forEach(function(f){
+        var b=document.createElement('button');b.type='button';b.textContent=f.q;
+        b.addEventListener('click',function(){ask(f.q);});
+        quick.appendChild(b);
+      });
+    }
+    var started=false;
+    function boot(){
+      if(started)return;started=true;
+      bubble('Hi! I\'m here for the Kalmely team. Ask me anything about the Scalp Revival Bar, your order or our 60-day guarantee.','bot');
+      renderQuick();
+    }
+    function open(){
+      panel.classList.add('open');panel.setAttribute('aria-hidden','false');
+      fab.setAttribute('aria-expanded','true');
+      hideNudge();boot();
+      setTimeout(function(){if(window.innerWidth>560&&input)input.focus();},220);
+      if(window.clarity)try{clarity('event','chat_open');}catch(e){}
+    }
+    function close(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true');fab.setAttribute('aria-expanded','false');}
+    function toggle(){panel.classList.contains('open')?close():open();}
+
+    function localAnswer(q){
+      for(var i=0;i<FAQ.length;i++){if(FAQ[i].k.test(q))return FAQ[i].a;}
+      return null;
+    }
+    var history=[],busy=false;
+    async function ask(q){
+      q=(q||'').trim();if(!q||busy)return;
+      bubble(q,'me');input.value='';
+      if(quick)quick.innerHTML='';
+      var hit=localAnswer(q);
+      if(hit){say(hit);history.push({role:'user',text:q},{role:'model',text:hit});return;}
+      busy=true;
+      var t=typing();
+      try{
+        var res=await fetch(WORKER_URL+'/api/chat',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({message:q,history:history.slice(-8),product:'SCALP'})
+        });
+        var data=await res.json();
+        t.remove();
+        var reply=(data&&data.reply)?String(data.reply):SAFE_OUT;
+        bubble(reply,'bot');
+        history.push({role:'user',text:q},{role:'model',text:reply});
+      }catch(err){
+        t.remove();bubble(SAFE_OUT,'bot');
+      }
+      busy=false;
+    }
+
+    form.addEventListener('submit',function(e){e.preventDefault();ask(input.value);});
+    fab.addEventListener('click',toggle);
+    document.getElementById('chatClose').addEventListener('click',close);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))close();});
+
+    // Nudge: one gentle prompt after 12s, and never again once dismissed this session.
+    function hideNudge(){if(nudge){nudge.classList.remove('show');}}
+    (function(){
+      if(!nudge)return;
+      var seen=false;try{seen=sessionStorage.getItem('kalmely_chat_nudge')==='1';}catch(e){}
+      if(seen)return;
+      setTimeout(function(){
+        if(panel.classList.contains('open'))return;
+        nudge.classList.add('show');
+        try{sessionStorage.setItem('kalmely_chat_nudge','1');}catch(e){}
+        setTimeout(hideNudge,11000);
+      },12000);
+      nudge.addEventListener('click',function(e){
+        if(e.target&&e.target.id==='chatNudgeX'){hideNudge();return;}
+        open();
+      });
+      nudge.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+    })();
+  })();
 
   // ---------- Delivery date estimate ----------
   (function(){var el=document.getElementById('deliveryDate');if(!el)return;try{var d=new Date();d.setDate(d.getDate()+4);el.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}catch(e){el.textContent='this week';}})();
