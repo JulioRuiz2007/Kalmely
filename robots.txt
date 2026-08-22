@@ -2,7 +2,12 @@ User-agent: *
 Allow: /
 
 # Functional pages — keep out of the index
-Disallow: /reset-thankyou.html
+Disallow: /scalp-thankyou.html
 Disallow: /manage.html
+
+# Productos retirados: siguen respondiendo 200 para los compradores que tienen el
+# enlace en su correo, pero llevan <meta name="robots" content="noindex"> para salir
+# del índice. NO se ponen aquí como Disallow a propósito: si Google no puede rastrearlas
+# nunca lee el noindex y las URLs se quedan indexadas.
 
 Sitemap: https://kalmely.com/sitemap.xml

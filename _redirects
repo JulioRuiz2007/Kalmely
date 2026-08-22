@@ -1,49 +1,57 @@
-# Cellular Reset = producto ADVERTISED (pixel + Clarity + ads). Raíz → /reset/.
-# Gravity Cradle sigue LIVE en /gravity/ pero MUDO (sin pixel/Clarity/ads) = producto dormido, no se redirige.
-/ /reset/ 302
-/index.html /reset/ 302
+# Korean Scalp Revival Bar = producto ADVERTISED (pixel + ads). Raíz → /scalp/.
+# Restaurado 22-ago-2026. Estado anterior (Cellular Reset) recuperable con el tag reset-live-2026-08-22.
+/ /scalp/ 302
+/index.html /scalp/ 302
 
-# --- scalp (retirado) → reset ---
-/scalp /reset/ 301
-/scalp/* /reset/ 301
-/scalp-report /reset/ 301
-/scalp-report/* /reset/ 301
-/scalp-privacy.html /reset-privacy.html 301
-/scalp-refund.html /reset-refund.html 301
-/scalp-shipping.html /reset-shipping.html 301
-/scalp-terms.html /reset-terms.html 301
-/scalp-thankyou.html /reset-thankyou.html 301
+# --- Cellular Reset (retirado) → scalp. SOLO la PdP: las legales y la thank-you NO se tocan (ver abajo). ---
+/reset /scalp/ 301
+/reset/* /scalp/ 301
 
-# --- balm / Kalmely Relief (retirado) → reset ---
-/relief /reset/ 301
-/relief/* /reset/ 301
-/relief.html /reset/ 301
+# --- /about: página de marca de la era Reset/Gravity. El scalp no la tenía y ningún
+#     correo la enlaza (verificado en worker.js), así que va a la PdP. El fichero
+#     about.html sigue en el repo, solo deja de ser alcanzable.
+/about /scalp/ 301
+/about.html /scalp/ 301
+
+# --- balm / Kalmely Relief (retirado) → scalp ---
+/relief /scalp/ 301
+/relief/* /scalp/ 301
+/relief.html /scalp/ 301
 /relief-contact.html /contact.html 301
-/relief-privacy.html /reset-privacy.html 301
-/relief-refund.html /reset-refund.html 301
-/relief-shipping.html /reset-shipping.html 301
-/relief-terms.html /reset-terms.html 301
-/relief-thankyou.html /reset-thankyou.html 301
+/relief-privacy.html /scalp-privacy.html 301
+/relief-refund.html /scalp-refund.html 301
+/relief-shipping.html /scalp-shipping.html 301
+/relief-terms.html /scalp-terms.html 301
+/relief-thankyou.html /scalp-thankyou.html 301
 
-# --- tea tree (retirado) → reset ---
-/tea /reset/ 301
-/tea/* /reset/ 301
-/tea.html /reset/ 301
+# --- tea tree (retirado) → scalp ---
+/tea /scalp/ 301
+/tea/* /scalp/ 301
+/tea.html /scalp/ 301
 
-# --- sleep mask era → reset ---
-/v2 /reset/ 301
-/v2.html /reset/ 301
-/v3 /reset/ 301
-/v3.html /reset/ 301
-/v4 /reset/ 301
-/v4.html /reset/ 301
-/cart.html /reset/ 301
-/thank-you.html /reset-thankyou.html 301
+# --- sleep mask era → scalp ---
+/v2 /scalp/ 301
+/v2.html /scalp/ 301
+/v3 /scalp/ 301
+/v3.html /scalp/ 301
+/v4 /scalp/ 301
+/v4.html /scalp/ 301
+/cart.html /scalp/ 301
+/thank-you.html /scalp-thankyou.html 301
 
-# --- legales genéricos viejos → reset ---
-/privacy.html /reset-privacy.html 301
-/refund-policy.html /reset-refund.html 301
-/shipping-policy.html /reset-shipping.html 301
-/terms.html /reset-terms.html 301
-/returns /reset-refund.html 301
-/returns.html /reset-refund.html 301
+# --- legales genéricos viejos → scalp ---
+/privacy.html /scalp-privacy.html 301
+/refund-policy.html /scalp-refund.html 301
+/shipping-policy.html /scalp-shipping.html 301
+/terms.html /scalp-terms.html 301
+/returns /scalp-refund.html 301
+/returns.html /scalp-refund.html 301
+
+# ⚠️ NO REDIRIGIR NUNCA — compradores reales tienen estos enlaces en sus correos.
+# Romperlos convierte una devolución en un chargeback. Deben seguir devolviendo 200:
+#   /reset-thankyou.html  /reset-refund.html  /reset-shipping.html  /reset-terms.html  /reset-privacy.html
+#   /gravity-thankyou.html /gravity-refund.html /gravity-shipping.html /gravity-terms.html /gravity-privacy.html
+#   /manage.html  /contact.html
+# Se sacan del sitemap y de la navegación (y llevan noindex); no se rompen.
+# Nota: /reset/* NO captura /reset-*.html (el guion no es una barra), así que las legales quedan a salvo.
+# /gravity/ sigue publicada pero MUDA (sin pixel, sin ads) — no se redirige.

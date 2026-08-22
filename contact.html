@@ -52,8 +52,8 @@ fbq('init','2038496957090347');fbq('track','PageView');
 html,body{margin:0;padding:0}
 :root{
   --paper:#FCFBF9; --paper-2:#F3F2EE; --paper-3:#EAE9E3; --card:#FFFFFF;
-  --ink:#6B1E15; --ink-2:#7A4038; --ink-soft:#8A7570; --faint:#B3A69F;
-  --line:#ECEBE4; --line-2:#DCD9D0; --gold:#B05A50;
+  --ink:#234F2B; --ink-2:#45533F; --ink-soft:#6A7460; --faint:#A9A99E;
+  --line:#ECEBE4; --line-2:#DCD9D0; --gold:#5E9A45;
   --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --max:1240px;
 }
@@ -89,7 +89,7 @@ main{flex:1;padding:56px 0 80px}
 .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--ink)}
 .cform textarea{min-height:170px;resize:vertical}
 .cform .send{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:19px;border-radius:12px;margin-top:6px;cursor:pointer;transition:background .15s,transform .12s}
-.cform .send:hover{background:#0f2036;transform:translateY(-1px)}
+.cform .send:hover{background:#1a3d20;transform:translateY(-1px)}
 .cform-note{margin-top:14px;font:500 13.5px/1.5 var(--sans);color:var(--ink-soft)}
 .cform-note a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 
@@ -124,17 +124,16 @@ main{flex:1;padding:56px 0 80px}
 </head>
 <body>
 
-<div class="announce">FREE U.S. Shipping on Every Order · 90-Day Money-Back Guarantee</div>
+<div class="announce">FREE U.S. Shipping on Every Order · 60-Day Money-Back Guarantee</div>
 
 <header class="nav">
   <div class="nav-inner wrap">
     <nav class="nav-left" aria-label="Main">
-      <a href="/reset/">Product</a>
-      <a href="/about">About</a>
+      <a href="/scalp/">Product</a>
       <a href="/contact" class="is-active" aria-current="page">Contact</a>
     </nav>
-    <a href="/reset/" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Cellular Reset</span></a>
-    <a href="/reset/" class="nav-cart" aria-label="Shop">
+    <a href="/scalp/" class="logo"><span class="logo-brand">Kalmely<i>.</i></span><span class="logo-tag">The Korean Beauty Secret</span></a>
+    <a href="/scalp/" class="nav-cart" aria-label="Shop">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
     </a>
   </div>
@@ -143,7 +142,7 @@ main{flex:1;padding:56px 0 80px}
 <main>
   <div class="wrap">
     <h1 class="c-title">Contact</h1>
-    <p class="c-intro">Questions about your order, the 90-day guarantee, or the Kalmely device itself? Send us a note below — or email <a href="mailto:hello@kalmely.com" style="color:var(--ink);text-decoration:underline">hello@kalmely.com</a>. Real people reply, usually within ~24 hours.</p>
+    <p class="c-intro">Questions about your order, the 60-day guarantee, or the bar itself? Send us a note below — or email <a href="mailto:hello@kalmely.com" style="color:var(--ink);text-decoration:underline">hello@kalmely.com</a>. Real people reply, usually within ~24 hours.</p>
     <form class="cform" id="contactForm" novalidate>
       <div class="row">
         <div class="field"><label for="cFirst">First name</label><input id="cFirst" name="first" type="text" autocomplete="given-name" placeholder="First name"></div>
@@ -162,22 +161,30 @@ main{flex:1;padding:56px 0 80px}
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="/reset/" style="text-decoration:none"><span class="foot-logo">Kalmely<i>.</i><span class="tag">The Cellular Reset</span></span></a>
+        <a href="/scalp/" style="text-decoration:none"><span class="foot-logo">Kalmely<i>.</i><span class="tag">The Korean Beauty Secret</span></span></a>
       </div>
       <div>
         <div class="foot-h">Menu</div>
         <nav class="foot-menu">
-          <a href="/reset/">Product</a>
-          <a href="/about">About</a>
+          <a href="/scalp/">Product</a>
           <a href="/contact">Contact</a>
-          <a href="/reset-shipping.html">Shipping</a>
-          <a href="/reset-refund.html">Returns &amp; Refunds</a>
-          <a href="/reset-privacy.html">Privacy</a>
-          <a href="/reset-terms.html">Terms</a>
+          <a href="/scalp-shipping.html">Shipping</a>
+          <a href="/scalp-refund.html">Returns &amp; Refunds</a>
+          <a href="/scalp-privacy.html">Privacy</a>
+          <a href="/scalp-terms.html">Terms</a>
         </nav>
       </div>
+      <div class="foot-news">
+        <div class="foot-h">Subscribe to our emails</div>
+        <p>The free Korean Scalp Protocol, plus members-only offers — straight to your inbox. No spam, just the good stuff.</p>
+        <form id="newsForm">
+          <input type="email" id="newsEmail" name="email" placeholder="Your email address" autocomplete="email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="msg" id="newsMsg"></div>
+      </div>
     </div>
-    <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 90-Day Money-Back Guarantee. Kalmely — The Cellular Reset is a wellness device for nighttime nasal comfort. It is not intended to diagnose, treat, cure or prevent any disease. Individual results vary. © 2026 Kalmely. · <a href="mailto:hello@kalmely.com" style="color:rgba(249,248,246,.7);text-decoration:underline">hello@kalmely.com</a></div>
+    <div class="foot-fine">🔒 Secure SSL checkout · Free U.S. shipping on every order · 60-Day Money-Back Guarantee. Kalmely is a cosmetic scalp-care product. It is not intended to diagnose, treat, cure or prevent any disease. It is not a treatment for hair loss. Individual results vary. © 2026 Kalmely. · <a href="mailto:hello@kalmely.com" style="color:rgba(249,248,246,.7);text-decoration:underline">hello@kalmely.com</a></div>
   </div>
 </footer>
 
@@ -204,7 +211,7 @@ main{flex:1;padding:56px 0 80px}
     var em=(document.getElementById('newsEmail').value||'').trim();var m=document.getElementById('newsMsg');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.style.color='#ff9b9b';m.textContent='Please enter a valid email.';return;}
     try{fetch(WORKER+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:em,source:'contact-page'})}).catch(function(){});}catch(e){}
-    m.style.color='#E6C29C';m.textContent='You’re in! Check your inbox for your free guide.';nf.reset();
+    m.style.color='#E6C29C';m.textContent='You’re in! Check your inbox for the Korean Scalp Protocol.';nf.reset();
   });
 })();
 </script>
