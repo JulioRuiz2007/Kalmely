@@ -5,6 +5,8 @@
 
 # --- Cellular Reset (retirado) → scalp. SOLO la PdP: las legales y la thank-you NO se tocan (ver abajo). ---
 /reset /scalp/ 301
+/reset/ /scalp/ 301
+/reset/index.html /scalp/ 301
 /reset/* /scalp/ 301
 
 # --- /about: página de marca de la era Reset/Gravity. El scalp no la tenía y ningún
