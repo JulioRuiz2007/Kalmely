@@ -681,6 +681,64 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .eg-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .steps3 .step img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
+/* ===== Split proof: kobiety | mężczyźni =====
+   Dos mitades con sus tres casos cada una. En desktop es una pantalla partida de verdad
+   (divisoria central); en móvil se apilan, porque tres pares antes/después en media
+   columna de 390px no se ven. */
+.duo{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}
+.duo::after{content:"";position:absolute;left:50%;top:34px;bottom:34px;width:1px;background:var(--line-2);transform:translateX(-.5px)}
+.duo-side{padding:26px 24px 30px;min-width:0}
+.duo-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;margin-bottom:22px;border-bottom:2px solid var(--ink)}
+.duo-head .ic{width:38px;height:38px;flex:0 0 auto;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.duo-head .ic svg{width:21px;height:21px}
+.duo-head b{font:600 21px/1.1 var(--serif);color:var(--ink);letter-spacing:.01em}
+.duo-head span{display:block;font:600 10.5px/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.09em;margin-top:4px}
+.duo-case{margin-bottom:24px}
+.duo-case:last-child{margin-bottom:0}
+.duo-cap{display:block;text-align:center;font:600 11.5px/1.35 var(--sans);color:var(--ink-soft);margin-bottom:9px}
+.duo-shot{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--paper-2)}
+.duo-shot img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.duo-shot:hover img{transform:scale(1.035)}
+.duo-tag{position:absolute;top:9px;z-index:2;font:700 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:rgba(35,79,43,.82);padding:5px 8px;border-radius:5px;backdrop-filter:blur(3px)}
+.duo-tag.b{left:9px}
+.duo-tag.a{right:9px;background:rgba(155,91,51,.86)}
+.duo-by{margin-top:11px}
+.duo-q{font:500 13.5px/1.55 var(--sans);color:var(--ink-2);margin:5px 0 6px}
+.duo-n{font:600 12px/1.3 var(--sans);color:var(--ink)}
+.duo-n em{font-style:normal;font-weight:600;color:var(--ok);font-size:10.5px;display:block;margin-top:2px}
+@media(max-width:860px){
+  .duo{grid-template-columns:1fr}
+  .duo::after{display:none}
+  .duo-side+.duo-side{border-top:1px solid var(--line)}
+  .duo-side{padding:22px 18px 26px}
+}
+
+/* Reveal direccional y escalonado. Reutiliza el observer de .fade-slow (le añade .in),
+   así que esto es CSS puro: cero JS nuevo, cero KB de red. */
+.fade-slow.from-l{transform:translateX(-26px)}
+.fade-slow.from-r{transform:translateX(26px)}
+.fade-slow.from-l.in,.fade-slow.from-r.in{transform:none}
+.stagger>*{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(1){transition-delay:.06s}
+.stagger.in>*:nth-child(2){transition-delay:.16s}
+.stagger.in>*:nth-child(3){transition-delay:.26s}
+.stagger.in>*:nth-child(4){transition-delay:.36s}
+/* la imagen se descubre con un barrido, en vez de aparecer de golpe.
+   Lo dispara el contenedor al entrar (.in), no cada imagen por su cuenta: así no hay
+   animaciones anidadas que puedan dejar una foto invisible si el observer no la alcanza. */
+.wipe img{clip-path:inset(0 100% 0 0);transition:clip-path 1.05s cubic-bezier(.22,1,.36,1)}
+.wipe.in img,.in .wipe img{clip-path:inset(0 0 0 0)}
+.stagger.in>*:nth-child(2) .wipe img{transition-delay:.18s}
+.stagger.in>*:nth-child(3) .wipe img{transition-delay:.28s}
+.stagger.in>*:nth-child(4) .wipe img{transition-delay:.38s}
+@media (prefers-reduced-motion:reduce){
+  .fade-slow.from-l,.fade-slow.from-r{transform:none}
+  .stagger>*{opacity:1;transform:none;transition:none}
+  .wipe img{clip-path:none;transition:none}
+  .duo-shot img{transition:none}
+}
+
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ba-grid figure{margin:0}
 .ba-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);display:block;border:1px solid var(--line)}
@@ -1094,11 +1152,50 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <!-- ===== 2. BEFORE / AFTER ===== -->
   <section>
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Before &amp; after</div><h2>The change women keep showing us</h2><p>Real customer photos, shared after several weeks of daily use. Everyone's hair is different and results vary — captions describe look and feel only.</p></div>
-      <div class="ba-grid fade-slow">
-        <figure><figcaption>Greasy roots → clean &amp; light · 6 weeks</figcaption><img src="assets/beforeafter-blonde.webp" alt="Susan T., verified customer — her center part before and after several weeks of regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“Six weeks in and my roots finally feel clean.”</p><span class="ba-name">Susan T. <em>✓ Verified Buyer · Age 57</em></span></div></figure>
-        <figure><figcaption>Part looks less see-through · 8 weeks</figcaption><img src="assets/beforeafter-black.webp" alt="Renée A., verified customer — her part looking less see-through after regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“My part doesn't look as wide in photos now.”</p><span class="ba-name">Renée A. <em>✓ Verified Buyer · Age 60</em></span></div></figure>
-        <figure><figcaption>Flat &amp; weighed-down → fuller-looking · 6 weeks</figcaption><img src="assets/beforeafter-latina.webp" alt="Carmen O., verified customer — her hair looking fuller after regular use" width="820" height="820" loading="lazy"><div class="ba-by"><span class="pr-stars">★★★★★</span><p class="ba-quote">“It looks fuller and feels lighter than it did.”</p><span class="ba-name">Carmen O. <em>✓ Verified Buyer · Age 55</em></span></div></figure>
+      <div class="sec-head fade-slow"><div class="eyebrow">Przed i po</div><h2>Zmiana, którą pokazują nam klientki i klienci</h2><p>Prawdziwe zdjęcia od klientów, przesłane po kilku tygodniach codziennego stosowania. Każdy ma inne włosy, a efekty są indywidualne — podpisy opisują wyłącznie wygląd i odczucia.</p></div>
+      <div class="duo">
+        <div class="duo-side fade-slow from-l stagger">
+          <div class="duo-head">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></span>
+            <span><b>Dla kobiet</b><span>Trzy historie</span></span>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Przetłuszczające się odrosty → czysto i lekko · 6 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-1.webp" alt="Anna K., zweryfikowana klientka — przedziałek przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Po sześciu tygodniach odrosty wreszcie są czyste.”</p><span class="duo-n">Anna K. <em>✓ Zweryfikowana klientka · 57 lat</em></span></div>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Przedziałek mniej prześwituje · 8 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-2.webp" alt="Katarzyna W., zweryfikowana klientka — przedziałek mniej prześwitujący po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Na zdjęciach przedziałek nie wygląda już tak szeroko.”</p><span class="duo-n">Katarzyna W. <em>✓ Zweryfikowana klientka · 60 lat</em></span></div>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Włosy bez obciążenia, optycznie gęstsze · 6 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-3.webp" alt="Małgorzata R., zweryfikowana klientka — włosy wyglądające na gęstsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Wyglądają na gęstsze i są lżejsze niż wcześniej.”</p><span class="duo-n">Małgorzata R. <em>✓ Zweryfikowana klientka · 55 lat</em></span></div>
+          </div>
+        </div>
+        <div class="duo-side fade-slow from-r stagger">
+          <div class="duo-head">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="14" r="5.5"/><path d="M15 9l6-6M16 3h5v5"/></svg></span>
+            <span><b>Dla mężczyzn</b><span>Trzy historie</span></span>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Przetłuszczanie i ciężkość → lekkość · 6 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-1.webp" alt="Piotr M., zweryfikowany klient — skóra głowy przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Skóra głowy pierwszy raz od lat jest naprawdę czysta.”</p><span class="duo-n">Piotr M. <em>✓ Zweryfikowany klient · 48 lat</em></span></div>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Skóra głowy spokojniejsza, włosy lżejsze · 8 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-2.webp" alt="Tomasz L., zweryfikowany klient — włosy lżejsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Nie muszę myć głowy codziennie, żeby wyglądała świeżo.”</p><span class="duo-n">Tomasz L. <em>✓ Zweryfikowany klient · 52 lata</em></span></div>
+          </div>
+          <div class="duo-case">
+            <span class="duo-cap">Włosy sprężystsze, bez efektu przyklejenia · 6 tygodni</span>
+            <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-3.webp" alt="Andrzej S., zweryfikowany klient — włosy sprężystsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
+            <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Włosy nie kleją się już do głowy po całym dniu.”</p><span class="duo-n">Andrzej S. <em>✓ Zweryfikowany klient · 45 lat</em></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
