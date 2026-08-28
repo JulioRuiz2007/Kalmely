@@ -14,3 +14,6 @@ worker/
 assets/kalmely-1/
 *.mp4
 *.AAC
+
+# Espejo bilingüe solo para revisar el copy en local — NUNCA se despliega
+scalp/_mirror-en.html
