@@ -5,6 +5,9 @@ Allow: /
 Disallow: /scalp-thankyou.html
 Disallow: /manage.html
 
+# El advertorial /scalp-report/ sigue en inglés: lleva noindex y está fuera del sitemap
+# hasta que se traduzca al polaco. No se pone Disallow para que Google pueda leer el noindex.
+
 # Productos retirados: siguen respondiendo 200 para los compradores que tienen el
 # enlace en su correo, pero llevan <meta name="robots" content="noindex"> para salir
 # del índice. NO se ponen aquí como Disallow a propósito: si Google no puede rastrearlas
