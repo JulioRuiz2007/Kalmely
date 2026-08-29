@@ -553,7 +553,14 @@ section{padding:74px 0}
 .cart-colours{margin:18px 0}
 .cart-gift{margin:18px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px}
 .cg-h{display:block;font:600 12px/1.3 var(--sans);color:var(--ink-2);margin-bottom:8px}
-.cg-item{display:block;font:500 13px/1.7 var(--sans);color:var(--ink-soft)}
+.cg-item{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
+.cg-item:first-of-type{border-top:none}
+.cg-img{width:40px;height:40px;flex:0 0 40px;object-fit:contain;background:var(--paper);border-radius:8px}
+.cg-body{flex:1;min-width:0}
+.cg-name{display:block;font:600 13px/1.35 var(--sans);color:var(--ink)}
+.cg-val{display:block;font:700 11.5px/1.4 var(--sans);color:var(--ok);margin-top:1px}
+.cg-val s{color:var(--faint);font-weight:500;margin-right:5px}
+.cg-desc{display:block;font:400 12px/1.5 var(--sans);color:var(--ink-soft);margin-top:4px}
 .cg-item b{color:var(--ok)}
 .cart-foot{padding:18px 22px;border-top:1px solid var(--line);background:var(--card)}
 .cart-totals{display:flex;justify-content:space-between;font:500 14px/1.6 var(--sans);color:var(--ink-2)}
@@ -1101,7 +1108,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="buybox fade-slow">
         <div class="bx-stock"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><p><b>UWAGA: mała dostępność</b> — ten produkt wyprzedał się <b>12 razy</b> w zeszłym roku. Skorzystaj z <b>ograniczonej promocji</b> i zamów teraz. Dzięki temu nie będziesz czekać na kolejną dostawę.</p></div>
         <div class="bx-sec">
-          <div class="pack-preview"><img id="packImage" src="assets/bundle-2.webp" alt="Twój zestaw Kalmely Korean Scalp Revival Bar" width="760" height="760"></div>
           <div class="sale-divider">Promocja – tylko przez ograniczony czas</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Wybierz zestaw">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
@@ -1534,9 +1540,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   // ===== Oferta: Scalp Revival Bar (PLN) — 1 / 2 / 3 kostki, pago único, regalos escalonados =====
   var VARIANT='SCALP';
   var TIERS={
-    'SCALP-1':{price:69,was:0,label:'1 kostka',sub:false,img:'bundle-1',gifts:[['E-book „Koreański Protokół Skóry Głowy”','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
-    'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['E-book „Koreański Protokół Skóry Głowy”','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
-    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania na co dzień. Odżywia skórę głowy, gdy kostka usunie już tłusty film — dzięki temu wreszcie wchłania się tam, gdzie wcześniej nie mogło.'],['E-book „Koreański Protokół Skóry Głowy”','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
+    'SCALP-1':{price:69,was:0,label:'1 kostka',sub:false,img:'bundle-1',gifts:[['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
+    'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
+    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania na co dzień. Odżywia skórę głowy, gdy kostka usunie już tłusty film — dzięki temu wreszcie wchłania się tam, gdzie wcześniej nie mogło.'],['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
   };
   var DEFAULT='SCALP-1';  // arranca en el pack más pequeño (1 kostka · 69 zł)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1571,7 +1577,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     var barVal=(count>1)?'<s>'+money(barReg)+'</s>':money(barReg); // struck bundle anchor only when there's a multi-bar discount
     var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+({1:'Kalmely — 1 kostka',2:'Kalmely — 2 kostki',3:'Kalmely — 3 kostki'}[count]||('Kalmely — '+count+' kostki'))+'</span><span class="inc-val">'+barVal+'</span></li>';
     var giftTotal=0;
-    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseInt(g[1],10)||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="44" height="44" loading="lazy"><span class="inc-name">'+g[0]+(g[3]?'<span class="inc-desc">'+g[3]+'</span>':'')+'</span><span class="inc-val"><s>'+g[1]+' zł</s><b class="inc-free">GRATIS</b></span></li>';}).join('');
+    // Una línea por regalo, sin descripción: aquí basta con QUÉ entra y cuánto vale.
+    // El detalle se cuenta en el carrito, cuando ya ha decidido comprar.
+    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseInt(g[1],10)||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="34" height="34" loading="lazy">'+'<span class="inc-name">'+g[0]+'</span>'+'<span class="inc-val"><s>'+money(parseInt(g[1],10)||0)+'</s> <b class="inc-free">GRATIS</b></span></li>';}).join('');
     var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Darmowa dostawa</span><span class="inc-val"><b class="inc-free">GRATIS</b></span></li>';
     var totalValue=barReg+giftTotal;
     var total='<li class="inc-row inc-total"><span class="inc-name">Łączna wartość</span><span class="inc-val"><s>'+money(totalValue)+'</s> <b class="inc-today">Dziś '+money(t.price)+'</b></span></li>';
@@ -1583,7 +1591,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
     renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
-    var pi=document.getElementById('packImage');if(pi){var im=info(sku).img;if(im)pi.src='assets/'+im+'.webp';}  // swap the bundle preview to match the selected pack
+    // (la vista previa del pack se retiró del buybox: repetía el carrusel)
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
   }
@@ -1704,7 +1712,11 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     var _cg=document.getElementById('cartGifts');
     if(_cg){
       var _g=t.gifts||[];
-      if(_g.length){_cg.innerHTML='<span class="cg-h">Prezenty w zestawie</span>'+_g.map(function(x){return '<span class="cg-item">🎁 '+x[0]+' <b>GRATIS</b></span>';}).join('');}
+      if(_g.length){_cg.innerHTML='<span class="cg-h">Prezenty w zestawie</span>'+_g.map(function(x){
+        return '<span class="cg-item"><img class="cg-img" src="assets/'+(x[2]||'')+'.webp" alt="" width="40" height="40" loading="lazy">'
+             + '<span class="cg-body"><b class="cg-name">'+x[0]+'</b>'
+             + '<span class="cg-val"><s>'+money(parseInt(x[1],10)||0)+'</s> GRATIS</span>'
+             + (x[3]?'<span class="cg-desc">'+x[3]+'</span>':'') + '</span></span>';}).join('');}
       else{_cg.innerHTML='<span class="cg-h">60 dni gwarancji zwrotu pieniędzy</span>';}
     }
   }
