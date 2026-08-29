@@ -182,6 +182,15 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .hc-mech h3{font-family:'Fraunces',var(--serif);font-weight:600;font-size:20px;line-height:1.15;color:var(--ink);margin-bottom:8px}
 .hc-mech p{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin-bottom:14px}
 .hc-diag{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* El mismo bloque de mecanismo, ahora dentro de la sección comparativa: allí hay ancho
+   de sobra, así que respira más y los diagramas se ven al tamaño que merecen. */
+.mech-band{max-width:900px;margin:0 auto 30px;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:26px 28px 24px;text-align:center}
+.mech-band .hc-eyebrow{margin-bottom:9px}
+.mech-band h3{font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,27px);line-height:1.18;color:var(--ink);margin-bottom:10px}
+.mech-band p{font-size:15.5px;line-height:1.6;color:var(--ink-2);margin:0 auto 20px;max-width:640px}
+.mech-band .hc-diag{gap:18px}
+.mech-band .hc-diag figcaption{font-size:12px;margin-top:8px}
+@media(max-width:700px){.mech-band{padding:20px 18px 18px;margin-bottom:24px}.mech-band .hc-diag{gap:12px}}
 .hc-diag figure{margin:0}
 .hc-diag img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#FBF7EF;border-radius:10px;display:block}
 .hc-diag figcaption{font:600 11px/1.3 var(--sans);color:var(--ink-soft);text-align:center;margin-top:6px}
@@ -990,28 +999,26 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="gallery">
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
-            <!-- 8 real hero images, fixed order 01..08 (01-packshot is the featured/default) -->
+            <!-- 7 imágenes. hero-08 (mujer de pelo canoso) retirada; hero-02 movida al final. -->
             <div class="hero-slide"><img src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar wraz z pudełkiem prezentowym" width="1080" height="1080" fetchpriority="high"></div>
-            <div class="hero-slide"><img src="assets/hero-02.webp" alt="Osoba trzymająca kostkę Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-03.webp" alt="Przedziałek po kilku tygodniach regularnego stosowania" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-04.webp" alt="W czym ma pomagać kostka Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-05.webp" alt="Prawdziwi klienci używający kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-06.webp" alt="Co mówią klienci po stosowaniu kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-07.webp" alt="Składniki roślinne w kostce Kalmely" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-08.webp" alt="Kalmely Korean Scalp Revival Bar" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-02.webp" alt="Osoba trzymająca kostkę Kalmely" width="1080" height="1080" loading="lazy"></div>
           </div>
           <button type="button" class="hero-arrow hero-prev" aria-label="Poprzednie zdjęcie">&lsaquo;</button>
           <button type="button" class="hero-arrow hero-next" aria-label="Następne zdjęcie">&rsaquo;</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Product packshot"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Kostka w dłoni"><img src="assets/hero-02-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Produkt"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Przedziałek z czasem"><img src="assets/hero-03-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Benefits"><img src="assets/hero-04-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Customers"><img src="assets/hero-05-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Results"><img src="assets/hero-06-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Ingredients"><img src="assets/hero-07-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Closing"><img src="assets/hero-08-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Korzyści"><img src="assets/hero-04-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Klienci"><img src="assets/hero-05-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Wyniki"><img src="assets/hero-06-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Składniki"><img src="assets/hero-07-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Kostka w dłoni"><img src="assets/hero-02-thumb.webp" alt="" loading="lazy"></button>
         </div>
       </div>
 
@@ -1032,17 +1039,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
       <!-- convince strip: shown BEFORE the packs (mechanism → one proof → guarantee) -->
       <div class="hero-convince fade-slow">
-        <div class="hc">
-          <div class="hc-mech">
-            <div class="hc-eyebrow">Dlaczego nic wcześniej nie działało</div>
-            <h3>Dlaczego wcierki i ampułki nigdy nie docierały do skóry</h3>
-            <p>Szampon zasklepia ujścia mieszków włosowych, a łój zostaje pod spodem. Warstwa po warstwie. Kostka nie ma w sobie wody — wmasowana przez minutę rozpuszcza tę warstwę łoju.</p>
-            <div class="hc-diag">
-              <figure><img src="assets/grease-cap-diagram.webp" alt="Przekrój mieszka włosowego zaklejonego woskową warstwą łoju" width="560" height="560" loading="lazy"><figcaption>Zasklepiona łojem</figcaption></figure>
-              <figure><img src="assets/grease-cap-cleared.webp" alt="Przekrój mieszka włosowego oczyszczonego z osadu — skóra może oddychać" width="560" height="560" loading="lazy"><figcaption>Oczyszczona — może oddychać</figcaption></figure>
-            </div>
-          </div>
-        </div>
         <div class="hc">
           <div class="hc-proof">
             <img src="assets/beforeafter-blonde.webp" alt="Anna K., zweryfikowana klientka — przedziałek przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy">
@@ -1253,6 +1249,15 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <section class="band">
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Uczciwe porównanie</div><h2>Dlaczego kostka dociera tam, gdzie produkty spłukiwane nie docierają</h2></div>
+      <div class="mech-band fade-slow">
+        <div class="hc-eyebrow">Dlaczego nic wcześniej nie działało</div>
+            <h3>Dlaczego wcierki i ampułki nigdy nie docierały do skóry</h3>
+            <p>Szampon zasklepia ujścia mieszków włosowych, a łój zostaje pod spodem. Warstwa po warstwie. Kostka nie ma w sobie wody — wmasowana przez minutę rozpuszcza tę warstwę łoju.</p>
+            <div class="hc-diag">
+              <figure><img src="assets/grease-cap-diagram.webp" alt="Przekrój mieszka włosowego zaklejonego woskową warstwą łoju" width="560" height="560" loading="lazy"><figcaption>Zasklepiona łojem</figcaption></figure>
+              <figure><img src="assets/grease-cap-cleared.webp" alt="Przekrój mieszka włosowego oczyszczonego z osadu — skóra może oddychać" width="560" height="560" loading="lazy"><figcaption>Oczyszczona — może oddychać</figcaption></figure>
+            </div>
+      </div>
       <div class="cmp fade-slow">
         <table>
           <thead><tr><th>&nbsp;</th><th class="own">Kostka Kalmely</th><th>Inne produkty do skóry głowy</th></tr></thead>
