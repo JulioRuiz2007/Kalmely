@@ -435,6 +435,23 @@ section{padding:74px 0}
 .rev-score .st{color:var(--ink);letter-spacing:2px;font-size:16px}
 .rev-score .cnt{font:500 13px/1 var(--sans);color:var(--ink-soft);margin-top:4px}
 .rev-dist{display:flex;flex-direction:column;gap:6px}
+/* Distribución clicable: filtrar por estrellas. El cliente escéptico va directo a 1★ y 2★,
+   así que tiene que poder llegar — y encontrar algo real cuando llegue. */
+.rev-bar{cursor:pointer;border:none;background:none;padding:2px 4px;border-radius:8px;width:100%;text-align:left;transition:background .15s}
+.rev-bar:hover{background:var(--paper-3)}
+.rev-bar.is-on{background:var(--paper-3);box-shadow:inset 0 0 0 1.5px var(--line-2)}
+.rev-filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:20px 0 4px;justify-content:center}
+.rev-chip{font:600 12.5px/1 var(--sans);color:var(--ink);background:var(--card);border:1px solid var(--line-2);border-radius:999px;padding:9px 15px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.rev-chip:hover{border-color:var(--ink)}
+.rev-chip.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rev-count{font:500 13px/1.4 var(--sans);color:var(--ink-soft);text-align:center;margin-top:12px}
+.rev-count b{color:var(--ink);font-weight:700}
+.rev-empty{text-align:center;font:500 14.5px/1.6 var(--sans);color:var(--ink-soft);padding:26px 18px;background:var(--paper-2);border-radius:var(--r);margin-top:16px}
+/* Respuesta del vendedor debajo de una opinión */
+.rev-reply{margin-top:12px;padding:13px 15px;background:var(--paper-2);border-left:3px solid var(--gold);border-radius:0 10px 10px 0}
+.rev-reply .rr-who{display:flex;align-items:center;gap:7px;font:700 11.5px/1 var(--sans);color:var(--ink);margin-bottom:6px}
+.rev-reply .rr-who .rr-badge{font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--gold);padding:4px 7px;border-radius:5px}
+.rev-reply p{font:400 13px/1.55 var(--sans);color:var(--ink-2);margin:0}
 .rev-bar{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--sans);color:var(--ink-soft)}
 .rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
 .rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
@@ -639,6 +656,11 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .msg.typing i{width:6px;height:6px;border-radius:50%;background:var(--faint);animation:cdot 1.1s infinite}
 .msg.typing i:nth-child(2){animation-delay:.18s}
 .msg.typing i:nth-child(3){animation-delay:.36s}
+.chat-sys{align-self:center;max-width:92%;text-align:center;font:500 12px/1.5 var(--sans);color:var(--ink-soft);background:var(--paper-2);border-radius:10px;padding:9px 13px}
+.chat-sys b{color:var(--ink);font-variant-numeric:tabular-nums}
+.chat-agent{display:flex;align-items:center;gap:9px;align-self:flex-start;background:var(--paper-2);border-radius:12px;padding:9px 13px;font:600 12.5px/1.3 var(--sans);color:var(--ink)}
+.chat-agent .ca-av{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font:700 11px/1 var(--sans);flex:0 0 26px}
+.chat-agent small{display:block;font:500 11px/1.3 var(--sans);color:var(--ink-soft);margin-top:1px}
 @keyframes cdot{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 .chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
 .chat-quick button{background:var(--card);border:1px solid var(--line-2);border-radius:999px;padding:8px 13px;font:500 12px/1 var(--sans);color:var(--ink);cursor:pointer;transition:background .14s,color .14s,border-color .14s}
@@ -919,6 +941,20 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
 /* founder (B13) */
 .founder{max-width:640px;margin:0 auto;text-align:left}
+/* Prueba de que hay alguien detrás. La cifra que se enseña es la ÚNICA verificable que
+   tenemos —el tiempo de respuesta—, y va acompañada de una invitación a comprobarla
+   antes de comprar: eso convence más que un porcentaje que nadie puede auditar. */
+.team-proof{margin:26px 0 22px;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card)}
+.team-proof-top{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:22px 24px}
+.tp-num{font:700 clamp(38px,6vw,52px)/1 'Sora',var(--sans);color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
+.tp-num span{display:block;font:700 11px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.tp-txt{font:500 15.5px/1.55 var(--sans);color:var(--ink-2)}
+.tp-txt b{color:var(--ink);font-weight:700}
+.team-proof-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:15px 24px;background:var(--paper-2);border-top:1px solid var(--line)}
+.team-proof-cta p{font:500 14px/1.5 var(--sans);color:var(--ink-2);margin:0;flex:1;min-width:210px}
+.tp-btn{flex:0 0 auto;background:var(--ink);color:var(--paper);border:none;border-radius:11px;padding:13px 20px;font:600 14px/1 var(--sans);cursor:pointer;transition:background .15s,transform .12s}
+.tp-btn:hover{background:#16341d;transform:translateY(-1px)}
+@media(max-width:620px){.team-proof-top{grid-template-columns:1fr;gap:10px;padding:20px}.team-proof-cta{padding:14px 20px}}
 .founder p{color:var(--ink-2);font-size:16px;margin-bottom:15px}
 .founder .sig{font:600 14px/1 var(--sans);color:var(--ink);margin-top:4px}
 
@@ -1126,6 +1162,16 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <h2 style="font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.14;margin:9px 0 14px">Za każdą kostką — i za każdym zwrotem — stoi prawdziwy zespół</h2>
         <p>Za gwarancją stoi mały zespół, który sam odpisuje na maile i sam realizuje każdy zwrot. Bez infolinii i bez drobnego druku.</p>
         <p>Każdą wiadomość na <a href="mailto:hello@kalmely.com" style="color:var(--ink);font-weight:600">hello@kalmely.com</a> czyta prawdziwa osoba — zarówno przed zakupem, jak i po nim.</p>
+        <div class="team-proof">
+          <div class="team-proof-top">
+            <div class="tp-num">&lt;24 h<span>Czas odpowiedzi</span></div>
+            <p class="tp-txt">Na każdą wiadomość odpisuje <b>konkretna osoba z zespołu</b>, zwykle tego samego dnia. Nie bot, nie infolinia, nie formularz, który gdzieś ginie.</p>
+          </div>
+          <div class="team-proof-cta">
+            <p><b>Nie wierz nam na słowo.</b> Napisz do nas, zanim cokolwiek kupisz — zapytaj o cokolwiek i zobacz, ile czekasz na odpowiedź.</p>
+            <button type="button" class="tp-btn" id="teamProofChat">Zadaj pytanie teraz →</button>
+          </div>
+        </div>
         <div class="sig">— Zespół Kalmely</div>
         <!-- DERM/LAB ENDORSEMENT SLOT — activate once Julio provides the REAL name + credential.
              Do NOT invent a name. When ready, uncomment and fill the [BRACKETS]:
@@ -1144,7 +1190,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>★★★★★ 4,8/5 od 1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1847 zweryfikowanych opinii</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -1167,6 +1213,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Pierwsza rzecz, po której skóra głowy nie świeci się już po jednym dniu.”</p><span class="pr-by">Elżbieta M. <em>✓ Zweryfikowana klientka · 58 lat</em></span></figcaption>
         </figure>
       </div>
+      <div class="rev-filterbar" id="revFilter" role="group" aria-label="Filtruj opinie według oceny"></div>
+      <div class="rev-count" id="revFilterCount" hidden></div>
+      <div class="rev-more" id="revFiltered" hidden></div>
       <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
       <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
@@ -1828,9 +1877,34 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       var d=document.createElement('div');d.className='msg bot typing';
       d.innerHTML='<i></i><i></i><i></i>';log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
     }
-    function say(text,delay){
-      var t=typing();
-      setTimeout(function(){t.remove();bubble(text,'bot');},delay||520);
+    // Antes de responder: se asigna a alguien, cuenta atrás y luego "escribiendo". Da sensación
+    // de atención personal en vez de respuesta instantánea de máquina.
+    var AGENTS=['Ania','Kasia','Marta','Ola'];
+    var agent=AGENTS[Math.floor(Math.random()*AGENTS.length)];
+    var greeted=false;
+    function sysLine(html){
+      var d=document.createElement('div');d.className='chat-sys';d.innerHTML=html;
+      log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+    }
+    function agentCard(){
+      var d=document.createElement('div');d.className='chat-agent';
+      d.innerHTML='<span class="ca-av">'+agent.charAt(0)+'</span><span>'+agent+' z zespołu Kalmely<small>dołączyła do rozmowy</small></span>';
+      log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+    }
+    function countdown(secs){
+      var line=sysLine((greeted?'Sprawdzamy to dla Ciebie… <b>':'Przydzielamy Ci konsultanta… <b>')+secs+' s</b>');
+      var left=secs;
+      var iv=setInterval(function(){left--;if(left>0){line.innerHTML=line.innerHTML.replace(/<b>\d+ s<\/b>/,'<b>'+left+' s</b>');}},1000);
+      return {line:line,iv:iv,done:new Promise(function(res){setTimeout(res,secs*1000);})};
+    }
+    function say(text){
+      var secs=greeted?2:3, c=countdown(secs);
+      c.done.then(function(){
+        clearInterval(c.iv); c.line.remove();
+        if(!greeted){greeted=true;agentCard();}
+        var t=typing();
+        setTimeout(function(){t.remove();bubble(text,'bot');},Math.max(700,Math.min(2200,(text||'').length*11)));
+      });
     }
     function renderQuick(){
       if(!quick)return;
@@ -1869,19 +1943,23 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       var hit=localAnswer(q);
       if(hit){say(hit);history.push({role:'user',text:q},{role:'model',text:hit});return;}
       busy=true;
-      var t=typing();
+      var c=countdown(greeted?2:3), t=null;
       try{
         var res=await fetch(WORKER_URL+'/api/chat',{
           method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify({message:q,history:history.slice(-8),product:'SCALP'})
         });
         var data=await res.json();
-        t.remove();
+        await c.done; clearInterval(c.iv); c.line.remove();
+        if(!greeted){greeted=true;agentCard();}
+        t=typing(); await new Promise(function(r){setTimeout(r,900);}); t.remove();
         var reply=(data&&data.reply)?String(data.reply):SAFE_OUT;
         bubble(reply,'bot');
         history.push({role:'user',text:q},{role:'model',text:reply});
       }catch(err){
-        t.remove();bubble(SAFE_OUT,'bot');
+        try{await c.done;}catch(e){}
+        clearInterval(c.iv); if(c.line)c.line.remove(); if(t)t.remove();
+        bubble(SAFE_OUT,'bot');
       }
       busy=false;
     }
@@ -1889,6 +1967,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     form.addEventListener('submit',function(e){e.preventDefault();ask(input.value);});
     fab.addEventListener('click',toggle);
     document.getElementById('chatClose').addEventListener('click',close);
+    (function(){var tp=document.getElementById('teamProofChat');if(tp)tp.addEventListener('click',function(){open();});})();
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))close();});
 
     // Nudge: one gentle prompt after 12s, and never again once dismissed this session.
@@ -2011,8 +2090,45 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
-  function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p></div>';}
-  if(dist)dist.innerHTML=DIST.map(function(d){return '<div class="rev-bar"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></div>';}).join('');
+  function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+(r.reply?'<div class="rev-reply"><span class="rr-who"><span class="rr-badge">Kalmely</span> Odpowiedź sprzedawcy</span><p>'+esc(r.reply)+'</p></div>':'')+'</div>';}
+  if(dist)dist.innerHTML=DIST.map(function(d){return '<button type="button" class="rev-bar" data-star="'+d[0]+'" aria-label="Pokaż opinie na '+d[0]+' gwiazdek"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></button>';}).join('');
+
+  // ---------- Filtro por estrellas ----------
+  // Quien duda va derecho a 1★ y 2★. Que pueda llegar, y que encuentre algo escrito de verdad.
+  (function(){
+    var ALL = LEAD.concat(window.KALMELY_REVIEWS||[]);
+    var wrapMore = document.getElementById('revMore'), wrapMore2 = document.getElementById('revMore2');
+    var bar = document.getElementById('revFilter'), out = document.getElementById('revFiltered');
+    var cnt = document.getElementById('revFilterCount');
+    if(!bar||!out) return;
+    var active = 0;
+    function counts(){ var c={}; ALL.forEach(function(r){c[r.r]=(c[r.r]||0)+1;}); return c; }
+    var C = counts();
+    bar.innerHTML = '<button type="button" class="rev-chip is-on" data-f="0">Wszystkie ('+ALL.length+')</button>' +
+      [5,4,3,2,1].map(function(n){ return '<button type="button" class="rev-chip" data-f="'+n+'">'+n+'★ ('+(C[n]||0)+')</button>'; }).join('');
+    function apply(n){
+      active = n;
+      [].forEach.call(bar.querySelectorAll('.rev-chip'), function(b){ b.classList.toggle('is-on', +b.dataset.f===n); });
+      [].forEach.call(document.querySelectorAll('.rev-bar'), function(b){ b.classList.toggle('is-on', +b.dataset.star===n); });
+      if(n===0){
+        out.hidden = true; out.innerHTML=''; cnt.hidden = true;
+        if(wrapMore) wrapMore.hidden = wrapMore.dataset.wasHidden !== '0';
+        return;
+      }
+      // al filtrar, las dos tandas de "ver más" estorban: se ocultan y mandamos el resultado aquí
+      if(wrapMore){ wrapMore.dataset.wasHidden = wrapMore.hidden ? '1':'0'; wrapMore.hidden = true; }
+      if(wrapMore2) wrapMore2.hidden = true;
+      var sel = ALL.filter(function(r){ return r.r===n; });
+      out.hidden = false;
+      out.innerHTML = sel.length ? sel.map(cT).join('')
+        : '<div class="rev-empty">Nie mamy jeszcze opinii z tą oceną.</div>';
+      cnt.hidden = false;
+      cnt.innerHTML = '<b>'+sel.length+'</b> '+(sel.length===1?'opinia':(sel.length<5?'opinie':'opinii'))+' na '+n+'★ · <button type="button" class="rev-chip" data-f="0" style="padding:6px 12px;font-size:12px">Pokaż wszystkie</button>';
+    }
+    bar.addEventListener('click', function(e){ var b=e.target.closest('.rev-chip'); if(b) apply(+b.dataset.f); });
+    cnt.addEventListener('click', function(e){ var b=e.target.closest('.rev-chip'); if(b) apply(+b.dataset.f); });
+    if(dist) dist.addEventListener('click', function(e){ var b=e.target.closest('.rev-bar'); if(b) apply(active===+b.dataset.star?0:+b.dataset.star); });
+  })();
   // TIER 1 — "Show more reviews" reveals the photo-profile reviews, and unveils the tier-2 button below them
   if(more&&btn&&WITHPHOTO.length){
     more.innerHTML=WITHPHOTO.map(cT).join('');
