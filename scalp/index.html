@@ -447,11 +447,15 @@ section{padding:74px 0}
 .rev-count{font:500 13px/1.4 var(--sans);color:var(--ink-soft);text-align:center;margin-top:12px}
 .rev-count b{color:var(--ink);font-weight:700}
 .rev-empty{text-align:center;font:500 14.5px/1.6 var(--sans);color:var(--ink-soft);padding:26px 18px;background:var(--paper-2);border-radius:var(--r);margin-top:16px}
+/* Con 1-2 resultados, tres columnas dejan la mitad del ancho vacío. */
+#revFiltered.few-1{columns:1;max-width:560px;margin-left:auto;margin-right:auto}
+#revFiltered.few-2{columns:2}
 /* Respuesta del vendedor debajo de una opinión */
 .rev-reply{margin-top:12px;padding:13px 15px;background:var(--paper-2);border-left:3px solid var(--gold);border-radius:0 10px 10px 0}
 .rev-reply .rr-who{display:flex;align-items:center;gap:7px;font:700 11.5px/1 var(--sans);color:var(--ink);margin-bottom:6px}
 .rev-reply .rr-who .rr-badge{font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--gold);padding:4px 7px;border-radius:5px}
 .rev-reply p{font:400 13px/1.55 var(--sans);color:var(--ink-2);margin:0}
+.rev-reply p b{color:var(--ink);font-weight:700}
 .rev-bar{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--sans);color:var(--ink-soft)}
 .rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
 .rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
@@ -1190,7 +1194,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1847 zweryfikowanych opinii</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -2090,7 +2094,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   function st(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s;}
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   // First 4 reviews are shown as the big photo cards (hard-coded in HTML). The rest (no big photo) live behind Show more.
-  function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Verified Buyer · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+(r.reply?'<div class="rev-reply"><span class="rr-who"><span class="rr-badge">Kalmely</span> Odpowiedź sprzedawcy</span><p>'+esc(r.reply)+'</p></div>':'')+'</div>';}
+  function cT(r){var av=r.av?'<span class="av"><img src="assets/'+r.av+'.webp" alt="'+esc(r.n)+'" width="84" height="84" loading="lazy"></span>':'<span class="av av-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5.5 19.6a6.6 6.6 0 0 1 13 0"/></svg></span>';return '<div class="review" data-r="'+r.r+'"><div class="rh">'+av+'<span><span class="nm">'+esc(r.n)+'</span><span class="vf">✓ Zweryfikowany zakup · '+esc(r.d)+'</span></span></div><div class="st">'+st(r.r)+'</div><div class="rt">'+esc(r.t)+'</div><p>'+esc(r.b)+'</p>'+(r.reply?'<div class="rev-reply"><span class="rr-who"><span class="rr-badge">Kalmely</span> Odpowiedź sprzedawcy</span><p>'+esc(r.reply).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')+'</p></div>':'')+'</div>';}
   if(dist)dist.innerHTML=DIST.map(function(d){return '<button type="button" class="rev-bar" data-star="'+d[0]+'" aria-label="Pokaż opinie na '+d[0]+' gwiazdek"><span class="lab">'+d[0]+'★</span><span class="track"><span class="fill" style="width:'+d[1]+'%"></span></span><span class="pct">'+d[1]+'%</span></button>';}).join('');
 
   // ---------- Filtro por estrellas ----------
@@ -2120,6 +2124,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       if(wrapMore2) wrapMore2.hidden = true;
       var sel = ALL.filter(function(r){ return r.r===n; });
       out.hidden = false;
+      out.className = 'rev-more' + (sel.length===1?' few-1':(sel.length===2?' few-2':''));
       out.innerHTML = sel.length ? sel.map(cT).join('')
         : '<div class="rev-empty">Nie mamy jeszcze opinii z tą oceną.</div>';
       cnt.hidden = false;
