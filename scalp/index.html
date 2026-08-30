@@ -290,15 +290,16 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 /* Compacto como la referencia: cada fila es una línea de título y otra de duración,
    nada más. Los regalos se listan debajo, en "Co jest w zestawie", no dentro de la fila. */
 .pack{position:relative;display:grid;grid-template-columns:auto 1fr auto;column-gap:14px;align-items:center;background:var(--card);border:1.5px solid #DCD9D0;border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;width:100%;transition:border-color .15s,background .15s}
-.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:20px;height:20px;border:2px solid #C9C6BC;border-radius:50%;align-self:center;transition:border-color .15s,box-shadow .15s,background .15s}
+.pack::before{content:"";grid-column:1;grid-row:1 / span 3;width:20px;height:20px;border:2px solid #C9C6BC;border-radius:50%;align-self:center;transition:border-color .15s,box-shadow .15s,background .15s}
 .pack:hover{border-color:var(--ink-soft)}
 .pack.is-selected{border-color:var(--ink);background:#F6F9F4}
 .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 4px #fff}
 .pack-qty{grid-column:2;grid-row:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 17px/1.2 var(--sans);color:var(--ink);letter-spacing:-.01em}
 .pack-save{font:600 11.5px/1 var(--sans);color:var(--ink-2);background:#F3EDE4;border-radius:5px;padding:4px 7px;white-space:nowrap}
 .pack-unit{grid-column:2;grid-row:2;font:italic 500 15px/1.25 var(--serif);color:#8A8A80;margin-top:2px}
-.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 19px/1.15 var(--sans);color:var(--ink);white-space:nowrap;letter-spacing:-.01em}
+.pack-price{grid-column:3;grid-row:1;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 19px/1.15 var(--sans);color:var(--ink);white-space:nowrap;letter-spacing:-.01em}
 .pack-price s{font:400 14.5px/1.2 var(--sans);color:#A9A69E;margin-top:2px}
+.pack-gift{grid-column:3;grid-row:2;justify-self:end;font:700 11px/1 var(--sans);color:var(--ok);background:#F6EDE4;border-radius:5px;padding:4px 8px;white-space:nowrap;margin-top:5px}
 .pack-badge{position:absolute;top:0;right:0;left:auto;width:max-content;transform:translateY(-52%);font:700 9.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 10px;border-radius:5px 5px 0 5px;white-space:nowrap;z-index:2}
 .pack-badge.alt{background:var(--gold)}
 @media(max-width:430px){.pack{padding:13px 14px;column-gap:11px}.pack-qty{font-size:15.5px}.pack-price{font-size:17.5px}.pack-price s{font-size:13.5px}.pack-unit{font-size:14px}.pack-save{font-size:11px;padding:3px 6px}}
@@ -310,30 +311,11 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .pack-thumb .ph svg{display:none}
 
 /* includes list */
-.includes{margin-top:18px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-.inc-h{font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
-.inc-list{list-style:none}
-.inc-row{display:flex;align-items:center;gap:10px;padding:6px 0;font:500 14px/1.3 var(--sans);color:var(--ink-2)}
-.inc-check{color:var(--ok);font-weight:700;flex:0 0 auto}
-.inc-name{flex:1}
-.inc-desc{display:block;font:400 11.5px/1.45 var(--sans);color:var(--ink-soft);margin-top:3px}
-.inc-row.gift{align-items:flex-start}
-.inc-val{font-size:12.5px;white-space:nowrap}
-.inc-val s{margin-right:5px}
-.inc-free{color:var(--ok);font-weight:700;letter-spacing:.02em}
 .inc-inc{color:var(--ink-soft);font-weight:600}
-.inc-row.gift{padding:9px 0}
-.inc-img{width:46px;height:46px;flex:0 0 auto;border-radius:9px;object-fit:cover;background:#fff;border:1px solid var(--line)}
 /* pack bundle preview (swaps with the selected pack) */
 .pack-preview{text-align:center;margin:0 0 14px}
 #packImage{display:block;margin:0 auto;max-width:100%;max-height:230px;width:auto;height:auto;object-fit:contain;border-radius:12px;transition:opacity .18s ease}
-.inc-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font:500 12px/1.4 var(--sans);color:var(--ink-soft)}
-.inc-row.inc-total{border-top:1.5px solid var(--line-2);margin-top:5px;padding-top:12px}
-.inc-total .inc-name{font:700 14px/1.3 var(--sans);color:var(--ink)}
-.inc-total .inc-val{font-size:13px;white-space:nowrap}
-.inc-total .inc-val s{color:var(--ink-soft);font-weight:500}
-.inc-today{color:var(--ink);font-weight:800;margin-left:7px}
-
+.inc-total .inc-total .inc-total 
 /* add to cart + reassurance */
 .add-to-cart{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:18px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;transition:background .15s,transform .12s}
 .add-to-cart:hover{background:#000;transform:translateY(-1px)}
@@ -1126,8 +1108,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
         </div>
 
-        <div class="pack-gifts" id="packGifts"></div>
-
         <label class="sub-optin"><input type="checkbox" id="subOptin"><span>Subskrybuj i oszczędzaj 15% — automatycznie wysyłamy TEN SAM zestaw, gdy przyjdzie czas (1 kostka ~co 2 miesiące · 2 kostki ~co 3–4 · 3 kostki ~co 5–6). Prezenty tylko przy pierwszym zamówieniu. Anulujesz jednym kliknięciem.</span></label>
 
         <button type="button" class="add-to-cart">Do koszyka — <span class="cta-price">99 zł</span></button>
@@ -1563,28 +1543,27 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   // No colour variant for the oil — keep the picker containers empty.
   function renderPicker(){ pickerEls.forEach(function(el){el.innerHTML='';}); }
   // free-bundle shown as an itemised "What's included" list — the 4 gifts only on the bundle pack
-  function renderGifts(sku){
-    var el=document.getElementById('packGifts');if(!el)return;var t=info(sku);
-    el.className='includes';
-    var count=({'SCALP-1':1,'SCALP-2':2,'SCALP-3':3})[sku]||1;
-    var barReg=count*69; // ancla = precio de 1 kostka × unidades (2 kostki 138 zł, 3 kostki 207 zł)
-    var barVal=(count>1)?'<s>'+money(barReg)+'</s>':money(barReg); // struck bundle anchor only when there's a multi-bar discount
-    var bar='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">'+({1:'Kalmely — 1 kostka',2:'Kalmely — 2 kostki',3:'Kalmely — 3 kostki'}[count]||('Kalmely — '+count+' kostki'))+'</span><span class="inc-val">'+barVal+'</span></li>';
-    var giftTotal=0;
-    // Una línea por regalo, sin descripción: aquí basta con QUÉ entra y cuánto vale.
-    // El detalle se cuenta en el carrito, cuando ya ha decidido comprar.
-    var gifts=(t.gifts||[]).map(function(g){giftTotal+=parseInt(g[1],10)||0;return '<li class="inc-row gift"><img class="inc-ico inc-img" src="assets/'+(g[2]||'')+'.webp" alt="" width="34" height="34" loading="lazy">'+'<span class="inc-name">'+g[0]+'</span>'+'<span class="inc-val"><s>'+money(parseInt(g[1],10)||0)+'</s> <b class="inc-free">GRATIS</b></span></li>';}).join('');
-    var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Darmowa dostawa</span><span class="inc-val"><b class="inc-free">GRATIS</b></span></li>';
-    var totalValue=barReg+giftTotal;
-    var total='<li class="inc-row inc-total"><span class="inc-name">Łączna wartość</span><span class="inc-val"><s>'+money(totalValue)+'</s> <b class="inc-today">Dziś '+money(t.price)+'</b></span></li>';
-    el.innerHTML='<div class="inc-h">Co jest w zestawie</div><ul class="inc-list">'+bar+gifts+ship+total+'</ul><div class="inc-foot">✓ 60 dni gwarancji zwrotu pieniędzy</div>';
+  // El desglose largo se retiró: cada fila muestra solo cuántos regalos entran.
+  // El contador sale de la oferta real (info(sku).gifts), así que si se añade o quita
+  // un regalo en TIERS el número se actualiza solo.
+  function giftWord(n){ return n===1 ? 'prezent' : (n<5 ? 'prezenty' : 'prezentów'); }
+  function renderGifts(){
+    document.querySelectorAll('.pack').forEach(function(p){
+      var t=TIERS[p.dataset.sku]; if(!t)return;
+      var n=(t.gifts||[]).length;
+      var tag=p.querySelector('.pack-gift');
+      if(!n){ if(tag)tag.remove(); return; }
+      if(!tag){ tag=document.createElement('span'); tag.className='pack-gift'; p.appendChild(tag); }
+      tag.textContent='+'+n+' '+giftWord(n);
+    });
   }
+
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
   function select(sku,persist){
     if(![].some.call(packs,function(p){return p.dataset.sku===sku;}))sku=DEFAULT;
     curSku=sku;
     packs.forEach(function(p){var on=p.dataset.sku===sku;p.classList.toggle('is-selected',on);p.setAttribute('aria-checked',on?'true':'false');if(on)curPrice=p.dataset.price;});
-    renderPicker(lineMath().qty);updateCtas();renderGifts(sku);
+    renderPicker(lineMath().qty);updateCtas();renderGifts();
     // (la vista previa del pack se retiró del buybox: repetía el carrusel)
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the 6 functional slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
