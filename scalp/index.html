@@ -962,6 +962,51 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .tp-btn:hover{background:#16341d;transform:translateY(-1px)}
 @media(max-width:620px){.team-proof-top{grid-template-columns:1fr;gap:10px;padding:20px}.team-proof-cta{padding:14px 20px}}
 .founder p{color:var(--ink-2);font-size:16px;margin-bottom:15px}
+/* ===== El equipo (rediseño 31-ago-2026) =====
+   Dos columnas: el sello + los tres hechos a un lado, la carta al otro. El sello
+   reutiliza a propósito el círculo de la garantía: es el mismo gesto, así que la
+   página gana coherencia en vez de un componente nuevo más. */
+.founder2{display:grid;grid-template-columns:272px 1fr;gap:46px;align-items:start}
+.fd-aside{display:flex;flex-direction:column;align-items:center;gap:22px}
+.fd-seal{width:158px;height:158px;border-radius:50%;border:2px solid var(--ink);
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+ background:var(--card);box-shadow:0 0 0 7px var(--paper-2),0 0 0 8px var(--line-2)}
+.fd-seal b{font:600 clamp(30px,4vw,37px)/1 'Fraunces',var(--serif);color:var(--ink);letter-spacing:-.01em}
+.fd-seal span{font:700 9.5px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center}
+.fd-facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;width:100%}
+.fd-facts li{display:flex;gap:10px;align-items:flex-start;font:500 14px/1.4 var(--sans);color:var(--ink-2)}
+.fd-facts li b{color:var(--ink);font-weight:700}
+.fd-facts svg{width:17px;height:17px;flex:0 0 17px;margin-top:1px;color:var(--gold)}
+.fd-body{max-width:560px}
+.fd-h2{font:600 clamp(25px,3.1vw,34px)/1.13 'Fraunces',var(--serif);color:var(--ink);letter-spacing:-.01em;margin:9px 0 15px}
+.fd-body p{color:var(--ink-2);font-size:16px;line-height:1.62;margin-bottom:15px}
+.fd-body a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.fd-body .sig{font:600 14px/1 var(--sans);color:var(--ink);margin-top:2px}
+/* La invitación a escribir ANTES de comprar: es la prueba de que el <24 h es
+   comprobable, así que va en barra propia y a todo el ancho, no escondida. */
+.fd-invite{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:34px;
+ padding:18px 22px;background:var(--card);border:1.5px solid var(--ink);border-radius:16px}
+.fd-invite p{flex:1;min-width:250px;margin:0;font:500 14.5px/1.55 var(--sans);color:var(--ink-2)}
+.fd-invite p b{color:var(--ink);font-weight:700}
+.fd-btn{flex:0 0 auto;background:var(--ink);color:var(--paper);border:0;cursor:pointer;
+ font:700 14px/1 var(--sans);padding:14px 20px;border-radius:10px;transition:background .15s,transform .12s}
+.fd-btn:hover{background:#000;transform:translateY(-1px)}
+@media(max-width:820px){
+  .founder2{grid-template-columns:1fr;gap:28px}
+  .fd-aside{flex-direction:row;align-items:center;gap:20px;flex-wrap:wrap}
+  /* el sello encoge, pero "CZAS ODPOWIEDZI" no: a 9.5px con .14em se salía del
+     círculo por los dos lados. Se aprieta el tracking y se le deja partir en dos. */
+  .fd-seal{width:126px;height:126px;flex:0 0 126px;gap:5px;box-shadow:0 0 0 5px var(--paper-2),0 0 0 6px var(--line-2)}
+  .fd-seal b{font-size:29px}
+  .fd-seal span{font-size:8px;letter-spacing:.07em;line-height:1.25;max-width:104px}
+  .fd-facts{flex:1;min-width:210px}
+  .fd-body{max-width:none}
+}
+@media(max-width:560px){
+  .fd-aside{flex-direction:column;align-items:flex-start}
+  .fd-invite{padding:16px 18px}
+  .fd-btn{width:100%;text-align:center}
+}
 .founder .sig{font:600 14px/1 var(--sans);color:var(--ink);margin-top:4px}
 
 @media(max-width:620px){
@@ -1250,25 +1295,37 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     </div>
   </section>
 
-  <section>
-    <div class="wrap" style="max-width:680px">
-      <div class="founder fade-slow">
-        <div class="eyebrow" style="text-align:left">Zespół, który stoi za kostką</div>
-        <h2 style="font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.14;margin:9px 0 14px">Za każdą kostką — i za każdym zwrotem — stoi prawdziwy zespół</h2>
-        <p>Za gwarancją stoi mały zespół, który sam odpisuje na maile i sam realizuje każdy zwrot. Bez infolinii i bez drobnego druku.</p>
-        <p>Każdą wiadomość na <a href="mailto:hello@kalmely.com" style="color:var(--ink);font-weight:600">hello@kalmely.com</a> czyta prawdziwa osoba — zarówno przed zakupem, jak i po nim.</p>
-        <div class="team-proof">
-          <div class="team-proof-top">
-            <div class="tp-num">&lt;24 h<span>Czas odpowiedzi</span></div>
-            <p class="tp-txt">Na każdą wiadomość odpisuje <b>konkretna osoba z zespołu</b>, zwykle tego samego dnia. Nie bot, nie infolinia, nie formularz, który gdzieś ginie.</p>
-          </div>
-          <div class="team-proof-cta">
-            <p><b>Nie wierz nam na słowo.</b> Napisz do nas, zanim cokolwiek kupisz — zapytaj o cokolwiek i zobacz, ile czekasz na odpowiedź.</p>
-            <button type="button" class="tp-btn" id="teamProofChat">Zadaj pytanie teraz →</button>
-          </div>
+  <!-- El equipo: la única sección sin nada visual, y se notaba al lado del resto.
+       No hay foto real del equipo y meter una modelo de producto aquí sería mentir,
+       así que el peso visual lo lleva el sello — el mismo lenguaje del sello de 60 días
+       que ya funciona más abajo — más los tres hechos operativos con marca. -->
+  <section class="band">
+    <div class="wrap" style="max-width:1010px">
+      <div class="founder2 fade-slow">
+        <aside class="fd-aside">
+          <div class="fd-seal"><b>&lt;24 h</b><span>Czas odpowiedzi</span></div>
+          <ul class="fd-facts">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Odpisuje <b>osoba z zespołu</b>, nie bot</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 16 16"/><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.7"/></svg><span>Bez infolinii i bez formularzy</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Zwrot <b>bez odsyłania</b> kostki</span></li>
+          </ul>
+        </aside>
+
+        <div class="fd-body">
+          <div class="eyebrow" style="text-align:left">Zespół, który stoi za kostką</div>
+          <h2 class="fd-h2">Za każdą kostką — i za każdym zwrotem — stoi prawdziwy zespół</h2>
+          <p>Za gwarancją stoi mały zespół, który sam odpisuje na maile i sam realizuje każdy zwrot. Bez infolinii i bez drobnego druku.</p>
+          <p>Na każdą wiadomość odpisuje <b>konkretna osoba z zespołu</b>, zwykle tego samego dnia. Każdą wiadomość na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> czyta prawdziwy człowiek — zarówno przed zakupem, jak i po nim.</p>
+          <div class="sig">— Zespół Kalmely</div>
         </div>
-        <div class="sig">— Zespół Kalmely</div>
-        <!-- DERM/LAB ENDORSEMENT SLOT — activate once Julio provides the REAL name + credential.
+      </div>
+
+      <div class="fd-invite fade-slow">
+        <p><b>Nie wierz nam na słowo.</b> Napisz do nas, zanim cokolwiek kupisz — zapytaj o cokolwiek i zobacz, ile czekasz na odpowiedź.</p>
+        <button type="button" class="fd-btn" id="teamProofChat">Zadaj pytanie teraz →</button>
+      </div>
+
+      <!-- DERM/LAB ENDORSEMENT SLOT — activate once Julio provides the REAL name + credential.
              Do NOT invent a name. When ready, uncomment and fill the [BRACKETS]:
         <div class="derm-endorse" style="margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;display:flex;gap:12px;align-items:center">
           <img src="assets/[DERM-PHOTO].webp" alt="[Dr. NAME], [credential]" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 56px">
@@ -1278,7 +1335,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
         </div>
         -->
-      </div>
     </div>
   </section>
 
