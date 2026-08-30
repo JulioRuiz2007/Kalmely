@@ -286,33 +286,30 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .cdot-black{background:#1a1a1a}.cdot-pink{background:#e7a6b4}
 
 /* quantity tier cards (with thumbnails inside) */
-.packs{display:flex;flex-direction:column;gap:12px}
-/* Tres filas: radio · nombre + ahorro · duración en cursiva · precio a la derecha con el
-   anclaje tachado debajo. La etiqueta cuelga del borde superior derecho. */
-.pack{position:relative;display:grid;grid-template-columns:auto 1fr auto;column-gap:15px;align-items:center;background:var(--card);border:2px solid var(--line-2);border-radius:13px;padding:17px 19px;cursor:pointer;text-align:left;width:100%;transition:border-color .15s,background .15s}
-.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:21px;height:21px;border:2px solid var(--line-2);border-radius:50%;align-self:center;transition:border-color .15s,box-shadow .15s,background .15s}
+.packs{display:flex;flex-direction:column;gap:14px}
+/* Réplica del layout de referencia: radio · acción en negrita + pastilla con lo que
+   recibes · duración en cursiva debajo · precio grande a la derecha con el anclaje
+   tachado · etiqueta colgada del borde. Todo con cuerpo suficiente para leerse de un
+   vistazo, que era el problema de la versión anterior. */
+.pack{position:relative;display:grid;grid-template-columns:auto 1fr auto;column-gap:16px;align-items:center;background:var(--card);border:2px solid #DCD9D0;border-radius:14px;padding:20px 22px;cursor:pointer;text-align:left;width:100%;transition:border-color .15s,background .15s}
+.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:24px;height:24px;border:2.5px solid #C9C6BC;border-radius:50%;align-self:center;transition:border-color .15s,box-shadow .15s,background .15s}
 .pack:hover{border-color:var(--ink-soft)}
-.pack.is-selected{border-color:var(--ink);background:#F7FAF6}
-.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 4px #fff}
-.pack-qty{grid-column:2;grid-row:1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;font:700 18px/1.25 var(--sans);color:var(--ink)}
-.pack-save{font:700 11.5px/1 var(--sans);color:var(--ok);background:#F6EDE4;border-radius:6px;padding:5px 8px;white-space:nowrap}
-.pack-unit{grid-column:2;grid-row:2;font:italic 500 14px/1.35 var(--sans);color:var(--ink-soft);margin-top:3px}
-.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 21px/1.15 var(--sans);color:var(--ink);white-space:nowrap}
-.pack-price s{font:500 15px/1.2 var(--sans);color:var(--faint);margin-top:3px}
-.pack-banner{grid-column:2 / -1;grid-row:3;justify-self:start;margin-top:10px;font:600 11.5px/1.3 var(--sans);color:var(--ok);background:#F7EFE7;border-radius:20px;padding:6px 11px}
-.pack-badge{position:absolute;top:0;right:16px;left:auto;width:max-content;transform:translateY(-50%);font:700 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:6px 11px;border-radius:6px;white-space:nowrap;z-index:2}
+.pack.is-selected{border-color:var(--ink);background:#F6F9F4}
+.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 5px #fff}
+.pack-qty{grid-column:2;grid-row:1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:700 20px/1.2 var(--sans);color:var(--ink);letter-spacing:-.01em}
+.pack-save{font:600 13px/1 var(--sans);color:var(--ink-2);background:#F3EDE4;border-radius:7px;padding:6px 10px;white-space:nowrap}
+.pack-unit{grid-column:2;grid-row:2;font:italic 500 17px/1.3 var(--serif);color:#8A8A80;margin-top:4px}
+.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 23px/1.15 var(--sans);color:var(--ink);white-space:nowrap;letter-spacing:-.01em}
+.pack-price s{font:400 17px/1.2 var(--sans);color:#A9A69E;margin-top:4px}
+.pack-banner{grid-column:2 / -1;grid-row:3;justify-self:start;margin-top:11px;font:600 12px/1.3 var(--sans);color:var(--ok);background:#F7EFE7;border-radius:20px;padding:6px 12px}
+.pack-badge{position:absolute;top:0;right:18px;left:auto;width:max-content;transform:translateY(-50%);font:700 11px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:7px 13px;border-radius:7px;white-space:nowrap;z-index:2}
 .pack-badge.alt{background:var(--gold)}
-@media(max-width:420px){.pack{padding:15px 16px}.pack-qty{font-size:16.5px}.pack-price{font-size:19px}}
-.pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
-.pack-badge.alt{background:var(--gold);color:#fff}
+@media(max-width:430px){.pack{padding:17px 16px;column-gap:13px}.pack-qty{font-size:18px}.pack-price{font-size:20px}.pack-price s{font-size:15px}.pack-unit{font-size:15.5px}.pack-save{font-size:12px;padding:5px 8px}}
+
 .pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
 .pack-thumb .ph{width:100%;height:100%}
 .pack-thumb .ph span{font-size:13px;letter-spacing:.02em;color:var(--ink-soft);font-weight:700}
 .pack-thumb .ph svg{display:none}
-.pack-qty{font:600 13px/1 var(--sans)}
-.pack-unit{font:600 11px/1.2 var(--sans);color:var(--ink-soft)}
-.pack-price{font:700 17px/1 var(--sans);margin-top:2px}
-.pack-price s{font-size:11px;font-weight:500;margin-left:5px}
 
 /* includes list */
 .includes{margin-top:18px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -1010,13 +1007,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   .pack{width:100%;display:grid;grid-template-columns:22px 1fr auto;grid-template-areas:"radio qty price" "radio unit price" "banner banner banner";align-items:center;column-gap:12px;row-gap:1px;text-align:left;padding:14px 16px;min-height:72px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
-  .pack-qty{grid-area:qty;align-self:end;font:700 16px/1.15 var(--sans)}
-  .pack-unit{grid-area:unit;align-self:start;font:600 12.5px/1.3 var(--sans);color:var(--ink-soft)}
-  .pack-price{grid-area:price;justify-self:end;text-align:right;font:700 19px/1 var(--sans);margin-top:0}
-  .pack-price s{font-size:13px;margin-left:6px}
-  .pack .pack-banner{grid-area:banner;justify-self:start;margin-top:8px;font:700 11px/1.2 var(--sans);padding:5px 9px}
-  .pack-badge{font-size:9px;padding:4px 10px}
-  .pack .pack-sub{display:none}
+          .pack     .pack .pack-sub{display:none}
   /* CTA + dividers + warning spacing */
   .add-to-cart{margin-top:16px;margin-bottom:6px}
   .sale-divider{font-size:13px;margin:6px 0 12px}
@@ -1118,22 +1109,22 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <div class="sale-divider">Promocja – tylko przez ograniczony czas</div>
           <div class="packs" id="packs" role="radiogroup" aria-label="Wybierz zestaw">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
-              <span class="pack-qty">1 kostka</span>
+              <span class="pack-qty">Kup 1 <span class="pack-save">1 kostka</span></span>
               <span class="pack-unit">Zapas na 30 dni</span>
               <span class="pack-price">69 zł</span>
               <span class="pack-banner">🎁 E-book i dostawa gratis</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
               <span class="pack-badge">★ Najczęściej wybierany</span>
-              <span class="pack-qty">2 kostki <span class="pack-save">−28%</span></span>
+              <span class="pack-qty">Kup 2 <span class="pack-save">2 kostki</span></span>
               <span class="pack-unit">Zapas na 60 dni</span>
               <span class="pack-price">99 zł<s>138 zł</s></span>
               <span class="pack-banner">🎁 E-book i dostawa gratis</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Najlepsza cena</span>
-              <span class="pack-qty">3 kostki <span class="pack-save">−33%</span></span>
-              <span class="pack-unit">Zapas na 90 dni</span>
+              <span class="pack-qty">Kup 3 <span class="pack-save">3 kostki</span></span>
+              <span class="pack-unit">Rytuał na 90 dni</span>
               <span class="pack-price">139 zł<s>207 zł</s></span>
               <span class="pack-banner">🎁 Serum, e-book i dostawa gratis</span>
             </button>
@@ -1375,15 +1366,15 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,8/5 · 1847 zweryfikowanych klientów</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Wybierz zestaw" style="max-width:690px;margin:18px auto 0">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
-          <span class="pack-qty">1 kostka</span><span class="pack-unit">Zapas na 30 dni</span><span class="pack-price">69 zł</span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
+          <span class="pack-qty">Kup 1 <span class="pack-save">1 kostka</span></span><span class="pack-unit">Zapas na 30 dni</span><span class="pack-price">69 zł</span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
           <span class="pack-badge">★ Najczęściej wybierany</span>
-          <span class="pack-qty">2 kostki <span class="pack-save">−28%</span></span><span class="pack-unit">Zapas na 60 dni</span><span class="pack-price">99 zł<s>138 zł</s></span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
+          <span class="pack-qty">Kup 2 <span class="pack-save">2 kostki</span></span><span class="pack-unit">Zapas na 60 dni</span><span class="pack-price">99 zł<s>138 zł</s></span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
           <span class="pack-badge alt">★ Najlepsza cena</span>
-          <span class="pack-qty">3 kostki <span class="pack-save">−33%</span></span><span class="pack-unit">Zapas na 90 dni</span><span class="pack-price">139 zł<s>207 zł</s></span><span class="pack-banner">🎁 Serum, e-book i dostawa gratis</span>
+          <span class="pack-qty">Kup 3 <span class="pack-save">3 kostki</span></span><span class="pack-unit">Rytuał na 90 dni</span><span class="pack-price">139 zł<s>207 zł</s></span><span class="pack-banner">🎁 Serum, e-book i dostawa gratis</span>
         </button>
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
