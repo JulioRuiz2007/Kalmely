@@ -286,10 +286,22 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .cdot-black{background:#1a1a1a}.cdot-pink{background:#e7a6b4}
 
 /* quantity tier cards (with thumbnails inside) */
-.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:17px 11px 15px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:border-color .15s,box-shadow .15s}
+.packs{display:flex;flex-direction:column;gap:10px}
+/* Tres filas, no tres columnas: en una fila cabe la cantidad, el ahorro, el precio y el
+   regalo sin abreviar nada, y se comparan leyendo hacia abajo en vez de en zigzag. */
+.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:15px 16px;display:grid;grid-template-columns:22px 1fr auto;gap:0 14px;align-items:center;text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s;width:100%}
+.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
+.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
 .pack:hover{border-color:var(--ink-soft)}
 .pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pack-qty{grid-column:2;grid-row:1;font:700 16px/1.2 var(--sans);color:var(--ink)}
+.pack-unit{grid-column:2;grid-row:2;font:500 12.5px/1.35 var(--sans);color:var(--ink-soft);margin-top:2px}
+.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 20px/1.1 var(--sans);color:var(--ink);white-space:nowrap}
+.pack-price s{font:500 13px/1 var(--sans);color:var(--faint);margin-top:3px}
+.pack-banner{grid-column:2 / -1;grid-row:3;justify-self:start;margin-top:9px;font:600 11.5px/1.3 var(--sans);color:var(--ok);background:#F7EFE7;border-radius:20px;padding:6px 11px}
+.pack-badge{position:absolute;top:-9px;right:14px;left:auto;width:max-content;font:700 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 9px;border-radius:20px;white-space:nowrap;z-index:2}
+.pack-badge.alt{background:var(--gold)}
+@media(max-width:420px){.pack{padding:14px}.pack-price{font-size:18px}}
 .pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
 .pack-badge.alt{background:var(--gold);color:#fff}
 .pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
@@ -756,15 +768,15 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
    Dos mitades con sus tres casos cada una. En desktop es una pantalla partida de verdad
    (divisoria central); en móvil se apilan, porque tres pares antes/después en media
    columna de 390px no se ven. */
-.duo{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}
+.duo{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;max-width:880px;margin:0 auto}
 .duo::after{content:"";position:absolute;left:50%;top:34px;bottom:34px;width:1px;background:var(--line-2);transform:translateX(-.5px)}
-.duo-side{padding:26px 24px 30px;min-width:0}
+.duo-side{padding:20px 18px 22px;min-width:0}
 .duo-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;margin-bottom:22px;border-bottom:2px solid var(--ink)}
 .duo-head .ic{width:38px;height:38px;flex:0 0 auto;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
 .duo-head .ic svg{width:21px;height:21px}
-.duo-head b{font:600 21px/1.1 var(--serif);color:var(--ink);letter-spacing:.01em}
+.duo-head b{font:600 18px/1.1 var(--serif);color:var(--ink);letter-spacing:.01em}
 .duo-head span{display:block;font:600 10.5px/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.09em;margin-top:4px}
-.duo-case{margin-bottom:24px}
+.duo-case{margin-bottom:18px}
 .duo-case:last-child{margin-bottom:0}
 .duo-cap{display:block;text-align:center;font:600 11.5px/1.35 var(--sans);color:var(--ink-soft);margin-bottom:9px}
 .duo-shot{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--paper-2)}
@@ -1159,44 +1171,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   </section>
 
   <!-- ===== BRAND ACCOUNTABILITY (honest — a real team stands behind the guarantee) ===== -->
-  <section class="band" id="reviews">
-    <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
-      <div class="rev-top fade-slow">
-        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1847 zweryfikowanych opinii</div></div>
-        <div class="rev-dist" id="revDist"></div>
-      </div>
-      <div class="photo-reviews fade-slow">
-        <figure class="prev-card">
-          <img src="assets/ugc-1-holding.webp" alt="Grażyna P., zweryfikowana klientka, trzyma kostkę Kalmely" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W południe odrosty zawsze wyglądały na tłuste. Teraz przez cały dzień są czyste i lekkie.”</p><span class="pr-by">Grażyna P. <em>✓ Zweryfikowana klientka · 56 lat</em></span></figcaption>
-        </figure>
-        <figure class="prev-card">
-          <img src="assets/ugc-2-mirror.webp" alt="Barbara N., zweryfikowana klientka, przy lustrze w łazience" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Próbowałam wszystkiego. To pierwsza rzecz, po której skóra głowy jest czysta, a nie oblepiona.”</p><span class="pr-by">Barbara N. <em>✓ Zweryfikowana klientka · 62 lata</em></span></figcaption>
-        </figure>
-        <figure class="prev-card">
-          <img src="assets/ugc-3-daylight.webp" alt="Halina D., zweryfikowana klientka, w zwykłym świetle dnia" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W drugim tygodniu skóra głowy była lżejsza — a kucyk wydawał się grubszy w dłoni.”</p><span class="pr-by">Halina D. <em>✓ Zweryfikowana klientka · 61 lat</em></span></figcaption>
-        </figure>
-        <figure class="prev-card">
-          <img src="assets/ugc-4-sink.webp" alt="Elżbieta M., zweryfikowana klientka, używa kostki Kalmely przy umywalce" width="600" height="600" loading="lazy">
-          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Pierwsza rzecz, po której skóra głowy nie świeci się już po jednym dniu.”</p><span class="pr-by">Elżbieta M. <em>✓ Zweryfikowana klientka · 58 lat</em></span></figcaption>
-        </figure>
-      </div>
-      <div class="rev-filterbar" id="revFilter" role="group" aria-label="Filtruj opinie według oceny"></div>
-      <div class="rev-count" id="revFilterCount" hidden></div>
-      <div class="rev-more" id="revFiltered" hidden></div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
-      <div class="rev-more" id="revMore" hidden></div>
-      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
-      <div class="rev-more" id="revMore2" hidden></div>
-      <div class="sp-caps fade-slow" style="margin-top:30px"><span>„Przedziałek mniej prześwituje.”</span><span>„Skóra głowy jest lżejsza.”</span><span>„Mniej włosów w odpływie.”</span><span>„Znów czuję się sobą.”</span></div>
-      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Do koszyka — <span class="cta-price">99 zł</span></button></div>
-    </div>
-  </section>
-
-  <!-- ===== 2. BEFORE / AFTER ===== -->
   <section>
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Przed i po</div><h2>Zmiana, którą pokazują nam klientki i klienci</h2><p>Zdjęcia od klientów po kilku tygodniach stosowania. Efekty są indywidualne — podpisy opisują wygląd i odczucia.</p></div>
@@ -1293,7 +1267,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     </div>
   </section>
 
-  <!-- ===== 6. FAQ ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
       <div class="sec-head fade-slow"><div class="eyebrow">O to pytacie najczęściej</div><h2>Najczęściej zadawane pytania</h2></div>
@@ -1346,17 +1319,50 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
   <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
 
+  <section class="band" id="reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
+      <div class="rev-top fade-slow">
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1847 zweryfikowanych opinii</div></div>
+        <div class="rev-dist" id="revDist"></div>
+      </div>
+      <div class="photo-reviews fade-slow">
+        <figure class="prev-card">
+          <img src="assets/ugc-1-holding.webp" alt="Grażyna P., zweryfikowana klientka, trzyma kostkę Kalmely" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W południe odrosty zawsze wyglądały na tłuste. Teraz przez cały dzień są czyste i lekkie.”</p><span class="pr-by">Grażyna P. <em>✓ Zweryfikowana klientka · 56 lat</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-2-mirror.webp" alt="Barbara N., zweryfikowana klientka, przy lustrze w łazience" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Próbowałam wszystkiego. To pierwsza rzecz, po której skóra głowy jest czysta, a nie oblepiona.”</p><span class="pr-by">Barbara N. <em>✓ Zweryfikowana klientka · 62 lata</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-3-daylight.webp" alt="Halina D., zweryfikowana klientka, w zwykłym świetle dnia" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W drugim tygodniu skóra głowy była lżejsza — a kucyk wydawał się grubszy w dłoni.”</p><span class="pr-by">Halina D. <em>✓ Zweryfikowana klientka · 61 lat</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-4-sink.webp" alt="Elżbieta M., zweryfikowana klientka, używa kostki Kalmely przy umywalce" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Pierwsza rzecz, po której skóra głowy nie świeci się już po jednym dniu.”</p><span class="pr-by">Elżbieta M. <em>✓ Zweryfikowana klientka · 58 lat</em></span></figcaption>
+        </figure>
+      </div>
+      <div class="rev-filterbar" id="revFilter" role="group" aria-label="Filtruj opinie według oceny"></div>
+      <div class="rev-count" id="revFilterCount" hidden></div>
+      <div class="rev-more" id="revFiltered" hidden></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
+      <div class="rev-more" id="revMore" hidden></div>
+      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
+      <div class="rev-more" id="revMore2" hidden></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>„Przedziałek mniej prześwituje.”</span><span>„Skóra głowy jest lżejsza.”</span><span>„Mniej włosów w odpływie.”</span><span>„Znów czuję się sobą.”</span></div>
+      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Do koszyka — <span class="cta-price">99 zł</span></button></div>
+    </div>
+  </section>
+
+  <!-- ===== 2. BEFORE / AFTER ===== -->
+
+  <!-- ===== 6. FAQ ===== -->
+
   <!-- ===== 7. GUARANTEE (60-day) ===== -->
   <section>
     <div class="wrap guarantee fade-slow">
-      <div class="seal fade-slow"><b>60</b>dni na zwrot</div>
-      <h2>Przetestuj przez 60 dni. Ryzyko jest po naszej stronie.</h2>
-      <p>Stosuj ją codziennie przez 60 dni. Nie spodoba Ci się? Napisz na <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> — zwracamy co do grosza, nawet za napoczętą kostkę.</p>
-      <ul class="vstack" style="margin-left:auto;margin-right:auto">
-        <li>Napoczęta? Nie szkodzi — wolimy, żebyś naprawdę dał jej te 60 dni.</li>
-        <li>Wystarczy jeden mail. Bez formularzy, bez infolinii, bez zwlekania.</li>
-      </ul>
-      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">W najgorszym razie tracisz jednego maila. W najlepszym — przestajesz sprawdzać skórę głowy w każdym lustrze.</p>
       <div class="eyebrow" style="margin-bottom:4px">Czekamy, kiedy będziesz gotowy</div>
       <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz zestaw i zrób pierwszy krok</h3>
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,8/5 · 1847 zweryfikowanych klientów</span></div>
@@ -1375,7 +1381,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
       <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Masz pytania? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
-      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne.</div>
+      <p style="margin:14px auto 0;max-width:560px;font:500 13.5px/1.55 var(--sans);color:var(--ink-2)"><b style="color:var(--ink)">60 dni gwarancji zwrotu pieniędzy.</b> Nie spodoba Ci się — jeden mail na <a href="mailto:hello@kalmely.com" style="color:var(--ink);text-decoration:underline">hello@kalmely.com</a> i zwracamy co do grosza, nawet za napoczętą kostkę.</p><div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne.</div>
     </div>
   </section>
 
