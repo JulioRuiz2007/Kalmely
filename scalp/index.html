@@ -315,7 +315,6 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 /* pack bundle preview (swaps with the selected pack) */
 .pack-preview{text-align:center;margin:0 0 14px}
 #packImage{display:block;margin:0 auto;max-width:100%;max-height:230px;width:auto;height:auto;object-fit:contain;border-radius:12px;transition:opacity .18s ease}
-.inc-total .inc-total .inc-total 
 /* add to cart + reassurance */
 .add-to-cart{width:100%;background:var(--ink);color:var(--paper);font:600 16px/1 var(--sans);padding:18px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;transition:background .15s,transform .12s}
 .add-to-cart:hover{background:#000;transform:translateY(-1px)}
@@ -484,6 +483,14 @@ section{padding:74px 0}
 .guarantee h2{font-family:'Fraunces',var(--serif);font-weight:600;letter-spacing:-.01em;font-size:clamp(29px,3.6vw,42px);line-height:1.12;margin-bottom:12px}
 .guarantee p{max-width:540px;margin:0 auto 24px;color:var(--ink-2)}
 .guarantee .add-to-cart{max-width:330px;margin-left:auto;margin-right:auto}
+/* Los tres términos de la garantía en una fila. Antes eran un párrafo + dos bullets
+   alineados a la izquierda dentro de una sección centrada: tres ejes distintos y
+   "60 dni" repetido cuatro veces entre el sello, el titular y el texto. */
+.guar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:720px;margin:0 auto 30px;text-align:left}
+.guar-item{background:var(--card,#fff);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.guar-item b{display:block;font:700 14.5px/1.25 var(--sans);color:var(--ink);margin-bottom:4px}
+.guar-item span{display:block;font:400 13px/1.45 var(--sans);color:var(--ink-2)}
+@media(max-width:720px){.guar-row{grid-template-columns:1fr;gap:9px;margin-bottom:24px}}
 
 /* final */
 .final{text-align:center}
@@ -1319,13 +1326,12 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     <div class="wrap guarantee fade-slow">
       <div class="seal fade-slow"><b>60</b>dni na zwrot</div>
       <h2>Przetestuj przez 60 dni. Ryzyko jest po naszej stronie.</h2>
-      <p>Stosuj ją codziennie przez 60 dni. Nie spodoba Ci się? Napisz na <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> — zwracamy co do grosza, nawet za napoczętą kostkę.</p>
-      <ul class="vstack" style="margin-left:auto;margin-right:auto">
-        <li>Napoczęta? Nie szkodzi — wolimy, żebyś naprawdę dał jej te 60 dni.</li>
-        <li>Wystarczy jeden mail. Bez formularzy, bez infolinii, bez zwlekania.</li>
-      </ul>
-      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">W najgorszym razie tracisz jednego maila. W najlepszym — przestajesz sprawdzać skórę głowy w każdym lustrze.</p>
-      <div class="eyebrow" style="margin-bottom:4px">Czekamy, kiedy będziesz gotowy</div>
+      <p style="max-width:520px;margin:0 auto 22px">W najgorszym razie tracisz jednego maila. W najlepszym — przestajesz sprawdzać skórę głowy w każdym lustrze.</p>
+      <div class="guar-row">
+        <div class="guar-item"><b>Napoczęta? Nie szkodzi</b><span>Wolimy, żebyś naprawdę dał jej te 60 dni</span></div>
+        <div class="guar-item"><b>Jeden mail wystarczy</b><span>Bez formularzy, bez infolinii, bez zwlekania</span></div>
+        <div class="guar-item"><b>Zwrot co do grosza</b><span>Także za kostkę, której już używałeś</span></div>
+      </div>
       <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz zestaw i zrób pierwszy krok</h3>
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,8/5 · 1847 zweryfikowanych klientów</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Wybierz zestaw" style="max-width:690px;margin:18px auto 0">
