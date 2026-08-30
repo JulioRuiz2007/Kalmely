@@ -30,13 +30,13 @@
 <link rel="canonical" href="https://kalmely.com/scalp/">
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
 <title>Korean Scalp Revival Bar — kostka, która zmywa łój ze skóry głowy</title>
-<meta name="description" content="Sześćdziesiąt sekund na skórze głowy. Kostka zmywa łój, który szampon codziennie zasklepia pod spodem. Bez wody w składzie, bez siarczanów. Darmowa dostawa · 90 dni na zwrot.">
+<meta name="description" content="Sześćdziesiąt sekund na skórze głowy. Kostka zmywa łój, który szampon codziennie zasklepia pod spodem. Bez wody w składzie, bez siarczanów. Darmowa dostawa · 60 dni na zwrot.">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <meta property="og:site_name" content="Kalmely">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Korean Scalp Revival Bar — kostka, która zmywa łój ze skóry głowy">
 <meta property="og:url" content="https://kalmely.com/scalp/">
-<meta property="og:description" content="Sześćdziesiąt sekund na skórze głowy. Kostka zmywa łój, który szampon codziennie zasklepia pod spodem. Bez wody w składzie, bez siarczanów. Darmowa dostawa · 90 dni na zwrot.">
+<meta property="og:description" content="Sześćdziesiąt sekund na skórze głowy. Kostka zmywa łój, który szampon codziennie zasklepia pod spodem. Bez wody w składzie, bez siarczanów. Darmowa dostawa · 60 dni na zwrot.">
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
@@ -201,20 +201,6 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .hc-proof .hc-pby em{color:var(--ink-soft);font-weight:500;font-style:normal}
 .hc-proof .hc-pcap{font:600 11px/1 var(--sans);letter-spacing:.02em;color:var(--gold);text-transform:uppercase;margin-bottom:7px;display:block}
 .hc-guar{display:flex;gap:12px;align-items:center;padding:15px 18px;background:var(--paper-2)}
-/* Inversión de riesgo, al estilo de una oferta que se defiende sola: dos niveles, cada uno
-   con su condición y su plazo, y el remate de que el riesgo lo corremos nosotros. */
-.risk{border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card);margin:0}
-.risk-top{background:var(--ink);color:var(--paper);padding:14px 18px;display:flex;align-items:center;gap:11px}
-.risk-top svg{width:24px;height:24px;flex:0 0 24px}
-.risk-top b{font:700 15.5px/1.25 var(--sans);letter-spacing:-.01em}
-.risk-body{padding:16px 18px 14px}
-.risk-step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:11px 0}
-.risk-step + .risk-step{border-top:1px solid var(--line)}
-.risk-n{font:700 12px/1 var(--sans);color:var(--paper);background:var(--gold);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 22px;margin-top:1px}
-.risk-t{display:block;font:700 14px/1.35 var(--sans);color:var(--ink)}
-.risk-d{display:block;font:400 13.5px/1.55 var(--sans);color:var(--ink-2);margin-top:3px}
-.risk-foot{background:var(--paper-2);border-top:1px solid var(--line);padding:12px 18px;font:600 13px/1.5 var(--sans);color:var(--ink);text-align:center}
-.risk-foot span{display:block;font:400 12.5px/1.5 var(--sans);color:var(--ink-soft);margin-top:3px}
 .hc-guar svg{flex:0 0 30px;width:30px;height:30px;color:var(--ink)}
 .hc-guar b{font:700 14px/1.25 var(--sans);color:var(--ink);display:block;margin-bottom:2px}
 .hc-guar span{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
@@ -300,22 +286,23 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .cdot-black{background:#1a1a1a}.cdot-pink{background:#e7a6b4}
 
 /* quantity tier cards (with thumbnails inside) */
-.packs{display:flex;flex-direction:column;gap:10px}
-/* Tres filas, no tres columnas: en una fila cabe la cantidad, el ahorro, el precio y el
-   regalo sin abreviar nada, y se comparan leyendo hacia abajo en vez de en zigzag. */
-.pack{position:relative;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:15px 16px;display:grid;grid-template-columns:22px 1fr auto;gap:0 14px;align-items:center;text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s;width:100%}
-.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
-.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+.packs{display:flex;flex-direction:column;gap:12px}
+/* Tres filas: radio · nombre + ahorro · duración en cursiva · precio a la derecha con el
+   anclaje tachado debajo. La etiqueta cuelga del borde superior derecho. */
+.pack{position:relative;display:grid;grid-template-columns:auto 1fr auto;column-gap:15px;align-items:center;background:var(--card);border:2px solid var(--line-2);border-radius:13px;padding:17px 19px;cursor:pointer;text-align:left;width:100%;transition:border-color .15s,background .15s}
+.pack::before{content:"";grid-column:1;grid-row:1 / span 2;width:21px;height:21px;border:2px solid var(--line-2);border-radius:50%;align-self:center;transition:border-color .15s,box-shadow .15s,background .15s}
 .pack:hover{border-color:var(--ink-soft)}
-.pack.is-selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
-.pack-qty{grid-column:2;grid-row:1;font:700 16px/1.2 var(--sans);color:var(--ink)}
-.pack-unit{grid-column:2;grid-row:2;font:500 12.5px/1.35 var(--sans);color:var(--ink-soft);margin-top:2px}
-.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 20px/1.1 var(--sans);color:var(--ink);white-space:nowrap}
-.pack-price s{font:500 13px/1 var(--sans);color:var(--faint);margin-top:3px}
-.pack-banner{grid-column:2 / -1;grid-row:3;justify-self:start;margin-top:9px;font:600 11.5px/1.3 var(--sans);color:var(--ok);background:#F7EFE7;border-radius:20px;padding:6px 11px}
-.pack-badge{position:absolute;top:-9px;right:14px;left:auto;width:max-content;font:700 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 9px;border-radius:20px;white-space:nowrap;z-index:2}
+.pack.is-selected{border-color:var(--ink);background:#F7FAF6}
+.pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 4px #fff}
+.pack-qty{grid-column:2;grid-row:1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;font:700 18px/1.25 var(--sans);color:var(--ink)}
+.pack-save{font:700 11.5px/1 var(--sans);color:var(--ok);background:#F6EDE4;border-radius:6px;padding:5px 8px;white-space:nowrap}
+.pack-unit{grid-column:2;grid-row:2;font:italic 500 14px/1.35 var(--sans);color:var(--ink-soft);margin-top:3px}
+.pack-price{grid-column:3;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;font:700 21px/1.15 var(--sans);color:var(--ink);white-space:nowrap}
+.pack-price s{font:500 15px/1.2 var(--sans);color:var(--faint);margin-top:3px}
+.pack-banner{grid-column:2 / -1;grid-row:3;justify-self:start;margin-top:10px;font:600 11.5px/1.3 var(--sans);color:var(--ok);background:#F7EFE7;border-radius:20px;padding:6px 11px}
+.pack-badge{position:absolute;top:0;right:16px;left:auto;width:max-content;transform:translateY(-50%);font:700 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:6px 11px;border-radius:6px;white-space:nowrap;z-index:2}
 .pack-badge.alt{background:var(--gold)}
-@media(max-width:420px){.pack{padding:14px}.pack-price{font-size:18px}}
+@media(max-width:420px){.pack{padding:15px 16px}.pack-qty{font-size:16.5px}.pack-price{font-size:19px}}
 .pack-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:20px}
 .pack-badge.alt{background:var(--gold);color:#fff}
 .pack-thumb{width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;margin-bottom:6px;background:var(--paper-2);display:flex;align-items:center;justify-content:center}
@@ -777,24 +764,24 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .seal-canva{display:block;width:210px;max-width:64%;margin:0 auto 18px;border-radius:50%}
 .eg-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.steps3 .step img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
+.steps3 .step img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);margin-bottom:12px;display:block}
 /* ===== Split proof: kobiety | mężczyźni =====
    Dos mitades con sus tres casos cada una. En desktop es una pantalla partida de verdad
    (divisoria central); en móvil se apilan, porque tres pares antes/después en media
    columna de 390px no se ven. */
-.duo{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;max-width:820px;margin:0 auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}
 .duo::after{content:"";position:absolute;left:50%;top:34px;bottom:34px;width:1px;background:var(--line-2);transform:translateX(-.5px)}
-.duo-side{padding:20px 18px 22px;min-width:0}
+.duo-side{padding:26px 24px 30px;min-width:0}
 .duo-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;margin-bottom:22px;border-bottom:2px solid var(--ink)}
 .duo-head .ic{width:38px;height:38px;flex:0 0 auto;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
 .duo-head .ic svg{width:21px;height:21px}
-.duo-head b{font:600 18px/1.1 var(--serif);color:var(--ink);letter-spacing:.01em}
+.duo-head b{font:600 21px/1.1 var(--serif);color:var(--ink);letter-spacing:.01em}
 .duo-head span{display:block;font:600 10.5px/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.09em;margin-top:4px}
-.duo-case{margin-bottom:14px}
+.duo-case{margin-bottom:24px}
 .duo-case:last-child{margin-bottom:0}
 .duo-cap{display:block;text-align:center;font:600 11.5px/1.35 var(--sans);color:var(--ink-soft);margin-bottom:9px}
 .duo-shot{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--paper-2)}
-.duo-shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:center 22%;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.duo-shot img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .duo-shot:hover img{transform:scale(1.035)}
 .duo-tag{position:absolute;top:9px;z-index:2;font:700 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:rgba(35,79,43,.82);padding:5px 8px;border-radius:5px;backdrop-filter:blur(3px)}
 .duo-tag.b{left:9px}
@@ -979,8 +966,17 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 /* Prueba de que hay alguien detrás. La cifra que se enseña es la ÚNICA verificable que
    tenemos —el tiempo de respuesta—, y va acompañada de una invitación a comprobarla
    antes de comprar: eso convence más que un porcentaje que nadie puede auditar. */
+.team-proof{margin:26px 0 22px;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card)}
+.team-proof-top{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:22px 24px}
+.tp-num{font:700 clamp(38px,6vw,52px)/1 'Sora',var(--sans);color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
+.tp-num span{display:block;font:700 11px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.tp-txt{font:500 15.5px/1.55 var(--sans);color:var(--ink-2)}
+.tp-txt b{color:var(--ink);font-weight:700}
+.team-proof-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:15px 24px;background:var(--paper-2);border-top:1px solid var(--line)}
+.team-proof-cta p{font:500 14px/1.5 var(--sans);color:var(--ink-2);margin:0;flex:1;min-width:210px}
+.tp-btn{flex:0 0 auto;background:var(--ink);color:var(--paper);border:none;border-radius:11px;padding:13px 20px;font:600 14px/1 var(--sans);cursor:pointer;transition:background .15s,transform .12s}
 .tp-btn:hover{background:#16341d;transform:translateY(-1px)}
-@media(max-width:620px){}
+@media(max-width:620px){.team-proof-top{grid-template-columns:1fr;gap:10px;padding:20px}.team-proof-cta{padding:14px 20px}}
 .founder p{color:var(--ink-2);font-size:16px;margin-bottom:15px}
 .founder .sig{font:600 14px/1 var(--sans);color:var(--ink);margin-top:4px}
 
@@ -1083,7 +1079,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="hero-head fade-slow">
         <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (1847 opinii)</a></div>
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
-        <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka o skórze głowy</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>90 dni gwarancji</span></div></div>
+        <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka o skórze głowy</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>60 dni gwarancji</span></div></div>
         <ul class="bx-promise">
           <li>Nie po to myjesz głowę codziennie, żeby zmywać wczorajszą wcierkę</li>
           <li>Koniec z przyklapem po kilku godzinach</li>
@@ -1105,32 +1101,12 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
         </div>
         <div class="hc">
-          <div class="risk">
-            <div class="risk-top">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><path d="m8.5 12 2.3 2.3L16 9"/></svg>
-              <b>Całe ryzyko jest po naszej stronie. Nie po Twojej.</b>
+          <div class="hc-guar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><path d="m8.5 12 2.3 2.3L16 9"/></svg>
+            <div>
+              <b>60 dni gwarancji zwrotu pieniędzy</b>
+              <span>Nie spodoba Ci się? Jeden mail i zwracamy co do grosza. Nawet za napoczętą kostkę.</span>
             </div>
-            <div class="risk-body">
-              <div class="risk-step">
-                <span class="risk-n">1</span>
-                <span><span class="risk-t">Pierwszy miesiąc bez żadnej zmiany? Oddajemy 100% pieniędzy.</span>
-                <span class="risk-d">Stosuj kostkę przez 30 dni. Jeśli nie zauważysz <b>żadnej</b> różnicy na skórze głowy — jeden mail i zwracamy całą kwotę. Bez pytań i bez odsyłania czegokolwiek.</span></span>
-              </div>
-              <div class="risk-step">
-                <span class="risk-n">2</span>
-                <span><span class="risk-t">A jeśli zmiana przyjdzie i potem Cię zawiedzie — masz na to 90 dni.</span>
-                <span class="risk-d">Miesiąc minął, a po czasie uznasz, że jednak nie dla Ciebie? Nadal możesz odzyskać pieniądze — do 90 dni od dostawy. Napoczęta kostka też się liczy.</span></span>
-              </div>
-            <div class="risk-step">
-                <span class="risk-n">3</span>
-                <span><span class="risk-t">Paczka nie dotarła albo przyszła uszkodzona? To też nasz problem.</span>
-                <span class="risk-d">Zgubiona w transporcie, opóźniona, zgnieciona — wysyłamy nową na nasz koszt albo zwracamy pieniądze. Ty wybierasz. Na każdą wiadomość odpisuje <b>konkretna osoba w ciągu 24 h</b>, nie infolinia.</span></span>
-              </div>
-            </div>
-            <div class="risk-foot">Kupujesz kostkę. Jeśli nie zadziała, nie płacisz za nią nic.
-              <span>Jedyne, co możesz stracić, to jeden e-mail na hello@kalmely.com.</span>
-            </div>
-          </div>
           </div>
         </div>
       </div>
@@ -1143,21 +1119,21 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <div class="packs" id="packs" role="radiogroup" aria-label="Wybierz zestaw">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
               <span class="pack-qty">1 kostka</span>
-              <span class="pack-unit">Na 30 dni</span>
+              <span class="pack-unit">Zapas na 30 dni</span>
               <span class="pack-price">69 zł</span>
               <span class="pack-banner">🎁 E-book i dostawa gratis</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
               <span class="pack-badge">★ Najczęściej wybierany</span>
-              <span class="pack-qty">2 kostki</span>
-              <span class="pack-unit">Oszczędzasz 39 zł · na 60 dni</span>
+              <span class="pack-qty">2 kostki <span class="pack-save">−28%</span></span>
+              <span class="pack-unit">Zapas na 60 dni</span>
               <span class="pack-price">99 zł<s>138 zł</s></span>
               <span class="pack-banner">🎁 E-book i dostawa gratis</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
               <span class="pack-badge alt">★ Najlepsza cena</span>
-              <span class="pack-qty">3 kostki</span>
-              <span class="pack-unit">Na 90 dni · oszczędzasz 68 zł</span>
+              <span class="pack-qty">3 kostki <span class="pack-save">−33%</span></span>
+              <span class="pack-unit">Zapas na 90 dni</span>
               <span class="pack-price">139 zł<s>207 zł</s></span>
               <span class="pack-banner">🎁 Serum, e-book i dostawa gratis</span>
             </button>
@@ -1181,21 +1157,59 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <svg viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Klarna"><rect width="40" height="26" rx="4" fill="#FFB3C7"/><text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="#0B051D" text-anchor="middle">Klarna</text></svg>
         </div>
         <div class="bx-trust">
-          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>90 dni na zwrot pieniędzy</span></div>
+          <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg><span>60 dni na zwrot pieniędzy</span></div>
           <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Darmowa dostawa</span></div>
           <div class="bx-trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8-8 11-4.6-3-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.2a2 2 0 0 1 4 0V11"/></svg><span>Bezpieczna płatność</span></div>
         </div>
 
         <div class="acc">
-          <details><summary>Jak szybko poczuję różnicę?</summary><p>Większość osób zauważa czystszą i lżejszą skórę głowy już w pierwszym tygodniu. To, jak wygląda przedziałek i gęstość włosów, zmienia się stopniowo przez 6–8 tygodni regularnego stosowania — dlatego do każdego zamówienia dajemy 90 dni na decyzję.</p></details>
+          <details><summary>Jak szybko poczuję różnicę?</summary><p>Większość osób zauważa czystszą i lżejszą skórę głowy już w pierwszym tygodniu. To, jak wygląda przedziałek i gęstość włosów, zmienia się stopniowo przez 6–8 tygodni regularnego stosowania — dlatego do każdego zamówienia dajemy 60 dni na decyzję.</p></details>
           <details><summary>Czym kostka różni się od mojego szamponu?</summary><p>Szampon w płynie spływa w kilkanaście sekund. Kostka zostaje na skórze przez minutę i rozpuszcza warstwę łoju.</p></details>
-          <details><summary>A jeśli u mnie nie zadziała?</summary><p>Napisz na hello@kalmely.com w ciągu 90 dni. Zwracamy co do grosza, nawet za napoczętą kostkę.</p></details>
+          <details><summary>A jeśli u mnie nie zadziała?</summary><p>Napisz na hello@kalmely.com w ciągu 60 dni. Zwracamy co do grosza, nawet za napoczętą kostkę.</p></details>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== BRAND ACCOUNTABILITY (honest — a real team stands behind the guarantee) ===== -->
+  <section class="band" id="reviews">
+    <div class="wrap">
+      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
+      <div class="rev-top fade-slow">
+        <div class="rev-score"><div class="big">4.8</div><div class="st">★★★★★</div><div class="cnt">1847 zweryfikowanych opinii</div></div>
+        <div class="rev-dist" id="revDist"></div>
+      </div>
+      <div class="photo-reviews fade-slow">
+        <figure class="prev-card">
+          <img src="assets/ugc-1-holding.webp" alt="Grażyna P., zweryfikowana klientka, trzyma kostkę Kalmely" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W południe odrosty zawsze wyglądały na tłuste. Teraz przez cały dzień są czyste i lekkie.”</p><span class="pr-by">Grażyna P. <em>✓ Zweryfikowana klientka · 56 lat</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-2-mirror.webp" alt="Barbara N., zweryfikowana klientka, przy lustrze w łazience" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Próbowałam wszystkiego. To pierwsza rzecz, po której skóra głowy jest czysta, a nie oblepiona.”</p><span class="pr-by">Barbara N. <em>✓ Zweryfikowana klientka · 62 lata</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-3-daylight.webp" alt="Halina D., zweryfikowana klientka, w zwykłym świetle dnia" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„W drugim tygodniu skóra głowy była lżejsza — a kucyk wydawał się grubszy w dłoni.”</p><span class="pr-by">Halina D. <em>✓ Zweryfikowana klientka · 61 lat</em></span></figcaption>
+        </figure>
+        <figure class="prev-card">
+          <img src="assets/ugc-4-sink.webp" alt="Elżbieta M., zweryfikowana klientka, używa kostki Kalmely przy umywalce" width="600" height="600" loading="lazy">
+          <figcaption><span class="pr-stars">★★★★★</span><p class="pr-quote">„Pierwsza rzecz, po której skóra głowy nie świeci się już po jednym dniu.”</p><span class="pr-by">Elżbieta M. <em>✓ Zweryfikowana klientka · 58 lat</em></span></figcaption>
+        </figure>
+      </div>
+      <div class="rev-filterbar" id="revFilter" role="group" aria-label="Filtruj opinie według oceny"></div>
+      <div class="rev-count" id="revFilterCount" hidden></div>
+      <div class="rev-more" id="revFiltered" hidden></div>
+      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
+      <div class="rev-more" id="revMore" hidden></div>
+      <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
+      <div class="rev-more" id="revMore2" hidden></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>„Przedziałek mniej prześwituje.”</span><span>„Skóra głowy jest lżejsza.”</span><span>„Mniej włosów w odpływie.”</span><span>„Znów czuję się sobą.”</span></div>
+      <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Do koszyka — <span class="cta-price">99 zł</span></button></div>
+    </div>
+  </section>
+
+  <!-- ===== 2. BEFORE / AFTER ===== -->
   <section>
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Przed i po</div><h2>Zmiana, którą pokazują nam klientki i klienci</h2><p>Zdjęcia od klientów po kilku tygodniach stosowania. Efekty są indywidualne — podpisy opisują wygląd i odczucia.</p></div>
@@ -1284,7 +1298,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <tr><td>Wystarczająco łagodna do codziennego stosowania</td><td class="own yes">✔</td><td class="no">Cykl przesuszania i przetłuszczania</td></tr>
             <tr><td>Pomaga usunąć osad, żeby skóra mogła oddychać</td><td class="own yes">✔</td><td class="no">Zostają na zaklejonej skórze</td></tr>
             <tr><td>Koszt jednego mycia</td><td class="own yes">&lt; 2 zł / mycie</td><td class="no">Znacznie więcej</td></tr>
-            <tr><td>90 dni gwarancji zwrotu pieniędzy</td><td class="own yes">✔</td><td class="no">Rzadko</td></tr>
+            <tr><td>60 dni gwarancji zwrotu pieniędzy</td><td class="own yes">✔</td><td class="no">Rzadko</td></tr>
           </tbody>
         </table>
       </div>
@@ -1292,18 +1306,19 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     </div>
   </section>
 
+  <!-- ===== 6. FAQ ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
       <div class="sec-head fade-slow"><div class="eyebrow">O to pytacie najczęściej</div><h2>Najczęściej zadawane pytania</h2></div>
       <div class="acc fade-slow">
         <details><summary>Jak to właściwie działa?</summary><p>Szampon w płynie to w większości woda, a na skórze zostaje kilkanaście sekund. Kostka nie ma w sobie wody i działa na skórze całą minutę. Tyle trzeba, żeby rozpuścić warstwę łoju.</p></details>
-        <details><summary>Kiedy zauważę pierwsze zmiany?</summary><p>Szczerze: stopniowo. Skóra głowy reaguje na oczyszczenie w kilka dni. Reszta to kwestia tygodni i zależy od indywidualnych predyspozycji. Dlatego dajemy Ci 90 dni.</p></details>
+        <details><summary>Kiedy zauważę pierwsze zmiany?</summary><p>Szczerze: stopniowo. Skóra głowy reaguje na oczyszczenie w kilka dni. Reszta to kwestia tygodni i zależy od indywidualnych predyspozycji. Dlatego dajemy Ci 60 dni.</p></details>
         <details><summary>Czy jest bezpieczna? Co zawiera?</summary><p>Łagodna kostka kosmetyczna do skóry głowy, bez siarczanów. Pełny skład (INCI) jest na opakowaniu. Przy problemach skórnych sprawdź go najpierw albo zapytaj dermatologa.</p></details>
         <details><summary>Czy mogę łączyć ją z innymi produktami i serum?</summary><p>Tak, to pierwszy krok. Usuwa osad, przez który Twoje produkty nie dochodziły do skóry. Najpierw kostka, potem wszystko inne.</p></details>
         <details><summary>Czy zadziała przy moim typie włosów?</summary><p>Dla kobiet i mężczyzn, do każdego rodzaju włosów. Kostka pracuje na skórze głowy, nie na teksturze włosa.</p></details>
         <details><summary>Czy druga osoba w domu też może jej używać?</summary><p>Jak najbardziej. Jedna kostka, jedna skóra głowy — działa tak samo u wszystkich domowników.</p></details>
         <details><summary>Na jak długo starcza jedna kostka?</summary><p>Około 40–60 myć, czyli 1–2 miesiące. Zestaw 2 kostek wystarcza na pełny reset. Poniżej 2 zł za jedno mycie.</p></details>
-        <details><summary>Jak wygląda zwrot?</summary><p>Jeden mail na hello@kalmely.com w ciągu 90 dni. Zwracamy co do grosza, także za napoczętą kostkę. Bez formularzy.</p></details>
+        <details><summary>Jak wygląda zwrot?</summary><p>Jeden mail na hello@kalmely.com w ciągu 60 dni. Zwracamy co do grosza, także za napoczętą kostkę. Bez formularzy.</p></details>
         <details><summary>Ile kosztuje dostawa i jak szybko dociera?</summary><p><b>Wysyłka:</b> 24–48 godzin od złożenia zamówienia.<br><b>Dostawa:</b> 10–13 dni roboczych — czyli mniej więcej dwa, dwa i pół tygodnia.</p><p>Dlaczego tyle? Nie mamy magazynu w Polsce. Kostki idą prosto od producenta, bez pośredników i bez dopłaty za magazynowanie po drodze.</p><p>Ostatni odcinek pokonuje InPost — odbierzesz paczkę w Paczkomacie albo od kuriera, tak jak każdą inną. Numer do śledzenia wysyłamy mailem tego samego dnia.</p><p>Darmowa dostawa przy każdym zamówieniu, bez minimalnej kwoty.</p></details>
         <details><summary>Jak skontaktować się z żywym człowiekiem?</summary><p>Napisz na hello@kalmely.com — odpisuje prawdziwa osoba z naszego zespołu, zwykle w ciągu 24 godzin.</p></details>
       </div>
@@ -1317,6 +1332,90 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <h2 style="font-family:'Fraunces',var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.14;margin:9px 0 14px">Za każdą kostką — i za każdym zwrotem — stoi prawdziwy zespół</h2>
         <p>Za gwarancją stoi mały zespół, który sam odpisuje na maile i sam realizuje każdy zwrot. Bez infolinii i bez drobnego druku.</p>
         <p>Każdą wiadomość na <a href="mailto:hello@kalmely.com" style="color:var(--ink);font-weight:600">hello@kalmely.com</a> czyta prawdziwa osoba — zarówno przed zakupem, jak i po nim.</p>
+        <div class="team-proof">
+          <div class="team-proof-top">
+            <div class="tp-num">&lt;24 h<span>Czas odpowiedzi</span></div>
+            <p class="tp-txt">Na każdą wiadomość odpisuje <b>konkretna osoba z zespołu</b>, zwykle tego samego dnia. Nie bot, nie infolinia, nie formularz, który gdzieś ginie.</p>
+          </div>
+          <div class="team-proof-cta">
+            <p><b>Nie wierz nam na słowo.</b> Napisz do nas, zanim cokolwiek kupisz — zapytaj o cokolwiek i zobacz, ile czekasz na odpowiedź.</p>
+            <button type="button" class="tp-btn" id="teamProofChat">Zadaj pytanie teraz →</button>
+          </div>
+        </div>
+        <div class="sig">— Zespół Kalmely</div>
+        <!-- DERM/LAB ENDORSEMENT SLOT — activate once Julio provides the REAL name + credential.
+             Do NOT invent a name. When ready, uncomment and fill the [BRACKETS]:
+        <div class="derm-endorse" style="margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;display:flex;gap:12px;align-items:center">
+          <img src="assets/[DERM-PHOTO].webp" alt="[Dr. NAME], [credential]" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 56px">
+          <div>
+            <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">"[one honest line of endorsement — no medical/cure claims]"</p>
+            <span style="font:600 12.5px/1.3 var(--sans);color:var(--ink)">[Dr. NAME], [credential/clinic]</span>
+          </div>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 1. SOCIAL PROOF (aggregate + UGC + review cards) ===== -->
+
+  <!-- ===== 7. GUARANTEE (60-day) ===== -->
+  <section>
+    <div class="wrap guarantee fade-slow">
+      <div class="seal fade-slow"><b>60</b>dni na zwrot</div>
+      <h2>Przetestuj przez 60 dni. Ryzyko jest po naszej stronie.</h2>
+      <p>Stosuj ją codziennie przez 60 dni. Nie spodoba Ci się? Napisz na <a href="mailto:hello@kalmely.com" style="text-decoration:underline;text-underline-offset:2px">hello@kalmely.com</a> — zwracamy co do grosza, nawet za napoczętą kostkę.</p>
+      <ul class="vstack" style="margin-left:auto;margin-right:auto">
+        <li>Napoczęta? Nie szkodzi — wolimy, żebyś naprawdę dał jej te 60 dni.</li>
+        <li>Wystarczy jeden mail. Bez formularzy, bez infolinii, bez zwlekania.</li>
+      </ul>
+      <p style="max-width:540px;margin:0 auto 26px;color:var(--ink-2)">W najgorszym razie tracisz jednego maila. W najlepszym — przestajesz sprawdzać skórę głowy w każdym lustrze.</p>
+      <div class="eyebrow" style="margin-bottom:4px">Czekamy, kiedy będziesz gotowy</div>
+      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz zestaw i zrób pierwszy krok</h3>
+      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,8/5 · 1847 zweryfikowanych klientów</span></div>
+      <div class="packs" id="packsFinal" role="radiogroup" aria-label="Wybierz zestaw" style="max-width:690px;margin:18px auto 0">
+        <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
+          <span class="pack-qty">1 kostka</span><span class="pack-unit">Zapas na 30 dni</span><span class="pack-price">69 zł</span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
+        </button>
+        <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
+          <span class="pack-badge">★ Najczęściej wybierany</span>
+          <span class="pack-qty">2 kostki <span class="pack-save">−28%</span></span><span class="pack-unit">Zapas na 60 dni</span><span class="pack-price">99 zł<s>138 zł</s></span><span class="pack-banner">🎁 E-book i dostawa gratis</span>
+        </button>
+        <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
+          <span class="pack-badge alt">★ Najlepsza cena</span>
+          <span class="pack-qty">3 kostki <span class="pack-save">−33%</span></span><span class="pack-unit">Zapas na 90 dni</span><span class="pack-price">139 zł<s>207 zł</s></span><span class="pack-banner">🎁 Serum, e-book i dostawa gratis</span>
+        </button>
+      </div>
+      <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
+      <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Masz pytania? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
+      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne.</div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===== FOOTER (B14) ===== -->
+<footer class="news">
+  <div class="wrap">
+    <div class="news-in">
+      <h2>Odbierz darmowy Koreański Protokół Skóry Głowy</h2>
+      <p>Codzienny 60-sekundowy rytuał i oferty tylko dla subskrybentów — prosto na Twoją skrzynkę. Bez spamu, same konkrety.</p>
+      <form class="news-form" id="newsForm">
+        <input type="email" id="newsEmail" name="email" placeholder="Twój adres e-mail" autocomplete="email" required>
+        <button type="submit">Wyślij mi</button>
+      </form>
+      <div class="news-msg" id="newsMsg"></div>
+    </div>
+    <div class="news-word" aria-hidden="true">Kalmely</div>
+    <div class="foot-bottom">
+      <div class="foot-row">
+        <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Potrzebujesz pomocy? Jesteśmy prawdziwymi ludźmi: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · odpisujemy w ~24 h</span>
+        <div class="foot-links"><a href="/scalp-shipping.html">Dostawa</a><a href="/scalp-refund.html">Zwroty i reklamacje</a><a href="/scalp-privacy.html">Prywatność</a><a href="/scalp-terms.html">Regulamin</a></div>
+      </div>
+      <div class="foot-fine">🔒 Bezpieczna płatność SSL · darmowa dostawa przy każdym zamówieniu · dostawa 10–13 dni roboczych · 60 dni na zwrot pieniędzy. &nbsp;Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne. © 2026 Kalmely.</div>
+    </div>
+  </div>
 </footer>
 
 <!-- sticky cta -->
@@ -1372,7 +1471,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     </form>
     <div class="promo-msg" id="promoMsg" role="status" aria-live="polite"></div>
     <button type="button" class="cart-checkout" id="cartCheckout">Bezpieczna płatność →</button>
-    <div class="cart-foot-trust"><span>🔒 Szyfrowanie SSL</span><span>↩ 90 dni na zwrot</span><span>🚚 Darmowa dostawa</span></div>
+    <div class="cart-foot-trust"><span>🔒 Szyfrowanie SSL</span><span>↩ 60 dni na zwrot</span><span>🚚 Darmowa dostawa</span></div>
     <div class="cart-pay" aria-label="Akceptowane metody płatności">
       <span class="pay" title="Visa"><svg width="34" height="12" viewBox="0 0 34 12" role="img" aria-label="Visa"><text x="17" y="10" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
       <span class="pay" title="Mastercard"><svg width="32" height="20" viewBox="0 0 32 20" role="img" aria-label="Mastercard"><circle cx="13" cy="10" r="6.4" fill="#EB001B"/><circle cx="19" cy="10" r="6.4" fill="#F79E1B" fill-opacity=".85"/></svg></span>
@@ -1492,7 +1591,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     var ship='<li class="inc-row"><span class="inc-ico inc-check">✓</span><span class="inc-name">Darmowa dostawa</span><span class="inc-val"><b class="inc-free">GRATIS</b></span></li>';
     var totalValue=barReg+giftTotal;
     var total='<li class="inc-row inc-total"><span class="inc-name">Łączna wartość</span><span class="inc-val"><s>'+money(totalValue)+'</s> <b class="inc-today">Dziś '+money(t.price)+'</b></span></li>';
-    el.innerHTML='<div class="inc-h">Co jest w zestawie</div><ul class="inc-list">'+bar+gifts+ship+total+'</ul><div class="inc-foot">✓ 90 dni gwarancji zwrotu pieniędzy</div>';
+    el.innerHTML='<div class="inc-h">Co jest w zestawie</div><ul class="inc-list">'+bar+gifts+ship+total+'</ul><div class="inc-foot">✓ 60 dni gwarancji zwrotu pieniędzy</div>';
   }
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the 6 functional slides
   function select(sku,persist){
@@ -1626,7 +1725,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
              + '<span class="cg-body"><b class="cg-name">'+x[0]+'</b>'
              + '<span class="cg-val"><s>'+money(parseInt(x[1],10)||0)+'</s> GRATIS</span>'
              + (x[3]?'<span class="cg-desc">'+x[3]+'</span>':'') + '</span></span>';}).join('');}
-      else{_cg.innerHTML='<span class="cg-h">90 dni gwarancji zwrotu pieniędzy</span>';}
+      else{_cg.innerHTML='<span class="cg-h">60 dni gwarancji zwrotu pieniędzy</span>';}
     }
   }
   function openCart(){
@@ -1783,7 +1882,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       {q:'Dostawa i czas realizacji',quick:1,k:/dostaw|wysy[łl]k|kurier|paczkomat|inpost|przesy[łl]k|[śs]ledzen|ile czeka|czas realizacji|kiedy dotrze/i,
        a:'Dostawa jest darmowa przy każdym zamówieniu, na terenie Polski — kurierem albo do Paczkomatu InPost. Wysyłamy w 24–48 h, przesyłka zwykle dociera w ciągu 10–13 dni roboczych. Link do śledzenia wysyłamy mailem, gdy paczka ruszy.'},
       {q:'Zwroty i gwarancja',quick:1,k:/zwrot|gwarancj|reklamacj|pieni[ęe]dz|odda[ćc]|nie zadzia[łl]|anulow|rezygnacj/i,
-       a:'Masz 90 dni i kostka może być używana — o to właśnie chodzi w testowaniu. Napisz jedno zdanie na hello@kalmely.com, a zwrócimy co do grosza. Bez formularzy i bez dyskusji.'},
+       a:'Masz 60 dni i kostka może być używana — o to właśnie chodzi w testowaniu. Napisz jedno zdanie na hello@kalmely.com, a zwrócimy co do grosza. Bez formularzy i bez dyskusji.'},
       {q:'Co zawiera?',k:/sk[łl]ad|zawiera|inci|siarczan|wega[ńn]|alergi|wra[żz]liw|substancj|co jest w/i,
        a:'Fermentowane składniki roślinne w kostce — bez siarczanów, wegańska, bez silikonów. To kosmetyk do skóry głowy, więc jeśli masz zdiagnozowany problem skórny albo znane alergie, sprawdź najpierw pełny skład z lekarzem.'},
       {q:'Czy jest bezpieczna dla włosów farbowanych?',k:/farbowan|koloryzac|rozja[śs]nian|keratyn|trwa[łl]|blond|pasemk/i,
@@ -1843,7 +1942,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     var started=false;
     function boot(){
       if(started)return;started=true;
-      bubble('Cześć! Jestem tu z ramienia zespołu Kalmely. Pytaj śmiało o kostkę, swoje zamówienie albo o 90-dniową gwarancję.','bot');
+      bubble('Cześć! Jestem tu z ramienia zespołu Kalmely. Pytaj śmiało o kostkę, swoje zamówienie albo o 60-dniową gwarancję.','bot');
       renderQuick();
     }
     function open(){
@@ -1892,6 +1991,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     form.addEventListener('submit',function(e){e.preventDefault();ask(input.value);});
     fab.addEventListener('click',toggle);
     document.getElementById('chatClose').addEventListener('click',close);
+    (function(){var tp=document.getElementById('teamProofChat');if(tp)tp.addEventListener('click',function(){open();});})();
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))close();});
 
     // Nudge: one gentle prompt after 12s, and never again once dismissed this session.
