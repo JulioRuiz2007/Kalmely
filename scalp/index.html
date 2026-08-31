@@ -1585,7 +1585,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <div class="cart-foot">
     <div class="cart-totals"><span>Wartość zamówienia</span><span id="cartSubtotal">138 zł</span></div>
     <div class="cart-totals"><span>Rabat za zestaw</span><span class="ct-save" id="cartSaving">−39 zł</span></div>
-    <div class="cart-totals" id="cartPromoRow" style="display:none"><span id="cartPromoLabel">Rabat</span><span class="ct-save" id="cartPromoAmt">−0 zł</span></div>
+    <div class="cart-totals" id="cartSubRow" style="display:none"><span>Subskrypcja −15%</span><span class="ct-save" id="cartSubAmt">−0 zł</span></div>
+        <div class="cart-totals" id="cartPromoRow" style="display:none"><span id="cartPromoLabel">Rabat</span><span class="ct-save" id="cartPromoAmt">−0 zł</span></div>
     <div class="cart-totals grand"><span>Razem</span><span id="cartTotal">99 zł</span></div>
     <form class="cart-promo" id="promoForm" novalidate>
       <input type="text" id="promoInput" placeholder="Kod rabatowy" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Kod rabatowy">
@@ -1695,8 +1696,18 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   var saveColours=function(){};
   function _wantsSub(){var c=document.getElementById('subOptin');return !!(c&&c.checked);}
   function subEveryMonths(s){return ({'SCALP-1':2,'SCALP-2':3,'SCALP-3':5})[s||curSku]||2;}
-  function ctaPriceTxt(){return money(_wantsSub()?info(curSku).price*0.85:info(curSku).price);}
-  function lineMath(){var t=info(curSku);return {qty:1,price:t.price,was:t.was,save:(t.was>t.price?t.was-t.price:0),checkoutQty:1};}
+  function ctaPriceTxt(){return money(lineMath().price);}
+  function SUB_OFF(){return _wantsSub()?0.15:0;}
+  // ⚠️ El descuento de suscripción se calcula AQUÍ y solo aquí. Antes vivía suelto en
+  // ctaPriceTxt() (que sí lo aplicaba) mientras lineMath() devolvía el precio base, así
+  // que el botón decía 118,15 zł y el carrito cobraba 139: el cliente veía subir el
+  // precio justo al abrir el carrito, en el peor momento posible.
+  function lineMath(){
+    var t=info(curSku), off=SUB_OFF();
+    var base=t.price, price=Math.round(base*(1-off)*100)/100;
+    return {qty:1, base:base, price:price, subOff:off, subSave:Math.round((base-price)*100)/100,
+            was:t.was, save:(t.was>base?t.was-base:0), checkoutQty:1};
+  }
   function updateCtas(){
     var m=lineMath(),lab=info(curSku).label;
     addBtns.forEach(function(a){var p=a.querySelector('.cta-price');if(p)p.textContent=ctaPriceTxt();});
@@ -1829,13 +1840,20 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     document.getElementById('cartName').textContent='Kalmely Korean Scalp Revival Bar';
     document.getElementById('cartMeta').textContent=t.label;
     document.getElementById('cartQty').textContent='×1';
-    document.getElementById('cartImg').src='assets/hero-01.webp';
+    // la foto del pack que se está comprando (bundle-1/2/3), no el bodegón genérico:
+    // estaba escrita a fuego a hero-01, así que los tres packs mostraban la misma imagen
+    document.getElementById('cartImg').src='assets/'+(t.img||'hero-01')+'.webp';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
     // discount code (real: WELCOME10 is a live Stripe coupon, applied again server-side at checkout)
+    var _subRow=document.getElementById('cartSubRow');
+    if(_subRow){
+      if(m.subSave>0){_subRow.style.display='';document.getElementById('cartSubAmt').textContent='−'+money(m.subSave);}
+      else{_subRow.style.display='none';}
+    }
     var _off=promoOff(),_disc=_off?Math.round(price*_off*100)/100:0,_grand=Math.round((price-_disc)*100)/100;
     var _pRow=document.getElementById('cartPromoRow');
     if(_pRow){
