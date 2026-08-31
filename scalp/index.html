@@ -478,6 +478,30 @@ section{padding:74px 0}
 
 /* guarantee */
 .guarantee{text-align:center}
+/* ===== La garantía, con el sello de fondo =====
+   El sello era un círculo de 92px en el flujo, uno más entre los elementos. Aquí pasa
+   a ser la marca de agua de la sección: gigante, quieta y por detrás, con el texto
+   pasando por delante al bajar. Es position:sticky, no parallax por JS — el círculo
+   se ancla a media pantalla y se queda mientras la sección entera desfila.
+   ⚠️ sticky muere si un ancestro tiene overflow:hidden, así que el desbordamiento
+   se controla con el tamaño del círculo, nunca recortando el contenedor. */
+.guar-sec{position:relative;isolation:isolate}
+.guar-mark{position:absolute;inset:0;z-index:0;pointer-events:none;
+  display:flex;justify-content:center;align-items:flex-start}
+.gm-ring{position:sticky;top:calc(50vh - min(29vw,290px));
+  width:min(58vw,580px);aspect-ratio:1;border-radius:50%;
+  border:2.5px solid rgba(35,79,43,.22);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(1.6vw,16px);
+  color:rgba(35,79,43,.15);text-align:center}
+.gm-ring b{font:600 min(15vw,150px)/1 'Fraunces',var(--serif);letter-spacing:-.02em}
+.gm-ring i{font:700 min(2.6vw,26px)/1.2 var(--sans);letter-spacing:.2em;text-transform:uppercase;font-style:normal}
+/* el contenido va por encima del sello, siempre */
+.guar-sec .wrap{position:relative;z-index:1}
+@media(max-width:860px){
+  .gm-ring{top:calc(50vh - min(38vw,220px));width:min(78vw,440px);border-width:2px}
+  .gm-ring b{font-size:min(20vw,116px)}
+  .gm-ring i{font-size:min(3.6vw,18px);letter-spacing:.16em}
+}
 .guarantee .seal{width:92px;height:92px;border-radius:50%;border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;font:700 10px/1.1 var(--sans);letter-spacing:.05em;text-transform:uppercase}
 .guarantee .seal b{font:600 24px/1 var(--serif)}
 .guarantee h2{font-family:'Fraunces',var(--serif);font-weight:600;letter-spacing:-.01em;font-size:clamp(29px,3.6vw,42px);line-height:1.12;margin-bottom:12px}
@@ -1455,9 +1479,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   </section>
 
   <!-- ===== 7. GUARANTEE (60-day) ===== -->
-  <section>
+  <section class="guar-sec">
+    <div class="guar-mark" aria-hidden="true"><span class="gm-ring"><b>60</b><i>dni na zwrot</i></span></div>
     <div class="wrap guarantee fade-slow">
-      <div class="seal fade-slow"><b>60</b>dni na zwrot</div>
       <h2>Przetestuj przez 60 dni. Ryzyko jest po naszej stronie.</h2>
       <p style="max-width:520px;margin:0 auto 22px">W najgorszym razie tracisz jednego maila. W najlepszym — przestajesz sprawdzać skórę głowy w każdym lustrze.</p>
       <div class="guar-row">
