@@ -541,6 +541,12 @@ section{padding:74px 0}
 .news-msg{font:500 13px/1 var(--sans);color:#E6C29C;margin-top:12px;min-height:16px}
 .news-word{font:800 clamp(64px,15vw,190px)/0.9 'Sora',var(--sans);text-align:center;color:rgba(249,248,246,.08);margin-top:40px;letter-spacing:-.03em;overflow:hidden;user-select:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
+/* La barra fija de compra mide 87px y se queda puesta hasta el final en escritorio, así que
+   tapaba el disclaimer del pie: el aviso de que esto es un cosmético y no un tratamiento, más
+   el copyright. Es justo el texto que no puede quedar inaccesible. Se reserva el hueco cuando
+   la barra está en pantalla, y solo entonces. */
+body:has(.sticky-cta.show) .foot-bottom{padding-bottom:calc(28px + 95px)}
+@supports not selector(:has(*)){.foot-bottom{padding-bottom:calc(28px + 95px)}}
 .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
 .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 18px;max-width:100%;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
 .foot-links a:hover{color:var(--paper)}
@@ -569,6 +575,28 @@ section{padding:74px 0}
 .ce-title{font:600 18px/1 var(--serif)}
 .ce-sub{font-size:14px;color:var(--ink-soft)}
 .cart-body{flex:1;overflow-y:auto;padding:20px 22px}
+/* El cuerpo del carrito scrollea, pero nada lo decía: el contenido se cortaba en seco
+   justo donde empieza el pie y parecía roto. Medido: con el pack de 3 en escritorio
+   quedaban 281px de regalos invisibles. La clase la pone el JS solo cuando de verdad
+   hay algo debajo, para no dibujar un degradado sobre una caja que ya cabe entera. */
+.cart-body{position:relative}
+.cart-body.has-more::after{content:"";position:sticky;bottom:-1px;left:0;right:0;display:block;
+  height:38px;margin-top:-38px;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(252,251,249,0),var(--paper) 82%)}
+.cart-body{scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.cart-body::-webkit-scrollbar{width:6px}
+.cart-body::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
+.cart-body::-webkit-scrollbar-track{background:transparent}
+/* Escritorio: el drawer tenía MÁS alto de ventana que el móvil y MENOS sitio para el
+   producto, porque el apretado solo se hizo bajo 560px. Se aplica también aquí. */
+@media(min-width:561px){
+  .cart-head{padding:16px 20px}
+  .cart-timer{padding:9px 16px}
+  .unlock{padding:14px 20px}
+  .unlock-msg{margin-bottom:8px}
+  .cart-foot{padding:14px 20px}
+  .cart-pay{margin-top:11px;padding-top:11px}
+}
 .cart-item{display:flex;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .cart-item-img{position:relative;flex:0 0 auto}
 .cart-item-img img{width:96px;height:96px;object-fit:cover;border-radius:10px;background:var(--paper-2)}
@@ -1185,7 +1213,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <div class="hero-track" id="heroTrack">
             <!-- 6 imágenes. hero-08 (mujer canosa) y hero-03 (antes/después rubia) retiradas; hero-02 al final. -->
             <div class="hero-slide"><img src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar — kostka i opakowanie" width="1024" height="1024" fetchpriority="high"></div>
-            <div class="hero-slide"><img src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar wraz z pudełkiem prezentowym" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-04.webp?v=pl1" alt="W czym ma pomagać kostka Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-05.webp?v=pl1" alt="Prawdziwi klienci używający kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-06.webp?v=pl1" alt="Co mówią klienci po stosowaniu kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
@@ -1197,7 +1224,6 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         </div>
         <div class="hero-thumbs">
           <button type="button" class="hero-thumb is-active" aria-label="Produkt"><img src="assets/scalp-hero-thumb.webp" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Kostka z pudełkiem"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Korzyści"><img src="assets/hero-04-thumb.webp?v=pl1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Klienci"><img src="assets/hero-05-thumb.webp?v=pl1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Wyniki"><img src="assets/hero-06-thumb.webp?v=pl1" alt="" loading="lazy"></button>
@@ -1485,7 +1511,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="rev-filterbar" id="revFilter" role="group" aria-label="Filtruj opinie według oceny"></div>
       <div class="rev-count" id="revFilterCount" hidden></div>
       <div class="rev-more" id="revFiltered" hidden></div>
-      <div class="rev-morewrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
+      <div class="rev-morewrap" id="revMoreWrap"><button type="button" class="rev-morebtn" id="revMoreBtn">Pokaż więcej opinii ↓</button></div>
       <div class="rev-more" id="revMore" hidden></div>
       <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
       <div class="rev-more" id="revMore2" hidden></div>
@@ -1861,6 +1887,11 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
     // discount code (real: WELCOME10 is a live Stripe coupon, applied again server-side at checkout)
+    // ¿queda contenido por debajo del corte? entonces se dibuja el degradado
+    var _cb=document.querySelector('.cart-body');
+    if(_cb) requestAnimationFrame(function(){
+      _cb.classList.toggle('has-more', _cb.scrollHeight > _cb.clientHeight+2);
+    });
     var _subRow=document.getElementById('cartSubRow');
     if(_subRow){
       if(m.subSave>0){_subRow.style.display='';document.getElementById('cartSubAmt').textContent='−'+money(m.subSave);}
@@ -1980,8 +2011,11 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       if(tick())setInterval(tick,1000);
     })();
     var KEY='kalmely_pop_v1',shown=false;
-    function seen(){try{return !!localStorage.getItem(KEY);}catch(e){return false;}}
-    function mark(v){try{localStorage.setItem(KEY,v||'1');}catch(e){}}
+    // sessionStorage y no localStorage: con localStorage el pop-up salía UNA vez y nunca más,
+    // ni meses después. Por sesión sale una vez por visita — recargar la pestaña no lo repite,
+    // pero quien vuelve por un enlace (una campaña, otro día) sí lo ve.
+    function seen(){try{return !!sessionStorage.getItem(KEY);}catch(e){return false;}}
+    function mark(v){try{sessionStorage.setItem(KEY,v||'1');}catch(e){}}
     function busyElsewhere(){
       var d=document.getElementById('cartDrawer'),c=document.getElementById('chatPanel');
       return (d&&d.classList.contains('open'))||(c&&c.classList.contains('open'));
@@ -2316,7 +2350,12 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   // Quien duda va derecho a 1★ y 2★. Que pueda llegar, y que encuentre algo escrito de verdad.
   (function(){
     var ALL = LEAD.concat(window.KALMELY_REVIEWS||[]);
-    var wrapMore = document.getElementById('revMore'), wrapMore2 = document.getElementById('revMore2');
+    // ⚠️ Estos son los WRAPS DE LOS BOTONES, no los contenedores de reseñas. Antes apuntaban a
+    // #revMore y #revMore2 —que son los contenedores— así que al filtrar por estrellas se
+    // ocultaban las reseñas extra pero el botón 'Pokaż więcej opinii' se quedaba ahí, colgando
+    // debajo de un resultado de una sola tarjeta.
+    var wrapMore = document.getElementById('revMoreWrap'), wrapMore2 = document.getElementById('revMore2Wrap');
+    var boxMore = document.getElementById('revMore'), boxMore2 = document.getElementById('revMore2');
     var bar = document.getElementById('revFilter'), out = document.getElementById('revFiltered');
     var cnt = document.getElementById('revFilterCount');
     if(!bar||!out) return;
@@ -2337,6 +2376,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       // al filtrar, las dos tandas de "ver más" estorban: se ocultan y mandamos el resultado aquí
       if(wrapMore){ wrapMore.dataset.wasHidden = wrapMore.hidden ? '1':'0'; wrapMore.hidden = true; }
       if(wrapMore2) wrapMore2.hidden = true;
+      if(boxMore) boxMore.hidden = true;
+      if(boxMore2) boxMore2.hidden = true;
       var sel = ALL.filter(function(r){ return r.r===n; });
       out.hidden = false;
       out.className = 'rev-more' + (sel.length===1?' few-1':(sel.length===2?' few-2':''));
