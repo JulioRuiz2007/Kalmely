@@ -594,6 +594,43 @@ section{padding:74px 0}
 .cart-pay .pay{display:inline-flex;align-items:center;justify-content:center;width:40px;height:26px;border:1px solid var(--line-2);border-radius:5px;background:#fff;overflow:hidden}
 .cart-pay .pay svg{display:block}
 .cart-pay-note{width:100%;text-align:center;margin-top:9px;font:500 11px/1.4 var(--sans);color:var(--faint)}
+/* ===== Drawer en móvil: recuperar altura para lo que se compra =====
+   Medido a 390x844: cabecera 79 + temporizador 37 + barra de desbloqueo 154 + pie 335
+   dejaban 239px para el producto y los regalos, que necesitan 334. Es decir, el
+   comprador veía media tarjeta cortada y ni siquiera la kostka que estaba comprando.
+   Aquí no se quita nada que venda: se aprieta el cromo y se van dos textos que
+   repiten algo dicho tres líneas más arriba. */
+@media(max-width:560px){
+  .cart-head{padding:13px 16px}
+  .cart-head h3{font-size:16px}
+  .ch-free{font-size:10.5px;padding:5px 8px}
+  .cart-timer{padding:8px 14px;font-size:12.5px}
+  .unlock{padding:12px 16px}
+  .unlock-msg{font-size:12.5px;line-height:1.35;margin-bottom:8px}
+  /* las dos etiquetas bajo la barra dicen lo mismo que el mensaje de encima */
+  .unlock-steps{display:none}
+  .unlock-bump{margin-top:9px;padding:9px;font-size:12px}
+  .cart-body{padding:14px 16px}
+  .cart-item{gap:12px}
+  .cg-item{padding:7px 0}
+  /* la ficha completa del regalo es para el escritorio; en el móvil basta el nombre y el valor */
+  .cg-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px}
+  .cart-foot{padding:12px 16px}
+  .cart-foot-trust{gap:10px;margin-top:9px;font-size:10.5px}
+  .cart-pay{gap:5px;margin-top:10px;padding-top:10px}
+  .cart-pay .pay{width:34px;height:22px}
+  /* redundante: el candado de "Szyfrowanie SSL" ya está justo encima */
+  .cart-pay-note{display:none}
+  .cart-promo input,.cart-promo button{padding:11px 12px}
+  .cart-checkout{padding:15px}
+}
+/* Pantallas cortas (iPhone con la barra de Safari, o en horizontal): además del
+   apretado de arriba, el temporizador y la barra de desbloqueo ceden el sitio. */
+@media(max-width:560px) and (max-height:720px){
+  .unlock-msg{margin-bottom:6px}
+  .cart-timer{padding:6px 14px;font-size:12px}
+  .cart-foot-trust{display:none}
+}
 @media(max-width:520px){
   .cart-drawer{width:100%;max-width:100%}
   .unlock{padding:13px 18px 12px}
@@ -789,6 +826,24 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .duo-by{margin-top:11px}
 .duo-q{font:500 13.5px/1.55 var(--sans);color:var(--ink-2);margin:5px 0 6px}
 .duo-n{font:600 12px/1.3 var(--sans);color:var(--ink);display:block}  /* idem .hc-guar span: inline heredaba el strut de .duo-by */
+/* ===== Antes/después: raíl deslizable en móvil =====
+   Apiladas, las seis historias medían 3320px — 3,9 pantallas y el 24% de la página,
+   más que el propio hero. Nadie baja tanto. En móvil pasan a un raíl horizontal con
+   snap: las mismas seis, sin recortar ninguna, en una fracción del alto. La tarjeta
+   ocupa el 82% para que la siguiente ASOME: sin ese trozo visible nadie desliza. */
+.duo-rail{display:contents}
+@media(max-width:860px){   /* mismo punto en que .duo pasa a una columna: si no coinciden queda una franja apilada sin raíl */
+  .duo-rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 -24px;padding:2px 24px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .duo-rail::-webkit-scrollbar{display:none}
+  .duo-rail>.duo-case{flex:0 0 82%;margin-bottom:0;scroll-snap-align:center}
+  .duo-hint{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:2px;
+    font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .duo-hint::after{content:"→";font-size:13px;letter-spacing:0}
+  .duo-side{padding:22px 24px 24px}
+  .duo-head{margin-bottom:16px}
+}
+@media(min-width:861px){.duo-hint{display:none}}
 .duo-n em{font-style:normal;font-weight:600;color:var(--ok);font-size:10.5px;display:block;margin-top:2px}
 @media(max-width:860px){
   .duo{grid-template-columns:1fr}
@@ -1205,7 +1260,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></span>
             <span><b>Dla kobiet</b><span>Trzy historie</span></span>
           </div>
-          <div class="duo-case">
+          <div class="duo-rail">
+            <div class="duo-case">
             <span class="duo-cap">Przetłuszczające się odrosty → czysto i lekko · 6 tygodni</span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-1.webp" alt="Anna K., zweryfikowana klientka — przedziałek przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Po sześciu tygodniach odrosty wreszcie są czyste.”</p><span class="duo-n">Anna K. <em>✓ Zweryfikowana klientka · 57 lat</em></span></div>
@@ -1220,13 +1276,16 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-3.webp" alt="Małgorzata R., zweryfikowana klientka — włosy wyglądające na gęstsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Wyglądają na gęstsze i są lżejsze niż wcześniej.”</p><span class="duo-n">Małgorzata R. <em>✓ Zweryfikowana klientka · 55 lat</em></span></div>
           </div>
-        </div>
+          </div>
+            <span class="duo-hint">Przesuń</span>
+          </div>
         <div class="duo-side fade-slow from-r stagger">
           <div class="duo-head">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="14" r="5.5"/><path d="M15 9l6-6M16 3h5v5"/></svg></span>
             <span><b>Dla mężczyzn</b><span>Trzy historie</span></span>
           </div>
-          <div class="duo-case">
+          <div class="duo-rail">
+            <div class="duo-case">
             <span class="duo-cap">Przetłuszczanie i ciężkość → lekkość · 6 tygodni</span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-1.webp" alt="Piotr M., zweryfikowany klient — skóra głowy przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Skóra głowy pierwszy raz od lat jest naprawdę czysta.”</p><span class="duo-n">Piotr M. <em>✓ Zweryfikowany klient · 48 lat</em></span></div>
@@ -1241,7 +1300,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-3.webp" alt="Andrzej S., zweryfikowany klient — włosy sprężystsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Włosy nie kleją się już do głowy po całym dniu.”</p><span class="duo-n">Andrzej S. <em>✓ Zweryfikowany klient · 45 lat</em></span></div>
           </div>
-        </div>
+          </div>
+            <span class="duo-hint">Przesuń</span>
+          </div>
       </div>
     </div>
   </section>
