@@ -630,6 +630,22 @@ section{padding:74px 0}
 .pop-code{margin-top:16px;padding:16px;border:1.5px dashed var(--gold);border-radius:12px;background:var(--card)}
 .pop-code b{display:block;font:700 26px/1 var(--sans);letter-spacing:.12em;color:var(--ink);margin:7px 0 8px}
 .pop-code span{font:500 12.5px/1.5 var(--sans);color:var(--ink-soft)}
+/* Cuenta atrás del tydzień otwarcia. Cuelga de una FECHA FIJA (LAUNCH_END), la misma
+   para todo el mundo: un contador que se reinicia en cada visita es justo lo que la
+   directiva Omnibus persigue, y aquí no hace falta — la semana de lanzamiento
+   existe de verdad. Cuando pasa la fecha el bloque desaparece y el pop-up vuelve
+   al copy de siempre, en vez de quedarse clavado en 00:00:00. */
+.pop-cd{margin:0 0 18px;padding:13px 12px 12px;background:var(--card);border:1.5px solid var(--line-2);border-radius:13px}
+.pop-cd.is-last{border-color:var(--ok);background:#FFF8F3}
+.pc-lab{display:block;font:700 10.5px/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.pop-cd.is-last .pc-lab{color:var(--ok)}
+.pc-clock{display:flex;justify-content:center;gap:7px}
+.pc-clock>span{flex:0 0 60px;background:var(--paper-2);border-radius:9px;padding:8px 4px}
+.pop-cd.is-last .pc-clock>span{background:#FBEEE4}
+.pc-clock b{display:block;font:700 22px/1 var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+.pop-cd.is-last .pc-clock b{color:var(--ok)}
+.pc-clock i{display:block;font:600 9.5px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);font-style:normal;margin-top:5px}
+@media(max-width:480px){.pc-clock>span{flex:1 1 0}.pc-clock b{font-size:20px}}
 @media(max-width:480px){.pop{padding:28px 20px 22px}.pop-btns{flex-direction:column}.pop-yes,.pop-no{flex:1 1 auto}}
 @media(prefers-reduced-motion:reduce){.pop,.pop-ov{transition:none}}
 
@@ -1313,7 +1329,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
         <div class="fd-body">
           <div class="eyebrow" style="text-align:left">Zespół, który stoi za kostką</div>
-          <h2 class="fd-h2">Za każdą kostką — i za każdym zwrotem — stoi prawdziwy zespół</h2>
+          <h2 class="fd-h2">Za każdą kostką i za każdym zwrotem stoi prawdziwy zespół</h2>
           <p>Za gwarancją stoi mały zespół, który sam odpisuje na maile i sam realizuje każdy zwrot. Bez infolinii i bez drobnego druku.</p>
           <p>Na każdą wiadomość odpisuje <b>konkretna osoba z zespołu</b>, zwykle tego samego dnia. Każdą wiadomość na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> czyta prawdziwy człowiek — zarówno przed zakupem, jak i po nim.</p>
           <div class="sig">— Zespół Kalmely</div>
@@ -1507,13 +1523,22 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 <div class="pop-ov" id="popOv"></div>
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popH" aria-hidden="true">
   <button type="button" class="pop-x" id="popX" aria-label="Zamknij">×</button>
-  <div class="pop-eyebrow">Zanim uciekniesz</div>
-  <h2 class="pop-h" id="popH">Zgarnij <b>10% rabatu</b> na pierwsze zamówienie</h2>
-  <p class="pop-p">Zostaw e-mail, a wyślemy Ci kod i darmowy Koreański Protokół Skóry Głowy. Bez spamu — możesz się wypisać jednym kliknięciem.</p>
+  <div class="pop-eyebrow" id="popEyebrow">Tydzień otwarcia w Polsce</div>
+  <h2 class="pop-h" id="popH">Rabaty na <b>otwarcie</b></h2>
+  <p class="pop-p" id="popP">Świętujemy debiut Kalmely w Polsce. Do zestawów, które są już nawet 33% taniej, dorzucamy kolejne 10% — kod wysyłamy prosto na maila.</p>
+  <div class="pop-cd" id="popCd" hidden>
+    <span class="pc-lab">Tydzień otwarcia kończy się za</span>
+    <div class="pc-clock">
+      <span><b id="pcD">0</b><i>dni</i></span>
+      <span><b id="pcH">00</b><i>godz.</i></span>
+      <span><b id="pcM">00</b><i>min</i></span>
+      <span><b id="pcS">00</b><i>sek.</i></span>
+    </div>
+  </div>
   <form class="pop-form" id="popForm" novalidate>
     <input type="email" id="popEmail" placeholder="Twój adres e-mail" autocomplete="email" aria-label="Twój adres e-mail">
     <div class="pop-btns">
-      <button type="submit" class="pop-yes" id="popYes">Odbierz 10% rabatu</button>
+      <button type="submit" class="pop-yes" id="popYes">Odbierz kod na otwarcie</button>
       <button type="button" class="pop-no" id="popNo">Nie, dzięki —<br>skrzynka i tak mi się nie domyka</button>
     </div>
   </form>
@@ -1800,6 +1825,41 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   (function(){
     var ov=document.getElementById('popOv'),pop=document.getElementById('pop');
     if(!ov||!pop)return;
+
+    // ----- Tydzień otwarcia: cuenta atrás con FECHA FIJA -----
+    // ⚠️ PARA CAMBIAR O ALARGAR LA PROMO, SOLO ESTA LÍNEA (hora de Polonia, +02:00 en verano).
+    var LAUNCH_END = Date.parse('2026-09-06T23:59:59+02:00');   // domingo 6 sep, 23:59
+    // La fecha es la misma para todos los visitantes a propósito: un contador que se
+    // reinicia en cada visita es publicidad engañosa bajo la directiva Omnibus, y en
+    // Polonia eso aplica. Cuando la fecha pasa, el pop-up vuelve solo a su copy normal.
+    (function(){
+      var cd=document.getElementById('popCd'); if(!cd)return;
+      var D=document.getElementById('pcD'),H=document.getElementById('pcH'),
+          M=document.getElementById('pcM'),S=document.getElementById('pcS'),
+          eb=document.getElementById('popEyebrow'),h=document.getElementById('popH'),
+          pp=document.getElementById('popP'),yes=document.getElementById('popYes');
+      function pad(n){return n<10?'0'+n:''+n;}
+      function expire(){
+        cd.hidden=true;
+        if(eb)eb.textContent='Zanim uciekniesz';
+        if(h)h.innerHTML='Zgarnij <b>10% rabatu</b> na pierwsze zamówienie';
+        if(pp)pp.textContent='Zostaw e-mail, a wyślemy Ci kod i darmowy Koreański Protokół Skóry Głowy. Bez spamu — możesz się wypisać jednym kliknięciem.';
+        if(yes)yes.textContent='Odbierz 10% rabatu';
+      }
+      function tick(){
+        var left=LAUNCH_END-Date.now();
+        if(left<=0){expire();return false;}
+        var sec=Math.floor(left/1000);
+        D.textContent=Math.floor(sec/86400);
+        H.textContent=pad(Math.floor(sec/3600)%24);
+        M.textContent=pad(Math.floor(sec/60)%60);
+        S.textContent=pad(sec%60);
+        cd.classList.toggle('is-last', left<24*3600*1000);   // último día: se pone en naranja
+        cd.hidden=false;
+        return true;
+      }
+      if(tick())setInterval(tick,1000);
+    })();
     var KEY='kalmely_pop_v1',shown=false;
     function seen(){try{return !!localStorage.getItem(KEY);}catch(e){return false;}}
     function mark(v){try{localStorage.setItem(KEY,v||'1');}catch(e){}}
