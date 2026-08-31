@@ -250,6 +250,10 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .starrow-fill::before{content:"\2605\2605\2605\2605\2605";-webkit-text-stroke:.7px #8A6E2A}
 .rating a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
 .bx-h1{font-family:'Fraunces',var(--serif);font-size:clamp(30px,3.4vw,40px);font-weight:600;color:#161616;line-height:1.08;margin:24px 0 6px}
+.bx-h1-sub{font:400 clamp(15px,1.6vw,17px)/1.35 var(--sans);color:var(--ink-2);margin:-2px 0 14px}  /* El nombre del producto se queda en inglés — es la marca y "Korean" es el gancho — pero el
+     h1 solo, en una tienda polaca, no dice QUÉ es. El <title> de la pestaña ya llevaba el
+     descriptor polaco; ahora también lo lleva la página. Además nadie busca "Korean Scalp
+     Revival Bar" en Google.pl: se busca "kostka do skóry głowy". */
 .bx-h1 .hl{color:inherit;font-weight:700;font-style:normal}
 .bx-h1 .h1-sub{display:block;font:400 15px/1.45 var(--sans);color:var(--ink-2);margin-top:14px;letter-spacing:0;white-space:normal}
 .bx-link{display:inline-flex;align-items:center;gap:5px;font:500 13.5px/1 var(--sans);color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-bottom:16px}
@@ -1206,6 +1210,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="hero-head fade-slow">
         <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (1847 opinii)</a></div>
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
+        <p class="bx-h1-sub">Koreańska kostka do skóry głowy</p>
         <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>60 dni gwarancji</span></div></div>
         <ul class="bx-promise">
           <li>Nie po to myjesz głowę codziennie, żeby zmywać wczorajszą wcierkę</li>
