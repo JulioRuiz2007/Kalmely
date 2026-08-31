@@ -256,7 +256,11 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .bx-benefits{display:flex;flex-direction:column;padding:4px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bx-badges{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .bx-badges-h{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
-.bx-badges-row{display:flex;flex-wrap:wrap;gap:5px}
+.bx-badges-row{display:grid;grid-template-columns:auto auto;justify-content:start;justify-items:start;gap:6px}  /* rejilla, no flex-wrap: en polaco los textos son más largos que en inglés y el wrap dejaba
+     '60 dni gwarancji' colgando sola — 3+1 en escritorio y 1+2+1 en móvil. Con 2x2 el reparto
+     deja de depender del texto; las columnas van a 'auto' para que las pastillas queden juntas
+     y no separadas por medio buybox de aire. */  /* rejilla, no flex-wrap: en polaco los textos son más largos que en inglés y el wrap dejaba
+     '60 dni gwarancji' colgando sola — 3+1 en escritorio y 1+2+1 en móvil. 2x2 siempre. */
 .bx-badges span{font:600 11px/1 var(--sans);color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:5px 7px;white-space:nowrap}
 .bx-warn{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;margin-top:16px}
 .bx-warn-ic{width:20px;height:20px;flex:0 0 auto;color:var(--ink);margin-top:1px}
@@ -534,7 +538,7 @@ section{padding:74px 0}
 .news-word{font:800 clamp(64px,15vw,190px)/0.9 'Sora',var(--sans);text-align:center;color:rgba(249,248,246,.08);margin-top:40px;letter-spacing:-.03em;overflow:hidden;user-select:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px}
 .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.foot-links{display:flex;flex-wrap:wrap;gap:14px 20px;max-width:100%;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 18px;max-width:100%;font:500 13px/1 var(--sans);color:rgba(249,248,246,.7)}
 .foot-links a:hover{color:var(--paper)}
 .foot-fine{font:400 11.5px/1.6 var(--sans);color:rgba(249,248,246,.45);margin-top:12px}
 
@@ -596,7 +600,8 @@ section{padding:74px 0}
 .cart-timer[hidden]{display:none}
 .unlock{padding:16px 22px 14px;border-bottom:1px solid var(--line)}
 .unlock-msg{font:500 14px/1.45 var(--sans);color:var(--ink-2);text-align:center;margin-bottom:10px}
-.unlock-msg b{font-weight:700;color:var(--ok)}
+.unlock-msg b{font-weight:700;color:var(--ok);white-space:nowrap}  /* nowrap: son el importe que falta y "SERUM GRATIS", y partidos en dos líneas dejan de leerse
+     como una unidad — justo lo que la barra tiene que comunicar de un vistazo */
 .unlock-msg .done{color:var(--gold);font-weight:700}
 .unlock-track{display:block;height:8px;border-radius:999px;background:var(--paper-3);overflow:hidden}
 .unlock-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--ink));width:0;transition:width .5s cubic-bezier(.4,0,.2,1)}
@@ -1201,7 +1206,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="hero-head fade-slow">
         <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4.8/5</b>&nbsp; (1847 opinii)</a></div>
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
-        <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka o skórze głowy</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>60 dni gwarancji</span></div></div>
+        <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>60 dni gwarancji</span></div></div>
         <ul class="bx-promise">
           <li>Nie po to myjesz głowę codziennie, żeby zmywać wczorajszą wcierkę</li>
           <li>Koniec z przyklapem po kilku godzinach</li>
