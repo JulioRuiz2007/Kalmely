@@ -164,7 +164,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .logo-brand{font:600 37px/1 var(--serif);letter-spacing:.01em;color:var(--ink)}
 .logo-brand i{color:var(--gold);font-style:normal}
 .logo-tag{font:500 6.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:1px}
-.nav-cart{grid-area:cart;justify-self:end;display:flex;align-items:center;gap:7px;font:600 13px/1 var(--sans)}
+.nav-cart{grid-area:cart;justify-self:end;display:flex;align-items:center;gap:7px;font:600 13px/1 var(--sans);min-height:36px;padding-left:6px}  /* alto táctil: medía 21px, poco para el pulgar */
 .nav-cart svg{width:21px;height:21px}
 .cart-count{min-width:19px;height:19px;border-radius:50%;background:var(--ink);color:var(--paper);font:700 11px/19px var(--sans);text-align:center;padding:0 5px}
 
@@ -203,7 +203,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .hc-guar{display:flex;gap:12px;align-items:center;padding:15px 18px;background:var(--paper-2)}
 .hc-guar svg{flex:0 0 30px;width:30px;height:30px;color:var(--ink)}
 .hc-guar b{font:700 14px/1.25 var(--sans);color:var(--ink);display:block;margin-bottom:2px}
-.hc-guar span{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+.hc-guar span{display:block;font-size:12.5px;line-height:1.45;color:var(--ink-2)}  /* block: si queda inline, el line-height del div padre (heredado del body) manda y cada línea se estira 8px */
 .hx-eyebrow{font:700 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
 
 /* gallery */
@@ -448,7 +448,7 @@ section{padding:74px 0}
 .rev-bar .track{flex:1;height:7px;border-radius:4px;background:var(--paper-3);overflow:hidden}
 .rev-bar .fill{display:block;height:100%;background:var(--ink);border-radius:4px}
 .rev-bar .pct{min-width:34px;text-align:right;color:var(--ink-2)}
-.rev-bar{cursor:pointer;border:none;background:none;width:100%;text-align:left}
+.rev-bar{cursor:pointer;border:none;background:none;width:100%;text-align:left;padding:9px 4px}  /* alto táctil: la fila medía 16px y es el filtro por estrellas */
 .rev-bar .lab{min-width:30px;font-weight:600;color:var(--ink-2)}
 .rev-bar:hover .track,.rev-bar.is-active .track{box-shadow:inset 0 0 0 1px var(--gold)}
 .rev-bar.is-active .fill{background:var(--gold)}
@@ -531,7 +531,7 @@ section{padding:74px 0}
 .cart-head{display:flex;align-items:center;gap:10px;padding:20px 22px;border-bottom:1px solid var(--line)}
 .cart-head h3{font:600 18px/1 var(--serif);display:flex;align-items:center;gap:8px;flex:1}
 .ch-free{font:600 11px/1 var(--sans);color:var(--ok);background:#F4EBE2;padding:6px 9px;border-radius:20px}
-.cart-close{font-size:26px;line-height:1;color:var(--ink-soft);width:30px}
+.cart-close{font-size:26px;line-height:1;color:var(--ink-soft);width:38px;height:38px;display:flex;align-items:center;justify-content:center}
 .cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:30px}
 .cart-empty .ce-ic{color:var(--faint)}
 .ce-title{font:600 18px/1 var(--serif)}
@@ -788,7 +788,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .duo-tag.a{right:9px;background:rgba(155,91,51,.86)}
 .duo-by{margin-top:11px}
 .duo-q{font:500 13.5px/1.55 var(--sans);color:var(--ink-2);margin:5px 0 6px}
-.duo-n{font:600 12px/1.3 var(--sans);color:var(--ink)}
+.duo-n{font:600 12px/1.3 var(--sans);color:var(--ink);display:block}  /* idem .hc-guar span: inline heredaba el strut de .duo-by */
 .duo-n em{font-style:normal;font-weight:600;color:var(--ok);font-size:10.5px;display:block;margin-top:2px}
 @media(max-width:860px){
   .duo{grid-template-columns:1fr}
