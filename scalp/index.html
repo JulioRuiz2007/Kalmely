@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-01.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/scalp-hero.webp" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
 <style>
@@ -1175,7 +1175,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <!-- 6 imágenes. hero-08 (mujer canosa) y hero-03 (antes/después rubia) retiradas; hero-02 al final. -->
-            <div class="hero-slide"><img src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar wraz z pudełkiem prezentowym" width="1080" height="1080" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar — kostka i opakowanie" width="1024" height="1024" fetchpriority="high"></div>
+            <div class="hero-slide"><img src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar wraz z pudełkiem prezentowym" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-04.webp" alt="W czym ma pomagać kostka Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-05.webp" alt="Prawdziwi klienci używający kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-06.webp" alt="Co mówią klienci po stosowaniu kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
@@ -1186,7 +1187,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <button type="button" class="hero-arrow hero-next" aria-label="Następne zdjęcie">&rsaquo;</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Produkt"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Produkt"><img src="assets/scalp-hero-thumb.webp" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Kostka z pudełkiem"><img src="assets/hero-01-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Korzyści"><img src="assets/hero-04-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Klienci"><img src="assets/hero-05-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Wyniki"><img src="assets/hero-06-thumb.webp" alt="" loading="lazy"></button>
