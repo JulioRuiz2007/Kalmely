@@ -14,3 +14,7 @@ worker/
 assets/kalmely-1/
 *.mp4
 *.AAC
+
+# Fuente del e-book: se guarda en ~/Desktop/kalmely-bundles-polaco/_fuente-ebook/
+# Fuera del repo porque Pages publica TODO lo que hay aqui dentro.
+scalp/.ebook-src.html
