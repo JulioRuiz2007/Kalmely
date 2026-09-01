@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Koreański Protokół Skóry Głowy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FDFCF8;
+    --cream:#F7F4EA;
+    --green:#2A4A32;      /* titulos */
+    --green-2:#4A6B4F;
+    --olive:#8A9A7E;      /* acuarela portada */
+    --gold:#B8934F;       /* eyebrows y numeros */
+    --ink:#3F4A43;        /* cuerpo */
+    --ink-2:#5C6660;
+    --line:#E3DFD2;
+    --serif:'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  @page{ size:A4; margin:0; }
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  /* ---------- pagina ---------- */
+  .page{
+    position:relative;
+    width:210mm; height:297mm;
+    padding:24mm 22mm 20mm;
+    background:var(--paper);
+    page-break-after:always;
+    break-after:page;
+    overflow:hidden;
+  }
+  .page:last-child{page-break-after:auto;break-after:auto}
+  .foot{
+    position:absolute; left:22mm; right:22mm; bottom:12mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:7.6pt; color:var(--ink-2); letter-spacing:.2px;
+    border-top:.5pt solid var(--line); padding-top:3mm;
+  }
+  .foot .n{font-variant-numeric:tabular-nums}
+
+  /* ---------- portada ---------- */
+  .cover{
+    padding:0; background:var(--cream);
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center;
+  }
+  .cover-wash{
+    position:absolute; inset:0; overflow:hidden;
+  }
+  /* mancha de acuarela superior izquierda */
+  .cover-wash::before{
+    content:''; position:absolute; top:-14%; left:-18%;
+    width:62%; height:46%;
+    background:radial-gradient(ellipse at 55% 55%, rgba(138,154,126,.34) 0%, rgba(138,154,126,.20) 42%, rgba(138,154,126,0) 72%);
+    filter:blur(6px);
+  }
+  /* banda inferior oliva con curva */
+  .cover-wash::after{
+    content:''; position:absolute; left:-6%; right:-6%; bottom:-6%;
+    height:34%;
+    background:linear-gradient(180deg, rgba(138,154,126,.62) 0%, rgba(138,154,126,.86) 100%);
+    border-radius:56% 44% 0 0 / 34% 30% 0 0;
+  }
+  .cover-inner{position:relative;z-index:2;padding:0 26mm}
+  .cover h1{
+    font-family:var(--serif); font-weight:400;
+    font-size:52pt; line-height:1.03; color:var(--gold);
+    margin:0 0 10mm; letter-spacing:-.5px;
+  }
+  .cover-rule{
+    width:34mm; height:0; margin:0 auto 8mm;
+    border-top:.8pt solid var(--gold); position:relative;
+  }
+  .cover-rule::after{
+    content:''; position:absolute; left:50%; top:-1.5pt; width:3pt; height:3pt;
+    margin-left:-1.5pt; border-radius:50%; background:var(--gold);
+  }
+  .cover h2{
+    font-family:var(--sans); font-weight:400;
+    font-size:12.5pt; line-height:1.62; color:var(--ink);
+    margin:0; max-width:118mm; margin-inline:auto;
+  }
+  .cover-brand{
+    position:absolute; left:0; right:0; bottom:26mm; z-index:2;
+    font-family:var(--serif); font-size:21pt; color:#F3EFE2; letter-spacing:.6px;
+  }
+  .cover-brand::after{
+    content:''; display:block; width:22mm; height:0;
+    border-top:.7pt solid rgba(243,239,226,.75); margin:4mm auto 0;
+  }
+
+  /* ---------- tipografia interior ---------- */
+  .eyebrow{
+    font-family:var(--sans); font-size:8pt; font-weight:600;
+    letter-spacing:2.6px; text-transform:uppercase; color:var(--gold);
+    margin:0 0 5mm;
+  }
+  h2.title{
+    font-family:var(--serif); font-weight:500;
+    font-size:27pt; line-height:1.14; color:var(--green);
+    margin:0 0 4mm; letter-spacing:-.3px;
+  }
+  .subtitle{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:12.5pt; line-height:1.5; color:var(--ink-2);
+    margin:0 0 9mm;
+  }
+  h3{
+    font-family:var(--serif); font-weight:600;
+    font-size:14.5pt; line-height:1.3; color:var(--green);
+    margin:8mm 0 3mm;
+  }
+  p{font-size:10.6pt; line-height:1.72; margin:0 0 4mm; text-align:justify; hyphens:auto}
+  p.lead{font-size:11.4pt}
+  strong{color:var(--green);font-weight:600}
+  em{font-style:italic}
+
+  ul,ol{margin:0 0 4.5mm; padding-left:0; list-style:none}
+  ul li,ol li{
+    font-size:10.4pt; line-height:1.66; margin:0 0 2.6mm;
+    padding-left:8mm; position:relative;
+  }
+  ul li::before{
+    content:''; position:absolute; left:2.6mm; top:2.05mm;
+    width:2.2mm; height:2.2mm; border-radius:50%; background:var(--olive);
+  }
+  ol{counter-reset:li}
+  ol li{counter-increment:li}
+  ol li::before{
+    content:counter(li) '.'; position:absolute; left:1mm; top:0;
+    font-family:var(--sans); font-weight:600; font-size:10.4pt; color:var(--gold);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* cita destacada */
+  .pull{
+    background:var(--cream); border-left:2.4pt solid var(--olive);
+    padding:6mm 7mm; margin:6mm 0 6.5mm; border-radius:0 2mm 2mm 0;
+  }
+  .pull p{
+    font-family:var(--serif); font-style:italic; font-size:11.6pt;
+    line-height:1.56; color:var(--green); margin:0; text-align:left;
+  }
+
+  /* nota legal al pie de capitulo */
+  .legal{
+    font-size:8.4pt; line-height:1.55; color:var(--ink-2);
+    font-style:italic; margin:7mm 0 0; padding-top:3.5mm;
+    border-top:.5pt solid var(--line); text-align:left;
+  }
+
+  /* ---------- indice ---------- */
+  .toc{margin:2mm 0 0; border-top:.5pt solid var(--line)}
+  .toc-row{
+    display:flex; align-items:baseline; gap:6mm;
+    padding:3.1mm 2mm; border-bottom:.5pt solid var(--line);
+  }
+  .toc-row:nth-child(odd){background:#FAF8F1}
+  .toc-n{
+    font-family:var(--sans); font-weight:600; font-size:10.5pt; color:var(--gold);
+    min-width:9mm; text-align:right; font-variant-numeric:tabular-nums;
+  }
+  .toc-t{font-size:10.5pt; color:var(--ink); line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<div class="page cover">
+  <div class="cover-wash"></div>
+  <div class="cover-inner">
+    <h1>Koreański<br>Protokół<br>Skóry Głowy</h1>
+    <div class="cover-rule"></div>
+    <h2>Prosty przewodnik po usuwaniu nagromadzonego łoju i wspieraniu wyglądu gęstszych, zdrowiej wyglądających włosów po pięćdziesiątce</h2>
+  </div>
+  <div class="cover-brand">Kalmely</div>
+</div>
+
+<!-- ============ INDICE ============ -->
+<div class="page">
+  <div class="eyebrow">Kalmely · Przewodnik pielęgnacyjny</div>
+  <h2 class="title">Koreański Protokół Skóry Głowy</h2>
+  <div class="subtitle">Łagodny, uczciwy przewodnik do zdrowiej wyglądającej skóry głowy — i do tego, żeby znów poczuć się sobą</div>
+
+  <div class="eyebrow" style="margin-top:9mm">Spis treści</div>
+  <div class="toc">
+    <div class="toc-row"><div class="toc-n">1</div><div class="toc-t">Witaj — jak korzystać z tego przewodnika</div></div>
+    <div class="toc-row"><div class="toc-n">2</div><div class="toc-t">Co naprawdę dzieje się na przerzedzającej się skórze głowy</div></div>
+    <div class="toc-row"><div class="toc-n">3</div><div class="toc-t">Poznaj sygnały: przedziałek, kucyk, czubek głowy</div></div>
+    <div class="toc-row"><div class="toc-n">4</div><div class="toc-t">Dlaczego jest coraz gorzej, cokolwiek byś nie zrobiła</div></div>
+    <div class="toc-row"><div class="toc-n">5</div><div class="toc-t">Dlaczego szampony, serum i suplementy zawodzą</div></div>
+    <div class="toc-row"><div class="toc-n">6</div><div class="toc-t">Jak koreańska kostka rozpuszcza tłustą warstwę</div></div>
+    <div class="toc-row"><div class="toc-n">7</div><div class="toc-t">7-dniowy rytuał resetu, krok po kroku</div></div>
+    <div class="toc-row"><div class="toc-n">8</div><div class="toc-t">Jak przyspieszyć efekty — bez ściemy</div></div>
+    <div class="toc-row"><div class="toc-n">9</div><div class="toc-t">Błędy, przez które skóra głowy pozostaje zasklepiona</div></div>
+    <div class="toc-row"><div class="toc-n">10</div><div class="toc-t">Codzienne nawyki przyjazne skórze głowy</div></div>
+    <div class="toc-row"><div class="toc-n">11</div><div class="toc-t">Jak utrzymać odzyskaną objętość</div></div>
+    <div class="toc-row"><div class="toc-n">12</div><div class="toc-t">Lustro, zdjęcia i powrót do siebie</div></div>
+    <div class="toc-row"><div class="toc-n">13</div><div class="toc-t">Kiedy iść do lekarza lub dermatologa</div></div>
+    <div class="toc-row"><div class="toc-n">14</div><div class="toc-t">Mity, fakty i odpowiedzi na Twoje pytania</div></div>
+    <div class="toc-row"><div class="toc-n">15</div><div class="toc-t">Kilka słów na koniec od Emmy</div></div>
+  </div>
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">1</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 1 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 1</div>
+  <h2 class="title">Witaj — jak korzystać z tego przewodnika</h2>
+
+  <p class="lead">Witaj. Bardzo się cieszę, że tu jesteś.</p>
+  <p>Nazywam się Emma i chcę zacząć od czegoś, co sama chciałabym usłyszeć wcześniej: jeśli po cichu martwisz się o swoje włosy, to nie wydaje Ci się i nie jesteś w tym sama.</p>
+
+  <h3>Jeśli to brzmi jak Ty</h3>
+  <p>Może zaczęło się pewnego ranka przed lustrem w łazience, w tym bezlitosnym górnym świetle. Przedziałek pośrodku wydał się odrobinę szerszy, niż go pamiętałaś. Trochę więcej skóry prześwitującej spod włosów.</p>
+  <p>A może to był kucyk — gumka owija się teraz o jeden raz więcej niż kiedyś, bo po prostu jest mniej do związania.</p>
+  <p>Może włosy zwyczajnie nie są już takie jak kilka lat temu. Cieńsze. Bardziej płaskie. Rano pełne, a po południu opadnięte i zmęczone.</p>
+  <p>Jeśli czujesz cokolwiek z tego, ten przewodnik powstał dla Ciebie — kobiety gdzieś po pięćdziesiątce albo sześćdziesiątce, która zauważa zmiany, o których nikt jej wcześniej nie uprzedził, i po cichu zastanawia się, co z tym zrobić.</p>
+
+  <h3>Dwie rzeczy, które musisz usłyszeć na początku</h3>
+  <p>Zanim zrobimy choćby jeden krok dalej — dwie sprawy.</p>
+  <p><strong>Pierwsza: to nigdy nie była Twoja wina.</strong> Nie spowodowałaś tego złym myciem ani tym, że starałaś się za mało, ani kupnem niewłaściwej butelki. Większość kobiet w Twojej sytuacji próbowała naprawdę wielu rzeczy — serum, suplementów, drogich szamponów — i wszystkie je zawiodły. To rozczarowanie było prawdziwe i nie było Twoją porażką. Jest powód, dla którego te rzeczy tak często nie działają, i spokojnie do niego dojdziemy w kolejnych rozdziałach.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">2</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0"><strong>Druga: to przewodnik pielęgnacyjny, nie porada medyczna.</strong> Nie jestem lekarką i nic na tych stronach nie służy do diagnozowania, leczenia ani wyleczenia czegokolwiek. Potraktuj to jak ciepłego, napisanego prostym językiem towarzysza w codziennej pielęgnacji skóry głowy — takie rozsądne, życzliwe informacje, jakimi podzieliłaby się z Tobą przyjaciółka przy herbacie. Jeśli cokolwiek wyda Ci się nagłe, bolesne albo nietypowe, to rozmowa dla prawdziwego specjalisty, a rozdział 13 pomoże Ci rozpoznać dokładnie ten moment.</p>
+
+  <div class="pull"><p>Ten przewodnik ma pomóc Twojej skórze głowy poczuć się czystą, wolną i zadbaną — a Tobie poczuć się znów odrobinę bardziej sobą.</p></div>
+
+  <h3>Jedna zasada, która liczy się najbardziej</h3>
+  <p>Jeśli z całej tej książki zapamiętasz tylko jedną myśl, niech to będzie ta.</p>
+  <p><strong>Codzienna metoda znaczy więcej niż jakikolwiek pojedynczy produkt.</strong></p>
+  <p>Kusi, żeby wierzyć, że rozwiązaniem jest jeden magiczny słoiczek — ta właściwa butelka, która naprawi wszystko przez noc. Rozumiem to pragnienie; sama je miałam. Ale zdrowiej wyglądające włosy nie biorą się z cudownego zakupu. Biorą się z prostej, łagodnej rutyny, robionej po trochu, z cierpliwością i życzliwością wobec siebie.</p>
+  <p>Produkt, o którym wspomnę później, naprawdę lubię i uczciwie powiem dlaczego. Ale to tylko narzędzie. Prawdziwa zmiana bierze się z tego, jak dbasz o skórę głowy dzień po dniu — nie z żadnej pojedynczej rzeczy, którą można kupić.</p>
+
+  <h3>Jak czytać tę książkę</h3>
+  <p>Nie musisz przeczytać wszystkiego naraz. Oto spokojna droga, którą przejdziemy:</p>
+  <ul>
+    <li>Najpierw zrozumiemy, co naprawdę dzieje się na przerzedzającej się skórze głowy — prostym językiem, bez żargonu.</li>
+    <li>Potem przyjrzymy się, dlaczego zwykłe rozwiązania tak często rozczarowują.</li>
+    <li>Następnie sedno: prosty 7-dniowy rytuał resetu i codzienne nawyki, które każdy może wprowadzić.</li>
+    <li>I na koniec — jak utrzymać efekty i znów czuć się sobą na własnych zdjęciach.</li>
+  </ul>
+  <p>Nie spiesz się. Bądź cierpliwa wobec procesu, a przede wszystkim wobec siebie.</p>
+  <p>Kiedy tylko będziesz gotowa, przewróć stronę — i zaczynamy.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">3</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 2 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 2</div>
+  <h2 class="title">Co naprawdę dzieje się na przerzedzającej się skórze głowy</h2>
+
+  <p>Jeśli kiedykolwiek stałaś przed lustrem, zastanawiając się, co się zmieniło — włosy są tej samej długości, używasz tych samych kosmetyków, a jednak przedziałek wygląda na szerszy, a kucyk czuje się cieńszy — ten rozdział jest dla Ciebie. Zdejmijmy z tego tajemnicę, spokojnie i prostym językiem.</p>
+
+  <h3>Pomyśl o skórze głowy jak o ziemi w ogrodzie</h3>
+  <p>To najprostszy obraz, jaki znam. Każdy włos wyrasta z maleńkiego korzenia schowanego tuż pod skórą, a skóra głowy wokół tego korzenia jest trochę jak ziemia w ogrodzie. Kiedy ziemia jest miękka, czysta i może oddychać, roślina rosnąca w niej zwykle wygląda najlepiej. Kiedy ziemia twardnieje, ubija się i zasklepia od góry, ta sama roślina może mieć trudności — nie dlatego, że coś jest nie tak z nasieniem, tylko przez warunki, w jakich rośnie.</p>
+  <p>Twoje włosy to roślina. Twoja skóra głowy to ziemia. I bardzo dużo z tego, jak gęste i zdrowe wyglądają włosy, sprowadza się do stanu tej ziemi.</p>
+
+  <div class="pull"><p>To nigdy nie było tak, że starałaś się za mało. Bardzo często chodzi po prostu o to, że skóra głowy pod spodem też potrzebowała uwagi — a prawie nikt nam o tym nie powiedział.</p></div>
+
+  <h3>Co zmieniają lata menopauzy</h3>
+  <p>Lata wokół menopauzy przynoszą wiele cichych zmian, a skóra głowy jest częścią tej historii, niezależnie od tego, czy ktoś o tym wspomniał. Kiedy nasze ciała przechodzą przez ten okres, środowisko skóry głowy również się zmienia. Wiele kobiet zauważa, że skóra głowy zachowuje się inaczej niż kiedyś — czasem jest bardziej sucha, czasem bardziej przetłuszczona, a czasem jedno i drugie w różnych momentach miesiąca.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">4</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Oto kilka rzeczy, które kobiety często opisują w tych latach:</p>
+  <ul>
+    <li>Włosy cieńsze i bardziej płaskie niż kiedyś, opadające już po południu</li>
+    <li>Skóra głowy, która wydaje się produkować więcej sebum albo czuć się oblepiona wkrótce po myciu</li>
+    <li>Pasma, które nie mają już tej sprężystości i objętości co kiedyś</li>
+    <li>Przedziałek, który w pewnym świetle wygląda na odrobinę szerszy</li>
+  </ul>
+  <p>Nic z tego nie oznacza, że zrobiłaś coś źle. To naturalny okres zmian i — jak każda inna część naszego ciała w tych latach — skóra głowy prosi po prostu o odrobinę więcej troski i zrozumienia niż w wieku dwudziestu pięciu lat.</p>
+
+  <h3>Dlaczego włosy mogą wyglądać czysto, gdy skóra głowy jest zasklepiona</h3>
+  <p>To część, która zaskakuje większość kobiet, więc wyjaśnię ją spokojnie.</p>
+  <p>Możesz umyć włosy, wysuszyć je i mieć je idealnie czyste — lśniące pasma, świeży zapach, wszystko jak trzeba — podczas gdy skóra głowy pod spodem jest po cichu zasklepiona. Jak to możliwe? Ponieważ pasma, które widzisz, i skóra, której nie widzisz, to dwie różne rzeczy.</p>
+  <p>Z czasem naturalne sebum, które wytwarza skóra głowy, miesza się z pozostałościami codziennych kosmetyków — lakierów, suchych szamponów, odżywek — i powoli buduje twardszą, woskowatą warstwę, która osiada dokładnie tam, gdzie włos wychodzi ze skóry. Szampon pięknie myje długość włosów. Ale ta stwardniała warstwa przy samej skórze nie zawsze spłukuje się przy zwykłym myciu. Potrafi tam siedzieć dzień po dniu, podczas gdy widoczne włosy wyglądają na świeżo umyte.</p>
+  <p>Nazywam tę stwardniałą warstwę <strong>tłustą czapą</strong> i porządnie o niej porozmawiamy w dalszym rozdziale, bo jej zrozumienie zmienia wszystko w tym, jak dbasz o włosy.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">5</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Na razie chciałabym, żebyś zapamiętała to: czysto wyglądające włosy nie zawsze oznaczają czystą, wolną skórę głowy. Ziemia może być zasklepiona, nawet jeśli ogród na wierzchu wygląda schludnie. Ta jedna myśl — że powierzchnia i skóra pod spodem to dwie różne historie — jest tym spokojnym „aha", dzięki któremu reszta tego przewodnika zaczyna mieć sens.</p>
+
+  <h3>Uspokajający punkt wyjścia</h3>
+  <p>Jeśli więc włosy wydają Ci się cieńsze, przedziałek szerszy, a skóra głowy oblepiona bez względu na to, jak często myjesz — nie wydaje Ci się i z pewnością nie jesteś w tym sama. Stoi za tym prawdziwy, zrozumiały powód i ma on znacznie więcej wspólnego z warunkami na Twojej skórze głowy niż z czymkolwiek, co zrobiłaś albo czego nie zrobiłaś.</p>
+  <p>W następnym rozdziale przyjrzymy się z bliska znajomym sygnałom — przedziałkowi, kucykowi, czubkowi głowy — żebyś mogła rozpoznać dokładnie to, co widzisz, i poczuć się spokojniej, wiedząc, że ma to swoją nazwę i swoją drogę wyjścia.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">6</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 3 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 3</div>
+  <h2 class="title">Poznaj sygnały: przedziałek, kucyk, czubek głowy</h2>
+
+  <p>Jeśli kiedykolwiek stanęłaś w jasnym łazienkowym świetle, pochyliłaś głowę i poczułaś to małe ukłucie w żołądku na widok tego, co zobaczyłaś — ten rozdział jest dla Ciebie. Nie po to, żeby Cię przestraszyć. Wręcz przeciwnie. Tak wiele kobiet w Twoim wieku po cichu zauważa dokładnie to samo i zakłada, że są jedyne. Nie jesteś jedyna. Te zmiany są powszechne, są stopniowe, a kiedy potrafisz je nazwać, tracą część swojej mocy niepokojenia.</p>
+  <p>Przejdźmy przez nie spokojnie, jedna po drugiej.</p>
+
+  <h3>Poszerzający się przedziałek</h3>
+  <p>U większości kobiet to właśnie przedziałek pośrodku pokazuje to jako pierwszy. Pewnego dnia cienka linia skóry, którą zawsze miałaś, wygląda na odrobinę szerszą — bardziej jak ścieżka niż jak linia. Możesz zauważyć to najbardziej na świeżo umytych i wysuszonych włosach albo na zdjęciu zrobionym z góry. Niektóre kobiety opisują to jako wrażenie „prześwitywania": światło dociera do skóry tam, gdzie wcześniej zasłaniała ją gęsta korona włosów.</p>
+  <p>To nie jest coś, co sobie wyobraziłaś, ani coś, co zrobiłaś źle. Przedziałek jest po prostu najłatwiejszym miejscem, żeby zobaczyć to, co dzieje się na całej skórze głowy.</p>
+
+  <h3>Mniejszy kucyk</h3>
+  <p>Oto sygnał, który mieszka raczej w dłoniach niż w oczach. Zbierasz włosy z tyłu, owijasz gumkę — i idzie o jeden raz więcej. Kucyk czuje się cieńszy między palcami, lżejszy, łatwiejszy do utrzymania. Warkocz, z którym kiedyś się mocowałaś, teraz układa się smukło i schludnie.</p>
+
+  <div class="pull"><p>To cicha zmiana — taka, którą zauważysz tylko Ty, bo tylko Ty pamiętasz, jak było wcześniej.</p></div>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">7</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Ta pamięć w Twoich dłoniach jest prawdziwa. Zaufaj jej. To często najbardziej szczery wczesny sygnał ze wszystkich.</p>
+
+  <h3>Cieńsze, płaskie, opadnięte po południu</h3>
+  <p>Jest jeszcze sama struktura. Włosy, które kiedyś trzymały skręt albo odrobinę objętości, teraz opadają. Układasz je rano i wyglądają ślicznie — a po południu znów leżą płasko przy głowie, miękkie i bez życia. Łapiesz się na sięganiu po suchy szampon, spinkę, delikatne tapirowanie na czubku, żeby wywołać wysokość, która po prostu nie chce się utrzymać.</p>
+  <p>Cieńsze pasma i płaski wygląd często przychodzą razem i potrafią sprawić, że włosy wydają się „robić mniej" niż kiedyś, nawet w dobry dzień.</p>
+
+  <h3>Więcej skóry na skroniach i czubku głowy</h3>
+  <p>I wreszcie skronie i czubek głowy — miejsca, których nie widzisz łatwo, co po części tłumaczy, dlaczego tak niepokoją, kiedy już je zauważysz. Lusterko ustawione pod kątem do tyłu albo zdjęcie zrobione zza pleców na rodzinnym spotkaniu — i nagle na górze prześwituje trochę więcej skóry, niż się spodziewałaś.</p>
+  <p>Skronie mogą się nieznacznie cofnąć, inaczej okalając twarz. Czubek głowy w pewnym świetle może wyglądać na bardziej otwarty. To widoki, nad którymi mamy w lustrze najmniejszą kontrolę, więc często zaskakują najbardziej.</p>
+
+  <h3>Spokojna lista kontrolna</h3>
+  <p>Możesz rozpoznać jeden z tych sygnałów albo kilka. Nie ma tu „progu zaliczenia" — to po prostu sposób, żeby nazwać to, co czujesz:</p>
+  <ul>
+    <li>Przedziałek pośrodku wygląda na szerszy albo bardziej „prześwitujący" w jasnym świetle i na zdjęciach.</li>
+    <li>Kucyk owija się o jeden raz więcej i czuje się lżejszy w dłoni.</li>
+    <li>Włosy dają się ułożyć rano, ale po południu opadają i tracą objętość.</li>
+    <li>Na skroniach albo czubku głowy widać trochę więcej skóry niż kiedyś.</li>
+    <li>Sięgasz po spinki, kosmetyki na objętość albo suchy szampon częściej niż dawniej.</li>
+  </ul>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">8</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Nie wydaje Ci się — i nie jesteś sama</h3>
+  <p>Jeśli przytaknęłaś przy więcej niż jednym punkcie, weź oddech. Rozpoznanie siebie na tej liście to nie zła wiadomość. Wręcz odwrotnie. To znaczy, że możesz przestać podważać to, co widzisz w lustrze, i zacząć rozumieć, co naprawdę dzieje się pod spodem — a dokładnie tam zmierza reszta tego przewodnika.</p>
+  <p>Nic z tego nie oznacza, że Twoje włosy „nie mogą wyglądać lepiej niż dzisiaj". Oznacza po prostu, że pamiętana przez Ciebie objętość zmieniła się stopniowo, tak jak zmienia się w tych latach wiele rzeczy. W następnym rozdziale przyjrzymy się, dlaczego wydaje się, że wymyka się to spod kontroli mimo wszystkich prób — i dlaczego naprawdę nigdy nie była to Twoja wina.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">9</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 4 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 4</div>
+  <h2 class="title">Dlaczego jest coraz gorzej, cokolwiek byś nie zrobiła</h2>
+
+  <p>Jeśli robiłaś wszystko „jak trzeba", a mimo to patrzysz, jak przedziałek się poszerza, usłysz najpierw to: <strong>nie zawiodłaś</strong>. Stosowałaś się do rad. Próbowałaś szamponów, serum, suplementów, które poleciła Ci przyjaciółka. I mimo to się wymykało. To nie znak, że starałaś się za mało — to znak, że prawdziwa przeszkoda była tam, gdzie nie mogłaś jej zobaczyć.</p>
+
+  <h3>Część, o której nikt Ci nie powiedział</h3>
+  <p>W rozdziale 2 mówiłyśmy o skórze głowy jako o ziemi, w której rosną włosy. Oto element, który tłumaczy całą tę frustrację.</p>
+  <p>Przez wiele lat nasza skóra głowy wytwarza naturalne sebum. To normalne i zdrowe — dopóki to sebum, zmieszane z pozostałościami kosmetyków, suchym naskórkiem i codziennym osadem, powoli nie stwardnieje i nie osiądzie dokładnie u nasady włosa. Wyobraź sobie cienką, woskowatą czapę tworzącą się na powierzchni i zamykającą ją tak, jak wieczko zamyka słoik. Nazywamy to <strong>tłustą czapą</strong>.</p>
+  <p>Narasta tak stopniowo, że nigdy nie zauważasz jednego „złego dnia". Zauważasz tylko, z sezonu na sezon, że wszystko staje się odrobinę trudniejsze do opanowania.</p>
+
+  <div class="pull"><p>Nigdy nie chodziło o to, że się nie starałaś. Chodzi o to, że wszystko, czego próbowałaś, lądowało na zasklepionej powierzchni — i nigdy nie docierało pod spód.</p></div>
+
+  <h3>Dlaczego „więcej kosmetyków" tego nie naprawia</h3>
+  <p>To cicha pułapka. Kiedy włosy zaczynają wyglądać na cieńsze i bardziej płaskie, naturalną reakcją jest dodać coś — bogatszą odżywkę, serum zagęszczające, nowy suplement, droższy szampon. To wydaje się logiczne. I przez chwilę niesie Cię nadzieja.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">10</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Ale jeśli powierzchnia jest zasklepiona, z tym, co nakładasz, dzieje się w rzeczywistości to:</p>
+  <ul>
+    <li>Serum leży na wierzchu czapy i spływa, nigdy nie osiadając tam, gdzie miałaś nadzieję.</li>
+    <li>Szampon zagęszczający pokrywa długość włosów, ale nie może dosięgnąć skóry pod spodem.</li>
+    <li>Suplement pracuje od środka — a powierzchnia na górze pozostaje tak samo zasklepiona jak wcześniej.</li>
+  </ul>
+  <p>Żaden z tych produktów nie jest oszustwem. Wiele z nich jest naprawdę dobrych. Problemem jest <strong>kolejność</strong>. Zaprojektowano je jako drugi krok, a pierwszego kroku — oczyszczenia powierzchni, żeby cokolwiek mogło do niej dotrzeć — przez cały czas brakowało.</p>
+
+  <h3>Cykl, który wydaje się Twoją winą (a nią nie jest)</h3>
+  <p>Więc schemat się powtarza i wydaje się osobisty:</p>
+  <ol>
+    <li>Zauważasz więcej prześwitującej skóry i czujesz to ukłucie niepokoju.</li>
+    <li>Kupujesz coś obiecującego i używasz tego sumiennie.</li>
+    <li>Przez tydzień albo dwa czujesz nadzieję.</li>
+    <li>Nic się właściwie nie zmienia, bo wszystko leży na zasklepionej powierzchni.</li>
+    <li>Po cichu zastanawiasz się, co robisz źle.</li>
+  </ol>
+  <p>I tak w kółko. A każda pętla odrobinę nadgryza Twoją pewność siebie, aż zaczynasz wierzyć w historię, że „teraz już tak po prostu jest i nic nie pomaga".</p>
+  <p>Proszę, odłóż tę historię. Powód, dla którego było coraz gorzej, nie leży w Tobie, Twoim wysiłku ani sile woli. Leży w tym, że osad został na miejscu, a zasklepiona skóra głowy nie potrafi wykorzystać nawet najlepszych kosmetyków świata.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">11</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Łagodniejszy sposób, żeby o tym myśleć</h3>
+  <p>Wyobraź sobie, że próbujesz podlać ogród przez folię rozłożoną na ziemi. Możesz mieć najlepszą konewkę, najlepszy nawóz, podlewać dwa razy dziennie — a ziemia pod spodem i tak zostanie sucha. Problemem nigdy nie był Twój wysiłek. Problemem była warstwa pomiędzy.</p>
+  <p>I na tym polega cała zmiana. Zamiast dokładać kolejne rzeczy na zasklepioną powierzchnię, prawdziwym pierwszym krokiem jest łagodne oczyszczenie tej powierzchni, żeby skóra głowy znów mogła poczuć się czysta i wolna — żeby Twoja troska wreszcie miała gdzie wylądować.</p>
+  <p>W następnym rozdziale przyjrzymy się uczciwie temu, dlaczego zwykłe rozwiązania — szampon, serum i suplementy — zwykle rozczarowują. A potem porozmawiamy o tym brakującym pierwszym kroku i o tym, jak zrobić go z troską.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">12</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 5 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 5</div>
+  <h2 class="title">Dlaczego szampony, serum i suplementy zawodzą</h2>
+
+  <p>Jeśli przez ostatnie lata kupowałaś „właściwy" szampon, wklepywałaś serum i sumiennie łykałaś codzienny suplement — a mimo to czytasz teraz tę książkę — usłysz najpierw: <strong>nie zrobiłaś nic złego</strong>. Stosowałaś się do rad, które wszyscy powtarzają. Problemem nie jest Twój wysiłek. Problemem jest to, że większość tych rozwiązań działa na niewłaściwej warstwie.</p>
+  <p>Pamiętasz tłustą czapę z poprzedniego rozdziału — ten stwardniały, zasklepiający osad na skórze głowy. Kiedy raz go sobie wyobrazisz, cała zagadka zaczyna mieć sens. Większość kosmetyków po prostu nigdy się przez niego nie przedostaje.</p>
+
+  <h3>Twój codzienny szampon ma więcej pracy, niż myślisz</h3>
+  <p>Szampon z siarczanami jest stworzony do zdzierania. Pieni się, unosi sebum i brud z powierzchni i spłukuje wszystko — i na powierzchni to działa. Włosy przez kilka godzin są skrzypiąco czyste.</p>
+  <p>Ale skóra głowy to żywa powierzchnia i nie lubi być ogołacana. Kiedy ostre mycie zabiera zbyt wiele, skóra często odpowiada produkcją większej ilości sebum, żeby to nadrobić. Więc myjesz następnego dnia, żeby poradzić sobie z przetłuszczeniem… co znów ją ogołaca… co wywołuje jeszcze więcej sebum. To męcząca pętla, która potrafi zostawić skórę głowy ściągniętą i niespokojną, podczas gdy ten głębszy, stwardniały osad zostaje dokładnie tam, gdzie był — nietknięty.</p>
+
+  <div class="pull"><p>Coraz mocniejsze zdzieranie powierzchni nigdy nie zmiękczy tego, co jest zasklepione pod spodem. Podrażnia tylko warstwę na wierzchu.</p></div>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">13</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Serum i olejki pukają do zamkniętych drzwi</h3>
+  <p>Dobre serum do skóry głowy może być przyjemne i nie ma nic złego w jego używaniu. Ale pomyśl, dokąd ma dotrzeć. Jeśli mieszek jest zasklepiony pod tą stwardniałą czapą, serum nałożone na wierzch w większości zostaje na powierzchni — zbiera się, rozprowadza, trochę wchłania w skórę wokół, a reszta spłukuje się przy następnym myciu.</p>
+  <p>Nie chodzi o to, że serum jest „złe". Chodzi o to, że pukasz do zamkniętych drzwi. Dopóki nie otworzą się delikatnie, nawet najdroższa buteleczka pracuje na korytarzu.</p>
+
+  <h3>Suplementy: pomocne w teorii, trudne do zobaczenia</h3>
+  <p>Biotyna, kolagen i różne kapsułki „na włosy, skórę i paznokcie" należą do najczęstszych zakupów kobiet zauważających przerzedzenie — i rozumiem dlaczego. Dają poczucie działania. Uczciwa prawda jest łagodniejsza niż marketing: odżywianie naprawdę ma znaczenie dla ogólnego samopoczucia, ale kapsułka nie odsklepi skóry głowy od środka i nie obieca szerszej korony włosów. Wiele kobiet bierze je miesiącami, po cichu zastanawiając się, dlaczego lustro się nie zmieniło.</p>
+  <p>Jeśli lekarz zalecił Ci suplement z powodu rzeczywistego niedoboru, oczywiście bierz go dalej. Tylko nie noś w sobie rozczarowania, jakbyś zawiodła. Prosiłaś witaminę o pracę, której nigdy nie mogła wykonać.</p>
+
+  <h3>Dlaczego nic z tego „nie zaskoczyło" — krótkie podsumowanie</h3>
+  <p>Zwykle sprowadza się to do trzech uczciwych powodów:</p>
+  <ul>
+    <li><strong>Cała uwaga idzie na powierzchnię.</strong> Szampon myje to, co widzisz, a nie warstwę zasklepioną pod spodem.</li>
+    <li><strong>To, co dobre, nie może się dostać.</strong> Serum i kuracje lądują na stwardniałym osadzie i tam zostają.</li>
+    <li><strong>Nie ta warstwa dostaje zasługi — albo winę.</strong> Suplementy pracują nad ogólnym odżywieniem, a nie nad oczyszczeniem zasklepionej skóry głowy.</li>
+  </ul>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">14</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Co więc naprawdę coś zmienia?</h3>
+  <p>Oto ta zmiana, i jest łagodniejsza: odpowiedzią nigdy nie było zdzierać mocniej ani kupować więcej. Odpowiedzią jest najpierw delikatnie usunąć osad, żeby skóra głowy mogła poczuć się czysta i wolna — i żeby wszystko, co robisz potem, wreszcie miało szansę dotrzeć tam, gdzie powinno.</p>
+  <p>To ten brakujący pierwszy krok i dokładnie tam zmierzamy. Nic z tego nie jest obietnicą odrostu ani cudu i nigdy nie będę udawać, że jest inaczej. Chodzi po prostu o to, żeby dać skórze głowy uczciwy punkt startu — coś, czego wszystkie szampony, serum i suplementy świata nie mogły zrobić na zasklepionej powierzchni.</p>
+  <p>Przez cały ten czas nie zawodziłaś. Brakowało Ci tylko jednego kroku. Przyjrzyjmy mu się teraz.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">15</span></div>
+</div>
+<!-- ============ ROZDZIAŁ 6 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 6</div>
+  <h2 class="title">Jak koreańska kostka rozpuszcza tłustą warstwę</h2>
+
+  <p>Znasz już obraz, który razem zbudowałyśmy: stwardniały, tłusty osad, który nazywamy tłustą czapą, po cichu zasklepia skórę głowy, więc to, co nakładasz na wierzch, w większości na powierzchni zostaje. Prawdziwe pytanie nie brzmi więc „co jeszcze mogę na to nałożyć?". Brzmi: „jak najpierw delikatnie oczyścić drogę?".</p>
+  <p>I to właśnie, w jednym zdaniu, ma robić koreańska kostka do skóry głowy.</p>
+
+  <h3>Przestań zdzierać. Zacznij rozpuszczać.</h3>
+  <p>Większość z nas nauczono tego samego odruchu: jeśli skóra głowy jest tłusta i ciężka, myj mocniej. Silniejszy szampon. Więcej piany. Częstsze mycie. Ale jak już mówiłyśmy, zdzieranie powierzchni zostawia skórę ściągniętą i reaktywną — a stwardniały osad u nasady prawie nie drgnie.</p>
+  <p>Koreańska kostka podchodzi do tego odwrotnie, łagodniej. Zamiast atakować powierzchnię, pracuje nad zmiękczeniem i rozpuszczeniem tłustej warstwy tak, jak ciepła ściereczka rozmiękcza uporczywą plamę — cierpliwie, bez szorowania.</p>
+
+  <div class="pull"><p>Celem nigdy nie było wyszorowanie skóry głowy do czysta. Celem było łagodne rozpuszczenie tego, co ją zasklepiało.</p></div>
+
+  <h3>Fermentowane oleje roślinne — podobne rozpuszcza podobne</h3>
+  <p>Oto prosta idea, która za tym stoi. Tłusty osad jest, cóż, na bazie tłuszczu. A jedna z najstarszych prawd w pielęgnacji brzmi: <strong>podobne rozpuszcza podobne</strong> — delikatny olej potrafi rozluźnić i unieść stwardniały tłuszcz o wiele łagodniej niż jakikolwiek ostry detergent.</p>
+  <p>I tu wchodzi koreańska tradycja. Te kostki budowane są wokół fermentowanych olejów roślinnych — olejów, które przeszły fermentację, powolny proces od dawna ceniony w koreańskiej pielęgnacji za to, że składniki stają się lżejsze i bardziej przyjazne skórze. Gdy kostka zamienia się w miękką, delikatną pianę, te oleje pomagają rozluźnić stwardniałą warstwę, żeby dała się spłukać, zostawiając skórę głowy naprawdę czystą, a nie ogołoconą.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">16</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Kilka rzeczy sprawia, że pod prysznicem czuć różnicę:</p>
+  <ul>
+    <li><strong>Bez siarczanów.</strong> Żadnych ostrych siarczanów, które ogołacają powierzchnię i wywołują to przetłuszczanie z odbicia, o którym mówiłyśmy.</li>
+    <li><strong>Delikatna, niska piana.</strong> Nie chodzi o góry piany. Chodzi o to, żeby oleje wykonały swoją cichą pracę.</li>
+    <li><strong>Jeden prosty krok.</strong> Jedna kostka używana we właściwym miejscu zamiast szafki pełnej napoczętych butelek.</li>
+    <li><strong>Uczucie czystości i lekkości.</strong> Po myciu skóra głowy zwykle czuje się lekka i oddychająca — nie ściągnięta, nie skrzypiąca, po prostu wolna.</li>
+  </ul>
+
+  <h3>„Skóra głowy znów może oddychać"</h3>
+  <p>Kiedy zmiękczony osad wreszcie się spłukuje, skóra głowy po prostu czuje się czysta i wolna — i to właśnie uczucie tak wiele kobiet opisuje jako możliwość ponownego oddychania. To nie jest twierdzenie medyczne; to zwykła, fizyczna ulga skóry, która nie jest już oblepiona i ciężka.</p>
+  <p>I to jest część, którą najbardziej chcę, żebyś usłyszała: kiedy powierzchnia jest już wolna, reszta Twojej rutyny ma uczciwą szansę wylądować na czystej skórze zamiast na zasklepionej. Twoja odżywka, ulubione serum, a nawet naturalne sebum Twojej własnej skóry — pracują z Tobą, a nie utykają na barierze.</p>
+  <p>Tu też liczą się uczciwe oczekiwania. Kostka do skóry głowy wspiera wygląd i odczucie czystszej, wolnej, zdrowiej wyglądającej skóry — a z czasem wygląd gęstszych, zdrowiej wyglądających włosów. To przemyślany krok pielęgnacyjny, nie kuracja, nie lekarstwo i nie przełącznik działający przez noc. Włosy z natury zmieniają się powoli i w dalszym rozdziale porozmawiamy o daniu im prawdziwego czasu.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">17</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Kostka, po którą sięgam — ale metoda jest pierwsza</h3>
+  <p>Ludzie zawsze pytają, której używam, więc powiem wprost: moją własną jest <strong>Kalmely Korean Scalp Revival Bar</strong>. Nie zawiera siarczanów, opiera się na tych fermentowanych olejach roślinnych i pasuje do prostego rytuału, przez który zaraz Cię przeprowadzę. To ta, która na stałe zajęła miejsce w moim prysznicu.</p>
+  <p>Ale chcę być z Tobą uczciwa, bo wolę, żebyś mi ufała, niż żebyś ode mnie kupiła. <strong>Kostka to narzędzie. Metoda to lekarstwo.</strong> Wspaniała kostka użyta raz i zapomniana zrobi bardzo niewiele. Delikatna kostka używana jako pierwszy krok, konsekwentnie, we właściwym miejscu, z odrobiną masażu — tam mieszka prawdziwa różnica.</p>
+  <p>Jeśli więc z tego rozdziału weźmiesz jedną rzecz, niech to będzie ta: wreszcie pracujemy <em>ze</em> skórą głowy, a nie <em>przeciwko</em> niej. Przestałyśmy próbować zedrzeć problem, który zdzieranie tylko pogarszało, i zaczęłyśmy delikatnie oczyszczać drogę, żeby skóra głowy mogła być czysta, wolna i zdolna oddychać.</p>
+  <p>W następnym rozdziale pokażę Ci dokładnie jak — prosty 7-dniowy rytuał resetu, zaledwie sześćdziesiąt sekund pod prysznicem. Jest łatwiejszy niż wszystko, czego już próbowałaś. I tym razem wymierzony we właściwe miejsce.</p>
+
+  <p class="legal">Informacje w tym przewodniku mają charakter ogólny i edukacyjny. Kostka do skóry głowy jest produktem kosmetycznym i nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek schorzeniom.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">18</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 7 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 7</div>
+  <h2 class="title">7-dniowy rytuał resetu, krok po kroku</h2>
+
+  <p>To serce tej książki — część, do której będziesz wracać. Wszystko we wcześniejszych rozdziałach dotyczyło zrozumienia, <em>dlaczego</em> Twoja skóra głowy ma trudności. Ten rozdział dotyczy tego, co <em>faktycznie robisz</em> — pod prysznicem, własnymi dłońmi, zaczynając dzisiaj.</p>
+  <p>Od razu chcę zdjąć z Ciebie presję. To nie jest skomplikowany reżim z dziesięcioma krokami i stoperem. To około sześćdziesięciu sekund, przez większość dni, przez tydzień. Tyle. Celem tych siedmiu dni jest po prostu dać skórze głowy pierwsze porządne, delikatne oczyszczenie — zacząć rozluźniać stwardniały osad, który wszystko zasklepiał — a potem wejść w rytm, który utrzymasz bez zastanowienia.</p>
+
+  <div class="pull"><p>Reset to nie wyścig. To siedem małych, życzliwych spotkań z samą sobą.</p></div>
+
+  <h3>Gdzie idzie kostka — a gdzie nie</h3>
+  <p>Najpierw wyjaśnijmy najczęstsze nieporozumienie. Koreańska kostka jest do <strong>skóry głowy</strong>, nie do długości włosów. Nie chodzi o to, żeby spienić końcówki tak, jak zrobiłabyś to zwykłym szamponem. Pracujesz nad ziemią — nad skórą, w której mieszkają korzenie, zwłaszcza wzdłuż przedziałka, na czubku głowy i na skroniach, gdzie przerzedzenie widać najbardziej.</p>
+  <p>Kiedy więc używasz kostki, przesuwasz ją bezpośrednio po skórze głowy, a nie nakładasz jej na włosy. Długość i tak zrobi się czysta od piany, która spływa. Myśl: nasada, nie końce.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">19</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Prosty rytuał na sześćdziesiąt sekund</h3>
+  <p>Oto podstawowy rytuał, który będziesz powtarzać przez cały tydzień. Za każdym razem ta sama łagodna sekwencja — zmienia się tylko drobna wskazówka na dany dzień.</p>
+  <ol>
+    <li><strong>Ogrzej wodą.</strong> Zanim cokolwiek zrobisz, pozwól ciepłej (nie gorącej) wodzie polać skórę głowy przez kilka sekund. Ciepło pomaga zmiękczyć powierzchnię, żeby kostka mogła wykonać swoją delikatną pracę.</li>
+    <li><strong>Przesuń kostkę.</strong> Zmocz kostkę i przesuń ją bezpośrednio po skórze głowy — wzdłuż przedziałka, po czubku, wokół skroni i karku. Kilka lekkich przejść w zupełności wystarczy. Nakładasz cienką, czystą warstwę, a nie pokrywasz całej głowy.</li>
+    <li><strong>Masuj, licząc do sześćdziesięciu.</strong> Odłóż kostkę i opuszkami palców — nigdy paznokciami — masuj skórę głowy powolnymi, małymi kółkami. Obejmij całą głowę. To część, która liczy się najbardziej.</li>
+    <li><strong>Odczekaj i spłucz.</strong> Pozwól pianie chwilę odpocząć, gdy myjesz resztę ciała, a potem spłucz dokładnie ciepłą wodą, aż woda będzie czysta.</li>
+    <li><strong>Delikatnie osusz.</strong> Przyklep — nie pocieraj — miękkim ręcznikiem i pozwól włosom trochę wyschnąć na powietrzu przed układaniem.</li>
+  </ol>
+  <p>I to wszystko. Kiedy wejdzie w nawyk, naprawdę zajmuje około minuty.</p>
+
+  <h3>Jak masować — łagodny sposób</h3>
+  <p>Masaż to miejsce, w którym mieszka magia konsekwencji, więc opiszę go porządnie. Połóż opuszki palców płasko na skórze głowy i poruszaj samą skórą małymi kółkami, zamiast przeciągać palcami po włosach. Powinnaś czuć, jak skóra lekko przesuwa się pod opuszkami. Pracuj metodycznie — przedziałek, czubek, skronie, tył — żeby nic nie zostało pominięte.</p>
+  <p>Rób to lekko. Delikatne, cieńsze włosy nie potrzebują szorowania, a mocne szorowanie obciąża te same korzenie, o które chcesz zadbać. Powoli i łagodnie wygrywa z szybko i mocno za każdym razem.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">20</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Dzień po dniu</h3>
+  <p><strong>Dzień 1 — pierwsze oczyszczenie.</strong> Dziś chodzi po prostu o początek. Wykonaj pełny rytuał, nie oczekując niczego dramatycznego. Niektóre kobiety zauważają, że skóra głowy jest odrobinę czystsza albo „lżejsza"; inne nie zauważają jeszcze nic i to zupełnie normalne. Wskazówka na dziś: zrób szybkie zdjęcie przedziałka w dobrym naturalnym świetle. Nie będziesz go oglądać przez jakiś czas — to prywatny punkt odniesienia, żebyś później mogła być wobec siebie uczciwa.</p>
+  <p><strong>Dzień 2 — wchodzisz w rytm.</strong> Powtórz rytuał. Jeśli skóra głowy czuje się trochę inaczej — może lekko mrowiąco czysto — to po prostu świeżość powierzchni. Wskazówka na dziś: rozpuść włosy z każdej ciasnej gumki przed snem. Niech korzenie odpoczną przez noc bez napięcia.</p>
+  <p><strong>Dzień 3 — skupienie na masażu.</strong> Sekwencja robi się już znajoma, więc dziś zwolnij masaż. Daj mu pełne sześćdziesiąt sekund i naprawdę obejmij czubek głowy i skronie. Wskazówka na dziś: jeśli włosy nie wymagają dziś pełnego mycia, możesz zrobić samą część z ciepłą wodą i masażem. Ruch na skórze głowy zawsze jest mile widziany.</p>
+  <p><strong>Dzień 4 — półmetek i szczerość.</strong> Jesteś w połowie. To dzień, w którym czasem pojawia się zwątpienie — czy w ogóle coś się dzieje? Zaufaj procesowi. Zmiany na powierzchni przychodzą pierwsze; wygląd objętości potrzebuje więcej czasu. Wskazówka na dziś: wypij dziś dodatkową szklankę wody. Odpowiednio nawodniona skóra głowy to spokojniejsza skóra głowy.</p>
+  <p><strong>Dzień 5 — lżej i czyściej.</strong> Wiele kobiet mówi, że mniej więcej teraz skóra głowy po prostu czuje się czystsza i wolniejsza między myciami — mniej tego szybkiego przetłuszczania u nasady. Wskazówka na dziś: zmień poszewkę na świeżą. Małe wygody się sumują.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">21</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0"><strong>Dzień 6 — rytm się utrwala.</strong> Rytuał powinien być już drugą naturą — ledwie myśl, po prostu sześćdziesiąt sekund pod prysznicem. Wskazówka na dziś: zauważ, jak włosy czują się pod palcami przy samej nasadzie. Uczysz się słuchać swojej skóry głowy, a to poprowadzi Cię jeszcze długo po tym tygodniu.</p>
+  <p><strong>Dzień 7 — spokojne spojrzenie wstecz.</strong> Wykonaj rytuał jak zwykle. Potem, tylko jeśli masz ochotę, zrób drugie zdjęcie przedziałka w tym samym naturalnym świetle co w dniu 1. Bądź łagodna i cierpliwa wobec tego, co zobaczysz — siedem dni to początek, nie meta. To, czego naprawdę szukasz w nadchodzących tygodniach, to wygląd czystszej, świeższej skóry głowy i włosów, które sprzyjają wrażeniu gęstszych, zdrowiej wyglądających efektów. To buduje się powoli.</p>
+
+  <h3>…I zaczynasz od nowa</h3>
+  <p>A oto najważniejsza część: reset tak naprawdę nie „kończy się" w dniu 7. On po prostu przechodzi w rytm, który da się utrzymać. Po tym pierwszym tygodniu większość kobiet ustala się na używaniu kostki kilka razy w tygodniu zamiast codziennie — na tyle często, żeby skóra głowy była czysta i wolna, bez przemywania (o tym, dlaczego to ważne, porozmawiamy w dalszym rozdziale).</p>
+  <p>Kiedy więc dzień 7 się skończy, nie przestajesz. Zaczynasz od nowa, lżej. Ten tydzień nigdy nie był o jednym spektakularnym „przed i po". Był o nauczeniu dłoni życzliwego, prostego nawyku i o daniu skórze głowy tej stałej, łagodnej troski, o którą po cichu prosiła przez cały czas.</p>
+  <p>Rób to delikatnie. Rób to konsekwentnie. I niech to będzie jedna mała, niedramatyczna minuta, która należy wyłącznie do Ciebie.</p>
+
+  <p class="legal">To ogólne informacje o pielęgnacji skóry głowy, a nie porada medyczna. Efekty pojawiają się stopniowo i różnią się w zależności od osoby.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">22</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 8 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 8</div>
+  <h2 class="title">Jak przyspieszyć efekty — bez ściemy</h2>
+
+  <p>Powiem Ci od razu szczerze, bo zasługujesz na uczciwość bardziej niż na sprzedażową gadkę.</p>
+  <p>Nie ma przełącznika działającego przez noc. Nic w tej książce ani na żadnej półce nie zwróci Ci w jednym prysznicu tego, co po cichu zmieniły lata menopauzy. Ale jest coś równie zachęcającego: <strong>możesz oczyścić drogę</strong>, żeby Twój rytuał pielęgnacyjny miał najlepszą możliwą szansę wykonać swoją delikatną pracę. Kostka rozpuszcza stwardniały osad. Te drobne nawyki pilnują, żeby nic mu nie przeszkadzało.</p>
+  <p>Myśl o tym mniej jak o „przyspieszaniu", a bardziej jak o usuwaniu przeszkód, o których nie wiedziałaś, że tam są.</p>
+
+  <h3>Zacznij od ciepłej wody — nie gorącej</h3>
+  <p>Zanim kostka w ogóle dotknie skóry głowy, pozwól ciepłej wodzie polewać głowę przez dobre trzydzieści sekund. Ciepła woda pomaga zmiękczyć powierzchnię i delikatnie ją otworzyć, tak jak ciepła ściereczka rozmiękcza uporczywą plamę, zanim ją zetrzesz.</p>
+  <p>Gorąca woda natomiast potrafi zostawić skórę ściągniętą, ogołoconą i podrażnioną — co wywołuje tylko więcej sebum. Ciepło i cierpliwie wygrywa z gorąco i w pośpiechu za każdym razem.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">23</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Niech rozluźnianiem zajmą się opuszki palców</h3>
+  <p>Kiedy wmasowujesz kostkę, zwolnij. Używaj miękkich opuszków — nigdy paznokci — i rób małe, niespieszne kółka po przedziałku, czubku głowy i skroniach przez trzydzieści do sześćdziesięciu sekund.</p>
+  <p>To nie jest szorowanie. Szorowanie kruchych korzeni szkodzi bardziej, niż pomaga. Chodzi o delikatne zachęcenie powierzchni do rozluźnienia i o to, żeby skóra głowy była potem czysta i wolna. Spokojna minuta masażu jest też naprawdę przyjemna — wiele kobiet mówi mi, że staje się tą chwilą dnia, na którą czekają najbardziej.</p>
+
+  <div class="pull"><p>Najszybsze efekty prawie nigdy nie biorą się z robienia więcej. Biorą się z konsekwentnego robienia rzeczy prostej.</p></div>
+
+  <h3>Konsekwencja to cicha tajemnica</h3>
+  <p>Jeśli istnieje jakaś „sztuczka", to właśnie ta. Skóra głowy pielęgnowana delikatnie i regularnie ma o wiele większą szansę wyglądać najzdrowiej niż taka, którą atakuje się raz w tygodniu i o której się zapomina. Po trochu i często, życzliwie i konsekwentnie — to jest rytm, który się utrzymuje.</p>
+  <p>Opuszczenie jednego dnia nie zniweczy Twoich postępów. Ale ciągłe zaczynanie i przerywanie nigdy nie daje niczemu szansy się ustabilizować.</p>
+
+  <h3>Nie zapominaj o cichych pomocnikach</h3>
+  <p>Twoja skóra głowy żyje na tym samym ciele co reszta Ciebie i ma się najlepiej, kiedy Ty też jesteś zaopiekowana. Kilka delikatnych podstaw, które oczyszczają drogę:</p>
+  <ul>
+    <li><strong>Nawodnienie</strong> — popijaj wodę w ciągu dnia; dobrze nawodnione ciało wspiera skórę wszędzie, także na głowie.</li>
+    <li><strong>Sen</strong> — te spokojne noce to czas, kiedy ciało wykonuje swoją cichą konserwację. Chroń je, gdy możesz.</li>
+    <li><strong>Delikatność</strong> — luźniejsze kucyki, łagodniejsze szczotkowanie, mniej ciepła. (Wkrótce poświęcimy tym codziennym nawykom cały rozdział.)</li>
+    <li><strong>Cierpliwość</strong> — daj rytuałowi kilka nieprzerwanych tygodni, zanim go ocenisz.</li>
+  </ul>
+  <p>Żadna z tych rzeczy nie jest cudem. Razem po prostu przestają działać przeciwko Tobie — a już samo to robi różnicę.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">24</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Łagodne przypomnienie o czasie</h3>
+  <p>Zdrowo wyglądające włosy rosną powoli i powoli się pokazują. Pierwsze, co możesz zauważyć, to <em>jak czuje się</em> Twoja skóra głowy — czystsza, lżejsza, mniej obciążona. Wygląd większej objętości, jeśli przyjdzie, przychodzi stopniowo, przez tygodnie, nie dni. Efekty różnią się u każdej kobiety i to zupełnie normalne.</p>
+  <p>Proszę więc, nie mierz postępów porankami. Mierz je porami roku. Oczyść drogę, bądź delikatna, bądź konsekwentna — i pozwól tym małym, uczciwym nawykom sumować się tak, jak powinny.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">25</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 9 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 9</div>
+  <h2 class="title">Błędy, przez które skóra głowy pozostaje zasklepiona</h2>
+
+  <p>Jeśli robiłaś „wszystko jak trzeba", a mimo to czujesz, że nic się nie zmienia, chcę zacząć ten rozdział tak, jakbym zaczęła go siedząc naprzeciwko Ciebie przy kuchennym stole: <strong>nic z tego nie było Twoją winą</strong>.</p>
+  <p>Prawda jest taka, że niemal każdy błąd na tej liście jest błędem w dobrej wierze. Nie byłaś nieostrożna. Starałaś się bardziej. A kiedy skóra głowy zostaje zasklepiona pod tym stwardniałym osadem, który nazywamy tłustą czapą, staranie się mocniej w złym kierunku potrafi po cichu trzymać te drzwi zamknięte. Przejdźmy więc razem przez te delikatne potknięcia — nie po to, żeby ganić, tylko żeby Cię od nich uwolnić.</p>
+
+  <h3>Zbyt częste mycie w nadziei na „większą czystość"</h3>
+  <p>Kiedy skóra głowy jest tłusta albo włosy płaskie, odruchem jest myć częściej. To ma sens. Ale częste mycie zwykle ogołaca powierzchnię i zostawia skórę z wrażeniem, że musi nadrabiać — co często oznacza, że po południu produkuje więcej sebum, nie mniej. Kończysz, goniąc cykl, który nigdy się nie uspokaja.</p>
+
+  <div class="pull"><p>Czysto to nie to samo co wolno. Skóra głowy może być skrzypiąco czysta na wierzchu i wciąż zasklepiona pod spodem.</p></div>
+
+  <h3>Sięganie po ostre szampony z siarczanami</h3>
+  <p>Mocny szampon oczyszczający wydaje się odpowiedzią — to ściągnięte, ogołocone uczucie „wreszcie czysto". Ale ostre szampony z siarczanami atakują powierzchnię, nigdy delikatnie nie rozluźniając stwardniałego osadu u nasady. Zdzierają to, co dobre, razem z niechcianym, a skóra odpowiada ponownym ściągnięciem. To wysiłek, który ląduje wszędzie poza miejscem, gdzie naprawdę go potrzebujesz.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">26</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Opuszczanie dni i zaczynanie od nowa</h3>
+  <p>Życie jest zabiegane i tak łatwo wykonać rytuał pięknie przez trzy dni, opuścić cztery i po cichu uznać, że nie działa. Ale zasklepiona skóra głowy nie reaguje na zrywy — reaguje na łagodną konsekwencję. Opuszczanie dni trzyma Cię na zawsze na starcie i nigdy nie daje metodzie tego stałego, niespiesznego rytmu, którego potrzebuje.</p>
+
+  <h3>Oczekiwanie zmiany przez noc</h3>
+  <p>To bardzo ludzkie. Chcemy jutro spojrzeć w lustro i zobaczyć różnicę. Ale skóra głowy jest bardziej jak ogród niż jak włącznik światła — zmiana przychodzi powoli, stopniowo, tak, że zauważa się ją na zdjęciach sprzed tygodni, a nie z dnia na dzień. Oczekiwanie cudu do rana często sprawia, że zupełnie dobra rutyna wydaje się porażką, choć jest po prostu wciąż w toku.</p>
+
+  <h3>Nakładanie zbyt wielu kosmetyków naraz</h3>
+  <p>Kiedy się martwisz, kusi, żeby rzucić w to wszystkim — serum, suplement, nowy szampon, spray do skóry głowy — w tym samym tygodniu. Ale nakładanie pięciu rzeczy uniemożliwia stwierdzenie, co pomaga, a większość i tak ląduje na zasklepionej powierzchni. Więcej kosmetyków na tłustej czapie to wciąż więcej kosmetyków, które nie mogą dotrzeć do nasady. Prościej znaczy życzliwiej i czytelniej.</p>
+
+  <h3>Szorowanie kruchych korzeni</h3>
+  <p>I na koniec najbardziej troskliwy błąd ze wszystkich: mocne szorowanie paznokciami, bo przecież energicznie znaczy skutecznie. Ale cieńsze włosy i delikatna skóra głowy nie potrzebują siły — potrzebują powolnego, miękkiego masażu, który rozluźnia osad, nie obciążając i tak już kruchych korzeni. Delikatność nie jest tu słabością. Jest całym sednem.</p>
+
+  <h3>Życzliwsza droga naprzód</h3>
+  <p>Jeśli rozpoznałaś siebie w dwóch albo trzech z tych punktów, proszę, nie zniechęcaj się. Szczerze mówiąc, to dobra wiadomość — oznacza, że tym, co stoi między Tobą a zdrowiej wyglądającą skórą głowy, może wcale nie być Twój wysiłek, tylko jego kierunek.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">27</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Zmiękczamy więc wszystko. Myjemy trochę mniej agresywnie, odpuszczamy ostry szampon oczyszczający, utrzymujemy stały łagodny rytm zamiast gorączkowych zrywów, dajemy temu czas, upraszczamy i masujemy z cierpliwością zamiast z naciskiem. Żadna z tych rzeczy nie była porażką. To były po prostu objazdy — a teraz znasz drogę powrotną.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">28</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 10 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 10</div>
+  <h2 class="title">Codzienne nawyki przyjazne skórze głowy</h2>
+
+  <p>Rytuał resetu, przez który przeszłyśmy wcześniej, jest sercem tego protokołu — ale trwa tylko minutę albo dwie dziennie. Pozostałe dwadzieścia trzy godziny też mają znaczenie. Nie w dramatyczny, przewracający życie do góry nogami sposób. W małych, spokojnych sposobach, które po cichu chronią środowisko skóry głowy, nad którego oczyszczeniem tak delikatnie pracowałaś.</p>
+  <p>Potraktuj ten rozdział jak różnicę między umyciem okna a zostawieniem go otwartego w czasie burzy piaskowej. Żaden z tych nawyków nie jest cudem i żaden nie musi nim być. One po prostu powstrzymują Cię przed niweczeniem własnej dobrej pracy. Wybierz te, które pasują do Twojego życia. Nie potrzebujesz wszystkich.</p>
+
+  <h3>Bądź łagodniejsza z ciepłem</h3>
+  <p>Gorące narzędzia nie są wrogiem — ale najwyższe ustawienie często tak. Suszarki i prostownice rozkręcone na maksimum zostawiają skórę głowy ściągniętą i suchą, a suchość to dokładnie to, co łagodzimy.</p>
+  <ul>
+    <li>Susz na ciepłym ustawieniu zamiast najgorętszego i trzymaj dyszę w ruchu, zamiast parkować ją nad przedziałkiem.</li>
+    <li>Trzymaj suszarkę na szerokość dłoni od głowy, a nie przy samej skórze.</li>
+    <li>Pozwól włosom w większości wyschnąć, zanim sięgniesz po prostownicę.</li>
+  </ul>
+  <p>Włosy i tak będą wyglądać na ułożone. Po prostu przejdą przez mniej, żeby tak wyglądać.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">29</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Poluzuj kucyk</h3>
+  <p>Ciasny kucyk albo spinka noszona codziennie w tym samym miejscu ciągnie stale ten sam kruchy obszar — zwykle dokładnie wzdłuż przedziałka i na skroniach, gdzie skóra i tak prześwituje bardziej. To stałe małe napięcie to rzecz, o której nikt nie uprzedza.</p>
+
+  <div class="pull"><p>Kucyk powinien czuć się jak delikatne przytrzymanie, nie jak uchwyt. Jeśli rozpuszczenie go przynosi ulgę, był za ciasny.</p></div>
+
+  <p>Spróbuj miękkiej materiałowej gumki zamiast ciasnej elastycznej, zmieniaj położenie, żeby te same korzenie nie dźwigały zawsze ciężaru, i rozpuszczaj włosy w domu. Spanie z rozpuszczonymi włosami albo w luźnym warkoczu oszczędza korzeniom nocnego ciągnięcia.</p>
+
+  <h3>Szczotkuj miękko, szczotkuj życzliwie</h3>
+  <p>Szczotkowanie nie służy tylko długości — wykonane delikatnie zmiata codzienny kurz i pozostałości kosmetyków z powierzchni, dzięki czemu skóra głowy jest świeższa między myciami. Kluczowe słowo to <em>delikatnie</em>.</p>
+  <p>Używaj szczotki z miękkim włosiem albo grzebienia o szerokich zębach, zaczynaj od końcówek, żeby rozczesać splątania, i pracuj w górę, zamiast ciągnąć od nasady w dół. Odpuść pomysł energicznych stu pociągnięć na noc — to stary mit, a kruche korzenie tego nie lubią. Kilka lekkich, niespiesznych przejść robi więcej dobrego niż jakiekolwiek mocne szorowanie.</p>
+
+  <h3>Osłaniaj przedziałek</h3>
+  <p>Oto coś, o czym większość z nas nigdy nie myśli: kiedy przedziałek się poszerza, cienki pasek skóry styka się ze słońcem bezpośrednio, bez żadnej osłony. Ta skóra zasługuje na taką samą troskę, jaką dajesz twarzy.</p>
+  <p>W jasne dni kapelusz, chusta albo zwyczajne przesunięcie przedziałka, żeby ten sam pasek skóry nie był zawsze odsłonięty, naprawdę pomagają. To drobna życzliwość dla skóry, która po cichu wykonuje swoją pracę od dziesięcioleci.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">30</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Zadbaj o podstawy</h3>
+  <p>Twoja skóra głowy to skóra, a skóra odzwierciedla to, jak ma się reszta Ciebie. Nie chodzi o specjalną dietę ani drogie proszki — chodzi o mało efektowne fundamenty.</p>
+  <p>Pij wystarczająco wody w ciągu dnia, żeby skóra nie była przesuszona. Jedz tak, jak jadłabyś, żeby czuć się dobrze: kolorowe talerze, dużo białka, zwyczajne dobre rzeczy. Chroń swój sen, bo odpoczynek to czas, kiedy skóra wykonuje swoją cichą konserwację. A jeśli codziennego stresu jest dużo, nawet kilka wolnych oddechów albo krótki spacer się liczy — nie jako lekarstwo na cokolwiek, ale jako kolejny sposób bycia dla siebie łagodną.</p>
+  <p>Żaden z tych nawyków nie odmieni wszystkiego przez noc i nigdy tego nie obiecywałam. One po prostu oczyszczają drogę. Utrzymują skórę głowy spokojną, wygodną i zadbaną między resetami — żeby praca, którą wykonujesz w tę jedną cichą minutę dziennie, miała najlepszą szansę pokazać się z czasem w wyglądzie i odczuciu gęstszych, zdrowiej wyglądających włosów.</p>
+  <p><strong>Małe nawyki, powtarzane życzliwie.</strong> Na tym polega cała idea.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">31</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 11 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 11</div>
+  <h2 class="title">Jak utrzymać odzyskaną objętość</h2>
+
+  <p>Jest szczególny rodzaj ulgi, który przychodzi, kiedy przedziałek wygląda w porannym świetle na odrobinę węższy, a kucyk czuje się w dłoni odrobinę pełniejszy. Po tygodniach cichego martwienia się to uczucie warto chronić. I dobra wiadomość brzmi tak: utrzymanie wyglądu objętości, na który zapracowałaś, jest łagodniejsze i prostsze niż zaczynanie. Trudna część — codzienny reset, cierpliwość, pojawianie się mimo wszystko — jest już w większości za Tobą.</p>
+  <p>Ten rozdział jest o tym, co potem. Jak zejść z intensywnego rytmu bez cofania się i jak ustalić coś, co da się robić latami bez zastanawiania.</p>
+
+  <h3>Od resetu do rytmu</h3>
+  <p>7-dniowy reset był celowo skoncentrowany. Był Twoim sposobem na oczyszczenie drogi i danie skórze głowy świeżego startu, żeby znów mogła być czysta i wolna. Ale nie musisz żyć w tej intensywności na zawsze — i nie powinnaś próbować.</p>
+  <p>Kiedy skóra głowy jest już wygodna, zrównoważona i nieobciążona, możesz przejść z trybu resetu w <strong>tryb utrzymania</strong>. Dla większości kobiet wygląda to na używanie kostki kilka razy w tygodniu zamiast codziennie — wpasowane w mycia, które i tak byś robiła. Nie pracujesz już nad rozpuszczeniem uporczywego osadu; po prostu pilnujesz, żeby po cichu nie utworzył się na nowo.</p>
+
+  <div class="pull"><p>Myśl o tym mniej jak o wielkich wiosennych porządkach, a bardziej jak o utrzymywaniu porządku w pokoju. Po trochu i często wygrywa z dużo i rzadko.</p></div>
+
+  <p>Niech dokładną liczbę podpowie Ci Twoja skóra głowy. W niektóre tygodnie zechce dwóch myć, w inne trzech. Nie ma idealnej liczby — jest tylko to, co utrzymuje skórę świeżą, a włosy w najlepszej formie.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">32</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Zaczep rytuał o coś, co już robisz</h3>
+  <p>Najlepszym sposobem na utrzymanie dobrego nawyku jest przestać polegać na sile woli i pozwolić, by niosła go istniejąca rutyna. Nawyki trzymają się, kiedy są przyczepione do czegoś, co i tak robisz bez namysłu.</p>
+  <p>Kilka spokojnych sposobów, żeby zakotwiczyć rytuał utrzymania:</p>
+  <ul>
+    <li>Przypnij go do dnia mycia, który już masz — kostka staje się po prostu pierwszymi 60 sekundami tych pryszniców.</li>
+    <li>Trzymaj ją na widoku. Kostka mieszkająca na półce pod prysznicem jest używana; ta schowana w szafce zostaje zapomniana.</li>
+    <li>Połącz go z innym drobnym rytuałem — wieczornym wyciszeniem, niedzielnym odświeżeniem, czymkolwiek, co ma już swój rytm w Twoim tygodniu.</li>
+  </ul>
+  <p>Kiedy rytuał jedzie na grzbiecie nawyku, który już masz, nie musisz o nim pamiętać. Po prostu się dzieje.</p>
+
+  <h3>Słuchaj swojej skóry głowy</h3>
+  <p>Znasz już swoją skórę głowy lepiej, niż mógłby to opisać jakikolwiek harmonogram. Czujesz, kiedy jest czysta i oddycha, i czujesz, kiedy znów zaczyna być ciężka, ściągnięta albo oblepiona. Ta świadomość jest Twoim najpewniejszym przewodnikiem.</p>
+  <p>Jeśli skóra zacznie się czuć obciążona — może po serii układania na ciepło, po podróży albo po sezonie cięższych kosmetyków — po prostu wróć na tydzień lub dwa do kilku bardziej skoncentrowanych myć, a potem znów odpuść. Wolno Ci dopasowywać się do swojego życia. Celem nie jest sztywna dyscyplina; celem jest pozostawanie w kontakcie.</p>
+
+  <h3>Konsekwencja ponad intensywność</h3>
+  <p>Jeśli z tego rozdziału masz wynieść jedną myśl, niech to będzie ta: <strong>łagodnie i stale wygrywa</strong>. Skóra głowy pielęgnowana lekko i regularnie o wiele lepiej utrzymuje swój czysty, wolny, zdrowo wyglądający stan niż taka, którą atakuje się mocno, a potem zaniedbuje.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">33</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Efekty w pielęgnacji skóry głowy przychodzą stopniowo i tak samo stopniowo się je utrzymuje. Nie będziesz musiała walczyć o objętość każdego dnia — po prostu będziesz się pojawiać, delikatnie, w ten mały sposób, który już znasz. Ta cicha konsekwencja jest tym, jak utrzymujesz wygląd objętości, na który zapracowałaś, i jak za każdym razem, gdy łapiesz swoje odbicie, czujesz się odrobinę bardziej sobą.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">34</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 12 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 12</div>
+  <h2 class="title">Lustro, zdjęcia i powrót do siebie</h2>
+
+  <p>Jest taka jedna mała chwila, o której naprawdę jest ten rozdział. Szykujesz się, światło w łazience jest jasne i bezlitosne, pochylasz głowę do lustra, żeby sprawdzić przedziałek. I przez sekundę żołądek Ci opada, bo linia pośrodku wygląda na odrobinę szerszą niż obraz siebie, który nosisz w głowie.</p>
+  <p>Jeśli przeżyłaś tę chwilę, chcę, żebyś wiedziała dwie rzeczy. Nie wydaje Ci się. I jesteś bardzo, bardzo daleka od bycia w tym samą.</p>
+
+  <h3>Cicha żałoba, o której nikt nie mówi</h3>
+  <p>Rzadko mówimy to na głos, więc powiem to za nas obie: zauważanie zmian we włosach może nieść prawdziwą, cichą żałobę. Nie dramatyczną, płaczliwą — raczej mały ból, który odwiedza w zwyczajnych momentach. Kiedy sięgasz po kucyk, który czuje się w dłoni cieńszy. Kiedy przedziałek nie chce się ułożyć tak jak kiedyś. Kiedy łapiesz górne światło w restauracji i odruchowo sięgasz, żeby coś nastroszyć.</p>
+  <p>Ten ból ma prawo istnieć. Twoje włosy przez dziesięciolecia były częścią tego, jak rozpoznawałaś siebie w lustrze. Są wplecione w Twoje wspomnienia — wesele, praca, wersja Ciebie w wieku trzydziestu, czterdziestu lat. Zauważanie ich zmiany to nie słabość. To po prostu bycie człowiekiem wobec czegoś, co zawsze było Twoje.</p>
+
+  <h3>Zdjęcie, z którego po cichu się wycofujesz</h3>
+  <p>Myślę, że zdjęcia są najtrudniejsze.</p>
+  <p>Znasz te momenty. Wspólna fotka na rodzinnym spotkaniu, gdzie tuż przed uniesieniem telefonu znajdujesz powód, żeby stanąć w tylnym rzędzie. Zdjęcie z ukrycia, gdzie ktoś stoi nad Tobą na schodach, a Ty już znasz ten kąt.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">35</span></div>
+</div>
+
+<div class="page">
+  <p style="margin-top:0">Zdjęcie, które wrzuca przyjaciółka i które uwielbiasz — poza tą jedną rzeczą, do której Twoje oko biegnie od razu, za każdym razem.</p>
+
+  <div class="pull"><p>Chęć wyglądania jak siebie na zdjęciu nigdy nie była próżnością. To było pragnienie, żeby to, co na zewnątrz, pasowało do kobiety, którą wciąż czujesz w środku.</p></div>
+
+  <p>Więc zaczynasz to zarządzać. Chusta tu, sprytne przerzucenie przedziałka tam, wybieranie miejsca, w którym stoisz, odmawianie zdjęcia z lekkim żartem. Drobne korekty, robione po cichu, których nikt inny nie zauważa — ale one się sumują. A najsmutniejsze jest to, jak często kobieta znika z rodzinnych zdjęć nie dlatego, że jej tam nie było, tylko dlatego, że tego dnia nie czuła się do końca sobą.</p>
+
+  <h3>To nigdy nie była próżność</h3>
+  <p>Proszę, usłysz mnie w tej sprawie. Dbanie o włosy nie jest płytkie i nigdy nie było. Dla wielu z nas włosy niosły poczucie bycia zadbaną, bycia sobą. Troska o nie to jedna z małych godności dbania o siebie — taka sama jak dobrze przespana noc czy poranny spacer. Nie ma nic błahego w pragnieniu, żeby czuć się u siebie we własnym odbiciu.</p>
+
+  <h3>Znów czuć się sobą</h3>
+  <p>Oto łagodna, uczciwa prawda, wokół której zbudowana jest cała ta książka. Celem dbania o skórę głowy nigdy nie był sam wygląd. Chodzi o to ciche, stabilizujące uczucie ponownego rozpoznawania siebie.</p>
+  <p>Kiedy skóra głowy jest czysta i wolna, kiedy włosy wyglądają i czują się zdrowiej i niosą przez dzień odrobinę więcej lekkości, zmienia się coś, co nie ma nic wspólnego z pomiarami. Stoisz odrobinę prościej. Robisz krok <em>w stronę</em> aparatu, a nie od niego. Przestajesz liczyć, skąd pada światło.</p>
+  <p>Prosty, konsekwentny rytuał — taki, przez jaki przeszłyśmy razem na tych stronach — nie jest czarodziejską różdżką i nigdy nie będę udawać, że jest. Ale mały akt codziennego dbania o siebie, łagodnie i świadomie, jest własnym cichym lekarstwem dla ducha.</p>
+  <p>Zasługujesz na to, żeby być na zdjęciu. W pierwszym rzędzie, z podniesioną głową, w dobrym świetle. Nie dlatego, że cokolwiek w Tobie wymagało naprawy — ale dlatego, że zawsze byłaś warta tego, żeby Cię było widać.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">36</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 13 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 13</div>
+  <h2 class="title">Kiedy iść do lekarza lub dermatologa</h2>
+
+  <p>Wszystko w tym przewodniku dotyczy łagodnej, codziennej pielęgnacji skóry głowy — takich małych, życzliwych nawyków, które każda z nas może wpleść w zwykły tydzień. Ale chcę być z Tobą uczciwa co do czegoś równie ważnego: pielęgnacja ma swoje granice, a wiedza o tym, kiedy wyjść poza nią, to nie porażka. To mądrość.</p>
+  <p>Porozmawiajmy więc wprost, tak jak zrobiłabym to z przyjaciółką przy kawie.</p>
+
+  <h3>To pielęgnacja, nie diagnoza</h3>
+  <p>Kostka do skóry głowy i stały rytuał są kosmetyczne — mają pomóc skórze głowy być czystą i wolną oraz wspierać wygląd gęstszych, zdrowiej wyglądających włosów. Nie są lekiem i nigdy nie miały nim być. Niektóre zmiany włosów i skóry głowy mają przyczyny, które tylko specjalista może właściwie zbadać — takie jak zaburzenia tarczycy, niektóre leki, poziom żelaza czy choroby skóry. Lekarz albo dermatolog może Cię naprawdę zbadać, zadać właściwe pytania i zlecić właściwe badania. Tego rodzaju pomocy żaden rytuał pod prysznicem nie zapewni.</p>
+  <p>Nie ma wstydu w tym, żeby po nią sięgnąć. Wręcz przeciwnie — to jedna z najbardziej troskliwych rzeczy, jakie możesz dla siebie zrobić.</p>
+
+  <h3>Sygnały, które zasługują na oko specjalisty</h3>
+  <p>Proszę, nie przeczekuj w domu, jeśli zauważysz którykolwiek z nich:</p>
+  <ul>
+    <li><strong>Nagłe albo szybkie wypadanie</strong> — włosy wychodzące w zauważalnie większych ilościach w ciągu dni albo kilku tygodni, a nie ta powolna, stopniowa zmiana, o której mówiłyśmy.</li>
+    <li><strong>Placki albo gładkie, bezwłose miejsca</strong> — zwłaszcza okrągłe albo w kształcie monety, albo utrata włosów wyraźnie nierówna w różnych częściach głowy.</li>
+  </ul>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">37</span></div>
+</div>
+
+<div class="page">
+  <ul style="margin-top:0">
+    <li><strong>Skóra głowy zaczerwieniona, obolała, swędząca, piekąca albo łuszcząca się</strong> — utrzymujące się podrażnienie, tkliwość, łuski, strupki albo cokolwiek, co wygląda jak wysypka czy infekcja.</li>
+    <li><strong>Utrata włosów wraz z innymi objawami</strong> — nietypowe zmęczenie, zmiany wagi, zmiany miesiączkowania albo ogólne złe samopoczucie. Skóra głowy potrafi być posłańcem tego, co dzieje się gdzie indziej w ciele.</li>
+    <li><strong>Utrata po rozpoczęciu nowego leku</strong> albo po chorobie, wysokiej gorączce czy stresującym wydarzeniu.</li>
+    <li><strong>Cokolwiek, co Cię po prostu niepokoi</strong> — w tym bolesne miejsca, guzki, krwawienie albo zmiana, której nie potrafisz wyjaśnić.</li>
+  </ul>
+
+  <div class="pull"><p>Jeśli coś wydaje się nagłe, bolesne, plackowate albo połączone ze złym samopoczuciem, to sygnał, żeby zadzwonić do lekarza — a nie żeby bardziej starać się w domu.</p></div>
+
+  <h3>Jak ułatwić sobie tę rozmowę</h3>
+  <p>Pomaga zanotować kilka rzeczy przed wizytą: kiedy pierwszy raz zauważyłaś zmianę, jak szybko postępuje, czy jest na całej głowie czy plackami, jakie nowe leki przyjmujesz i jakie masz inne objawy. Przydać się może też zdjęcie albo dwa z różnych momentów. Nie chodzi o straszenie samej siebie — chodzi o to, żeby dać specjaliście jasny obraz i szybciej uzyskać pomoc.</p>
+
+  <h3>Łagodna pielęgnacja może iść obok</h3>
+  <p>Jeśli lekarz zbada sprawę i nie znajdzie nic, co wymaga leczenia — wspaniale, możesz kontynuować swój rytuał ze spokojną głową. A jeśli coś znajdzie, Twoja codzienna delikatność wciąż ma swoje miejsce obok jego zaleceń. Te dwie rzeczy nie są rywalami.</p>
+  <p>Znasz swoje ciało lepiej niż ktokolwiek. Jeśli cichy głos mówi Ci, że coś jest nie tak, proszę, posłuchaj go. Sięgnięcie po pomoc to nie rezygnacja z siebie — to zadbanie o siebie, czyli dokładnie to, o czym jest cały ten przewodnik.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">38</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 14 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 14</div>
+  <h2 class="title">Mity, fakty i odpowiedzi na Twoje pytania</h2>
+
+  <p>Słyszałaś już ode mnie niejedno powiedziane więcej niż raz — bo prawdy, które mają znaczenie, warto powtarzać. Ale wiem, jak to jest. Kończysz taką książkę, zamykasz ją i odzywa się cichy głos: „tak, ale co z…". Usiądźmy więc razem i odpowiedzmy na pytania, które słyszę najczęściej. Uczciwe odpowiedzi. Bez ściemy.</p>
+
+  <h3>„To po prostu menopauza. Nic nie pomaga, więc po co się wysilać?"</h3>
+  <p>Rozumiem, dlaczego tak to wygląda. Zmiany tych lat są prawdziwe i nigdy nie będę udawać inaczej. Ale „nic nie pomaga" też nie jest do końca prawdą. Nie cofniemy zegara, ale możemy zadbać o środowisko skóry głowy — ziemię, z której rosną włosy — żeby była czysta, wolna i zaopiekowana. To nie magia. To konserwacja, taka sama jak nawilżanie twarzy albo pielęgnowanie grządki. O skórę głowy zawsze warto zadbać, w każdym wieku.</p>
+
+  <h3>„Czy wszystkie szampony nie są w gruncie rzeczy takie same?"</h3>
+  <p>Naprawdę nie są. Wiele codziennych szamponów opiera się na ostrych siarczanach, które zdzierają powierzchnię i potrafią zostawić skórę ściągniętą, a po południu znów przetłuszczoną. Delikatna kostka bez siarczanów działa inaczej — jest stworzona, żeby łagodnie rozpuszczać osad, a nie szorować mocniej. Ta sama półka, zupełnie inne podejście. Jeśli z tego rozdziału masz zapamiętać jeden fakt, niech to będzie ten.</p>
+
+  <h3>„Powinnam myć rzadziej? Czy częściej?"</h3>
+  <p>To pytanie dostaję najczęściej, a uczciwa odpowiedź brzmi: to zależy od Ciebie. Nie ma uniwersalnej liczby.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">39</span></div>
+</div>
+
+<div class="page">
+  <div class="pull" style="margin-top:0"><p>Celem nie jest sztywny harmonogram. Celem jest czysta, wygodna skóra głowy, która nie czuje się ani ogołocona, ani przytłoczona.</p></div>
+
+  <p>Zbyt częste mycie ostrymi kosmetykami zostawia skórę suchą i reaktywną. Zbyt rzadkie pozwala osadowi znów się odłożyć. Większość kobiet znajduje wygodny rytm gdzieś pośrodku. Słuchaj, jak czuje się Twoja skóra głowy — to lepszy przewodnik niż jakakolwiek zasada, którą mogłabym Ci podać.</p>
+
+  <h3>„Ile czasu, zanim cokolwiek zauważę?"</h3>
+  <p>Tu zawsze będę z Tobą szczera: pielęgnacja skóry głowy działa stopniowo, a efekty różnią się u każdej osoby. Nie ma przełącznika działającego przez noc. To, co wiele kobiet zauważa najpierw, to po prostu <em>jak czuje się</em> skóra głowy — czystsza, lżejsza, mniej oblepiona. Wygląd objętości, kiedy przychodzi, przychodzi powoli i po cichu przez tygodnie konsekwencji, nie przez dni. Proszę, nie oceniaj po pierwszym myciu. Daj temu cierpliwy, stały czas, o którym mówiłyśmy w rozdziałach o rytuale.</p>
+
+  <h3>„Czy mogę używać kostki codziennie?"</h3>
+  <p>Dla większości kobiet delikatna kostka bez siarczanów jest wystarczająco łagodna do regularnego stosowania i 7-dniowy reset jest zbudowany wokół tej idei. Kiedy wejdziesz w tryb utrzymania (rozdział 11), możesz stwierdzić, że lżejszy rytm pasuje Ci lepiej. Jeśli skóra głowy kiedykolwiek będzie sucha albo podrażniona, odpuść i daj jej odpocząć — delikatność zawsze wygrywa z intensywnością.</p>
+
+  <h3>„Czy u mnie to zadziała?"</h3>
+  <p>Nie mogę obiecać Ci konkretnego wyniku — żadna uczciwa osoba nie może i powinnaś uważać na każdego, kto to robi. Mogę powiedzieć tyle: dbanie o skórę głowy w sposób, który tu omówiłyśmy, pomaga jej być czystą i wolną oraz wspiera wygląd gęstszych, zdrowiej wyglądających włosów. Jak to się u Ciebie pokaże, jest indywidualne. Najbardziej zadowolone bywają te kobiety, które pozostają konsekwentne i życzliwe wobec siebie, gdy czekają.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">40</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Kilka szybkich pytań</h3>
+  <ul>
+    <li><strong>„Czy obcięcie włosów sprawi, że będą grubsze?"</strong> Dobre cięcie może sprawić, że włosy będą wyglądać na pełniejsze, ale to stylizacja, nie pielęgnacja skóry głowy — to dwie różne rzeczy.</li>
+    <li><strong>„Czy potrzebuję szafki pełnej kosmetyków?"</strong> Nie. Nakładanie zbyt wielu rzeczy naraz zwykle przynosi odwrotny skutek. Prosta, stała rutyna daje więcej.</li>
+    <li><strong>„Czy dla mnie jest już za późno?"</strong> Nigdy nie jest za późno, żeby zadbać o skórę głowy. Zadbana skóra głowy jest warta posiadania w wieku 55, 65, 75 lat — w każdym wieku.</li>
+  </ul>
+  <p>Jeśli Twojej konkretnej obawy tu nie ma, zatrzymaj ją jeszcze na jeden rozdział — bo są sytuacje, w których właściwą odpowiedzią jest wizyta u specjalisty, a dokładnie tam zmierzamy dalej.</p>
+
+  <p class="legal">Ten przewodnik zawiera ogólne informacje o pielęgnacji skóry głowy i nie jest poradą medyczną.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">41</span></div>
+</div>
+
+<!-- ============ ROZDZIAŁ 15 ============ -->
+<div class="page">
+  <div class="eyebrow">Rozdział 15</div>
+  <h2 class="title">Kilka słów na koniec od Emmy</h2>
+
+  <p>Jeśli doczytałaś aż tutaj, chcę Ci podziękować. Nie tylko za uwagę — za cierpliwość wobec samej siebie. Ta część jest trudniejsza niż jakikolwiek rytuał w tej książce.</p>
+  <p>Przeszłyśmy razem sporo. Skóra głowy jako ziemia. Tłusta czapa zasklepiająca nasadę. To, dlaczego szampony, serum i suplementy zawiodły Cię bez żadnej Twojej winy. Prosty sześćdziesięciosekundowy rytuał i małe codzienne nawyki wokół niego. Ale jeśli zapomnisz każdy szczegół i zapamiętasz tylko trzy rzeczy, niech będą to te.</p>
+
+  <h3>Bądź cierpliwa</h3>
+  <p>To działa stopniowo, nie przez noc. Tydzień po tygodniu, nie do piątku. Skóra głowy, o którą dbasz, potrzebowała lat, żeby się zasklepić, i ma prawo potrzebować czasu, żeby się otworzyć. W szczotce powoli zostaje mniej włosów. Odpływ się nie zatyka. Przedziałek pośrodku zaczyna, po trochu, wyglądać znów jak Twój. Nie szukaj cudu trzeciego ranka. Po prostu rób swoje.</p>
+
+  <h3>Bądź konsekwentna</h3>
+  <p>Prawda, do której wciąż wracam, brzmi tak: metoda znaczy więcej niż jakikolwiek pojedynczy produkt. Kostka leżąca nieużywana na półce nie robi nic. Ten sam łagodny rytuał, przez większość dni, daje skórze głowy prawdziwą szansę, żeby znów odetchnęła. Zakotwicz go w czymś, co już robisz, tak jak o tym mówiłyśmy, i pozwól mu stać się tak zwyczajnym jak mycie zębów.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">42</span></div>
+</div>
+
+<div class="page">
+  <h3 style="margin-top:0">Bądź dla siebie łagodna</h3>
+  <p>Oto część, którą najbardziej chcę, żebyś usłyszała.</p>
+
+  <div class="pull"><p>To nigdy nie była próżność i to nigdy nie była Twoja wina.</p></div>
+
+  <p>Nie zrobiłaś czegoś źle. Nie byłaś nieostrożna. Byłaś kobietą, która zauważyła cichą zmianę, o której nikt jej nie uprzedził, i próbowała wszystkiego, co przyszło jej do głowy. To nie porażka. To troska.</p>
+  <p>Bądź więc dla siebie tak samo dobra, jak byłabyś dla przyjaciółki, która przyszłaby do Ciebie zmartwiona swoim przedziałkiem w lustrze. Zmiękcz głos. Opuść ramiona. Zacznij od skóry głowy i pozwól reszcie iść za tym.</p>
+  <p>Bo celem nigdy nie były wyłącznie gęściej wyglądające włosy. Celem był ten poranek, w którym przechodzisz obok lustra, nie skanując go wzrokiem. Wspólne zdjęcie, na którym nie cofasz się po cichu do tylnego rzędu. To małe, stałe uczucie bycia znów sobą.</p>
+  <p>Warto na to poczekać. A Ty absolutnie zasługujesz na tę łagodność.</p>
+  <p style="margin-top:7mm"><strong>Dbaj o siebie. Dasz radę.</strong></p>
+  <p style="font-family:var(--serif);font-style:italic;font-size:13pt;color:var(--green);margin-top:5mm">— Emma</p>
+
+  <p class="legal">Ten przewodnik ma charakter wyłącznie informacyjny i nie jest poradą medyczną. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Efekty są indywidualne i rozwijają się stopniowo. Produkty Kalmely są kosmetykami do pielęgnacji skóry głowy. Jeśli zauważysz nagłe, plackowate albo bolesne wypadanie włosów, obolałą lub łuszczącą się skórę głowy albo wypadanie połączone z innymi objawami, skonsultuj się z lekarzem lub dermatologiem.</p>
+
+  <div class="foot"><span>Kalmely · Koreański Protokół Skóry Głowy</span><span class="n">43</span></div>
+</div>
+
+</body>
+</html>
