@@ -3,15 +3,17 @@
 / /scalp/ 302
 /index.html /scalp/ 302
 
-# --- Cellular Reset (retirado) → scalp. SOLO la PdP: las legales y la thank-you NO se tocan (ver abajo). ---
+# --- Cellular Reset (retirado) → scalp. La PdP en ingles se BORRO del repo el 2-sep-2026
+#     (tienda solo en polaco); estos 301 siguen cubriendo los enlaces antiguos.
+#     SOLO la PdP: las legales y la thank-you NO se tocan (ver abajo). ---
 /reset /scalp/ 301
 /reset/ /scalp/ 301
 /reset/index.html /scalp/ 301
 /reset/* /scalp/ 301
 
-# --- /about: página de marca de la era Reset/Gravity. El scalp no la tenía y ningún
-#     correo la enlaza (verificado en worker.js), así que va a la PdP. El fichero
-#     about.html sigue en el repo, solo deja de ser alcanzable.
+# --- /about: página de marca en inglés de la era Reset/Gravity. El scalp no la tenía y
+#     ningún correo la enlaza (verificado en worker.js). Borrada del repo el 2-sep-2026;
+#     el 301 se queda por los enlaces antiguos.
 /about /scalp/ 301
 /about.html /scalp/ 301
 
@@ -25,6 +27,21 @@
 /relief-shipping.html /scalp-shipping.html 301
 /relief-terms.html /scalp-terms.html 301
 /relief-thankyou.html /scalp-thankyou.html 301
+
+# --- Gravity Cradle (retirado) → scalp. Hasta el 2-sep-2026 /gravity/ seguía publicada
+#     y respondía 200 EN INGLÉS: era la única PdP en inglés alcanzable de la tienda.
+#     Borrada con la limpieza a monolingüe polaco. Sus legales SÍ siguen vivas (ver abajo).
+/gravity /scalp/ 301
+/gravity/ /scalp/ 301
+/gravity/index.html /scalp/ 301
+/gravity/* /scalp/ 301
+
+# --- advertorial /scalp-report/ (inglés) → scalp. Era del producto vivo pero nunca se
+#     tradujo al polaco, así que no servía para captar tráfico en Polonia. Borrado el
+#     2-sep-2026; recuperable con `git show d6a0b1c:scalp-report/index.html` si se traduce.
+/scalp-report /scalp/ 301
+/scalp-report/ /scalp/ 301
+/scalp-report/* /scalp/ 301
 
 # --- tea tree (retirado) → scalp ---
 /tea /scalp/ 301
@@ -56,4 +73,5 @@
 #   /manage.html  /contact.html
 # Se sacan del sitemap y de la navegación (y llevan noindex); no se rompen.
 # Nota: /reset/* NO captura /reset-*.html (el guion no es una barra), así que las legales quedan a salvo.
-# /gravity/ sigue publicada pero MUDA (sin pixel, sin ads) — no se redirige.
+# Desde el 2-sep-2026 la tienda es SOLO polaca: no queda ninguna página en inglés
+# alcanzable salvo las legales de arriba, que son de compradores reales de EE.UU.
