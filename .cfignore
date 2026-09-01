@@ -3,3 +3,4 @@ worker/
 .gitignore
 README.md
 STRIPE-WEBHOOK.md
+scalp/.ebook-src.html
