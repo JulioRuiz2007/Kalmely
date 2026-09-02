@@ -795,7 +795,11 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 @media(max-width:560px){
   .chat-panel{right:0;left:0;bottom:0;width:100%;max-width:100%;height:88vh;height:88dvh;max-height:none;border-radius:18px 18px 0 0;transform-origin:bottom center;transform:translateY(14px)}
   .chat-nudge{max-width:190px;right:80px}
-  .chat-fab{width:52px;height:52px;right:14px;bottom:14px}
+  /* Tapaba contenido de venta: en el pack de 3 se comia la etiqueta NAJLEPSZA CENA y el
+     precio tachado, y en el FAQ una linea entera de respuesta. Mas pequeño y algo
+     translucido hasta que se toca: sigue estando, deja de competir. */
+  .chat-fab{width:46px;height:46px;right:12px;bottom:12px;opacity:.88}
+  .chat-fab:active,.chat-fab:focus-visible{opacity:1}
   body:has(.sticky-cta.show) .chat-fab{bottom:100px}
   body:has(.sticky-cta.show) .chat-nudge{bottom:112px}
 }
@@ -877,7 +881,48 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 .duo-head span{display:block;font:600 10.5px/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.09em;margin-top:4px}
 .duo-case{margin-bottom:24px}
 .duo-case:last-child{margin-bottom:0}
-.duo-cap{display:block;text-align:center;font:600 11.5px/1.35 var(--sans);color:var(--ink-soft);margin-bottom:9px}
+/* El polaco tiene palabras muy largas y en una columna estrecha el margen derecho queda
+     lleno de huecos: medido, la peor linea del FAQ dejaba 87px vacios de 334 (un 26%).
+     Con particion automatica (el navegador usa el diccionario que le da lang="pl") ese
+     maximo baja a 38px. Solo en texto corrido, nunca en titulares ni en botones. */
+  main p, .faq-a, .duo-q{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+  h1,h2,h3,h4,.duo-cap,.duo-wk,button,.btn,.badge,.pill{hyphens:none;-webkit-hyphens:none}
+
+  .duo-cap{text-align:center;font:600 11.5px/1.35 var(--sans);color:var(--ink-soft);margin-bottom:9px;text-wrap:balance;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+  /* La duracion sale del titulo y se convierte en pastilla: asi todas las fotos arrancan a la
+     misma altura (antes el titulo ocupaba 1 o 2 lineas segun el caso y las descuadraba) y de paso
+     el dato que mas vende deja de ir escondido detras de un punto medio. */
+    /* Enlace del antes/despues al muro de opiniones */
+  /* Indicador de bajada al final de la oferta */
+  .scroll-cue{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px auto 4px;
+    max-width:340px;text-decoration:none;background:#234F2B;color:#F7F5EE;border-radius:999px;
+    padding:15px 24px;box-shadow:0 14px 30px -16px rgba(35,79,43,.75);
+    transition:transform .18s,box-shadow .18s}
+  .scroll-cue:hover{transform:translateY(-2px);box-shadow:0 18px 36px -16px rgba(35,79,43,.85)}
+  .sc-txt{font:500 14.5px/1 var(--sans);letter-spacing:.1px}
+  .sc-txt b{font-weight:700}
+  .sc-arw{display:flex;animation:scCue 1.9s ease-in-out infinite}
+  @keyframes scCue{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  @media(prefers-reduced-motion:reduce){.sc-arw{animation:none}}
+  @media(max-width:620px){
+    .scroll-cue{margin:22px 28px 2px;max-width:none;padding:14px 18px}
+    .sc-txt{font-size:14px}
+  }
+  .duo-more{display:flex;justify-content:center;margin-top:26px}
+  .duo-more-btn{display:inline-flex;align-items:center;gap:11px;text-decoration:none;
+    background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:13px 22px;
+    box-shadow:0 6px 18px -12px rgba(0,0,0,.35);transition:border-color .18s,transform .18s,box-shadow .18s}
+  .duo-more-btn:hover{border-color:#234F2B;transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(0,0,0,.45)}
+  .dm-stars{color:#C19A2C;font-size:13px;letter-spacing:1px;line-height:1}
+  .dm-txt{font:500 14px/1 var(--sans);color:var(--ink)}
+  .dm-txt b{font-weight:700}
+  .dm-arw{font:700 15px/1 var(--sans);color:#234F2B}
+  @media(max-width:620px){
+    .duo-more{margin-top:20px}
+    .duo-more-btn{padding:12px 18px;gap:9px}
+    .dm-txt{font-size:13px}
+  }
+  .duo-wk{font:700 10.5px/1 var(--sans);letter-spacing:.4px;text-transform:uppercase;font-style:normal;color:#234F2B;background:rgba(35,79,43,.09);border-radius:999px;padding:4px 10px;white-space:nowrap}
 .duo-shot{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--paper-2)}
 .duo-shot img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .duo-shot:hover img{transform:scale(1.035)}
@@ -997,6 +1042,16 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
      y object-fit:cover se les comia el 16,7% del alto — 8,3% por arriba y 8,3% por abajo —
      y las cuatro infografias perdian el titular y la ultima linea. Se mantiene 1/1: el
      titulo del producto entra igual en la primera pantalla. */
+  /* El cajon llegaba justo a los 844px de alto: cabecera 65 + temporizador 37 +
+     barra 103 + pie 271 dejaban solo 368px para el producto y los regalos. Aqui se
+     recuperan ~55px para el contenido sin quitar ninguna funcion. */
+  .cart-timer{padding:7px 16px;font-size:12px}
+  .unlock{padding:11px 20px 12px}
+  .unlock-msg{margin-bottom:6px}
+  .unlock-steps{margin-top:6px}
+  .unlock-bump{margin-top:9px;padding:9px 10px;font-size:12px}
+  .cart-body{padding:16px 20px}
+  .cart-item{padding-bottom:14px}
   .hero-slide{aspect-ratio:1/1}
   /* Las flechas se sentaban en el centro vertical de la imagen y ahi es justo donde las
      infografias llevan texto: se comian la inicial de "Rozmaryn i drzewo herbaciane" y el
@@ -1320,12 +1375,22 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         </div>
       </div>
     </div>
-  </section>
+  
+        <!-- Julio: "de la oferta bajen abajo, un indicativo de que bajen estaria bien
+             destacarlo". Quien acaba de leer el precio necesita una razon para seguir,
+             y la razon son las fotos. -->
+        <a href="#efekty" class="scroll-cue">
+          <span class="sc-txt">Zobacz zdjęcia <b>przed i po</b></span>
+          <span class="sc-arw" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          </span>
+        </a>
+      </section>
 
   <!-- ===== BRAND ACCOUNTABILITY (honest — a real team stands behind the guarantee) ===== -->
 
   <!-- ===== 2. BEFORE / AFTER ===== -->
-  <section>
+  <section id="efekty">
     <div class="wrap">
       <div class="sec-head fade-slow"><div class="eyebrow">Przed i po</div><h2>Zmiana, którą pokazują nam klientki i klienci</h2><p>Zdjęcia od klientów po kilku tygodniach stosowania. Efekty są indywidualne — podpisy opisują wygląd i odczucia.</p></div>
       <div class="duo">
@@ -1336,17 +1401,17 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
           <div class="duo-rail">
             <div class="duo-case">
-            <span class="duo-cap">Przetłuszczające się odrosty → czysto i lekko · 6 tygodni</span>
+            <span class="duo-cap">Przetłuszczające się odrosty → czysto i lekko<em class="duo-wk">6 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-1.webp" alt="Anna K., zweryfikowana klientka — przedziałek przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Po sześciu tygodniach odrosty wreszcie są czyste.”</p><span class="duo-n">Anna K. <em>✓ Zweryfikowana klientka · 57 lat</em></span></div>
           </div>
           <div class="duo-case">
-            <span class="duo-cap">Przedziałek mniej prześwituje · 8 tygodni</span>
+            <span class="duo-cap">Przedziałek mniej prześwituje<em class="duo-wk">8 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-2.webp" alt="Katarzyna W., zweryfikowana klientka — przedziałek mniej prześwitujący po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Na zdjęciach przedziałek nie wygląda już tak szeroko.”</p><span class="duo-n">Katarzyna W. <em>✓ Zweryfikowana klientka · 60 lat</em></span></div>
           </div>
           <div class="duo-case">
-            <span class="duo-cap">Włosy bez obciążenia, optycznie gęstsze · 6 tygodni</span>
+            <span class="duo-cap">Włosy bez obciążenia, optycznie gęstsze<em class="duo-wk">6 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-women-3.webp" alt="Małgorzata R., zweryfikowana klientka — włosy wyglądające na gęstsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Wyglądają na gęstsze i są lżejsze niż wcześniej.”</p><span class="duo-n">Małgorzata R. <em>✓ Zweryfikowana klientka · 55 lat</em></span></div>
           </div>
@@ -1360,17 +1425,17 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
           <div class="duo-rail">
             <div class="duo-case">
-            <span class="duo-cap">Przetłuszczanie i ciężkość → lekkość · 6 tygodni</span>
+            <span class="duo-cap">Przetłuszczanie i ciężkość → lekkość<em class="duo-wk">6 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-1.webp" alt="Piotr M., zweryfikowany klient — skóra głowy przed i po kilku tygodniach regularnego stosowania" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Skóra głowy pierwszy raz od lat jest naprawdę czysta.”</p><span class="duo-n">Piotr M. <em>✓ Zweryfikowany klient · 48 lat</em></span></div>
           </div>
           <div class="duo-case">
-            <span class="duo-cap">Skóra głowy spokojniejsza, włosy lżejsze · 8 tygodni</span>
+            <span class="duo-cap">Skóra głowy spokojniejsza, włosy lżejsze<em class="duo-wk">8 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-2.webp" alt="Tomasz L., zweryfikowany klient — włosy lżejsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Nie muszę myć głowy codziennie, żeby wyglądała świeżo.”</p><span class="duo-n">Tomasz L. <em>✓ Zweryfikowany klient · 52 lata</em></span></div>
           </div>
           <div class="duo-case">
-            <span class="duo-cap">Włosy sprężystsze, bez efektu przyklejenia · 6 tygodni</span>
+            <span class="duo-cap">Włosy sprężystsze, bez efektu przyklejenia<em class="duo-wk">6 tygodni</em></span>
             <div class="duo-shot wipe"><span class="duo-tag b">Przed</span><span class="duo-tag a">Po</span><img src="assets/ba-men-3.webp" alt="Andrzej S., zweryfikowany klient — włosy sprężystsze po regularnym stosowaniu" width="820" height="820" loading="lazy"></div>
             <div class="duo-by"><span class="pr-stars">★★★★★</span><p class="duo-q">„Włosy nie kleją się już do głowy po całym dniu.”</p><span class="duo-n">Andrzej S. <em>✓ Zweryfikowany klient · 45 lat</em></span></div>
           </div>
@@ -1379,7 +1444,17 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           </div>
       </div>
     </div>
-  </section>
+  
+      <!-- Quien mira el antes/despues esta buscando pruebas: en vez de dejarle seguir
+           bajando a ciegas, se le lleva directo al muro de opiniones. -->
+      <div class="duo-more">
+        <a href="#reviews" class="duo-more-btn">
+          <span class="dm-stars">★★★★★</span>
+          <span class="dm-txt">Zobacz wszystkie <b>1847 opinii</b></span>
+          <span class="dm-arw" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
 
   <!-- (Mechanism section removed — now covered in the convince strip before the offer, so it was redundant here.) -->
 
@@ -1600,8 +1675,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 <aside class="cart-drawer" id="cartDrawer" aria-label="Twój koszyk" aria-hidden="true">
   <div class="cart-head">
     <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Twój koszyk</h3>
-    <span class="ch-free">✓ Darmowa dostawa</span>
-    <button type="button" class="cart-close" id="cartClose" aria-label="Zamknij koszyk">×</button>
+        <button type="button" class="cart-close" id="cartClose" aria-label="Zamknij koszyk">×</button>
   </div>
   <div class="cart-timer" id="cartTimer" hidden>Twój koszyk jest zarezerwowany jeszcze przez <b id="cartTimerVal">05:00</b></div>
   <div class="unlock" id="cartUnlock" hidden>
@@ -1727,8 +1801,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   var VARIANT='SCALP';
   var TIERS={
     'SCALP-1':{price:69,was:0,label:'1 kostka',sub:false,img:'bundle-1',gifts:[['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
-    'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.'],['Kalendarz 8 tygodni (PDF)','29','kalendarz-8-tygodni','Osiem tygodni z polami do zaznaczania i miejscem na punkt wyjścia. Rzecz, która decyduje o efekcie, to regularność — ten kalendarz pilnuje jej za Ciebie.']]},
-    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania na co dzień. Odżywia skórę głowy, gdy kostka usunie już tłusty film — dzięki temu wreszcie wchłania się tam, gdzie wcześniej nie mogło.'],['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.'],['Kalendarz 8 tygodni (PDF)','29','kalendarz-8-tygodni','Osiem tygodni z polami do zaznaczania i miejscem na punkt wyjścia. Rzecz, która decyduje o efekcie, to regularność — ten kalendarz pilnuje jej za Ciebie.']]}
+    'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
+    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania na co dzień. Odżywia skórę głowy, gdy kostka usunie już tłusty film — dzięki temu wreszcie wchłania się tam, gdzie wcześniej nie mogło.'],['Oficjalny e-book Kalmely','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
   };
   var DEFAULT='SCALP-1';  // arranca en el pack más pequeño (1 kostka · 69 zł)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1823,13 +1897,13 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         bump=document.getElementById('unlockBump'),s2=document.getElementById('unlockS2');
     fill.style.width=Math.max(6,Math.min(100,Math.round(price/SERUM_AT*100)))+'%';
     if(price>=SERUM_AT){
-      msg.innerHTML='<span class="done">🎉 Serum gratis odblokowane!</span> Darmowa dostawa jest już wliczona.';
+      msg.innerHTML='<span class="done">🎉 Serum gratis odblokowane!</span>';
       if(s2)s2.classList.add('hit');
       if(bump)bump.hidden=true;
     }else{
-      msg.innerHTML='Darmowa dostawa ✓ — brakuje Ci <b>'+money(SERUM_AT-price)+'</b> do <b>SERUM GRATIS</b>';
+      msg.innerHTML='Brakuje Ci <b>'+money(SERUM_AT-price)+'</b> do <b>SERUM GRATIS</b>';
       if(s2)s2.classList.remove('hit');
-      if(bump){bump.hidden=false;bump.textContent='Weź 3 kostki i odbierz serum (wartość 99 zł) gratis →';}
+      if(bump){bump.hidden=false;bump.textContent='Weź 3 kostki — serum (99 zł) gratis →';}
     }
   }
   (function(){var b=document.getElementById('unlockBump');if(b)b.addEventListener('click',function(){select('SCALP-3',true);populateCart();});})();
@@ -1892,6 +1966,10 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
+    // Sin ningun descuento, "Wartosc zamowienia" y "Razem" muestran la MISMA cifra dos
+    // veces seguidas: puro relleno en un cajon que en movil no sobraba de alto.
+    var subRow=document.getElementById('cartSubtotal').parentNode;
+    subRow.style.display = (was && was>price) ? '' : 'none';
     var savingRow=document.getElementById('cartSaving').parentNode;
     if(save>0){document.getElementById('cartSaving').textContent='−'+money(save);savingRow.style.display='';}else{savingRow.style.display='none';}
     // discount code (real: WELCOME10 is a live Stripe coupon, applied again server-side at checkout)
