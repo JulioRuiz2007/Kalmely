@@ -993,8 +993,16 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   .hero-grid{grid-template-columns:100%;padding-left:0;padding-right:0}
   .hero-head,.hero-convince,.buybox{padding-left:28px;padding-right:28px}
   .hero-stage{width:100%;max-width:100%;margin-left:0;border-radius:0}
-  /* shorter image so it isn't so tall and the product title reaches the first view, like the competitor */
-  .hero-slide{aspect-ratio:6/5}
+  /* Las 6 imagenes del carrusel son CUADRADAS (1024 o 1080 px de lado). Con aspect-ratio:6/5
+     y object-fit:cover se les comia el 16,7% del alto — 8,3% por arriba y 8,3% por abajo —
+     y las cuatro infografias perdian el titular y la ultima linea. Se mantiene 1/1: el
+     titulo del producto entra igual en la primera pantalla. */
+  .hero-slide{aspect-ratio:1/1}
+  /* Las flechas se sentaban en el centro vertical de la imagen y ahi es justo donde las
+     infografias llevan texto: se comian la inicial de "Rozmaryn i drzewo herbaciane" y el
+     final de "z czasem mniej przeswituje". En movil sobran: el carrusel se pasa con el dedo
+     (touchstart/move/end) y debajo hay 6 miniaturas clicables. */
+  .hero-arrow{display:none}
   .hero{padding:14px 0 14px}
   .hero-thumbs{width:100%;max-width:100%;margin-left:0;padding:0 28px;margin-top:14px;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .hero-thumbs::-webkit-scrollbar{display:none}
