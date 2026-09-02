@@ -347,13 +347,13 @@ main { max-width: 880px; }
   </div>
 
   <!-- DIGITAL GUIDE — shown if order includes ebook -->
-  <section class="ty-digital fade-slow" id="tyDigital" hidden aria-label="Digital guide delivery" style="--stagger:200ms;">
+  <section class="ty-digital fade-slow" id="tyDigital" hidden aria-label="Dostarczenie przewodnika" style="--stagger:200ms;">
     <div class="ty-digital-cover kalm-reveal-zoom">
-      <img src="/scalp/assets/ebook-physical-3d.webp" alt="The Koreański Protokół Skóry Głowy eBook">
+      <img src="/scalp/assets/ebook-physical-3d.webp" alt="E-book Koreański Protokół Skóry Głowy">
     </div>
     <div>
       <div class="ty-digital-eyebrow">Przewodnik już leci</div>
-      <h2>Your <em>Koreański Protokół Skóry Głowy</em> w formie e-booka.</h2>
+      <h2>Twój <em>Koreański Protokół Skóry Głowy</em> w formie e-booka.</h2>
       <p>Wysyłamy go na adres podany przy zamówieniu, zwykle w ciągu pięciu minut od płatności. Poszukaj „Kalmely” na swojej skrzynce — albo w zakładce <strong>Oferty</strong> w Gmailu.</p>
       <div class="ty-digital-email" id="tyEmailBox"><span class="ph">Wysłany na adres z zamówienia</span></div>
       <p style="margin-top:12px;">Nie dotarł w 30 minut? Napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — wyślemy go ręcznie.</p>
@@ -401,7 +401,7 @@ main { max-width: 880px; }
       <div class="ty-step-num">02.</div>
       <div class="ty-step-content">
         <h4>Jak jej używać</h4>
-        <p>Pod prysznicem przesuń kostkę po skórze głowy, tam gdzie wcześniej zaczynał szampon. Masuj około sześćdziesięciu sekund, żeby fermented oils can work on the buildup, then rinse. That's the whole ritual — once a day, every day.</p>
+        <p>Pod prysznicem przesuń kostkę po skórze głowy, tam gdzie wcześniej zaczynał szampon. Masuj około sześćdziesięciu sekund, żeby fermentowane oleje rozpuściły warstwę łoju, i spłucz. To cały rytuał — na początku codziennie, potem kilka razy w tygodniu.</p>
       </div>
     </div>
 
@@ -409,7 +409,7 @@ main { max-width: 880px; }
       <div class="ty-step-num">03.</div>
       <div class="ty-step-content">
         <h4>60 dni gwarancji</h4>
-        <p>Albo pokochasz swoją skórę głowy, albo zwracamy pieniądze. Jeśli w ciągu 60 dni nie będziesz zadowolony, po prostu napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — nie musisz nic odsyłać. Zwrócimy pieniądze tą samą metodą płatności, zwykle w ciągu 5–10 dni roboczych.</p>
+        <p>Albo pokochasz swoją skórę głowy, albo zwracamy pieniądze. Jeśli w ciągu 60 dni uznasz, że to nie dla Ciebie, po prostu napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — nie musisz nic odsyłać. Zwrócimy pieniądze tą samą metodą płatności, zwykle w ciągu 5–10 dni roboczych.</p>
       </div>
     </div>
 
@@ -446,7 +446,7 @@ main { max-width: 880px; }
   if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
   const sessionId = params.get('session_id');
   const isEbookOnly = sku === 'EBOOK';
-  const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK');
+  const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK' || sku.indexOf('SCALP') === 0);
   const includesPhysical = (sku === 'KAL-BUNDLE' || sku === 'KAL-SOLO');
 
   // Order number — derived from session_id when available, otherwise random
@@ -468,11 +468,11 @@ main { max-width: 880px; }
   const heading = document.getElementById('tyHeading');
   const intro = document.getElementById('tyIntro');
   if (isEbookOnly) {
-    heading.innerHTML = 'Your guide is <em>in your inbox.</em>';
-    intro.innerHTML = 'Your Koreański Protokół Skóry Głowy guide has been sent to the email you entered. Check your spam folder if it hasn\'t arrived in five minutes, or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+    heading.innerHTML = 'Twój przewodnik <em>jest na skrzynce.</em>';
+    intro.innerHTML = 'Koreański Protokół Skóry Głowy wysłaliśmy na adres podany przy zamówieniu. Jeśli nie dotrze w ciągu pięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
   } else if (sku === 'KAL-SOLO') {
     heading.innerHTML = 'Twoje Kalmely <em>jest w drodze.</em>';
-    intro.innerHTML = 'A confirmation email is in your inbox with tracking details. If you don\'t see it within ten minutes, check your spam folder or write to <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+    intro.innerHTML = 'E-mail z potwierdzeniem i danymi do śledzenia jest już na Twojej skrzynce. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
   }
 
   // Hide physical-product blocks for ebook-only orders
@@ -484,18 +484,13 @@ main { max-width: 880px; }
     document.getElementById('step02').hidden = true;
     document.getElementById('step03').hidden = true;
     // Update step 01 + step 04 wording for digital order
-    document.querySelector('#step01 p').textContent = 'Your receipt and guide download link are now in your inbox. Save the PDF locally so it\'s always handy.';
-    document.querySelector('#step04 p').innerHTML = 'You\'re covered by our 6-month money-back guarantee. Email <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> with your order number for a full refund — the guide remains yours.';
+    document.querySelector('#step01 p').textContent = 'Potwierdzenie i link do pobrania przewodnika są już na Twojej skrzynce. Zapisz PDF na urządzeniu, żeby mieć go zawsze pod ręką.';
+    document.querySelector('#step04 h4').textContent = '60 dni gwarancji';
+    document.querySelector('#step04 p').innerHTML = 'Masz 60 dni gwarancji zwrotu pieniędzy. Napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> z numerem zamówienia, a zwrócimy całą kwotę — przewodnik zostaje u Ciebie.';
   } else {
-    // Physical: set estimated arrival to today + 7 weekdays
-    const date = new Date();
-    let added = 0;
-    while (added < 7) {
-      date.setDate(date.getDate() + 1);
-      if (date.getDay() !== 0 && date.getDay() !== 6) added++;
-    }
-    const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    document.getElementById('arrival').textContent = `By ${dateStr}`;
+    // El HTML ya dice "10-13 dni roboczych", que es lo que dicen tambien el correo, el FAQ
+    // y la pagina de dostawa. Aqui se pisaba con una fecha EN INGLES calculada a 7 dias
+    // habiles: idioma equivocado y ademas prometia antes de lo que promete el resto.
   }
 
   // Pixel: Purchase event (Meta Pixel + GA)
