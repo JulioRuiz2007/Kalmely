@@ -1963,7 +1963,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     document.getElementById('cartQty').textContent='×1';
     // la foto del pack que se está comprando (bundle-1/2/3), no el bodegón genérico:
     // estaba escrita a fuego a hero-01, así que los tres packs mostraban la misma imagen
-    document.getElementById('cartImg').src='assets/'+(t.img||'hero-01')+'.webp';
+    document.getElementById('cartImg').src='assets/'+(t.img||'hero-01')+'.webp?v=pl2';
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
