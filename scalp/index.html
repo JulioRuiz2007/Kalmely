@@ -908,6 +908,19 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     .scroll-cue{margin:22px 28px 2px;max-width:none;padding:14px 18px}
     .sc-txt{font-size:14px}
   }
+  /* Ficha de producto: quien evalua busca datos concretos, no argumentos */
+  .spec{width:100%;border-collapse:collapse;margin:2px 0 4px}
+  .spec th,.spec td{text-align:left;vertical-align:top;padding:9px 0;border-bottom:1px solid var(--line);
+    font:400 13px/1.6 var(--sans);color:var(--ink-2)}
+  .spec th{width:37%;padding-right:14px;font-weight:600;color:var(--ink);white-space:nowrap}
+  .spec tr:last-child th,.spec tr:last-child td{border-bottom:0}
+  .spec td b{color:var(--ink);font-weight:600}
+  .spec td i{font-style:italic}
+  @media(max-width:620px){
+    .spec th,.spec td{display:block;width:auto;padding:0;border:0}
+    .spec th{padding-top:11px;white-space:normal;font-size:11.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--faint,#8A8A80)}
+    .spec td{padding:2px 0 10px;border-bottom:1px solid var(--line)}
+  }
   .duo-more{display:flex;justify-content:center;margin-top:26px}
   .duo-more-btn{display:inline-flex;align-items:center;gap:11px;text-decoration:none;
     background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:13px 22px;
@@ -1278,7 +1291,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <!-- 6 imágenes. hero-08 (mujer canosa) y hero-03 (antes/después rubia) retiradas; hero-02 al final. -->
             <div class="hero-slide"><img src="assets/scalp-hero.webp" alt="Kalmely Korean Scalp Revival Bar — kostka i opakowanie" width="1024" height="1024" fetchpriority="high"></div>
             <div class="hero-slide"><img src="assets/hero-04.webp?v=pl1" alt="W czym ma pomagać kostka Kalmely" width="1080" height="1080" loading="lazy"></div>
-            <div class="hero-slide"><img src="assets/hero-05.webp?v=pl1" alt="Prawdziwi klienci używający kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
+            <div class="hero-slide"><img src="assets/hero-05.webp?v=pl2" alt="Prawdziwi klienci używający kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-06.webp?v=pl1" alt="Co mówią klienci po stosowaniu kostki Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-07.webp?v=pl1" alt="Składniki roślinne w kostce Kalmely" width="1080" height="1080" loading="lazy"></div>
             <div class="hero-slide"><img src="assets/hero-02.webp" alt="Osoba trzymająca kostkę Kalmely" width="1080" height="1080" loading="lazy"></div>
@@ -1289,7 +1302,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <div class="hero-thumbs">
           <button type="button" class="hero-thumb is-active" aria-label="Produkt"><img src="assets/scalp-hero-thumb.webp" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Korzyści"><img src="assets/hero-04-thumb.webp?v=pl1" alt="" loading="lazy"></button>
-          <button type="button" class="hero-thumb" aria-label="Klienci"><img src="assets/hero-05-thumb.webp?v=pl1" alt="" loading="lazy"></button>
+          <button type="button" class="hero-thumb" aria-label="Klienci"><img src="assets/hero-05-thumb.webp?v=pl2" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Wyniki"><img src="assets/hero-06-thumb.webp?v=pl1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Składniki"><img src="assets/hero-07-thumb.webp?v=pl1" alt="" loading="lazy"></button>
           <button type="button" class="hero-thumb" aria-label="Kostka w dłoni"><img src="assets/hero-02-thumb.webp" alt="" loading="lazy"></button>
@@ -1300,7 +1313,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="hero-head fade-slow">
         <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4,6/5</b>&nbsp; (58 opinii)</a></div>
         <h1 class="bx-h1 product">Korean Scalp Revival Bar</h1>
-        <p class="bx-h1-sub">Koreańska kostka do skóry głowy</p>
+        <p class="bx-h1-sub">Koreańska kostka do skóry głowy — dla włosów, które wyglądają gęściej</p>
         <div class="bx-badges"><div class="bx-badges-row"><span>Koreańska nauka</span><span>Bez wody w składzie</span><span>Bez siarczanów</span><span>60 dni gwarancji</span></div></div>
         <ul class="bx-promise">
           <li>Nie po to myjesz głowę codziennie, żeby zmywać wczorajszą wcierkę</li>
@@ -1370,7 +1383,21 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         </div>
 
         <div class="acc">
-          <details><summary>Jak szybko poczuję różnicę?</summary><p>Większość osób zauważa czystszą i lżejszą skórę głowy już w pierwszym tygodniu. To, jak wygląda przedziałek i gęstość włosów, zmienia się stopniowo przez 6–8 tygodni regularnego stosowania — dlatego do każdego zamówienia dajemy 60 dni na decyzję.</p></details>
+          <details class="spec-d"><summary>Specyfikacja produktu</summary>
+          <table class="spec">
+            <tr><th>Rodzaj</th><td>Szampon w kostce do skóry głowy (kosmetyk)</td></tr>
+            <tr><th>Wydajność</th><td>40–60 myć z jednej kostki — około 2 miesiące</td></tr>
+            <tr><th>Formuła</th><td>Bez wody w składzie · bez siarczanów (SLS/SLES) · wegańska</td></tr>
+            <tr><th>Kluczowe składniki</th><td>Żywotnik wschodni (<i>Platycladus orientalis</i>), żeń-szeń, He&nbsp;Shou&nbsp;Wu, rozmaryn, drzewo herbaciane</td></tr>
+            <tr><th>Pełny skład (INCI)</th><td>Wydrukowany na opakowaniu. Chcesz sprawdzić przed zakupem? Napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — odeślemy go w ciągu 24&nbsp;godzin.</td></tr>
+            <tr><th>Stosowanie</th><td>Bezpośrednio na mokrą skórę głowy, 60 sekund masażu opuszkami, spłukać. Odżywka tylko na długość.</td></tr>
+            <tr><th>Dla kogo</th><td>Kobiety i mężczyźni, każdy rodzaj włosów. Nie do stosowania na podrażnioną lub uszkodzoną skórę.</td></tr>
+            <tr><th>W zestawie</th><td><b>Każdy zestaw:</b> e-book „Koreański Protokół Skóry Głowy” — PDF, 43 strony, 15 rozdziałów, wysyłany mailem od razu po zakupie.<br><b>Zestaw 3 kostek dodatkowo:</b> serum do skóry głowy (wartość 99&nbsp;zł), wysyłane razem z paczką.</td></tr>
+            <tr><th>Dostawa</th><td>Nadanie w 24–48&nbsp;h · 10–13 dni roboczych · InPost lub kurier · darmowa przy każdym zamówieniu</td></tr>
+            <tr><th>Gwarancja</th><td>60 dni na zwrot pieniędzy, także za napoczętą kostkę. Bez odsyłania produktu.</td></tr>
+          </table>
+        </details>
+        <details><summary>Jak szybko poczuję różnicę?</summary><p>Większość osób zauważa czystszą i lżejszą skórę głowy już w pierwszym tygodniu. To, jak wygląda przedziałek i gęstość włosów, zmienia się stopniowo przez 6–8 tygodni regularnego stosowania — dlatego do każdego zamówienia dajemy 60 dni na decyzję.</p></details>
           <details><summary>Czym kostka różni się od mojego szamponu?</summary><p>Szampon w płynie spływa w kilkanaście sekund. Kostka zostaje na skórze przez minutę i rozpuszcza warstwę łoju.</p></details>
           <details><summary>A jeśli u mnie nie zadziała?</summary><p>Napisz na hello@kalmely.com w ciągu 60 dni. Zwracamy co do grosza, nawet za napoczętą kostkę.</p></details>
         </div>
@@ -1569,7 +1596,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
   <section class="band" id="reviews">
     <div class="wrap">
-      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>+1847 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">Zaufali nam klientki i klienci</div><h2>Ponad 1800 zweryfikowanych klientów</h2><p>Prawdziwe zdjęcia od prawdziwych klientów — zwykłe łazienki, żadnych modeli. <b style="color:var(--ink)">Pokazujemy też te słabsze oceny</b> i to, jak je rozwiązaliśmy — żaden produkt nie jest idealny dla każdego.</p></div>
       <div class="rev-top fade-slow">
         <div class="rev-score"><div class="big">4,6</div><div class="st">★★★★★</div><div class="cnt">58 zweryfikowanych opinii</div></div>
         <div class="rev-dist" id="revDist"></div>
@@ -1599,7 +1626,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="rev-more" id="revMore" hidden></div>
       <div class="rev-morewrap" id="revMore2Wrap" hidden style="margin-top:20px"><button type="button" class="rev-morebtn" id="revMoreBtn2">Pokaż jeszcze więcej opinii ↓</button></div>
       <div class="rev-more" id="revMore2" hidden></div>
-      <div class="sp-caps fade-slow" style="margin-top:30px"><span>„Przedziałek mniej prześwituje.”</span><span>„Skóra głowy jest lżejsza.”</span><span>„Mniej włosów w odpływie.”</span><span>„Znów czuję się sobą.”</span></div>
+      <div class="sp-caps fade-slow" style="margin-top:30px"><span>„Przedziałek mniej prześwituje.”</span><span>„Skóra głowy jest lżejsza.”</span><span>„Włosy wyglądają na gęstsze.”</span><span>„Znów czuję się sobą.”</span></div>
       <div style="text-align:center;margin-top:28px"><button type="button" class="add-to-cart" style="max-width:340px;margin-left:auto;margin-right:auto">Do koszyka — <span class="cta-price">99 zł</span></button></div>
     </div>
   </section>
@@ -1616,7 +1643,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <div class="guar-item"><b>Zwrot co do grosza</b><span>Także za kostkę, której już używałeś</span></div>
       </div>
       <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz zestaw i zrób pierwszy krok</h3>
-      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,6/5 · 1847 zweryfikowanych klientów</span></div>
+      <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,6/5 · ponad 1800 zweryfikowanych klientów</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Wybierz zestaw" style="max-width:690px;margin:18px auto 0">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
           <span class="pack-qty">Kup 1 <span class="pack-save">1 kostka</span></span><span class="pack-unit">Zapas na ok. 2 miesiące</span><span class="pack-price">69 zł</span>
@@ -1632,7 +1659,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       </div>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
       <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Masz pytania? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
-      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne.</div>
+      <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy: oczyszcza ją z warstwy łoju i wspiera wygląd gęstszych, zdrowiej wyglądających włosów. Nie jest lekiem ani kuracją na łysienie — nie służy do diagnozowania, leczenia ani zapobiegania chorobom. Efekty są indywidualne i pojawiają się stopniowo.</div>
     </div>
   </section>
 
@@ -1657,7 +1684,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <span style="font:500 13px/1.5 var(--sans);color:rgba(249,248,246,.78)">Potrzebujesz pomocy? Jesteśmy prawdziwymi ludźmi: <a href="mailto:hello@kalmely.com" style="text-decoration:underline;color:var(--paper)">hello@kalmely.com</a> · odpisujemy w ~24 h</span>
         <div class="foot-links"><a href="/contact">Kontakt</a><a href="/scalp-shipping.html">Dostawa</a><a href="/scalp-refund.html">Zwroty i reklamacje</a><a href="/scalp-privacy.html">Prywatność</a><a href="/scalp-terms.html">Regulamin</a></div>
       </div>
-      <div class="foot-fine">🔒 Bezpieczna płatność SSL · darmowa dostawa przy każdym zamówieniu · dostawa 10–13 dni roboczych · 60 dni na zwrot pieniędzy. &nbsp;Kalmely to kosmetyk do pielęgnacji skóry głowy. Nie służy do diagnozowania, leczenia ani zapobiegania jakimkolwiek chorobom. Nie jest kuracją na wypadanie włosów. Efekty są indywidualne. © 2026 Kalmely.</div>
+      <div class="foot-fine">🔒 Bezpieczna płatność SSL · darmowa dostawa przy każdym zamówieniu · dostawa 10–13 dni roboczych · 60 dni na zwrot pieniędzy. &nbsp;Kalmely to kosmetyk do pielęgnacji skóry głowy: oczyszcza ją z warstwy łoju i wspiera wygląd gęstszych, zdrowiej wyglądających włosów. Nie jest lekiem ani kuracją na łysienie — nie służy do diagnozowania, leczenia ani zapobiegania chorobom. Efekty są indywidualne i pojawiają się stopniowo. © 2026 Kalmely.</div>
     </div>
   </div>
 </footer>
