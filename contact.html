@@ -148,7 +148,7 @@ main{flex:1;padding:56px 0 80px}
         <div class="field"><label for="cFirst">Imię</label><input id="cFirst" name="first" type="text" autocomplete="given-name" placeholder="Imię"></div>
         <div class="field"><label for="cLast">Nazwisko</label><input id="cLast" name="last" type="text" autocomplete="family-name" placeholder="Nazwisko"></div>
       </div>
-      <div class="field"><label for="cPhone">Phone <span style="color:var(--faint);text-transform:none;letter-spacing:0;font-weight:500">(optional)</span></label><input id="cPhone" name="phone" type="tel" autocomplete="tel" placeholder="Telefon"></div>
+      <div class="field"><label for="cPhone">Telefon <span style="color:var(--faint);text-transform:none;letter-spacing:0;font-weight:500">(opcjonalnie)</span></label><input id="cPhone" name="phone" type="tel" autocomplete="tel" placeholder="Telefon"></div>
       <div class="field"><label for="cEmail">E-mail</label><input id="cEmail" name="email" type="email" autocomplete="email" placeholder="E-mail" required></div>
       <div class="field"><label for="cMsg">Wiadomość</label><textarea id="cMsg" name="message" placeholder="W czym możemy pomóc?" required></textarea></div>
       <button type="submit" class="send">Wyślij</button>
@@ -209,7 +209,7 @@ main{flex:1;padding:56px 0 80px}
   nf.addEventListener('submit',function(e){
     e.preventDefault();
     var em=(document.getElementById('newsEmail').value||'').trim();var m=document.getElementById('newsMsg');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.style.color='#ff9b9b';m.textContent='Please enter a valid email.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.style.color='#ff9b9b';m.textContent='Podaj poprawny adres e-mail.';return;}
     try{fetch(WORKER+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:em,source:'contact-page'})}).catch(function(){});}catch(e){}
     m.style.color='#E6C29C';m.textContent='You’re in! Check your inbox for the Korean Scalp Protocol.';nf.reset();
   });

@@ -18,3 +18,6 @@ assets/kalmely-1/
 # Fuente del e-book: se guarda en ~/Desktop/kalmely-bundles-polaco/_fuente-ebook/
 # Fuera del repo porque Pages publica TODO lo que hay aqui dentro.
 scalp/.ebook-src.html
+
+# Optimized campaign clip used on the scalp landing (about 1 MB).
+!scalp/assets/ritual-mujer-10s.mp4

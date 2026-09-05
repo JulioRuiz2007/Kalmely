@@ -70,7 +70,7 @@ fbq('init','2038496957090347');fbq('track','PageView');
     <div class="legal">
       <div class="page-eyebrow">Informacje prawne</div>
   <h1>Zwroty i <em>reklamacje.</em></h1>
-  <div class="updated">Ostatnia aktualizacja · 23 sierpnia 2026</div>
+  <div class="updated">Ostatnia aktualizacja · 5 września 2026</div>
 
   <p class="lead">Albo pokochasz swoją skórę głowy, albo zwracamy pieniądze. Jeśli nie spodoba Ci się, jak czuje się Twoja skóra głowy po Korean Scalp Revival Bar, zwrócimy pełną kwotę — i nie musisz niczego odsyłać. Wystarczy krótki mail.</p>
 
@@ -92,7 +92,7 @@ fbq('init','2038496957090347');fbq('track','PageView');
   <p>Zwrot potwierdzimy w ciągu jednego dnia roboczego, a pieniądze wrócą na Twoją metodę płatności zwykle w ciągu 5–10 dni roboczych, w zależności od banku.</p>
 
   <h2>Subskrypcja — jak zrezygnować</h2>
-  <p>Subskrypcja obniża cenę o <strong>15%</strong> i automatycznie wysyła ten sam zestaw, gdy zapas się kończy (1 kostka mniej więcej co 2 miesiące, 2 kostki co 3–4 miesiące, 3 kostki co 5–6 miesięcy). Prezenty przysługują tylko przy pierwszym zamówieniu. Zrezygnować możesz w każdej chwili, bez opłat i bez tłumaczenia się:</p>
+  <p>Subskrypcja obniża cenę o <strong>15%</strong> i automatycznie wysyła ten sam zestaw, gdy zapas się kończy (1 kostka mniej więcej co 2 miesiące, 2 kostki co 4 miesiące, 3 kostki co 6 miesięcy). Prezenty przysługują tylko przy pierwszym zamówieniu. Zrezygnować możesz w każdej chwili, bez opłat i bez tłumaczenia się:</p>
   <ul>
     <li><strong>Panel klienta</strong>: otwórz link do panelu z maila z potwierdzeniem zamówienia, żeby wstrzymać, pominąć albo anulować subskrypcję jednym kliknięciem.</li>
     <li><strong>Mailem</strong>: napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — anulujemy ją za Ciebie.</li>
@@ -166,9 +166,9 @@ fbq('init','2038496957090347');fbq('track','PageView');
   nf.addEventListener('submit',function(e){
     e.preventDefault();
     var em=(document.getElementById('newsEmail').value||'').trim();var m=document.getElementById('newsMsg');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.style.color='#ff9b9b';m.textContent='Please enter a valid email.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.style.color='#ff9b9b';m.textContent='Podaj poprawny adres e-mail.';return;}
     try{fetch(WORKER+'/api/lead-magnet',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({email:em,source:'legal-page'})}).catch(function(){});}catch(e){}
-    m.style.color='#E6C29C';m.textContent='You\u2019re in! Check your inbox for the Korean Scalp Protocol.';nf.reset();
+    m.style.color='#E6C29C';m.textContent='Gotowe! Sprawdź skrzynkę — wysłaliśmy Koreański Protokół Skóry Głowy.';nf.reset();
   });
 })();
 </script>
