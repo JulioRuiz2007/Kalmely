@@ -342,8 +342,8 @@ main { max-width: 880px; }
       </svg>
     </div>
     <div class="page-eyebrow fade-slow" style="justify-content:center;--stagger:200ms;">Zamówienie potwierdzone</div>
-    <h1 id="tyHeading" data-word-reveal>Twoje Kalmely <em>jest w drodze.</em></h1>
-    <p class="intro fade-slow" id="tyIntro" style="--stagger:600ms;">E-mail z potwierdzeniem jest już na Twojej skrzynce. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
+    <h1 id="tyHeading" data-word-reveal>Twoje zamówienie <em>przygotowujemy.</em></h1>
+    <p class="intro fade-slow" id="tyIntro" style="--stagger:600ms;">Po potwierdzeniu płatności otrzymasz e-mail z numerem zamówienia i prywatnym linkiem do jego statusu. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
   </div>
 
   <!-- DIGITAL GUIDE — shown if order includes ebook -->
@@ -457,7 +457,11 @@ main { max-width: 880px; }
     suffix = Math.random().toString(36).substring(2, 7).toUpperCase();
   }
   const prefix = isEbookOnly ? 'KAL-EB-2026-' : 'KAL-2026-';
-  document.getElementById('order-num').textContent = prefix + suffix;
+  document.getElementById('order-num').textContent = sessionId ? 'Sprawdź e-mail z potwierdzeniem' : '—';
+  if (sessionId && !isEbookOnly) crypto.subtle.digest('SHA-256', new TextEncoder().encode(sessionId)).then(buffer => {
+    const hex = Array.from(new Uint8Array(buffer), b => b.toString(16).padStart(2,'0')).join('');
+    document.getElementById('order-num').textContent = 'KAL-' + hex.slice(0,12).toUpperCase();
+  });
 
   // Show ebook block if applicable
   if (includesEbook) {
@@ -471,8 +475,8 @@ main { max-width: 880px; }
     heading.innerHTML = 'Twój przewodnik <em>jest na skrzynce.</em>';
     intro.innerHTML = 'Koreański Protokół Skóry Głowy wysłaliśmy na adres podany przy zamówieniu. Jeśli nie dotrze w ciągu pięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
   } else if (sku === 'KAL-SOLO') {
-    heading.innerHTML = 'Twoje Kalmely <em>jest w drodze.</em>';
-    intro.innerHTML = 'E-mail z potwierdzeniem i danymi do śledzenia jest już na Twojej skrzynce. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
+    heading.innerHTML = 'Twoje zamówienie <em>przygotowujemy.</em>';
+    intro.innerHTML = 'Po potwierdzeniu płatności otrzymasz e-mail ze statusem zamówienia. Numer śledzenia wyślemy po nadaniu. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
   }
 
   // Hide physical-product blocks for ebook-only orders
