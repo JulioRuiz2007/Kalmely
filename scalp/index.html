@@ -328,6 +328,12 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .pack-gift{grid-column:3;grid-row:2;justify-self:end;font:700 11px/1 var(--sans);color:var(--ok);background:#F6EDE4;border-radius:5px;padding:4px 8px;white-space:nowrap;margin-top:5px}
 .pack-badge{position:absolute;top:0;right:0;left:auto;width:max-content;transform:translateY(-52%);font:700 9.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 10px;border-radius:5px 5px 0 5px;white-space:nowrap;z-index:2}
 .pack-badge.alt{background:var(--gold)}
+.pack-inline-preview{grid-column:2 / 4;grid-row:3;display:flex;align-items:center;gap:9px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.pack-inline-preview img{display:block;width:76px;height:76px;flex:0 0 76px;object-fit:cover;border-radius:7px;background:var(--paper-2)}
+.pack-inline-preview span{font:500 12px/1.4 var(--sans);color:var(--ink-2)}
+.pack-common-benefits{margin:13px 0 0;text-align:center;font:500 12px/1.5 var(--sans);color:var(--ink-2)}
+.pack-common-benefits b{color:var(--ink);font-weight:650}.pack-common-benefits span{display:block;font-size:11px}
+.pack-order-guarantee{margin:7px 0 0;text-align:center;font:500 12px/1.5 var(--sans);color:var(--ink-2)}
 @media(max-width:430px){.pack{padding:13px 14px;column-gap:11px}.pack-qty{font-size:15.5px}.pack-price{font-size:17.5px}.pack-price s{font-size:13.5px}.pack-unit{font-size:14px}.pack-save{font-size:11px;padding:3px 6px}}
 
 
@@ -1267,6 +1273,10 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   .pack::before{content:"";grid-area:radio;width:20px;height:20px;border:2px solid var(--line-2);border-radius:50%;align-self:center}
   .pack.is-selected::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
           .pack     .pack .pack-sub{display:none}
+  .pack-inline-preview{grid-column:2 / 4;gap:8px;margin-top:7px;padding-top:7px}
+  .pack-inline-preview img{width:72px;height:72px;flex-basis:72px}
+  .pack-inline-preview span{font-size:11.5px;line-height:1.35}
+  .pack-common-benefits{font-size:12px;line-height:1.45}
   /* CTA + dividers + warning spacing */
   .add-to-cart{margin-top:16px;margin-bottom:6px}
   .sale-divider{font-size:13px;margin:6px 0 12px}
@@ -1396,27 +1406,30 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <!-- buy box -->
       <div class="buybox fade-slow">
         <div class="bx-sec">
-          <h2 class="purchase-title">Zacznij od jednej kostki</h2>
+          <h2 class="purchase-title">Wybierz swój zestaw</h2>
           <button class="offer-request" type="button" id="openWelcomeOffer">Pierwszy zakup? Kod −10% →</button>
           <div class="packs" id="packs" role="radiogroup" aria-label="Wybierz zestaw">
             <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
-              <span class="pack-qty">Kup 1 <span class="pack-save">1 kostka</span></span>
-              <span class="pack-unit">Zapas na ok. 2 miesiące</span>
+              <span class="pack-qty">1 kostka</span>
+              <span class="pack-unit">69 zł za kostkę · ok. 2 mies.</span>
               <span class="pack-price">69 zł</span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
-              <span class="pack-badge">Najczęściej wybierany</span>
-              <span class="pack-qty">Kup 2 <span class="pack-save">2 kostki</span></span>
-              <span class="pack-unit">Zapas na ok. 4 miesiące</span>
+              <span class="pack-badge">Oszczędzasz 39 zł</span>
+              <span class="pack-qty">2 kostki</span>
+              <span class="pack-unit">Druga kostka za 30 zł więcej · 49,50 zł/szt.</span>
               <span class="pack-price">99 zł<s>138 zł</s></span>
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
-              <span class="pack-badge alt">Najlepsza cena</span>
-              <span class="pack-qty">Kup 3 <span class="pack-save">3 kostki</span></span>
-              <span class="pack-unit">Rytuał na ok. 6 miesięcy</span>
+              <span class="pack-badge alt">Oszczędzasz 68 zł</span>
+              <span class="pack-qty">3 kostki + serum</span>
+              <span class="pack-unit">Za 40 zł więcej: 3. kostka + serum gratis · 46,33 zł/szt.</span>
               <span class="pack-price">139 zł<s>207 zł</s></span>
+              <span class="pack-inline-preview"><img src="assets/bundle-3.webp" alt="3 kostki Kalmely z serum i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, serum i e-book PDF</span></span>
             </button>
           </div>
+          <p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.<span>Ceny i oszczędności dotyczą zakupu jednorazowego.</span></p>
+          <p class="pack-order-guarantee">60 dni od doręczenia na zwrot całego zamówienia — kostki i prezenty zostają u Ciebie.</p>
           <div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
         </div>
 
@@ -1471,7 +1484,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <article><div class="wash-photo wash-photo-end"><img src="assets/mecanismo-lavado-v2.webp" alt="Dokładne spłukiwanie piany wodą — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>03 · SPŁUCZ</span><h3>Wróć do swojej odżywki</h3><p>Dokładnie spłucz pianę. Na długość nałóż swoją odżywkę, a kostkę zostaw do wyschnięcia poza strumieniem wody.</p></div></article>
       </div>
       <p class="visual-note">Ilustracje sposobu użycia wygenerowane z AI.</p>
-      <div class="wash-expect" id="rytual"><div><span class="eyebrow">Na co zwrócić uwagę po myciu</span><h3>Świeżość skóry. Komfort. Rozczesywanie.</h3><p>Sprawdź, jak kostka pasuje do Twojej rutyny. Jeśli długość jest szorstka, nie pomijaj odżywki. Częstotliwość mycia dopasuj do potrzeb skóry i włosów.</p></div><div class="wash-try"><b>Zacznij od jednej kostki</b><span>69 zł · 120 g · dostawa gratis</span><a href="#packs" class="hero-offer-link">Wybierz zestaw →</a><small>60 dni od doręczenia na zwrot pieniędzy</small></div></div>
+      <div class="wash-expect" id="rytual"><div><span class="eyebrow">Na co zwrócić uwagę po myciu</span><h3>Świeżość skóry. Komfort. Rozczesywanie.</h3><p>Sprawdź, jak kostka pasuje do Twojej rutyny. Jeśli długość jest szorstka, nie pomijaj odżywki. Częstotliwość mycia dopasuj do potrzeb skóry i włosów.</p></div><div class="wash-try"><b>Wybierz zestaw dla swojej rutyny</b><span>Od 69 zł · 120 g · dostawa gratis</span><a href="#packs" class="hero-offer-link">Wybierz zestaw →</a><small>60 dni od doręczenia na zwrot pieniędzy</small></div></div>
       <details class="wash-scope"><summary>A jeśli moim głównym problemem jest wypadanie?</summary><p>Rozważasz Kalmely, bo znajdujesz więcej włosów na szczotce? Proponujemy zacząć od mycia: oczyścić skórę głowy i zachować swoją odżywkę na długości. <strong>Nie możemy obiecać, że kostka zahamuje wypadanie włosów.</strong></p><p>Możesz za to sprawdzić, jak pasuje do Twojej rutyny — masz <strong>60 dni od doręczenia</strong>. Jeśli Cię nie przekona, oddamy pieniądze, nawet za napoczętą kostkę, bez odsyłania. <a href="#refundQuick">Zobacz, jak poprosić o zwrot ↗</a></p></details>
       <p class="facts-source">O samym myciu: <a href="https://www.aad.org/public/everyday-care/hair-scalp-care/hair/healthy-hair-tips" target="_blank" rel="noopener noreferrer">wskazówki American Academy of Dermatology</a>. To ogólne zasady pielęgnacji, nie badanie ani rekomendacja Kalmely. <a href="#sklad">Poznaj składniki kostki →</a></p>
     </div>
@@ -1699,27 +1712,29 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     <div class="guar-mark" aria-hidden="true"><span class="gm-ring"><b>60</b><i>dni na zwrot</i></span></div>
     <div class="wrap guarantee fade-slow">
       <h2>Przetestuj przez 60 dni. Ryzyko jest po naszej stronie.</h2>
-      <p style="max-width:520px;margin:0 auto 22px">Nie musisz od razu kupować zapasu. Wypróbuj jedną kostkę i sprawdź, jak pasuje do Twojego mycia. Jeśli Cię nie przekona, napisz — oddamy pieniądze.</p>
+      <p style="max-width:520px;margin:0 auto 22px">Masz 60 dni od doręczenia na decyzję. Gwarancja obejmuje całe zamówienie — kostki i prezenty zostają u Ciebie, bez odsyłania.</p>
       <div class="guar-row">
         <div class="guar-item"><b>Napoczęta? Nie szkodzi</b><span>Masz 60 dni od doręczenia, żeby ją wypróbować</span></div>
         <div class="guar-item"><b>Jeden mail wystarczy</b><span>Bez formularzy, bez infolinii, bez zwlekania</span></div>
         <div class="guar-item"><b>Zwrot co do grosza</b><span>Także za kostkę, której już używałaś</span></div>
       </div>
-      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz swoją pierwszą kostkę lub zapas</h3>
+      <h3 style="font:600 22px/1.2 var(--serif);color:var(--ink);margin:0 0 6px">Wybierz swój zestaw</h3>
       <div class="rating" style="justify-content:center;margin-bottom:4px"><span class="stars">★★★★★</span> <span>4,6/5 · 58 opinii o stosowaniu</span></div>
       <div class="packs" id="packsFinal" role="radiogroup" aria-label="Wybierz zestaw" style="max-width:690px;margin:18px auto 0">
         <button type="button" class="pack" data-sku="SCALP-1" data-price="69" role="radio" aria-checked="false">
-          <span class="pack-qty">Kup 1 <span class="pack-save">1 kostka</span></span><span class="pack-unit">Zapas na ok. 2 miesiące</span><span class="pack-price">69 zł</span>
+          <span class="pack-qty">1 kostka</span><span class="pack-unit">69 zł za kostkę · ok. 2 mies.</span><span class="pack-price">69 zł</span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-2" data-price="99" role="radio" aria-checked="false">
-          <span class="pack-badge">Najczęściej wybierany</span>
-          <span class="pack-qty">Kup 2 <span class="pack-save">2 kostki</span></span><span class="pack-unit">Zapas na ok. 4 miesiące</span><span class="pack-price">99 zł<s>138 zł</s></span>
+          <span class="pack-badge">Oszczędzasz 39 zł</span>
+          <span class="pack-qty">2 kostki</span><span class="pack-unit">Druga kostka za 30 zł więcej · 49,50 zł/szt.</span><span class="pack-price">99 zł<s>138 zł</s></span>
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
-          <span class="pack-badge alt">Najlepsza cena</span>
-          <span class="pack-qty">Kup 3 <span class="pack-save">3 kostki</span></span><span class="pack-unit">Rytuał na ok. 6 miesięcy</span><span class="pack-price">139 zł<s>207 zł</s></span>
+          <span class="pack-badge alt">Oszczędzasz 68 zł</span>
+          <span class="pack-qty">3 kostki + serum</span><span class="pack-unit">Za 40 zł więcej: 3. kostka + serum gratis · 46,33 zł/szt.</span><span class="pack-price">139 zł<s>207 zł</s></span>
+          <span class="pack-inline-preview"><img src="assets/bundle-3.webp" alt="3 kostki Kalmely z serum i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, serum i e-book PDF</span></span>
         </button>
-      </div><div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
+      </div><p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.</p><div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
+      <p class="pack-order-guarantee">Ceny i oszczędności dotyczą zakupu jednorazowego. Gwarancja obejmuje całe zamówienie — kostki i prezenty zostają u Ciebie.</p>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
       <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Masz pytania? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
       <div class="bx-disclaimer" style="max-width:560px;margin:16px auto 0">Kalmely to kosmetyk do pielęgnacji skóry głowy: oczyszcza ją z warstwy łoju i wspiera wygląd gęstszych, zdrowiej wyglądających włosów. Nie jest lekiem ani kuracją na łysienie — nie służy do diagnozowania, leczenia ani zapobiegania chorobom. Efekty są indywidualne i pojawiają się stopniowo.</div>
@@ -1893,7 +1908,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   var TIERS={
     'SCALP-1':{price:69,was:0,label:'1 kostka',sub:false,img:'bundle-1',gifts:[['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
     'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
-    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania na co dzień. Do stosowania po myciu, zgodnie z instrukcją serum.'],['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
+    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania. Opcjonalne po myciu, zgodnie z instrukcją serum.'],['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
   };
   var DEFAULT='SCALP-1';  // arranca en el pack más pequeño (1 kostka · 69 zł)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1932,21 +1947,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   }
   // No colour variant for the oil — keep the picker containers empty.
   function renderPicker(){ pickerEls.forEach(function(el){el.innerHTML='';}); }
-  // free-bundle shown as an itemised "What's included" list — the 4 gifts only on the bundle pack
-  // El desglose largo se retiró: cada fila muestra solo cuántos regalos entran.
-  // El contador sale de la oferta real (info(sku).gifts), así que si se añade o quita
-  // un regalo en TIERS el número se actualiza solo.
-  function giftWord(n){ return n===1 ? 'prezent' : (n<5 ? 'prezenty' : 'prezentów'); }
-  function renderGifts(){
-    document.querySelectorAll('.pack').forEach(function(p){
-      var t=TIERS[p.dataset.sku]; if(!t)return;
-      var n=(t.gifts||[]).length;
-      var tag=p.querySelector('.pack-gift');
-      if(!n){ if(tag)tag.remove(); return; }
-      if(!tag){ tag=document.createElement('span'); tag.className='pack-gift'; p.appendChild(tag); }
-      tag.textContent=n===2?'+ e-book + serum':'+ e-book PDF';
-    });
-  }
+  // E-book i darmowa dostawa są wspólne dla każdego zestawu; różnicę widać bezpośrednio
+  // w opisie pakietu 3, więc nie dokładamy powtarzających się etykiet do każdej karty.
+  function renderGifts(){}
 
   var PACK_IDX={'SCALP-1':0,'SCALP-2':1,'SCALP-3':2}, heroGo=null;  // hero gallery is independent; thumbnails navigate the product information slides
   function select(sku,persist){
@@ -1958,7 +1961,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       var t=info(curSku),count=PACK_IDX[curSku]+1;
       var im=box.querySelector('.selected-bundle-img');im.src='assets/'+t.img+'.webp';im.alt=t.label+' + e-book PDF'+(count===3?' + serum':'');
       box.querySelector('.selected-bundle-title').textContent=t.label+' · '+count+' × 120 g';
-      box.querySelector('.selected-bundle-gifts').innerHTML=t.gifts.map(function(g){return '<li><b>GRATIS</b> '+g[0]+'</li>';}).join('');
+      box.querySelector('.selected-bundle-gifts').innerHTML=t.gifts.map(function(g){return '<li><b>GRATIS</b> '+g[0]+(g[2]==='serum'?'<small>'+g[3]+'</small>':'')+'</li>';}).join('');
     });
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the product information slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
@@ -2003,7 +2006,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     }else{
       msg.innerHTML='Wybierz <b>3 kostki</b>, aby otrzymać <b>SERUM GRATIS</b>';
       if(s2)s2.classList.remove('hit');
-      if(bump){bump.hidden=false;bump.textContent='Weź 3 kostki — serum (99 zł) gratis →';}
+      if(bump){bump.hidden=false;bump.textContent='Weź 3 kostki + serum gratis →';}
     }
   }
   (function(){var b=document.getElementById('unlockBump');if(b)b.addEventListener('click',function(){select('SCALP-3',true);populateCart();});})();
@@ -2075,7 +2078,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       if(_g.length){_cg.innerHTML='<span class="cg-h">Prezenty w zestawie</span>'+_g.map(function(x){
         return '<span class="cg-item"><img class="cg-img" src="assets/'+(x[2]||'')+'.webp" alt="" width="40" height="40" loading="lazy">'
              + '<span class="cg-body"><b class="cg-name">'+x[0]+'</b>'
-             + '<span class="cg-val"><s>'+money(parseInt(x[1],10)||0)+'</s> GRATIS</span>'
+             + '<span class="cg-val">GRATIS</span>'
              + (x[3]?'<span class="cg-desc">'+x[3]+'</span>':'') + '</span></span>';}).join('');}
       else{_cg.innerHTML='<span class="cg-h">60 dni gwarancji zwrotu pieniędzy</span>';}
     }
@@ -2556,7 +2559,7 @@ html{scrollbar-color:#426b3a #e7e9df;scrollbar-width:auto}::-webkit-scrollbar{wi
 .bundle-zoom-hint{display:block;font:400 11px/1.4 var(--sans);color:var(--ink-2);margin-top:6px}
 /* V9 — show selected contents and answer purchase questions at the offer. */
 .selected-bundle{display:grid;grid-template-columns:140px minmax(0,1fr);gap:18px;align-items:center;margin:18px 0 8px;padding:14px;background:#f1f4ec;border:1px solid #d8e1ce;border-radius:12px;text-align:left}
-.selected-bundle-img{display:block;width:100%;height:auto;border-radius:8px}.bundle-kicker{font:600 11px/1.3 var(--sans);letter-spacing:.08em;color:var(--ink-2)}.selected-bundle-title{font:650 18px/1.3 var(--sans);margin:6px 0 10px;color:var(--ink)}.selected-bundle-gifts{list-style:none;padding:0;margin:0;display:grid;gap:9px;font:500 14px/1.45 var(--sans);color:var(--ink)}.selected-bundle-gifts b{display:inline-block;background:#dce9cb;border-radius:4px;padding:2px 5px;font-size:11px;margin-right:4px}.bundle-gift-note{font:400 12px/1.4 var(--sans);color:var(--ink-2);margin:9px 0 0}
+.selected-bundle-img{display:block;width:100%;height:auto;border-radius:8px}.bundle-kicker{font:600 11px/1.3 var(--sans);letter-spacing:.08em;color:var(--ink-2)}.selected-bundle-title{font:650 18px/1.3 var(--sans);margin:6px 0 10px;color:var(--ink)}.selected-bundle-gifts{list-style:none;padding:0;margin:0;display:grid;gap:9px;font:500 14px/1.45 var(--sans);color:var(--ink)}.selected-bundle-gifts b{display:inline-block;background:#dce9cb;border-radius:4px;padding:2px 5px;font-size:11px;margin-right:4px}.selected-bundle-gifts small{display:block;margin:4px 0 0;font:400 12px/1.45 var(--sans);color:var(--ink-2)}.bundle-gift-note{font:400 12px/1.4 var(--sans);color:var(--ink-2);margin:9px 0 0}
 .quick-faq{margin-top:24px}.quick-faq>h3{font:650 18px/1.3 var(--sans);margin:0 0 8px}.quick-faq .acc{margin-top:0}.all-faq-link{display:inline-flex;align-items:center;min-height:44px;font:500 14px/1.5 var(--sans);text-decoration:underline;text-underline-offset:4px;margin-top:10px}
 .refund-contact{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:16px}.refund-contact>a,.copy-support-email{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border:1px solid var(--ink);border-radius:8px;font:600 14px/1.3 var(--sans);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer}.copy-email-status{flex-basis:100%;font:400 14px/1.5 var(--sans);overflow-wrap:anywhere}.copy-support-email:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .pack-gift{font-size:11px}
