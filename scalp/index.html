@@ -29,18 +29,18 @@
 <meta name="theme-color" content="#F6F6F0">
 <link rel="canonical" href="https://kalmely.com/scalp/">
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
-<title>Kalmely — szampon w kostce, prostszy dzień mycia</title>
-<meta name="description" content="Kalmely: szampon w kostce 120 g do mycia skóry głowy. Poznaj składniki, prosty rytuał i zestawy od 69 zł. Darmowa dostawa · 60 dni od doręczenia na zwrot.">
+<title>Kalmely — martwi Cię wypadanie włosów?</title>
+<meta name="description" content="Martwi Cię wypadanie włosów? Poznaj Kalmely — kostkę, która zastępuje Twój szampon. 120 g · od 69 zł · darmowa dostawa · 60 dni na wypróbowanie.">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
 <meta property="og:site_name" content="Kalmely">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Kalmely — szampon w kostce, prostszy dzień mycia">
+<meta property="og:title" content="Kalmely — martwi Cię wypadanie włosów?">
 <meta property="og:url" content="https://kalmely.com/scalp/">
-<meta property="og:description" content="Kalmely: szampon w kostce 120 g do mycia skóry głowy. Poznaj składniki, prosty rytuał i zestawy od 69 zł. Darmowa dostawa · 60 dni od doręczenia na zwrot.">
+<meta property="og:description" content="Martwi Cię wypadanie włosów? Poznaj Kalmely — kostkę, która zastępuje Twój szampon. 120 g · od 69 zł · darmowa dostawa · 60 dni na wypróbowanie.">
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-producto-v3.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-producto-v3.webp" imagesrcset="assets/hero-producto-v3-640.webp 640w, assets/hero-producto-v3-960.webp 960w, assets/hero-producto-v3.webp 1254w" imagesizes="(max-width: 620px) 100vw, (max-width: 1100px) 480px, 560px" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
 <style>
@@ -97,9 +97,9 @@ fbq('init', '2038496957090347');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
   content_name: 'Kalmely Scalp Revival Bar',
-  content_ids: ['SCALP-3'],
+  content_ids: ['SCALP-1'],
   content_type: 'product',
-  value: 59,
+  value: 69,
   currency: 'PLN',
   offer_variant: 'SCALP'
 });
@@ -160,6 +160,8 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .label{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 .fade-slow{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .fade-slow.in{opacity:1;transform:none}
+/* Initial purchase content must be visible before IntersectionObserver runs. */
+.hero-head.fade-slow,.buybox.fade-slow{opacity:1;transform:none;transition:none}
 @media (prefers-reduced-motion:reduce){.fade-slow{transition:none;opacity:1;transform:none}}
 
 /* placeholders */
@@ -246,7 +248,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .free-tag.t-file{top:60%;left:16%}
 .free-tag.t-patch{top:42%;right:28%}
 .free-tag.t-book{top:30%;right:2%}
-.hero-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-slide>img,.hero-slide>noscript img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.86);color:var(--ink);font:400 26px/1 var(--sans);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 12px -3px rgba(0,0,0,.35);transition:background .15s,transform .15s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .hero-arrow:hover{background:#fff}
 .hero-arrow:active{transform:translateY(-50%) scale(.92)}
@@ -656,7 +658,7 @@ body:has(.sticky-cta.show) .foot-bottom{padding-bottom:calc(28px + 95px)}
 .cart-timer[hidden]{display:none}
 .unlock{padding:16px 22px 14px;border-bottom:1px solid var(--line)}
 .unlock-msg{font:500 14px/1.45 var(--sans);color:var(--ink-2);text-align:center;margin-bottom:10px}
-.unlock-msg b{font-weight:700;color:var(--ok);white-space:nowrap}  /* nowrap: son el importe que falta y "SERUM GRATIS", y partidos en dos líneas dejan de leerse
+.unlock-msg b{font-weight:700;color:var(--ok);white-space:nowrap}  /* nowrap: son el importe que falta y "SZCZOTKĘ GRATIS", y partidos en dos líneas dejan de leerse
      como una unidad — justo lo que la barra tiene que comunicar de un vistazo */
 .unlock-msg .done{color:var(--gold);font-weight:700}
 .unlock-track{display:block;height:8px;border-radius:999px;background:var(--paper-3);overflow:hidden}
@@ -1352,19 +1354,19 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <!-- Image-led argument: product, routine, use, trial. Text stays accessible and responsive. -->
-            <div class="hero-slide story-product"><img src="assets/hero-producto-v3.webp" alt="Zielona kostka z logo Kalmely" width="1254" height="1254" fetchpriority="high"><div class="slide-message"><span>POZNAJ MYCIE KOSTKĄ</span><h2>Znów włosy<br>na szczotce?</h2></div><div class="slide-footer"><b>120 g · oczyszczanie skóry głowy</b></div></div>
-            <div class="hero-slide story-routine"><img src="assets/hero-sustitucion-v2.webp" alt="Kostka Kalmely trzymana na pierwszym planie, w tle puste butelki po szamponie w koszu" width="1254" height="1254" loading="lazy"><div class="slide-message"><span>JEDNA ZMIANA</span><h2>Zamień szampon.</h2></div><div class="slide-footer"><b>Zostaw swoją odżywkę</b></div></div>
-            <div class="hero-slide story-wash"><img src="assets/hero-lavado-v4.webp" alt="Masowanie mokrej skóry głowy pianą, kostka Kalmely w dłoni" width="1254" height="1254" loading="lazy"><div class="slide-message"><span>JAK UŻYWAĆ KOSTKI</span><h2>Spień. Masuj.<br>Dokładnie spłucz.</h2><p>Około minuty masażu skóry głowy.</p></div><div class="slide-footer"><b>60 sekund masażu · potem spłucz</b></div></div>
-            <div class="hero-slide story-trial"><img src="assets/hero-raices-v1.webp" alt="Ilustracja pielęgnowanych włosów i widocznych korzeni włosów" width="1254" height="1254" loading="lazy"><div class="slide-message"><span>SPRAWDŹ U SIEBIE</span><h2>Wypróbuj ją<br>przez 60 dni.</h2></div><div class="slide-footer"><b>Zwrot także za napoczętą kostkę</b></div></div>
+            <div class="hero-slide story-product"><img src="assets/hero-producto-v3.webp" srcset="assets/hero-producto-v3-640.webp 640w, assets/hero-producto-v3-960.webp 960w, assets/hero-producto-v3.webp 1254w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 480px, 560px" alt="Zielona kostka z logo Kalmely" width="1254" height="1254" fetchpriority="high"><div class="slide-message"><span>GDY MARTWI CIĘ WYPADANIE</span><h2>Znów włosy<br>na szczotce?</h2></div><div class="slide-footer"><b>Twój nowy szampon · 120 g</b></div></div>
+            <div class="hero-slide story-routine"><img data-src="assets/hero-sustitucion-v2.webp" alt="Kostka Kalmely trzymana na pierwszym planie, w tle puste butelki po szamponie w koszu" width="1254" height="1254"><noscript><img src="assets/hero-sustitucion-v2.webp" alt="Kostka Kalmely trzymana na pierwszym planie, w tle puste butelki po szamponie w koszu" width="1254" height="1254"></noscript><div class="slide-message"><span>JEDNA ZMIANA</span><h2>Zamień szampon.</h2></div><div class="slide-footer"><b>Zostaw swoją odżywkę</b></div></div>
+            <div class="hero-slide story-wash"><img data-src="assets/hero-lavado-v4.webp" alt="Masowanie mokrej skóry głowy pianą, kostka Kalmely w dłoni" width="1254" height="1254"><noscript><img src="assets/hero-lavado-v4.webp" alt="Masowanie mokrej skóry głowy pianą, kostka Kalmely w dłoni" width="1254" height="1254"></noscript><div class="slide-message"><span>JAK UŻYWAĆ KOSTKI</span><h2>Spień. Masuj.<br>Dokładnie spłucz.</h2><p>Około minuty masażu skóry głowy.</p></div><div class="slide-footer"><b>60 sekund masażu · potem spłucz</b></div></div>
+            <div class="hero-slide story-trial"><img data-src="assets/hero-raices-v1.webp" alt="Ilustracja pielęgnowanych włosów i widocznych korzeni włosów" width="1254" height="1254"><noscript><img src="assets/hero-raices-v1.webp" alt="Ilustracja pielęgnowanych włosów i widocznych korzeni włosów" width="1254" height="1254"></noscript><div class="slide-message"><span>SPRAWDŹ U SIEBIE</span><h2>Wypróbuj ją<br>przez 60 dni.</h2></div><div class="slide-footer"><b>Zwrot także za napoczętą kostkę</b></div></div>
           </div>
           <button type="button" class="hero-arrow hero-prev" aria-label="Poprzednie zdjęcie">&lsaquo;</button>
           <button type="button" class="hero-arrow hero-next" aria-label="Następne zdjęcie">&rsaquo;</button>
         </div>
         <div class="hero-thumbs">
-          <button type="button" class="hero-thumb is-active" aria-label="Kostka Kalmely"><img src="assets/hero-producto-v3-thumb.webp" alt="" loading="lazy"><span class="thumb-label">Produkt</span></button>
-          <button type="button" class="hero-thumb" aria-label="Zamiana szamponu na kostkę Kalmely"><img src="assets/hero-sustitucion-v2.webp" alt="" loading="lazy"><span class="thumb-label">Rutyna</span></button>
-          <button type="button" class="hero-thumb" aria-label="Jak myć skórę głowy"><img src="assets/hero-lavado-v4-thumb.webp" alt="" loading="lazy"><span class="thumb-label">Jak używać</span></button>
-          <button type="button" class="hero-thumb" aria-label="60 dni na wypróbowanie"><img src="assets/hero-raices-v1.webp" alt="" loading="lazy"><span class="thumb-label">60 dni</span></button>
+          <button type="button" class="hero-thumb is-active" aria-label="Kostka Kalmely"><img src="assets/hero-producto-v3-thumb.webp" alt="" loading="lazy" decoding="async" fetchpriority="low"><span class="thumb-label">Produkt</span></button>
+          <button type="button" class="hero-thumb" aria-label="Zamiana szamponu na kostkę Kalmely"><img src="assets/hero-sustitucion-v2-thumb.webp" alt="" loading="lazy" decoding="async" fetchpriority="low"><span class="thumb-label">Rutyna</span></button>
+          <button type="button" class="hero-thumb" aria-label="Jak myć skórę głowy"><img src="assets/hero-lavado-v4-thumb.webp" alt="" loading="lazy" decoding="async" fetchpriority="low"><span class="thumb-label">Jak używać</span></button>
+          <button type="button" class="hero-thumb" aria-label="60 dni na wypróbowanie"><img src="assets/hero-raices-v1-thumb.webp" alt="" loading="lazy" decoding="async" fetchpriority="low"><span class="thumb-label">60 dni</span></button>
         </div>
         <p class="gallery-note">Wizualizacje produktu, użycia i włosów · AI</p>
       </div>
@@ -1373,8 +1375,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <div class="hero-head fade-slow">
         <div class="rating"><span class="starrow"><span class="starrow-fill"></span></span> <a href="#reviews" style="color:var(--ink-2);text-decoration:none"><b style="color:var(--ink)">4,6/5</b>&nbsp; (58 opinii)</a></div>
         <p class="product-name">KALMELY · 120 G</p>
-        <h1 class="bx-h1 product">Martwią Cię włosy na szczotce?</h1>
-        <p class="bx-h1-sub">Zacznij od swojego rytuału mycia: <strong>minuta masażu skóry głowy</strong> szamponem w kostce. Swoją odżywkę zostaw na długości.</p>
+        <h1 class="bx-h1 product">Martwi Cię wypadanie włosów?</h1>
+        <p class="bx-h1-sub"><strong>Zamień swój szampon na Kalmely.</strong> Jedna zmiana w pielęgnacji włosów, na których Ci zależy. Sprawdź ją u siebie przez 60 dni.</p>
         <div class="hero-protection">
           <span class="protection-term">60 DNI OD DORĘCZENIA</span>
           <h2>Nie pasuje Ci? <br>Oddamy pieniądze.</h2>
@@ -1397,9 +1399,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
           <figcaption>Fragment reklamy · 10 s</figcaption>
         </figure>
         <div class="ritual-video-copy">
-          <span class="eyebrow">ZOBACZ RYTUAŁ</span>
-          <h2 id="ritualVideoTitle">Kostka na skórę głowy.<br>Odżywka na długość.</h2>
-          <p>Jedna zmiana w Twoim myciu. Swoją odżywkę zostaw w łazience.</p>
+          <span class="eyebrow">TAK ZAMIENIASZ SZAMPON</span>
+          <h2 id="ritualVideoTitle">Zmień szampon.<br>Zachowaj swoją rutynę.</h2>
+          <p>Kalmely zajmuje miejsce Twojego szamponu. Spień, delikatnie masuj i spłucz. Swoją odżywkę zostaw na długości.</p>
         </div>
       </section>
 
@@ -1422,10 +1424,10 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             </button>
             <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
               <span class="pack-badge alt">Oszczędzasz 68 zł</span>
-              <span class="pack-qty">3 kostki + serum</span>
-              <span class="pack-unit">Za 40 zł więcej: 3. kostka + serum gratis · 46,33 zł/szt.</span>
+              <span class="pack-qty">3 kostki + szczotka</span>
+              <span class="pack-unit">Za 40 zł więcej: 3. kostka + szczotka gratis · 46,33 zł/szt.</span>
               <span class="pack-price">139 zł<s>207 zł</s></span>
-              <span class="pack-inline-preview"><img src="assets/bundle-3.webp" alt="3 kostki Kalmely z serum i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, serum i e-book PDF</span></span>
+              <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
             </button>
           </div>
           <p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.<span>Ceny i oszczędności dotyczą zakupu jednorazowego.</span></p>
@@ -1465,7 +1467,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
              destacarlo". Quien acaba de leer el precio necesita una razon para seguir,
              y la razon son las fotos. -->
         <a href="#usage" class="scroll-cue">
-          <span class="sc-txt">Zobacz <b>jak działa mycie kostką</b></span>
+          <span class="sc-txt">Zobacz <b>jak zamienić swój szampon</b></span>
           <span class="sc-arw" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
           </span>
@@ -1477,7 +1479,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <!-- Campaign mechanism: ordinary cleansing, not a hair-regrowth claim. -->
   <section id="usage" class="wash-mechanism">
     <div class="wrap">
-      <div class="sec-head"><div class="eyebrow">Skóra głowy · sebum · mycie</div><h2>60 sekund na skórze głowy.<br>Odżywka na długość.</h2><p><strong>Nadmiar sebum i resztki kosmetyków</strong> usuwasz na etapie mycia. Spień kostkę, delikatnie masuj i dokładnie spłucz.</p></div>
+      <div class="sec-head"><div class="eyebrow">GDY KAŻDY WŁOS NA SZCZOTCE MARTWI</div><h2>Zadbaj o włosy już podczas mycia.</h2><p><strong>Delikatnie, bez szarpania i tarcia długości.</strong> Rozprowadź pianę na skórze głowy, spłucz i użyj swojej odżywki, aby ułatwić rozczesywanie.</p></div>
       <div class="wash-steps">
         <article><div class="wash-photo"><img src="assets/mecanismo-lavado-v2.webp" alt="Spienianie zielonej kostki w mokrych dłoniach — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>01 · SPIEŃ</span><h3>Zacznij od wody</h3><p>Dokładnie zmocz włosy i skórę głowy. Spień mokrą kostkę w dłoniach i rozprowadź pianę u nasady.</p></div></article>
         <article><div class="wash-photo wash-photo-mid"><img src="assets/mecanismo-lavado-v2.webp" alt="Delikatny masaż skóry głowy opuszkami palców — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>02 · UMYJ</span><h3>Skup się na skórze</h3><p>Delikatnie masuj opuszkami przez około minutę. Bez drapania paznokciami i tarcia długości włosów.</p></div></article>
@@ -1492,7 +1494,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
   <section id="porownanie" class="format-comparison">
     <div class="wrap" style="max-width:900px">
-      <div class="sec-head"><div class="eyebrow">KOSTKA CZY PŁYN?</div><h2>Co zmieniasz z Kalmely?</h2><p>Ten sam krok — mycie. Inny format i sposób użycia.</p></div>
+      <div class="sec-head"><div class="eyebrow">JEDNA ZMIANA W ŁAZIENCE</div><h2>Kalmely w miejsce Twojego szamponu.</h2><p>Zmieniasz produkt do mycia. Zachowujesz odżywkę i rytm pielęgnacji, który już znasz.</p></div>
       <table class="format-table">
         <caption class="sr-only">Porównanie Kalmely z szamponem w płynie</caption>
         <thead><tr><th scope="col">W Twojej rutynie</th><th scope="col">Kalmely</th><th scope="col">Szampon w płynie</th></tr></thead>
@@ -1592,7 +1594,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <!-- ===== 6. FAQ ===== -->
   <section id="faq">
     <div class="wrap" style="max-width:760px">
-      <div class="sec-head fade-slow"><div class="eyebrow">Przed pierwszym myciem</div><h2>Szorstkie włosy? Skład? Zwrot?</h2></div>
+      <div class="sec-head fade-slow"><div class="eyebrow">TWOJE PYTANIA</div><h2>Wypadanie, pielęgnacja i zwrot.</h2></div>
       <div class="acc fade-slow"><details class="spec-d"><summary>Specyfikacja produktu</summary>
           <table class="spec">
             <tr><th>Rodzaj</th><td>Szampon w kostce do skóry głowy (kosmetyk)</td></tr>
@@ -1603,13 +1605,14 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
             <tr><th>Pełny skład (INCI)</th><td>Lista wyróżnionych składników nie jest pełnym INCI. Pełny skład tej dostawy nie jest jeszcze opublikowany.</td></tr>
             <tr><th>Stosowanie</th><td>Bezpośrednio na mokrą skórę głowy, 60 sekund masażu opuszkami, spłukać. Odżywka tylko na długość.</td></tr>
             <tr><th>Dla kogo</th><td>Kobiety i mężczyźni, każdy rodzaj włosów. Nie do stosowania na podrażnioną lub uszkodzoną skórę.</td></tr>
-            <tr><th>W zestawie</th><td><b>Każdy zestaw:</b> e-book „Koreański Protokół Skóry Głowy” — PDF, 43 strony, 15 rozdziałów, wysyłany mailem od razu po zakupie.<br><b>Zestaw 3 kostek dodatkowo:</b> serum do skóry głowy (wartość 99&nbsp;zł), wysyłane razem z paczką.</td></tr>
+            <tr><th>W zestawie</th><td><b>Każdy zestaw:</b> e-book „Koreański Protokół Skóry Głowy” — PDF, 43 strony, 15 rozdziałów, wysyłany mailem od razu po zakupie.<br><b>Zestaw 3 kostek dodatkowo:</b> zielona silikonowa szczotka do masażu skóry głowy, wysyłana razem z kostkami.</td></tr>
             <tr><th>Dostawa</th><td>Nadanie w 24–48&nbsp;h · 1–2 tygodnie · InPost lub kurier · darmowa przy każdym zamówieniu</td></tr>
             <tr><th>Gwarancja</th><td>60 dni na zwrot pieniędzy, także za napoczętą kostkę. Bez odsyłania produktu.</td></tr>
           </table>
         </details>
         <details><summary>Czy kostka zostawi włosy szorstkie?</summary><p>Kostka zastępuje szampon, nie odżywkę. Spień ją na mokrej skórze głowy, delikatnie masuj i dokładnie spłucz. Swoją odżywkę nałóż na długość — szczególnie jeśli włosy są suche lub trudno je rozczesać. Odczucie po myciu zależy od włosów i całej pielęgnacji.</p></details>
-        <details><summary>Co dokładnie otrzymam w zestawie?</summary><p><strong>1 kostka:</strong> szampon 120 g + e-book.<br><strong>2 kostki:</strong> dwa szampony po 120 g + e-book.<br><strong>3 kostki:</strong> trzy szampony po 120 g + serum do skóry głowy + e-book.</p><p>E-book „Koreański Protokół Skóry Głowy” to plik PDF wysyłany mailem, nie drukowana książka. Zdjęcie w koszyku zmienia się wraz z wybranym zestawem. Prezenty w subskrypcji otrzymujesz przy pierwszym zamówieniu.</p></details>
+        <details><summary>Do czego służy zielona szczotka w zestawie 3 kostek?</summary><p>To ręczna, silikonowa szczotka do masażu skóry głowy z uchwytem. Po rozprowadzeniu piany wykonuj delikatne, krótkie ruchy, bez mocnego nacisku. Nie przeczesuj nią długości włosów. Po użyciu opłucz i pozostaw do wyschnięcia.</p><p>Otrzymujesz jedną zieloną szczotkę gratis w zestawie 3 kostek. Przy subskrypcji prezent jest w pierwszej przesyłce.</p></details>
+        <details><summary>Co dokładnie otrzymam w zestawie?</summary><p><strong>1 kostka:</strong> szampon 120 g + e-book.<br><strong>2 kostki:</strong> dwa szampony po 120 g + e-book.<br><strong>3 kostki:</strong> trzy szampony po 120 g + zielona szczotka do masażu skóry głowy + e-book.</p><p>E-book „Koreański Protokół Skóry Głowy” to plik PDF wysyłany mailem, nie drukowana książka. Zdjęcie w koszyku zmienia się wraz z wybranym zestawem. Prezenty w subskrypcji otrzymujesz przy pierwszym zamówieniu.</p></details>
         <details><summary>Jak to właściwie działa?</summary><p>To szampon w stałej formie. W kontakcie z wodą tworzy pianę do mycia skóry głowy. Po masażu dokładnie ją spłucz.</p></details>
         <details><summary>Kiedy zauważę pierwsze zmiany?</summary><p>Szczerze: stopniowo. Oceniaj komfort po myciu i wygląd włosów w swojej rutynie. Nie obiecujemy odrostu ani jednakowych rezultatów. Masz 60 dni od doręczenia na decyzję.</p></details>
         <details><summary>Czy jest bezpieczna? Co zawiera?</summary><p>Producent wyróżnia olej kokosowy, masło z awokado, Isatis tinctoria i żeń-szeń. <a href="#sklad">Zobacz składniki i informację o INCI</a>. Nie używaj na podrażnionej lub uszkodzonej skórze.</p></details>
@@ -1730,8 +1733,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         </button>
         <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
           <span class="pack-badge alt">Oszczędzasz 68 zł</span>
-          <span class="pack-qty">3 kostki + serum</span><span class="pack-unit">Za 40 zł więcej: 3. kostka + serum gratis · 46,33 zł/szt.</span><span class="pack-price">139 zł<s>207 zł</s></span>
-          <span class="pack-inline-preview"><img src="assets/bundle-3.webp" alt="3 kostki Kalmely z serum i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, serum i e-book PDF</span></span>
+          <span class="pack-qty">3 kostki + szczotka</span><span class="pack-unit">Za 40 zł więcej: 3. kostka + szczotka gratis · 46,33 zł/szt.</span><span class="pack-price">139 zł<s>207 zł</s></span>
+          <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
         </button>
       </div><p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.</p><div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
       <p class="pack-order-guarantee">Ceny i oszczędności dotyczą zakupu jednorazowego. Gwarancja obejmuje całe zamówienie — kostki i prezenty zostają u Ciebie.</p>
@@ -1787,7 +1790,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <div class="unlock" id="cartUnlock" hidden>
     <div class="unlock-msg" id="unlockMsg"></div>
     <span class="unlock-track"><span class="unlock-fill" id="unlockFill"></span></span>
-    <div class="unlock-steps"><span id="unlockS1">✓ Darmowa dostawa</span><span id="unlockS2">Serum gratis</span></div>
+    <div class="unlock-steps"><span id="unlockS1">✓ Darmowa dostawa</span><span id="unlockS2">Szczotka gratis</span></div>
     <button type="button" class="unlock-bump" id="unlockBump" hidden></button>
   </div>
   <div class="cart-empty" id="cartEmpty" style="display:none">
@@ -1908,7 +1911,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   var TIERS={
     'SCALP-1':{price:69,was:0,label:'1 kostka',sub:false,img:'bundle-1',gifts:[['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
     'SCALP-2':{price:99,was:138,label:'2 kostki',sub:false,img:'bundle-2',gifts:[['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]},
-    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3',gifts:[['Serum do skóry głowy','99','serum','Lekkie serum bez spłukiwania. Opcjonalne po myciu, zgodnie z instrukcją serum.'],['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
+    'SCALP-3':{price:139,was:207,label:'3 kostki',sub:false,img:'bundle-3-brush-v1',gifts:[['Zielona szczotka do masażu skóry głowy','','brush-green-v1','Silikonowa szczotka z uchwytem. Do delikatnego masażu podczas mycia — bez mocnego nacisku i szarpania włosów.'],['E-book Kalmely · PDF na e-mail','49','ebook-physical-3d','Twój protokół tydzień po tygodniu — jak używać kostki i jakie codzienne nawyki utrzymują skórę głowy w czystości.']]}
   };
   var DEFAULT='SCALP-1';  // arranca en el pack más pequeño (1 kostka · 69 zł)
   function info(s){return TIERS[s]||TIERS[DEFAULT];}
@@ -1959,9 +1962,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     renderPicker(lineMath().qty);updateCtas();renderGifts();
     document.querySelectorAll('.selected-bundle').forEach(function(box){
       var t=info(curSku),count=PACK_IDX[curSku]+1;
-      var im=box.querySelector('.selected-bundle-img');im.src='assets/'+t.img+'.webp';im.alt=t.label+' + e-book PDF'+(count===3?' + serum':'');
+      var im=box.querySelector('.selected-bundle-img');im.src='assets/'+t.img+'.webp';im.alt=t.label+' + e-book PDF'+(count===3?' + zielona szczotka':'');
       box.querySelector('.selected-bundle-title').textContent=t.label+' · '+count+' × 120 g';
-      box.querySelector('.selected-bundle-gifts').innerHTML=t.gifts.map(function(g){return '<li><b>GRATIS</b> '+g[0]+(g[2]==='serum'?'<small>'+g[3]+'</small>':'')+'</li>';}).join('');
+      box.querySelector('.selected-bundle-gifts').innerHTML=t.gifts.map(function(g){return '<li><b>GRATIS</b> '+g[0]+(g[2]==='brush-green-v1'?'<small>'+g[3]+'</small>':'')+'</li>';}).join('');
     });
     // hero gallery is independent of the pack selector (Andreu/Elixir pattern) — thumbnails navigate the product information slides
     if(persist){try{localStorage.setItem('kalmely_pack',sku)}catch(e){}}
@@ -1987,26 +1990,26 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   // discount the drawer shows is the discount Stripe charges. Any other code is rejected honestly.
   var PROMOS={'WELCOME10':{off:.10,label:'Powitalne 10%'}};
   var appliedCoupon='';
-  var SERUM_AT=139;  // el pack de 3 kostki (139 zł) es el que incluye el serum gratis
+  var BRUSH_AT=139;  // el pack de 3 incluye el cepillo verde de masaje
   function promoOff(){return (appliedCoupon&&PROMOS[appliedCoupon])?PROMOS[appliedCoupon].off:0;}
 
-  // Progress toward the free Scalp Serum. Shipping is already free on every pack, so it shows as
+  // Progress toward the free green scalp brush. Shipping is already free on every pack, so it shows as
   // permanently cleared and the bar drives the gift instead — the only threshold that's real here.
   function renderUnlock(price){
     var box=document.getElementById('cartUnlock');if(!box)return;
     box.hidden=false;
     var msg=document.getElementById('unlockMsg'),fill=document.getElementById('unlockFill'),
         bump=document.getElementById('unlockBump'),s2=document.getElementById('unlockS2');
-    var hasSerum=(info(curSku).gifts||[]).some(function(gift){return gift[2]==='serum';});
-    fill.style.width=hasSerum?'100%':Math.max(6,Math.round(info(curSku).price/SERUM_AT*100))+'%';
-    if(hasSerum){
-      msg.innerHTML='<span class="done">🎉 Serum gratis odblokowane!</span>';
+    var hasBrush=(info(curSku).gifts||[]).some(function(gift){return gift[2]==='brush-green-v1';});
+    fill.style.width=hasBrush?'100%':Math.max(6,Math.round(info(curSku).price/BRUSH_AT*100))+'%';
+    if(hasBrush){
+      msg.innerHTML='<span class="done">🎉 Zielona szczotka gratis odblokowana!</span>';
       if(s2)s2.classList.add('hit');
       if(bump)bump.hidden=true;
     }else{
-      msg.innerHTML='Wybierz <b>3 kostki</b>, aby otrzymać <b>SERUM GRATIS</b>';
+      msg.innerHTML='Wybierz <b>3 kostki</b>, aby otrzymać <b>SZCZOTKĘ GRATIS</b>';
       if(s2)s2.classList.remove('hit');
-      if(bump){bump.hidden=false;bump.textContent='Weź 3 kostki + serum gratis →';}
+      if(bump){bump.hidden=false;bump.textContent='Wybierz 3 kostki ze szczotką gratis →';}
     }
   }
   (function(){var b=document.getElementById('unlockBump');if(b)b.addEventListener('click',function(){select('SCALP-3',true);populateCart();});})();
@@ -2040,7 +2043,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     // la foto del pack que se está comprando (bundle-1/2/3), no el bodegón genérico:
     // estaba escrita a fuego a hero-01, así que los tres packs mostraban la misma imagen
     document.getElementById('cartImg').src='assets/'+(t.img||'hero-01')+'.webp?v=pl2';
-    document.getElementById('cartImg').alt=t.label+' + e-book PDF'+(curSku==='SCALP-3'?' + serum':'');
+    document.getElementById('cartImg').alt=t.label+' + e-book PDF'+(curSku==='SCALP-3'?' + zielona szczotka':'');
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
     document.getElementById('cartSubtotal').textContent=money((was&&was>price)?was:price);
@@ -2428,9 +2431,12 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   var hThumbs=document.querySelectorAll('.hero-thumb'),hTrack=document.getElementById('heroTrack');
   if(hThumbs.length&&hTrack){
     var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
-    function hGo(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});
+    var hPending=0;
+    function hShow(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});
       var at=hThumbs[hIdx];if(at&&at.parentNode){var strip=at.parentNode;var target=at.offsetLeft-strip.clientWidth/2+at.clientWidth/2;strip.scrollTo({left:Math.max(0,target),behavior:'smooth'});}}
-    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});});
+    function hLoad(i){var im=hTrack.children[(i+hN)%hN].querySelector('img[data-src]');if(!im)return Promise.resolve();if(im._heroLoad)return im._heroLoad;im._heroLoad=new Promise(function(done){function ready(){im.removeEventListener('load',ready);im.removeEventListener('error',ready);im.removeAttribute('data-src');done();}im.addEventListener('load',ready);im.addEventListener('error',ready);im.src=im.dataset.src;if(im.complete)ready();});return im._heroLoad;}
+    function hGo(i){i=(i+hN)%hN;var request=++hPending;if(i===hIdx){hTrack.removeAttribute('aria-busy');hShow(i);return;}hShow(hIdx);hTrack.setAttribute('aria-busy','true');hLoad(i).then(function(){if(hPending!==request)return;hTrack.removeAttribute('aria-busy');hShow(i);});}
+    hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});t.addEventListener('pointerenter',function(){hLoad(i);},{passive:true});t.addEventListener('focus',function(){hLoad(i);});});
     var hPrev=document.querySelector('.hero-prev'),hNext=document.querySelector('.hero-next');
     if(hPrev)hPrev.addEventListener('click',function(){hGo(hIdx-1);});
     if(hNext)hNext.addEventListener('click',function(){hGo(hIdx+1);});
