@@ -31,11 +31,9 @@
 <title>Dziękujemy — Kalmely</title>
 <meta property="og:site_name" content="Kalmely">
 <meta name="application-name" content="Kalmely">
-<meta property="og:title" content="Thank you — Kalmely">
+<meta property="og:title" content="Dziękujemy — Kalmely">
 <link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 
 <!-- Admin Mode Guard -->
 <script>
@@ -321,6 +319,31 @@ main { max-width: 880px; }
   .kalm-reveal-zoom img { transform: none !important; filter: none !important; }
   .scroll-progress { display: none; }
 }
+
+/* Receipt content stays legible and fits narrow phones. */
+main { padding-top:24px; }
+.ty-icon { width:44px; height:44px; margin-bottom:16px; }
+.ty-icon-anim { opacity:1; transform:none; transition:none; }
+.ty-icon-anim svg path { stroke-dashoffset:0; transition:none; }
+.ty-hero { padding-top:32px; }
+.ty-hero h1 { font-size:clamp(30px,6vw,46px); line-height:1.15; overflow-wrap:break-word; }
+.ty-hero p.intro,.ty-digital p,.ty-step-content p { font-size:16px; color:var(--ink); }
+.ty-digital-eyebrow,.ty-card-block h3 { font-size:12px; letter-spacing:.1em; }
+.ty-action { display:inline-block; background:#234f2b; color:white; padding:14px 18px; border-radius:8px; font:600 16px/1.4 var(--sans); margin-top:20px; text-decoration:none; max-width:100%; }
+.ty-action:disabled { opacity:.65; }
+.ty-product-summary { max-width:560px; margin:18px auto 0; text-align:center; }
+.ty-product-summary h2 { font-size:24px; line-height:1.3; margin-bottom:10px; }
+.ty-product-summary p { font-size:16px; line-height:1.6; margin-top:8px; }
+.ty-card-block,.ty-digital>div,.ty-step-content { min-width:0; overflow-wrap:anywhere; }
+.ty-card-block p { font:500 17px/1.55 var(--sans); }
+.ty-digital,.ty-card,.ty-product { opacity:1; transform:none; transition:none; }
+.ty-digital-cover img,.ty-product img { transform:none; filter:none; }
+@media(max-width:600px) {
+  .ty-digital { grid-template-columns:1fr; }
+  .ty-digital-cover { width:88px; }
+  .ty-product { max-width:260px; }
+  .ty-card { gap:22px; }
+}
 </style>
 </head>
 <body>
@@ -341,9 +364,40 @@ main { max-width: 880px; }
         <path d="M9 12l2 2 4-4"/>
       </svg>
     </div>
-    <div class="page-eyebrow fade-slow" style="justify-content:center;--stagger:200ms;">Zamówienie potwierdzone</div>
-    <h1 id="tyHeading" data-word-reveal>Twoje zamówienie <em>przygotowujemy.</em></h1>
-    <p class="intro fade-slow" id="tyIntro" style="--stagger:600ms;">Po potwierdzeniu płatności otrzymasz e-mail z numerem zamówienia i prywatnym linkiem do jego statusu. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.</p>
+    <div class="page-eyebrow" id="tyEyebrow" style="justify-content:center;">Status zamówienia</div>
+    <h1 id="tyHeading" aria-live="polite">Sprawdzamy Twoje zamówienie.</h1>
+    <p class="intro" id="tyIntro">Pobieramy potwierdzenie płatności i szczegóły wybranego zestawu.</p>
+    <button class="ty-action" id="tyRetry" type="button" hidden>Sprawdź ponownie</button>
+    <a class="ty-action" id="tyStatusLink" hidden>Sprawdź status zamówienia →</a>
+  </div>
+
+  <!-- PRODUCT PREVIEW — physical orders only -->
+  <div class="ty-product fade-slow kalm-reveal-zoom" id="tyProductImg" hidden style="--stagger:300ms;">
+    <img alt="Twój zestaw Kalmely" width="760" height="760">
+  </div>
+
+  <div id="tyProductSummary" class="ty-product-summary" hidden><h2 id="tyProductTitle"></h2><p id="tyProductGifts"></p><p id="tySubscription" hidden>Prezenty są w pierwszej przesyłce. Kolejne zamówienia odnawiają się automatycznie; link do zarządzania subskrypcją znajdziesz w e-mailu.</p></div>
+
+  <!-- ORDER DETAILS -->
+  <div class="ty-card fade-slow" id="tyCard" hidden style="--stagger:400ms;">
+    <div class="ty-card-block"><h3>Zapłacono</h3><p id="tyAmount"></p></div>
+    <div class="ty-card-block"><h3>Rodzaj zamówienia</h3><p id="tyOrderType"></p></div>
+    <div class="ty-card-block">
+      <h3>Numer zamówienia</h3>
+      <p id="order-num">KAL-2026-—</p>
+    </div>
+    <div class="ty-card-block" id="arrivalBlock">
+      <h3>Przewidywana dostawa</h3>
+      <p id="arrival">1–2 tygodnie od zamówienia</p>
+    </div>
+    <div class="ty-card-block" id="shipsBlock">
+      <h3>Dostawa</h3>
+      <p>Darmowa dostawa</p>
+    </div>
+    <div class="ty-card-block" id="trackingBlock">
+      <h3>Śledzenie</h3>
+      <p id="tyTrackingText">Numer śledzenia pojawi się po nadaniu.</p>
+    </div>
   </div>
 
   <!-- DIGITAL GUIDE — shown if order includes ebook -->
@@ -360,40 +414,15 @@ main { max-width: 880px; }
     </div>
   </section>
 
-  <!-- PRODUCT PREVIEW — physical orders only -->
-  <div class="ty-product fade-slow kalm-reveal-zoom" id="tyProductImg" style="--stagger:300ms;">
-    <img src="/scalp/assets/bundle-2.webp" alt="Kalmely Korean Scalp Revival Bar">
-  </div>
-
-  <!-- ORDER DETAILS -->
-  <div class="ty-card fade-slow" style="--stagger:400ms;">
-    <div class="ty-card-block">
-      <h3>Numer zamówienia</h3>
-      <p id="order-num">KAL-2026-—</p>
-    </div>
-    <div class="ty-card-block" id="arrivalBlock">
-      <h3>Przewidywana dostawa</h3>
-      <p id="arrival">1–2 tygodnie</p>
-    </div>
-    <div class="ty-card-block" id="shipsBlock">
-      <h3>Dostawa</h3>
-      <p>Darmowa dostawa</p>
-    </div>
-    <div class="ty-card-block" id="trackingBlock">
-      <h3>Śledzenie</h3>
-      <p>Link wyślemy mailem, gdy paczka ruszy</p>
-    </div>
-  </div>
-
   <!-- NEXT STEPS -->
-  <div class="ty-next" id="tyNext">
+  <div class="ty-next" id="tyNext" hidden>
     <h2 class="fade-slow" data-word-reveal>Co dalej.</h2>
 
     <div class="ty-step fade-slow" id="step01" style="--stagger:0ms;">
       <div class="ty-step-num">01.</div>
       <div class="ty-step-content">
         <h4>Wysyłamy zamówienie</h4>
-        <p>Spakujemy i wyślemy Twoją kostkę Kalmely Korean Scalp Revival Bar, a link do śledzenia dostaniesz mailem, gdy tylko paczka ruszy. Wysyłka ze śledzeniem — darmowa przy każdym zamówieniu, zwykle na miejscu w ciągu 1–2 tygodni.</p>
+        <p>Spakujemy Twój zestaw Kalmely. Numer śledzenia otrzymasz mailem po nadaniu paczki. Wysyłka ze śledzeniem — darmowa przy każdym zamówieniu, zwykle na miejscu w ciągu 1–2 tygodni.</p>
       </div>
     </div>
 
@@ -401,7 +430,7 @@ main { max-width: 880px; }
       <div class="ty-step-num">02.</div>
       <div class="ty-step-content">
         <h4>Jak jej używać</h4>
-        <p>Pod prysznicem przesuń kostkę po skórze głowy, tam gdzie wcześniej zaczynał szampon. Masuj około sześćdziesięciu sekund, żeby fermentowane oleje rozpuściły warstwę łoju, i spłucz. To cały rytuał — na początku codziennie, potem kilka razy w tygodniu.</p>
+        <p>Zmocz włosy i skórę głowy. Spień mokrą kostkę w dłoniach, rozprowadź pianę u nasady i delikatnie masuj opuszkami przez około minutę. Dokładnie spłucz. Swoją odżywkę nałóż na długość. Częstotliwość mycia dopasuj do potrzeb skóry i włosów.</p>
       </div>
     </div>
 
@@ -409,7 +438,7 @@ main { max-width: 880px; }
       <div class="ty-step-num">03.</div>
       <div class="ty-step-content">
         <h4>60 dni gwarancji</h4>
-        <p>Albo pokochasz swoją skórę głowy, albo zwracamy pieniądze. Jeśli w ciągu 60 dni uznasz, że to nie dla Ciebie, po prostu napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — nie musisz nic odsyłać. Zwrócimy pieniądze tą samą metodą płatności, zwykle w ciągu 5–10 dni roboczych.</p>
+        <p>Masz 60 dni od doręczenia na wypróbowanie całego zestawu. Jeśli uznasz, że to nie dla Ciebie, napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> — kostki i prezenty zostają u Ciebie, także po otwarciu. Zwrócimy całą zapłaconą kwotę tą samą metodą płatności, zwykle w ciągu 5–10 dni roboczych.</p>
       </div>
     </div>
 
@@ -431,117 +460,15 @@ main { max-width: 880px; }
 <footer>
   <div class="footer-links">
     <a href="/scalp/">Strona główna</a>
-    <a href="contact.html">Kontakt</a>
+    <a href="/contact.html">Kontakt</a>
     <a href="/scalp-refund.html">Zwroty i reklamacje</a>
     <a href="/scalp-shipping.html">Dostawa</a>
   </div>
   <div>© 2026 Kalmely. Wszelkie prawa zastrzeżone.</div>
 </footer>
 
+<script src="/scalp/assets/thankyou.js?v=20260910-1"></script>
 <script>
-(function() {
-  // Read sku + session_id from URL
-  const params = new URLSearchParams(window.location.search);
-  let sku = (params.get('sku') || 'KAL-BUNDLE').toUpperCase();
-  if (sku === 'KAL-1') sku = 'KAL-BUNDLE';
-  const sessionId = params.get('session_id');
-  const isEbookOnly = sku === 'EBOOK';
-  const includesEbook = (sku === 'KAL-BUNDLE' || sku === 'EBOOK' || sku.indexOf('SCALP') === 0);
-  const includesPhysical = (sku === 'KAL-BUNDLE' || sku === 'KAL-SOLO');
-
-  // Order number — derived from session_id when available, otherwise random
-  let suffix;
-  if (sessionId) {
-    suffix = sessionId.replace(/[^A-Z0-9]/gi, '').slice(-5).toUpperCase();
-  } else {
-    suffix = Math.random().toString(36).substring(2, 7).toUpperCase();
-  }
-  const prefix = isEbookOnly ? 'KAL-EB-2026-' : 'KAL-2026-';
-  document.getElementById('order-num').textContent = sessionId ? 'Sprawdź e-mail z potwierdzeniem' : '—';
-  if (sessionId && !isEbookOnly) crypto.subtle.digest('SHA-256', new TextEncoder().encode(sessionId)).then(buffer => {
-    const hex = Array.from(new Uint8Array(buffer), b => b.toString(16).padStart(2,'0')).join('');
-    document.getElementById('order-num').textContent = 'KAL-' + hex.slice(0,12).toUpperCase();
-  });
-
-  // Show ebook block if applicable
-  if (includesEbook) {
-    document.getElementById('tyDigital').hidden = false;
-  }
-
-  // Customise heading and intro per SKU
-  const heading = document.getElementById('tyHeading');
-  const intro = document.getElementById('tyIntro');
-  if (isEbookOnly) {
-    heading.innerHTML = 'Twój przewodnik <em>jest na skrzynce.</em>';
-    intro.innerHTML = 'Koreański Protokół Skóry Głowy wysłaliśmy na adres podany przy zamówieniu. Jeśli nie dotrze w ciągu pięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
-  } else if (sku === 'KAL-SOLO') {
-    heading.innerHTML = 'Twoje zamówienie <em>przygotowujemy.</em>';
-    intro.innerHTML = 'Po potwierdzeniu płatności otrzymasz e-mail ze statusem zamówienia. Numer śledzenia wyślemy po nadaniu. Jeśli nie zobaczysz go w ciągu dziesięciu minut, sprawdź folder ze spamem albo napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a>.';
-  }
-
-  // Hide physical-product blocks for ebook-only orders
-  if (isEbookOnly) {
-    document.getElementById('tyProductImg').hidden = true;
-    document.getElementById('arrivalBlock').hidden = true;
-    document.getElementById('shipsBlock').hidden = true;
-    document.getElementById('trackingBlock').hidden = true;
-    document.getElementById('step02').hidden = true;
-    document.getElementById('step03').hidden = true;
-    // Update step 01 + step 04 wording for digital order
-    document.querySelector('#step01 p').textContent = 'Potwierdzenie i link do pobrania przewodnika są już na Twojej skrzynce. Zapisz PDF na urządzeniu, żeby mieć go zawsze pod ręką.';
-    document.querySelector('#step04 h4').textContent = '60 dni gwarancji';
-    document.querySelector('#step04 p').innerHTML = 'Masz 60 dni gwarancji zwrotu pieniędzy. Napisz na <a href="mailto:hello@kalmely.com">hello@kalmely.com</a> z numerem zamówienia, a zwrócimy całą kwotę — przewodnik zostaje u Ciebie.';
-  } else {
-    // El HTML ya dice "1–2 tygodnie", que es lo que dicen tambien el correo, el FAQ
-    // y la pagina de dostawa. Aqui se pisaba con una fecha EN INGLES calculada a 7 dias
-    // habiles: idioma equivocado y ademas prometia antes de lo que promete el resto.
-  }
-
-  // Pixel: Purchase event (Meta Pixel + GA)
-  // Guard: only fire if arriving from a real Stripe redirect (session_id present).
-  // Prevents false Purchases on direct visits to /thank-you.html.
-  if (sessionId) {
-    // Prefer the real charged value stored at checkout time (accounts for RELIEF15 -£15).
-    // Fallback: 149 (bundle without coupon) or 29 (ebook-only).
-    let value = isEbookOnly ? 22 : 54.95;
-    try {
-      const stored = JSON.parse(localStorage.getItem('kalmely_last_purchase') || '{}');
-      if (stored && stored.value && (Date.now() - (stored.ts || 0)) < 30 * 60 * 1000) {
-        value = stored.value;
-      }
-    } catch (_) {}
-    var _abm = document.cookie.match(/(?:^|; )kalmely_ab_offer=([AB])/);
-    var _ab = _abm ? _abm[1] : '';
-    if (window.fbq) {
-      fbq('track', 'Purchase', {
-        value: value,
-        currency: 'USD',
-        content_ids: [sku],
-        content_name: isEbookOnly ? 'The Koreański Protokół Skóry Głowy' : 'Kalmely Korean Scalp Revival Bar',
-        ...(_ab ? { offer_variant: _ab } : {})
-      }, {
-        eventID: sessionId
-      });
-    }
-    // Clear so a refresh doesn't double-fire with stale value
-    try { localStorage.removeItem('kalmely_last_purchase'); } catch (_) {}
-    // Empty the persistent bag after a real purchase so the landing no longer shows "Resume your order"
-    try {
-      localStorage.removeItem('kalmely_bag');
-      localStorage.removeItem('kalmely_pack');
-      localStorage.removeItem('kalmely_colors');
-    } catch (_) {}
-    if (window.gtag) {
-      gtag('event', 'purchase', {
-        value: value,
-        currency: 'USD',
-        transaction_id: prefix + suffix,
-        items: [{ item_id: sku, item_name: isEbookOnly ? 'The Koreański Protokół Skóry Głowy' : 'Kalmely Korean Scalp Revival Bar', price: value, quantity: 1 }]
-      });
-    }
-  }
-})();
-
 // ===== ANIMATIONS — thank-you page =====
 (function() {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
