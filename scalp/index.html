@@ -11,17 +11,25 @@
     if(!gc('_fbp')) sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(Math.random()*1e10));
   }catch(e){}})();
 </script>
-<!-- Microsoft Clarity — skipped in admin mode -->
+<!-- Record sessions after the page can render; Meta conversion tracking is independent. -->
 <script type="text/javascript">
   (function(){
     var isAdmin = document.cookie.indexOf('kalmely_admin=true') !== -1
       || new URLSearchParams(location.search).get('admin_mode') === 'kalmely_julio_2026';
     if (isAdmin) return;
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x4mat5v5ce");
+    window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments);};
+    var started=false;
+    function loadClarity(){
+      if(started)return;started=true;
+      var script=document.createElement('script');script.async=true;
+      script.src='https://www.clarity.ms/tag/x4mat5v5ce';document.head.appendChild(script);
+    }
+    // An early interaction starts recording immediately; otherwise use the first idle slot after load.
+    ['pointerdown','keydown','touchstart'].forEach(function(event){window.addEventListener(event,loadClarity,{once:true,passive:true});});
+    window.addEventListener('load',function(){
+      if(window.requestIdleCallback)requestIdleCallback(loadClarity,{timeout:1000});
+      else setTimeout(loadClarity,0);
+    },{once:true});
   })();
 </script>
 <meta charset="UTF-8">
@@ -31,7 +39,7 @@
 <meta name="facebook-domain-verification" content="j5b3db4ebjzn5frvkqurol6t2n0gvw" />
 <title>Kalmely — martwi Cię wypadanie włosów?</title>
 <meta name="description" content="Martwi Cię wypadanie włosów? Poznaj Kalmely — kostkę, która zastępuje Twój szampon. 120 g · od 69 zł · darmowa dostawa · 60 dni na wypróbowanie.">
-<link rel="icon" type="image/png" href="assets/favicon-kalmely.png">
+<link rel="icon" type="image/png" href="assets/favicon-kalmely-64-v1.png" sizes="64x64">
 <meta property="og:site_name" content="Kalmely">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kalmely — martwi Cię wypadanie włosów?">
@@ -40,15 +48,16 @@
 <meta property="og:image" content="https://kalmely.com/assets/og-kalmely.jpg">
 <meta name="application-name" content="Kalmely">
 <!-- LCP hero preloaded; ALL fonts self-hosted now (Fraunces too) — no googleapis/gstatic render-blocking on the critical path. Poppins was unused, dropped. -->
-<link rel="preload" as="image" href="assets/hero-producto-v3.webp" imagesrcset="assets/hero-producto-v3-640.webp 640w, assets/hero-producto-v3-960.webp 960w, assets/hero-producto-v3.webp 1254w" imagesizes="(max-width: 620px) 100vw, (max-width: 1100px) 480px, 560px" fetchpriority="high">
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant.woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" href="assets/hero-producto-v3-perf-960.avif" imagesrcset="assets/hero-producto-v3-perf-480.avif 480w, assets/hero-producto-v3-perf-768.avif 768w, assets/hero-producto-v3-perf-960.avif 960w, assets/hero-producto-v3-perf-1254.avif 1254w" imagesizes="(max-width: 620px) 100vw, (max-width: 1100px) 620px, 560px" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-web-v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-web-v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-web-v1.woff2" crossorigin>
 <style>
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant.woff2) format('woff2')}
-@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic.woff2) format('woff2')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter.woff2) format('woff2')}
-@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora.woff2) format('woff2')}
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/cormorant-web-v1.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-italic-web-v1.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter-web-v1.woff2) format('woff2')}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:swap;src:url(assets/fonts/sora-web-v1.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/fraunces-web-v1.woff2) format('woff2')}
 /* Campaign imagery and explanatory washing sequence — 5 Sep 2026. */
 .visual-caption{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 28px);padding:6px 9px;border-radius:5px;background:rgba(255,255,250,.9);color:var(--ink-2);font:500 10px/1.4 var(--sans)}
 .wash-mechanism{background:#fbfaf6}
@@ -248,7 +257,7 @@ h1,h2,h3,h4,.serif{font-family:'Sora',var(--sans);font-weight:700;letter-spacing
 .free-tag.t-file{top:60%;left:16%}
 .free-tag.t-patch{top:42%;right:28%}
 .free-tag.t-book{top:30%;right:2%}
-.hero-slide>img,.hero-slide>noscript img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-slide>img,.hero-slide>picture>img,.hero-slide>noscript img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.86);color:var(--ink);font:400 26px/1 var(--sans);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 12px -3px rgba(0,0,0,.35);transition:background .15s,transform .15s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .hero-arrow:hover{background:#fff}
 .hero-arrow:active{transform:translateY(-50%) scale(.92)}
@@ -1314,6 +1323,154 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 @media(max-width:360px){.hero-decision{align-items:flex-start}.hero-offer-link{font-size:12px;gap:6px}.hero-decision b{font-size:21px}.bx-badges span{font-size:9px}.hero-head .bx-h1.product{font-size:29px}}
 
 </style>
+<!-- Final layout is available before the first paint and any JS measurement. -->
+<style>
+.zoomable{cursor:zoom-in}
+#lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(31,37,22,.82);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:24px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);background:#F6F6F0}
+#lightbox .lb-close{position:absolute;top:18px;right:20px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(246,246,240,.92);color:#3F4A2B;font:400 26px/1 var(--sans,sans-serif);display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+/* V4: every carousel image explains one buying question. */
+.gallery{container-type:inline-size}
+.hero-grid{grid-template-areas:"gallery head" "gallery buy" "gallery convince";row-gap:16px}
+.hero-slide .slide-message{position:absolute;z-index:1;left:0;top:0;width:100%;padding:5% 6% 8%;background:linear-gradient(180deg,rgba(249,245,233,.98),rgba(249,245,233,.78) 65%,rgba(249,245,233,0));pointer-events:none}
+.slide-message>span{display:block;font:700 clamp(9px,2cqw,12px)/1.3 var(--sans);letter-spacing:.12em;margin-bottom:8px}
+.hero-slide .slide-message h2{font:700 clamp(24px,7cqw,43px)/1.02 var(--sans);letter-spacing:-.045em;color:var(--ink);margin:0}
+.slide-message p{font:500 clamp(11px,2.7cqw,16px)/1.4 var(--sans);margin:10px 0 0}
+.story-routine .slide-message{width:100%;height:30%;background:linear-gradient(180deg,rgba(249,245,233,.52),rgba(249,245,233,0));padding-right:6%}
+.story-routine .slide-message h2{font-size:clamp(24px,6.5cqw,40px);line-height:1.06}
+.hero-slide .slide-footer{position:absolute;bottom:0;left:0;right:0;z-index:2;height:clamp(40px,10.5cqw,64px);padding:0 6%;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:var(--paper)}
+.slide-footer b{display:block;font:700 clamp(13px,3.4cqw,20px)/1.15 var(--sans)}
+.slide-footer span{display:block;font:400 clamp(10px,2.5cqw,14px)/1.15 var(--sans);margin-top:2px}
+.story-product .slide-footer{flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+.story-product .slide-footer span{margin:0;white-space:nowrap;font-weight:600}
+.hero-thumbs .hero-thumb{position:relative;overflow:hidden;opacity:1;border-radius:8px;flex:1;min-width:0;max-width:none;height:auto;aspect-ratio:1.15}
+.hero-thumb .thumb-label{position:absolute;bottom:0;left:0;right:0;background:rgba(252,251,249,.95);padding:5px 2px;font:600 11px/1.2 var(--sans);text-align:center}
+.hero-thumb.is-active .thumb-label{background:var(--ink);color:white}
+.gallery-note{font:400 10px/1.4 var(--sans);color:var(--ink-soft);margin-top:7px;text-align:center}
+.hero-head .bx-h1.product{font-size:36px;line-height:1.08;margin:12px 0}
+.hero-head .bx-h1-sub{font-size:15px;line-height:1.5}
+.hero-head .bx-badges{padding:10px 0 0;border:0;margin:0}.hero-head .bx-badges-row{gap:6px}.hero-head .bx-badges span{padding:5px 8px;font-size:10px}
+.hero-head .rating{margin-bottom:7px}.hero-head .product-name{margin-bottom:4px}
+.hero-head .facts-link{font-size:12px}.hero-head .hero-decision{margin:14px 0 8px}
+.hero-convince .hc-guar{padding:12px 15px}
+#usage .sec-head{margin-bottom:26px}#usage .sec-head h2{font-size:clamp(28px,3.3vw,42px)}
+@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "buy" "convince";gap:18px}.gallery{position:static;max-width:620px;width:100%;justify-self:center}.hero-thumbs{max-width:440px;margin-left:auto;margin-right:auto}.hero-head{max-width:620px;width:100%;justify-self:center}}
+@media(max-width:620px){.hero{padding-top:0}.hero-grid{gap:15px}.hero-thumbs{margin-top:10px;padding:0 14px;gap:7px}.hero-thumb .thumb-label{font-size:10px;padding:4px 1px}.hero-head .bx-h1.product{font-size:29px;margin:8px 0 10px}.hero-head .bx-h1-sub{font-size:14px;line-height:1.45}.hero-head .rating{font-size:12px}.hero-head .product-name{font-size:10px}.gallery-note{margin-top:5px;font-size:9px}.hero-head .hero-decision{margin-top:12px}.hero-head .facts-link{display:none}.hero-head .bx-badges{padding-top:4px}.hero-thumbs .hero-thumb{aspect-ratio:1.3}.hero-head .hero-offer-link{font-size:13px}.hero-convince{padding-top:0}}
+@media(max-width:620px){body.hero-in-view #chatFab,body.hero-in-view #chatNudge{display:none}}
+
+/* V5 — ingredient imagery, readable purchase details, and visible reading progress. */
+.ingredient-grid article{padding:0;overflow:hidden}.ingredient-grid article>img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}.ingredient-grid article>div{padding:20px}.ingredient-grid h3{font:650 25px/1.2 var(--sans);margin:0 0 9px}.ingredient-grid p{font-size:16px;color:var(--ink-2)}
+.ingredient-visual-note{font:400 13px/1.5 var(--sans);color:var(--ink-2);margin-top:12px}
+.sec-head .eyebrow,.wash-expect .eyebrow{font-size:13px;line-height:1.4;color:var(--ink-2);letter-spacing:.12em}
+.sec-head p,.wash-copy p,.wash-expect p,.wash-scope p{font-size:17px;line-height:1.65;hyphens:none;-webkit-hyphens:none}
+.facts-source,.facts-note p,.facts-note b{font-size:16px;line-height:1.6}.facts-note b{font-weight:700}.facts-source a{font-weight:600;text-decoration:underline}
+.hero-head .bx-h1-sub{font-size:17px;line-height:1.6}.hero-head .product-name{font-size:14px}.hero-head .rating{font-size:15px}
+.hero-head .hero-decision small{font-size:14px;line-height:1.5}.hero-head .hero-offer-link{font-size:16px}.hero-head .facts-link{font-size:15px;line-height:1.5}.hero-head .bx-badges span{font-size:13px;padding:7px 9px}.hero-head .bx-badges-row{display:flex;flex-wrap:wrap}
+.acc summary,.wash-scope summary{font-size:17px;line-height:1.4;font-weight:650}.acc details p,.spec th,.spec td{font-size:16px;line-height:1.6}.spec th{color:var(--ink);font-weight:600}.acc details p strong,.bx-h1-sub strong{font-weight:700;color:var(--ink)}
+.pack-unit{font:500 15px/1.4 var(--sans);color:var(--ink-2)}.pack-save,.pack-badge,.pack-gift{font-size:12px}.sub-optin span,.sub-note,.bx-ship,.bx-trust-i span{font-size:14px;line-height:1.5}.sale-divider,.offer-request{font-size:15px}
+.hc-guar b{font-size:16px}.hc-guar span{font-size:14px;line-height:1.5}.rev-score .cnt,.rev-chip,.rev-count,.rev-bar,.rev-reply p,.rev-by,.duo-n,.duo-n em{font-size:14px;line-height:1.5}.review p,.review .txt,.duo-q,.pr-q{font-size:16px;line-height:1.6}
+.gallery .slide-message>span{font-size:clamp(12px,2.4cqw,15px);letter-spacing:.06em}.gallery .slide-message p{font-size:clamp(14px,3cqw,18px)}
+.hero-slide .slide-footer{align-items:flex-start;justify-content:center}.hero-slide .slide-footer b{font-size:clamp(14px,3.25cqw,20px);line-height:1.2}.story-product .slide-footer{flex-direction:column;align-items:flex-start;justify-content:center}
+.hero-thumb .thumb-label{font-size:13px;padding:6px 2px}.gallery-note{font-size:12px;color:var(--ink-2)}
+html{scrollbar-color:#426b3a #e7e9df;scrollbar-width:auto}::-webkit-scrollbar{width:12px}::-webkit-scrollbar-track{background:#e7e9df}::-webkit-scrollbar-thumb{background:#426b3a;border:3px solid #e7e9df;border-radius:20px}::-webkit-scrollbar-thumb:hover{background:#234f2b}
+.reading-rail{position:fixed;z-index:35;right:8px;top:50%;transform:translateY(-50%);width:46px;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--ink)}
+.reading-number{font:700 14px/1.3 var(--sans);padding:7px 2px;width:44px;text-align:center;border:1px solid #c9d2bd;border-radius:20px;background:#fcfbf9;box-shadow:0 2px 8px #234f2b12}
+.reading-track{width:8px;height:190px;border-radius:10px;background:#e1e6d8;box-shadow:inset 0 0 0 1px #c1cdb5;position:relative}
+#readingFill{display:block;position:absolute;top:0;left:0;width:100%;height:0;background:#426b3a;border-radius:10px}
+#readingFill::after{content:"";position:absolute;bottom:-5px;left:-3px;width:14px;height:14px;background:#a2b84d;border:2px solid var(--paper);border-radius:10px 2px 10px 2px;box-shadow:0 1px 4px #234f2b44}
+#readingNext{display:flex;flex-direction:column;align-items:center;justify-content:center;width:46px;min-height:54px;border:1px solid #c9d2bd;border-radius:12px;background:#fcfbf9;box-shadow:0 2px 8px #234f2b12;font:600 13px/1.4 var(--sans)}#readingNext>span:first-child{font-size:24px;line-height:1}#readingNext:hover{background:#edf0e7}#readingNext:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media(min-width:1101px){.wrap{max-width:min(1240px,calc(100% - 88px))}.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,500px);column-gap:32px}}
+@media(max-width:1100px){.reading-rail{right:2px;width:8px;top:110px;bottom:85px;transform:none;gap:0;pointer-events:none}.reading-track{height:100%;width:6px;background:#d9dfcf}.reading-number,#readingNext{display:none}#readingFill::after{width:10px;height:14px;left:-2px;border-width:1px}.ingredient-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.hero-head .bx-h1.product{font-size:32px;line-height:1.08}.hero-head .bx-h1-sub{font-size:17px;line-height:1.55}.hero-head .product-name{font-size:14px}.hero-head .rating{font-size:14px}.hero-head .facts-link{display:inline-block;font-size:15px;margin-top:5px}.hero-head .hero-decision small{font-size:14px}.hero-head .hero-offer-link{font-size:15px}.hero-head .bx-badges span{font-size:13px}.hero-head .hero-decision{gap:10px}.hero-decision b{font-size:24px}.sec-head h2{font-size:30px;line-height:1.15}.sec-head p{font-size:17px}.ingredient-grid{gap:14px}.ingredient-grid article>div{padding:16px}.ingredient-grid h3{font-size:21px;overflow-wrap:normal}.ingredient-grid p{font-size:15px;overflow-wrap:anywhere}.facts-grid.ingredient-grid article{padding:0}.hero-thumb .thumb-label{font-size:12px;padding:5px 1px}.gallery-note{font-size:12px}.slide-footer{padding-left:5%;padding-right:5%}.wash-copy h3,.wash-expect h3{font-size:28px}.wash-copy p,.wash-expect p,.wash-scope p{font-size:17px}.sub-optin span{font-size:14px}.spec th,.spec td{font-size:16px}.hero-thumbs .hero-thumb{aspect-ratio:1.05}.reading-rail{top:105px;bottom:90px}}
+@media(max-width:360px){.ingredient-grid{grid-template-columns:1fr}.ingredient-grid article{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center}.ingredient-grid article>img{height:100%;min-height:140px;aspect-ratio:auto;object-fit:cover}.ingredient-grid article>div{padding:15px}.hero-head .hero-decision{flex-wrap:wrap}.hero-head .hero-offer-link{min-height:44px}.hero-slide .slide-footer b{font-size:14px}}
+@media(prefers-reduced-motion:reduce){#readingFill{transition:none}}
+.sub-optin span{font-size:16px;line-height:1.5}.wash-try small{font-size:14px;line-height:1.5}
+
+/* V6 — a quiet first view; purchasing choices follow the introduction. */
+.hero-grid{grid-template-areas:"gallery head" "buy buy" "convince convince";row-gap:44px}
+.gallery{position:static}
+.hero-head{align-self:center;padding-bottom:30px}
+.hero-head .bx-h1.product{font-size:clamp(34px,3.5vw,46px);line-height:1.12;max-width:440px;margin:16px 0}
+.hero-head .bx-h1-sub{font-size:17px;line-height:1.55;max-width:390px;font-weight:400;hyphens:none;-webkit-hyphens:none}
+.hero-head .product-name{font-size:12px;font-weight:500;letter-spacing:.1em;margin-top:24px}
+.hero-head .rating{font-size:13px}.hero-head .starrow{transform:scale(.85);transform-origin:left center;margin-right:-10px}
+.hero-head .hero-decision{margin:28px 0 12px;justify-content:flex-start;gap:28px}
+.hero-head .hero-decision b{font-size:24px}.hero-head .hero-decision small{font-size:13px}
+.hero-head .hero-offer-link{font-size:15px;padding:15px 22px}
+.hero-reassurance{font:400 13px/1.5 var(--sans);color:var(--ink-2);margin:0}
+.hero-explore{display:flex;gap:22px;border-top:1px solid var(--line);margin-top:26px;padding-top:12px;max-width:390px}
+.hero-explore a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:500 14px/1.4 var(--sans);color:var(--ink-2);text-decoration:none}
+.hero-explore a span{color:var(--ink)}.hero-explore a:hover{text-decoration:underline;text-underline-offset:4px}.hero-explore a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.hero-thumbs{max-width:340px;margin:12px auto 0;gap:8px}.hero-thumbs .hero-thumb{height:58px;aspect-ratio:auto;flex:1}.hero-thumb .thumb-label{font-size:11px;padding:4px 1px}.gallery-note{font-size:11px;margin-top:6px}
+.buybox{width:100%;max-width:620px;justify-self:center;border-top:1px solid var(--line);padding-top:32px}.buybox .bx-sec{margin-top:0}.purchase-title{font:600 30px/1.2 var(--serif);margin:0 0 12px}.buybox .offer-request{font-size:13px;font-weight:400;margin-bottom:22px;min-height:44px}
+.hero-convince{width:100%;max-width:620px;justify-self:center}
+.reading-number{font-size:12px;box-shadow:none}#readingNext{border:0;background:transparent;box-shadow:none;font-size:11px;min-height:44px}#readingNext>span:first-child{font-size:20px}
+@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "buy" "convince";row-gap:24px}.hero-head{padding-bottom:0}.gallery{max-width:480px}.hero-head{max-width:480px}.hero-head .bx-h1.product{max-width:none}.hero-head .product-name{margin-top:16px}.buybox{margin-top:12px}}
+@media(max-width:620px){.announce{font-size:10px;letter-spacing:0;padding:9px 8px}.nav-inner{min-height:54px}.logo-brand{font-size:29px}.logo-tag{display:none}.hero-grid{row-gap:20px}.gallery{max-width:100%}.hero-thumbs{max-width:290px;padding:0;margin-top:8px}.hero-thumbs .hero-thumb{height:48px}.hero-thumb .thumb-label{font-size:11px}.gallery-note{font-size:10px}.hero-head .rating{font-size:13px}.hero-head .product-name{display:none}.hero-head .bx-h1.product{font-size:29px;margin:12px 0}.hero-head .bx-h1-sub{font-size:16px;line-height:1.5;margin-bottom:0}.hero-head .hero-decision{margin-top:20px;gap:18px;justify-content:space-between;flex-wrap:nowrap}.hero-head .hero-decision b{font-size:23px}.hero-head .hero-offer-link{font-size:14px;padding:14px 16px}.hero-explore{margin-top:18px;padding-top:6px}.hero-explore a{font-size:13px}.buybox{padding-top:26px}.purchase-title{font-size:27px}.hero-reassurance{font-size:13px}}
+
+/* V7 — short campaign edit, immediately before purchase options. */
+.hero-grid{grid-template-areas:"gallery head" "demo demo" "buy buy" "convince convince"}
+.ritual-video{grid-area:demo;display:grid;grid-template-columns:260px minmax(0,1fr);align-items:center;gap:42px;width:100%;max-width:790px;justify-self:center;border-top:1px solid var(--line);padding-top:36px}
+.ritual-video figure{margin:0;min-width:0}.ritual-video video{display:block;width:100%;height:auto;aspect-ratio:3/4;border-radius:14px;background:#e7e9df;object-fit:contain}
+.ritual-video figcaption{font:400 11px/1.5 var(--sans);color:var(--ink-2);text-align:center;margin-top:8px}
+.ritual-video-copy .eyebrow{font:600 12px/1.5 var(--sans);letter-spacing:.08em;color:var(--ink-2)}
+.ritual-video-copy h2{font:600 clamp(26px,2.8vw,34px)/1.2 var(--serif);margin:12px 0 16px;color:var(--ink)}
+.ritual-video-copy p{font:400 16px/1.5 var(--sans);color:var(--ink-2);max-width:350px;hyphens:none}
+@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "demo" "buy" "convince"}.ritual-video{max-width:620px;gap:28px;grid-template-columns:230px minmax(0,1fr)}}
+@media(max-width:620px){.ritual-video{grid-template-columns:1fr;gap:20px;padding:28px 20px 0}.ritual-video-copy{grid-row:1;text-align:center}.ritual-video-copy h2{font-size:27px;margin:8px 0 12px}.ritual-video-copy p{margin:0 auto}.ritual-video figure{width:100%;max-width:270px;justify-self:center}.ritual-video figcaption{font-size:11px}}
+
+/* V8 — factual format comparison and consolidated purchase FAQ. */
+.format-table .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.format-table{table-layout:fixed;width:100%;border-collapse:separate;border-spacing:0;font:400 16px/1.5 var(--sans);color:var(--ink-2)}
+.format-table th,.format-table td{padding:18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);width:35%}.format-table th:first-child{width:30%}.format-table th{font-weight:600;color:var(--ink)}
+.format-table th:nth-child(2),.format-table td:nth-child(2){background:#edf2e9}.format-table thead th:nth-child(2){background:var(--ink);color:white;border-radius:12px 12px 0 0}.format-table thead th{font-size:17px}.comparison-note{font:400 14px/1.5 var(--sans);color:var(--ink-2);margin-top:18px}
+@media(max-width:620px){.format-table{font-size:14px;line-height:1.45}.format-table th,.format-table td{padding:12px 8px;overflow-wrap:break-word}.format-table thead th{font-size:14px}.format-comparison .wrap{padding-left:16px;padding-right:16px}.comparison-note{font-size:14px}}
+
+.bundle-zoom-hint{display:block;font:400 11px/1.4 var(--sans);color:var(--ink-2);margin-top:6px}
+/* V9 — show selected contents and answer purchase questions at the offer. */
+.selected-bundle{display:grid;grid-template-columns:140px minmax(0,1fr);gap:18px;align-items:center;margin:18px 0 8px;padding:14px;background:#f1f4ec;border:1px solid #d8e1ce;border-radius:12px;text-align:left}
+.selected-bundle-img{display:block;width:100%;height:auto;border-radius:8px}.bundle-kicker{font:600 11px/1.3 var(--sans);letter-spacing:.08em;color:var(--ink-2)}.selected-bundle-title{font:650 18px/1.3 var(--sans);margin:6px 0 10px;color:var(--ink)}.selected-bundle-gifts{list-style:none;padding:0;margin:0;display:grid;gap:9px;font:500 14px/1.45 var(--sans);color:var(--ink)}.selected-bundle-gifts b{display:inline-block;background:#dce9cb;border-radius:4px;padding:2px 5px;font-size:11px;margin-right:4px}.selected-bundle-gifts small{display:block;margin:4px 0 0;font:400 12px/1.45 var(--sans);color:var(--ink-2)}.bundle-gift-note{font:400 12px/1.4 var(--sans);color:var(--ink-2);margin:9px 0 0}
+.quick-faq{margin-top:24px}.quick-faq>h3{font:650 18px/1.3 var(--sans);margin:0 0 8px}.quick-faq .acc{margin-top:0}.all-faq-link{display:inline-flex;align-items:center;min-height:44px;font:500 14px/1.5 var(--sans);text-decoration:underline;text-underline-offset:4px;margin-top:10px}
+.refund-contact{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:16px}.refund-contact>a,.copy-support-email{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border:1px solid var(--ink);border-radius:8px;font:600 14px/1.3 var(--sans);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer}.copy-email-status{flex-basis:100%;font:400 14px/1.5 var(--sans);overflow-wrap:anywhere}.copy-support-email:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.pack-gift{font-size:11px}
+@media(max-width:620px){.selected-bundle{grid-template-columns:110px minmax(0,1fr);padding:12px;gap:12px}.selected-bundle-title{font-size:16px}.selected-bundle-gifts{font-size:14px}.quick-faq .acc summary{font-size:16px}.pack-gift{font-size:10px}}
+@media(max-width:360px){.selected-bundle{grid-template-columns:90px minmax(0,1fr);gap:10px}.selected-bundle-title{font-size:15px}.selected-bundle-gifts{font-size:13px}}
+
+/* V10 — group proof with the offer and keep section spacing consistent. */
+main>section:not(.hero){padding-top:52px;padding-bottom:52px}
+.sec-head{margin-bottom:26px}
+.hero-grid{grid-template-areas:"gallery head" "demo buy";row-gap:40px}
+.ritual-video{display:flex;flex-direction:column;gap:20px;max-width:440px;border:1px solid var(--line);border-radius:18px;background:#f3f4ee;padding:24px;align-self:start;position:sticky;top:120px}
+.ritual-video-copy{order:-1;text-align:center}.ritual-video-copy h2{font-size:29px;margin:8px 0 12px}.ritual-video-copy p{margin:0 auto;max-width:330px}.ritual-video figure{width:100%;max-width:270px}.ritual-video .hero-convince{padding:0;width:100%;max-width:none}.ritual-video .hc{border:0;background:transparent}.ritual-video .hc-guar{border:0;background:transparent;padding:14px 0 0;border-top:1px solid #d6dfcb;border-radius:0;align-items:flex-start}.ritual-video .hc-guar b{font-size:15px}.ritual-video .hc-guar span{font-size:13px;line-height:1.5}
+.buybox{max-width:none;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--card);margin-top:0}.buybox .offer-request{margin-bottom:14px}.quick-faq{margin-top:20px}
+.guarantee .selected-bundle{max-width:690px;margin-left:auto;margin-right:auto}.scroll-cue{margin-top:24px;margin-bottom:12px}
+#porownanie .sec-head{margin-bottom:24px}.facts-source{margin-top:16px}.facts-note{margin-top:14px}.wash-expect{gap:24px;padding:24px}.visual-note{margin-bottom:20px}
+@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "demo" "buy";row-gap:24px}.ritual-video{position:static;max-width:620px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px}.ritual-video-copy{order:0;text-align:left}.ritual-video .hero-convince{grid-column:1/-1}.buybox{max-width:620px}}
+@media(max-width:620px){main>section:not(.hero){padding-top:36px;padding-bottom:36px}.hero-grid{row-gap:20px}.ritual-video{display:flex;margin:0 20px;width:calc(100% - 40px);padding:20px;gap:16px;border-radius:14px}.ritual-video-copy{order:-1;text-align:center}.ritual-video-copy h2{font-size:26px}.ritual-video figure{max-width:240px}.buybox{border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 20px 0;background:transparent}.sec-head{margin-bottom:22px}.wash-expect{padding:20px}.scroll-cue{margin-top:18px}.guarantee .selected-bundle{max-width:100%}}
+.sub-optin b{display:block;font-size:15px;line-height:1.4}.sub-optin small{display:block;font-size:13px;line-height:1.5;margin-top:6px;font-weight:400}.ritual-video{scroll-margin-top:120px}@media(min-width:1101px) and (max-height:850px){.ritual-video{position:static}}
+
+/* V11 — guarantee and use evidence in the first desktop view. */
+.hero-protection{background:#234f2b;color:#fff;border-radius:12px;padding:18px 20px;margin:18px 0}
+.protection-term{font:650 11px/1.4 var(--sans);letter-spacing:.08em;color:#dfebd3}.hero-protection h2{font:600 28px/1.08 var(--serif);margin:8px 0 10px;color:#fff}.hero-protection p{font:400 14px/1.5 var(--sans);color:#fff;margin:0;hyphens:none}.hero-protection a{display:inline-flex;align-items:center;min-height:36px;font:500 12px/1.4 var(--sans);color:#fff;text-decoration:underline;text-underline-offset:3px;margin-top:6px}
+#refundQuick{scroll-margin-top:125px}
+@media(min-width:1101px){
+.hero{padding-top:24px}.hero-grid{max-width:1200px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"gallery head" "gallery demo" "buy buy";gap:18px 32px;align-items:start}
+.hero-head{align-self:start;padding:0}.hero-head .rating{font-size:12px;margin-bottom:8px}.hero-head .product-name{margin:0;font-size:11px}.hero-head .bx-h1.product{font-size:34px;line-height:1.08;margin:10px 0;max-width:none}.hero-head .bx-h1-sub{font-size:16px;line-height:1.45;max-width:none;margin-bottom:0}
+.hero-protection{margin:14px 0;padding:15px 18px}.hero-protection h2{font-size:29px;margin:5px 0 7px}.hero-protection h2 br{display:none}.hero-protection p{font-size:14px}.hero-protection a{min-height:30px;margin-top:3px}
+.hero-head .hero-decision{margin:16px 0 8px;justify-content:space-between}.hero-head .hero-explore{border:0;margin-top:5px;padding:0;gap:22px}.hero-head .hero-explore a{min-height:30px;font-size:12px}
+.ritual-video{position:static;display:grid;grid-template-columns:125px minmax(0,1fr);gap:18px;max-width:none;padding:14px;margin:0;border-radius:12px;align-items:center;scroll-margin-top:120px}.ritual-video figure{max-width:125px;grid-column:1}.ritual-video-copy{order:0;text-align:left;grid-column:2;grid-row:1}.ritual-video-copy h2{font-size:24px;margin:7px 0 10px}.ritual-video-copy p{font-size:14px;line-height:1.45}.ritual-video figcaption{font-size:10px;line-height:1.3}.ritual-video-copy .eyebrow{font-size:11px}
+.gallery{align-self:start}.buybox{max-width:760px;margin-top:22px;padding:28px 34px}.hero-thumbs{margin-top:10px}
+}
+@media(max-width:620px){.hero-protection{padding:16px;margin:16px 0}.hero-protection h2{font-size:26px}.hero-protection p{font-size:14px}.hero-protection a{font-size:12px;min-height:44px}}
+@media(min-width:1101px){body.hero-in-view #chatNudge{display:none}.ritual-video figcaption{font-size:10px}.hero-protection h2{font-family:var(--sans);font-weight:650;font-size:27px}}
+@media(min-width:1101px) and (max-height:820px){.hero{padding-top:16px}.hero-grid{gap:12px 28px}.hero-head .bx-h1.product{font-size:29px;margin:7px 0}.hero-head .bx-h1-sub{font-size:15px}.hero-protection{padding:12px 16px;margin:10px 0}.hero-protection h2{font-size:25px}.hero-protection p{font-size:13px}.hero-head .hero-decision{margin-top:12px}.ritual-video{grid-template-columns:110px minmax(0,1fr);padding:12px}.ritual-video figure{max-width:110px}.ritual-video-copy h2{font-size:22px}.ritual-video-copy p{font-size:13px}}
+
+/* V12 — existing younger profiles first, estimated value per wash. */
+.review-priority{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.review-priority .review{margin:0}.review-priority .review p{font-size:16px;line-height:1.55}.review-priority .av-face{background:#edf2e9}.wash-value{margin:12px 0 0;padding-top:10px;border-top:1px solid #d6dfcb;color:var(--ink)}.wash-value strong{display:block;font:650 15px/1.4 var(--sans)}.wash-value small{display:block;font:400 12px/1.45 var(--sans);margin-top:3px;color:var(--ink-2)}
+@media(max-width:780px){.review-priority{grid-template-columns:1fr}.wash-value strong{font-size:14px}}
+</style>
+
 </head>
 <body>
 
@@ -1354,7 +1511,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <div class="hero-stage">
           <div class="hero-track" id="heroTrack">
             <!-- Image-led argument: product, routine, use, trial. Text stays accessible and responsive. -->
-            <div class="hero-slide story-product"><img src="assets/hero-producto-v3.webp" srcset="assets/hero-producto-v3-640.webp 640w, assets/hero-producto-v3-960.webp 960w, assets/hero-producto-v3.webp 1254w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 480px, 560px" alt="Zielona kostka z logo Kalmely" width="1254" height="1254" fetchpriority="high"><div class="slide-message"><span>GDY MARTWI CIĘ WYPADANIE</span><h2>Znów włosy<br>na szczotce?</h2></div><div class="slide-footer"><b>Twój nowy szampon · 120 g</b></div></div>
+            <div class="hero-slide story-product"><picture><source type="image/avif" srcset="assets/hero-producto-v3-perf-480.avif 480w, assets/hero-producto-v3-perf-768.avif 768w, assets/hero-producto-v3-perf-960.avif 960w, assets/hero-producto-v3-perf-1254.avif 1254w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 620px, 560px"><img src="assets/hero-producto-v3.webp" srcset="assets/hero-producto-v3-640.webp 640w, assets/hero-producto-v3-960.webp 960w, assets/hero-producto-v3.webp 1254w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 620px, 560px" alt="Zielona kostka z logo Kalmely" width="1254" height="1254" fetchpriority="high"></picture><div class="slide-message"><span>GDY MARTWI CIĘ WYPADANIE</span><h2>Znów włosy<br>na szczotce?</h2></div><div class="slide-footer"><b>Twój nowy szampon · 120 g</b></div></div>
             <div class="hero-slide story-routine"><img data-src="assets/hero-sustitucion-v2.webp" alt="Kostka Kalmely trzymana na pierwszym planie, w tle puste butelki po szamponie w koszu" width="1254" height="1254"><noscript><img src="assets/hero-sustitucion-v2.webp" alt="Kostka Kalmely trzymana na pierwszym planie, w tle puste butelki po szamponie w koszu" width="1254" height="1254"></noscript><div class="slide-message"><span>JEDNA ZMIANA</span><h2>Zamień szampon.</h2></div><div class="slide-footer"><b>Zostaw swoją odżywkę</b></div></div>
             <div class="hero-slide story-wash"><img data-src="assets/hero-lavado-v4.webp" alt="Masowanie mokrej skóry głowy pianą, kostka Kalmely w dłoni" width="1254" height="1254"><noscript><img src="assets/hero-lavado-v4.webp" alt="Masowanie mokrej skóry głowy pianą, kostka Kalmely w dłoni" width="1254" height="1254"></noscript><div class="slide-message"><span>JAK UŻYWAĆ KOSTKI</span><h2>Spień. Masuj.<br>Dokładnie spłucz.</h2><p>Około minuty masażu skóry głowy.</p></div><div class="slide-footer"><b>60 sekund masażu · potem spłucz</b></div></div>
             <div class="hero-slide story-trial"><img data-src="assets/hero-raices-v1.webp" alt="Ilustracja pielęgnowanych włosów i widocznych korzeni włosów" width="1254" height="1254"><noscript><img src="assets/hero-raices-v1.webp" alt="Ilustracja pielęgnowanych włosów i widocznych korzeni włosów" width="1254" height="1254"></noscript><div class="slide-message"><span>SPRAWDŹ U SIEBIE</span><h2>Wypróbuj ją<br>przez 60 dni.</h2></div><div class="slide-footer"><b>Zwrot także za napoczętą kostkę</b></div></div>
@@ -1392,7 +1549,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
       <!-- Short edit of the existing campaign creative, not a before/after claim. -->
       <section class="ritual-video" id="video-rytual" aria-labelledby="ritualVideoTitle">
         <figure>
-          <video controls playsinline muted loop preload="none" poster="assets/ritual-mujer-poster.webp" width="540" height="720" aria-label="Fragment reklamy: aplikacja kostki i włosy przed lustrem">
+          <video controls playsinline muted loop preload="none" poster="assets/ritual-mujer-poster-480-v1.webp" width="540" height="720" aria-label="Fragment reklamy: aplikacja kostki i włosy przed lustrem">
             <source src="assets/ritual-mujer-10s.mp4" type="video/mp4">
             <a href="assets/ritual-mujer-10s.mp4">Obejrzyj film</a>
           </video>
@@ -1427,12 +1584,12 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
               <span class="pack-qty">3 kostki + szczotka</span>
               <span class="pack-unit">Za 40 zł więcej: 3. kostka + szczotka gratis · 46,33 zł/szt.</span>
               <span class="pack-price">139 zł<s>207 zł</s></span>
-              <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
+              <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1-thumb-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
             </button>
           </div>
           <p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.<span>Ceny i oszczędności dotyczą zakupu jednorazowego.</span></p>
           <p class="pack-order-guarantee">60 dni od doręczenia na zwrot całego zamówienia — kostki i prezenty zostają u Ciebie.</p>
-          <div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
+          <div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1-thumb-v1.webp" data-zoom-src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
         </div>
 
         <label class="sub-optin"><input type="checkbox" id="subOptin"><span><b>Subskrypcja −15% · opcjonalnie</b><small id="subTerms">Automatyczna płatność i wysyłka co 2 mies. Anulujesz jednym kliknięciem. Prezenty tylko w pierwszym zamówieniu.</small></span></label>
@@ -1481,9 +1638,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     <div class="wrap">
       <div class="sec-head"><div class="eyebrow">GDY KAŻDY WŁOS NA SZCZOTCE MARTWI</div><h2>Zadbaj o włosy już podczas mycia.</h2><p><strong>Delikatnie, bez szarpania i tarcia długości.</strong> Rozprowadź pianę na skórze głowy, spłucz i użyj swojej odżywki, aby ułatwić rozczesywanie.</p></div>
       <div class="wash-steps">
-        <article><div class="wash-photo"><img src="assets/mecanismo-lavado-v2.webp" alt="Spienianie zielonej kostki w mokrych dłoniach — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>01 · SPIEŃ</span><h3>Zacznij od wody</h3><p>Dokładnie zmocz włosy i skórę głowy. Spień mokrą kostkę w dłoniach i rozprowadź pianę u nasady.</p></div></article>
-        <article><div class="wash-photo wash-photo-mid"><img src="assets/mecanismo-lavado-v2.webp" alt="Delikatny masaż skóry głowy opuszkami palców — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>02 · UMYJ</span><h3>Skup się na skórze</h3><p>Delikatnie masuj opuszkami przez około minutę. Bez drapania paznokciami i tarcia długości włosów.</p></div></article>
-        <article><div class="wash-photo wash-photo-end"><img src="assets/mecanismo-lavado-v2.webp" alt="Dokładne spłukiwanie piany wodą — ilustracja" width="1536" height="1024" loading="lazy"></div><div class="wash-copy"><span>03 · SPŁUCZ</span><h3>Wróć do swojej odżywki</h3><p>Dokładnie spłucz pianę. Na długość nałóż swoją odżywkę, a kostkę zostaw do wyschnięcia poza strumieniem wody.</p></div></article>
+        <article><div class="wash-photo"><picture><source type="image/avif" srcset="assets/mecanismo-lavado-v2-perf.avif"><img src="assets/mecanismo-lavado-v2.webp" alt="Spienianie zielonej kostki w mokrych dłoniach — ilustracja" width="1536" height="1024" loading="lazy" decoding="async"></picture></div><div class="wash-copy"><span>01 · SPIEŃ</span><h3>Zacznij od wody</h3><p>Dokładnie zmocz włosy i skórę głowy. Spień mokrą kostkę w dłoniach i rozprowadź pianę u nasady.</p></div></article>
+        <article><div class="wash-photo wash-photo-mid"><picture><source type="image/avif" srcset="assets/mecanismo-lavado-v2-perf.avif"><img src="assets/mecanismo-lavado-v2.webp" alt="Delikatny masaż skóry głowy opuszkami palców — ilustracja" width="1536" height="1024" loading="lazy" decoding="async"></picture></div><div class="wash-copy"><span>02 · UMYJ</span><h3>Skup się na skórze</h3><p>Delikatnie masuj opuszkami przez około minutę. Bez drapania paznokciami i tarcia długości włosów.</p></div></article>
+        <article><div class="wash-photo wash-photo-end"><picture><source type="image/avif" srcset="assets/mecanismo-lavado-v2-perf.avif"><img src="assets/mecanismo-lavado-v2.webp" alt="Dokładne spłukiwanie piany wodą — ilustracja" width="1536" height="1024" loading="lazy" decoding="async"></picture></div><div class="wash-copy"><span>03 · SPŁUCZ</span><h3>Wróć do swojej odżywki</h3><p>Dokładnie spłucz pianę. Na długość nałóż swoją odżywkę, a kostkę zostaw do wyschnięcia poza strumieniem wody.</p></div></article>
       </div>
       <p class="visual-note">Ilustracje sposobu użycia wygenerowane z AI.</p>
       <div class="wash-expect" id="rytual"><div><span class="eyebrow">Na co zwrócić uwagę po myciu</span><h3>Świeżość skóry. Komfort. Rozczesywanie.</h3><p>Sprawdź, jak kostka pasuje do Twojej rutyny. Jeśli długość jest szorstka, nie pomijaj odżywki. Częstotliwość mycia dopasuj do potrzeb skóry i włosów.</p></div><div class="wash-try"><b>Wybierz zestaw dla swojej rutyny</b><span>Od 69 zł · 120 g · dostawa gratis</span><a href="#packs" class="hero-offer-link">Wybierz zestaw →</a><small>60 dni od doręczenia na zwrot pieniędzy</small></div></div>
@@ -1733,9 +1890,9 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
         <button type="button" class="pack" data-sku="SCALP-3" data-price="139" role="radio" aria-checked="false">
           <span class="pack-badge alt">Oszczędzasz 68 zł</span>
           <span class="pack-qty">3 kostki + szczotka</span><span class="pack-unit">Za 40 zł więcej: 3. kostka + szczotka gratis · 46,33 zł/szt.</span><span class="pack-price">139 zł<s>207 zł</s></span>
-          <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
+          <span class="pack-inline-preview"><img src="assets/bundle-3-brush-v1-thumb-v1.webp" alt="3 kostki Kalmely z zieloną szczotką i e-bookiem" width="760" height="760" loading="lazy"><span>W zestawie: 3 kostki, zielona szczotka i e-book PDF</span></span>
         </button>
-      </div><p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.</p><div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
+      </div><p class="pack-common-benefits"><b>W każdym zestawie:</b> e-book PDF na e-mail + darmowa dostawa.</p><div class="selected-bundle" aria-live="polite" aria-atomic="true"><img class="selected-bundle-img" src="assets/bundle-1-thumb-v1.webp" data-zoom-src="assets/bundle-1.webp" alt="1 kostka + e-book PDF" width="760" height="760" loading="lazy"><div><span class="bundle-kicker">TWÓJ ZESTAW</span><h3 class="selected-bundle-title">1 kostka · 120 g</h3><ul class="selected-bundle-gifts"><li><b>GRATIS</b> E-book Kalmely — PDF na e-mail</li></ul><p class="wash-value"><strong class="wash-value-amount">1,15–1,73 zł za mycie</strong><small>Szacunek przy 40–60 myciach z kostki.</small></p><p class="bundle-gift-note">E-book jest cyfrowy, nie drukowany.</p><span class="bundle-zoom-hint">Dotknij zdjęcia, aby powiększyć</span></div></div>
       <p class="pack-order-guarantee">Ceny i oszczędności dotyczą zakupu jednorazowego. Gwarancja obejmuje całe zamówienie — kostki i prezenty zostają u Ciebie.</p>
       <button type="button" class="add-to-cart" style="max-width:340px;margin:22px auto 0">Do koszyka — <span class="cta-price">99 zł</span></button>
       <div style="margin-top:12px;font:500 13px/1.4 var(--sans);color:var(--ink-soft)">Masz pytania? <a href="mailto:hello@kalmely.com" style="text-decoration:underline">hello@kalmely.com</a></div>
@@ -1799,7 +1956,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   </div>
   <div class="cart-body">
     <div class="cart-item">
-      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" src="assets/hero-01.webp" alt="Kalmely Korean Scalp Revival Bar" width="96" height="96"></div>
+      <div class="cart-item-img"><span class="ci-qty" id="cartQty">×1</span><img id="cartImg" decoding="async" alt="Kalmely Korean Scalp Revival Bar" width="96" height="96"></div>
       <div class="cart-item-info">
         <div class="cart-item-name" id="cartName">Kalmely Korean Scalp Revival Bar</div>
         <div class="cart-item-meta" id="cartMeta">2 kostki</div>
@@ -1900,6 +2057,8 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   <div class="cookie-actions"><button type="button" class="accept" id="cookieAccept">Akceptuję</button><button type="button" class="deny" id="cookieDeny">Tylko niezbędne</button></div>
 </div>
 
+
+
 <script>
 (function(){
   'use strict';
@@ -1960,7 +2119,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     renderPicker(lineMath().qty);updateCtas();renderGifts();
     document.querySelectorAll('.selected-bundle').forEach(function(box){
       var t=info(curSku),count=PACK_IDX[curSku]+1;
-      var im=box.querySelector('.selected-bundle-img');im.src='assets/'+t.img+'.webp';im.alt=t.label+' + e-book PDF'+(count===3?' + zielona szczotka':'');
+      var im=box.querySelector('.selected-bundle-img');im.src='assets/'+t.img+'-thumb-v1.webp';im.dataset.zoomSrc='assets/'+t.img+'.webp';im.alt=t.label+' + e-book PDF'+(count===3?' + zielona szczotka':'');
       box.querySelector('.selected-bundle-title').textContent=t.label+' · '+count+' × 120 g';
       box.querySelector('.selected-bundle-gifts').innerHTML=t.gifts.map(function(g){return '<li><b>GRATIS</b> '+g[0]+(g[2]==='brush-green-v1'?'<small>'+g[3]+'</small>':'')+'</li>';}).join('');
     });
@@ -2040,7 +2199,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     document.getElementById('cartQty').textContent='×1';
     // la foto del pack que se está comprando (bundle-1/2/3), no el bodegón genérico:
     // estaba escrita a fuego a hero-01, así que los tres packs mostraban la misma imagen
-    document.getElementById('cartImg').src='assets/'+(t.img||'hero-01')+'.webp?v=pl2';
+    document.getElementById('cartImg').src='assets/'+t.img+'-thumb-v1.webp';
     document.getElementById('cartImg').alt=t.label+' + e-book PDF'+(curSku==='SCALP-3'?' + zielona szczotka':'');
     document.getElementById('cartPrice').textContent=money(price);
     var wasEl=document.getElementById('cartWas');if(was&&was>price){wasEl.textContent=money(was);wasEl.style.display='';}else{wasEl.style.display='none';}
@@ -2077,7 +2236,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     if(_cg){
       var _g=t.gifts||[];
       if(_g.length){_cg.innerHTML='<span class="cg-h">Prezenty w zestawie</span>'+_g.map(function(x){
-        return '<span class="cg-item"><img class="cg-img" src="assets/'+(x[2]||'')+'.webp" alt="" width="40" height="40" loading="lazy">'
+        return '<span class="cg-item"><img class="cg-img" src="assets/'+(x[2]||'')+'-thumb-v1.webp" alt="" width="40" height="40" loading="lazy">'
              + '<span class="cg-body"><b class="cg-name">'+x[0]+'</b>'
              + '<span class="cg-val">GRATIS</span>'
              + (x[3]?'<span class="cg-desc">'+x[3]+'</span>':'') + '</span></span>';}).join('');}
@@ -2414,7 +2573,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 
   // ---------- Reveals ----------
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
-  document.querySelectorAll('.fade-slow').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*0.95)el.classList.add('in');else io.observe(el);});
+  document.querySelectorAll('.fade-slow').forEach(function(el){io.observe(el);});
   addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.fade-slow:not(.in)').forEach(function(el){el.classList.add('in');});},2500);});
 
   // ---------- Sticky CTA + nav shadow ----------
@@ -2430,8 +2589,14 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
   if(hThumbs.length&&hTrack){
     var hN=hTrack.children.length,hIdx=0,hW=0,hSx=0,hSy=0,hDrag=false,hLock=null;
     var hPending=0;
-    function hShow(i){hIdx=(i+hN)%hN;hTrack.style.transform='translateX('+(-hIdx*100)+'%)';hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});
-      var at=hThumbs[hIdx];if(at&&at.parentNode){var strip=at.parentNode;var target=at.offsetLeft-strip.clientWidth/2+at.clientWidth/2;strip.scrollTo({left:Math.max(0,target),behavior:'smooth'});}}
+    function hShow(i){
+      hIdx=(i+hN)%hN;
+      var at=hThumbs[hIdx],strip=at&&at.parentNode;
+      var target=strip?Math.max(0,at.offsetLeft-strip.clientWidth/2+at.clientWidth/2):0;
+      hTrack.style.transform='translateX('+(-hIdx*100)+'%)';
+      hThumbs.forEach(function(t,k){t.classList.toggle('is-active',k===hIdx);});
+      if(strip)strip.scrollTo({left:target,behavior:'smooth'});
+    }
     function hLoad(i){var im=hTrack.children[(i+hN)%hN].querySelector('img[data-src]');if(!im)return Promise.resolve();if(im._heroLoad)return im._heroLoad;im._heroLoad=new Promise(function(done){function ready(){im.removeEventListener('load',ready);im.removeEventListener('error',ready);im.removeAttribute('data-src');done();}im.addEventListener('load',ready);im.addEventListener('error',ready);im.src=im.dataset.src;if(im.complete)ready();});return im._heroLoad;}
     function hGo(i){i=(i+hN)%hN;var request=++hPending;if(i===hIdx){hTrack.removeAttribute('aria-busy');hShow(i);return;}hShow(hIdx);hTrack.setAttribute('aria-busy','true');hLoad(i).then(function(){if(hPending!==request)return;hTrack.removeAttribute('aria-busy');hShow(i);});}
     hThumbs.forEach(function(t,i){t.addEventListener('click',function(){hGo(i);});t.addEventListener('pointerenter',function(){hLoad(i);},{passive:true});t.addEventListener('focus',function(){hLoad(i);});});
@@ -2441,7 +2606,7 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
     hTrack.addEventListener('touchstart',function(e){hSx=e.touches[0].clientX;hSy=e.touches[0].clientY;hDrag=true;hLock=null;hW=hTrack.offsetWidth||1;hTrack.classList.add('dragging');},{passive:true});
     hTrack.addEventListener('touchmove',function(e){if(!hDrag)return;var dx=e.touches[0].clientX-hSx,dy=e.touches[0].clientY-hSy;if(hLock===null)hLock=Math.abs(dx)>Math.abs(dy)?'x':'y';if(hLock==='x')hTrack.style.transform='translateX('+(-hIdx*100+dx/hW*100)+'%)';},{passive:true});
     hTrack.addEventListener('touchend',function(e){if(!hDrag)return;hDrag=false;hTrack.classList.remove('dragging');if(hLock!=='x'){hGo(hIdx);return;}var dx=e.changedTouches[0].clientX-hSx;if(Math.abs(dx)>hW*0.15)hGo(hIdx+(dx<0?1:-1));else hGo(hIdx);},{passive:true});
-    heroGo=hGo; hGo(0);   // start on slide 1 (product + gifts)
+    heroGo=hGo;   // HTML already shows slide 1; avoid measuring the strip during startup.
   }
 
   // ---------- Newsletter footer (post to /api/lead-magnet) ----------
@@ -2457,160 +2622,16 @@ body:has(.sticky-cta.show) .chat-nudge{bottom:114px}
 </script>
 
 <!-- Image lightbox (tap-to-zoom — turns image taps into engagement instead of dead clicks) -->
-<style>
-.zoomable{cursor:zoom-in}
-#lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(31,37,22,.82);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:24px}
-#lightbox.open{display:flex}
-#lightbox img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);background:#F6F6F0}
-#lightbox .lb-close{position:absolute;top:18px;right:20px;width:42px;height:42px;border:none;border-radius:50%;background:rgba(246,246,240,.92);color:#3F4A2B;font:400 26px/1 var(--sans,sans-serif);display:flex;align-items:center;justify-content:center;cursor:pointer}
 
-/* V4: every carousel image explains one buying question. */
-.gallery{container-type:inline-size}
-.hero-grid{grid-template-areas:"gallery head" "gallery buy" "gallery convince";row-gap:16px}
-.hero-slide .slide-message{position:absolute;z-index:1;left:0;top:0;width:100%;padding:5% 6% 8%;background:linear-gradient(180deg,rgba(249,245,233,.98),rgba(249,245,233,.78) 65%,rgba(249,245,233,0));pointer-events:none}
-.slide-message>span{display:block;font:700 clamp(9px,2cqw,12px)/1.3 var(--sans);letter-spacing:.12em;margin-bottom:8px}
-.hero-slide .slide-message h2{font:700 clamp(24px,7cqw,43px)/1.02 var(--sans);letter-spacing:-.045em;color:var(--ink);margin:0}
-.slide-message p{font:500 clamp(11px,2.7cqw,16px)/1.4 var(--sans);margin:10px 0 0}
-.story-routine .slide-message{width:100%;height:30%;background:linear-gradient(180deg,rgba(249,245,233,.52),rgba(249,245,233,0));padding-right:6%}
-.story-routine .slide-message h2{font-size:clamp(24px,6.5cqw,40px);line-height:1.06}
-.hero-slide .slide-footer{position:absolute;bottom:0;left:0;right:0;z-index:2;height:clamp(40px,10.5cqw,64px);padding:0 6%;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:var(--paper)}
-.slide-footer b{display:block;font:700 clamp(13px,3.4cqw,20px)/1.15 var(--sans)}
-.slide-footer span{display:block;font:400 clamp(10px,2.5cqw,14px)/1.15 var(--sans);margin-top:2px}
-.story-product .slide-footer{flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
-.story-product .slide-footer span{margin:0;white-space:nowrap;font-weight:600}
-.hero-thumbs .hero-thumb{position:relative;overflow:hidden;opacity:1;border-radius:8px;flex:1;min-width:0;max-width:none;height:auto;aspect-ratio:1.15}
-.hero-thumb .thumb-label{position:absolute;bottom:0;left:0;right:0;background:rgba(252,251,249,.95);padding:5px 2px;font:600 11px/1.2 var(--sans);text-align:center}
-.hero-thumb.is-active .thumb-label{background:var(--ink);color:white}
-.gallery-note{font:400 10px/1.4 var(--sans);color:var(--ink-soft);margin-top:7px;text-align:center}
-.hero-head .bx-h1.product{font-size:36px;line-height:1.08;margin:12px 0}
-.hero-head .bx-h1-sub{font-size:15px;line-height:1.5}
-.hero-head .bx-badges{padding:10px 0 0;border:0;margin:0}.hero-head .bx-badges-row{gap:6px}.hero-head .bx-badges span{padding:5px 8px;font-size:10px}
-.hero-head .rating{margin-bottom:7px}.hero-head .product-name{margin-bottom:4px}
-.hero-head .facts-link{font-size:12px}.hero-head .hero-decision{margin:14px 0 8px}
-.hero-convince .hc-guar{padding:12px 15px}
-#usage .sec-head{margin-bottom:26px}#usage .sec-head h2{font-size:clamp(28px,3.3vw,42px)}
-@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "buy" "convince";gap:18px}.gallery{position:static;max-width:620px;width:100%;justify-self:center}.hero-thumbs{max-width:440px;margin-left:auto;margin-right:auto}.hero-head{max-width:620px;width:100%;justify-self:center}}
-@media(max-width:620px){.hero{padding-top:0}.hero-grid{gap:15px}.hero-thumbs{margin-top:10px;padding:0 14px;gap:7px}.hero-thumb .thumb-label{font-size:10px;padding:4px 1px}.hero-head .bx-h1.product{font-size:29px;margin:8px 0 10px}.hero-head .bx-h1-sub{font-size:14px;line-height:1.45}.hero-head .rating{font-size:12px}.hero-head .product-name{font-size:10px}.gallery-note{margin-top:5px;font-size:9px}.hero-head .hero-decision{margin-top:12px}.hero-head .facts-link{display:none}.hero-head .bx-badges{padding-top:4px}.hero-thumbs .hero-thumb{aspect-ratio:1.3}.hero-head .hero-offer-link{font-size:13px}.hero-convince{padding-top:0}}
-@media(max-width:620px){body.hero-in-view #chatFab,body.hero-in-view #chatNudge{display:none}}
-
-/* V5 — ingredient imagery, readable purchase details, and visible reading progress. */
-.ingredient-grid article{padding:0;overflow:hidden}.ingredient-grid article>img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}.ingredient-grid article>div{padding:20px}.ingredient-grid h3{font:650 25px/1.2 var(--sans);margin:0 0 9px}.ingredient-grid p{font-size:16px;color:var(--ink-2)}
-.ingredient-visual-note{font:400 13px/1.5 var(--sans);color:var(--ink-2);margin-top:12px}
-.sec-head .eyebrow,.wash-expect .eyebrow{font-size:13px;line-height:1.4;color:var(--ink-2);letter-spacing:.12em}
-.sec-head p,.wash-copy p,.wash-expect p,.wash-scope p{font-size:17px;line-height:1.65;hyphens:none;-webkit-hyphens:none}
-.facts-source,.facts-note p,.facts-note b{font-size:16px;line-height:1.6}.facts-note b{font-weight:700}.facts-source a{font-weight:600;text-decoration:underline}
-.hero-head .bx-h1-sub{font-size:17px;line-height:1.6}.hero-head .product-name{font-size:14px}.hero-head .rating{font-size:15px}
-.hero-head .hero-decision small{font-size:14px;line-height:1.5}.hero-head .hero-offer-link{font-size:16px}.hero-head .facts-link{font-size:15px;line-height:1.5}.hero-head .bx-badges span{font-size:13px;padding:7px 9px}.hero-head .bx-badges-row{display:flex;flex-wrap:wrap}
-.acc summary,.wash-scope summary{font-size:17px;line-height:1.4;font-weight:650}.acc details p,.spec th,.spec td{font-size:16px;line-height:1.6}.spec th{color:var(--ink);font-weight:600}.acc details p strong,.bx-h1-sub strong{font-weight:700;color:var(--ink)}
-.pack-unit{font:500 15px/1.4 var(--sans);color:var(--ink-2)}.pack-save,.pack-badge,.pack-gift{font-size:12px}.sub-optin span,.sub-note,.bx-ship,.bx-trust-i span{font-size:14px;line-height:1.5}.sale-divider,.offer-request{font-size:15px}
-.hc-guar b{font-size:16px}.hc-guar span{font-size:14px;line-height:1.5}.rev-score .cnt,.rev-chip,.rev-count,.rev-bar,.rev-reply p,.rev-by,.duo-n,.duo-n em{font-size:14px;line-height:1.5}.review p,.review .txt,.duo-q,.pr-q{font-size:16px;line-height:1.6}
-.gallery .slide-message>span{font-size:clamp(12px,2.4cqw,15px);letter-spacing:.06em}.gallery .slide-message p{font-size:clamp(14px,3cqw,18px)}
-.hero-slide .slide-footer{align-items:flex-start;justify-content:center}.hero-slide .slide-footer b{font-size:clamp(14px,3.25cqw,20px);line-height:1.2}.story-product .slide-footer{flex-direction:column;align-items:flex-start;justify-content:center}
-.hero-thumb .thumb-label{font-size:13px;padding:6px 2px}.gallery-note{font-size:12px;color:var(--ink-2)}
-html{scrollbar-color:#426b3a #e7e9df;scrollbar-width:auto}::-webkit-scrollbar{width:12px}::-webkit-scrollbar-track{background:#e7e9df}::-webkit-scrollbar-thumb{background:#426b3a;border:3px solid #e7e9df;border-radius:20px}::-webkit-scrollbar-thumb:hover{background:#234f2b}
-.reading-rail{position:fixed;z-index:35;right:8px;top:50%;transform:translateY(-50%);width:46px;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--ink)}
-.reading-number{font:700 14px/1.3 var(--sans);padding:7px 2px;width:44px;text-align:center;border:1px solid #c9d2bd;border-radius:20px;background:#fcfbf9;box-shadow:0 2px 8px #234f2b12}
-.reading-track{width:8px;height:190px;border-radius:10px;background:#e1e6d8;box-shadow:inset 0 0 0 1px #c1cdb5;position:relative}
-#readingFill{display:block;position:absolute;top:0;left:0;width:100%;height:0;background:#426b3a;border-radius:10px}
-#readingFill::after{content:"";position:absolute;bottom:-5px;left:-3px;width:14px;height:14px;background:#a2b84d;border:2px solid var(--paper);border-radius:10px 2px 10px 2px;box-shadow:0 1px 4px #234f2b44}
-#readingNext{display:flex;flex-direction:column;align-items:center;justify-content:center;width:46px;min-height:54px;border:1px solid #c9d2bd;border-radius:12px;background:#fcfbf9;box-shadow:0 2px 8px #234f2b12;font:600 13px/1.4 var(--sans)}#readingNext>span:first-child{font-size:24px;line-height:1}#readingNext:hover{background:#edf0e7}#readingNext:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-@media(min-width:1101px){.wrap{max-width:min(1240px,calc(100% - 88px))}.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,500px);column-gap:32px}}
-@media(max-width:1100px){.reading-rail{right:2px;width:8px;top:110px;bottom:85px;transform:none;gap:0;pointer-events:none}.reading-track{height:100%;width:6px;background:#d9dfcf}.reading-number,#readingNext{display:none}#readingFill::after{width:10px;height:14px;left:-2px;border-width:1px}.ingredient-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.hero-head .bx-h1.product{font-size:32px;line-height:1.08}.hero-head .bx-h1-sub{font-size:17px;line-height:1.55}.hero-head .product-name{font-size:14px}.hero-head .rating{font-size:14px}.hero-head .facts-link{display:inline-block;font-size:15px;margin-top:5px}.hero-head .hero-decision small{font-size:14px}.hero-head .hero-offer-link{font-size:15px}.hero-head .bx-badges span{font-size:13px}.hero-head .hero-decision{gap:10px}.hero-decision b{font-size:24px}.sec-head h2{font-size:30px;line-height:1.15}.sec-head p{font-size:17px}.ingredient-grid{gap:14px}.ingredient-grid article>div{padding:16px}.ingredient-grid h3{font-size:21px;overflow-wrap:normal}.ingredient-grid p{font-size:15px;overflow-wrap:anywhere}.facts-grid.ingredient-grid article{padding:0}.hero-thumb .thumb-label{font-size:12px;padding:5px 1px}.gallery-note{font-size:12px}.slide-footer{padding-left:5%;padding-right:5%}.wash-copy h3,.wash-expect h3{font-size:28px}.wash-copy p,.wash-expect p,.wash-scope p{font-size:17px}.sub-optin span{font-size:14px}.spec th,.spec td{font-size:16px}.hero-thumbs .hero-thumb{aspect-ratio:1.05}.reading-rail{top:105px;bottom:90px}}
-@media(max-width:360px){.ingredient-grid{grid-template-columns:1fr}.ingredient-grid article{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center}.ingredient-grid article>img{height:100%;min-height:140px;aspect-ratio:auto;object-fit:cover}.ingredient-grid article>div{padding:15px}.hero-head .hero-decision{flex-wrap:wrap}.hero-head .hero-offer-link{min-height:44px}.hero-slide .slide-footer b{font-size:14px}}
-@media(prefers-reduced-motion:reduce){#readingFill{transition:none}}
-.sub-optin span{font-size:16px;line-height:1.5}.wash-try small{font-size:14px;line-height:1.5}
-
-/* V6 — a quiet first view; purchasing choices follow the introduction. */
-.hero-grid{grid-template-areas:"gallery head" "buy buy" "convince convince";row-gap:44px}
-.gallery{position:static}
-.hero-head{align-self:center;padding-bottom:30px}
-.hero-head .bx-h1.product{font-size:clamp(34px,3.5vw,46px);line-height:1.12;max-width:440px;margin:16px 0}
-.hero-head .bx-h1-sub{font-size:17px;line-height:1.55;max-width:390px;font-weight:400;hyphens:none;-webkit-hyphens:none}
-.hero-head .product-name{font-size:12px;font-weight:500;letter-spacing:.1em;margin-top:24px}
-.hero-head .rating{font-size:13px}.hero-head .starrow{transform:scale(.85);transform-origin:left center;margin-right:-10px}
-.hero-head .hero-decision{margin:28px 0 12px;justify-content:flex-start;gap:28px}
-.hero-head .hero-decision b{font-size:24px}.hero-head .hero-decision small{font-size:13px}
-.hero-head .hero-offer-link{font-size:15px;padding:15px 22px}
-.hero-reassurance{font:400 13px/1.5 var(--sans);color:var(--ink-2);margin:0}
-.hero-explore{display:flex;gap:22px;border-top:1px solid var(--line);margin-top:26px;padding-top:12px;max-width:390px}
-.hero-explore a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:500 14px/1.4 var(--sans);color:var(--ink-2);text-decoration:none}
-.hero-explore a span{color:var(--ink)}.hero-explore a:hover{text-decoration:underline;text-underline-offset:4px}.hero-explore a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.hero-thumbs{max-width:340px;margin:12px auto 0;gap:8px}.hero-thumbs .hero-thumb{height:58px;aspect-ratio:auto;flex:1}.hero-thumb .thumb-label{font-size:11px;padding:4px 1px}.gallery-note{font-size:11px;margin-top:6px}
-.buybox{width:100%;max-width:620px;justify-self:center;border-top:1px solid var(--line);padding-top:32px}.buybox .bx-sec{margin-top:0}.purchase-title{font:600 30px/1.2 var(--serif);margin:0 0 12px}.buybox .offer-request{font-size:13px;font-weight:400;margin-bottom:22px;min-height:44px}
-.hero-convince{width:100%;max-width:620px;justify-self:center}
-.reading-number{font-size:12px;box-shadow:none}#readingNext{border:0;background:transparent;box-shadow:none;font-size:11px;min-height:44px}#readingNext>span:first-child{font-size:20px}
-@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "buy" "convince";row-gap:24px}.hero-head{padding-bottom:0}.gallery{max-width:480px}.hero-head{max-width:480px}.hero-head .bx-h1.product{max-width:none}.hero-head .product-name{margin-top:16px}.buybox{margin-top:12px}}
-@media(max-width:620px){.announce{font-size:10px;letter-spacing:0;padding:9px 8px}.nav-inner{min-height:54px}.logo-brand{font-size:29px}.logo-tag{display:none}.hero-grid{row-gap:20px}.gallery{max-width:100%}.hero-thumbs{max-width:290px;padding:0;margin-top:8px}.hero-thumbs .hero-thumb{height:48px}.hero-thumb .thumb-label{font-size:11px}.gallery-note{font-size:10px}.hero-head .rating{font-size:13px}.hero-head .product-name{display:none}.hero-head .bx-h1.product{font-size:29px;margin:12px 0}.hero-head .bx-h1-sub{font-size:16px;line-height:1.5;margin-bottom:0}.hero-head .hero-decision{margin-top:20px;gap:18px;justify-content:space-between;flex-wrap:nowrap}.hero-head .hero-decision b{font-size:23px}.hero-head .hero-offer-link{font-size:14px;padding:14px 16px}.hero-explore{margin-top:18px;padding-top:6px}.hero-explore a{font-size:13px}.buybox{padding-top:26px}.purchase-title{font-size:27px}.hero-reassurance{font-size:13px}}
-
-/* V7 — short campaign edit, immediately before purchase options. */
-.hero-grid{grid-template-areas:"gallery head" "demo demo" "buy buy" "convince convince"}
-.ritual-video{grid-area:demo;display:grid;grid-template-columns:260px minmax(0,1fr);align-items:center;gap:42px;width:100%;max-width:790px;justify-self:center;border-top:1px solid var(--line);padding-top:36px}
-.ritual-video figure{margin:0;min-width:0}.ritual-video video{display:block;width:100%;height:auto;aspect-ratio:3/4;border-radius:14px;background:#e7e9df;object-fit:contain}
-.ritual-video figcaption{font:400 11px/1.5 var(--sans);color:var(--ink-2);text-align:center;margin-top:8px}
-.ritual-video-copy .eyebrow{font:600 12px/1.5 var(--sans);letter-spacing:.08em;color:var(--ink-2)}
-.ritual-video-copy h2{font:600 clamp(26px,2.8vw,34px)/1.2 var(--serif);margin:12px 0 16px;color:var(--ink)}
-.ritual-video-copy p{font:400 16px/1.5 var(--sans);color:var(--ink-2);max-width:350px;hyphens:none}
-@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "demo" "buy" "convince"}.ritual-video{max-width:620px;gap:28px;grid-template-columns:230px minmax(0,1fr)}}
-@media(max-width:620px){.ritual-video{grid-template-columns:1fr;gap:20px;padding:28px 20px 0}.ritual-video-copy{grid-row:1;text-align:center}.ritual-video-copy h2{font-size:27px;margin:8px 0 12px}.ritual-video-copy p{margin:0 auto}.ritual-video figure{width:100%;max-width:270px;justify-self:center}.ritual-video figcaption{font-size:11px}}
-
-/* V8 — factual format comparison and consolidated purchase FAQ. */
-.format-table .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.format-table{table-layout:fixed;width:100%;border-collapse:separate;border-spacing:0;font:400 16px/1.5 var(--sans);color:var(--ink-2)}
-.format-table th,.format-table td{padding:18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);width:35%}.format-table th:first-child{width:30%}.format-table th{font-weight:600;color:var(--ink)}
-.format-table th:nth-child(2),.format-table td:nth-child(2){background:#edf2e9}.format-table thead th:nth-child(2){background:var(--ink);color:white;border-radius:12px 12px 0 0}.format-table thead th{font-size:17px}.comparison-note{font:400 14px/1.5 var(--sans);color:var(--ink-2);margin-top:18px}
-@media(max-width:620px){.format-table{font-size:14px;line-height:1.45}.format-table th,.format-table td{padding:12px 8px;overflow-wrap:break-word}.format-table thead th{font-size:14px}.format-comparison .wrap{padding-left:16px;padding-right:16px}.comparison-note{font-size:14px}}
-
-.bundle-zoom-hint{display:block;font:400 11px/1.4 var(--sans);color:var(--ink-2);margin-top:6px}
-/* V9 — show selected contents and answer purchase questions at the offer. */
-.selected-bundle{display:grid;grid-template-columns:140px minmax(0,1fr);gap:18px;align-items:center;margin:18px 0 8px;padding:14px;background:#f1f4ec;border:1px solid #d8e1ce;border-radius:12px;text-align:left}
-.selected-bundle-img{display:block;width:100%;height:auto;border-radius:8px}.bundle-kicker{font:600 11px/1.3 var(--sans);letter-spacing:.08em;color:var(--ink-2)}.selected-bundle-title{font:650 18px/1.3 var(--sans);margin:6px 0 10px;color:var(--ink)}.selected-bundle-gifts{list-style:none;padding:0;margin:0;display:grid;gap:9px;font:500 14px/1.45 var(--sans);color:var(--ink)}.selected-bundle-gifts b{display:inline-block;background:#dce9cb;border-radius:4px;padding:2px 5px;font-size:11px;margin-right:4px}.selected-bundle-gifts small{display:block;margin:4px 0 0;font:400 12px/1.45 var(--sans);color:var(--ink-2)}.bundle-gift-note{font:400 12px/1.4 var(--sans);color:var(--ink-2);margin:9px 0 0}
-.quick-faq{margin-top:24px}.quick-faq>h3{font:650 18px/1.3 var(--sans);margin:0 0 8px}.quick-faq .acc{margin-top:0}.all-faq-link{display:inline-flex;align-items:center;min-height:44px;font:500 14px/1.5 var(--sans);text-decoration:underline;text-underline-offset:4px;margin-top:10px}
-.refund-contact{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:16px}.refund-contact>a,.copy-support-email{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border:1px solid var(--ink);border-radius:8px;font:600 14px/1.3 var(--sans);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer}.copy-email-status{flex-basis:100%;font:400 14px/1.5 var(--sans);overflow-wrap:anywhere}.copy-support-email:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.pack-gift{font-size:11px}
-@media(max-width:620px){.selected-bundle{grid-template-columns:110px minmax(0,1fr);padding:12px;gap:12px}.selected-bundle-title{font-size:16px}.selected-bundle-gifts{font-size:14px}.quick-faq .acc summary{font-size:16px}.pack-gift{font-size:10px}}
-@media(max-width:360px){.selected-bundle{grid-template-columns:90px minmax(0,1fr);gap:10px}.selected-bundle-title{font-size:15px}.selected-bundle-gifts{font-size:13px}}
-
-/* V10 — group proof with the offer and keep section spacing consistent. */
-main>section:not(.hero){padding-top:52px;padding-bottom:52px}
-.sec-head{margin-bottom:26px}
-.hero-grid{grid-template-areas:"gallery head" "demo buy";row-gap:40px}
-.ritual-video{display:flex;flex-direction:column;gap:20px;max-width:440px;border:1px solid var(--line);border-radius:18px;background:#f3f4ee;padding:24px;align-self:start;position:sticky;top:120px}
-.ritual-video-copy{order:-1;text-align:center}.ritual-video-copy h2{font-size:29px;margin:8px 0 12px}.ritual-video-copy p{margin:0 auto;max-width:330px}.ritual-video figure{width:100%;max-width:270px}.ritual-video .hero-convince{padding:0;width:100%;max-width:none}.ritual-video .hc{border:0;background:transparent}.ritual-video .hc-guar{border:0;background:transparent;padding:14px 0 0;border-top:1px solid #d6dfcb;border-radius:0;align-items:flex-start}.ritual-video .hc-guar b{font-size:15px}.ritual-video .hc-guar span{font-size:13px;line-height:1.5}
-.buybox{max-width:none;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--card);margin-top:0}.buybox .offer-request{margin-bottom:14px}.quick-faq{margin-top:20px}
-.guarantee .selected-bundle{max-width:690px;margin-left:auto;margin-right:auto}.scroll-cue{margin-top:24px;margin-bottom:12px}
-#porownanie .sec-head{margin-bottom:24px}.facts-source{margin-top:16px}.facts-note{margin-top:14px}.wash-expect{gap:24px;padding:24px}.visual-note{margin-bottom:20px}
-@media(max-width:1100px){.hero-grid{grid-template-areas:"gallery" "head" "demo" "buy";row-gap:24px}.ritual-video{position:static;max-width:620px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px}.ritual-video-copy{order:0;text-align:left}.ritual-video .hero-convince{grid-column:1/-1}.buybox{max-width:620px}}
-@media(max-width:620px){main>section:not(.hero){padding-top:36px;padding-bottom:36px}.hero-grid{row-gap:20px}.ritual-video{display:flex;margin:0 20px;width:calc(100% - 40px);padding:20px;gap:16px;border-radius:14px}.ritual-video-copy{order:-1;text-align:center}.ritual-video-copy h2{font-size:26px}.ritual-video figure{max-width:240px}.buybox{border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 20px 0;background:transparent}.sec-head{margin-bottom:22px}.wash-expect{padding:20px}.scroll-cue{margin-top:18px}.guarantee .selected-bundle{max-width:100%}}
-.sub-optin b{display:block;font-size:15px;line-height:1.4}.sub-optin small{display:block;font-size:13px;line-height:1.5;margin-top:6px;font-weight:400}.ritual-video{scroll-margin-top:120px}@media(min-width:1101px) and (max-height:850px){.ritual-video{position:static}}
-
-/* V11 — guarantee and use evidence in the first desktop view. */
-.hero-protection{background:#234f2b;color:#fff;border-radius:12px;padding:18px 20px;margin:18px 0}
-.protection-term{font:650 11px/1.4 var(--sans);letter-spacing:.08em;color:#dfebd3}.hero-protection h2{font:600 28px/1.08 var(--serif);margin:8px 0 10px;color:#fff}.hero-protection p{font:400 14px/1.5 var(--sans);color:#fff;margin:0;hyphens:none}.hero-protection a{display:inline-flex;align-items:center;min-height:36px;font:500 12px/1.4 var(--sans);color:#fff;text-decoration:underline;text-underline-offset:3px;margin-top:6px}
-#refundQuick{scroll-margin-top:125px}
-@media(min-width:1101px){
-.hero{padding-top:24px}.hero-grid{max-width:1200px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"gallery head" "gallery demo" "buy buy";gap:18px 32px;align-items:start}
-.hero-head{align-self:start;padding:0}.hero-head .rating{font-size:12px;margin-bottom:8px}.hero-head .product-name{margin:0;font-size:11px}.hero-head .bx-h1.product{font-size:34px;line-height:1.08;margin:10px 0;max-width:none}.hero-head .bx-h1-sub{font-size:16px;line-height:1.45;max-width:none;margin-bottom:0}
-.hero-protection{margin:14px 0;padding:15px 18px}.hero-protection h2{font-size:29px;margin:5px 0 7px}.hero-protection h2 br{display:none}.hero-protection p{font-size:14px}.hero-protection a{min-height:30px;margin-top:3px}
-.hero-head .hero-decision{margin:16px 0 8px;justify-content:space-between}.hero-head .hero-explore{border:0;margin-top:5px;padding:0;gap:22px}.hero-head .hero-explore a{min-height:30px;font-size:12px}
-.ritual-video{position:static;display:grid;grid-template-columns:125px minmax(0,1fr);gap:18px;max-width:none;padding:14px;margin:0;border-radius:12px;align-items:center;scroll-margin-top:120px}.ritual-video figure{max-width:125px;grid-column:1}.ritual-video-copy{order:0;text-align:left;grid-column:2;grid-row:1}.ritual-video-copy h2{font-size:24px;margin:7px 0 10px}.ritual-video-copy p{font-size:14px;line-height:1.45}.ritual-video figcaption{font-size:10px;line-height:1.3}.ritual-video-copy .eyebrow{font-size:11px}
-.gallery{align-self:start}.buybox{max-width:760px;margin-top:22px;padding:28px 34px}.hero-thumbs{margin-top:10px}
-}
-@media(max-width:620px){.hero-protection{padding:16px;margin:16px 0}.hero-protection h2{font-size:26px}.hero-protection p{font-size:14px}.hero-protection a{font-size:12px;min-height:44px}}
-@media(min-width:1101px){body.hero-in-view #chatNudge{display:none}.ritual-video figcaption{font-size:10px}.hero-protection h2{font-family:var(--sans);font-weight:650;font-size:27px}}
-@media(min-width:1101px) and (max-height:820px){.hero{padding-top:16px}.hero-grid{gap:12px 28px}.hero-head .bx-h1.product{font-size:29px;margin:7px 0}.hero-head .bx-h1-sub{font-size:15px}.hero-protection{padding:12px 16px;margin:10px 0}.hero-protection h2{font-size:25px}.hero-protection p{font-size:13px}.hero-head .hero-decision{margin-top:12px}.ritual-video{grid-template-columns:110px minmax(0,1fr);padding:12px}.ritual-video figure{max-width:110px}.ritual-video-copy h2{font-size:22px}.ritual-video-copy p{font-size:13px}}
-
-/* V12 — existing younger profiles first, estimated value per wash. */
-.review-priority{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.review-priority .review{margin:0}.review-priority .review p{font-size:16px;line-height:1.55}.review-priority .av-face{background:#edf2e9}.wash-value{margin:12px 0 0;padding-top:10px;border-top:1px solid #d6dfcb;color:var(--ink)}.wash-value strong{display:block;font:650 15px/1.4 var(--sans)}.wash-value small{display:block;font:400 12px/1.45 var(--sans);margin-top:3px;color:var(--ink-2)}
-@media(max-width:780px){.review-priority{grid-template-columns:1fr}.wash-value strong{font-size:14px}}
-</style>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie"><button type="button" class="lb-close" aria-label="Zamknij">&times;</button><img src="" alt=""></div>
+
 <script>
 (function(){
   var sel='.selected-bundle-img,.reason img,.ba-grid img,.steps3 .step img,.rev-img,.photo-reviews img,.life img,.mech-img img';
   var lb=document.getElementById('lightbox'); if(!lb) return;
   var lbImg=lb.querySelector('img');
   document.querySelectorAll(sel).forEach(function(im){im.classList.add('zoomable');im.setAttribute('role','button');im.setAttribute('tabindex','0');im.setAttribute('aria-label','Powiększ zdjęcie');});
-  function open(im){lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+  function open(im){lbImg.src=im.dataset.zoomSrc||im.currentSrc||im.src;lbImg.alt=im.alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
   function close(){lb.classList.remove('open');document.body.style.overflow='';setTimeout(function(){lbImg.src='';},200);}
   document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest(sel);if(im){e.preventDefault();open(im);}});
   document.addEventListener('keydown',function(e){var im=e.target&&e.target.closest&&e.target.closest(sel);if(im&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(im);}if(e.key==='Escape'&&lb.classList.contains('open'))close();});
@@ -2699,11 +2720,11 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
   })();
   // TIER 1 — "Show more reviews" reveals the photo-profile reviews, and unveils the tier-2 button below them
   if(more&&btn&&WITHPHOTO.length){
-    more.innerHTML=WITHPHOTO.map(cT).join('');
     more.hidden=true;
     btn.textContent='Pokaż więcej opinii ↓';
     btn.addEventListener('click',function(){
       if(more.hidden){
+        if(!more.childElementCount)more.innerHTML=WITHPHOTO.map(cT).join('');
         more.hidden=false;btn.textContent='Pokaż mniej opinii ↑';
         if(more2wrap&&NOPHOTO.length)more2wrap.hidden=false;   // reveal the tier-2 button
       }else{
@@ -2719,11 +2740,10 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
 
   // TIER 2 — "Show even more reviews" reveals the rest (no photo, face icon); also collapsible
   if(more2&&btn2&&NOPHOTO.length){
-    more2.innerHTML=NOPHOTO.map(cT).join('');
     more2.hidden=true;
     btn2.textContent='Pokaż jeszcze więcej opinii ↓';
     btn2.addEventListener('click',function(){
-      if(more2.hidden){more2.hidden=false;btn2.textContent='Pokaż mniej opinii ↑';}
+      if(more2.hidden){if(!more2.childElementCount)more2.innerHTML=NOPHOTO.map(cT).join('');more2.hidden=false;btn2.textContent='Pokaż mniej opinii ↑';}
       else{more2.hidden=true;btn2.textContent='Pokaż jeszcze więcej opinii ↓';btn2.scrollIntoView({block:'center'});}
     });
   }else if(more2wrap){more2wrap.hidden=true;}
@@ -2747,7 +2767,6 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
 })();
 // The announcement stays still so the first view has one stable message.
 </script>
-
 <script>
 (function(){
   var rail=document.getElementById('readingTrack'),fill=document.getElementById('readingFill'),number=document.getElementById('readingNumber'),next=document.getElementById('readingNext'),label=document.getElementById('readingNextLabel');
@@ -2768,10 +2787,9 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
     if(!target){window.scrollTo({top:document.documentElement.scrollHeight,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return;}
     if(target)target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   });
-  update();
+  schedule();
 })();
 </script>
-
 <script>
 document.querySelectorAll('a[href="#refundQuick"]').forEach(function(a){a.addEventListener('click',function(){document.getElementById('refundQuick').open=true;});});
 document.querySelectorAll('.copy-support-email').forEach(function(button){button.addEventListener('click',async function(){
@@ -2779,6 +2797,15 @@ document.querySelectorAll('.copy-support-email').forEach(function(button){button
   try{await navigator.clipboard.writeText('hello@kalmely.com');status.textContent='Skopiowano: hello@kalmely.com';}
   catch(e){status.textContent='Adres do skopiowania: hello@kalmely.com';}
 });});
+
 </script>
+
+
+
+
+
+
+
+
 </body>
 </html>

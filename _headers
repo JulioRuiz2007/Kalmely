@@ -30,3 +30,11 @@
 # Fonts are fetched from /scalp/assets, not the root /assets directory.
 /scalp/assets/fonts/*.woff2
   Cache-Control: public, max-age=31536000
+
+# Delivery variants are versioned; keep them cached across visits.
+/scalp/assets/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+# The canonical product URL has no .html suffix.
+/scalp/
+  Cache-Control: public, max-age=300, must-revalidate
