@@ -1469,6 +1469,27 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
 /* V12 — existing younger profiles first, estimated value per wash. */
 .review-priority{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.review-priority .review{margin:0}.review-priority .review p{font-size:16px;line-height:1.55}.review-priority .av-face{background:#edf2e9}.wash-value{margin:12px 0 0;padding-top:10px;border-top:1px solid #d6dfcb;color:var(--ink)}.wash-value strong{display:block;font:650 15px/1.4 var(--sans)}.wash-value small{display:block;font:400 12px/1.45 var(--sans);margin-top:3px;color:var(--ink-2)}
 @media(max-width:780px){.review-priority{grid-template-columns:1fr}.wash-value strong{font-size:14px}}
+
+/* The demonstration stays readable inline and opens in an accessible full-window player. */
+.ritual-player{position:relative;width:100%}
+.ritual-expand{position:absolute;top:8px;right:8px;display:grid;place-items:center;width:44px;height:44px;padding:10px;border:1px solid #ffffff80;border-radius:10px;background:#17351de6;color:#fff;cursor:pointer;box-shadow:0 2px 8px #0003}
+.ritual-expand[hidden]{display:none}
+.ritual-expand svg{width:22px;height:22px;pointer-events:none}
+.ritual-expand:hover{background:#17351d}
+.ritual-expand:focus-visible,.ritual-viewer-close:focus-visible{outline:3px solid #e4bd65;outline-offset:3px}
+.ritual-video figcaption{font-size:12px;line-height:1.4}
+@media(min-width:1101px){.ritual-video{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:16px}.ritual-video figure{max-width:none}.ritual-video-copy p{font-size:15px;line-height:1.5}}
+@media(min-width:1101px) and (max-height:820px){.ritual-video{grid-template-columns:180px minmax(0,1fr);padding:14px}.ritual-video-copy p{font-size:14px}}
+@media(max-width:620px){.ritual-video{padding:18px 14px}.ritual-video figure{max-width:300px}}
+.ritual-viewer{border:0;padding:16px;margin:0;max-width:none;max-height:none;width:100%;height:100%;height:100dvh;box-sizing:border-box;background:#111812;color:#fff;overscroll-behavior:contain}
+.ritual-viewer[open]{display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px}
+.ritual-viewer::backdrop{background:#111812}
+.ritual-viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:env(safe-area-inset-top);font:500 14px/1.4 var(--sans)}
+.ritual-viewer-close{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid #ffffff70;border-radius:10px;background:#243d29;color:#fff;font:600 14px/1.4 var(--sans);cursor:pointer}
+.ritual-viewer-close svg{width:20px;height:20px}
+.ritual-viewer-stage{display:flex;justify-content:center;min-height:0;padding-bottom:env(safe-area-inset-bottom)}
+.ritual-viewer video{display:block;width:100%;height:100%;max-width:720px;min-height:0;object-fit:contain;background:#111812}
+@media(max-width:620px){.ritual-viewer{padding:10px}.ritual-viewer-bar{gap:8px;font-size:13px}}
 </style>
 
 </head>
@@ -1549,10 +1570,15 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
       <!-- Short edit of the existing campaign creative, not a before/after claim. -->
       <section class="ritual-video" id="video-rytual" aria-labelledby="ritualVideoTitle">
         <figure>
+          <div class="ritual-player">
           <video controls playsinline muted loop preload="none" poster="assets/ritual-mujer-poster-480-v1.webp" width="540" height="720" aria-label="Fragment reklamy: aplikacja kostki i włosy przed lustrem">
             <source src="assets/ritual-mujer-10s.mp4" type="video/mp4">
             <a href="assets/ritual-mujer-10s.mp4">Obejrzyj film</a>
           </video>
+          <button class="ritual-expand" type="button" aria-label="Powiększ wideo" title="Powiększ wideo" aria-haspopup="dialog" aria-controls="ritualViewer" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg>
+          </button>
+          </div>
           <figcaption>Fragment reklamy · 10 s</figcaption>
         </figure>
         <div class="ritual-video-copy">
@@ -2618,6 +2644,51 @@ main>section:not(.hero){padding-top:52px;padding-bottom:52px}
     f.addEventListener('submit',function(e){e.preventDefault();var email=(document.getElementById('newsEmail').value||'').trim();var msg=document.getElementById('newsMsg');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.color='#ff9b9b';msg.textContent='Podaj poprawny adres e-mail.';return;}subscribe(email);msg.style.color='#E6C29C';msg.textContent='Gotowe! Sprawdź skrzynkę — wysłaliśmy Ci darmowy przewodnik.';f.reset();});
   })();
 
+})();
+</script>
+
+<!-- No video source is assigned to the expanded player until it is opened. -->
+<dialog class="ritual-viewer" id="ritualViewer" aria-label="Powiększone wideo: jak używać Kalmely">
+  <div class="ritual-viewer-bar"><span>Kalmely · Fragment reklamy · 10 s</span><button class="ritual-viewer-close" type="button" aria-label="Zamknij wideo" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>Zamknij</button></div>
+  <div class="ritual-viewer-stage"><video controls playsinline muted loop preload="none" width="540" height="720" aria-label="Aplikacja kostki Kalmely i włosy przed lustrem"></video></div>
+</dialog>
+<script>
+(function(){
+  var inline=document.querySelector('.ritual-player video');
+  var button=document.querySelector('.ritual-expand');
+  var dialog=document.getElementById('ritualViewer');
+  if(!inline||!button||!dialog||typeof dialog.showModal!=='function')return;
+  var expanded=dialog.querySelector('video');
+  var previousOverflow='';
+  button.hidden=false;
+  button.addEventListener('click',function(){
+    if(dialog.open)return;
+    var position=inline.currentTime||0;
+    var playing=!inline.paused;
+    inline.pause();
+    expanded.muted=inline.muted;
+    expanded.volume=inline.volume;
+    expanded.poster=inline.poster;
+    previousOverflow=document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow='hidden';
+    expanded.onloadedmetadata=function(){if(dialog.open)expanded.currentTime=position;};
+    expanded.src=inline.currentSrc||inline.querySelector('source').src;
+    if(playing)expanded.play().catch(function(){});
+  });
+  dialog.querySelector('.ritual-viewer-close').addEventListener('click',function(){dialog.close();});
+  dialog.addEventListener('click',function(e){if(e.target===dialog||e.target.classList.contains('ritual-viewer-stage'))dialog.close();});
+  dialog.addEventListener('close',function(){
+    expanded.pause();
+    if(expanded.readyState>0)inline.currentTime=expanded.currentTime;
+    inline.muted=expanded.muted;
+    inline.volume=expanded.volume;
+    expanded.onloadedmetadata=null;
+    expanded.removeAttribute('src');
+    expanded.load();
+    document.body.style.overflow=previousOverflow;
+    button.focus({preventScroll:true});
+  });
 })();
 </script>
 
